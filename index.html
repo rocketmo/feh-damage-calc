@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="Description" content="A Damage Calculator for Fire Emblem: Heroes which can be used to simulate battle interactions.">
+		<title>Fire Emblem: Heroes Damage Calculator</title>
+		<link rel="stylesheet" href="css/calc-style.css">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<h1>Fire Emblem: Heroes<br>Damage Calculator</h1>
+			<div>
+				<table id="calc">
+					<tr id="char-panel">
+						<td>
+							<div class="char-info">
+								<fieldset id="attack-panel" class="char-info-panel">
+									<legend><h2 class="attacker">Attacker</h2></legend>
+									<div class="info-section character-select">
+										<div class="asd">
+											<label>
+												<span id="extra-char-info-1-btn" class="collapse-button" data-section="extra-char-info-1">Character</span>
+											</label>
+											<select class="char-selector"></select>
+										</div>
+										<div id="extra-char-info-1" class="collapsable">
+											<label>Move Type</label>
+											<select>
+												<option>Infantry</option>
+												<option>Cavalry</option>
+												<option>Flying</option>
+												<option>Armored</option>
+											</select>
+										</div>
+									</div>
+									<div class="info-section weapon-select">
+										<div>
+											<label>
+												<span id="extra-weapon-info-1-btn" class="collapse-button" data-section="extra-weapon-info-1">Weapon</span>
+											</label>
+											<select></select>
+										</div>
+										<div id="extra-weapon-info-1" class="collapsable">
+											<div>
+												<label>Color</label>
+												<select>
+													<option>Red</option>
+													<option>Green</option>
+													<option>Blue</option>
+													<option>Colorless</option>
+												</select>
+											</div>
+											<div>
+												<label>Type</label>
+												<select>
+													<option>Sword</option>
+													<option>Red Tome</option>
+													<option>Red Breath</option>
+													<option>Axe</option>
+													<option>Green Tome</option>
+													<option>Green Breath</option>
+													<option>Lance</option>
+													<option>Blue Tome</option>
+													<option>Blue Breath</option>
+													<option>Bow</option>
+													<option>Dagger</option>
+													<option>Staff</option>
+												</select>
+											</div>
+											<div>
+												<label>Might</label>
+												<input type="number" class="zero-or-more" value="0">
+											</div>
+											<div>
+												<label>Range</label>
+												<select>
+													<option>1</option>
+													<option>2</option>
+												</select>
+											</div>
+											<div>
+												<label>Magical</label>
+												<select>
+													<option>Yes</option>
+													<option>No</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="info-section skill-select">
+										<div class="big-select">
+											<label>Passive Skill 1</label>
+											<select></select>
+										</div>
+										<div class="big-select">
+											<label>Passive Skill 2</label>
+											<select></select>
+										</div>
+										<div class="big-select">
+											<label>Passive Skill 3</label>
+											<select></select>
+										</div>
+										<div class="big-select">
+											<label>Special Skill</label>
+											<select></select>
+										</div>
+										<div class="big-select">
+											<label title="Special activates when cooldown is at 0">Special Cooldown</label>
+											<input type="number" class="zero-or-more" value="0">/<span class="denominator">x</span>
+										</div>
+									</div>
+									<div class="info-section stat-info">
+										<table>
+											<tr>
+												<th></th>
+												<th class="center-cell" title="Default stat total with no buffs/debuffs">Base</th>
+												<th class="center-cell" title="Stat buff that lasts until the next turn">Bonus</th>
+												<th class="center-cell" title="Stat debuff that lasts until the next turn">Penalty</th>
+												<th class="center-cell" title="Stat buff from other allies, only available during combat">Spur</th>
+											</tr>
+											<tr>
+												<td><label class="stat">HP</label></td>
+												<td class="center-cell"><input type="number" class="more-than-zero hp-stat" id="hp-1" value="1"></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><label class="stat">ATK</label></td>
+												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select class="stat-bonus"></select></td>
+												<td class="center-cell"><select class="stat-penalty"></select></td>
+												<td class="center-cell"><select class="stat-spur"></select></td>
+											</tr>
+											<tr>
+												<td><label class="stat">SPD</label></td>
+												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select class="stat-bonus"></select></td>
+												<td class="center-cell"><select class="stat-penalty"></select></td>
+												<td class="center-cell"><select class="stat-spur"></select></td>
+											</tr>
+											<tr>
+												<td><label class="stat">DEF</label></td>
+												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select class="stat-bonus"></select></td>
+												<td class="center-cell"><select class="stat-penalty"></select></td>
+												<td class="center-cell"><select class="stat-spur"></select></td>
+											</tr>
+											<tr>
+												<td><label class="stat">RES</label></td>
+												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select class="stat-bonus"></select></td>
+												<td class="center-cell"><select class="stat-penalty"></select></td>
+												<td class="center-cell"><select class="stat-spur"></select></td>
+											</tr>
+										</table>
+									</div>
+									<div class="info-section-bottom current-hp">
+										<label class="curr-hp-label">Current HP</label>
+										<input type="number" class="zero-or-more curr-hp-val" id="curr-hp-1" data-charnum="1" value="1">/<span class="denominator hp-1-read">1</span>
+									</div>
+								</fieldset>
+							</div>
+						</td>
+						<td id="swap-cell">
+							<div id="swap">
+								<button id="swap-button" alt="swap-button"></button>
+							</div>
+						</td>
+						<td>
+							<div class="char-info">
+								<fieldset id="defend-panel" class="char-info-panel">
+									<legend><h2 class="defender">Defender</h2></legend>
+									<div  class="info-section character-select">
+										<div>
+											<label>
+												<span id="extra-char-info-2-btn" class="collapse-button" data-section="extra-char-info-2">Character</span>
+											</label>
+											<select class="char-selector"></select>
+										</div>
+										<div id="extra-char-info-2" class="collapsable">
+											<label>Move Type</label>
+											<select>
+												<option>Infantry</option>
+												<option>Cavalry</option>
+												<option>Flying</option>
+												<option>Armored</option>
+											</select>
+										</div>
+									</div>
+									<div class="info-section weapon-select">
+										<div>
+											<label>
+												<span id="extra-weapon-info-2-btn" class="collapse-button" data-section="extra-weapon-info-2">Weapon</span>
+											</label>
+											<select></select>
+										</div>
+										<div id="extra-weapon-info-2" class="collapsable">
+											<div>
+												<label>Color</label>
+												<select>
+													<option>Red</option>
+													<option>Green</option>
+													<option>Blue</option>
+													<option>Colorless</option>
+												</select>
+											</div>
+											<div>
+												<label>Type</label>
+												<select>
+													<option>Sword</option>
+													<option>Red Tome</option>
+													<option>Red Breath</option>
+													<option>Axe</option>
+													<option>Green Tome</option>
+													<option>Green Breath</option>
+													<option>Lance</option>
+													<option>Blue Tome</option>
+													<option>Blue Breath</option>
+													<option>Bow</option>
+													<option>Dagger</option>
+													<option>Staff</option>
+												</select>
+											</div>
+											<div>
+												<label>Might</label>
+												<input type="number" class="zero-or-more" value="0">
+											</div>
+											<div>
+												<label>Range</label>
+												<select>
+													<option>1</option>
+													<option>2</option>
+												</select>
+											</div>
+											<div>
+												<label>Magical</label>
+												<select>
+													<option>Yes</option>
+													<option>No</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="info-section skill-select">
+										<div class="big-select">
+											<label>Passive Skill 1</label>
+											<select></select>
+										</div>
+										<div class="big-select">
+											<label>Passive Skill 2</label>
+											<select></select>
+										</div>
+										<div class="big-select">
+											<label>Passive Skill 3</label>
+											<select></select>
+										</div>
+										<div class="big-select">
+											<label>Special Skill</label>
+											<select></select>
+										</div>
+										<div class="big-select">
+											<label title="Special activates when cooldown is at 0">Special Cooldown</label>
+											<input type="number" class="zero-or-more" value="0">/<span class="denominator">x</span>
+										</div>
+									</div>
+									<div class="info-section stat-info">
+										<table>
+											<tr>
+												<th></th>
+												<th class="center-cell" title="Default stat total with no buffs/debuffs">Base</th>
+												<th class="center-cell" title="Stat buff that lasts until the next turn">Bonus</th>
+												<th class="center-cell" title="Stat debuff that lasts until the next turn">Penalty</th>
+												<th class="center-cell" title="Stat buff from other allies, only available during combat">Spur</th>
+											</tr>
+											<tr>
+												<td><label class="stat">HP</label></td>
+												<td class="center-cell"><input type="number" class="more-than-zero hp-stat" id="hp-2" value="1"></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><label class="stat">ATK</label></td>
+												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select class="stat-bonus"></select></td>
+												<td class="center-cell"><select class="stat-penalty"></select></td>
+												<td class="center-cell"><select class="stat-spur"></select></td>
+											</tr>
+											<tr>
+												<td><label class="stat">SPD</label></td>
+												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select class="stat-bonus"></select></td>
+												<td class="center-cell"><select class="stat-penalty"></select></td>
+												<td class="center-cell"><select class="stat-spur"></select></td>
+											</tr>
+											<tr>
+												<td><label class="stat">DEF</label></td>
+												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select class="stat-bonus"></select></td>
+												<td class="center-cell"><select class="stat-penalty"></select></td>
+												<td class="center-cell"><select class="stat-spur"></select></td>
+											</tr>
+											<tr>
+												<td><label class="stat">RES</label></td>
+												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select class="stat-bonus"></select></td>
+												<td class="center-cell"><select class="stat-penalty"></select></td>
+												<td class="center-cell"><select class="stat-spur"></select></td>
+											</tr>
+										</table>
+									</div>
+									<div class="info-section-bottom current-hp">
+										<label class="curr-hp-label">Current HP</label>
+										<input type="number" class="zero-or-more curr-hp-val" id="curr-hp-2" data-charnum="2" value="1">/<span class="denominator hp-2-read">1</span>
+									</div>
+								</fieldset>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<div id="battle-log">
+								<fieldset>
+									<legend><h2>
+										<span id="interaction-list-btn" class="collapse-button" data-section="interaction-list">Battle Log</span>
+									</h2></legend>
+									<ul id="interaction-list">
+										<li class="battle-interaction">Battle interactions go here</li>
+										<li class="battle-interaction-final">More stuff</li>
+									</ul>
+								</fieldset>
+							</div>	
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<div id="battle-result">
+								<fieldset>
+									<legend><h2>Result</h2></legend>
+									<table id="result-table">
+										<tr>
+											<td class="column-line">
+												<div>
+													<h3>Attacker HP Remaining</h3>
+													<span class="numerator">x</span>/<span class="denominator hp-1-read">1</span>
+												</div>	
+											</td>
+											<td>
+												<div>
+													<h3>Defender HP Remaining</h3>
+													<span class="numerator">x</span>/<span class="denominator hp-2-read">1</span>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</fieldset>
+							</div>	
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<script type="text/javascript" src="scripts/setup.js"></script>
+	</body>
+</html>

@@ -1,0 +1,218 @@
+html {
+	background-color: #0b0b0b;
+}
+
+#wrapper {
+	white-space: nowrap;
+	width: 730px;
+	margin: 0px auto;
+}
+
+body {
+	width: 750px;
+	margin: 15px auto;
+	padding: 20px 20px 50px 20px;
+	font-family: Cambria, Hoefler Text, Liberation Serif, Times, Times New Roman, serif;
+	color: white;
+	font-size: 1em;
+	background-color: #161a1b;
+	border: 3px solid gold;
+	border-radius: 6px;
+}
+
+#calc {
+	height: 100%;
+	margin: 0px auto;
+}
+
+fieldset {
+	padding: 0.5em 1.6em 0.6em 0.8em;
+	border-radius: 6px;
+}
+
+#char-panel {
+	vertical-align: top;
+}
+
+label {
+	display: inline-block;
+	float: left;
+	width: 8.4em;
+}
+
+.curr-hp-label {
+	width: 5.5em;
+}
+
+.stat {
+	width: 3em;
+}
+
+.char-info .info-section {
+	margin: 0em 0em 1em 0em;
+}
+
+.char-info .info-section-bottom {
+	margin: 0em 0em 0.2em 0em;
+}
+
+.char-info .info-section th {
+	padding: 0em 0.3em;
+}
+
+input[type=number]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.char-info select, .char-info input[type=number] {
+	width: 10em;
+	-webkit-box-sizing: border-box;
+	-moz-box-size: border-box;
+	box-sizing: border-box;
+}
+
+.char-info-panel {
+	height: 100%;
+}
+
+.weapon-select input[type=number] {
+	padding-left: 3px;
+}
+
+.stat-info input[type=number], .current-hp input[type=number], .skill-select input[type=number] {
+	width: 2.5em;
+}
+
+.stat-info select{
+	width: 2.8em;	
+}
+
+.stat-info th {
+	font-size: 0.8em;
+}
+
+.current-hp input[type=number], .skill-select input[type=number] {
+	margin: 0em 0.2em 0em 0em;
+}
+
+.center-cell {
+	text-align: center;
+}
+
+h1, h2, h3 {
+	font-family: Constantia, Lucida Bright, DejaVu Serif, Georgia, serif;
+	padding: 0em;
+	margin: 0em 0.2em;
+}
+
+#swap-cell {
+	vertical-align: middle;
+}
+
+#swap {
+	vertical-align: middle;
+	padding: 0em 0.5em;
+}
+
+#swap-button {
+	border: none;
+	background-image: url(../img/swap.png);
+	background-color: transparent;
+	width: 38px;
+	height: 42px;
+	background-repeat: no-repeat;
+}
+
+#swap-button:hover {
+	background-image: url(../img/swap-hover.png);
+	cursor: pointer;
+}
+
+#swap-button:active {
+	background-image: url(../img/swap-press.png);
+	border: none;
+}
+
+#swap-button:focus {
+	outline: none;
+}
+
+h1 {
+	font-size: 2.5em;
+	margin: 0.3em;
+	color: gold;
+	text-align: center;
+	white-space: normal;
+}
+
+h2 {
+	font-size: 1.5em;
+	color: #f5de60;
+}
+
+h3 {
+	font-size: 1.1em;
+	margin: 0em 0em 0.2em 0em;
+}
+
+.attacker {
+	color: deepskyblue;
+}
+
+.defender {
+	color: crimson;
+}
+
+.character-select, .weapon-select, .skill-select {
+	line-height: 150%;
+}
+
+.denominator, .numerator {
+	margin: 0em 0.1em;
+}
+
+#result-table {
+	width: 100%;
+	text-align: center;
+}
+
+.column-line {
+	border-right: 1px solid #6c6c6c;
+}
+
+#interaction-list {
+	list-style: none;
+	width: 92%;
+	margin: 0em auto;
+	padding: 0em;
+}
+
+.battle-interaction, .battle-interaction-final {
+	padding: 0.6em 0em;
+}
+
+.battle-interaction {
+	border-bottom: 1px solid #6c6c6c;
+}
+
+.battle-interaction-final {
+	border-bottom: none;
+}
+
+.collapse-button {
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.collapse-button:hover {
+	color: gold;
+}
+
+.collapsable {
+	display: none;
+	color: darkgray;
+}
