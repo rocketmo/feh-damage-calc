@@ -22,7 +22,7 @@
 											<label>
 												<span id="extra-char-info-1-btn" class="collapse-button" data-section="extra-char-info-1">Character</span>
 											</label>
-											<select class="char-selector"></select>
+											<select id="char-1" class="char-selector"></select>
 										</div>
 										<div id="extra-char-info-1" class="collapsable">
 											<div>
@@ -97,29 +97,29 @@
 											</div>
 										</div>
 									</div>
-									<div class="info-section skill-select">
+									<div id="skills-1" class="info-section skill-select">
 										<div>
-											<label>Passive Skill A</label>
+											<label class="passive-a-label">Passive Skill A</label>
 											<select id="passive-a-1" class="passive-a-selector"></select>
 										</div>
 										<div>
-											<label>Passive Skill B</label>
+											<label class="passive-b-label">Passive Skill B</label>
 											<select id="passive-b-1" class="passive-b-selector"></select>
 										</div>
 										<div>
-											<label>Passive Skill C</label>
+											<label class="passive-c-label">Passive Skill C</label>
 											<select id="passive-c-1" class="passive-c-selector"></select>
 										</div>
 										<div>
-											<label>Special Skill</label>
+											<label class="special-label" >Special Skill</label>
 											<select id="special-1" class="special-selector"></select>
 										</div>
 										<div>
 											<label title="Special activates when cooldown is at 0">Special Cooldown</label>
-											<input type="number" class="zero-or-more" value="0">/<span class="denominator">x</span>
+											<input id="spec-cooldown-1" type="number" class="zero-or-more" value="0">/<span id="spec-cooldown-max-1" class="denominator">x</span>
 										</div>
 									</div>
-									<div class="info-section stat-info">
+									<div id="stats-1" class="info-section stat-info">
 										<table>
 											<tr>
 												<th></th>
@@ -158,7 +158,7 @@
 											</tr>
 											<tr>
 												<td><label class="stat">RES</label></td>
-												<td class="center-cell"><input type="number" id="res-base-1" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><input type="number" id="res-1" class="more-than-zero" value="1"></td>
 												<td class="center-cell"><select id="res-bonus-1" class="stat-bonus"></select></td>
 												<td class="center-cell"><select id="res-penalty-1" class="stat-penalty"></select></td>
 												<td class="center-cell"><select id="res-spur-1" class="stat-spur"></select></td>
@@ -186,12 +186,12 @@
 											<label>
 												<span id="extra-char-info-2-btn" class="collapse-button" data-section="extra-char-info-2">Character</span>
 											</label>
-											<select class="char-selector"></select>
+											<select id="char-2" class="char-selector"></select>
 										</div>
 										<div id="extra-char-info-2" class="collapsable">
 											<div>
 												<label>Move Type</label>
-												<select>
+												<select id="move-type-2">
 													<option>Infantry</option>
 													<option>Cavalry</option>
 													<option>Flying</option>
@@ -200,7 +200,7 @@
 											</div>
 											<div>
 												<label>Dragon</label>
-												<select>
+												<select id="dragon-2">
 													<option>Yes</option>
 													<option>No</option>
 												</select>
@@ -212,12 +212,12 @@
 											<label>
 												<span id="extra-weapon-info-2-btn" class="collapse-button" data-section="extra-weapon-info-2">Weapon</span>
 											</label>
-											<select></select>
+											<select id="weapon-2" class="weapon-selector"></select>
 										</div>
 										<div id="extra-weapon-info-2" class="collapsable">
 											<div>
 												<label>Color</label>
-												<select>
+												<select id="weapon-color-2">
 													<option>Red</option>
 													<option>Green</option>
 													<option>Blue</option>
@@ -226,7 +226,7 @@
 											</div>
 											<div>
 												<label>Type</label>
-												<select>
+												<select id="weapon-type-2">
 													<option>Sword</option>
 													<option>Red Tome</option>
 													<option>Red Breath</option>
@@ -243,47 +243,47 @@
 											</div>
 											<div>
 												<label>Might</label>
-												<input type="number" class="zero-or-more" value="0">
+												<input type="number" id="weapon-might-2" class="zero-or-more" value="0">
 											</div>
 											<div>
 												<label>Range</label>
-												<select>
+												<select id="weapon-range-2">
 													<option>1</option>
 													<option>2</option>
 												</select>
 											</div>
 											<div>
 												<label>Magical</label>
-												<select>
+												<select id="weapon-magical-2">
 													<option>Yes</option>
 													<option>No</option>
 												</select>
 											</div>
 										</div>
 									</div>
-									<div class="info-section skill-select">
-										<div class="big-select">
-											<label>Passive Skill A</label>
-											<select></select>
+									<div id="skills-2" class="info-section skill-select">
+										<div>
+											<label class="passive-a-label">Passive Skill A</label>
+											<select id="passive-a-2" class="passive-a-selector"></select>
 										</div>
-										<div class="big-select">
-											<label>Passive Skill B</label>
-											<select></select>
+										<div>
+											<label class="passive-b-label">Passive Skill B</label>
+											<select id="passive-b-2" class="passive-b-selector"></select>
 										</div>
-										<div class="big-select">
-											<label>Passive Skill C</label>
-											<select></select>
+										<div>
+											<label class="passive-c-label">Passive Skill C</label>
+											<select id="passive-c-2" class="passive-c-selector"></select>
 										</div>
-										<div class="big-select">
+										<div>
 											<label>Special Skill</label>
-											<select></select>
+											<select id="special-2" class="special-selector"></select>
 										</div>
-										<div class="big-select">
-											<label title="Special activates when cooldown is at 0">Special Cooldown</label>
-											<input type="number" class="zero-or-more" value="0">/<span class="denominator">x</span>
+										<div>
+											<label class="special-label" title="Special activates when cooldown is at 0">Special Cooldown</label>
+											<input type="number" id="spec-cooldown-2" class="zero-or-more" value="0">/<span id="spec-cooldown-max-2" class="denominator">x</span>
 										</div>
 									</div>
-									<div class="info-section stat-info">
+									<div id="stats-2" class="info-section stat-info">
 										<table>
 											<tr>
 												<th></th>
@@ -301,31 +301,31 @@
 											</tr>
 											<tr>
 												<td><label class="stat">ATK</label></td>
-												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
-												<td class="center-cell"><select class="stat-bonus"></select></td>
-												<td class="center-cell"><select class="stat-penalty"></select></td>
-												<td class="center-cell"><select class="stat-spur"></select></td>
+												<td class="center-cell"><input type="number" id="atk-2" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select id="atk-bonus-2" class="stat-bonus"></select></td>
+												<td class="center-cell"><select id="atk-penalty-2" class="stat-penalty"></select></td>
+												<td class="center-cell"><select id="atk-spur-2" class="stat-spur"></select></td>
 											</tr>
 											<tr>
 												<td><label class="stat">SPD</label></td>
-												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
-												<td class="center-cell"><select class="stat-bonus"></select></td>
-												<td class="center-cell"><select class="stat-penalty"></select></td>
-												<td class="center-cell"><select class="stat-spur"></select></td>
+												<td class="center-cell"><input type="number" id="spd-2" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select id="spd-bonus-2" class="stat-bonus"></select></td>
+												<td class="center-cell"><select id="spd-penalty-2" class="stat-penalty"></select></td>
+												<td class="center-cell"><select id="spd-spur-2" class="stat-spur"></select></td>
 											</tr>
 											<tr>
 												<td><label class="stat">DEF</label></td>
-												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
-												<td class="center-cell"><select class="stat-bonus"></select></td>
-												<td class="center-cell"><select class="stat-penalty"></select></td>
-												<td class="center-cell"><select class="stat-spur"></select></td>
+												<td class="center-cell"><input type="number" id="def-2" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select id="def-bonus-2" class="stat-bonus"></select></td>
+												<td class="center-cell"><select id="def-penalty-2" class="stat-penalty"></select></td>
+												<td class="center-cell"><select id="def-spur-2" class="stat-spur"></select></td>
 											</tr>
 											<tr>
 												<td><label class="stat">RES</label></td>
-												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
-												<td class="center-cell"><select class="stat-bonus"></select></td>
-												<td class="center-cell"><select class="stat-penalty"></select></td>
-												<td class="center-cell"><select class="stat-spur"></select></td>
+												<td class="center-cell"><input type="number" id="res-2" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select id="res-bonus-2" class="stat-bonus"></select></td>
+												<td class="center-cell"><select id="res-penalty-2" class="stat-penalty"></select></td>
+												<td class="center-cell"><select id="res-spur-2" class="stat-spur"></select></td>
 											</tr>
 										</table>
 									</div>

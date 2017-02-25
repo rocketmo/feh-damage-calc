@@ -218,7 +218,7 @@
 		"special": ["Draconic Aura", "Dragon Gaze"],
 		"passive_b": ["Seal Res 3", "Seal Res 2", "Seal Res 1"],
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
-		"dragon": false
+		"dragon": true
 	},
 	"Corrin (M)": {
 		"hp": 42,
@@ -336,7 +336,7 @@
 		"weapon": ["Light Breath+", "Light Breath", "Fire Breath+ (Green)", "Fire Breath (Green)"],
 		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
-		"dragon": false
+		"dragon": true
 	},
 	"Felicia": {
 		"hp": 34,
@@ -756,7 +756,7 @@
 		"weapon": ["Lightning Breath+ (Blue)", "Lightning Breath (Blue)", "Fire Breath+ (Blue)", "Fire Breath (Blue)"],
 		"passive_a": ["Defense +3", "Defense +2", "Defense +1"],
 		"passive_c": ["Threaten Res 3", "Threaten Res 2", "Threaten Res 1"],
-		"dragon": false
+		"dragon": true
 	},
 	"Oboro": {
 		"hp": 40,
@@ -1080,7 +1080,7 @@
 		"special": ["Bonfire", "Glowing Ember"],
 		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"],
-		"dragon": false
+		"dragon": true
 	},
 	"Tiki (Young)": {
 		"hp": 41,
@@ -1093,7 +1093,7 @@
 		"special": ["Growing Flame", "Rising Flame"],
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
 		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"],
-		"dragon": false
+		"dragon": true
 	},
 	"Virion": {
 		"hp": 46,
