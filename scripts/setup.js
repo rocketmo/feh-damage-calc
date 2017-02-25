@@ -16,9 +16,18 @@ function limit (num, minNumber) {
 // put options in the stat selects
 function setupStats () {
 	"use strict";
-	$(".stat-bonus").html("<option>0</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>");
-	$(".stat-penalty").html("<option>0</option><option>-3</option><option>-4</option><option>-5</option><option>-6</option><option>-7</option>");
-	$(".stat-spur").html("<option>0</option><option>2</option><option>3</option><option>4</option>");
+	var options = "<option>0</option>";
+	
+	for (var i = 2; i <= 7; i++) {
+		options += "<option>" + i.toString() + "</option>";
+	}
+	$(".stat-bonus").html(options);
+	$(".stat-penalty").html(options);
+	
+	for (i = 8; i <= 12; i++) {
+		options += "<option>" + i.toString() + "</option>";
+	}
+	$(".stat-spur").html(options);
 }
 
 // displays passive skills
@@ -103,7 +112,7 @@ function displayChar(charInfo, charNum) {
 	
 	// show stats
 	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(charInfo.hp);
-	$(".hp-" + charNum + "-read").text(charInfo.hp.toString());
+	$(".hp-" + charNum + "-read").text(charInfo.hp);
 	$("#atk-" + charNum).val(charInfo.atk);
 	$("#spd-" + charNum).val(charInfo.spd);
 	$("#def-" + charNum).val(charInfo.def);
@@ -183,12 +192,20 @@ $(document).ready( function () {
 
 	// setup hp value updates
 	$(".hp-stat").on("change", function () {
+		// old value
+		var oldHP = parseInt($("#" + this.id + "-denom").text());
+		
 		// update hp value in rest of the page
-		$("." + this.id + "-read").text(this.value);	
+		$("." + this.id + "-read").text(this.value);
+		
+		// check if current hp needs to be updated as well
+		if ((this.value < parseInt($("#curr-" + this.id).val())) || parseInt($("#curr-" + this.id).val()) === oldHP) {
+			$("#curr-" + this.id).val(this.value);
+		}
 	});
 	$(".curr-hp-val").on("change", function () {
 		// current hp cannot be greater than base hp
-		var baseHP = $("#hp-" + $(this).data("charnum"))[0].value;
+		var baseHP = parseInt($("#hp-" + $(this).data("charnum"))[0].value);
 		if (this.value > baseHP) {
 			this.value = baseHP;
 		}
