@@ -37,11 +37,11 @@ fieldset {
 label {
 	display: inline-block;
 	float: left;
-	width: 8.4em;
+	width: 8.7em;
 }
 
 .curr-hp-label {
-	width: 5.5em;
+	width: 5.7em;
 }
 
 .stat {
@@ -142,11 +142,16 @@ h1, h2, h3 {
 }
 
 h1 {
-	font-size: 2.5em;
+	font-size: 4.5em;
 	margin: 0.3em;
 	color: gold;
 	text-align: center;
 	white-space: normal;
+	line-height: 75%;
+}
+
+.sub-h1 {
+	font-size: 0.7em;
 }
 
 h2 {
