@@ -29,7 +29,7 @@ function setupChars() {
 	var options = "";
 	
 	// retrieve characters and add them to the list of options
-	$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(info) {
+	$.getJSON("http://localhost/feh/data/char.json", function(info) {
 		for (var key in info) {
 			if (info.hasOwnProperty(key)) {
 				options += "<option>" + key + "</option>";	

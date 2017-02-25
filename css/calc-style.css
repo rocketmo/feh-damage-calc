@@ -4,12 +4,12 @@ html {
 
 #wrapper {
 	white-space: nowrap;
-	width: 730px;
+	width: 780px;
 	margin: 0px auto;
 }
 
 body {
-	width: 750px;
+	width: 800px;
 	margin: 15px auto;
 	padding: 20px 20px 50px 20px;
 	font-family: Cambria, Hoefler Text, Liberation Serif, Times, Times New Roman, serif;
@@ -69,7 +69,7 @@ input[type="number"] {
 }
 
 .char-info select, .char-info input[type=number] {
-	width: 10em;
+	width: 12.3em;
 	-webkit-box-sizing: border-box;
 	-moz-box-size: border-box;
 	box-sizing: border-box;

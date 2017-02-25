@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="Description" content="A Damage Calculator for Fire Emblem: Heroes which can be used to simulate battle interactions.">
-		<title>Fire Emblem: Heroes Damage Calculator</title>
+		<title>Fire Emblem: Heroes Damage Calculatoaar</title>
 		<link rel="stylesheet" href="css/calc-style.css">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	</head>
@@ -18,20 +18,29 @@
 								<fieldset id="attack-panel" class="char-info-panel">
 									<legend><h2 class="attacker">Attacker</h2></legend>
 									<div class="info-section character-select">
-										<div class="asd">
+										<div>
 											<label>
 												<span id="extra-char-info-1-btn" class="collapse-button" data-section="extra-char-info-1">Character</span>
 											</label>
 											<select class="char-selector"></select>
 										</div>
 										<div id="extra-char-info-1" class="collapsable">
-											<label>Move Type</label>
-											<select>
-												<option>Infantry</option>
-												<option>Cavalry</option>
-												<option>Flying</option>
-												<option>Armored</option>
-											</select>
+											<div>
+												<label>Move Type</label>
+												<select id="move-type-1">
+													<option>Infantry</option>
+													<option>Cavalry</option>
+													<option>Flying</option>
+													<option>Armored</option>
+												</select>
+											</div>
+											<div>
+												<label>Dragon</label>
+												<select id="dragon-1">
+													<option>Yes</option>
+													<option>No</option>
+												</select>
+											</div>
 										</div>
 									</div>
 									<div class="info-section weapon-select">
@@ -39,12 +48,12 @@
 											<label>
 												<span id="extra-weapon-info-1-btn" class="collapse-button" data-section="extra-weapon-info-1">Weapon</span>
 											</label>
-											<select></select>
+											<select id="weapon-1" class="weapon-selector"></select>
 										</div>
 										<div id="extra-weapon-info-1" class="collapsable">
 											<div>
 												<label>Color</label>
-												<select>
+												<select id="weapon-color-1">
 													<option>Red</option>
 													<option>Green</option>
 													<option>Blue</option>
@@ -53,7 +62,7 @@
 											</div>
 											<div>
 												<label>Type</label>
-												<select>
+												<select id="weapon-type-1">
 													<option>Sword</option>
 													<option>Red Tome</option>
 													<option>Red Breath</option>
@@ -70,18 +79,18 @@
 											</div>
 											<div>
 												<label>Might</label>
-												<input type="number" class="zero-or-more" value="0">
+												<input type="number" id="weapon-might-1" class="zero-or-more" value="0">
 											</div>
 											<div>
 												<label>Range</label>
-												<select>
+												<select id="weapon-range-1">
 													<option>1</option>
 													<option>2</option>
 												</select>
 											</div>
 											<div>
 												<label>Magical</label>
-												<select>
+												<select id="weapon-magical-1">
 													<option>Yes</option>
 													<option>No</option>
 												</select>
@@ -89,23 +98,23 @@
 										</div>
 									</div>
 									<div class="info-section skill-select">
-										<div class="big-select">
-											<label>Passive Skill 1</label>
-											<select></select>
+										<div>
+											<label>Passive Skill A</label>
+											<select id="passive-a-1" class="passive-a-selector"></select>
 										</div>
-										<div class="big-select">
-											<label>Passive Skill 2</label>
-											<select></select>
+										<div>
+											<label>Passive Skill B</label>
+											<select id="passive-b-1" class="passive-b-selector"></select>
 										</div>
-										<div class="big-select">
-											<label>Passive Skill 3</label>
-											<select></select>
+										<div>
+											<label>Passive Skill C</label>
+											<select id="passive-c-1" class="passive-c-selector"></select>
 										</div>
-										<div class="big-select">
+										<div>
 											<label>Special Skill</label>
-											<select></select>
+											<select id="special-1" class="special-selector"></select>
 										</div>
-										<div class="big-select">
+										<div>
 											<label title="Special activates when cooldown is at 0">Special Cooldown</label>
 											<input type="number" class="zero-or-more" value="0">/<span class="denominator">x</span>
 										</div>
@@ -121,44 +130,44 @@
 											</tr>
 											<tr>
 												<td><label class="stat">HP</label></td>
-												<td class="center-cell"><input type="number" class="more-than-zero hp-stat" id="hp-1" value="1"></td>
+												<td class="center-cell"><input type="number" id="hp-1" class="more-than-zero hp-stat" value="1"></td>
 												<td></td>
 												<td></td>
 												<td></td>
 											</tr>
 											<tr>
 												<td><label class="stat">ATK</label></td>
-												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
-												<td class="center-cell"><select class="stat-bonus"></select></td>
-												<td class="center-cell"><select class="stat-penalty"></select></td>
-												<td class="center-cell"><select class="stat-spur"></select></td>
+												<td class="center-cell"><input type="number" id="atk-1" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select id="atk-bonus-1" class="stat-bonus"></select></td>
+												<td class="center-cell"><select id="atk-penalty-1" class="stat-penalty"></select></td>
+												<td class="center-cell"><select id="atk-spur-1" class="stat-spur"></select></td>
 											</tr>
 											<tr>
 												<td><label class="stat">SPD</label></td>
-												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
-												<td class="center-cell"><select class="stat-bonus"></select></td>
-												<td class="center-cell"><select class="stat-penalty"></select></td>
-												<td class="center-cell"><select class="stat-spur"></select></td>
+												<td class="center-cell"><input type="number" id="spd-1" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select id="spd-bonus-1" class="stat-bonus"></select></td>
+												<td class="center-cell"><select id="spd-penalty-1" class="stat-penalty"></select></td>
+												<td class="center-cell"><select id="spd-spur-1" class="stat-spur"></select></td>
 											</tr>
 											<tr>
 												<td><label class="stat">DEF</label></td>
-												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
-												<td class="center-cell"><select class="stat-bonus"></select></td>
-												<td class="center-cell"><select class="stat-penalty"></select></td>
-												<td class="center-cell"><select class="stat-spur"></select></td>
+												<td class="center-cell"><input type="number" id="def-1" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select id="def-bonus-1" class="stat-bonus"></select></td>
+												<td class="center-cell"><select id="def-penalty-1" class="stat-penalty"></select></td>
+												<td class="center-cell"><select id="def-spur-1" class="stat-spur"></select></td>
 											</tr>
 											<tr>
 												<td><label class="stat">RES</label></td>
-												<td class="center-cell"><input type="number" class="more-than-zero" value="1"></td>
-												<td class="center-cell"><select class="stat-bonus"></select></td>
-												<td class="center-cell"><select class="stat-penalty"></select></td>
-												<td class="center-cell"><select class="stat-spur"></select></td>
+												<td class="center-cell"><input type="number" id="res-base-1" class="more-than-zero" value="1"></td>
+												<td class="center-cell"><select id="res-bonus-1" class="stat-bonus"></select></td>
+												<td class="center-cell"><select id="res-penalty-1" class="stat-penalty"></select></td>
+												<td class="center-cell"><select id="res-spur-1" class="stat-spur"></select></td>
 											</tr>
 										</table>
 									</div>
 									<div class="info-section-bottom current-hp">
 										<label class="curr-hp-label">Current HP</label>
-										<input type="number" class="zero-or-more curr-hp-val" id="curr-hp-1" data-charnum="1" value="1">/<span class="denominator hp-1-read">1</span>
+										<input type="number" id="curr-hp-1" class="zero-or-more curr-hp-val" data-charnum="1" value="1">/<span class="denominator hp-1-read">1</span>
 									</div>
 								</fieldset>
 							</div>
@@ -180,13 +189,22 @@
 											<select class="char-selector"></select>
 										</div>
 										<div id="extra-char-info-2" class="collapsable">
-											<label>Move Type</label>
-											<select>
-												<option>Infantry</option>
-												<option>Cavalry</option>
-												<option>Flying</option>
-												<option>Armored</option>
-											</select>
+											<div>
+												<label>Move Type</label>
+												<select>
+													<option>Infantry</option>
+													<option>Cavalry</option>
+													<option>Flying</option>
+													<option>Armored</option>
+												</select>
+											</div>
+											<div>
+												<label>Dragon</label>
+												<select>
+													<option>Yes</option>
+													<option>No</option>
+												</select>
+											</div>
 										</div>
 									</div>
 									<div class="info-section weapon-select">
@@ -245,15 +263,15 @@
 									</div>
 									<div class="info-section skill-select">
 										<div class="big-select">
-											<label>Passive Skill 1</label>
+											<label>Passive Skill A</label>
 											<select></select>
 										</div>
 										<div class="big-select">
-											<label>Passive Skill 2</label>
+											<label>Passive Skill B</label>
 											<select></select>
 										</div>
 										<div class="big-select">
-											<label>Passive Skill 3</label>
+											<label>Passive Skill C</label>
 											<select></select>
 										</div>
 										<div class="big-select">
@@ -313,7 +331,7 @@
 									</div>
 									<div class="info-section-bottom current-hp">
 										<label class="curr-hp-label">Current HP</label>
-										<input type="number" class="zero-or-more curr-hp-val" id="curr-hp-2" data-charnum="2" value="1">/<span class="denominator hp-2-read">1</span>
+										<input type="number" id="curr-hp-2" class="zero-or-more curr-hp-val" data-charnum="2" value="1">/<span class="denominator hp-2-read">1</span>
 									</div>
 								</fieldset>
 							</div>
