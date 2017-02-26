@@ -65,6 +65,7 @@ function showWeapon(selectedWeapon, weaponInfo, charNum) {
 
 		// show weapon type
 		$("#weapon-type-" + charNum).val(weaponInfo[selectedWeapon].type);
+		console.log(weaponInfo[selectedWeapon].type);
 
 		// show weapon might
 		$("#weapon-might-" + charNum).val(weaponInfo[selectedWeapon].might);
@@ -213,7 +214,7 @@ function triAdvantage (attackColor, defendColor) {
 // calculates how much damage the attacker will do to the defender in just one attack phase
 // battleInfo contains all necessary info for calculation, initiator determines if the battle initiator is attacking or not
 // returns the results of the attack phase with an updated log message
-function singleCombat(battleInfo, initiator) {
+function singleCombat(battleInfo, initiator, logIntro) {
 	"use strict";
 	
 	// log message
@@ -234,11 +235,11 @@ function singleCombat(battleInfo, initiator) {
 		defender = battleInfo.attacker;
 	}
 	
-	battleInfo.logMsg += "<span><strong>" + attacker.name + "</strong> attacks. ";
+	battleInfo.logMsg += "<strong>" + attacker.name + "</strong> " + logIntro +". ";
 	
 	// determine attack modifier
 	var atkPower = attacker.atk;
-	var triAdv = triAdvantage(battleInfo.attacker.color, battleInfo.defender.color);
+	var triAdv = triAdvantage(attacker.color, defender.color);
 	if (triAdv > 0) {
 		atkPower = Math.floor(attacker.atk * 1.2);
 		battleInfo.logMsg += "Triangle advantage boosts attack by 1.2. ";
@@ -262,7 +263,7 @@ function singleCombat(battleInfo, initiator) {
 	var oldHP = defender.currHP;
 	defender.currHP = Math.max(defender.currHP - dmg, 0);
 	
-	battleInfo.logMsg += "<strong>" + dmg.toString() + " damage dealt.</strong><br>";
+	battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + " damage dealt.</strong><br>";
 	battleInfo.logMsg += "<span class='" + defClass + "'><strong>" + defender.name + " HP:</strong> " + oldHP.toString() + " → " + defender.currHP.toString() + "</span></li>";
 	
 	// store info
@@ -325,16 +326,35 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	battleInfo.defender.res = parseInt($("#res-2").val());
 	
 	// attacker initiates
-	battleInfo = singleCombat(battleInfo, true);
+	battleInfo = singleCombat(battleInfo, true, "attacks");
 	
-	// defender retaliates
-	battleInfo = singleCombat(battleInfo, false);
+	// defender will try to counter-attack if they haven't been ko'd
+	if (battleInfo.defender.currHP > 0) {
+		// defender must be in range to counter-attack
+		if (battleInfo.defender.range === battleInfo.attacker.range) {
+			battleInfo = singleCombat(battleInfo, false, "counter-attacks");
+		} else {
+			battleInfo.logMsg += "<li class='battle-interaction'><strong>" + battleInfo.defender.name + "</strong> " + " is unable to counter-attack.</li>";
+		}
+		
+		// if attacker hasn't been ko'd, check for follow ups
+		if (battleInfo.attacker.currHP > 0) {
+			if (battleInfo.attacker.spd >= battleInfo.defender.spd + 5) { // attacker follows up
+				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack");
+			} else if (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) { // defender follows up
+				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack");
+			}
+		}
+	}
 	
 	// display results
+	$(".hp-remain-block").hide();
 	$("#interaction-list").hide().html(battleInfo.logMsg).fadeIn("slow");
-	$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
 	$("#hp-remain-1").text(battleInfo.attacker.currHP.toString());
 	$("#hp-remain-2").text(battleInfo.defender.currHP.toString());
+	$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
+	$("#interaction-list").fadeIn("slow");
+	$(".hp-remain-block").fadeIn("slow");
 }
 
 // put options in the character selects

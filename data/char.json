@@ -472,7 +472,7 @@
 		"def": 32,
 		"res": 25,
 		"move_type": "Infantry",
-		"weapon": ["Rauõrraven+", "Rauõrraven", "Ruin", "Flux"],
+		"weapon": ["Rauðrraven+", "Rauðrraven", "Ruin", "Flux"],
 		"special": ["Ignis", "Glowing Ember"],
 		"passive_a": ["Defiant Def 3", "Defiant Def 2", "Defiant Def 1"],
 		"passive_b": ["G Tomebreaker 3", "G Tomebreaker 2", "G Tomebreaker 1"]
