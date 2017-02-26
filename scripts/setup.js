@@ -4,9 +4,9 @@ var HIGHESTSTAT = 99;
 function limit (num, minNumber) {
 	"use strict";
 	// check if value is outside of the limits
-	if (!$.isNumeric(num.value) || num.value < minNumber) {
+	if (!$.isNumeric(num.value) || num.value <= minNumber) {
 		num.value = minNumber;
-	} else if (num.value > HIGHESTSTAT) {
+	} else if (num.value >= HIGHESTSTAT) {
 		num.value = HIGHESTSTAT;
 	} else if (Math.floor(num.value) !== num.value) {
 		num.value = Math.floor(num.value);
@@ -146,20 +146,33 @@ function displayChar(charInfo, charNum) {
 	// show special skill
 	if (charInfo.hasOwnProperty("special")) {
 		$("#special-" + charNum).removeAttr("disabled");
+		$("#spec-cooldown-" + charNum).removeAttr("disabled");
 		$("#skills-" + charNum + " .special-label").css("color", "white");
+		$("#spec-cooldown-line-" + charNum).css("color", "white");
 		
-		var specials = "";
-		for (var specIndex = 0; specIndex < charInfo.special.length; specIndex++) {
+		var selectedSpecial = charInfo.special[0];
+		var specials = "<option value='" + selectedSpecial + "'>" + selectedSpecial + "</option>";
+		for (var specIndex = 1; specIndex < charInfo.special.length; specIndex++) {
 			specials += "<option value='" + charInfo.special[specIndex] + "'>" + charInfo.special[specIndex] + "</option>";
 		}
 		specials += "<option value='None'>None</option>";
 		$("#special-" + charNum).html(specials);
 		$("#special-" + charNum + " option:eq(0)").attr("selected", "selected");
 		
+		// show cooldown values
+		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
+			$("#spec-cooldown-" + charNum).val(specInfo[selectedSpecial].cooldown);
+			$("#spec-cooldown-max-" + charNum).text(specInfo[selectedSpecial].cooldown);
+		});
+		
 	} else {
 		$("#special-" + charNum).html("<option value='None'>None<option>");
 		$("#special-" + charNum).attr("disabled", "disabled");
+		$("#spec-cooldown-" + charNum).val("0");
+		$("#spec-cooldown-" + charNum).attr("disabled", "disabled");
 		$("#skills-" + charNum + " .special-label").css("color", "darkgray");
+		$("#spec-cooldown-max-" + charNum).text("x");
+		$("#spec-cooldown-line-" + charNum).css("color", "darkgray");
 	}
 }
 
@@ -222,9 +235,17 @@ $(document).ready( function () {
 	});
 	$(".curr-hp-val").on("change", function () {
 		// current hp cannot be greater than base hp
-		var baseHP = parseInt($("#hp-" + $(this).data("charnum"))[0].value);
+		var baseHP = parseInt($("#hp-" + $(this).data("charnum")).val());
 		if (this.value > baseHP) {
 			this.value = baseHP;
+		}
+	});
+	
+	// setup special cooldown updates
+	$(".spec-cool").on("change", function () {
+		var maxCooldown = parseInt($("#spec-cooldown-max-" + $(this).data("charnum")).text());
+		if (this.value > maxCooldown) {
+			this.value = maxCooldown;
 		}
 	});
 	
