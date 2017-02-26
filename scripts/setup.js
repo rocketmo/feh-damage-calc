@@ -17,15 +17,17 @@ function limit (num, minNumber) {
 function setupStats () {
 	"use strict";
 	var options = "<option>0</option>";
+	var negOptions = "<option>0</option>";
 	
 	for (var i = 2; i <= 7; i++) {
-		options += "<option>" + i.toString() + "</option>";
+		options += "<option value='" + i.toString + "'>" + i.toString() + "</option>";
+		negOptions += "<option value=-'" + i.toString + ">-" + i.toString() + "</option>";
 	}
 	$(".stat-bonus").html(options);
-	$(".stat-penalty").html(options);
+	$(".stat-penalty").html(negOptions);
 	
 	for (i = 8; i <= 12; i++) {
-		options += "<option>" + i.toString() + "</option>";
+		options += "<option value='" + i.toString + ">" + i.toString() + "</option>";
 	}
 	$(".stat-spur").html(options);
 }
@@ -40,13 +42,14 @@ function showSkills(charInfo, charNum, type) {
 		$("#skills-" + charNum + " .passive-" + type + "-label").css("color", "white");
 		
 		for (var i = 0; i < charInfo["passive_" + type].length; i++) {
-			skills += "<option>" + charInfo["passive_" + type][i] + "</option>";
+			var skillName = charInfo["passive_" + type][i];
+			skills += "<option value='" + skillName + "'>" + skillName + "</option>";
 		}
-		skills += "<option>None</option>";
+		skills += "<option value='None'>None</option>";
 		$("#passive-" + type + "-" + charNum).html(skills);
 		$("#passive-" + type + "-" + charNum + " option:eq(0)").attr("selected", "selected");
 	} else { // no passive skill of the given type
-		$("#passive-" + type + "-" + charNum).html("<option>None</option>");
+		$("#passive-" + type + "-" + charNum).html("<option value='None'>None</option>");
 		$("#passive-" + type + "-" + charNum).attr("disabled", "disabled");
 		$("#skills-" + charNum + " .passive-" + type + "-label").css("color", "darkgray");
 	}
@@ -56,6 +59,20 @@ function showSkills(charInfo, charNum, type) {
 // charInfo contains all the character info to display, charNum determines which panel to display on
 function displayChar(charInfo, charNum) {
 	"use strict";
+	if (!charInfo.hasOwnProperty("move_type")) { // no info -> custom option
+		// enable inputs
+		$("#extra-char-info-" + charNum).css("color", "white");
+		$("#skills-" + charNum + " label").css("color", "white");
+		$("#extra-char-info-" + charNum + " select").removeAttr("disabled");
+		$("#skills-" + charNum + " select").removeAttr("disabled");
+		
+		// show collapsed section
+		$("#extra-char-info-" + charNum).show(700);
+		
+		// show all skills and weapons
+		return;
+	}
+	
 	
 	// grey out disabled input fields
 	$("#extra-char-info-" + charNum).css("color", "darkgray");
@@ -76,11 +93,11 @@ function displayChar(charInfo, charNum) {
 	
 	// show weapon
 	var selectedWeapon = charInfo.weapon[0];
-	var weapons = "<option>" + selectedWeapon + "</option>";
+	var weapons = "<option value='" + selectedWeapon + "'>" + selectedWeapon + "</option>";
 	for (var weaponIndex = 1; weaponIndex < charInfo.weapon.length; weaponIndex++) {
-		weapons += "<option>" + charInfo.weapon[weaponIndex] + "</option>";
+		weapons += "<option value='" + charInfo.weapon[weaponIndex] + "'>" + charInfo.weapon[weaponIndex] + "</option>";
 	}
-	weapons += "<option>None</option>";
+	weapons += "<option value='None'>None</option>";
 	$("#weapon-" + charNum).html(weapons);
 	$("#weapon-" + charNum + " option:eq(0)").attr("selected", "selected");
 	
@@ -133,14 +150,14 @@ function displayChar(charInfo, charNum) {
 		
 		var specials = "";
 		for (var specIndex = 0; specIndex < charInfo.special.length; specIndex++) {
-			specials += "<option>" + charInfo.special[specIndex] + "</option>";
+			specials += "<option value='" + charInfo.special[specIndex] + "'>" + charInfo.special[specIndex] + "</option>";
 		}
-		specials += "<option>None</option>";
+		specials += "<option value='None'>None</option>";
 		$("#special-" + charNum).html(specials);
 		$("#special-" + charNum + " option:eq(0)").attr("selected", "selected");
 		
 	} else {
-		$("#special-" + charNum).html("<option>None<option>");
+		$("#special-" + charNum).html("<option value='None'>None<option>");
 		$("#special-" + charNum).attr("disabled", "disabled");
 		$("#skills-" + charNum + " .special-label").css("color", "darkgray");
 	}
@@ -157,7 +174,7 @@ function setupChars() {
 	$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(info) {
 		for (var key in info) {
 			if (info.hasOwnProperty(key)) {
-				options += "<option>" + key + "</option>";	
+				options += "<option value='" + key + "'>" + key + "</option>";
 			}
 		}
 		
@@ -179,7 +196,7 @@ $(document).ready( function () {
 	// setup show/hide buttons
 	$(".collapse-button").on("click", function() {
 		// toggle a section
-		$("#" + $(this).data("section")).toggle(700);	
+		$("#" + $(this).data("section")).toggle(700);
 	});
 
 	// setup number input changes
