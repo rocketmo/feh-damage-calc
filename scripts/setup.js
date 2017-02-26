@@ -16,18 +16,18 @@ function limit (num, minNumber) {
 // put options in the stat selects
 function setupStats () {
 	"use strict";
-	var options = "<option>0</option>";
-	var negOptions = "<option>0</option>";
+	var options = "<option value='0'>0</option>";
+	var negOptions = "<option value='0'>0</option>";
 	
 	for (var i = 2; i <= 7; i++) {
-		options += "<option value='" + i.toString + "'>" + i.toString() + "</option>";
-		negOptions += "<option value=-'" + i.toString + ">-" + i.toString() + "</option>";
+		options += "<option value='" + i.toString() + "'>" + i.toString() + "</option>";
+		negOptions += "<option value='-" + i.toString() + "'>-" + i.toString() + "</option>";
 	}
 	$(".stat-bonus").html(options);
 	$(".stat-penalty").html(negOptions);
 	
 	for (i = 8; i <= 12; i++) {
-		options += "<option value='" + i.toString + ">" + i.toString() + "</option>";
+		options += "<option value='" + i.toString + "'>" + i.toString() + "</option>";
 	}
 	$(".stat-spur").html(options);
 }
@@ -65,7 +65,6 @@ function showWeapon(selectedWeapon, weaponInfo, charNum) {
 
 		// show weapon type
 		$("#weapon-type-" + charNum).val(weaponInfo[selectedWeapon].type);
-		console.log(weaponInfo[selectedWeapon].type);
 
 		// show weapon might
 		$("#weapon-might-" + charNum).val(weaponInfo[selectedWeapon].might);
@@ -302,10 +301,10 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	}
 	
 	battleInfo.attacker.currHP = parseInt($("#curr-hp-1").val());
-	battleInfo.attacker.atk = parseInt($("#atk-1").val());
-	battleInfo.attacker.spd = parseInt($("#spd-1").val());
-	battleInfo.attacker.def = parseInt($("#def-1").val());
-	battleInfo.attacker.res = parseInt($("#res-1").val());
+	battleInfo.attacker.atk = parseInt($("#atk-1").val()) + parseInt($("#atk-bonus-1").val()) + parseInt($("#atk-penalty-1").val()) + parseInt($("#atk-spur-1").val());
+	battleInfo.attacker.spd = parseInt($("#spd-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#spd-penalty-1").val()) + parseInt($("#spd-spur-1").val());
+	battleInfo.attacker.def = parseInt($("#def-1").val()) + parseInt($("#def-bonus-1").val()) + parseInt($("#def-penalty-1").val()) + parseInt($("#def-spur-1").val());
+	battleInfo.attacker.res = parseInt($("#res-1").val()) + parseInt($("#res-bonus-1").val()) + parseInt($("#res-penalty-1").val()) + parseInt($("#res-spur-1").val());
 	
 	// get all defender info
 	battleInfo.defender.name = $("#char-2").val();
@@ -320,10 +319,10 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	}
 	
 	battleInfo.defender.currHP = parseInt($("#curr-hp-2").val());
-	battleInfo.defender.atk = parseInt($("#atk-2").val());
-	battleInfo.defender.spd = parseInt($("#spd-2").val());
-	battleInfo.defender.def = parseInt($("#def-2").val());
-	battleInfo.defender.res = parseInt($("#res-2").val());
+	battleInfo.defender.atk = parseInt($("#atk-2").val()) + parseInt($("#atk-bonus-2").val()) + parseInt($("#atk-penalty-2").val()) + parseInt($("#atk-spur-2").val());
+	battleInfo.defender.spd = parseInt($("#spd-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#spd-penalty-2").val()) + parseInt($("#spd-spur-2").val());
+	battleInfo.defender.def = parseInt($("#def-2").val()) + parseInt($("#def-bonus-2").val()) + parseInt($("#def-penalty-2").val()) + parseInt($("#def-spur-2").val());
+	battleInfo.defender.res = parseInt($("#res-2").val()) + parseInt($("#res-bonus-2").val()) + parseInt($("#res-penalty-2").val()) + parseInt($("#res-spur-2").val());
 	
 	// attacker initiates
 	battleInfo = singleCombat(battleInfo, true, "attacks");
@@ -355,6 +354,18 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
 	$("#interaction-list").fadeIn("slow");
 	$(".hp-remain-block").fadeIn("slow");
+}
+
+// get JSON data and simulate battle
+function getDataAndSim() {
+	"use strict";
+	$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
+		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
+			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
+				simBattle(charInfo, weaponInfo, specInfo);
+			});
+		});
+	});
 }
 
 // put options in the character selects
@@ -412,14 +423,16 @@ $(document).ready( function () {
 	$(".hp-stat").on("change", function () {
 		// old value
 		var oldHP = parseInt($("#" + this.id + "-denom").text());
-		
+
 		// update hp value in rest of the page
 		$("." + this.id + "-read").text(this.value);
-		
+
 		// check if current hp needs to be updated as well
 		if ((this.value < parseInt($("#curr-" + this.id).val())) || parseInt($("#curr-" + this.id).val()) === oldHP) {
 			$("#curr-" + this.id).val(this.value);
 		}
+		
+		getDataAndSim();
 	});
 	$(".curr-hp-val").on("change", function () {
 		// current hp cannot be greater than base hp
@@ -427,6 +440,8 @@ $(document).ready( function () {
 		if (this.value > baseHP) {
 			this.value = baseHP;
 		}
+		
+		getDataAndSim();
 	});
 	
 	// setup special cooldown updates
@@ -435,6 +450,8 @@ $(document).ready( function () {
 		if (this.value > maxCooldown) {
 			this.value = maxCooldown;
 		}
+		
+		getDataAndSim();
 	});
 	
 	// setup initial display
@@ -465,25 +482,50 @@ $(document).ready( function () {
 	
 	// setup weapon select
 	$("#weapon-1").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
-			showWeapon($("#weapon-1").val(), weaponInfo, "1");
+		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
+			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
+				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
+					showWeapon($("#weapon-1").val(), weaponInfo, "1");
+					simBattle(charInfo, weaponInfo, specInfo);
+				});
+			});
 		});
 	});
 	$("#weapon-2").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
-			showWeapon($("#weapon-2").val(), weaponInfo, "2");
+		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
+			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
+				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
+					showWeapon($("#weapon-2").val(), weaponInfo, "2");
+					simBattle(charInfo, weaponInfo, specInfo);
+				});
+			});
 		});
 	});
 	
 	// setup special select
 	$("#special-1").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-			showSpecCooldown($("#special-1").val(), specInfo, "1");
+		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
+			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
+				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
+					showSpecCooldown($("#special-1").val(), specInfo, "1");
+					simBattle(charInfo, weaponInfo, specInfo);
+				});
+			});
 		});
 	});
 	$("#special-2").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-			showSpecCooldown($("#special-2").val(), specInfo, "2");
+		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
+			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
+				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
+					showSpecCooldown($("#special-2").val(), specInfo, "2");
+					simBattle(charInfo, weaponInfo, specInfo);
+				});
+			});
 		});
+	});
+	
+	// setup other battle value changes
+	$(".battle-val").on("change", function () {
+		getDataAndSim();
 	});
 });
