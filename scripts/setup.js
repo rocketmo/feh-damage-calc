@@ -350,7 +350,7 @@ function setupChars() {
 			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
 				for (var key in charInfo) {
 					if (charInfo.hasOwnProperty(key)) {
-						options += "<option value='" + key + "'>" + key + "</option>";
+						options += "<option value=\"" + key + "\">" + key + "</option>";
 					}
 				}
 
