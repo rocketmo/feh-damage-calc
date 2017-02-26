@@ -55,6 +55,60 @@ function showSkills(charInfo, charNum, type) {
 	}
 }
 
+
+// shows extra weapon info
+// selectedWeapon is the weapon to display, charNum determines the panel
+function showWeapon(selectedWeapon, charNum) {
+	"use strict";
+	$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
+		if (weaponInfo.hasOwnProperty(selectedWeapon)) {
+			// show weapon color
+			$("#weapon-color-" + charNum).val(weaponInfo[selectedWeapon].color);
+			
+			// show weapon type
+			$("#weapon-type-" + charNum).val(weaponInfo[selectedWeapon].type);
+			
+			// show weapon might
+			$("#weapon-might-" + charNum).val(weaponInfo[selectedWeapon].might);
+			
+			// show weapon range
+			$("#weapon-range-" + charNum).val(weaponInfo[selectedWeapon].range);
+			
+			// show magical data
+			if (weaponInfo[selectedWeapon].magical) {
+				$("#weapon-magical-" + charNum).val("Yes");
+			} else {
+				$("#weapon-magical-" + charNum).val("No");
+			}
+		} else {	// weapon not found
+			$("#weapon-color-" + charNum).prop("selectedIndex", -1);
+			$("#weapon-type-" + charNum).prop("selectedIndex", -1);
+			$("#weapon-might-" + charNum).val("");
+			$("#weapon-range-" + charNum).prop("selectedIndex", -1);
+			$("#weapon-magical-" + charNum).prop("selectedIndex", -1);
+		}
+	});
+}
+
+// show special cooldown values
+// selectedSpecial is the special that is being displayed, charNum determines the panel
+function showSpecCooldown (selectedSpecial, charNum) {
+	"use strict";
+	$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
+		if (specInfo.hasOwnProperty(selectedSpecial)) {
+			$("#spec-cooldown-" + charNum).removeAttr("disabled");
+			$("#spec-cooldown-line-" + charNum).css("color", "white");
+			$("#spec-cooldown-" + charNum).val(specInfo[selectedSpecial].cooldown);
+			$("#spec-cooldown-max-" + charNum).text(specInfo[selectedSpecial].cooldown);
+		} else { // special not found
+			$("#spec-cooldown-" + charNum).val("0");
+			$("#spec-cooldown-" + charNum).attr("disabled", "disabled");
+			$("#spec-cooldown-max-" + charNum).text("x");
+			$("#spec-cooldown-line-" + charNum).css("color", "darkgray");
+		}
+	});
+}
+
 // displays character information in the character panels
 // charInfo contains all the character info to display, charNum determines which panel to display on
 function displayChar(charInfo, charNum) {
@@ -102,30 +156,7 @@ function displayChar(charInfo, charNum) {
 	$("#weapon-" + charNum + " option:eq(0)").attr("selected", "selected");
 	
 	// show extra weapon info
-	$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
-		if (weaponInfo.hasOwnProperty(selectedWeapon)) {
-			// show weapon color
-			$("#weapon-color-" + charNum).val(weaponInfo[selectedWeapon].color);
-			
-			// show weapon type
-			$("#weapon-type-" + charNum).val(weaponInfo[selectedWeapon].type);
-			
-			// show weapon might
-			$("#weapon-might-" + charNum).val(weaponInfo[selectedWeapon].might);
-			
-			// show weapon range
-			$("#weapon-range-" + charNum).val(weaponInfo[selectedWeapon].range);
-			
-			// show magical data
-			if (weaponInfo[selectedWeapon].magical) {
-				$("#weapon-magical-" + charNum).val("Yes");
-			} else {
-				$("#weapon-magical-" + charNum).val("No");
-			}
-		} else {	// weapon not found
-			console.log("Invalid weapon");
-		}
-	});
+	showWeapon(selectedWeapon, charNum);
 	
 	// show stats
 	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(charInfo.hp);
@@ -146,9 +177,7 @@ function displayChar(charInfo, charNum) {
 	// show special skill
 	if (charInfo.hasOwnProperty("special")) {
 		$("#special-" + charNum).removeAttr("disabled");
-		$("#spec-cooldown-" + charNum).removeAttr("disabled");
 		$("#skills-" + charNum + " .special-label").css("color", "white");
-		$("#spec-cooldown-line-" + charNum).css("color", "white");
 		
 		var selectedSpecial = charInfo.special[0];
 		var specials = "<option value='" + selectedSpecial + "'>" + selectedSpecial + "</option>";
@@ -160,10 +189,7 @@ function displayChar(charInfo, charNum) {
 		$("#special-" + charNum + " option:eq(0)").attr("selected", "selected");
 		
 		// show cooldown values
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-			$("#spec-cooldown-" + charNum).val(specInfo[selectedSpecial].cooldown);
-			$("#spec-cooldown-max-" + charNum).text(specInfo[selectedSpecial].cooldown);
-		});
+		showSpecCooldown(selectedSpecial, charNum);
 		
 	} else {
 		$("#special-" + charNum).html("<option value='None'>None<option>");
@@ -263,5 +289,21 @@ $(document).ready( function () {
 		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(info) {
 			displayChar(info[$("#char-2").val()], "2");
 		});
+	});
+	
+	// setup weapon select
+	$("#weapon-1").on("change", function () {
+		showWeapon($("#weapon-1").val(), "1");
+	});
+	$("#weapon-2").on("change", function () {
+		showWeapon($("#weapon-2").val(), "2");
+	});
+	
+	// setup special select
+	$("#special-1").on("change", function () {
+		showSpecCooldown($("#special-1").val(), "1");
+	});
+	$("#special-2").on("change", function () {
+		showSpecCooldown($("#special-2").val(), "2");
 	});
 });
