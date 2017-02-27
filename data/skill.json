@@ -496,74 +496,62 @@
         },
         "Seal Atk 1" : {
             "seal" : {
-                "stat" : "atk",
-                "amount" : 3
+                "atk" : -3
             }
         },
         "Seal Atk 2" : {
             "seal" : {
-                "stat" : "atk",
-                "amount" : 5
+                "atk" : -5
             }
         },
         "Seal Atk 3" : {
             "seal" : {
-                "stat" : "atk",
-                "amount" : 7
+                "atk" : -7
             }
         },
         "Seal Def 1" : {
             "seal" : {
-                "stat" : "def",
-                "amount" : 3
+                "def" : -3
             }
         },
         "Seal Def 2" : {
             "seal" : {
-                "stat" : "def",
-                "amount" : 5
+                "def" : -5
             }
         },
         "Seal Def 3" : {
             "seal" : {
-                "stat" : "def",
-                "amount" : 7
+                "def" : -7
             }
         },
         "Seal Res 1" : {
             "seal" : {
-                "stat" : "res",
-                "amount" : 3
+                "res" : -3
             }
         },
         "Seal Res 2" : {
             "seal" : {
-                "stat" : "res",
-                "amount" : 5
+                "res" : -5
             }
         },
         "Seal Res 3" : {
             "seal" : {
-                "stat" : "res",
-                "amount" : 7
+                "res" : -7
             }
         },
         "Seal Spd 1" : {
             "seal" : {
-                "stat" : "spd",
-                "amount" : 3
+                "spd" : -3
             }
         },
         "Seal Spd 2" : {
             "seal" : {
-                "stat" : "spd",
-                "amount" : 5
+                "spd" : -5
             }
         },
         "Seal Spd 3" : {
             "seal" : {
-                "stat" : "spd",
-                "amount" : 7
+                "spd" : -7
             }
         },
         "Swordbreaker 1" : {
@@ -702,74 +690,62 @@
         },
         "Threaten Atk 1" : {
             "threaten" : {
-                "stat" : "atk",
-                "amount" : 3
+                "atk" : -3
             }
         },
         "Threaten Atk 2" : {
             "threaten" : {
-                "stat" : "atk",
-                "amount" : 4
+                "atk" : -4
             }
         },
         "Threaten Atk 3" : {
             "threaten" : {
-                "stat" : "atk",
-                "amount" : 5
+                "atk" : -5
             }
         },
         "Threaten Def 1" : {
             "threaten" : {
-                "stat" : "def",
-                "amount" : 3
+                "def" : -3
             }
         },
         "Threaten Def 2" : {
             "threaten" : {
-                "stat" : "def",
-                "amount" : 4
+                "def" : -4
             }
         },
         "Threaten Def 3" : {
             "threaten" : {
-                "stat" : "def",
-                "amount" : 5
+                "def" : -5
             }
         },
         "Threaten Res 1" : {
             "threaten" : {
-                "stat" : "res",
-                "amount" : 3
+                "res" : -3
             }
         },
         "Threaten Res 2" : {
             "threaten" : {
-                "stat" : "res",
-                "amount" : 4
+                "res" : -4
             }
         },
         "Threaten Res 3" : {
             "threaten" : {
-                "stat" : "res",
-                "amount" : 5
+                "res" : -5
             }
         },
         "Threaten Spd 1" : {
             "threaten" : {
-                "stat" : "spd",
-                "amount" : 3
+                "spd" : -3
             }
         },
         "Threaten Spd 2" : {
             "threaten" : {
-                "stat" : "spd",
-                "amount" : 4
+                "res" : -4
             }
         },
         "Threaten Spd 3" : {
             "threaten" : {
-                "stat" : "spd",
-                "amount" : 5
+                "res" : -5
             }
         },
         "Ward Armor" : {

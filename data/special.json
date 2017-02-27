@@ -25,6 +25,11 @@
         "before_combat_aoe" : true,
         "aoe_dmg_mod" : 1.5
     },
+    "Blazing Thunder" : {
+        "cooldown" : 5,
+        "before_combat_aoe" : true,
+        "aoe_dmg_mod" : 1.5
+    },
     "Blazing Wind" : {
         "cooldown" : 5,
         "before_combat_aoe" : true,
@@ -182,6 +187,10 @@
         "before_combat_aoe" : true
     },
     "Rising Light" : {
+        "cooldown" : 5,
+        "before_combat_aoe" : true
+    },
+    "Rising Thunder" : {
         "cooldown" : 5,
         "before_combat_aoe" : true
     },

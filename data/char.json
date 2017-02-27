@@ -315,6 +315,19 @@
 		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"],
 		"command" : ["Pivot"]
 	},
+	"Eldigan" : {
+        "color" : "Red",
+        "hp" : 45,
+        "atk" : 51,
+        "spd" : 27,
+        "def" : 37,
+        "res" : 22,
+        "move_type": "Cavalry",
+		"weapon": ["Mystletainn", "Killing Edge", "Steel Sword", "Iron Sword"],
+		"special": ["Growing Light", "Rising Light"],
+		"passive_a": ["Fury 3", "Fury 2", "Fury 1"],
+		"passive_b": ["Lunge"]
+	},
 	"Elise": {
 		"color" : "Colorless",
 		"hp": 30,
@@ -427,6 +440,7 @@
 		"spd": 25,
 		"def": 36,
 		"res": 14,
+
 		"move_type": "Cavalry",
 		"weapon": ["Hammer+", "Hammer", "Steel Axe", "Iron Axe"],
 		"special": ["Luna", "New Moon"],
@@ -628,6 +642,32 @@
 		"special": ["Reprisal", "Retribution"],
 		"passive_a": ["Warding Blow 3", "Warding Blow 2", "Warding Blow 1"],
 		"passive_b": ["Daggerbreaker 3", "Daggerbreaker 2", "Daggerbreaker 1"]
+	},
+	"Klein" : {
+        "color" : "Colorless",
+        "hp" : 40,
+        "atk" : 38,
+        "spd" : 28,
+        "def" : 20,
+        "res" : 24,
+        "move_type": "Infantry",
+		"weapon": ["Brave Bow+", "Brave Bow", "Steel Bow", "Iron Bow"],
+		"special": ["Chilling Wind", "Glacies"],
+		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
+		"passive_b": ["Quick Reposte 3", "Quick Reposte 2", "Quick Reposte 1"]
+	},
+	"Lachesis" : {
+        "color" : "Colorless",
+        "hp" : 39,
+        "atk" : 36,
+        "spd" : 25,
+        "def" : 22,
+        "res" : 28,
+        "move_type": "Infantry",
+		"weapon": ["Absorb", "Assault"],
+		"special": ["Solid-Earth Balm", "Imbue"],
+		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"],
+		"command" : ["Physic", "Mend", "Heal"]
 	},
 	"Laslow": {
 		"color" : "Red",
@@ -903,6 +943,19 @@
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
 		"command" : ["Dance"]
 	},
+	"Olwen": {
+		"color" : "Blue",
+		"hp": 34,
+		"atk": 35,
+		"spd": 26,
+		"def": 23,
+		"res": 30,
+		"move_type": "Cavalry",
+		"weapon": ["Dire Thunder", "Thoron", "Elthunder", "Thunder"],
+		"passive_a": ["Warding Blow 3", "Warding Blow 2", "Warding Blow 1"],
+		"passive_c": ["Ward Cavalry", "Spur Res 2", "Spur Res 1"],
+		"command" : ["Reposition"]
+	},
 	"Palla": {
 		"color" : "Red",
 		"hp": 42,
@@ -955,6 +1008,19 @@
 		"special": ["Sol", "Daylight"],
 		"passive_a": ["Defiant Spd 3", "Defiant Spd 2", "Defiant Spd 1"],
 		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"]
+	},
+	"Reinhardt": {
+		"color" : "Blue",
+		"hp": 38,
+		"atk": 41,
+		"spd": 18,
+		"def": 27,
+		"res": 25,
+		"move_type": "Cavalry",
+		"weapon": ["Dire Thunder", "Thoron", "Elthunder", "Thunder"],
+		"special": ["Blazing Thunder", "Rising Thunder"],
+		"passive_a": ["Vantage 3", "Vantage 2", "Vantage 1"],
+		"passive_c": ["Goad Cavalry", "Spur Atk 2", "Spur Atk 1"]
 	},
 	"Robin (F)": {
 		"color" : "Green",
@@ -1033,6 +1099,19 @@
 		"special": ["Still-Water Balm", "Imbue"],
 		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
 		"command" : ["Physic", "Mend", "Heal"]
+	}, 
+	"Sanaki" : {
+        "color" : "Red",
+        "hp" : 33,
+        "atk" : 51,
+        "spd" : 28,
+        "def" : 17,
+        "res" : 34,
+        "move_type": "Infantry",
+		"weapon": ["Cymbeline", "Bolganone", "Elfire", "Fire"],
+		"passive_a": ["Triangle Adept 3", "Triangle Adept 2", "Triangle Adept 1"],
+		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
+		"command" : ["Harsh Command"]
 	},
 	"Selena": {
 		"color" : "Red",

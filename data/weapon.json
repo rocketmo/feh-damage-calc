@@ -11,7 +11,10 @@
         "type"    : "Axe",
         "might"   : 16,
         "range"   : 1,
-        "magical" : false
+        "magical" : false,
+        "reposte" : {
+            "threshold" : 0.8
+        }
     },
     "Armorslayer" : {
         "color"   : "Red",
@@ -64,7 +67,11 @@
         "type"    : "Sword",
         "might"   : 16,
         "range"   : 1,
-        "magical" : false
+        "magical" : false,
+        "defend_mod" : {
+            "def" : 2,
+            "res" : 2
+        }
     },
     "Blárblade" : {
         "color"   : "Blue",
@@ -211,6 +218,13 @@
         "range"   : 2,
         "magical" : true
     },
+    "Cymbeline" : {
+        "color" : "Red",
+        "type" : "Red Tome",
+        "might" : 14,
+        "range" : 2,
+        "magical" : true
+    },
     "Dark Breath" : {
         "color"   : "Blue",
         "type"    : "Blue Breath",
@@ -224,6 +238,17 @@
         "might"   : 13,
         "range"   : 1,
         "magical" : true
+    },
+	"Dire Thunder" : {
+        "color"   : "Blue",
+        "type"    : "Blue Tome",
+        "might"   : 9,
+        "range"   : 2,
+        "magical" : true,
+        "brave"   : true,
+        "stat_mod" : {
+            "spd" : -5
+        }
     },
     "Durandal" : {
         "color"   : "Red",
@@ -293,14 +318,20 @@
         "type"    : "Staff",
         "might"   : 5,
         "range"   : 2,
-        "magical" : true
+        "magical" : true,
+        "seal" : {
+            "atk" : -6
+        }
     },
     "Fenrir" : {
         "color"   : "Red",
         "type"    : "Red Tome",
         "might"   : 9,
         "range"   : 2,
-        "magical" : true
+        "magical" : true,
+        "threaten" : {
+            "atk" : -4
+        }
     },
     "Fenrir+" : {
         "color"   : "Red",
@@ -399,7 +430,10 @@
         "type"    : "Sword",
         "might"   : 16,
         "range"   : 1,
-        "magical" : false
+        "magical" : false,
+        "defiant" : {
+            "atk" : 5
+        }
     },
     "Gravity" : {
         "color"   : "Colorless",
@@ -518,7 +552,11 @@
         "type"    : "Dagger",
         "might"   : 3,
         "range"   : 2,
-        "magical" : false
+        "magical" : false,
+        "seal" : {
+            "def" : -3,
+            "res" : -3
+        }
     },
     "Iron Lance" : {
         "color"   : "Blue",
@@ -657,6 +695,14 @@
         "spec_cooldown_mod" : 1,
         "counter" : true
     },
+    "Mystletainn" : {
+        "color" : "Red",
+        "type" : "Sword",
+        "might" : 16,
+        "range" : 1,
+        "magical" : false,
+        "spec_cooldown_mod" : -1
+    },
     "Naga" : {
         "color"   : "Green",
         "type"    : "Green Tome",
@@ -685,7 +731,8 @@
         "type"    : "Staff",
         "might"   : 7,
         "range"   : 2,
-        "magical" : true
+        "magical" : true,
+        "convert_penalties" : true
     },
     "Parthia" : {
         "color"   : "Colorless",
@@ -704,7 +751,12 @@
         "might"   : 2,
         "range"   : 2,
         "magical" : false,
-        "move_effective" : "Infantry"
+        "move_effective" : "Infantry",
+        "target_seal" : {
+            "target" : "Infantry",
+            "def" : -4,
+            "res" : -4
+        }
     },
     "Poison Dagger+" : {
         "color"   : "Colorless",
@@ -712,7 +764,12 @@
         "might"   : 5,
         "range"   : 2,
         "magical" : false,
-        "move_effective" : "Infantry"
+        "move_effective" : "Infantry",
+        "target_seal" : {
+            "target" : "Infantry",
+            "def" : -6,
+            "res" : -6
+        }
     },
     "Raijinto" : {
         "color"   : "Red",
@@ -784,14 +841,30 @@
         "type"    : "Dagger",
         "might"   : 4,
         "range"   : 2,
-        "magical" : false
+        "magical" : false,
+        "seal" : {
+            "def" : -3,
+            "res" : -3
+        },
+        "after_mod" : {
+            "def" : 3,
+            "res" : 3
+        }
     },
     "Rogue Dagger+" : {
         "color"   : "Colorless",
         "type"    : "Dagger",
         "might"   : 7,
         "range"   : 2,
-        "magical" : false
+        "magical" : false,
+        "seal" : {
+            "def" : -5,
+            "res" : -5
+        },
+        "after_mod" : {
+            "def" : 5,
+            "res" : 5
+        }
     },
     "Ruby Sword" : {
         "color"   : "Red",
@@ -923,7 +996,10 @@
         "type"    : "Staff",
         "might"   : 5,
         "range"   : 2,
-        "magical" : true
+        "magical" : true,
+        "seal" : {
+            "spd" : -6
+        }
     },
     "Smoke Dagger" : {
         "color"   : "Colorless",
@@ -944,7 +1020,8 @@
         "type"    : "Sword",
         "might"   : 16,
         "range"   : 1,
-        "magical" : false
+        "magical" : false,
+        "instant_follow" : true
     },
     "Steel Axe" : {
         "color"   : "Green",
@@ -966,7 +1043,11 @@
         "type"    : "Dagger",
         "might"   : 5,
         "range"   : 2,
-        "magical" : false
+        "magical" : false,
+        "seal" : {
+            "def" : -3,
+            "res" : -3
+        }
     },
     "Steel Lance" : {
         "color"   : "Blue",
@@ -1008,7 +1089,10 @@
         "type"    : "Sword",
         "might"   : 16,
         "range"   : 1,
-        "magical" : false
+        "magical" : false,
+        "defiant" : {
+            "def" : 4
+        }
     },
     "Wind" : {
         "color"   : "Green",
