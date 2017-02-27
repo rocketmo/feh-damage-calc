@@ -62,9 +62,6 @@ function showWeapon(selectedWeapon, weaponInfo, charNum, updateAtk) {
 	
 	var mt = 0;
 	if (weaponInfo.hasOwnProperty(selectedWeapon)) {
-		// show weapon color
-		$("#color-" + charNum).val(weaponInfo[selectedWeapon].color);
-
 		// show weapon type
 		$("#weapon-type-" + charNum).text(weaponInfo[selectedWeapon].type);
 
@@ -136,6 +133,9 @@ function displayChar(charInfo, weaponInfo, specInfo, charNum) {
 	// grey out disabled input fields
 	$("#extra-char-info-" + charNum).css("color", "#5b5b5b");
 	$("#extra-char-info-" + charNum + " select").attr("disabled", "disabled");
+	
+	// show color
+	$("#color-" + charNum).val(charInfo.color);
 	
 	// show move type
 	$("#move-type-" + charNum).val(charInfo.move_type);

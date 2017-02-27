@@ -1,5 +1,6 @@
 {
 	"Abel": {
+		"color" : "Blue",
 		"hp": 44,
 		"atk": 41,
 		"spd": 27,
@@ -12,6 +13,7 @@
 		"passive_b": ["Swordbreaker 3", "Swordbreaker 2", "Swordbreaker 1"]
 	},
 	"Alfonse": {
+		"color" : "Red",
 		"hp": 43,
 		"atk": 51,
 		"spd": 25,
@@ -24,6 +26,7 @@
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"]
 	},
 	"Anna": {
+		"color" : "Green",
 		"hp": 41,
 		"atk": 45,
 		"spd": 38,
@@ -36,6 +39,7 @@
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"]
 	},
 	"Arthur": {
+		"color" : "Green",
 		"hp": 48,
 		"atk": 44,
 		"spd": 29,
@@ -47,6 +51,7 @@
 		"passive_b": ["Lancebreaker 3", "Lancebreaker 2", "Lancebreaker 1"]
 	},
 	"Azama": {
+		"color" : "Colorless",
 		"hp": 43,
 		"atk": 24,
 		"spd": 26,
@@ -59,6 +64,7 @@
 		"command" : ["Martyr", "Reconcile", "Heal"]
 	},
 	"Azura": {
+		"color" : "Blue",
 		"hp": 36,
 		"atk": 43,
 		"spd": 36,
@@ -71,6 +77,7 @@
 		"command" : ["Sing"]
 	},
 	"Barst": {
+		"color" : "Green",
 		"hp": 40,
 		"atk": 38,
 		"spd": 30,
@@ -83,6 +90,7 @@
 		"command" : ["Reposition"]
 	},
 	"Bartre": {
+		"color" : "Green",
 		"hp": 49,
 		"atk": 51,
 		"spd": 29,
@@ -95,6 +103,7 @@
 		"command" : ["Smite"]
 	},
 	"Beruka": {
+		"color" : "Green",
 		"hp": 46,
 		"atk": 40,
 		"spd": 23,
@@ -107,6 +116,7 @@
 		"passive_b": ["Lunge"]
 	},
 	"Caeda": {
+		"color" : "Red",
 		"hp": 36,
 		"atk": 37,
 		"spd": 37,
@@ -120,6 +130,7 @@
 		"command" : ["Rally Speed"]
 	},
 	"Cain": {
+		"color" : "Red",
 		"hp": 42,
 		"atk": 40,
 		"spd": 27,
@@ -132,6 +143,7 @@
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"]
 	},
 	"Camilla": {
+		"color" : "Green",
 		"hp": 37,
 		"atk": 38,
 		"spd": 27,
@@ -144,6 +156,7 @@
 		"passive_c": ["Savage Blow 3", "Savage Blow 2", "Savage Blow 1"]
 	},
 	"Catria": {
+		"color" : "Blue",
 		"hp": 39,
 		"atk": 42,
 		"spd": 34,
@@ -156,6 +169,7 @@
 		"passive_b": ["Seal Atk 3", "Seal Atk 2", "Seal Atk 1"]
 	},
 	"Cecilia": {
+		"color" : "Green",
 		"hp": 36,
 		"atk": 46,
 		"spd": 25,
@@ -168,6 +182,7 @@
 		"command" : ["Rally Resistance"]
 	},
 	"Cherche": {
+		"color" : "Green",
 		"hp": 43,
 		"atk": 56,
 		"spd": 25,
@@ -180,6 +195,7 @@
 		"command" : ["Pivot"]
 	},
 	"Chrom": {
+		"color" : "Red",
 		"hp": 47,
 		"atk": 53,
 		"spd": 25,
@@ -192,6 +208,7 @@
 		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"]
 	},
 	"Clarine": {
+		"color" : "Colorless",
 		"hp": 35,
 		"atk": 32,
 		"spd": 30,
@@ -204,6 +221,7 @@
 		"command" : ["Martyr", "Reconcile", "Heal"]
 	},
 	"Cordelia": {
+		"color" : "Blue",
 		"hp": 40,
 		"atk": 43,
 		"spd": 30,
@@ -216,6 +234,7 @@
 		"passive_b": ["Pass 3", "Pass 2", "Pass 1"]
 	},
 	"Corrin (F)": {
+		"color" : "Blue",
 		"hp": 41,
 		"atk": 40,
 		"spd": 34,
@@ -229,6 +248,7 @@
 		"dragon": true
 	},
 	"Corrin (M)": {
+		"color" : "Red",
 		"hp": 42,
 		"atk": 48,
 		"spd": 32,
@@ -243,6 +263,7 @@
 	"Custom": {	
 	},
 	"Donnel": {
+		"color" : "Blue",
 		"hp": 48,
 		"atk": 43,
 		"spd": 24,
@@ -256,6 +277,7 @@
 		"command" : ["Reciprocal Aid"]
 	},
 	"Draug": {
+		"color" : "Red",
 		"hp": 53,
 		"atk": 38,
 		"spd": 24,
@@ -268,6 +290,7 @@
 		"passive_c": ["Ward Armor", "Spur Def 2", "Spur Def 1"]
 	},
 	"Effie": {
+		"color" : "Blue",
 		"hp": 50,
 		"atk": 55,
 		"spd": 22,
@@ -280,6 +303,7 @@
 		"command" : ["Smite"]
 	},
 	"Eirika": {
+		"color" : "Red",
 		"hp": 42,
 		"atk": 42,
 		"spd": 35,
@@ -292,6 +316,7 @@
 		"command" : ["Pivot"]
 	},
 	"Elise": {
+		"color" : "Colorless",
 		"hp": 30,
 		"atk": 42,
 		"spd": 32,
@@ -304,6 +329,7 @@
 		"command" : ["Recover", "Mend", "Heal"]
 	},
 	"Eliwood": {
+		"color" : "Red",
 		"hp": 39,
 		"atk": 47,
 		"spd": 30,
@@ -316,6 +342,7 @@
 		"passive_c": ["Ward Cavalry", "Spur Res 2", "Spur Res 1"]
 	},
 	"Ephraim": {
+		"color" : "Blue",
 		"hp": 45,
 		"atk": 51,
 		"spd": 25,
@@ -328,6 +355,7 @@
 		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"]
 	},
 	"Est": {
+		"color" : "Blue",
 		"hp": 36,
 		"atk": 47,
 		"spd": 30,
@@ -340,6 +368,7 @@
 		"command" : ["Shove"]
 	},
 	"Fae": {
+		"color" : "Green",
 		"hp": 46,
 		"atk": 46,
 		"spd": 28,
@@ -353,6 +382,7 @@
 		"command" : ["Draw Back"]
 	},
 	"Felicia": {
+		"color" : "Colorless",
 		"hp": 34,
 		"atk": 33,
 		"spd": 37,
@@ -365,6 +395,7 @@
 		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"]
 	},
 	"Fir": {
+		"color" : "Red",
 		"hp": 41,
 		"atk": 36,
 		"spd": 39,
@@ -377,6 +408,7 @@
 		"passive_b": ["Pass 3", "Pass 2", "Pass 1"]
 	},
 	"Florina": {
+		"color" : "Blue",
 		"hp": 42,
 		"atk": 41,
 		"spd": 27,
@@ -389,6 +421,7 @@
 		"command" : ["Ardent Sacrifice"]
 	},
 	"Frederick": {
+		"color" : "Green",
 		"hp": 43,
 		"atk": 47,
 		"spd": 25,
@@ -401,6 +434,7 @@
 		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"]
 	},
 	"Gaius": {
+		"color" : "Colorless",
 		"hp": 39,
 		"atk": 39,
 		"spd": 36,
@@ -413,6 +447,7 @@
 		"command" : ["Rally Speed"]
 	},
 	"Gordin": {
+		"color" : "Colorless",
 		"hp": 43,
 		"atk": 41,
 		"spd": 24,
@@ -425,6 +460,7 @@
 		"command" : ["Shove"]
 	},
 	"Gunter": {
+		"color" : "Green",
 		"hp": 42,
 		"atk": 47,
 		"spd": 24,
@@ -437,6 +473,7 @@
 		"command" : ["Harsh Command"]
 	},
 	"Gwendolyn": {
+		"color" : "Blue",
 		"hp": 49,
 		"atk": 41,
 		"spd": 24,
@@ -449,6 +486,7 @@
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"]
 	},
 	"Hana": {
+		"color" : "Red",
 		"hp": 37,
 		"atk": 52,
 		"spd": 41,
@@ -461,6 +499,7 @@
 		"command" : ["Rally Attack"]
 	},
 	"Hawkeye": {
+		"color" : "Green",
 		"hp": 45,
 		"atk": 44,
 		"spd": 22,
@@ -473,6 +512,7 @@
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"]
 	},
 	"Hector": {
+		"color" : "Green",
 		"hp": 52,
 		"atk": 52,
 		"spd": 24,
@@ -485,6 +525,7 @@
 		"passive_c": ["Goad Armor", "Spur Attack 2", "Spur Attack 1"]
 	},
 	"Henry": {
+		"color" : "Red",
 		"hp": 45,
 		"atk": 34,
 		"spd": 22,
@@ -497,6 +538,7 @@
 		"passive_b": ["G Tomebreaker 3", "G Tomebreaker 2", "G Tomebreaker 1"]
 	},
 	"Hinata": {
+		"color" : "Red",
 		"hp": 47,
 		"atk": 44,
 		"spd": 24,
@@ -509,6 +551,7 @@
 		"passive_b": ["Brash Assault 3", "Brash Assault 2", "Brash Assault 1"]
 	},
 	"Hinoka": {
+		"color" : "Blue",
 		"hp": 41,
 		"atk": 43,
 		"spd": 27,
@@ -521,6 +564,7 @@
 		"passive_c": ["Hone Fliers", "Hone Spd 2", "Hone Spd 1"]
 	},
 	"Jagen": {
+		"color" : "Blue",
 		"hp": 37,
 		"atk": 45,
 		"spd": 27,
@@ -533,6 +577,7 @@
 		"passive_c": ["Fortify Cavalry", "Fortify Res 2", "Fortify Res 1"]
 	},
 	"Jakob": {
+		"color" : "Colorless",
 		"hp": 39,
 		"atk": 39,
 		"spd": 31,
@@ -545,6 +590,7 @@
 		"command" : ["Rally Resistance"]
 	},
 	"Jeorge": {
+		"color" : "Colorless",
 		"hp": 37,
 		"atk": 46,
 		"spd": 32,
@@ -558,6 +604,7 @@
 		"command" : ["Swap"]
 	},
 	"Julia": {
+		"color" : "Green",
 		"hp": 38,
 		"atk": 49,
 		"spd": 26,
@@ -570,6 +617,7 @@
 		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"]
 	},
 	"Kagero": {
+		"color" : "Colorless",
 		"hp": 31,
 		"atk": 40,
 		"spd": 32,
@@ -582,6 +630,7 @@
 		"passive_b": ["Daggerbreaker 3", "Daggerbreaker 2", "Daggerbreaker 1"]
 	},
 	"Laslow": {
+		"color" : "Red",
 		"hp": 41,
 		"atk": 50,
 		"spd": 26,
@@ -594,6 +643,7 @@
 		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"]
 	},
 	"Leo": {
+		"color" : "Red",
 		"hp": 39,
 		"atk": 43,
 		"spd": 22,
@@ -606,6 +656,7 @@
 		"passive_c": ["Savage Blow 3", "Savage Blow 2", "Savage Blow 1"]
 	},
 	"Lilina": {
+		"color" : "Red",
 		"hp": 35,
 		"atk": 53,
 		"spd": 25,
@@ -618,6 +669,7 @@
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"]
 	},
 	"Linde": {
+		"color" : "Blue",
 		"hp": 35,
 		"atk": 49,
 		"spd": 39,
@@ -630,6 +682,7 @@
 		"command" : ["Ardent Sacrifice"]
 	},
 	"Lissa": {
+		"color" : "Colorless",
 		"hp": 39,
 		"atk": 34,
 		"spd": 26,
@@ -642,6 +695,7 @@
 		"command" : ["Rehabilitate", "Reconcile", "Heal"]
 	},
 	"Lon'qu": {
+		"color" : "Red",
 		"hp": 45,
 		"atk": 40,
 		"spd": 42,
@@ -654,6 +708,7 @@
 		"passive_b": ["Vantage 3", "Vantage 2", "Vantage 1"]
 	},
 	"Lucina": {
+		"color" : "Red",
 		"hp": 43,
 		"atk": 50,
 		"spd": 36,
@@ -666,6 +721,7 @@
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"]
 	},
 	"Lyn": {
+		"color" : "Red",
 		"hp": 37,
 		"atk": 44,
 		"spd": 37,
@@ -678,6 +734,7 @@
 		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"]
 	},
 	"Maria": {
+		"color" : "Colorless",
 		"hp": 36,
 		"atk": 32,
 		"spd": 34,
@@ -690,6 +747,7 @@
 		"command" : ["Physic", "Mend", "Heal"]
 	},
 	"Marth": {
+		"color" : "Red",
 		"hp": 41,
 		"atk": 47,
 		"spd": 34,
@@ -702,6 +760,7 @@
 		"command" : ["Pivot"]
 	},
 	"Matthew": {
+		"color" : "Colorless",
 		"hp": 43,
 		"atk": 36,
 		"spd": 34,
@@ -714,6 +773,7 @@
 		"command" : ["Reciprocal Aid"]
 	},
 	"Merric": {
+		"color" : "Green",
 		"hp": 48,
 		"atk": 40,
 		"spd": 32,
@@ -726,6 +786,7 @@
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"]
 	},
 	"Minerva": {
+		"color" : "Green",
 		"hp": 40,
 		"atk": 52,
 		"spd": 38,
@@ -738,6 +799,7 @@
 		"passive_c": ["Ward Fliers", "Spur Def 2", "Spur Def 1"]
 	},
 	"Narcian": {
+		"color" : "Green",
 		"hp": 42,
 		"atk": 41,
 		"spd": 29,
@@ -750,6 +812,7 @@
 		"passive_c": ["Savage Blow 3", "Savage Blow 2", "Savage Blow 1"]
 	},
 	"Niles": {
+		"color" : "Colorless",
 		"hp": 37,
 		"atk": 34,
 		"spd": 34,
@@ -762,6 +825,7 @@
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"]
 	},
 	"Nino": {
+		"color" : "Green",
 		"hp": 33,
 		"atk": 46,
 		"spd": 36,
@@ -774,6 +838,7 @@
 		"command" : ["Draw Back"]
 	},
 	"Nowi": {
+		"color" : "Blue",
 		"hp": 45,
 		"atk": 45,
 		"spd": 27,
@@ -787,6 +852,7 @@
 		"command" : ["Rally Defense"]
 	},
 	"Oboro": {
+		"color" : "Blue",
 		"hp": 40,
 		"atk": 44,
 		"spd": 26,
@@ -799,6 +865,7 @@
 		"command" : ["Rally Defense"]
 	},
 	"Odin": {
+		"color" : "Blue",
 		"hp": 43,
 		"atk": 35,
 		"spd": 32,
@@ -811,6 +878,7 @@
 		"passive_b": ["R Tomebreaker 3", "R Tomebreaker 2", "R Tomebreaker 1"]
 	},
 	"Ogma": {
+		"color" : "Red",
 		"hp": 47,
 		"atk": 43,
 		"spd": 29,
@@ -823,6 +891,7 @@
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"]
 	},
 	"Olivia": {
+		"color" : "Red",
 		"hp": 36,
 		"atk": 39,
 		"spd": 33,
@@ -835,6 +904,7 @@
 		"command" : ["Dance"]
 	},
 	"Palla": {
+		"color" : "Red",
 		"hp": 42,
 		"atk": 43,
 		"spd": 31,
@@ -847,6 +917,7 @@
 		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"]
 	},
 	"Peri": {
+		"color" : "Blue",
 		"hp": 35,
 		"atk": 44,
 		"spd": 33,
@@ -859,6 +930,7 @@
 		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"]
 	},
 	"Raigh": {
+		"color" : "Red",
 		"hp": 41,
 		"atk": 42,
 		"spd": 29,
@@ -872,6 +944,7 @@
 		"command" : ["Rally Attack"]
 	},
 	"Raven": {
+		"color" : "Green",
 		"hp": 41,
 		"atk": 42,
 		"spd": 30,
@@ -884,6 +957,7 @@
 		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"]
 	},
 	"Robin (F)": {
+		"color" : "Green",
 		"hp": 40,
 		"atk": 39,
 		"spd": 29,
@@ -896,6 +970,7 @@
 		"passive_b": ["B Tomebreaker 3", "B Tomebreaker 2", "B Tomebreaker 1"]
 	},
 	"Robin (M)": {
+		"color" : "Blue",
 		"hp": 40,
 		"atk": 40,
 		"spd": 29,
@@ -908,6 +983,7 @@
 		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"]
 	},
 	"Roy": {
+		"color" : "Red",
 		"hp": 44,
 		"atk": 46,
 		"spd": 31,
@@ -920,6 +996,7 @@
 		"command" : ["Shove"]
 	},
 	"Ryoma": {
+		"color" : "Red",
 		"hp": 41,
 		"atk": 50,
 		"spd": 35,
@@ -932,6 +1009,7 @@
 		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"]
 	},
 	"Saizo": {
+		"color" : "Colorless",
 		"hp": 36,
 		"atk": 41,
 		"spd": 34,
@@ -944,6 +1022,7 @@
 		"command" : ["Harsh Command"]
 	},
 	"Sakura": {
+		"color" : "Colorless",
 		"hp": 36,
 		"atk": 33,
 		"spd": 30,
@@ -956,6 +1035,7 @@
 		"command" : ["Physic", "Mend", "Heal"]
 	},
 	"Selena": {
+		"color" : "Red",
 		"hp": 37,
 		"atk": 37,
 		"spd": 35,
@@ -968,6 +1048,7 @@
 		"command" : ["Reposition"]
 	},
 	"Seliph": {
+		"color" : "Red",
 		"hp": 52,
 		"atk": 50,
 		"spd": 24,
@@ -980,6 +1061,7 @@
 		"command" : ["Rally Speed"]
 	},
 	"Serra": {
+		"color" : "Colorless",
 		"hp": 36,
 		"atk": 34,
 		"spd": 31,
@@ -992,6 +1074,7 @@
 		"command" : ["Recover", "Mend", "Heal"]
 	},
 	"Setsuna": {
+		"color" : "Colorless",
 		"hp": 42,
 		"atk": 39,
 		"spd": 37,
@@ -1004,6 +1087,7 @@
 		"command" : ["Reciprocal Aid"]
 	},
 	"Shanna": {
+		"color" : "Blue",
 		"hp": 39,
 		"atk": 41,
 		"spd": 35,
@@ -1016,6 +1100,7 @@
 		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"]
 	},
 	"Sharena": {
+		"color" : "Blue",
 		"hp": 43,
 		"atk": 48,
 		"spd": 35,
@@ -1028,6 +1113,7 @@
 		"command" : ["Rally Attack"]
 	},
 	"Sheena": {
+		"color" : "Green",
 		"hp": 45,
 		"atk": 41,
 		"spd": 25,
@@ -1040,6 +1126,7 @@
 		"passive_c": ["Fortify Armor", "Fortify Def 2", "Fortify Def 1"]
 	},
 	"Sophia": {
+		"color" : "Red",
 		"hp": 40,
 		"atk": 46,
 		"spd": 19,
@@ -1052,6 +1139,7 @@
 		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"]
 	},
 	"Stahl": {
+		"color" : "Red",
 		"hp": 45,
 		"atk": 46,
 		"spd": 26,
@@ -1064,6 +1152,7 @@
 		"command" : ["Swap"]
 	},
 	"Subaki": {
+		"color" : "Blue",
 		"hp": 40,
 		"atk": 37,
 		"spd": 35,
@@ -1076,6 +1165,7 @@
 		"command" : ["Swap"]
 	},
 	"Sully": {
+		"color" : "Blue",
 		"hp": 42,
 		"atk": 42,
 		"spd": 34,
@@ -1088,6 +1178,7 @@
 		"command" : ["Draw Back"]
 	},
 	"Takumi": {
+		"color" : "Colorless",
 		"hp": 40,
 		"atk": 46,
 		"spd": 33,
@@ -1100,6 +1191,7 @@
 		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"]
 	},
 	"Tharja": {
+		"color" : "Red",
 		"hp": 39,
 		"atk": 45,
 		"spd": 34,
@@ -1112,6 +1204,7 @@
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"]
 	},
 	"Tiki (Adult)": {
+		"color" : "Red",
 		"hp": 40,
 		"atk": 46,
 		"spd": 23,
@@ -1125,6 +1218,7 @@
 		"dragon": true
 	},
 	"Tiki (Young)": {
+		"color" : "Red",
 		"hp": 41,
 		"atk": 46,
 		"spd": 30,
@@ -1138,6 +1232,7 @@
 		"dragon": true
 	},
 	"Virion": {
+		"color" : "Colorless",
 		"hp": 46,
 		"atk": 41,
 		"spd": 32,
@@ -1150,6 +1245,7 @@
 		"passive_b": ["Seal Spd 3", "Seal Spd 2", "Seal Spd 1"]
 	},
 	"Wrys": {
+		"color" : "Colorless",
 		"hp": 42,
 		"atk": 34,
 		"spd": 23,
