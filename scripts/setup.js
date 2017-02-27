@@ -122,7 +122,6 @@ function displayChar(charInfo, weaponInfo, specInfo, charNum) {
 		return;
 	}
 	
-	
 	// grey out disabled input fields
 	$("#extra-char-info-" + charNum).css("color", "darkgray");
 	$("#extra-weapon-info-" + charNum).css("color", "darkgray");
@@ -168,6 +167,25 @@ function displayChar(charInfo, weaponInfo, specInfo, charNum) {
 	showSkills(charInfo, charNum, 'a');
 	showSkills(charInfo, charNum, 'b');
 	showSkills(charInfo, charNum, 'c');
+	
+	// show command skill
+	if (charInfo.hasOwnProperty("command")) {
+		$("#command-" + charNum).removeAttr("disabled");
+		$("#skills-" + charNum + " .command-label").css("color", "white");
+		
+		var selectedCommand = charInfo.command[0];
+		var commands = "<option value='" + selectedCommand + "'>" + selectedCommand + "</option>";
+		for (var commandIndex = 1; commandIndex < charInfo.command.length; commandIndex++) {
+			commands += "<option value='" + charInfo.command[commandIndex] + "'>" + charInfo.command[commandIndex] + "</option>";
+		}
+		commands += "<option value='None'>None</option>";
+		$("#command-" + charNum).html(commands);
+		$("#command-" + charNum + " option:eq(0)").attr("selected", "selected");
+	} else {
+		$("#command-" + charNum).html("<option value='None'>None<option>");
+		$("#command-" + charNum).attr("disabled", "disabled");
+		$("#skills-" + charNum + " .command-label").css("color", "darkgray");
+	}
 	
 	// show special skill
 	if (charInfo.hasOwnProperty("special")) {
