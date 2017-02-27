@@ -56,35 +56,46 @@ function showSkills(charInfo, charNum, type) {
 }
 
 // shows extra weapon info
-// selectedWeapon is the weapon to display, weaponInfo contains all weapon data, charNum determines the panel
-function showWeapon(selectedWeapon, weaponInfo, charNum) {
+// selectedWeapon is the weapon to display, weaponInfo contains all weapon data, charNum determines the panel, set updateAtk to true to update the character's atk value
+function showWeapon(selectedWeapon, weaponInfo, charNum, updateAtk) {
 	"use strict";
+	
+	var mt = 0;
 	if (weaponInfo.hasOwnProperty(selectedWeapon)) {
 		// show weapon color
-		$("#weapon-color-" + charNum).val(weaponInfo[selectedWeapon].color);
+		$("#color-" + charNum).val(weaponInfo[selectedWeapon].color);
 
 		// show weapon type
-		$("#weapon-type-" + charNum).val(weaponInfo[selectedWeapon].type);
+		$("#weapon-type-" + charNum).text(weaponInfo[selectedWeapon].type);
 
 		// show weapon might
-		$("#weapon-might-" + charNum).val(weaponInfo[selectedWeapon].might);
+		$("#weapon-might-" + charNum).text(weaponInfo[selectedWeapon].might);
+		mt = weaponInfo[selectedWeapon].might;
 
 		// show weapon range
-		$("#weapon-range-" + charNum).val(weaponInfo[selectedWeapon].range);
+		$("#weapon-range-" + charNum).text(weaponInfo[selectedWeapon].range);
 
 		// show magical data
 		if (weaponInfo[selectedWeapon].magical) {
-			$("#weapon-magical-" + charNum).val("Yes");
+			$("#weapon-magical-" + charNum).text("Yes");
 		} else {
-			$("#weapon-magical-" + charNum).val("No");
+			$("#weapon-magical-" + charNum).text("No");
 		}
 	} else {	// weapon not found
-		$("#weapon-color-" + charNum).prop("selectedIndex", -1);
-		$("#weapon-type-" + charNum).prop("selectedIndex", -1);
-		$("#weapon-might-" + charNum).val("");
-		$("#weapon-range-" + charNum).prop("selectedIndex", -1);
-		$("#weapon-magical-" + charNum).prop("selectedIndex", -1);
+		$("#weapon-type-" + charNum).html(" ");
+		$("#weapon-might-" + charNum).html(" ");
+		$("#weapon-range-" + charNum).html(" ");
+		$("#weapon-magical-" + charNum).html(" ");
 	}
+	
+	// update atk
+	if (updateAtk) {
+		var atk = parseInt($("#atk-" + charNum).val()) + mt - parseInt($("#weapon-might-" + charNum).data("oldmt"));
+		atk = Math.min(atk, HIGHESTSTAT);
+		atk = Math.max(atk, 1);
+		$("#atk-" + charNum).val(atk);
+	}
+	$("#weapon-might-" + charNum).data("oldmt", mt.toString());
 }
 
 // show special cooldown values
@@ -124,10 +135,7 @@ function displayChar(charInfo, weaponInfo, specInfo, charNum) {
 	
 	// grey out disabled input fields
 	$("#extra-char-info-" + charNum).css("color", "#5b5b5b");
-	$("#extra-weapon-info-" + charNum).css("color", "#5b5b5b");
 	$("#extra-char-info-" + charNum + " select").attr("disabled", "disabled");
-	$("#extra-weapon-info-" + charNum + " select").attr("disabled", "disabled");
-	$("#extra-weapon-info-" + charNum + " input").attr("disabled", "disabled");
 	
 	// show move type
 	$("#move-type-" + charNum).val(charInfo.move_type);
@@ -150,7 +158,7 @@ function displayChar(charInfo, weaponInfo, specInfo, charNum) {
 	$("#weapon-" + charNum + " option:eq(0)").attr("selected", "selected");
 	
 	// show extra weapon info
-	showWeapon(selectedWeapon, weaponInfo, charNum);
+	showWeapon(selectedWeapon, weaponInfo, charNum, false);
 	
 	// show stats
 	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(charInfo.hp);
@@ -259,10 +267,10 @@ function singleCombat(battleInfo, initiator, logIntro) {
 	var triAdv = triAdvantage(attacker.color, defender.color);
 	if (triAdv > 0) {
 		atkPower = Math.floor(attacker.atk * 1.2);
-		battleInfo.logMsg += "Triangle advantage boosts attack by 1.2. ";
+		battleInfo.logMsg += "Triangle advantage boosts attack by 20%. ";
 	} else if (triAdv < 0) {
 		atkPower = Math.ceil(attacker.atk * 0.8);
-		battleInfo.logMsg += "Triangle disadvantage reduces attack by 0.8. ";
+		battleInfo.logMsg += "Triangle disadvantage reduces attack by 20%. ";
 	}
 	
 	// calculate damage
@@ -300,6 +308,17 @@ function singleCombat(battleInfo, initiator, logIntro) {
 function simBattle(charInfo, weaponInfo, specInfo) {
 	"use strict";
 	
+	// check if attacker has a weapon, if not no attack
+	if ($("#weapon-1").val() === "None") {
+		$("#interaction-list").hide().html("<li class='battle-interaction-final'><strong>" + $("#char-1").val() + "</strong> does not have a weapon and cannot attack.</li>");
+		$(".hp-remain-block").hide();
+		$("#hp-remain-1").text($("#curr-hp-1").val().toString());
+		$("#hp-remain-2").text($("#curr-hp-2").val().toString());
+		$("#interaction-list").fadeIn("slow");
+		$(".hp-remain-block").fadeIn("slow");
+		return;
+	}
+	
 	// contains both attacker, defender info and battle log messages
 	var battleInfo = {};
 	battleInfo.attacker = {};
@@ -308,11 +327,12 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	
 	// get all attacker info
 	battleInfo.attacker.name = $("#char-1").val();
-	battleInfo.attacker.color = $("#weapon-color-1").val();
-	battleInfo.attacker.type = $("#weapon-type-1").val();
-	battleInfo.attacker.range = parseInt($("#weapon-range-1").val());
+	battleInfo.attacker.weaponName = $("#weapon-1").val();
+	battleInfo.attacker.color = $("#color-1").val();
+	battleInfo.attacker.type = $("#weapon-type-1").text();
+	battleInfo.attacker.range = parseInt($("#weapon-range-1").text());
 	
-	if ($("#weapon-magical-1").val() === "Yes") {
+	if ($("#weapon-magical-1").text() === "Yes") {
 		battleInfo.attacker.magical = true;
 	} else {
 		battleInfo.attacker.magical = false;
@@ -326,14 +346,18 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	
 	// get all defender info
 	battleInfo.defender.name = $("#char-2").val();
-	battleInfo.defender.color = $("#weapon-color-2").val();
-	battleInfo.defender.type = $("#weapon-type-2").val();
-	battleInfo.defender.range = parseInt($("#weapon-range-2").val());
+	battleInfo.defender.color = $("#color-2").val();
+	battleInfo.defender.weaponName = $("#weapon-2").val();
 	
-	if ($("#weapon-magical-2").val() === "Yes") {
-		battleInfo.defender.magical = true;
-	} else {
-		battleInfo.defender.magical = false;
+	if (battleInfo.defender.weaponName !== "None") {
+		battleInfo.defender.type = $("#weapon-type-2").text();
+		battleInfo.defender.range = parseInt($("#weapon-range-2").text());
+
+		if ($("#weapon-magical-2").text() === "Yes") {
+			battleInfo.defender.magical = true;
+		} else {
+			battleInfo.defender.magical = false;
+		}
 	}
 	
 	battleInfo.defender.currHP = parseInt($("#curr-hp-2").val());
@@ -348,7 +372,7 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	// defender will try to counter-attack if they haven't been ko'd
 	if (battleInfo.defender.currHP > 0) {
 		// defender must be in range to counter-attack
-		if (battleInfo.defender.range === battleInfo.attacker.range) {
+		if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.range === battleInfo.attacker.range) {
 			battleInfo = singleCombat(battleInfo, false, "counter-attacks");
 		} else {
 			battleInfo.logMsg += "<li class='battle-interaction'><strong>" + battleInfo.defender.name + "</strong> " + " is unable to counter-attack.</li>";
@@ -358,15 +382,16 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 		if (battleInfo.attacker.currHP > 0) {
 			if (battleInfo.attacker.spd >= battleInfo.defender.spd + 5) { // attacker follows up
 				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack");
-			} else if ((battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && (battleInfo.defender.range === battleInfo.attacker.range)) { // defender follows up
+			} else if ((battleInfo.defender.weaponName) !== "None" && (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && (battleInfo.defender.range === battleInfo.attacker.range)) { 
+				// defender follows up
 				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack");
 			}
 		}
 	}
 	
 	// display results
+	$("#interaction-list").hide().html(battleInfo.logMsg);
 	$(".hp-remain-block").hide();
-	$("#interaction-list").hide().html(battleInfo.logMsg).fadeIn("slow");
 	$("#hp-remain-1").text(battleInfo.attacker.currHP.toString());
 	$("#hp-remain-2").text(battleInfo.defender.currHP.toString());
 	$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
@@ -503,7 +528,7 @@ $(document).ready( function () {
 		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
 			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
 				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-					showWeapon($("#weapon-1").val(), weaponInfo, "1");
+					showWeapon($("#weapon-1").val(), weaponInfo, "1", true);
 					simBattle(charInfo, weaponInfo, specInfo);
 				});
 			});
@@ -513,7 +538,7 @@ $(document).ready( function () {
 		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
 			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
 				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-					showWeapon($("#weapon-2").val(), weaponInfo, "2");
+					showWeapon($("#weapon-2").val(), weaponInfo, "2", true);
 					simBattle(charInfo, weaponInfo, specInfo);
 				});
 			});

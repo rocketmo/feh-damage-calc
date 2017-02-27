@@ -211,8 +211,6 @@
         "range"   : 2,
         "magical" : true
     },
-	"Custom" : {
-	},
     "Dark Breath" : {
         "color"   : "Blue",
         "type"    : "Blue Breath",

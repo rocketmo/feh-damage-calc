@@ -225,3 +225,7 @@ h3 {
 .collapsable {
 	display: none;
 }
+
+.extra-weapon {
+	color: #5b5b5b;
+}
