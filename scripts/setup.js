@@ -358,7 +358,7 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 		if (battleInfo.attacker.currHP > 0) {
 			if (battleInfo.attacker.spd >= battleInfo.defender.spd + 5) { // attacker follows up
 				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack");
-			} else if (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) { // defender follows up
+			} else if ((battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && (battleInfo.defender.range === battleInfo.attacker.range)) { // defender follows up
 				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack");
 			}
 		}
