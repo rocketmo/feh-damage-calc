@@ -51,7 +51,7 @@ function showSkills(charInfo, charNum, type) {
 	} else { // no passive skill of the given type
 		$("#passive-" + type + "-" + charNum).html("<option value='None'>None</option>");
 		$("#passive-" + type + "-" + charNum).attr("disabled", "disabled");
-		$("#skills-" + charNum + " .passive-" + type + "-label").css("color", "darkgray");
+		$("#skills-" + charNum + " .passive-" + type + "-label").css("color", "#5b5b5b");
 	}
 }
 
@@ -100,7 +100,7 @@ function showSpecCooldown (selectedSpecial, specInfo, charNum) {
 		$("#spec-cooldown-" + charNum).val("0");
 		$("#spec-cooldown-" + charNum).attr("disabled", "disabled");
 		$("#spec-cooldown-max-" + charNum).text("x");
-		$("#spec-cooldown-line-" + charNum).css("color", "darkgray");
+		$("#spec-cooldown-line-" + charNum).css("color", "#5b5b5b");
 	}
 }
 
@@ -123,8 +123,8 @@ function displayChar(charInfo, weaponInfo, specInfo, charNum) {
 	}
 	
 	// grey out disabled input fields
-	$("#extra-char-info-" + charNum).css("color", "darkgray");
-	$("#extra-weapon-info-" + charNum).css("color", "darkgray");
+	$("#extra-char-info-" + charNum).css("color", "#5b5b5b");
+	$("#extra-weapon-info-" + charNum).css("color", "#5b5b5b");
 	$("#extra-char-info-" + charNum + " select").attr("disabled", "disabled");
 	$("#extra-weapon-info-" + charNum + " select").attr("disabled", "disabled");
 	$("#extra-weapon-info-" + charNum + " input").attr("disabled", "disabled");
@@ -184,7 +184,7 @@ function displayChar(charInfo, weaponInfo, specInfo, charNum) {
 	} else {
 		$("#command-" + charNum).html("<option value='None'>None<option>");
 		$("#command-" + charNum).attr("disabled", "disabled");
-		$("#skills-" + charNum + " .command-label").css("color", "darkgray");
+		$("#skills-" + charNum + " .command-label").css("color", "#5b5b5b");
 	}
 	
 	// show special skill
@@ -209,9 +209,9 @@ function displayChar(charInfo, weaponInfo, specInfo, charNum) {
 		$("#special-" + charNum).attr("disabled", "disabled");
 		$("#spec-cooldown-" + charNum).val("0");
 		$("#spec-cooldown-" + charNum).attr("disabled", "disabled");
-		$("#skills-" + charNum + " .special-label").css("color", "darkgray");
+		$("#skills-" + charNum + " .special-label").css("color", "#5b5b5b");
 		$("#spec-cooldown-max-" + charNum).text("x");
-		$("#spec-cooldown-line-" + charNum).css("color", "darkgray");
+		$("#spec-cooldown-line-" + charNum).css("color", "#5b5b5b");
 	}
 }
 
