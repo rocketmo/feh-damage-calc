@@ -55,7 +55,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Pain", "Assault"],
 		"special": ["Solid-Earth Balm", "Imbue"],
-		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"]
+		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
+		"command" : ["Martyr", "Reconcile", "Heal"]
 	},
 	"Azura": {
 		"hp": 36,
@@ -66,7 +67,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Sapphire Lance+", "Sapphire Lance", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Speed +3", "Speed +2", "Speed +1"],
-		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"]
+		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
+		"command" : ["Sing"]
 	},
 	"Barst": {
 		"hp": 40,
@@ -77,7 +79,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Brave Axe+", "Brave Axe", "Steel Axe", "Iron Axe"],
 		"passive_a": ["Knock Back"],
-		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"]
+		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"],
+		"command" : ["Reposition"]
 	},
 	"Bartre": {
 		"hp": 49,
@@ -88,7 +91,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Hammer+", "Hammer", "Steel Axe", "Iron Axe"],
 		"passive_a": ["Fury 3", "Fury 2", "Fury 1"],
-		"passive_b": ["Brash Assault 3", "Brash Assault 2", "Brash Assault 1"]
+		"passive_b": ["Brash Assault 3", "Brash Assault 2", "Brash Assault 1"],
+		"command" : ["Smite"]
 	},
 	"Beruka": {
 		"hp": 46,
@@ -112,7 +116,8 @@
 		"weapon": ["Armorslayer+", "Armorslayer", "Steel Sword", "Iron Sword"],
 		"special": ["Glimmer", "Night Sky"],
 		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
-		"passive_c": ["Fortify Fliers", "Fortify Res 2", "Fortify Res 1"]
+		"passive_c": ["Fortify Fliers", "Fortify Res 2", "Fortify Res 1"],
+		"command" : ["Rally Speed"]
 	},
 	"Cain": {
 		"hp": 42,
@@ -159,7 +164,8 @@
 		"move_type": "Cavalry",
 		"weapon": ["Gronnraven+", "Gronnraven", "Elwind", "Wind"],
 		"passive_a": ["Attack +3", "Attack +2", "Attack +1"],
-		"passive_b": ["Escape Route 3", "Escape Route 2", "Escape Route 1"]
+		"passive_b": ["Escape Route 3", "Escape Route 2", "Escape Route 1"],
+		"command" : ["Rally Resistance"]
 	},
 	"Cherche": {
 		"hp": 43,
@@ -170,7 +176,8 @@
 		"move_type": "Flying",
 		"weapon": ["Hammer+", "Hammer", "Steel Axe", "Iron Axe"],
 		"passive_a": ["Attack +3", "Attack +2", "Attack +1"],
-		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"]
+		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
+		"command" : ["Pivot"]
 	},
 	"Chrom": {
 		"hp": 47,
@@ -193,7 +200,8 @@
 		"move_type": "Cavalry",
 		"weapon": ["Fear", "Assault"],
 		"special": ["Solid-Winds Balm", "Imbue"],
-		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"]
+		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
+		"command" : ["Martyr", "Reconcile", "Heal"]
 	},
 	"Cordelia": {
 		"hp": 40,
@@ -244,7 +252,8 @@
 		"weapon": ["Brave Lance+", "Brave Lance", "Steel Lance", "Iron Lance"],
 		"special": ["Galeforce", "Astra", "Night Sky"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
-		"passive_b": ["Drag Back"]
+		"passive_b": ["Drag Back"],
+		"command" : ["Reciprocal Aid"]
 	},
 	"Draug": {
 		"hp": 53,
@@ -267,7 +276,8 @@
 		"move_type": "Armored",
 		"weapon": ["Silver Lance+", "Silver Lance", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
-		"passive_b": ["Wary Fighter 3", "Wary Fighter 2", "Wary Fighter 1"]
+		"passive_b": ["Wary Fighter 3", "Wary Fighter 2", "Wary Fighter 1"],
+		"command" : ["Smite"]
 	},
 	"Eirika": {
 		"hp": 42,
@@ -278,7 +288,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Sieglinde", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"passive_b": ["Drag Back"],
-		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"]
+		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"],
+		"command" : ["Pivot"]
 	},
 	"Elise": {
 		"hp": 30,
@@ -289,7 +300,8 @@
 		"move_type": "Cavalry",
 		"weapon": ["Gravity", "Assault"],
 		"special": ["Kindled-Fire Balm", "Imbue"],
-		"passive_b": ["Live to Serve 3", "Live to Serve 2", "Live to Serve 1"]
+		"passive_b": ["Live to Serve 3", "Live to Serve 2", "Live to Serve 1"],
+		"command" : ["Recover", "Mend", "Heal"]
 	},
 	"Eliwood": {
 		"hp": 39,
@@ -324,7 +336,8 @@
 		"move_type": "Flying",
 		"weapon": ["Heavy Spear+", "Heavy Spear", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Defiant Res 3", "Defiant Res 2", "Defiant Res 1"],
-		"passive_b": ["Seal Spd 3", "Seal Spd 2", "Seal Spd 1"]
+		"passive_b": ["Seal Spd 3", "Seal Spd 2", "Seal Spd 1"],
+		"command" : ["Shove"]
 	},
 	"Fae": {
 		"hp": 46,
@@ -336,7 +349,8 @@
 		"weapon": ["Light Breath+", "Light Breath", "Fire Breath+ (Green)", "Fire Breath (Green)"],
 		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
-		"dragon": true
+		"dragon": true,
+		"command" : ["Draw Back"]
 	},
 	"Felicia": {
 		"hp": 34,
@@ -371,7 +385,8 @@
 		"move_type": "Flying",
 		"weapon": ["Heavy Spear+", "Heavy Spear", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
-		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"]
+		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"],
+		"command" : ["Ardent Sacrifice"]
 	},
 	"Frederick": {
 		"hp": 43,
@@ -394,7 +409,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Rogue Dagger+", "Rogue Dagger", "Steel Dagger", "Iron Dagger"],
 		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
-		"passive_b": ["Pass 3", "Pass 2", "Pass 1"]
+		"passive_b": ["Pass 3", "Pass 2", "Pass 1"],
+		"command" : ["Rally Speed"]
 	},
 	"Gordin": {
 		"hp": 43,
@@ -405,7 +421,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Brave Bow+", "Brave Bow", "Steel Bow", "Iron Bow"],
 		"passive_a": ["Attack +3", "Attack +2", "Attack +1"],
-		"passive_b": ["Vantage 3", "Vantage 2", "Vantage 1"]
+		"passive_b": ["Vantage 3", "Vantage 2", "Vantage 1"],
+		"command" : ["Shove"]
 	},
 	"Gunter": {
 		"hp": 42,
@@ -416,7 +433,8 @@
 		"move_type": "Cavalry",
 		"weapon": ["Silver Axe+", "Silver Axe", "Steel Axe", "Iron Axe"],
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
-		"passive_c": ["Hone Cavalry", "Hone Atk 2", "Hone Atk 1"]
+		"passive_c": ["Hone Cavalry", "Hone Atk 2", "Hone Atk 1"],
+		"command" : ["Harsh Command"]
 	},
 	"Gwendolyn": {
 		"hp": 49,
@@ -439,7 +457,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Armorslayer+", "Armorslayer", "Steel Sword", "Iron Sword"],
 		"passive_a": ["Life and Death 3", "Life and Death 2", "Life and Death 1"],
-		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"]
+		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"],
+		"command" : ["Rally Attack"]
 	},
 	"Hawkeye": {
 		"hp": 45,
@@ -522,7 +541,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Silver Dagger+", "Silver Dagger", "Steel Dagger", "Iron Dagger"],
 		"passive_a": ["Defense +3", "Defense +2", "Defense +1"],
-		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"]
+		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
+		"command" : ["Rally Resistance"]
 	},
 	"Jeorge": {
 		"hp": 37,
@@ -534,7 +554,8 @@
 		"weapon": ["Parthia", "Silver Bow", "Steel Bow", "Iron Bow"],
 		"special": ["Blazing Flame", "Rising Flame"],
 		"passive_b": ["Seal Atk 3", "Seal Atk 2", "Seal Atk 1"],
-		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"]
+		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
+		"command" : ["Swap"]
 	},
 	"Julia": {
 		"hp": 38,
@@ -605,7 +626,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Aura", "Thoron", "Elthunder", "Thunder"],
 		"passive_a": ["Speed +3", "Speed +2", "Speed +1"],
-		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"]
+		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
+		"command" : ["Ardent Sacrifice"]
 	},
 	"Lissa": {
 		"hp": 39,
@@ -616,7 +638,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Gravity", "Assault"],
 		"special": ["Kindled-Fire Balm", "Imbue"],
-		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"]
+		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
+		"command" : ["Rehabilitate", "Reconcile", "Heal"]
 	},
 	"Lon'qu": {
 		"hp": 45,
@@ -663,7 +686,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Panic", "Assault"],
 		"special": ["Miracle", "Imbue"],
-		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"]
+		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
+		"command" : ["Physic", "Mend", "Heal"]
 	},
 	"Marth": {
 		"hp": 41,
@@ -674,7 +698,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Falchion", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"passive_b": ["Escape Route 3", "Escape Route 2", "Escape Route 1"],
-		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"]
+		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
+		"command" : ["Pivot"]
 	},
 	"Matthew": {
 		"hp": 43,
@@ -685,7 +710,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Rogue Dagger+", "Rogue Dagger", "Steel Dagger", "Iron Dagger"],
 		"passive_b": ["Poison Strike 3", "Poison Strike 2", "Poison Strike 1"],
-		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"]
+		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"],
+		"command" : ["Reciprocal Aid"]
 	},
 	"Merric": {
 		"hp": 48,
@@ -744,7 +770,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Gronnblade+", "Gronnblade", "Elwind", "Wind"],
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
-		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"]
+		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
+		"command" : ["Draw Back"]
 	},
 	"Nowi": {
 		"hp": 45,
@@ -756,7 +783,8 @@
 		"weapon": ["Lightning Breath+ (Blue)", "Lightning Breath (Blue)", "Fire Breath+ (Blue)", "Fire Breath (Blue)"],
 		"passive_a": ["Defense +3", "Defense +2", "Defense +1"],
 		"passive_c": ["Threaten Res 3", "Threaten Res 2", "Threaten Res 1"],
-		"dragon": true
+		"dragon": true,
+		"command" : ["Rally Defense"]
 	},
 	"Oboro": {
 		"hp": 40,
@@ -767,7 +795,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Heavy Spear+", "Heavy Spear", "Steel Lance", "Iron Lance"],
 		"passive_b": ["Seal Def 3", "Seal Def 2", "Seal Def 1"],
-		"passive_c": ["Threaten Res 3", "Threaten Res 2", "Threaten Res 1"]
+		"passive_c": ["Threaten Res 3", "Threaten Res 2", "Threaten Res 1"],
+		"command" : ["Rally Defense"]
 	},
 	"Odin": {
 		"hp": 43,
@@ -802,7 +831,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Silver Sword+", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"passive_b": ["Knock Back"],
-		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"]
+		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
+		"command" : ["Dance"]
 	},
 	"Palla": {
 		"hp": 42,
@@ -838,7 +868,8 @@
 		"weapon": ["Rauðrwolf+", "Rauðrwolf", "Ruin", "Flux"],
 		"special": ["Growing Flame", "Rising Flame"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
-		"passive_b": ["Seal Res 3", "Seal Res 2", "Seal Res 1"]
+		"passive_b": ["Seal Res 3", "Seal Res 2", "Seal Res 1"],
+		"command" : ["Rally Attack"]
 	},
 	"Raven": {
 		"hp": 41,
@@ -885,7 +916,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Binding Blade", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"passive_a": ["Triangle Adept 3", "Triangle Adept 2", "Triangle Adept 1"],
-		"passive_b": ["Seal Def 3", "Seal Def 2", "Seal Def 1"]
+		"passive_b": ["Seal Def 3", "Seal Def 2", "Seal Def 1"],
+		"command" : ["Shove"]
 	},
 	"Ryoma": {
 		"hp": 41,
@@ -908,7 +940,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Smoke Dagger+", "Smoke Dagger", "Steel Dagger", "Iron Dagger"],
 		"passive_b": ["Poison Strike 3", "Poison Strike 2", "Poison Strike 1"],
-		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"]
+		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
+		"command" : ["Harsh Command"]
 	},
 	"Sakura": {
 		"hp": 36,
@@ -919,7 +952,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Fear", "Assault"],
 		"special": ["Still-Water Balm", "Imbue"],
-		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"]
+		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
+		"command" : ["Physic", "Mend", "Heal"]
 	},
 	"Selena": {
 		"hp": 37,
@@ -930,7 +964,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Armorslayer+", "Armorslayer", "Steel Sword", "Iron Sword"],
 		"passive_a": ["Triangle Adept 3", "Triangle Adept 2", "Triangle Adept 1"],
-		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"]
+		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"],
+		"command" : ["Reposition"]
 	},
 	"Seliph": {
 		"hp": 52,
@@ -941,7 +976,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Tyrfing", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
-		"passive_b": ["Brash Assault 3", "Brash Assault 2", "Brash Assault 1"]
+		"passive_b": ["Brash Assault 3", "Brash Assault 2", "Brash Assault 1"],
+		"command" : ["Rally Speed"]
 	},
 	"Serra": {
 		"hp": 36,
@@ -952,7 +988,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Absorb", "Assault"],
 		"special": ["Swift-Winds Balm", "Imbue"],
-		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"]
+		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
+		"command" : ["Recover", "Mend", "Heal"]
 	},
 	"Setsuna": {
 		"hp": 42,
@@ -963,7 +1000,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Assassin's Bow+", "Assassin's Bow", "Steel Bow", "Iron Bow"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
-		"passive_b": ["Bowbreaker 3", "Bowbreaker 2", "Bowbreaker 1"]
+		"passive_b": ["Bowbreaker 3", "Bowbreaker 2", "Bowbreaker 1"],
+		"command" : ["Reciprocal Aid"]
 	},
 	"Shanna": {
 		"hp": 39,
@@ -986,7 +1024,8 @@
 		"move_type": "Infantry",
 		"weapon": ["Fensalir", "Silver Lance", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Speed +3", "Speed +2", "Speed +1"],
-		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"]
+		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
+		"command" : ["Rally Attack"]
 	},
 	"Sheena": {
 		"hp": 45,
@@ -1021,7 +1060,8 @@
 		"move_type": "Cavalry",
 		"weapon": ["Ruby Sword+", "Ruby Sword", "Steel Sword", "Iron Sword"],
 		"passive_a": ["Defense +3", "Defense +2", "Defense +1"],
-		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"]
+		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"],
+		"command" : ["Swap"]
 	},
 	"Subaki": {
 		"hp": 40,
@@ -1032,7 +1072,8 @@
 		"move_type": "Flying",
 		"weapon": ["Sapphire Lance+", "Sapphire Lance", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
-		"passive_b": ["Quick Reposte 3", "Quick Reposte 2", "Quick Reposte 1"]
+		"passive_b": ["Quick Reposte 3", "Quick Reposte 2", "Quick Reposte 1"],
+		"command" : ["Swap"]
 	},
 	"Sully": {
 		"hp": 42,
@@ -1043,7 +1084,8 @@
 		"move_type": "Cavalry",
 		"weapon": ["Sapphire Lance+", "Sapphire Lance", "Steel Lance", "Iron Lance"],
 		"passive_b": ["Swordbreaker 3", "Swordbreaker 2", "Swordbreaker 1"],
-		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"]
+		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"],
+		"command" : ["Draw Back"]
 	},
 	"Takumi": {
 		"hp": 40,
@@ -1116,6 +1158,7 @@
 		"move_type": "Infantry",
 		"weapon": ["Assault", "Slow"],
 		"special": ["Heavenly Light", "Imbue"],
-		"passive_b": ["Live to Serve 3", "Live to Serve 2", "Live to Serve 1"]
+		"passive_b": ["Live to Serve 3", "Live to Serve 2", "Live to Serve 1"],
+		"command" : ["Rehabilitate", "Reconcile", "Heal"]
 	}
 }
