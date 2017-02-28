@@ -255,9 +255,9 @@ function weaponColorAdvantage (attackColor, defendColor, attackWeapon, defendWea
 
 // calculates how much damage the attacker will do to the defender in just one attack phase
 // battleInfo contains all necessary info for calculation, initiator determines if the battle initiator is attacking or not
-// logIntro describes the attack, weaponInfo contains all weapon data
+// logIntro describes the attack, weaponInfo contains all weapon data, brave is true if the attack is the second in a brave attack
 // returns the results of the attack phase with an updated log message
-function singleCombat(battleInfo, initiator, logIntro, weaponInfo) {
+function singleCombat(battleInfo, initiator, logIntro, weaponInfo, brave) {
 	"use strict";
 	
 	// log message
@@ -302,16 +302,30 @@ function singleCombat(battleInfo, initiator, logIntro, weaponInfo) {
 	} else if (triAdv > 0) {
 		atkMod = 1.2;
 		battleInfo.logMsg += "Triangle advantage boosts attack by 20%. ";
+		if (weaponInfo[attacker.weaponName].hasOwnProperty("tri_advantage")) {
+			atkMod += 0.2;
+			battleInfo.logMsg += attacker.weaponName + " boosts attack by another 20%. ";
+		}
 	} else if (triAdv < 0) {
 		atkMod = 0.8;
 		roundUp = true;
 		battleInfo.logMsg += "Triangle disadvantage reduces attack by 20%. ";
+		if (weaponInfo[attacker.weaponName].hasOwnProperty("tri_advantage")) {
+			atkMod -= 0.2;
+			battleInfo.logMsg += attacker.weaponName + " reduces attack by another 20%. ";
+		}
 	}
 	
 	// super effectiveness against movement types
 	if (weaponInfo[attacker.weaponName].hasOwnProperty("move_effective") && weaponInfo[attacker.weaponName].move_effective === defender.moveType) {
 		atkMod *= 1.5;
 		battleInfo.logMsg += "Effectiveness against " + defender.moveType + " boosts attack by 50%. ";
+	}
+	
+	// super effectiveness against dragons
+	if (weaponInfo[attacker.weaponName].hasOwnProperty("dragon_effective") && defender.dragon) {
+		atkMod *= 1.5;
+		battleInfo.logMsg += "Effectiveness against dragons increases attack by 50%. ";
 	}
 	
 	// calculate attack
@@ -333,12 +347,7 @@ function singleCombat(battleInfo, initiator, logIntro, weaponInfo) {
 		dmg = Math.max(atkPower - defender.def, 0);
 	}
 	
-	if (initiator && weaponInfo[attacker.weaponName].hasOwnProperty("brave")) {
-		battleInfo.logMsg += attacker.weaponName + " grants double attack. <span class='dmg'><strong>" + dmg.toString() + " × 2 damage dealt.</strong><br>";
-
-	} else {
-		battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + " damage dealt.</strong><br>";
-	}
+	battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + "&nbsp;damage dealt.</strong><br>";
 	
 	defender.currHP = Math.max(defender.currHP - dmg, 0);
 	battleInfo.logMsg += "<span class='" + defClass + "'><strong>" + defender.name + " HP:</strong> " + oldHP.toString() + " → " + defender.currHP.toString() + "</span></li>";
@@ -350,6 +359,11 @@ function singleCombat(battleInfo, initiator, logIntro, weaponInfo) {
 	} else {
 		battleInfo.attacker = defender;
 		battleInfo.defender = attacker;
+	}
+	
+	// check for a brave weapon
+	if (initiator && weaponInfo[attacker.weaponName].hasOwnProperty("brave") && !brave && defender.currHP > 0) {
+		battleInfo = singleCombat(battleInfo, initiator, "attacks again with the " + attacker.weaponName, weaponInfo, true);
 	}
 	
 	return battleInfo;
@@ -384,6 +398,12 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	battleInfo.attacker.weaponName = $("#weapon-1").val();
 	battleInfo.attacker.type = $("#weapon-type-1").text();
 	battleInfo.attacker.range = parseInt($("#weapon-range-1").text());
+		
+	if ($("#dragon-1").val() === "Yes") {
+		battleInfo.attacker.dragon = true;
+	} else {
+		battleInfo.attacker.dragon = false;
+	}
 	
 	if ($("#weapon-magical-1").text() === "Yes") {
 		battleInfo.attacker.magical = true;
@@ -403,6 +423,11 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	battleInfo.defender.moveType = $("#move-type-2").val();
 	battleInfo.defender.weaponName = $("#weapon-2").val();
 	
+	if ($("#dragon-2").val() === "Yes") {
+		battleInfo.defender.dragon = true;
+	} else {
+		battleInfo.defender.dragon = false;
+	}
 	
 	if (battleInfo.defender.weaponName !== "None") {
 		battleInfo.defender.type = $("#weapon-type-2").text();
@@ -422,13 +447,13 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	battleInfo.defender.res = parseInt($("#res-2").val()) + parseInt($("#res-bonus-2").val()) + parseInt($("#res-penalty-2").val()) + parseInt($("#res-spur-2").val());
 	
 	// attacker initiates
-	battleInfo = singleCombat(battleInfo, true, "attacks", weaponInfo);
+	battleInfo = singleCombat(battleInfo, true, "attacks", weaponInfo, false);
 	
 	// defender will try to counter-attack if they haven't been ko'd
 	if (battleInfo.defender.currHP > 0) {
 		// defender must be in range to counter-attack
 		if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.range === battleInfo.attacker.range) {
-			battleInfo = singleCombat(battleInfo, false, "counter-attacks", weaponInfo);
+			battleInfo = singleCombat(battleInfo, false, "counter-attacks", weaponInfo, false);
 		} else {
 			battleInfo.logMsg += "<li class='battle-interaction'><strong>" + battleInfo.defender.name + "</strong> " + " is unable to counter-attack.</li>";
 		}
@@ -436,10 +461,10 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 		// if attacker hasn't been ko'd, check for follow ups
 		if (battleInfo.attacker.currHP > 0) {
 			if (battleInfo.attacker.spd >= battleInfo.defender.spd + 5) { // attacker follows up
-				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack", weaponInfo);
+				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack", weaponInfo, false);
 			} else if ((battleInfo.defender.weaponName) !== "None" && (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && (battleInfo.defender.range === battleInfo.attacker.range)) { 
 				// defender follows up
-				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack", weaponInfo);
+				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack", weaponInfo, false);
 			}
 		}
 	}
