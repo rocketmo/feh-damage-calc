@@ -1021,7 +1021,9 @@
         "might"   : 16,
         "range"   : 1,
         "magical" : false,
-        "instant_follow" : true
+        "desperation" : {
+			"threshold" : 0.5
+		}
     },
     "Steel Axe" : {
         "color"   : "Green",

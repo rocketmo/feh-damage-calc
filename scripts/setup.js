@@ -32,9 +32,31 @@ function setupStats () {
 	$(".stat-spur").html(options);
 }
 
+// gets special data and stores it
+// specInfo contains all special data, charNum determines which panel to display it in
+function getSpecialData (specInfo, charNum) {
+	"use strict";
+	if ($("#special-" + charNum).val() === "None") {
+		$("#special-" + charNum).data("info", {});
+	} else {
+		$("#special-" + charNum).data("info", specInfo[$("#special-" + charNum).val()]);
+	}
+}
+
+// gets skill data and stores it
+// skillData contains all skill data, charNum determines which panel to display it in, skillType is the letter of the skill
+function getSkillData (skillInfo, charNum, skillType) {
+	"use strict";
+	if ($("#passive-" + skillType + "-" + charNum).val() === "None") {
+		$("#passive-" + skillType + "-" + charNum).data("info", {});
+	} else {
+		$("#passive-" + skillType + "-" + charNum).data("info", skillInfo[skillType][$("#passive-" + skillType + "-" + charNum).val()]);
+	}
+}
+
 // displays passive skills
-// charInfo contains the character info, charNum determines which panel to display on, type determines the skill type
-function showSkills(charInfo, charNum, type) {
+// charInfo contains the character info, skillInfo contains all skill information, charNum determines which panel to display on, type determines the skill type
+function showSkills(charInfo, skillInfo, charNum, type) {
 	"use strict";
 	if (charInfo.hasOwnProperty("passive_" + type)) {
 		var skills = "";
@@ -53,6 +75,9 @@ function showSkills(charInfo, charNum, type) {
 		$("#passive-" + type + "-" + charNum).attr("disabled", "disabled");
 		$("#skills-" + charNum + " .passive-" + type + "-label").css("color", "#5b5b5b");
 	}
+	
+	// store skill data
+	getSkillData(skillInfo, charNum, type);
 }
 
 // shows extra weapon info
@@ -63,8 +88,8 @@ function showWeapon(selectedWeapon, weaponInfo, charNum, updateAtk) {
 	var mt = 0;
 	if (weaponInfo.hasOwnProperty(selectedWeapon)) {
 		// show weapon might
-		$("#weapon-might-" + charNum).text(weaponInfo[selectedWeapon].might);
 		mt = weaponInfo[selectedWeapon].might;
+		$("#weapon-might-" + charNum).text(mt);
 
 		// show weapon range
 		$("#weapon-range-" + charNum).text(weaponInfo[selectedWeapon].range);
@@ -75,20 +100,24 @@ function showWeapon(selectedWeapon, weaponInfo, charNum, updateAtk) {
 		} else {
 			$("#weapon-magical-" + charNum).text("No");
 		}
+		
+		// store weapon data
+		$("#weapon-" + charNum).data("info", weaponInfo[selectedWeapon]);
 	} else {	// weapon not found
 		$("#weapon-might-" + charNum).text("n/a");
 		$("#weapon-range-" + charNum).text("n/a");
 		$("#weapon-magical-" + charNum).text("n/a");
+		$("#weapon-" + charNum).data("info", {});
 	}
 	
 	// update atk
 	if (updateAtk) {
-		var atk = parseInt($("#atk-" + charNum).val()) + mt - parseInt($("#weapon-might-" + charNum).data("oldmt"));
+		var atk = parseInt($("#atk-" + charNum).val()) + mt - $("#weapon-might-" + charNum).data("oldmt");
 		atk = Math.min(atk, HIGHESTSTAT);
 		atk = Math.max(atk, 1);
 		$("#atk-" + charNum).val(atk);
 	}
-	$("#weapon-might-" + charNum).data("oldmt", mt.toString());
+	$("#weapon-might-" + charNum).data("oldmt", mt);
 }
 
 // show special cooldown values
@@ -109,8 +138,9 @@ function showSpecCooldown (selectedSpecial, specInfo, charNum) {
 }
 
 // displays character information in the character panels
-// charInfo contains only the character info to display, weaponInfo contains all weapon data, specInfo contains all special data, charNum determines which panel to display on
-function displayChar(charInfo, weaponInfo, specInfo, charNum) {
+// charInfo contains only the character info to display, weaponInfo contains all weapon data
+// specInfo contains all special data, skillInfo contains all skill data, charNum determines which panel to display on
+function displayChar(charInfo, weaponInfo, specInfo, skillInfo, charNum) {
 	"use strict";
 	if (!charInfo.hasOwnProperty("move_type")) { // no info -> custom option
 		// enable inputs
@@ -125,7 +155,7 @@ function displayChar(charInfo, weaponInfo, specInfo, charNum) {
 		// show all skills and weapons
 		return;
 	}
-	
+
 	// grey out disabled input fields
 	$("#extra-char-info-" + charNum).css("color", "#5b5b5b");
 	$("#extra-char-info-" + charNum + " select").attr("disabled", "disabled");
@@ -171,9 +201,9 @@ function displayChar(charInfo, weaponInfo, specInfo, charNum) {
 	$("#stats-" + charNum + " .stat-bonus, #stats-" + charNum + " .stat-penalty, #stats-" + charNum + " .stat-spur").val(0);
 	
 	// show passive skills
-	showSkills(charInfo, charNum, 'a');
-	showSkills(charInfo, charNum, 'b');
-	showSkills(charInfo, charNum, 'c');
+	showSkills(charInfo, skillInfo, charNum, 'a');
+	showSkills(charInfo, skillInfo, charNum, 'b');
+	showSkills(charInfo, skillInfo, charNum, 'c');
 	
 	// show command skill
 	if (charInfo.hasOwnProperty("command")) {
@@ -209,6 +239,7 @@ function displayChar(charInfo, weaponInfo, specInfo, charNum) {
 		$("#special-" + charNum + " option:eq(0)").attr("selected", "selected");
 		
 		// show cooldown values
+		getSpecialData(specInfo, charNum);
 		showSpecCooldown(selectedSpecial, specInfo, charNum);
 		
 	} else {
@@ -239,13 +270,12 @@ function triAdvantage (attackColor, defendColor) {
 // determines if the attacker has a weapon advantage/disadvantage against the other foe's color
 // attackColor is the color of the attacker, defendColor is the color of the defender
 // attackWeapon is the weapon of the attack, defendWeapon is the weapon of the defender
-// weaponInfo contains all weapon data
 // returns 1 if advantage, -1 if disadvantage, 0 if neither
-function weaponColorAdvantage (attackColor, defendColor, attackWeapon, defendWeapon, weaponInfo) {
+function weaponColorAdvantage (attackColor, defendColor, attackWeapon, defendWeapon) {
 	"use strict";
-	if (weaponInfo[attackWeapon].hasOwnProperty("color_effective") && weaponInfo[attackWeapon].color_effective === defendColor) {
+	if (attackWeapon.hasOwnProperty("color_effective") && attackWeapon.color_effective === defendColor) {
 		return 1;
-	} else if (defendWeapon !== "None" && weaponInfo[defendWeapon].hasOwnProperty("color_effective") && weaponInfo[defendWeapon].color_effective === attackColor) {
+	} else if (defendWeapon.hasOwnProperty("color_effective") && defendWeapon.color_effective === attackColor) {
 		return -1;
 	}
 	
@@ -293,9 +323,9 @@ function initiateBonus(battleInfo, statMods, modSource) {
 
 // calculates how much damage the attacker will do to the defender in just one attack phase
 // battleInfo contains all necessary info for calculation, initiator determines if the battle initiator is attacking or not
-// logIntro describes the attack, weaponInfo contains all weapon data, brave is true if the attack is the second in a brave attack
+// logIntro describes the attack, brave is true if the attack is the second in a brave attack
 // returns the results of the attack phase with an updated log message
-function singleCombat(battleInfo, initiator, logIntro, weaponInfo, brave) {
+function singleCombat(battleInfo, initiator, logIntro, brave) {
 	"use strict";
 	
 	// log message
@@ -330,7 +360,7 @@ function singleCombat(battleInfo, initiator, logIntro, weaponInfo, brave) {
 	}
 	
 	// determine attack modifier
-	var weaponColorAdv = weaponColorAdvantage(attacker.color, defender.color, attacker.weaponName, defender.weaponName, weaponInfo);
+	var weaponColorAdv = weaponColorAdvantage(attacker.color, defender.color, attacker.weaponData, defender.weaponData);
 	var triAdv = triAdvantage(attacker.color, defender.color);
 	var oldHP = defender.currHP;
 	var atkMod = 1;
@@ -347,7 +377,7 @@ function singleCombat(battleInfo, initiator, logIntro, weaponInfo, brave) {
 	} else if (triAdv > 0) {
 		atkMod = 1.2;
 		battleInfo.logMsg += "Triangle advantage boosts attack by 20%. ";
-		if (weaponInfo[attacker.weaponName].hasOwnProperty("tri_advantage")) {
+		if (attacker.weaponData.hasOwnProperty("tri_advantage")) {
 			atkMod += 0.2;
 			battleInfo.logMsg += attacker.weaponName + " boosts attack by another 20%. ";
 		}
@@ -355,20 +385,20 @@ function singleCombat(battleInfo, initiator, logIntro, weaponInfo, brave) {
 		atkMod = 0.8;
 		roundUp = true;
 		battleInfo.logMsg += "Triangle disadvantage reduces attack by 20%. ";
-		if (weaponInfo[attacker.weaponName].hasOwnProperty("tri_advantage")) {
+		if (attacker.weaponData.hasOwnProperty("tri_advantage")) {
 			atkMod -= 0.2;
 			battleInfo.logMsg += attacker.weaponName + " reduces attack by another 20%. ";
 		}
 	}
 	
 	// super effectiveness against movement types
-	if (weaponInfo[attacker.weaponName].hasOwnProperty("move_effective") && weaponInfo[attacker.weaponName].move_effective === defender.moveType) {
+	if (attacker.weaponData.hasOwnProperty("move_effective") && attacker.weaponData.move_effective === defender.moveType) {
 		atkMod *= 1.5;
 		battleInfo.logMsg += "Effectiveness against " + defender.moveType + " boosts attack by 50%. ";
 	}
 	
 	// super effectiveness against dragons
-	if (weaponInfo[attacker.weaponName].hasOwnProperty("dragon_effective") && defender.dragon) {
+	if (attacker.weaponData.hasOwnProperty("dragon_effective") && defender.dragon) {
 		atkMod *= 1.5;
 		battleInfo.logMsg += "Effectiveness against dragons increases attack by 50%. ";
 	}
@@ -382,7 +412,7 @@ function singleCombat(battleInfo, initiator, logIntro, weaponInfo, brave) {
 	
 	// calculate damage
 	var dmg = 0;
-	if (attacker.magical) {
+	if (attacker.weaponData.magical) {
 		dmg = Math.max(atkPower - defender.res, 0);
 		// halve staff damage
 		if (attacker.type === "Staff") {
@@ -407,21 +437,20 @@ function singleCombat(battleInfo, initiator, logIntro, weaponInfo, brave) {
 	}
 	
 	// check for a brave weapon
-	if (initiator && weaponInfo[attacker.weaponName].hasOwnProperty("brave") && !brave && defender.currHP > 0) {
-		battleInfo = singleCombat(battleInfo, initiator, "attacks again with the " + attacker.weaponName, weaponInfo, true);
+	if (initiator && attacker.weaponData.hasOwnProperty("brave") && !brave && defender.currHP > 0) {
+		battleInfo = singleCombat(battleInfo, initiator, "attacks again with the " + attacker.weaponName, true);
 	}
 	
 	return battleInfo;
 }
 
 // simulates a battle between the characters currently on display and outputs to the battle log and results section
-// charInfo contains all character data, weaponInfo contains all weapon data, specInfo contains all special data
-function simBattle(charInfo, weaponInfo, specInfo) {
+function simBattle() {
 	"use strict";
 	
 	// check if attacker has a weapon, if not no attack
 	if ($("#weapon-1").val() === "None") {
-		$("#interaction-list").hide().html("<li class='battle-interaction-final'><strong>" + $("#char-1").val() + "</strong> does not have a weapon and cannot attack.</li>");
+		$("#interaction-list").hide().html("<li class='battle-interaction-final'><span class='attacker'><strong>" + $("#char-1").val() + "</strong></span> cannot attack without a weapon.</li>");
 		$(".hp-remain-block").hide();
 		$("#hp-remain-1").text($("#curr-hp-1").val().toString());
 		$("#hp-remain-2").text($("#curr-hp-2").val().toString());
@@ -440,9 +469,9 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	battleInfo.attacker.name = $("#char-1").val();
 	battleInfo.attacker.color = $("#color-1").val();
 	battleInfo.attacker.moveType = $("#move-type-1").val();
-	battleInfo.attacker.weaponName = $("#weapon-1").val();
 	battleInfo.attacker.type = $("#weapon-type-1").val();
-	battleInfo.attacker.range = parseInt($("#weapon-range-1").text());
+	battleInfo.attacker.weaponName = $("#weapon-1").val();
+	battleInfo.attacker.weaponData = $("#weapon-1").data("info");
 		
 	if ($("#dragon-1").val() === "Yes") {
 		battleInfo.attacker.dragon = true;
@@ -450,13 +479,7 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 		battleInfo.attacker.dragon = false;
 	}
 	
-	if ($("#weapon-magical-1").text() === "Yes") {
-		battleInfo.attacker.magical = true;
-	} else {
-		battleInfo.attacker.magical = false;
-	}
-	
-	if (weaponInfo[battleInfo.attacker.weaponName].hasOwnProperty("add_bonus")) {
+	if (battleInfo.attacker.weaponData.hasOwnProperty("add_bonus")) {
 		battleInfo.attacker.addBonusAtk = parseInt($("#atk-bonus-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#def-bonus-1").val()) + parseInt($("#res-bonus-1").val());
 	}
 	
@@ -470,7 +493,9 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	battleInfo.defender.name = $("#char-2").val();
 	battleInfo.defender.color = $("#color-2").val();
 	battleInfo.defender.moveType = $("#move-type-2").val();
+	battleInfo.defender.type = $("#weapon-type-2").val();
 	battleInfo.defender.weaponName = $("#weapon-2").val();
+	battleInfo.defender.weaponData = $("#weapon-2").data("info");
 	
 	if ($("#dragon-2").val() === "Yes") {
 		battleInfo.defender.dragon = true;
@@ -478,19 +503,8 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 		battleInfo.defender.dragon = false;
 	}
 	
-	if (battleInfo.defender.weaponName !== "None") {
-		battleInfo.defender.type = $("#weapon-type-2").val();
-		battleInfo.defender.range = parseInt($("#weapon-range-2").text());
-
-		if ($("#weapon-magical-2").text() === "Yes") {
-			battleInfo.defender.magical = true;
-		} else {
-			battleInfo.defender.magical = false;
-		}
-		
-		if (weaponInfo[battleInfo.defender.weaponName].hasOwnProperty("add_bonus")) {
-			battleInfo.defender.addBonusAtk = parseInt($("#atk-bonus-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#def-bonus-2").val()) + parseInt($("#res-bonus-2").val());
-		}
+	if (battleInfo.defender.weaponData.hasOwnProperty("add_bonus")) {
+		battleInfo.defender.addBonusAtk = parseInt($("#atk-bonus-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#def-bonus-2").val()) + parseInt($("#res-bonus-2").val());
 	}
 	
 	battleInfo.defender.currHP = parseInt($("#curr-hp-2").val());
@@ -500,18 +514,18 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	battleInfo.defender.res = parseInt($("#res-2").val()) + parseInt($("#res-bonus-2").val()) + parseInt($("#res-penalty-2").val()) + parseInt($("#res-spur-2").val());
 	
 	// attacker initate bonus
-	if (weaponInfo[battleInfo.attacker.weaponName].hasOwnProperty("initiate_mod")) {
-		battleInfo = initiateBonus(battleInfo, weaponInfo[battleInfo.attacker.weaponName].initiate_mod, battleInfo.attacker.weaponName);
+	if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_mod")) {
+		battleInfo = initiateBonus(battleInfo, battleInfo.attacker.weaponData.initiate_mod, battleInfo.attacker.weaponName);
 	}
 	
 	// attacker initiates
-	battleInfo = singleCombat(battleInfo, true, "attacks", weaponInfo, false);
+	battleInfo = singleCombat(battleInfo, true, "attacks", false);
 	
 	// defender will try to counter-attack if they haven't been ko'd
 	if (battleInfo.defender.currHP > 0) {
 		// defender must be in range to counter-attack
-		if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.range === battleInfo.attacker.range) {
-			battleInfo = singleCombat(battleInfo, false, "counter-attacks", weaponInfo, false);
+		if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range) {
+			battleInfo = singleCombat(battleInfo, false, "counter-attacks", false);
 		} else {
 			battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is unable to counter-attack.</li>";
 		}
@@ -519,16 +533,16 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 		// if attacker hasn't been ko'd, check for follow ups
 		if (battleInfo.attacker.currHP > 0) {
 			if (battleInfo.attacker.spd >= battleInfo.defender.spd + 5) { // attacker follows up
-				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack", weaponInfo, false);
-			} else if ((battleInfo.defender.weaponName) !== "None" && (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && (battleInfo.defender.range === battleInfo.attacker.range)) { 
+				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack", false);
+			} else if ((battleInfo.defender.weaponName) !== "None" && (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range)) { 
 				// defender follows up
-				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack", weaponInfo, false);
+				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack", false);
 			}
 		}
 		
 		// check for poison damage
-		if (battleInfo.defender.currHP > 0 && weaponInfo[battleInfo.attacker.weaponName].hasOwnProperty("poison")) {
-			battleInfo = afterCombatDmg(battleInfo, weaponInfo[battleInfo.attacker.weaponName].poison, battleInfo.attacker.weaponName);
+		if (battleInfo.defender.currHP > 0 && battleInfo.attacker.weaponData.hasOwnProperty("poison")) {
+			battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.poison, battleInfo.attacker.weaponName);
 		}
 	}
 	
@@ -542,18 +556,6 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	$(".hp-remain-block").fadeIn("slow");
 }
 
-// get JSON data and simulate battle
-function getDataAndSim() {
-	"use strict";
-	$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
-			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-				simBattle(charInfo, weaponInfo, specInfo);
-			});
-		});
-	});
-}
-
 // put options in the character selects
 function setupChars() {
 	"use strict";
@@ -565,23 +567,25 @@ function setupChars() {
 	$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
 		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
 			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-				for (var key in charInfo) {
-					if (charInfo.hasOwnProperty(key)) {
-						options += "<option value=\"" + key + "\">" + key + "</option>";
+				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/skill.json", function(skillInfo) {
+					for (var key in charInfo) {
+						if (charInfo.hasOwnProperty(key)) {
+							options += "<option value=\"" + key + "\">" + key + "</option>";
+						}
 					}
-				}
 
-				// add to html
-				$(".char-selector").html(options);
+					// add to html
+					$(".char-selector").html(options);
 
-				// set default characters
-				$("#char-1 option:eq(0)").attr("selected", "selected");
-				displayChar(charInfo[$("#char-1").val()], weaponInfo, specInfo, "1");
-				$("#char-2 option:eq(1)").attr("selected", "selected");
-				displayChar(charInfo[$("#char-2").val()], weaponInfo, specInfo, "2");
-				
-				// simulate initial battle
-				simBattle(charInfo, weaponInfo, specInfo);
+					// set default characters
+					$("#char-1 option:eq(0)").attr("selected", "selected");
+					displayChar(charInfo[$("#char-1").val()], weaponInfo, specInfo, skillInfo, "1");
+					$("#char-2 option:eq(1)").attr("selected", "selected");
+					displayChar(charInfo[$("#char-2").val()], weaponInfo, specInfo, skillInfo, "2");
+
+					// simulate initial battle
+					simBattle();
+				});
 			});
 		});
 	});
@@ -618,7 +622,7 @@ $(document).ready( function () {
 			$("#curr-" + this.id).val(this.value);
 		}
 		
-		getDataAndSim();
+		simBattle();
 	});
 	$(".curr-hp-val").on("change", function () {
 		// current hp cannot be greater than base hp
@@ -627,7 +631,7 @@ $(document).ready( function () {
 			this.value = baseHP;
 		}
 		
-		getDataAndSim();
+		simBattle();
 	});
 	
 	// setup special cooldown updates
@@ -637,7 +641,7 @@ $(document).ready( function () {
 			this.value = maxCooldown;
 		}
 		
-		getDataAndSim();
+		simBattle();
 	});
 	
 	// setup initial display
@@ -649,8 +653,10 @@ $(document).ready( function () {
 		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
 			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
 				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-					displayChar(charInfo[$("#char-1").val()], weaponInfo, specInfo, "1");
-					simBattle(charInfo, weaponInfo, specInfo);
+					$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/skill.json", function(skillInfo) {
+						displayChar(charInfo[$("#char-1").val()], weaponInfo, specInfo, skillInfo, "1");
+						simBattle();
+					});
 				});
 			});
 		});
@@ -659,8 +665,10 @@ $(document).ready( function () {
 		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
 			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
 				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-					displayChar(charInfo[$("#char-2").val()], weaponInfo, specInfo, "2");
-					simBattle(charInfo, weaponInfo, specInfo);
+					$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/skill.json", function(skillInfo) {
+						displayChar(charInfo[$("#char-2").val()], weaponInfo, specInfo, skillInfo, "2");
+						simBattle();
+					});
 				});
 			});
 		});
@@ -668,50 +676,46 @@ $(document).ready( function () {
 	
 	// setup weapon select
 	$("#weapon-1").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
-			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
-				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-					showWeapon($("#weapon-1").val(), weaponInfo, "1", true);
-					simBattle(charInfo, weaponInfo, specInfo);
-				});
-			});
+		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
+			showWeapon($("#weapon-1").val(), weaponInfo, "1", true);
+			simBattle();
 		});
 	});
 	$("#weapon-2").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
-			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
-				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-					showWeapon($("#weapon-2").val(), weaponInfo, "2", true);
-					simBattle(charInfo, weaponInfo, specInfo);
-				});
-			});
+		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
+			showWeapon($("#weapon-2").val(), weaponInfo, "2", true);
+			simBattle();
 		});
 	});
 	
 	// setup special select
 	$("#special-1").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
-			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
-				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-					showSpecCooldown($("#special-1").val(), specInfo, "1");
-					simBattle(charInfo, weaponInfo, specInfo);
-				});
-			});
+		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
+			getSpecialData(specInfo, '1');
+			showSpecCooldown($("#special-1").val(), specInfo, "1");
+			simBattle();
 		});
 	});
 	$("#special-2").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
-			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
-				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-					showSpecCooldown($("#special-2").val(), specInfo, "2");
-					simBattle(charInfo, weaponInfo, specInfo);
-				});
-			});
+		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
+			getSpecialData(specInfo, '2');
+			showSpecCooldown($("#special-2").val(), specInfo, "2");
+			simBattle();
+		});
+	});
+	
+	// setup skill select
+	$(".passive-selector").on("change", function () {
+		var charNum = $(this).data("charnum").toString();
+		var skillType = $(this).data("skilltype");
+		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/skill.json", function(skillInfo) {
+			getSkillData(skillInfo, charNum, skillType);
+			simBattle();
 		});
 	});
 	
 	// setup other battle value changes
 	$(".battle-val").on("change", function () {
-		getDataAndSim();
+		simBattle();
 	});
 });
