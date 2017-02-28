@@ -724,7 +724,7 @@
         "might"   : 3,
         "range"   : 2,
         "magical" : true,
-        "after_combat_dmg" : 10
+        "poison" : 10
     },
     "Panic" : {
         "color"   : "Colorless",

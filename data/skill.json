@@ -435,13 +435,13 @@
         "Pass 3" : {
         },
         "Poison Strike 1" : {
-            "after_combat_dmg" : 4
+            "poison" : 4
         },
         "Poison Strike 2" : {
-            "after_combat_dmg" : 7
+            "poison" : 7
         },
         "Poison Strike 3" : {
-            "after_combat_dmg" : 10
+            "poison" : 10
         },
         "Quick Reposte 1" : {
             "reposte" : {

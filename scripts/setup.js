@@ -79,10 +79,10 @@ function showWeapon(selectedWeapon, weaponInfo, charNum, updateAtk) {
 			$("#weapon-magical-" + charNum).text("No");
 		}
 	} else {	// weapon not found
-		$("#weapon-type-" + charNum).html(" ");
-		$("#weapon-might-" + charNum).html(" ");
-		$("#weapon-range-" + charNum).html(" ");
-		$("#weapon-magical-" + charNum).html(" ");
+		$("#weapon-type-" + charNum).text("n/a");
+		$("#weapon-might-" + charNum).text("n/a");
+		$("#weapon-range-" + charNum).text("n/a");
+		$("#weapon-magical-" + charNum).text("n/a");
 	}
 	
 	// update atk
@@ -238,8 +238,9 @@ function triAdvantage (attackColor, defendColor) {
 
 // calculates how much damage the attacker will do to the defender in just one attack phase
 // battleInfo contains all necessary info for calculation, initiator determines if the battle initiator is attacking or not
+// logIntro describes the attack, weaponInfo contains all weapon data
 // returns the results of the attack phase with an updated log message
-function singleCombat(battleInfo, initiator, logIntro) {
+function singleCombat(battleInfo, initiator, logIntro, weaponInfo) {
 	"use strict";
 	
 	// log message
@@ -265,12 +266,31 @@ function singleCombat(battleInfo, initiator, logIntro) {
 	// determine attack modifier
 	var atkPower = attacker.atk;
 	var triAdv = triAdvantage(attacker.color, defender.color);
+	var oldHP = defender.currHP;
+	var atkMod = 1;
+	var roundUp = false;
+	
+	// triangle advantage
 	if (triAdv > 0) {
-		atkPower = Math.floor(attacker.atk * 1.2);
+		atkMod = 1.2;
 		battleInfo.logMsg += "Triangle advantage boosts attack by 20%. ";
 	} else if (triAdv < 0) {
-		atkPower = Math.ceil(attacker.atk * 0.8);
+		atkMod = 0.8;
+		roundUp = true;
 		battleInfo.logMsg += "Triangle disadvantage reduces attack by 20%. ";
+	}
+	
+	// super effectiveness against movement types
+	if (weaponInfo[attacker.weaponName].hasOwnProperty("move_effective") && weaponInfo[attacker.weaponName].move_effective === defender.moveType) {
+		atkMod *= 1.5;
+		battleInfo.logMsg += "Effectiveness against " + defender.moveType + " boosts attack by 50%. ";
+	}
+	
+	// calculate attack
+	if (atkMod < 1 || (atkMod > 1 && roundUp)) {
+		atkPower = Math.ceil(attacker.atk * atkMod);
+	} else if (atkMod > 1) {
+		atkPower = Math.floor(attacker.atk * atkMod);
 	}
 	
 	// calculate damage
@@ -285,10 +305,14 @@ function singleCombat(battleInfo, initiator, logIntro) {
 		dmg = Math.max(atkPower - defender.def, 0);
 	}
 	
-	var oldHP = defender.currHP;
-	defender.currHP = Math.max(defender.currHP - dmg, 0);
+	if (initiator && weaponInfo[attacker.weaponName].hasOwnProperty("brave")) {
+		battleInfo.logMsg += attacker.weaponName + " grants double attack. <span class='dmg'><strong>" + dmg.toString() + " × 2 damage dealt.</strong><br>";
+
+	} else {
+		battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + " damage dealt.</strong><br>";
+	}
 	
-	battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + " damage dealt.</strong><br>";
+	defender.currHP = Math.max(defender.currHP - dmg, 0);
 	battleInfo.logMsg += "<span class='" + defClass + "'><strong>" + defender.name + " HP:</strong> " + oldHP.toString() + " → " + defender.currHP.toString() + "</span></li>";
 	
 	// store info
@@ -327,8 +351,9 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	
 	// get all attacker info
 	battleInfo.attacker.name = $("#char-1").val();
-	battleInfo.attacker.weaponName = $("#weapon-1").val();
 	battleInfo.attacker.color = $("#color-1").val();
+	battleInfo.attacker.moveType = $("#move-type-1").val();
+	battleInfo.attacker.weaponName = $("#weapon-1").val();
 	battleInfo.attacker.type = $("#weapon-type-1").text();
 	battleInfo.attacker.range = parseInt($("#weapon-range-1").text());
 	
@@ -347,7 +372,9 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	// get all defender info
 	battleInfo.defender.name = $("#char-2").val();
 	battleInfo.defender.color = $("#color-2").val();
+	battleInfo.defender.moveType = $("#move-type-2").val();
 	battleInfo.defender.weaponName = $("#weapon-2").val();
+	
 	
 	if (battleInfo.defender.weaponName !== "None") {
 		battleInfo.defender.type = $("#weapon-type-2").text();
@@ -367,13 +394,13 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	battleInfo.defender.res = parseInt($("#res-2").val()) + parseInt($("#res-bonus-2").val()) + parseInt($("#res-penalty-2").val()) + parseInt($("#res-spur-2").val());
 	
 	// attacker initiates
-	battleInfo = singleCombat(battleInfo, true, "attacks");
+	battleInfo = singleCombat(battleInfo, true, "attacks", weaponInfo);
 	
 	// defender will try to counter-attack if they haven't been ko'd
 	if (battleInfo.defender.currHP > 0) {
 		// defender must be in range to counter-attack
 		if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.range === battleInfo.attacker.range) {
-			battleInfo = singleCombat(battleInfo, false, "counter-attacks");
+			battleInfo = singleCombat(battleInfo, false, "counter-attacks", weaponInfo);
 		} else {
 			battleInfo.logMsg += "<li class='battle-interaction'><strong>" + battleInfo.defender.name + "</strong> " + " is unable to counter-attack.</li>";
 		}
@@ -381,10 +408,10 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 		// if attacker hasn't been ko'd, check for follow ups
 		if (battleInfo.attacker.currHP > 0) {
 			if (battleInfo.attacker.spd >= battleInfo.defender.spd + 5) { // attacker follows up
-				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack");
+				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack", weaponInfo);
 			} else if ((battleInfo.defender.weaponName) !== "None" && (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && (battleInfo.defender.range === battleInfo.attacker.range)) { 
 				// defender follows up
-				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack");
+				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack", weaponInfo);
 			}
 		}
 	}
