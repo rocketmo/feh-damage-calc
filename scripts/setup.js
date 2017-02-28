@@ -62,9 +62,6 @@ function showWeapon(selectedWeapon, weaponInfo, charNum, updateAtk) {
 	
 	var mt = 0;
 	if (weaponInfo.hasOwnProperty(selectedWeapon)) {
-		// show weapon type
-		$("#weapon-type-" + charNum).text(weaponInfo[selectedWeapon].type);
-
 		// show weapon might
 		$("#weapon-might-" + charNum).text(weaponInfo[selectedWeapon].might);
 		mt = weaponInfo[selectedWeapon].might;
@@ -79,7 +76,6 @@ function showWeapon(selectedWeapon, weaponInfo, charNum, updateAtk) {
 			$("#weapon-magical-" + charNum).text("No");
 		}
 	} else {	// weapon not found
-		$("#weapon-type-" + charNum).text("n/a");
 		$("#weapon-might-" + charNum).text("n/a");
 		$("#weapon-range-" + charNum).text("n/a");
 		$("#weapon-magical-" + charNum).text("n/a");
@@ -136,6 +132,9 @@ function displayChar(charInfo, weaponInfo, specInfo, charNum) {
 	
 	// show color
 	$("#color-" + charNum).val(charInfo.color);
+	
+	// show weapon type
+	$("#weapon-type-" + charNum).val(charInfo.weapon_type);
 	
 	// show move type
 	$("#move-type-" + charNum).val(charInfo.move_type);
@@ -442,7 +441,7 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	battleInfo.attacker.color = $("#color-1").val();
 	battleInfo.attacker.moveType = $("#move-type-1").val();
 	battleInfo.attacker.weaponName = $("#weapon-1").val();
-	battleInfo.attacker.type = $("#weapon-type-1").text();
+	battleInfo.attacker.type = $("#weapon-type-1").val();
 	battleInfo.attacker.range = parseInt($("#weapon-range-1").text());
 		
 	if ($("#dragon-1").val() === "Yes") {
@@ -480,7 +479,7 @@ function simBattle(charInfo, weaponInfo, specInfo) {
 	}
 	
 	if (battleInfo.defender.weaponName !== "None") {
-		battleInfo.defender.type = $("#weapon-type-2").text();
+		battleInfo.defender.type = $("#weapon-type-2").val();
 		battleInfo.defender.range = parseInt($("#weapon-range-2").text());
 
 		if ($("#weapon-magical-2").text() === "Yes") {
