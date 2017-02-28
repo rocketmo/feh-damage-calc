@@ -1,6 +1,7 @@
 {
 	"Abel": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 44,
 		"atk": 41,
 		"spd": 27,
@@ -14,6 +15,7 @@
 	},
 	"Alfonse": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 43,
 		"atk": 51,
 		"spd": 25,
@@ -27,6 +29,7 @@
 	},
 	"Anna": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 41,
 		"atk": 45,
 		"spd": 38,
@@ -40,6 +43,7 @@
 	},
 	"Arthur": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 48,
 		"atk": 44,
 		"spd": 29,
@@ -52,6 +56,7 @@
 	},
 	"Azama": {
 		"color" : "Colorless",
+		"weapon_type" : "Staff",
 		"hp": 43,
 		"atk": 24,
 		"spd": 26,
@@ -65,6 +70,7 @@
 	},
 	"Azura": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 36,
 		"atk": 43,
 		"spd": 36,
@@ -78,6 +84,7 @@
 	},
 	"Barst": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 40,
 		"atk": 38,
 		"spd": 30,
@@ -91,6 +98,7 @@
 	},
 	"Bartre": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 49,
 		"atk": 51,
 		"spd": 29,
@@ -104,6 +112,7 @@
 	},
 	"Beruka": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 46,
 		"atk": 40,
 		"spd": 23,
@@ -117,6 +126,7 @@
 	},
 	"Caeda": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 36,
 		"atk": 37,
 		"spd": 37,
@@ -131,6 +141,7 @@
 	},
 	"Cain": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 42,
 		"atk": 40,
 		"spd": 27,
@@ -144,6 +155,7 @@
 	},
 	"Camilla": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 37,
 		"atk": 38,
 		"spd": 27,
@@ -157,6 +169,7 @@
 	},
 	"Catria": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 39,
 		"atk": 42,
 		"spd": 34,
@@ -170,6 +183,7 @@
 	},
 	"Cecilia": {
 		"color" : "Green",
+		"weapon_type" : "Green Tome",
 		"hp": 36,
 		"atk": 46,
 		"spd": 25,
@@ -183,6 +197,7 @@
 	},
 	"Cherche": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 43,
 		"atk": 56,
 		"spd": 25,
@@ -196,6 +211,7 @@
 	},
 	"Chrom": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 47,
 		"atk": 53,
 		"spd": 25,
@@ -209,6 +225,7 @@
 	},
 	"Clarine": {
 		"color" : "Colorless",
+		"weapon_type" : "Staff",
 		"hp": 35,
 		"atk": 32,
 		"spd": 30,
@@ -222,6 +239,7 @@
 	},
 	"Cordelia": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 40,
 		"atk": 43,
 		"spd": 30,
@@ -235,6 +253,7 @@
 	},
 	"Corrin (F)": {
 		"color" : "Blue",
+		"weapon_type" : "Blue Breath",
 		"hp": 41,
 		"atk": 40,
 		"spd": 34,
@@ -249,6 +268,7 @@
 	},
 	"Corrin (M)": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 42,
 		"atk": 48,
 		"spd": 32,
@@ -264,6 +284,7 @@
 	},
 	"Donnel": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 48,
 		"atk": 43,
 		"spd": 24,
@@ -278,6 +299,7 @@
 	},
 	"Draug": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 53,
 		"atk": 38,
 		"spd": 24,
@@ -291,6 +313,7 @@
 	},
 	"Effie": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 50,
 		"atk": 55,
 		"spd": 22,
@@ -304,6 +327,7 @@
 	},
 	"Eirika": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 42,
 		"atk": 42,
 		"spd": 35,
@@ -317,6 +341,7 @@
 	},
 	"Eldigan" : {
         "color" : "Red",
+		"weapon_type" : "Sword",
         "hp" : 45,
         "atk" : 51,
         "spd" : 27,
@@ -330,6 +355,7 @@
 	},
 	"Elise": {
 		"color" : "Colorless",
+		"weapon_type" : "Staff",
 		"hp": 30,
 		"atk": 42,
 		"spd": 32,
@@ -343,6 +369,7 @@
 	},
 	"Eliwood": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 39,
 		"atk": 47,
 		"spd": 30,
@@ -356,6 +383,7 @@
 	},
 	"Ephraim": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 45,
 		"atk": 51,
 		"spd": 25,
@@ -369,6 +397,7 @@
 	},
 	"Est": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 36,
 		"atk": 47,
 		"spd": 30,
@@ -382,6 +411,7 @@
 	},
 	"Fae": {
 		"color" : "Green",
+		"weapon_type" : "Green Breath",
 		"hp": 46,
 		"atk": 46,
 		"spd": 28,
@@ -396,6 +426,7 @@
 	},
 	"Felicia": {
 		"color" : "Colorless",
+		"weapon_type" : "Dagger",
 		"hp": 34,
 		"atk": 33,
 		"spd": 37,
@@ -409,6 +440,7 @@
 	},
 	"Fir": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 41,
 		"atk": 36,
 		"spd": 39,
@@ -422,6 +454,7 @@
 	},
 	"Florina": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 42,
 		"atk": 41,
 		"spd": 27,
@@ -435,12 +468,12 @@
 	},
 	"Frederick": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 43,
 		"atk": 47,
 		"spd": 25,
 		"def": 36,
 		"res": 14,
-
 		"move_type": "Cavalry",
 		"weapon": ["Hammer+", "Hammer", "Steel Axe", "Iron Axe"],
 		"special": ["Luna", "New Moon"],
@@ -449,6 +482,7 @@
 	},
 	"Gaius": {
 		"color" : "Colorless",
+		"weapon_type" : "Dagger",
 		"hp": 39,
 		"atk": 39,
 		"spd": 36,
@@ -462,6 +496,7 @@
 	},
 	"Gordin": {
 		"color" : "Colorless",
+		"weapon_type" : "Bow",
 		"hp": 43,
 		"atk": 41,
 		"spd": 24,
@@ -475,6 +510,7 @@
 	},
 	"Gunter": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 42,
 		"atk": 47,
 		"spd": 24,
@@ -488,6 +524,7 @@
 	},
 	"Gwendolyn": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 49,
 		"atk": 41,
 		"spd": 24,
@@ -501,6 +538,7 @@
 	},
 	"Hana": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 37,
 		"atk": 52,
 		"spd": 41,
@@ -514,6 +552,7 @@
 	},
 	"Hawkeye": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 45,
 		"atk": 44,
 		"spd": 22,
@@ -527,6 +566,7 @@
 	},
 	"Hector": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 52,
 		"atk": 52,
 		"spd": 24,
@@ -540,6 +580,7 @@
 	},
 	"Henry": {
 		"color" : "Red",
+		"weapon_type" : "Red Tome",
 		"hp": 45,
 		"atk": 34,
 		"spd": 22,
@@ -553,6 +594,7 @@
 	},
 	"Hinata": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 47,
 		"atk": 44,
 		"spd": 24,
@@ -566,6 +608,7 @@
 	},
 	"Hinoka": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 41,
 		"atk": 43,
 		"spd": 27,
@@ -579,6 +622,7 @@
 	},
 	"Jagen": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 37,
 		"atk": 45,
 		"spd": 27,
@@ -592,6 +636,7 @@
 	},
 	"Jakob": {
 		"color" : "Colorless",
+		"weapon_type" : "Dagger",
 		"hp": 39,
 		"atk": 39,
 		"spd": 31,
@@ -605,6 +650,7 @@
 	},
 	"Jeorge": {
 		"color" : "Colorless",
+		"weapon_type" : "Bow",
 		"hp": 37,
 		"atk": 46,
 		"spd": 32,
@@ -619,6 +665,7 @@
 	},
 	"Julia": {
 		"color" : "Green",
+		"weapon_type" : "Green Tome",
 		"hp": 38,
 		"atk": 49,
 		"spd": 26,
@@ -632,6 +679,7 @@
 	},
 	"Kagero": {
 		"color" : "Colorless",
+		"weapon_type" : "Dagger",
 		"hp": 31,
 		"atk": 40,
 		"spd": 32,
@@ -645,6 +693,7 @@
 	},
 	"Klein" : {
         "color" : "Colorless",
+		"weapon_type" : "Bow",
         "hp" : 40,
         "atk" : 38,
         "spd" : 28,
@@ -658,6 +707,7 @@
 	},
 	"Lachesis" : {
         "color" : "Colorless",
+		"weapon_type" : "Staff",
         "hp" : 39,
         "atk" : 36,
         "spd" : 25,
@@ -671,6 +721,7 @@
 	},
 	"Laslow": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 41,
 		"atk": 50,
 		"spd": 26,
@@ -684,6 +735,7 @@
 	},
 	"Leo": {
 		"color" : "Red",
+		"weapon_type" : "Red Tome",
 		"hp": 39,
 		"atk": 43,
 		"spd": 22,
@@ -697,6 +749,7 @@
 	},
 	"Lilina": {
 		"color" : "Red",
+		"weapon_type" : "Red Tome",
 		"hp": 35,
 		"atk": 53,
 		"spd": 25,
@@ -710,6 +763,7 @@
 	},
 	"Linde": {
 		"color" : "Blue",
+		"weapon_type" : "Blue Tome",
 		"hp": 35,
 		"atk": 49,
 		"spd": 39,
@@ -723,6 +777,7 @@
 	},
 	"Lissa": {
 		"color" : "Colorless",
+		"weapon_type" : "Staff",
 		"hp": 39,
 		"atk": 34,
 		"spd": 26,
@@ -736,6 +791,7 @@
 	},
 	"Lon'qu": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 45,
 		"atk": 40,
 		"spd": 42,
@@ -749,6 +805,7 @@
 	},
 	"Lucina": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 43,
 		"atk": 50,
 		"spd": 36,
@@ -762,6 +819,7 @@
 	},
 	"Lyn": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 37,
 		"atk": 44,
 		"spd": 37,
@@ -775,6 +833,7 @@
 	},
 	"Maria": {
 		"color" : "Colorless",
+		"weapon_type" : "Staff",
 		"hp": 36,
 		"atk": 32,
 		"spd": 34,
@@ -788,6 +847,7 @@
 	},
 	"Marth": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 41,
 		"atk": 47,
 		"spd": 34,
@@ -801,6 +861,7 @@
 	},
 	"Matthew": {
 		"color" : "Colorless",
+		"weapon_type" : "Dagger",
 		"hp": 43,
 		"atk": 36,
 		"spd": 34,
@@ -814,6 +875,7 @@
 	},
 	"Merric": {
 		"color" : "Green",
+		"weapon_type" : "Green Tome",
 		"hp": 48,
 		"atk": 40,
 		"spd": 32,
@@ -827,6 +889,7 @@
 	},
 	"Minerva": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 40,
 		"atk": 52,
 		"spd": 38,
@@ -840,6 +903,7 @@
 	},
 	"Narcian": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 42,
 		"atk": 41,
 		"spd": 29,
@@ -853,6 +917,7 @@
 	},
 	"Niles": {
 		"color" : "Colorless",
+		"weapon_type" : "Bow",
 		"hp": 37,
 		"atk": 34,
 		"spd": 34,
@@ -866,6 +931,7 @@
 	},
 	"Nino": {
 		"color" : "Green",
+		"weapon_type" : "Green Tome",
 		"hp": 33,
 		"atk": 46,
 		"spd": 36,
@@ -879,6 +945,7 @@
 	},
 	"Nowi": {
 		"color" : "Blue",
+		"weapon_type" : "Blue Breath",
 		"hp": 45,
 		"atk": 45,
 		"spd": 27,
@@ -893,6 +960,7 @@
 	},
 	"Oboro": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 40,
 		"atk": 44,
 		"spd": 26,
@@ -906,6 +974,7 @@
 	},
 	"Odin": {
 		"color" : "Blue",
+		"weapon_type" : "Blue Tome",
 		"hp": 43,
 		"atk": 35,
 		"spd": 32,
@@ -919,6 +988,7 @@
 	},
 	"Ogma": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 47,
 		"atk": 43,
 		"spd": 29,
@@ -932,6 +1002,7 @@
 	},
 	"Olivia": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 36,
 		"atk": 39,
 		"spd": 33,
@@ -945,6 +1016,7 @@
 	},
 	"Olwen": {
 		"color" : "Blue",
+		"weapon_type" : "Blue Tome",
 		"hp": 34,
 		"atk": 35,
 		"spd": 26,
@@ -958,6 +1030,7 @@
 	},
 	"Palla": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 42,
 		"atk": 43,
 		"spd": 31,
@@ -971,6 +1044,7 @@
 	},
 	"Peri": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 35,
 		"atk": 44,
 		"spd": 33,
@@ -984,6 +1058,7 @@
 	},
 	"Raigh": {
 		"color" : "Red",
+		"weapon_type" : "Red Tome",
 		"hp": 41,
 		"atk": 42,
 		"spd": 29,
@@ -998,6 +1073,7 @@
 	},
 	"Raven": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 41,
 		"atk": 42,
 		"spd": 30,
@@ -1011,6 +1087,7 @@
 	},
 	"Reinhardt": {
 		"color" : "Blue",
+		"weapon_type" : "Blue Tome",
 		"hp": 38,
 		"atk": 41,
 		"spd": 18,
@@ -1024,6 +1101,7 @@
 	},
 	"Robin (F)": {
 		"color" : "Green",
+		"weapon_type" : "Green Tome",
 		"hp": 40,
 		"atk": 39,
 		"spd": 29,
@@ -1037,6 +1115,7 @@
 	},
 	"Robin (M)": {
 		"color" : "Blue",
+		"weapon_type" : "Blue Tome",
 		"hp": 40,
 		"atk": 40,
 		"spd": 29,
@@ -1050,6 +1129,7 @@
 	},
 	"Roy": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 44,
 		"atk": 46,
 		"spd": 31,
@@ -1063,6 +1143,7 @@
 	},
 	"Ryoma": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 41,
 		"atk": 50,
 		"spd": 35,
@@ -1076,6 +1157,7 @@
 	},
 	"Saizo": {
 		"color" : "Colorless",
+		"weapon_type" : "Dagger",
 		"hp": 36,
 		"atk": 41,
 		"spd": 34,
@@ -1089,6 +1171,7 @@
 	},
 	"Sakura": {
 		"color" : "Colorless",
+		"weapon_type" : "Staff",
 		"hp": 36,
 		"atk": 33,
 		"spd": 30,
@@ -1102,6 +1185,7 @@
 	}, 
 	"Sanaki" : {
         "color" : "Red",
+		"weapon_type" : "Red Tome",
         "hp" : 33,
         "atk" : 51,
         "spd" : 28,
@@ -1115,6 +1199,7 @@
 	},
 	"Selena": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 37,
 		"atk": 37,
 		"spd": 35,
@@ -1128,6 +1213,7 @@
 	},
 	"Seliph": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 52,
 		"atk": 50,
 		"spd": 24,
@@ -1141,6 +1227,7 @@
 	},
 	"Serra": {
 		"color" : "Colorless",
+		"weapon_type" : "Staff",
 		"hp": 36,
 		"atk": 34,
 		"spd": 31,
@@ -1154,6 +1241,7 @@
 	},
 	"Setsuna": {
 		"color" : "Colorless",
+		"weapon_type" : "Bow",
 		"hp": 42,
 		"atk": 39,
 		"spd": 37,
@@ -1167,6 +1255,7 @@
 	},
 	"Shanna": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 39,
 		"atk": 41,
 		"spd": 35,
@@ -1180,6 +1269,7 @@
 	},
 	"Sharena": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 43,
 		"atk": 48,
 		"spd": 35,
@@ -1193,6 +1283,7 @@
 	},
 	"Sheena": {
 		"color" : "Green",
+		"weapon_type" : "Axe",
 		"hp": 45,
 		"atk": 41,
 		"spd": 25,
@@ -1206,6 +1297,7 @@
 	},
 	"Sophia": {
 		"color" : "Red",
+		"weapon_type" : "Red Tome",
 		"hp": 40,
 		"atk": 46,
 		"spd": 19,
@@ -1219,6 +1311,7 @@
 	},
 	"Stahl": {
 		"color" : "Red",
+		"weapon_type" : "Sword",
 		"hp": 45,
 		"atk": 46,
 		"spd": 26,
@@ -1232,6 +1325,7 @@
 	},
 	"Subaki": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 40,
 		"atk": 37,
 		"spd": 35,
@@ -1245,6 +1339,7 @@
 	},
 	"Sully": {
 		"color" : "Blue",
+		"weapon_type" : "Lance",
 		"hp": 42,
 		"atk": 42,
 		"spd": 34,
@@ -1258,6 +1353,7 @@
 	},
 	"Takumi": {
 		"color" : "Colorless",
+		"weapon_type" : "Bow",
 		"hp": 40,
 		"atk": 46,
 		"spd": 33,
@@ -1271,6 +1367,7 @@
 	},
 	"Tharja": {
 		"color" : "Red",
+		"weapon_type" : "Red Tome",
 		"hp": 39,
 		"atk": 45,
 		"spd": 34,
@@ -1284,6 +1381,7 @@
 	},
 	"Tiki (Adult)": {
 		"color" : "Red",
+		"weapon_type" : "Red Breath",
 		"hp": 40,
 		"atk": 46,
 		"spd": 23,
@@ -1298,6 +1396,7 @@
 	},
 	"Tiki (Young)": {
 		"color" : "Red",
+		"weapon_type" : "Red Breath",
 		"hp": 41,
 		"atk": 46,
 		"spd": 30,
@@ -1312,6 +1411,7 @@
 	},
 	"Virion": {
 		"color" : "Colorless",
+		"weapon_type" : "Bow",
 		"hp": 46,
 		"atk": 41,
 		"spd": 32,
@@ -1325,6 +1425,7 @@
 	},
 	"Wrys": {
 		"color" : "Colorless",
+		"weapon_type" : "Staff",
 		"hp": 42,
 		"atk": 34,
 		"spd": 23,
