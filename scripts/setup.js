@@ -224,7 +224,8 @@ function displayChar(charInfo, weaponInfo, specInfo, charNum) {
 }
 
 // determines if the attacker has triangle advantage
-// returns 1 if advamtage, -1 if disadvantage, 0 if neither
+// attackColor is the color of the attacker, defendColor is the color of the defender
+// returns 1 if advantage, -1 if disadvantage, 0 if neither
 function triAdvantage (attackColor, defendColor) {
 	"use strict";
 	if (attackColor === defendColor || attackColor === "Colorless" || defendColor === "Colorless") {
@@ -234,6 +235,22 @@ function triAdvantage (attackColor, defendColor) {
 	}
 	
 	return -1;
+}
+
+// determines if the attacker has a weapon advantage/disadvantage against the other foe's color
+// attackColor is the color of the attacker, defendColor is the color of the defender
+// attackWeapon is the weapon of the attack, defendWeapon is the weapon of the defender
+// weaponInfo contains all weapon data
+// returns 1 if advantage, -1 if disadvantage, 0 if neither
+function weaponColorAdvantage (attackColor, defendColor, attackWeapon, defendWeapon, weaponInfo) {
+	"use strict";
+	if (weaponInfo[attackWeapon].hasOwnProperty("color_effective") && weaponInfo[attackWeapon].color_effective === defendColor) {
+		return 1;
+	} else if (weaponInfo[defendWeapon].hasOwnProperty("color_effective") && weaponInfo[defendWeapon].color_effective === attackColor) {
+		return -1;
+	}
+	
+	return 0;
 }
 
 // calculates how much damage the attacker will do to the defender in just one attack phase
@@ -247,31 +264,42 @@ function singleCombat(battleInfo, initiator, logIntro, weaponInfo) {
 	battleInfo.logMsg += "<li class='battle-interaction'>";
 	
 	// attacker/defender info
+	var atkClass;
 	var defClass;
 	var attacker;
 	var defender;
 	
 	if (initiator) {
+		atkClass = "attacker";
 		defClass = "defender";
 		attacker = battleInfo.attacker;
 		defender = battleInfo.defender;
 	} else {
+		atkClass = "defender";
 		defClass = "attacker";
 		attacker = battleInfo.defender;
 		defender = battleInfo.attacker;
 	}
 	
-	battleInfo.logMsg += "<strong>" + attacker.name + "</strong> " + logIntro +". ";
+	battleInfo.logMsg += "<span class='" + atkClass + "'><strong>" + attacker.name + "</strong></span> " + logIntro +". ";
 	
 	// determine attack modifier
 	var atkPower = attacker.atk;
+	var weaponColorAdv = weaponColorAdvantage(attacker.color, defender.color, attacker.weaponName, defender.weaponName, weaponInfo);
 	var triAdv = triAdvantage(attacker.color, defender.color);
 	var oldHP = defender.currHP;
 	var atkMod = 1;
 	var roundUp = false;
 	
 	// triangle advantage
-	if (triAdv > 0) {
+	if (weaponColorAdv > 0) {
+		atkMod = 1.2;
+		battleInfo.logMsg += attacker.weaponName + " grants weapon advantage against " + defender.color + ", boosting attack by 20%. ";		
+	} else if (weaponColorAdv < 0) {
+		atkMod = 0.8;
+		roundUp = true;
+		battleInfo.logMsg += defender.weaponName + " gives <span class='" + defClass + "'><strong>" + defender.name + "</strong></span> the weapon advantage over <span class='" + atkClass + "'><strong>" + attacker.name + "</strong></span>, reducing attack by 20%. ";
+	} else if (triAdv > 0) {
 		atkMod = 1.2;
 		battleInfo.logMsg += "Triangle advantage boosts attack by 20%. ";
 	} else if (triAdv < 0) {
