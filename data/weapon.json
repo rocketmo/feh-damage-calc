@@ -1022,8 +1022,8 @@
         "range"   : 1,
         "magical" : false,
         "desperation" : {
-			"threshold" : 0.5
-		}
+            "threshold" : 0.5
+        }
     },
     "Steel Axe" : {
         "color"   : "Green",

@@ -484,6 +484,7 @@ function simBattle() {
 	}
 	
 	battleInfo.attacker.currHP = parseInt($("#curr-hp-1").val());
+	battleInfo.attacker.hp = parseInt($("#hp-1").val());
 	battleInfo.attacker.atk = parseInt($("#atk-1").val()) + parseInt($("#atk-bonus-1").val()) + parseInt($("#atk-penalty-1").val()) + parseInt($("#atk-spur-1").val());
 	battleInfo.attacker.spd = parseInt($("#spd-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#spd-penalty-1").val()) + parseInt($("#spd-spur-1").val());
 	battleInfo.attacker.def = parseInt($("#def-1").val()) + parseInt($("#def-bonus-1").val()) + parseInt($("#def-penalty-1").val()) + parseInt($("#def-spur-1").val());
@@ -508,6 +509,7 @@ function simBattle() {
 	}
 	
 	battleInfo.defender.currHP = parseInt($("#curr-hp-2").val());
+	battleInfo.defender.hp = parseInt($("#hp-2").val());
 	battleInfo.defender.atk = parseInt($("#atk-2").val()) + parseInt($("#atk-bonus-2").val()) + parseInt($("#atk-penalty-2").val()) + parseInt($("#atk-spur-2").val());
 	battleInfo.defender.spd = parseInt($("#spd-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#spd-penalty-2").val()) + parseInt($("#spd-spur-2").val());
 	battleInfo.defender.def = parseInt($("#def-2").val()) + parseInt($("#def-bonus-2").val()) + parseInt($("#def-penalty-2").val()) + parseInt($("#def-spur-2").val());
@@ -521,27 +523,36 @@ function simBattle() {
 	// attacker initiates
 	battleInfo = singleCombat(battleInfo, true, "attacks", false);
 	
+	// desperation follow up
+	var desperation = false;
+	if (battleInfo.attacker.weaponData.hasOwnProperty("desperation") && battleInfo.attacker.currHP <= battleInfo.attacker.weaponData.desperation.threshold * battleInfo.attacker.hp) {
+		desperation = true;
+		battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack with the " + battleInfo.attacker.weaponName, false);
+	}
+	
 	// defender will try to counter-attack if they haven't been ko'd
 	if (battleInfo.defender.currHP > 0) {
-		// defender must be in range to counter-attack
+		// defender must be in range to counter-attack or have a counter ability
 		if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range) {
 			battleInfo = singleCombat(battleInfo, false, "counter-attacks", false);
+		} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.hasOwnProperty("counter")) {	
+			battleInfo = singleCombat(battleInfo, false, "counter-attacks, ignoring distance", false);
 		} else {
 			battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is unable to counter-attack.</li>";
 		}
 		
 		// if attacker hasn't been ko'd, check for follow ups
 		if (battleInfo.attacker.currHP > 0) {
-			if (battleInfo.attacker.spd >= battleInfo.defender.spd + 5) { // attacker follows up
+			if (battleInfo.attacker.spd >= battleInfo.defender.spd + 5 && !desperation) { // attacker follows up
 				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack", false);
-			} else if ((battleInfo.defender.weaponName) !== "None" && (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range)) { 
+			} else if ((battleInfo.defender.weaponName !== "None") && (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && ((battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range) || (battleInfo.defender.weaponData.hasOwnProperty("counter")))) { 
 				// defender follows up
 				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack", false);
 			}
 		}
 		
 		// check for poison damage
-		if (battleInfo.defender.currHP > 0 && battleInfo.attacker.weaponData.hasOwnProperty("poison")) {
+		if (battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0 && battleInfo.attacker.weaponData.hasOwnProperty("poison")) {
 			battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.poison, battleInfo.attacker.weaponName);
 		}
 	}
