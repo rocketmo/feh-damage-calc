@@ -504,10 +504,24 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		dmg = Math.max(atkPower - defender.def, 0);
 	}
 	
-	battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + " damage dealt.</strong></span><br>";
+	battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + " damage dealt.</strong></span> ";
+	
+	// check for healing
+	var healMsg = "";
+	if (attacker.weaponData.hasOwnProperty("heal_dmg")) {
+		var heal = Math.floor((oldHP - defender.currHP) * attacker.weaponData.heal_dmg);
+		var atkOldHP = attacker.currHP;
+		attacker.currHP = Math.min(attacker.hp, attacker.currHP + heal);
+		battleInfo.logMsg += "Healed by a portion of damage dealt [" + attacker.weaponName + "]. <span class='dmg'><strong>" + heal.toString() + "&nbsp;health restored. </strong></span>";
+		healMsg = " | <span class='" + atkClass + "'><strong>" + attacker.name + " HP:</strong> " + atkOldHP.toString() + " → " + attacker.currHP.toString() + "</span>";
+	}
+	
+	battleInfo.logMsg += "<br>";
 	
 	defender.currHP = Math.max(defender.currHP - dmg, 0);
-	battleInfo.logMsg += "<span class='" + defClass + "'><strong>" + defender.name + " HP:</strong> " + oldHP.toString() + " → " + defender.currHP.toString() + "</span></li>";
+	battleInfo.logMsg += "<span class='" + defClass + "'><strong>" + defender.name + " HP:</strong> " + oldHP.toString() + " → " + defender.currHP.toString() + "</span>" + healMsg;
+	
+	battleInfo.logMsg += "</li>";
 	
 	// store info
 	if (initiator) {
