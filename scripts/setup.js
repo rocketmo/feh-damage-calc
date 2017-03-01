@@ -83,17 +83,21 @@ function updateSpecCooldown(selectID, charNum, increment) {
 }
 
 // gets skill data and stores it
-// skillData contains all skill data, charNum determines which panel to display it in, skillType is the letter of the skill
-function getSkillData (skillInfo, charNum, skillType) {
+// skillData contains all skill data, charNum determines which panel to display it in, skillType is the letter of the skill, update is true if stats need to be adjusted
+function getSkillData (skillInfo, charNum, skillType, update) {
 	"use strict";
 	var selectID = "#passive-" + skillType + "-" + charNum;
 	if ($(selectID).val() === "None") {	// no skill
-		updateStatTotal(selectID, charNum, false);
+		if (update) {
+			updateStatTotal(selectID, charNum, false);
+		}
 		$(selectID).data("info", {});
-	} else {
+	} else if (update) {
 		updateStatTotal(selectID, charNum, false);
 		$(selectID).data("info", skillInfo[skillType][$("#passive-" + skillType + "-" + charNum).val()]);
 		updateStatTotal(selectID, charNum, true);
+	} else {
+		$(selectID).data("info", skillInfo[skillType][$("#passive-" + skillType + "-" + charNum).val()]);
 	}
 }
 
@@ -120,7 +124,7 @@ function showSkills(charInfo, skillInfo, charNum, type) {
 	}
 	
 	// store skill data
-	getSkillData(skillInfo, charNum, type);
+	getSkillData(skillInfo, charNum, type, false);
 }
 
 // shows extra weapon info
@@ -146,12 +150,14 @@ function showWeapon(selectedWeapon, weaponInfo, charNum, update) {
 		}
 		
 		// store weapon data
-		updateStatTotal("#weapon-" + charNum, charNum, false);
 		if (update) {
+			updateStatTotal("#weapon-" + charNum, charNum, false);
 			updateSpecCooldown("#weapon-" + charNum, charNum, false);
+			$("#weapon-" + charNum).data("info", weaponInfo[selectedWeapon]);
+			updateStatTotal("#weapon-" + charNum, charNum, true);
+		} else {
+			$("#weapon-" + charNum).data("info", weaponInfo[selectedWeapon]);
 		}
-		$("#weapon-" + charNum).data("info", weaponInfo[selectedWeapon]);
-		updateStatTotal("#weapon-" + charNum, charNum, true);
 		updateSpecCooldown("#weapon-" + charNum, charNum, true);
 	} else {	// weapon not found
 		$("#weapon-might-" + charNum).text("n/a");
@@ -375,11 +381,23 @@ function statWord(stat) {
 
 // handles bonuses from initiating combat
 // battleInfo contains all battle information, statMods contains the stats to modify and the amounts to increase, modSource is the source of the bonuses
-function initiateBonus(battleInfo, statMods, modSource) {
+function initiateBonus(battleInfo, statMods) {
 	"use strict";
 	for (var stat in statMods) {
 		battleInfo.attacker[stat] += statMods[stat];
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> boosts " + statWord(stat) + " by " + statMods[stat].toString() + " with the " + modSource + ".</li>";
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> gains " + statMods[stat].toString() + " " + statWord(stat) + " by initiating combat.</li>";
+	}
+	
+	return battleInfo;
+}
+
+// handles bonuses from getting attacked
+// battleInfo contains all battle information, statMods contains the stats to modify and the amounts to increase, modSource is the source of the bonuses
+function defendBonus(battleInfo, statMods) {
+	"use strict";
+	for (var stat in statMods) {
+		battleInfo.defender[stat] += statMods[stat];
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> gains " + statMods[stat].toString() + " " + statWord(stat) + " by getting attacked.</li>";
 	}
 	
 	return battleInfo;
@@ -581,7 +599,12 @@ function simBattle() {
 	
 	// attacker initate bonus
 	if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_mod")) {
-		battleInfo = initiateBonus(battleInfo, battleInfo.attacker.weaponData.initiate_mod, battleInfo.attacker.weaponName);
+		battleInfo = initiateBonus(battleInfo, battleInfo.attacker.weaponData.initiate_mod);
+	}
+	
+	// defending bonus
+	if (battleInfo.defender.weaponData.hasOwnProperty("defend_mod")) {
+		battleInfo = defendBonus(battleInfo, battleInfo.defender.weaponData.defend_mod);
 	}
 	
 	// attacker initiates
@@ -788,7 +811,7 @@ $(document).ready( function () {
 		var charNum = $(this).data("charnum").toString();
 		var skillType = $(this).data("skilltype");
 		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/skill.json", function(skillInfo) {
-			getSkillData(skillInfo, charNum, skillType);
+			getSkillData(skillInfo, charNum, skillType, true);
 			simBattle();
 		});
 	});

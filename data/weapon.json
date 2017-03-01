@@ -709,7 +709,11 @@
         "might"   : 14,
         "range"   : 2,
         "magical" : true,
-        "dragon_effective" : true
+        "dragon_effective" : true,
+        "defend_mod" : {
+            "def" : 2,
+            "res" : 2
+        }
     },
     "Nóatún" : {
         "color"   : "Green",
