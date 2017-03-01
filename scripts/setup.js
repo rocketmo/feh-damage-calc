@@ -358,7 +358,7 @@ function afterCombatDmg (battleInfo, dmgAmount, dmgSource) {
 	"use strict";
 	var oldHP = battleInfo.defender.currHP;
 	battleInfo.defender.currHP = Math.max(oldHP - dmgAmount, 1);
-	battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> inflicts after combat damage with " + dmgSource + ". <span class='dmg'><strong>" + dmgAmount.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
+	battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> inflicts after combat damage [" + dmgSource + "]. <span class='dmg'><strong>" + dmgAmount.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
 	
 	return battleInfo;
 }
@@ -381,11 +381,11 @@ function statWord(stat) {
 
 // handles bonuses from initiating combat
 // battleInfo contains all battle information, statMods contains the stats to modify and the amounts to increase, modSource is the source of the bonuses
-function initiateBonus(battleInfo, statMods) {
+function initiateBonus(battleInfo, statMods, modSource) {
 	"use strict";
 	for (var stat in statMods) {
 		battleInfo.attacker[stat] += statMods[stat];
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> gains " + statMods[stat].toString() + " " + statWord(stat) + " by initiating combat.</li>";
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> gains " + statMods[stat].toString() + " " + statWord(stat) + " by initiating combat [" + modSource + "].</li>";
 	}
 	
 	return battleInfo;
@@ -393,11 +393,11 @@ function initiateBonus(battleInfo, statMods) {
 
 // handles bonuses from getting attacked
 // battleInfo contains all battle information, statMods contains the stats to modify and the amounts to increase, modSource is the source of the bonuses
-function defendBonus(battleInfo, statMods) {
+function defendBonus(battleInfo, statMods, modSource) {
 	"use strict";
 	for (var stat in statMods) {
 		battleInfo.defender[stat] += statMods[stat];
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> gains " + statMods[stat].toString() + " " + statWord(stat) + " by getting attacked.</li>";
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> gains " + statMods[stat].toString() + " " + statWord(stat) + " by getting attacked [" + modSource + "].</li>";
 	}
 	
 	return battleInfo;
@@ -438,7 +438,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	
 	if (attacker.hasOwnProperty("addBonusAtk") && attacker.addBonusAtk > 0) {
 		atkPower += attacker.addBonusAtk;
-		battleInfo.logMsg += "Attack is boosted by " + attacker.addBonusAtk.toString() + " due to the " + attacker.weaponName + ". ";
+		battleInfo.logMsg += "Attack is boosted by " + attacker.addBonusAtk.toString() + " [" + attacker.weaponName + "]. ";
 	}
 	
 	// determine attack modifier
@@ -451,17 +451,17 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	// triangle advantage
 	if (weaponColorAdv > 0) {
 		atkMod = 1.2;
-		battleInfo.logMsg += attacker.weaponName + " grants weapon advantage against " + defender.color + ", boosting attack by 20%. ";		
+		battleInfo.logMsg += "Weapon advantage against " + defender.color + " boosts attack by 20% [" + attacker.weaponName + "]. ";		
 	} else if (weaponColorAdv < 0) {
 		atkMod = 0.8;
 		roundUp = true;
-		battleInfo.logMsg += defender.weaponName + " gives <span class='" + defClass + "'><strong>" + defender.name + "</strong></span> the weapon advantage over <span class='" + atkClass + "'><strong>" + attacker.name + "</strong></span>, reducing attack by 20%. ";
+		battleInfo.logMsg += "Weapon disadvantage reduces attack by 20% [" + defender.weaponName + "]. ";
 	} else if (triAdv > 0) {
 		atkMod = 1.2;
 		battleInfo.logMsg += "Triangle advantage boosts attack by 20%. ";
 		if (attacker.weaponData.hasOwnProperty("tri_advantage")) {
 			atkMod += 0.2;
-			battleInfo.logMsg += attacker.weaponName + " boosts attack by another 20%. ";
+			battleInfo.logMsg += "Attack is boosted by another 20% [" + attacker.weaponName + "]. ";
 		}
 	} else if (triAdv < 0) {
 		atkMod = 0.8;
@@ -469,20 +469,20 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		battleInfo.logMsg += "Triangle disadvantage reduces attack by 20%. ";
 		if (attacker.weaponData.hasOwnProperty("tri_advantage")) {
 			atkMod -= 0.2;
-			battleInfo.logMsg += attacker.weaponName + " reduces attack by another 20%. ";
+			battleInfo.logMsg += "Attack is reduced by another 20% [" + attacker.weaponName + "]. ";
 		}
 	}
 	
 	// super effectiveness against movement types
 	if (attacker.weaponData.hasOwnProperty("move_effective") && attacker.weaponData.move_effective === defender.moveType) {
 		atkMod *= 1.5;
-		battleInfo.logMsg += "Effectiveness against " + defender.moveType + " boosts attack by 50%. ";
+		battleInfo.logMsg += "Effectiveness against " + defender.moveType + " boosts attack by 50% [" + attacker.weaponName + "]. ";
 	}
 	
 	// super effectiveness against dragons
 	if (attacker.weaponData.hasOwnProperty("dragon_effective") && defender.dragon) {
 		atkMod *= 1.5;
-		battleInfo.logMsg += "Effectiveness against dragons increases attack by 50%. ";
+		battleInfo.logMsg += "Effectiveness against dragons increases attack by 50% [" + attacker.weaponName + "]. ";
 	}
 	
 	// calculate attack
@@ -520,7 +520,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	
 	// check for a brave weapon
 	if (initiator && attacker.weaponData.hasOwnProperty("brave") && !brave && defender.currHP > 0) {
-		battleInfo = singleCombat(battleInfo, initiator, "attacks again with the " + attacker.weaponName, true);
+		battleInfo = singleCombat(battleInfo, initiator, "attacks again [" + attacker.weaponName + "]", true);
 	}
 	
 	return battleInfo;
@@ -566,6 +566,7 @@ function simBattle() {
 	}
 	
 	battleInfo.attacker.currHP = parseInt($("#curr-hp-1").val());
+	battleInfo.defender.initHP = parseInt($("#curr-hp-1").val());
 	battleInfo.attacker.hp = parseInt($("#hp-1").val());
 	battleInfo.attacker.atk = parseInt($("#atk-1").val()) + parseInt($("#atk-bonus-1").val()) + parseInt($("#atk-penalty-1").val()) + parseInt($("#atk-spur-1").val());
 	battleInfo.attacker.spd = parseInt($("#spd-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#spd-penalty-1").val()) + parseInt($("#spd-spur-1").val());
@@ -591,6 +592,7 @@ function simBattle() {
 	}
 	
 	battleInfo.defender.currHP = parseInt($("#curr-hp-2").val());
+	battleInfo.defender.initHP = parseInt($("#curr-hp-2").val());
 	battleInfo.defender.hp = parseInt($("#hp-2").val());
 	battleInfo.defender.atk = parseInt($("#atk-2").val()) + parseInt($("#atk-bonus-2").val()) + parseInt($("#atk-penalty-2").val()) + parseInt($("#atk-spur-2").val());
 	battleInfo.defender.spd = parseInt($("#spd-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#spd-penalty-2").val()) + parseInt($("#spd-spur-2").val());
@@ -599,12 +601,12 @@ function simBattle() {
 	
 	// attacker initate bonus
 	if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_mod")) {
-		battleInfo = initiateBonus(battleInfo, battleInfo.attacker.weaponData.initiate_mod);
+		battleInfo = initiateBonus(battleInfo, battleInfo.attacker.weaponData.initiate_mod, battleInfo.attacker.weaponName);
 	}
 	
 	// defending bonus
 	if (battleInfo.defender.weaponData.hasOwnProperty("defend_mod")) {
-		battleInfo = defendBonus(battleInfo, battleInfo.defender.weaponData.defend_mod);
+		battleInfo = defendBonus(battleInfo, battleInfo.defender.weaponData.defend_mod, battleInfo.defender.weaponName);
 	}
 	
 	// attacker initiates
@@ -614,7 +616,7 @@ function simBattle() {
 	var desperation = false;
 	if (battleInfo.attacker.weaponData.hasOwnProperty("desperation") && battleInfo.attacker.currHP <= battleInfo.attacker.weaponData.desperation.threshold * battleInfo.attacker.hp) {
 		desperation = true;
-		battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack with the " + battleInfo.attacker.weaponName, false);
+		battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack [" + battleInfo.attacker.weaponName + "]", false);
 	}
 	
 	// defender will try to counter-attack if they haven't been ko'd
@@ -623,18 +625,25 @@ function simBattle() {
 		if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range) {
 			battleInfo = singleCombat(battleInfo, false, "counter-attacks", false);
 		} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.hasOwnProperty("counter")) {	
-			battleInfo = singleCombat(battleInfo, false, "counter-attacks, ignoring distance", false);
+			battleInfo = singleCombat(battleInfo, false, "counter-attacks, ignoring distance [" + battleInfo.defender.weaponName + "]", false);
 		} else {
 			battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is unable to counter-attack.</li>";
 		}
 		
 		// if attacker hasn't been ko'd, check for follow ups
 		if (battleInfo.attacker.currHP > 0) {
+			var defendFollow = false;
 			if (battleInfo.attacker.spd >= battleInfo.defender.spd + 5 && !desperation) { // attacker follows up
 				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack", false);
 			} else if ((battleInfo.defender.weaponName !== "None") && (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && ((battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range) || (battleInfo.defender.weaponData.hasOwnProperty("counter")))) { 
 				// defender follows up
 				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack", false);
+				defendFollow = true;
+			}
+			
+			// check for quick riposte ability
+			if (!defendFollow && battleInfo.defender.weaponData.hasOwnProperty("riposte") && battleInfo.defender.initHP >= battleInfo.defender.weaponData.riposte.threshold * battleInfo.defender.hp) {
+				battleInfo = singleCombat(battleInfo, false, "makes an automatic follow-up attack [" + battleInfo.defender.weaponName + "]", false);
 			}
 		}
 		

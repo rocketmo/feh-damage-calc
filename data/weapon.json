@@ -12,7 +12,7 @@
         "might"   : 16,
         "range"   : 1,
         "magical" : false,
-        "reposte" : {
+        "riposte" : {
             "threshold" : 0.8
         }
     },

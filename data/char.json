@@ -703,7 +703,7 @@
 		"weapon": ["Brave Bow+", "Brave Bow", "Steel Bow", "Iron Bow"],
 		"special": ["Chilling Wind", "Glacies"],
 		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
-		"passive_b": ["Quick Reposte 3", "Quick Reposte 2", "Quick Reposte 1"]
+		"passive_b": ["Quick Riposte 3", "Quick Riposte 2", "Quick Riposte 1"]
 	},
 	"Lachesis" : {
         "color" : "Colorless",
@@ -744,7 +744,7 @@
 		"move_type": "Cavalry",
 		"weapon": ["Brynhildr", "Fenrir", "Ruin", "Flux"],
 		"special": ["Blazing Light", "Rising Light"],
-		"passive_b": ["Quick Reposte 3", "Quick Reposte 2", "Quick Reposte 1"],
+		"passive_b": ["Quick Riposte 3", "Quick Riposte 2", "Quick Riposte 1"],
 		"passive_c": ["Savage Blow 3", "Savage Blow 2", "Savage Blow 1"]
 	},
 	"Lilina": {
@@ -1334,7 +1334,7 @@
 		"move_type": "Flying",
 		"weapon": ["Sapphire Lance+", "Sapphire Lance", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
-		"passive_b": ["Quick Reposte 3", "Quick Reposte 2", "Quick Reposte 1"],
+		"passive_b": ["Quick Riposte 3", "Quick Riposte 2", "Quick Riposte 1"],
 		"command" : ["Swap"]
 	},
 	"Sully": {

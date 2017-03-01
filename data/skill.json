@@ -443,18 +443,18 @@
         "Poison Strike 3" : {
             "poison" : 10
         },
-        "Quick Reposte 1" : {
-            "reposte" : {
+        "Quick Riposte 1" : {
+            "riposte" : {
                 "threshold" : 0.9
             }
         },
-        "Quick Reposte 2" : {
-            "reposte" : {
+        "Quick Riposte 2" : {
+            "riposte" : {
                 "threshold" : 0.7
             }
         },
-        "Quick Reposte 3" : {
-            "reposte" : {
+        "Quick Riposte 3" : {
+            "riposte" : {
                 "threshold" : 0.5
             }
         },
