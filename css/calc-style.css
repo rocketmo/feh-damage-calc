@@ -229,3 +229,7 @@ h3 {
 .extra-weapon {
 	color: #5b5b5b;
 }
+
+.heal-seperator {
+	padding: 0em 0.5em;
+}

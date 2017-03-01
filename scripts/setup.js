@@ -504,6 +504,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		dmg = Math.max(atkPower - defender.def, 0);
 	}
 	
+	defender.currHP = Math.max(defender.currHP - dmg, 0);
 	battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + " damage dealt.</strong></span> ";
 	
 	// check for healing
@@ -512,16 +513,11 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		var heal = Math.floor((oldHP - defender.currHP) * attacker.weaponData.heal_dmg);
 		var atkOldHP = attacker.currHP;
 		attacker.currHP = Math.min(attacker.hp, attacker.currHP + heal);
-		battleInfo.logMsg += "Healed by a portion of damage dealt [" + attacker.weaponName + "]. <span class='dmg'><strong>" + heal.toString() + "&nbsp;health restored. </strong></span>";
-		healMsg = " | <span class='" + atkClass + "'><strong>" + attacker.name + " HP:</strong> " + atkOldHP.toString() + " → " + attacker.currHP.toString() + "</span>";
+		battleInfo.logMsg += "Healed by a portion of damage dealt [" + attacker.weaponName + "]. <span class='dmg'><strong>" + heal.toString() + " health restored. </strong></span>";
+		healMsg = " <span class='heal-seperator'>|</span> <span class='" + atkClass + "'><strong>" + attacker.name + " HP:</strong> " + atkOldHP.toString() + " → " + attacker.currHP.toString() + "</span>";
 	}
 	
-	battleInfo.logMsg += "<br>";
-	
-	defender.currHP = Math.max(defender.currHP - dmg, 0);
-	battleInfo.logMsg += "<span class='" + defClass + "'><strong>" + defender.name + " HP:</strong> " + oldHP.toString() + " → " + defender.currHP.toString() + "</span>" + healMsg;
-	
-	battleInfo.logMsg += "</li>";
+	battleInfo.logMsg += "<br><span class='" + defClass + "'><strong>" + defender.name + " HP:</strong> " + oldHP.toString() + " → " + defender.currHP.toString() + "</span>" + healMsg + "</li>";
 	
 	// store info
 	if (initiator) {
@@ -685,31 +681,23 @@ function setupChars() {
 	var options = "";
 	
 	// retrieve characters and add them to the list of options
-	$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
-			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/skill.json", function(skillInfo) {
-					for (var key in charInfo) {
-						if (charInfo.hasOwnProperty(key)) {
-							options += "<option value=\"" + key + "\">" + key + "</option>";
-						}
-					}
+	for (var key in charInfo) {
+		if (charInfo.hasOwnProperty(key)) {
+			options += "<option value=\"" + key + "\">" + key + "</option>";
+		}
+	}
 
-					// add to html
-					$(".char-selector").html(options);
+	// add to html
+	$(".char-selector").html(options);
 
-					// set default characters
-					$("#char-1 option:eq(0)").attr("selected", "selected");
-					displayChar(charInfo[$("#char-1").val()], weaponInfo, specInfo, skillInfo, "1");
-					$("#char-2 option:eq(1)").attr("selected", "selected");
-					displayChar(charInfo[$("#char-2").val()], weaponInfo, specInfo, skillInfo, "2");
+	// set default characters
+	$("#char-1 option:eq(0)").attr("selected", "selected");
+	displayChar(charInfo[$("#char-1").val()], weaponInfo, specInfo, skillInfo, "1");
+	$("#char-2 option:eq(1)").attr("selected", "selected");
+	displayChar(charInfo[$("#char-2").val()], weaponInfo, specInfo, skillInfo, "2");
 
-					// simulate initial battle
-					simBattle();
-				});
-			});
-		});
-	});
+	// simulate initial battle
+	simBattle();
 }
 
 // setup inital page
@@ -771,72 +759,46 @@ $(document).ready( function () {
 	
 	// setup character select
 	$("#char-1").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
-			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
-				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-					$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/skill.json", function(skillInfo) {
-						displayChar(charInfo[$("#char-1").val()], weaponInfo, specInfo, skillInfo, "1");
-						simBattle();
-					});
-				});
-			});
-		});
+		displayChar(charInfo[$("#char-1").val()], weaponInfo, specInfo, skillInfo, "1");
+		simBattle();
 	});
 	$("#char-2").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/char.json", function(charInfo) {
-			$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
-				$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-					$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/skill.json", function(skillInfo) {
-						displayChar(charInfo[$("#char-2").val()], weaponInfo, specInfo, skillInfo, "2");
-						simBattle();
-					});
-				});
-			});
-		});
+		displayChar(charInfo[$("#char-2").val()], weaponInfo, specInfo, skillInfo, "2");
+		simBattle();
 	});
 	
 	// setup weapon select
 	$("#weapon-1").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
-			showWeapon($("#weapon-1").val(), weaponInfo, "1", true);
-			simBattle();
-		});
+		showWeapon($("#weapon-1").val(), weaponInfo, "1", true);
+		simBattle();
 	});
 	$("#weapon-2").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/weapon.json", function(weaponInfo) {
-			showWeapon($("#weapon-2").val(), weaponInfo, "2", true);
-			simBattle();
-		});
+		showWeapon($("#weapon-2").val(), weaponInfo, "2", true);
+		simBattle();
 	});
 	
 	// setup special select
 	$("#special-1").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-			updateSpecCooldown("#weapon-1", '1', false);
-			getSpecialData(specInfo, '1');
-			showSpecCooldown($("#special-1").val(), specInfo, "1", false);
-			updateSpecCooldown("#weapon-1", '1', true);
-			simBattle();
-		});
+		updateSpecCooldown("#weapon-1", '1', false);
+		getSpecialData(specInfo, '1');
+		showSpecCooldown($("#special-1").val(), specInfo, "1", false);
+		updateSpecCooldown("#weapon-1", '1', true);
+		simBattle();
 	});
 	$("#special-2").on("change", function () {
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
-			updateSpecCooldown("#weapon-2", '2', false);
-			getSpecialData(specInfo, '2');
-			showSpecCooldown($("#special-2").val(), specInfo, "2", false);
-			updateSpecCooldown("#weapon-2", '2', true);
-			simBattle();
-		});
+		updateSpecCooldown("#weapon-2", '2', false);
+		getSpecialData(specInfo, '2');
+		showSpecCooldown($("#special-2").val(), specInfo, "2", false);
+		updateSpecCooldown("#weapon-2", '2', true);
+		simBattle();
 	});
 	
 	// setup skill select
 	$(".passive-selector").on("change", function () {
 		var charNum = $(this).data("charnum").toString();
 		var skillType = $(this).data("skilltype");
-		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/skill.json", function(skillInfo) {
-			getSkillData(skillInfo, charNum, skillType, true);
-			simBattle();
-		});
+		getSkillData(skillInfo, charNum, skillType, true);
+		simBattle();
 	});
 	
 	// setup other battle value changes
