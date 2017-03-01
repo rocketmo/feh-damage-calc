@@ -4,7 +4,8 @@
         "type"    : "Staff",
         "might"   : 4,
         "range"   : 2,
-        "magical" : true
+        "magical" : true,
+        "heal_dmg" : 0.5
     },
     "Armads" : {
         "color"   : "Green",

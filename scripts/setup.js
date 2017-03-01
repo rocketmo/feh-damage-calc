@@ -520,7 +520,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	
 	// check for a brave weapon
 	if (initiator && attacker.weaponData.hasOwnProperty("brave") && !brave && defender.currHP > 0) {
-		battleInfo = singleCombat(battleInfo, initiator, "attacks again [" + attacker.weaponName + "]", true);
+		battleInfo = singleCombat(battleInfo, initiator, "attacks again immediately [" + attacker.weaponName + "]", true);
 	}
 	
 	return battleInfo;

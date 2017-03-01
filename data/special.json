@@ -8,7 +8,7 @@
     },
     "Aether" : {
         "cooldown" : 5,
-        "heal" : 0.5,
+        "heal_dmg" : 0.5,
         "enemy_def_res_mod" : 0.5
     },
     "Astra" : {
@@ -58,7 +58,7 @@
     },
     "Daylight" : {
         "cooldown" : 4,
-        "heal" : 0.3
+        "heal_dmg" : 0.3
     },
     "Draconic Aura" : {
         "cooldown" : 3,
@@ -165,7 +165,7 @@
     },
     "Noontime" : {
         "cooldown" : 3,
-        "heal" : 0.3
+        "heal_dmg" : 0.3
     },
     "Pavise" : {
         "cooldown" : 3,
@@ -207,7 +207,7 @@
     },
     "Sol" : {
         "cooldown" : 4,
-        "heal" : 0.5
+        "heal_dmg" : 0.5
     },
     "Solid-Earth Balm" : {
         "cooldown" : 1,
