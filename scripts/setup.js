@@ -43,14 +43,57 @@ function getSpecialData (specInfo, charNum) {
 	}
 }
 
+// updates a displayed stat if the given select has a stat_mod property
+// selectID is the select's id, charNum determines which panel's stats to change, increment is true if we need to add to the stat total and false otherwise
+function updateStatTotal(selectID, charNum, increment) {
+	"use strict";
+	if ($(selectID).data("info") !== undefined && $(selectID).data("info").hasOwnProperty("stat_mod")) {
+		for (var stat in $(selectID).data("info").stat_mod) {
+			var total = parseInt($("#" + stat + "-" + charNum).val());
+			if (increment) {
+				total += $(selectID).data("info").stat_mod[stat];
+			} else {
+				total -= $(selectID).data("info").stat_mod[stat];
+			}
+			$("#" + stat + "-" + charNum).val(total);
+		}
+	}
+}
+
+// updates the special cooldown max if the given select has a spec_cooldown_mod property
+// selectID is the select's id, charNum determines which panel's stats to change, increment is true if we need to apply mod to the cooldown and false otherwise
+function updateSpecCooldown(selectID, charNum, increment) {
+	"use strict";
+	if ($(selectID).data("info") !== undefined && $(selectID).data("info").hasOwnProperty("spec_cooldown_mod") && $.isNumeric($("#spec-cooldown-max-" + charNum).text())) {
+		var max = parseInt($("#spec-cooldown-max-" + charNum).text());
+		var oldMax = max;
+		if (increment) {
+			max += $(selectID).data("info").spec_cooldown_mod;
+		} else {
+			max -= $(selectID).data("info").spec_cooldown_mod;
+		}
+		
+		// check if current cooldown needs to be fixed
+		if ((parseInt($("#spec-cooldown-" + charNum).val()) > max) || (parseInt($("#spec-cooldown-" + charNum).val()) === oldMax)) {
+			$("#spec-cooldown-" + charNum).val(max);
+		}
+		
+		$("#spec-cooldown-max-" + charNum).text(max.toString());
+	}
+}
+
 // gets skill data and stores it
 // skillData contains all skill data, charNum determines which panel to display it in, skillType is the letter of the skill
 function getSkillData (skillInfo, charNum, skillType) {
 	"use strict";
-	if ($("#passive-" + skillType + "-" + charNum).val() === "None") {
-		$("#passive-" + skillType + "-" + charNum).data("info", {});
+	var selectID = "#passive-" + skillType + "-" + charNum;
+	if ($(selectID).val() === "None") {	// no skill
+		updateStatTotal(selectID, charNum, false);
+		$(selectID).data("info", {});
 	} else {
-		$("#passive-" + skillType + "-" + charNum).data("info", skillInfo[skillType][$("#passive-" + skillType + "-" + charNum).val()]);
+		updateStatTotal(selectID, charNum, false);
+		$(selectID).data("info", skillInfo[skillType][$("#passive-" + skillType + "-" + charNum).val()]);
+		updateStatTotal(selectID, charNum, true);
 	}
 }
 
@@ -81,8 +124,9 @@ function showSkills(charInfo, skillInfo, charNum, type) {
 }
 
 // shows extra weapon info
-// selectedWeapon is the weapon to display, weaponInfo contains all weapon data, charNum determines the panel, set updateAtk to true to update the character's atk value
-function showWeapon(selectedWeapon, weaponInfo, charNum, updateAtk) {
+// selectedWeapon is the weapon to display, weaponInfo contains all weapon data, charNum determines the panel
+// set update to true to update the character's atk value and remove previous weapon's special cooldown modifier
+function showWeapon(selectedWeapon, weaponInfo, charNum, update) {
 	"use strict";
 	
 	var mt = 0;
@@ -102,16 +146,26 @@ function showWeapon(selectedWeapon, weaponInfo, charNum, updateAtk) {
 		}
 		
 		// store weapon data
+		updateStatTotal("#weapon-" + charNum, charNum, false);
+		if (update) {
+			updateSpecCooldown("#weapon-" + charNum, charNum, false);
+		}
 		$("#weapon-" + charNum).data("info", weaponInfo[selectedWeapon]);
+		updateStatTotal("#weapon-" + charNum, charNum, true);
+		updateSpecCooldown("#weapon-" + charNum, charNum, true);
 	} else {	// weapon not found
 		$("#weapon-might-" + charNum).text("n/a");
 		$("#weapon-range-" + charNum).text("n/a");
 		$("#weapon-magical-" + charNum).text("n/a");
+		updateStatTotal("#weapon-" + charNum, charNum, false);
+		if (update) {
+			updateSpecCooldown("#weapon-" + charNum, charNum, false);
+		}
 		$("#weapon-" + charNum).data("info", {});
 	}
 	
 	// update atk
-	if (updateAtk) {
+	if (update) {
 		var atk = parseInt($("#atk-" + charNum).val()) + mt - $("#weapon-might-" + charNum).data("oldmt");
 		atk = Math.min(atk, HIGHESTSTAT);
 		atk = Math.max(atk, 1);
@@ -121,14 +175,24 @@ function showWeapon(selectedWeapon, weaponInfo, charNum, updateAtk) {
 }
 
 // show special cooldown values
-// selectedSpecial is the special that is being displayed, specInfo contains all special data, charNum determines the panel
-function showSpecCooldown (selectedSpecial, specInfo, charNum) {
+// selectedSpecial is the special that is being displayed, specInfo contains all special data, charNum determines the panel, changeCurr is true if the current cooldown number needs to change
+function showSpecCooldown (selectedSpecial, specInfo, charNum, changeCurr) {
 	"use strict";
 	if (specInfo.hasOwnProperty(selectedSpecial)) {
+		var cool = specInfo[selectedSpecial].cooldown;
+		var equalsOldCool = false;
+		
+		if ($.isNumeric($("#spec-cooldown-max-" + charNum).text()) && parseInt($("#spec-cooldown-max-" + charNum).text()) === parseInt($("#spec-cooldown-" + charNum).val())){
+			equalsOldCool = true;
+		}
+		
+		if (changeCurr || parseInt($("#spec-cooldown-" + charNum).val()) > cool || $("#spec-cooldown-" + charNum).attr("disabled") !== undefined || equalsOldCool) {
+			$("#spec-cooldown-" + charNum).val(cool);
+		}
+		
 		$("#spec-cooldown-" + charNum).removeAttr("disabled");
 		$("#spec-cooldown-line-" + charNum).css("color", "white");
-		$("#spec-cooldown-" + charNum).val(specInfo[selectedSpecial].cooldown);
-		$("#spec-cooldown-max-" + charNum).text(specInfo[selectedSpecial].cooldown);
+		$("#spec-cooldown-max-" + charNum).text(cool);
 	} else { // special not found
 		$("#spec-cooldown-" + charNum).val("0");
 		$("#spec-cooldown-" + charNum).attr("disabled", "disabled");
@@ -175,19 +239,6 @@ function displayChar(charInfo, weaponInfo, specInfo, skillInfo, charNum) {
 	} else {
 		$("#dragon-" + charNum).val("No");
 	}
-	
-	// show weapon
-	var selectedWeapon = charInfo.weapon[0];
-	var weapons = "<option value='" + selectedWeapon + "'>" + selectedWeapon + "</option>";
-	for (var weaponIndex = 1; weaponIndex < charInfo.weapon.length; weaponIndex++) {
-		weapons += "<option value='" + charInfo.weapon[weaponIndex] + "'>" + charInfo.weapon[weaponIndex] + "</option>";
-	}
-	weapons += "<option value='None'>None</option>";
-	$("#weapon-" + charNum).html(weapons);
-	$("#weapon-" + charNum + " option:eq(0)").attr("selected", "selected");
-	
-	// show extra weapon info
-	showWeapon(selectedWeapon, weaponInfo, charNum, false);
 	
 	// show stats
 	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(charInfo.hp);
@@ -240,7 +291,7 @@ function displayChar(charInfo, weaponInfo, specInfo, skillInfo, charNum) {
 		
 		// show cooldown values
 		getSpecialData(specInfo, charNum);
-		showSpecCooldown(selectedSpecial, specInfo, charNum);
+		showSpecCooldown(selectedSpecial, specInfo, charNum, true);
 		
 	} else {
 		$("#special-" + charNum).html("<option value='None'>None<option>");
@@ -251,6 +302,19 @@ function displayChar(charInfo, weaponInfo, specInfo, skillInfo, charNum) {
 		$("#spec-cooldown-max-" + charNum).text("x");
 		$("#spec-cooldown-line-" + charNum).css("color", "#5b5b5b");
 	}
+	
+	// show weapon
+	var selectedWeapon = charInfo.weapon[0];
+	var weapons = "<option value='" + selectedWeapon + "'>" + selectedWeapon + "</option>";
+	for (var weaponIndex = 1; weaponIndex < charInfo.weapon.length; weaponIndex++) {
+		weapons += "<option value='" + charInfo.weapon[weaponIndex] + "'>" + charInfo.weapon[weaponIndex] + "</option>";
+	}
+	weapons += "<option value='None'>None</option>";
+	$("#weapon-" + charNum).html(weapons);
+	$("#weapon-" + charNum + " option:eq(0)").attr("selected", "selected");
+	
+	// show extra weapon info
+	showWeapon(selectedWeapon, weaponInfo, charNum, false);
 }
 
 // determines if the attacker has triangle advantage
@@ -702,15 +766,19 @@ $(document).ready( function () {
 	// setup special select
 	$("#special-1").on("change", function () {
 		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
+			updateSpecCooldown("#weapon-1", '1', false);
 			getSpecialData(specInfo, '1');
-			showSpecCooldown($("#special-1").val(), specInfo, "1");
+			showSpecCooldown($("#special-1").val(), specInfo, "1", false);
+			updateSpecCooldown("#weapon-1", '1', true);
 			simBattle();
 		});
 	});
 	$("#special-2").on("change", function () {
 		$.getJSON("https://rocketmo.github.io/feh-damage-calc/data/special.json", function(specInfo) {
+			updateSpecCooldown("#weapon-2", '2', false);
 			getSpecialData(specInfo, '2');
-			showSpecCooldown($("#special-2").val(), specInfo, "2");
+			showSpecCooldown($("#special-2").val(), specInfo, "2", false);
+			updateSpecCooldown("#weapon-2", '2', true);
 			simBattle();
 		});
 	});
