@@ -347,13 +347,31 @@ function weaponColorAdvantage (attackColor, defendColor, attackWeapon, defendWea
 	return 0;
 }
 
-// handles after combat damage
+// handles after combat damage (on the defender)
 // battleInfo contains all battle information, dmgAmount is the amount of damage to inflict, dmgSource is the source of the damage
 function afterCombatDmg (battleInfo, dmgAmount, dmgSource) {
 	"use strict";
 	var oldHP = battleInfo.defender.currHP;
 	battleInfo.defender.currHP = Math.max(oldHP - dmgAmount, 1);
 	battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> inflicts after-combat damage [" + dmgSource + "]. <span class='dmg'><strong>" + dmgAmount.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
+	
+	return battleInfo;
+}
+
+// handles self-inflicted after combat damage
+// battleInfo contains all battle information, dmgAmount is the amount of damage to inflict, dmgSource is the source of the damage, initiator is true if the attacker is damaged
+function recoilDmg(battleInfo, dmgAmount, dmgSource, initiator) {
+	"use strict";
+	var oldHP = 0;
+	if (initiator) {
+		oldHP = battleInfo.attacker.currHP;
+		battleInfo.attacker.currHP = Math.max(oldHP - dmgAmount, 1);
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> takes damage after combat [" + dmgSource + "]. <span class='dmg'><strong>" + dmgAmount.toString() + " damage dealt.</strong></span><br><span class='attacker'><strong>" + battleInfo.attacker.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.attacker.currHP.toString() + "</span></li>";
+	} else {
+		oldHP = battleInfo.defender.currHP;
+		battleInfo.defender.currHP = Math.max(oldHP - dmgAmount, 1);
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> takes damage after combat [" + dmgSource + "]. <span class='dmg'><strong>" + dmgAmount.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
+	}
 	
 	return battleInfo;
 }
@@ -396,6 +414,13 @@ function defendBonus(battleInfo, statMods, modSource) {
 	}
 	
 	return battleInfo;
+}
+
+// checks if the defender can counter
+// battleInfo contains all battle information
+function defCanCounter(battleInfo) {
+	"use strict";
+	return battleInfo.defender.weaponName !== "None" && (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range || battleInfo.defender.weaponData.hasOwnProperty("counter") || battleInfo.defender.passiveAData.hasOwnProperty("counter"));
 }
 
 // calculates how much damage the attacker will do to the defender in just one attack phase
@@ -459,13 +484,13 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 			battleInfo.logMsg += "Attack is boosted by another 20% [" + attacker.weaponName + "]. ";
 		} else if (defender.weaponData.hasOwnProperty("tri_advantage")) {
 			atkMod += 0.2;
-			battleInfo.logMsg += "Opponent boosts attack by another 20% [" + defender.weaponName + "]. ";
-		} else if (attacker.passiveAData.hasOwnProperty("triangle_boost")) {
-			atkMod += attacker.passiveAData.triangle_boost;
-			battleInfo.logMsg += "Attack is boosted by another " + (attacker.passiveAData.triangle_boost * 100).toString() + "% [" + attacker.passiveA + "]. ";
-		} else if (defender.passiveAData.hasOwnProperty("triangle_boost")) {
-			atkMod += defender.passiveAData.triangle_boost;
-			battleInfo.logMsg += "Opponent boosts attack by another " + (defender.passiveAData.triangle_boost * 100).toString() + "% [" + defender.passiveA + "]. ";
+			battleInfo.logMsg += "Opponent disadvantage boosts attack by another 20% [" + defender.weaponName + "]. ";
+		} else if (attacker.passiveAData.hasOwnProperty("tri_advantage")) {
+			atkMod += attacker.passiveAData.tri_advantage;
+			battleInfo.logMsg += "Attack is boosted by another " + (attacker.passiveAData.tri_advantage * 100).toString() + "% [" + attacker.passiveA + "]. ";
+		} else if (defender.passiveAData.hasOwnProperty("tri_advantage")) {
+			atkMod += defender.passiveAData.tri_advantage;
+			battleInfo.logMsg += "Opponent disadvantage boosts attack by another " + (defender.passiveAData.tri_advantage * 100).toString() + "% [" + defender.passiveA + "]. ";
 		}
 	} else if (triAdv < 0) {
 		atkMod = 0.8;
@@ -477,19 +502,23 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		} else if (defender.weaponData.hasOwnProperty("tri_advantage")) {
 			atkMod -= 0.2;
 			battleInfo.logMsg += "Opponent reduces attack by another 20% [" + defender.weaponName + "]. ";
-		} else if (attacker.passiveAData.hasOwnProperty("triangle_boost")) {
-			atkMod -= attacker.passiveAData.triangle_boost;
-			battleInfo.logMsg += "Attack is reduced by another " + (attacker.passiveAData.triangle_boost * 100).toString() + "% [" + attacker.passiveA + "]. ";
-		} else if (defender.passiveAData.hasOwnProperty("triangle_boost")) {
-			atkMod -= defender.passiveAData.triangle_boost;
-			battleInfo.logMsg += "Opponent reduces attack by another " + (defender.passiveAData.triangle_boost * 100).toString() + "% [" + defender.passiveA + "]. ";
+		} else if (attacker.passiveAData.hasOwnProperty("tri_advantage")) {
+			atkMod -= attacker.passiveAData.tri_advantage;
+			battleInfo.logMsg += "Attack is reduced by another " + (attacker.passiveAData.tri_advantage * 100).toString() + "% [" + attacker.passiveA + "]. ";
+		} else if (defender.passiveAData.hasOwnProperty("tri_advantage")) {
+			atkMod -= defender.passiveAData.tri_advantage;
+			battleInfo.logMsg += "Opponent reduces attack by another " + (defender.passiveAData.tri_advantage * 100).toString() + "% [" + defender.passiveA + "]. ";
 		}
 	}
 	
 	// super effectiveness against movement types
 	if (attacker.weaponData.hasOwnProperty("move_effective") && attacker.weaponData.move_effective === defender.moveType) {
-		atkMod *= 1.5;
-		battleInfo.logMsg += "Effectiveness against " + defender.moveType + " boosts attack by 50% [" + attacker.weaponName + "]. ";
+		if (defender.passiveAData.hasOwnProperty("cancel_effective")) {
+			battleInfo.logMsg += "Effectiveness against " + defender.moveType + " neutralized by opponent [" + defender.passiveA + "]. ";
+		} else {
+			atkMod *= 1.5;
+			battleInfo.logMsg += "Effectiveness against " + defender.moveType + " boosts attack by 50% [" + attacker.weaponName + "]. ";
+		}
 	}
 	
 	// super effectiveness against dragons
@@ -701,8 +730,14 @@ function simBattle() {
 		
 		// if attacker hasn't been ko'd, check for follow ups
 		if (battleInfo.attacker.currHP > 0) {
-			// check for wary fighter
-			if (battleInfo.attacker.passiveBData.hasOwnProperty("wary") && battleInfo.attacker.initHP >= battleInfo.attacker.passiveBData.wary.threshold * battleInfo.attacker.hp) {
+			// breaker skill > wary fighter
+			if (battleInfo.attacker.passiveBData.hasOwnProperty("breaker") && battleInfo.attacker.passiveBData.breaker.weapon_type === battleInfo.defender.type && battleInfo.attacker.initHP >= battleInfo.attacker.passiveBData.breaker.threshold * battleInfo.attacker.hp && battleInfo.defender.passiveBData.hasOwnProperty("breaker") && battleInfo.defender.passiveBData.breaker.weapon_type === battleInfo.attacker.type && battleInfo.defender.initHP >= battleInfo.defender.passiveBData.breaker.threshold * battleInfo.defender.hp && defCanCounter(battleInfo)) {
+				battleInfo.logMsg += "li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.passiveB + ", " + battleInfo.defender.passiveB + "].</li>";
+			} else if (battleInfo.attacker.passiveBData.hasOwnProperty("breaker") && battleInfo.attacker.passiveBData.breaker.weapon_type === battleInfo.defender.type && battleInfo.attacker.initHP >= battleInfo.attacker.passiveBData.breaker.threshold * battleInfo.attacker.hp ) {
+				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while nullifying any follow-up attack from the opponent [" + battleInfo.attacker.passiveB + "]", false);
+			} else if (battleInfo.defender.passiveBData.hasOwnProperty("breaker") && battleInfo.defender.passiveBData.breaker.weapon_type === battleInfo.attacker.type && battleInfo.defender.initHP >= battleInfo.defender.passiveBData.breaker.threshold * battleInfo.defender.hp && defCanCounter(battleInfo)) {
+				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while nullifying any follow-up attack from the opponent [" + battleInfo.attacker.passiveB + "]", false);
+			} else if (battleInfo.attacker.passiveBData.hasOwnProperty("wary") && battleInfo.attacker.initHP >= battleInfo.attacker.passiveBData.wary.threshold * battleInfo.attacker.hp) {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> prevents any further follow-up attacks [" + battleInfo.attacker.passiveB + "].</li>";
 			} else if (battleInfo.defender.passiveBData.hasOwnProperty("wary") && battleInfo.defender.initHP >= battleInfo.defender.passiveBData.wary.threshold * battleInfo.defender.hp) {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> prevents any further follow-up attacks [" + battleInfo.defender.passiveB + "].</li>";
@@ -719,14 +754,14 @@ function simBattle() {
 				if (!attackFollow && battleInfo.attacker.spd >= battleInfo.defender.spd + 5 && !desperation) { // attacker follows up
 					battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack", false);
 					attackFollow = true;
-				} else if (!defendFollow && (battleInfo.defender.weaponName !== "None") && (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && ((battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range) || (battleInfo.defender.weaponData.hasOwnProperty("counter")))) { 
+				} else if (!defendFollow && (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && defCanCounter(battleInfo)) { 
 					// defender follows up
 					battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack", false);
 					defendFollow = true;
 				}
 
 				// check for quick riposte ability
-				if (battleInfo.defender.currHP > 0 && !defendFollow && battleInfo.defender.weaponName !== "None" && (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range || battleInfo.defender.weaponData.hasOwnProperty("counter") || battleInfo.defender.passiveAData.hasOwnProperty("counter"))) {
+				if (battleInfo.defender.currHP > 0 && !defendFollow && defCanCounter(battleInfo)) {
 					if (battleInfo.defender.weaponData.hasOwnProperty("riposte") && battleInfo.defender.initHP >= battleInfo.defender.weaponData.riposte.threshold * battleInfo.defender.hp) {
 						battleInfo = singleCombat(battleInfo, false, "makes an automatic follow-up attack [" + battleInfo.defender.weaponName + "]", false);
 					} else if (battleInfo.defender.passiveBData.hasOwnProperty("riposte") && battleInfo.defender.initHP >= battleInfo.defender.passiveBData.riposte.threshold * battleInfo.defender.hp) {
@@ -736,13 +771,20 @@ function simBattle() {
 			}
 		}
 		
-		// check for poison damage
+		// check for poison damage and recoil damage
 		if (battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) {
 			if (battleInfo.attacker.weaponData.hasOwnProperty("poison")) {
 				battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.poison, battleInfo.attacker.weaponName);
 			}
 			if (battleInfo.attacker.passiveBData.hasOwnProperty("poison")) {
 				battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.passiveBData.poison, battleInfo.attacker.passiveB);
+			}
+			
+			if (battleInfo.attacker.passiveAData.hasOwnProperty("recoil_dmg")) {
+				battleInfo = recoilDmg(battleInfo, battleInfo.attacker.passiveAData.recoil_dmg, battleInfo.attacker.passiveA, true);
+			}
+			if (battleInfo.defender.passiveAData.hasOwnProperty("recoil_dmg")) {
+				battleInfo = recoilDmg(battleInfo, battleInfo.defender.passiveAData.recoil_dmg, battleInfo.defender.passiveA, false);
 			}
 		}
 	}
