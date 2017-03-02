@@ -462,6 +462,10 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		if (attacker.weaponData.hasOwnProperty("tri_advantage")) {
 			atkMod += 0.2;
 			battleInfo.logMsg += "Attack is boosted by another 20% [" + attacker.weaponName + "]. ";
+		} 
+		if (attacker.passiveAData.hasOwnProperty("triangle_boost")) {
+			atkMod += attacker.passiveAData.triangle_boost;
+			battleInfo.logMsg += "Attack is boosted by another " + (attacker.passiveAData.triangle_boost * 100).toString() + "% [" + attacker.passiveA + "]. ";
 		}
 	} else if (triAdv < 0) {
 		atkMod = 0.8;
@@ -470,6 +474,10 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		if (attacker.weaponData.hasOwnProperty("tri_advantage")) {
 			atkMod -= 0.2;
 			battleInfo.logMsg += "Attack is reduced by another 20% [" + attacker.weaponName + "]. ";
+		} 
+		if (attacker.passiveAData.hasOwnProperty("triangle_boost")) {
+			atkMod -= attacker.passiveAData.triangle_boost;
+			battleInfo.logMsg += "Attack is reduced by another " + (attacker.passiveAData.triangle_boost * 100).toString() + "% [" + attacker.passiveA + "]. ";
 		}
 	}
 	
@@ -583,7 +591,7 @@ function simBattle() {
 	battleInfo.attacker.passiveCData = $("#passive-c-1").data("info");
 	
 	battleInfo.attacker.currHP = parseInt($("#curr-hp-1").val());
-	battleInfo.defender.initHP = parseInt($("#curr-hp-1").val());
+	battleInfo.attacker.initHP = parseInt($("#curr-hp-1").val());
 	battleInfo.attacker.hp = parseInt($("#hp-1").val());
 	battleInfo.attacker.atk = parseInt($("#atk-1").val()) + parseInt($("#atk-bonus-1").val()) + parseInt($("#atk-penalty-1").val()) + parseInt($("#atk-spur-1").val());
 	battleInfo.attacker.spd = parseInt($("#spd-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#spd-penalty-1").val()) + parseInt($("#spd-spur-1").val());
@@ -641,9 +649,12 @@ function simBattle() {
 	
 	// desperation follow up
 	var desperation = false;
-	if (battleInfo.attacker.weaponData.hasOwnProperty("desperation") && battleInfo.attacker.currHP <= battleInfo.attacker.weaponData.desperation.threshold * battleInfo.attacker.hp) {
+	if (battleInfo.attacker.weaponData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= battleInfo.attacker.weaponData.desperation.threshold * battleInfo.attacker.hp) {
 		desperation = true;
 		battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack [" + battleInfo.attacker.weaponName + "]", false);
+	} else if (battleInfo.attacker.passiveBData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= battleInfo.attacker.passiveBData.desperation.threshold * battleInfo.attacker.hp) {
+		desperation = true;
+		battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack [" + battleInfo.attacker.passiveB + "]", false);
 	}
 	
 	// defender will try to counter-attack if they haven't been ko'd
@@ -671,14 +682,23 @@ function simBattle() {
 			}
 			
 			// check for quick riposte ability
-			if (!defendFollow && battleInfo.defender.weaponData.hasOwnProperty("riposte") && battleInfo.defender.initHP >= battleInfo.defender.weaponData.riposte.threshold * battleInfo.defender.hp) {
-				battleInfo = singleCombat(battleInfo, false, "makes an automatic follow-up attack [" + battleInfo.defender.weaponName + "]", false);
+			if (battleInfo.defender.currHP > 0 && !defendFollow) {
+				if (battleInfo.defender.weaponData.hasOwnProperty("riposte") && battleInfo.defender.initHP >= battleInfo.defender.weaponData.riposte.threshold * battleInfo.defender.hp) {
+					battleInfo = singleCombat(battleInfo, false, "makes an automatic follow-up attack [" + battleInfo.defender.weaponName + "]", false);
+				} else if (battleInfo.defender.passiveBData.hasOwnProperty("riposte") && battleInfo.defender.initHP >= battleInfo.defender.passiveBData.riposte.threshold * battleInfo.defender.hp) {
+					battleInfo = singleCombat(battleInfo, false, "makes an automatic follow-up attack [" + battleInfo.defender.passiveB + "]", false);
+				}
 			}
 		}
 		
 		// check for poison damage
-		if (battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0 && battleInfo.attacker.weaponData.hasOwnProperty("poison")) {
-			battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.poison, battleInfo.attacker.weaponName);
+		if (battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) {
+			if (battleInfo.attacker.weaponData.hasOwnProperty("poison")) {
+				battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.poison, battleInfo.attacker.weaponName);
+			}
+			if (battleInfo.attacker.passiveBData.hasOwnProperty("poison")) {
+				battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.passiveBData.poison, battleInfo.attacker.passiveB);
+			}
 		}
 	}
 	

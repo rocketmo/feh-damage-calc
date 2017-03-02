@@ -110,6 +110,22 @@ var weaponInfo =
 		"magical" : true,
 		"color_effective" : "Colorless"
 	},
+	"Blárwolf" : {
+		"color"   : "Blue",
+		"type"    : "Blue Tome",
+		"might"   : 6,
+		"range"   : 2,
+		"magical" : true,
+		"move_effective" : "Cavalry"
+	},
+	"Blárwolf+" : {
+		"color"   : "Blue",
+		"type"    : "Blue Tome",
+		"might"   : 10,
+		"range"   : 2,
+		"magical" : true,
+		"move_effective" : "Cavalry"
+	},
 	"Bolganone" : {
 		"color"   : "Red",
 		"type"    : "Red Tome",
