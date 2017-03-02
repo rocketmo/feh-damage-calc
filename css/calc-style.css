@@ -137,6 +137,11 @@ h1, h2, h3 {
 	border: none;
 }
 
+body:after {
+	display: none;
+	content: url(../img/swap-hover.png) url(../img/swap-press.png);
+}
+
 #swap-button:focus {
 	outline: none;
 }

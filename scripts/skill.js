@@ -243,13 +243,13 @@ var skillInfo =
             "cancel_effective" : true
         },
         "Triangle Adept 1" : {
-            "triangle_boost" : 0.1
+            "tri_advantage" : 0.1
         },
         "Triangle Adept 2" : {
-            "triangle_boost" : 0.15
+            "tri_advantage" : 0.15
         },
         "Triangle Adept 3" : {
-            "triangle_boost" : 0.2
+            "tri_advantage" : 0.2
         },
         "Warding Blow 1" : {
             "initiate_mod" : {
