@@ -358,7 +358,7 @@ function afterCombatDmg (battleInfo, dmgAmount, dmgSource) {
 	"use strict";
 	var oldHP = battleInfo.defender.currHP;
 	battleInfo.defender.currHP = Math.max(oldHP - dmgAmount, 1);
-	battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> inflicts after combat damage [" + dmgSource + "]. <span class='dmg'><strong>" + dmgAmount.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
+	battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> inflicts after-combat damage [" + dmgSource + "]. <span class='dmg'><strong>" + dmgAmount.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
 	
 	return battleInfo;
 }
@@ -513,7 +513,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		var heal = Math.floor((oldHP - defender.currHP) * attacker.weaponData.heal_dmg);
 		var atkOldHP = attacker.currHP;
 		attacker.currHP = Math.min(attacker.hp, attacker.currHP + heal);
-		battleInfo.logMsg += "Healed by a portion of damage dealt [" + attacker.weaponName + "]. <span class='dmg'><strong>" + heal.toString() + " health restored. </strong></span>";
+		battleInfo.logMsg += "Healed by " + (attacker.weaponData.heal_dmg * 100).toString() +"% of damage dealt [" + attacker.weaponName + "]. <span class='dmg'><strong>" + heal.toString() + " health restored. </strong></span>";
 		healMsg = " <span class='heal-seperator'>|</span> <span class='" + atkClass + "'><strong>" + attacker.name + " HP:</strong> " + atkOldHP.toString() + " → " + attacker.currHP.toString() + "</span>";
 	}
 	
@@ -575,6 +575,13 @@ function simBattle() {
 		battleInfo.attacker.addBonusAtk = parseInt($("#atk-bonus-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#def-bonus-1").val()) + parseInt($("#res-bonus-1").val());
 	}
 	
+	battleInfo.attacker.passiveA = $("#passive-a-1").val();
+	battleInfo.attacker.passiveB = $("#passive-b-1").val();
+	battleInfo.attacker.passiveC = $("#passive-c-1").val();
+	battleInfo.attacker.passiveAData = $("#passive-a-1").data("info");
+	battleInfo.attacker.passiveBData = $("#passive-b-1").data("info");
+	battleInfo.attacker.passiveCData = $("#passive-c-1").data("info");
+	
 	battleInfo.attacker.currHP = parseInt($("#curr-hp-1").val());
 	battleInfo.defender.initHP = parseInt($("#curr-hp-1").val());
 	battleInfo.attacker.hp = parseInt($("#hp-1").val());
@@ -601,6 +608,13 @@ function simBattle() {
 		battleInfo.defender.addBonusAtk = parseInt($("#atk-bonus-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#def-bonus-2").val()) + parseInt($("#res-bonus-2").val());
 	}
 	
+	battleInfo.defender.passiveA = $("#passive-a-2").val();
+	battleInfo.defender.passiveB = $("#passive-b-2").val();
+	battleInfo.defender.passiveC = $("#passive-c-2").val();
+	battleInfo.defender.passiveAData = $("#passive-a-2").data("info");
+	battleInfo.defender.passiveBData = $("#passive-b-2").data("info");
+	battleInfo.defender.passiveCData = $("#passive-c-2").data("info");
+	
 	battleInfo.defender.currHP = parseInt($("#curr-hp-2").val());
 	battleInfo.defender.initHP = parseInt($("#curr-hp-2").val());
 	battleInfo.defender.hp = parseInt($("#hp-2").val());
@@ -612,6 +626,9 @@ function simBattle() {
 	// attacker initate bonus
 	if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_mod")) {
 		battleInfo = initiateBonus(battleInfo, battleInfo.attacker.weaponData.initiate_mod, battleInfo.attacker.weaponName);
+	}
+	if (battleInfo.attacker.passiveAData.hasOwnProperty("initiate_mod")) {
+		battleInfo = initiateBonus(battleInfo, battleInfo.attacker.passiveAData.initiate_mod, battleInfo.attacker.passiveA);
 	}
 	
 	// defending bonus
@@ -636,6 +653,8 @@ function simBattle() {
 			battleInfo = singleCombat(battleInfo, false, "counter-attacks", false);
 		} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.hasOwnProperty("counter")) {	
 			battleInfo = singleCombat(battleInfo, false, "counter-attacks, ignoring distance [" + battleInfo.defender.weaponName + "]", false);
+		} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.passiveAData.hasOwnProperty("counter")) {	
+			battleInfo = singleCombat(battleInfo, false, "counter-attacks, ignoring distance [" + battleInfo.defender.passiveA + "]", false);
 		} else {
 			battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is unable to counter-attack.</li>";
 		}
