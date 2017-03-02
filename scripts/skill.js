@@ -758,4 +758,4 @@ var skillInfo =
         "Ward Fliers" : {
         }
     }
-}
+};

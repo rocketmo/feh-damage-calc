@@ -33,8 +33,8 @@ function setupStats () {
 }
 
 // gets special data and stores it
-// specInfo contains all special data, charNum determines which panel to display it in
-function getSpecialData (specInfo, charNum) {
+// charNum determines which panel to display it in
+function getSpecialData (charNum) {
 	"use strict";
 	if ($("#special-" + charNum).val() === "None") {
 		$("#special-" + charNum).data("info", {});
@@ -83,8 +83,8 @@ function updateSpecCooldown(selectID, charNum, increment) {
 }
 
 // gets skill data and stores it
-// skillData contains all skill data, charNum determines which panel to display it in, skillType is the letter of the skill, update is true if stats need to be adjusted
-function getSkillData (skillInfo, charNum, skillType, update) {
+// charNum determines which panel to display it in, skillType is the letter of the skill, update is true if stats need to be adjusted
+function getSkillData (charNum, skillType, update) {
 	"use strict";
 	var selectID = "#passive-" + skillType + "-" + charNum;
 	if ($(selectID).val() === "None") {	// no skill
@@ -102,16 +102,16 @@ function getSkillData (skillInfo, charNum, skillType, update) {
 }
 
 // displays passive skills
-// charInfo contains the character info, skillInfo contains all skill information, charNum determines which panel to display on, type determines the skill type
-function showSkills(charInfo, skillInfo, charNum, type) {
+// singleChar contains the data for a single character, charNum determines which panel to display on, type determines the skill type
+function showSkills(singleChar, charNum, type) {
 	"use strict";
-	if (charInfo.hasOwnProperty("passive_" + type)) {
+	if (singleChar.hasOwnProperty("passive_" + type)) {
 		var skills = "";
 		$("#passive-" + type + "-" + charNum).removeAttr("disabled");
 		$("#skills-" + charNum + " .passive-" + type + "-label").css("color", "white");
 		
-		for (var i = 0; i < charInfo["passive_" + type].length; i++) {
-			var skillName = charInfo["passive_" + type][i];
+		for (var i = 0; i < singleChar["passive_" + type].length; i++) {
+			var skillName = singleChar["passive_" + type][i];
 			skills += "<option value='" + skillName + "'>" + skillName + "</option>";
 		}
 		skills += "<option value='None'>None</option>";
@@ -124,13 +124,13 @@ function showSkills(charInfo, skillInfo, charNum, type) {
 	}
 	
 	// store skill data
-	getSkillData(skillInfo, charNum, type, false);
+	getSkillData(charNum, type, false);
 }
 
 // shows extra weapon info
-// selectedWeapon is the weapon to display, weaponInfo contains all weapon data, charNum determines the panel
+// selectedWeapon is the weapon to display, charNum determines the panel
 // set update to true to update the character's atk value and remove previous weapon's special cooldown modifier
-function showWeapon(selectedWeapon, weaponInfo, charNum, update) {
+function showWeapon(selectedWeapon, charNum, update) {
 	"use strict";
 	
 	var mt = 0;
@@ -181,8 +181,8 @@ function showWeapon(selectedWeapon, weaponInfo, charNum, update) {
 }
 
 // show special cooldown values
-// selectedSpecial is the special that is being displayed, specInfo contains all special data, charNum determines the panel, changeCurr is true if the current cooldown number needs to change
-function showSpecCooldown (selectedSpecial, specInfo, charNum, changeCurr) {
+// selectedSpecial is the special that is being displayed, charNum determines the panel, changeCurr is true if the current cooldown number needs to change
+function showSpecCooldown (selectedSpecial, charNum, changeCurr) {
 	"use strict";
 	if (specInfo.hasOwnProperty(selectedSpecial)) {
 		var cool = specInfo[selectedSpecial].cooldown;
@@ -208,11 +208,10 @@ function showSpecCooldown (selectedSpecial, specInfo, charNum, changeCurr) {
 }
 
 // displays character information in the character panels
-// charInfo contains only the character info to display, weaponInfo contains all weapon data
-// specInfo contains all special data, skillInfo contains all skill data, charNum determines which panel to display on
-function displayChar(charInfo, weaponInfo, specInfo, skillInfo, charNum) {
+// singleChar contains only the character info to display, charNum determines which panel to display on
+function displayChar(singleChar, charNum) {
 	"use strict";
-	if (!charInfo.hasOwnProperty("move_type")) { // no info -> custom option
+	if (!singleChar.hasOwnProperty("move_type")) { // no info -> custom option
 		// enable inputs
 		$("#extra-char-info-" + charNum).css("color", "white");
 		$("#skills-" + charNum + " label").css("color", "white");
@@ -230,74 +229,70 @@ function displayChar(charInfo, weaponInfo, specInfo, skillInfo, charNum) {
 	$("#extra-char-info-" + charNum).css("color", "#5b5b5b");
 	$("#extra-char-info-" + charNum + " select").attr("disabled", "disabled");
 	
-	// show color
-	$("#color-" + charNum).val(charInfo.color);
-	
-	// show weapon type
-	$("#weapon-type-" + charNum).val(charInfo.weapon_type);
-	
-	// show move type
-	$("#move-type-" + charNum).val(charInfo.move_type);
+	// show general character info
+	$("#color-" + charNum).val(singleChar.color);
+	$("#weapon-type-" + charNum).val(singleChar.weapon_type);
+	$("#move-type-" + charNum).val(singleChar.move_type);
 	
 	// show dragon attribute
-	if (charInfo.hasOwnProperty("dragon")) {
+	if (singleChar.hasOwnProperty("dragon")) {
 		$("#dragon-" + charNum).val("Yes");
 	} else {
 		$("#dragon-" + charNum).val("No");
 	}
 	
 	// show stats
-	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(charInfo.hp);
-	$(".hp-" + charNum + "-read").text(charInfo.hp);
-	$("#atk-" + charNum).val(charInfo.atk);
-	$("#spd-" + charNum).val(charInfo.spd);
-	$("#def-" + charNum).val(charInfo.def);
-	$("#res-" + charNum).val(charInfo.res);
+	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(singleChar.hp);
+	$(".hp-" + charNum + "-read").text(singleChar.hp);
+	$("#atk-" + charNum).val(singleChar.atk);
+	$("#spd-" + charNum).val(singleChar.spd);
+	$("#def-" + charNum).val(singleChar.def);
+	$("#res-" + charNum).val(singleChar.res);
 	
 	// reset buffs/debuffs
 	$("#stats-" + charNum + " .stat-bonus, #stats-" + charNum + " .stat-penalty, #stats-" + charNum + " .stat-spur").val(0);
 	
 	// show passive skills
-	showSkills(charInfo, skillInfo, charNum, 'a');
-	showSkills(charInfo, skillInfo, charNum, 'b');
-	showSkills(charInfo, skillInfo, charNum, 'c');
+	showSkills(singleChar, charNum, 'a');
+	showSkills(singleChar, charNum, 'b');
+	showSkills(singleChar, charNum, 'c');
 	
-	// show command skill
-	if (charInfo.hasOwnProperty("command")) {
-		$("#command-" + charNum).removeAttr("disabled");
-		$("#skills-" + charNum + " .command-label").css("color", "white");
+	// show assist skill
+	if (singleChar.hasOwnProperty("assist")) {
+		$("#assist-" + charNum).removeAttr("disabled");
+		$("#skills-" + charNum + " .assist-label").css("color", "white");
 		
-		var selectedCommand = charInfo.command[0];
-		var commands = "<option value='" + selectedCommand + "'>" + selectedCommand + "</option>";
-		for (var commandIndex = 1; commandIndex < charInfo.command.length; commandIndex++) {
-			commands += "<option value='" + charInfo.command[commandIndex] + "'>" + charInfo.command[commandIndex] + "</option>";
+		var selectedAssist = singleChar.assist[0];
+		var assists = "<option value='" + selectedAssist + "'>" + selectedAssist + "</option>";
+		for (var assistIndex = 1; assistIndex < singleChar.assist.length; assistIndex++) {
+			assists += "<option value='" + singleChar.assist[assistIndex] + "'>" + singleChar.assist[assistIndex] + "</option>";
 		}
-		commands += "<option value='None'>None</option>";
-		$("#command-" + charNum).html(commands);
-		$("#command-" + charNum + " option:eq(0)").attr("selected", "selected");
+		assists += "<option value='None'>None</option>";
+		$("#assist-" + charNum).html(assists);
+		$("#assist-" + charNum + " option:eq(0)").attr("selected", "selected");
 	} else {
-		$("#command-" + charNum).html("<option value='None'>None<option>");
-		$("#command-" + charNum).attr("disabled", "disabled");
-		$("#skills-" + charNum + " .command-label").css("color", "#5b5b5b");
+		$("#assist-" + charNum).html("<option value='None'>None<option>");
+		$("#assist-" + charNum).attr("disabled", "disabled");
+		$("#skills-" + charNum + " .assist-label").css("color", "#5b5b5b");
 	}
 	
 	// show special skill
-	if (charInfo.hasOwnProperty("special")) {
+	if (singleChar.hasOwnProperty("special")) {
 		$("#special-" + charNum).removeAttr("disabled");
 		$("#skills-" + charNum + " .special-label").css("color", "white");
 		
-		var selectedSpecial = charInfo.special[0];
+		var selectedSpecial = singleChar.special[0];
 		var specials = "<option value='" + selectedSpecial + "'>" + selectedSpecial + "</option>";
-		for (var specIndex = 1; specIndex < charInfo.special.length; specIndex++) {
-			specials += "<option value='" + charInfo.special[specIndex] + "'>" + charInfo.special[specIndex] + "</option>";
+		for (var specIndex = 1; specIndex < singleChar.special.length; specIndex++) {
+			specials += "<option value='" + singleChar.special[specIndex] + "'>" + singleChar.special[specIndex] + "</option>";
 		}
 		specials += "<option value='None'>None</option>";
 		$("#special-" + charNum).html(specials);
 		$("#special-" + charNum + " option:eq(0)").attr("selected", "selected");
 		
 		// show cooldown values
-		getSpecialData(specInfo, charNum);
-		showSpecCooldown(selectedSpecial, specInfo, charNum, true);
+		getSpecialData(charNum);
+		showSpecCooldown(selectedSpecial, charNum, true);
 		
 	} else {
 		$("#special-" + charNum).html("<option value='None'>None<option>");
@@ -310,17 +305,17 @@ function displayChar(charInfo, weaponInfo, specInfo, skillInfo, charNum) {
 	}
 	
 	// show weapon
-	var selectedWeapon = charInfo.weapon[0];
+	var selectedWeapon = singleChar.weapon[0];
 	var weapons = "<option value='" + selectedWeapon + "'>" + selectedWeapon + "</option>";
-	for (var weaponIndex = 1; weaponIndex < charInfo.weapon.length; weaponIndex++) {
-		weapons += "<option value='" + charInfo.weapon[weaponIndex] + "'>" + charInfo.weapon[weaponIndex] + "</option>";
+	for (var weaponIndex = 1; weaponIndex < singleChar.weapon.length; weaponIndex++) {
+		weapons += "<option value='" + singleChar.weapon[weaponIndex] + "'>" + singleChar.weapon[weaponIndex] + "</option>";
 	}
 	weapons += "<option value='None'>None</option>";
 	$("#weapon-" + charNum).html(weapons);
 	$("#weapon-" + charNum + " option:eq(0)").attr("selected", "selected");
 	
 	// show extra weapon info
-	showWeapon(selectedWeapon, weaponInfo, charNum, false);
+	showWeapon(selectedWeapon, charNum, false);
 }
 
 // determines if the attacker has triangle advantage
@@ -593,10 +588,10 @@ function simBattle() {
 	battleInfo.attacker.currHP = parseInt($("#curr-hp-1").val());
 	battleInfo.attacker.initHP = parseInt($("#curr-hp-1").val());
 	battleInfo.attacker.hp = parseInt($("#hp-1").val());
-	battleInfo.attacker.atk = parseInt($("#atk-1").val()) + parseInt($("#atk-bonus-1").val()) + parseInt($("#atk-penalty-1").val()) + parseInt($("#atk-spur-1").val());
-	battleInfo.attacker.spd = parseInt($("#spd-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#spd-penalty-1").val()) + parseInt($("#spd-spur-1").val());
-	battleInfo.attacker.def = parseInt($("#def-1").val()) + parseInt($("#def-bonus-1").val()) + parseInt($("#def-penalty-1").val()) + parseInt($("#def-spur-1").val());
-	battleInfo.attacker.res = parseInt($("#res-1").val()) + parseInt($("#res-bonus-1").val()) + parseInt($("#res-penalty-1").val()) + parseInt($("#res-spur-1").val());
+	battleInfo.attacker.atk = Math.max(0, parseInt($("#atk-1").val()) + parseInt($("#atk-bonus-1").val()) + parseInt($("#atk-penalty-1").val()) + parseInt($("#atk-spur-1").val()));
+	battleInfo.attacker.spd = Math.max(0, parseInt($("#spd-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#spd-penalty-1").val()) + parseInt($("#spd-spur-1").val()));
+	battleInfo.attacker.def = Math.max(0, parseInt($("#def-1").val()) + parseInt($("#def-bonus-1").val()) + parseInt($("#def-penalty-1").val()) + parseInt($("#def-spur-1").val()));
+	battleInfo.attacker.res = Math.max(0, parseInt($("#res-1").val()) + parseInt($("#res-bonus-1").val()) + parseInt($("#res-penalty-1").val()) + parseInt($("#res-spur-1").val()));
 	
 	// get all defender info
 	battleInfo.defender.name = $("#char-2").val();
@@ -626,10 +621,10 @@ function simBattle() {
 	battleInfo.defender.currHP = parseInt($("#curr-hp-2").val());
 	battleInfo.defender.initHP = parseInt($("#curr-hp-2").val());
 	battleInfo.defender.hp = parseInt($("#hp-2").val());
-	battleInfo.defender.atk = parseInt($("#atk-2").val()) + parseInt($("#atk-bonus-2").val()) + parseInt($("#atk-penalty-2").val()) + parseInt($("#atk-spur-2").val());
-	battleInfo.defender.spd = parseInt($("#spd-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#spd-penalty-2").val()) + parseInt($("#spd-spur-2").val());
-	battleInfo.defender.def = parseInt($("#def-2").val()) + parseInt($("#def-bonus-2").val()) + parseInt($("#def-penalty-2").val()) + parseInt($("#def-spur-2").val());
-	battleInfo.defender.res = parseInt($("#res-2").val()) + parseInt($("#res-bonus-2").val()) + parseInt($("#res-penalty-2").val()) + parseInt($("#res-spur-2").val());
+	battleInfo.defender.atk = Math.max(0, parseInt($("#atk-2").val()) + parseInt($("#atk-bonus-2").val()) + parseInt($("#atk-penalty-2").val()) + parseInt($("#atk-spur-2").val()));
+	battleInfo.defender.spd = Math.max(0, parseInt($("#spd-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#spd-penalty-2").val()) + parseInt($("#spd-spur-2").val()));
+	battleInfo.defender.def = Math.max(0, parseInt($("#def-2").val()) + parseInt($("#def-bonus-2").val()) + parseInt($("#def-penalty-2").val()) + parseInt($("#def-spur-2").val()));
+	battleInfo.defender.res = Math.max(0, parseInt($("#res-2").val()) + parseInt($("#res-bonus-2").val()) + parseInt($("#res-penalty-2").val()) + parseInt($("#res-spur-2").val()));
 	
 	// attacker initate bonus
 	if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_mod")) {
@@ -731,9 +726,9 @@ function setupChars() {
 
 	// set default characters
 	$("#char-1 option:eq(0)").attr("selected", "selected");
-	displayChar(charInfo[$("#char-1").val()], weaponInfo, specInfo, skillInfo, "1");
+	displayChar(charInfo[$("#char-1").val()], "1");
 	$("#char-2 option:eq(1)").attr("selected", "selected");
-	displayChar(charInfo[$("#char-2").val()], weaponInfo, specInfo, skillInfo, "2");
+	displayChar(charInfo[$("#char-2").val()], "2");
 
 	// simulate initial battle
 	simBattle();
@@ -798,36 +793,36 @@ $(document).ready( function () {
 	
 	// setup character select
 	$("#char-1").on("change", function () {
-		displayChar(charInfo[$("#char-1").val()], weaponInfo, specInfo, skillInfo, "1");
+		displayChar(charInfo[$("#char-1").val()], "1");
 		simBattle();
 	});
 	$("#char-2").on("change", function () {
-		displayChar(charInfo[$("#char-2").val()], weaponInfo, specInfo, skillInfo, "2");
+		displayChar(charInfo[$("#char-2").val()], "2");
 		simBattle();
 	});
 	
 	// setup weapon select
 	$("#weapon-1").on("change", function () {
-		showWeapon($("#weapon-1").val(), weaponInfo, "1", true);
+		showWeapon($("#weapon-1").val(), "1", true);
 		simBattle();
 	});
 	$("#weapon-2").on("change", function () {
-		showWeapon($("#weapon-2").val(), weaponInfo, "2", true);
+		showWeapon($("#weapon-2").val(), "2", true);
 		simBattle();
 	});
 	
 	// setup special select
 	$("#special-1").on("change", function () {
 		updateSpecCooldown("#weapon-1", '1', false);
-		getSpecialData(specInfo, '1');
-		showSpecCooldown($("#special-1").val(), specInfo, "1", false);
+		getSpecialData('1');
+		showSpecCooldown($("#special-1").val(), "1", false);
 		updateSpecCooldown("#weapon-1", '1', true);
 		simBattle();
 	});
 	$("#special-2").on("change", function () {
 		updateSpecCooldown("#weapon-2", '2', false);
-		getSpecialData(specInfo, '2');
-		showSpecCooldown($("#special-2").val(), specInfo, "2", false);
+		getSpecialData('2');
+		showSpecCooldown($("#special-2").val(), "2", false);
 		updateSpecCooldown("#weapon-2", '2', true);
 		simBattle();
 	});
@@ -836,7 +831,7 @@ $(document).ready( function () {
 	$(".passive-selector").on("change", function () {
 		var charNum = $(this).data("charnum").toString();
 		var skillType = $(this).data("skilltype");
-		getSkillData(skillInfo, charNum, skillType, true);
+		getSkillData(charNum, skillType, true);
 		simBattle();
 	});
 	

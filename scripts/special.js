@@ -223,4 +223,4 @@ var specInfo =
         "cooldown" : 3,
         "dmg_suffer_buff" : 0.5
     }
-}
+};

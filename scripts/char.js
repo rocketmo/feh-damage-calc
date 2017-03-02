@@ -68,7 +68,7 @@ var charInfo =
 		"weapon": ["Pain", "Assault"],
 		"special": ["Solid-Earth Balm", "Imbue"],
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
-		"command" : ["Martyr", "Reconcile", "Heal"]
+		"assist" : ["Martyr", "Reconcile", "Heal"]
 	},
 	"Azura": {
 		"color" : "Blue",
@@ -82,7 +82,7 @@ var charInfo =
 		"weapon": ["Sapphire Lance+", "Sapphire Lance", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Speed +3", "Speed +2", "Speed +1"],
 		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
-		"command" : ["Sing"]
+		"assist" : ["Sing"]
 	},
 	"Barst": {
 		"color" : "Green",
@@ -96,7 +96,7 @@ var charInfo =
 		"weapon": ["Brave Axe+", "Brave Axe", "Steel Axe", "Iron Axe"],
 		"passive_a": ["Knock Back"],
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"],
-		"command" : ["Reposition"]
+		"assist" : ["Reposition"]
 	},
 	"Bartre": {
 		"color" : "Green",
@@ -110,7 +110,7 @@ var charInfo =
 		"weapon": ["Hammer+", "Hammer", "Steel Axe", "Iron Axe"],
 		"passive_a": ["Fury 3", "Fury 2", "Fury 1"],
 		"passive_b": ["Brash Assault 3", "Brash Assault 2", "Brash Assault 1"],
-		"command" : ["Smite"]
+		"assist" : ["Smite"]
 	},
 	"Beruka": {
 		"color" : "Green",
@@ -139,7 +139,7 @@ var charInfo =
 		"special": ["Glimmer", "Night Sky"],
 		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
 		"passive_c": ["Fortify Fliers", "Fortify Res 2", "Fortify Res 1"],
-		"command" : ["Rally Speed"]
+		"assist" : ["Rally Speed"]
 	},
 	"Cain": {
 		"color" : "Red",
@@ -195,7 +195,7 @@ var charInfo =
 		"weapon": ["Gronnraven+", "Gronnraven", "Elwind", "Wind"],
 		"passive_a": ["Attack +3", "Attack +2", "Attack +1"],
 		"passive_b": ["Escape Route 3", "Escape Route 2", "Escape Route 1"],
-		"command" : ["Rally Resistance"]
+		"assist" : ["Rally Resistance"]
 	},
 	"Cherche": {
 		"color" : "Green",
@@ -209,7 +209,7 @@ var charInfo =
 		"weapon": ["Hammer+", "Hammer", "Steel Axe", "Iron Axe"],
 		"passive_a": ["Attack +3", "Attack +2", "Attack +1"],
 		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
-		"command" : ["Pivot"]
+		"assist" : ["Pivot"]
 	},
 	"Chrom": {
 		"color" : "Red",
@@ -237,7 +237,7 @@ var charInfo =
 		"weapon": ["Fear", "Assault"],
 		"special": ["Solid-Winds Balm", "Imbue"],
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
-		"command" : ["Martyr", "Reconcile", "Heal"]
+		"assist" : ["Martyr", "Reconcile", "Heal"]
 	},
 	"Cordelia": {
 		"color" : "Blue",
@@ -297,7 +297,7 @@ var charInfo =
 		"special": ["Galeforce", "Astra", "Night Sky"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
 		"passive_b": ["Drag Back"],
-		"command" : ["Reciprocal Aid"]
+		"assist" : ["Reciprocal Aid"]
 	},
 	"Draug": {
 		"color" : "Red",
@@ -325,7 +325,7 @@ var charInfo =
 		"weapon": ["Silver Lance+", "Silver Lance", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
 		"passive_b": ["Wary Fighter 3", "Wary Fighter 2", "Wary Fighter 1"],
-		"command" : ["Smite"]
+		"assist" : ["Smite"]
 	},
 	"Eirika": {
 		"color" : "Red",
@@ -339,7 +339,7 @@ var charInfo =
 		"weapon": ["Sieglinde", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"passive_b": ["Drag Back"],
 		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"],
-		"command" : ["Pivot"]
+		"assist" : ["Pivot"]
 	},
 	"Eldigan" : {
 		"color" : "Red",
@@ -367,7 +367,7 @@ var charInfo =
 		"weapon": ["Gravity", "Assault"],
 		"special": ["Kindled-Fire Balm", "Imbue"],
 		"passive_b": ["Live to Serve 3", "Live to Serve 2", "Live to Serve 1"],
-		"command" : ["Recover", "Mend", "Heal"]
+		"assist" : ["Recover", "Mend", "Heal"]
 	},
 	"Eliwood": {
 		"color" : "Red",
@@ -409,7 +409,7 @@ var charInfo =
 		"weapon": ["Heavy Spear+", "Heavy Spear", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Defiant Res 3", "Defiant Res 2", "Defiant Res 1"],
 		"passive_b": ["Seal Spd 3", "Seal Spd 2", "Seal Spd 1"],
-		"command" : ["Shove"]
+		"assist" : ["Shove"]
 	},
 	"Fae": {
 		"color" : "Green",
@@ -424,7 +424,7 @@ var charInfo =
 		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
 		"dragon": true,
-		"command" : ["Draw Back"]
+		"assist" : ["Draw Back"]
 	},
 	"Felicia": {
 		"color" : "Colorless",
@@ -466,7 +466,7 @@ var charInfo =
 		"weapon": ["Heavy Spear+", "Heavy Spear", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
 		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"],
-		"command" : ["Ardent Sacrifice"]
+		"assist" : ["Ardent Sacrifice"]
 	},
 	"Frederick": {
 		"color" : "Green",
@@ -494,7 +494,7 @@ var charInfo =
 		"weapon": ["Rogue Dagger+", "Rogue Dagger", "Steel Dagger", "Iron Dagger"],
 		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
 		"passive_b": ["Pass 3", "Pass 2", "Pass 1"],
-		"command" : ["Rally Speed"]
+		"assist" : ["Rally Speed"]
 	},
 	"Gordin": {
 		"color" : "Colorless",
@@ -508,7 +508,7 @@ var charInfo =
 		"weapon": ["Brave Bow+", "Brave Bow", "Steel Bow", "Iron Bow"],
 		"passive_a": ["Attack +3", "Attack +2", "Attack +1"],
 		"passive_b": ["Vantage 3", "Vantage 2", "Vantage 1"],
-		"command" : ["Shove"]
+		"assist" : ["Shove"]
 	},
 	"Gunter": {
 		"color" : "Green",
@@ -522,7 +522,7 @@ var charInfo =
 		"weapon": ["Silver Axe+", "Silver Axe", "Steel Axe", "Iron Axe"],
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
 		"passive_c": ["Hone Cavalry", "Hone Atk 2", "Hone Atk 1"],
-		"command" : ["Harsh Command"]
+		"assist" : ["Harsh Command"]
 	},
 	"Gwendolyn": {
 		"color" : "Blue",
@@ -550,7 +550,7 @@ var charInfo =
 		"weapon": ["Armorslayer+", "Armorslayer", "Steel Sword", "Iron Sword"],
 		"passive_a": ["Life and Death 3", "Life and Death 2", "Life and Death 1"],
 		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"],
-		"command" : ["Rally Attack"]
+		"assist" : ["Rally Attack"]
 	},
 	"Hawkeye": {
 		"color" : "Green",
@@ -648,7 +648,7 @@ var charInfo =
 		"weapon": ["Silver Dagger+", "Silver Dagger", "Steel Dagger", "Iron Dagger"],
 		"passive_a": ["Defense +3", "Defense +2", "Defense +1"],
 		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
-		"command" : ["Rally Resistance"]
+		"assist" : ["Rally Resistance"]
 	},
 	"Jeorge": {
 		"color" : "Colorless",
@@ -663,7 +663,7 @@ var charInfo =
 		"special": ["Blazing Flame", "Rising Flame"],
 		"passive_b": ["Seal Atk 3", "Seal Atk 2", "Seal Atk 1"],
 		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
-		"command" : ["Swap"]
+		"assist" : ["Swap"]
 	},
 	"Julia": {
 		"color" : "Green",
@@ -719,7 +719,7 @@ var charInfo =
 		"weapon": ["Absorb", "Assault"],
 		"special": ["Solid-Earth Balm", "Imbue"],
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"],
-		"command" : ["Physic", "Mend", "Heal"]
+		"assist" : ["Physic", "Mend", "Heal"]
 	},
 	"Laslow": {
 		"color" : "Red",
@@ -775,7 +775,7 @@ var charInfo =
 		"weapon": ["Aura", "Thoron", "Elthunder", "Thunder"],
 		"passive_a": ["Speed +3", "Speed +2", "Speed +1"],
 		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
-		"command" : ["Ardent Sacrifice"]
+		"assist" : ["Ardent Sacrifice"]
 	},
 	"Lissa": {
 		"color" : "Colorless",
@@ -789,7 +789,7 @@ var charInfo =
 		"weapon": ["Gravity", "Assault"],
 		"special": ["Kindled-Fire Balm", "Imbue"],
 		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
-		"command" : ["Rehabilitate", "Reconcile", "Heal"]
+		"assist" : ["Rehabilitate", "Reconcile", "Heal"]
 	},
 	"Lon'qu": {
 		"color" : "Red",
@@ -845,7 +845,7 @@ var charInfo =
 		"weapon": ["Panic", "Assault"],
 		"special": ["Miracle", "Imbue"],
 		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
-		"command" : ["Physic", "Mend", "Heal"]
+		"assist" : ["Physic", "Mend", "Heal"]
 	},
 	"Marth": {
 		"color" : "Red",
@@ -859,7 +859,7 @@ var charInfo =
 		"weapon": ["Falchion", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"passive_b": ["Escape Route 3", "Escape Route 2", "Escape Route 1"],
 		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
-		"command" : ["Pivot"]
+		"assist" : ["Pivot"]
 	},
 	"Matthew": {
 		"color" : "Colorless",
@@ -873,7 +873,7 @@ var charInfo =
 		"weapon": ["Rogue Dagger+", "Rogue Dagger", "Steel Dagger", "Iron Dagger"],
 		"passive_b": ["Poison Strike 3", "Poison Strike 2", "Poison Strike 1"],
 		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"],
-		"command" : ["Reciprocal Aid"]
+		"assist" : ["Reciprocal Aid"]
 	},
 	"Merric": {
 		"color" : "Green",
@@ -943,7 +943,7 @@ var charInfo =
 		"weapon": ["Gronnblade+", "Gronnblade", "Elwind", "Wind"],
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
-		"command" : ["Draw Back"]
+		"assist" : ["Draw Back"]
 	},
 	"Nowi": {
 		"color" : "Blue",
@@ -958,7 +958,7 @@ var charInfo =
 		"passive_a": ["Defense +3", "Defense +2", "Defense +1"],
 		"passive_c": ["Threaten Res 3", "Threaten Res 2", "Threaten Res 1"],
 		"dragon": true,
-		"command" : ["Rally Defense"]
+		"assist" : ["Rally Defense"]
 	},
 	"Oboro": {
 		"color" : "Blue",
@@ -972,7 +972,7 @@ var charInfo =
 		"weapon": ["Heavy Spear+", "Heavy Spear", "Steel Lance", "Iron Lance"],
 		"passive_b": ["Seal Def 3", "Seal Def 2", "Seal Def 1"],
 		"passive_c": ["Threaten Res 3", "Threaten Res 2", "Threaten Res 1"],
-		"command" : ["Rally Defense"]
+		"assist" : ["Rally Defense"]
 	},
 	"Odin": {
 		"color" : "Blue",
@@ -1014,7 +1014,7 @@ var charInfo =
 		"weapon": ["Silver Sword+", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"passive_b": ["Knock Back"],
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
-		"command" : ["Dance"]
+		"assist" : ["Dance"]
 	},
 	"Olwen": {
 		"color" : "Blue",
@@ -1028,7 +1028,7 @@ var charInfo =
 		"weapon": ["Dire Thunder", "Thoron", "Elthunder", "Thunder"],
 		"passive_a": ["Warding Blow 3", "Warding Blow 2", "Warding Blow 1"],
 		"passive_c": ["Ward Cavalry", "Spur Res 2", "Spur Res 1"],
-		"command" : ["Reposition"]
+		"assist" : ["Reposition"]
 	},
 	"Palla": {
 		"color" : "Red",
@@ -1071,7 +1071,7 @@ var charInfo =
 		"special": ["Growing Flame", "Rising Flame"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
 		"passive_b": ["Seal Res 3", "Seal Res 2", "Seal Res 1"],
-		"command" : ["Rally Attack"]
+		"assist" : ["Rally Attack"]
 	},
 	"Raven": {
 		"color" : "Green",
@@ -1141,7 +1141,7 @@ var charInfo =
 		"weapon": ["Binding Blade", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"passive_a": ["Triangle Adept 3", "Triangle Adept 2", "Triangle Adept 1"],
 		"passive_b": ["Seal Def 3", "Seal Def 2", "Seal Def 1"],
-		"command" : ["Shove"]
+		"assist" : ["Shove"]
 	},
 	"Ryoma": {
 		"color" : "Red",
@@ -1169,7 +1169,7 @@ var charInfo =
 		"weapon": ["Smoke Dagger+", "Smoke Dagger", "Steel Dagger", "Iron Dagger"],
 		"passive_b": ["Poison Strike 3", "Poison Strike 2", "Poison Strike 1"],
 		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
-		"command" : ["Harsh Command"]
+		"assist" : ["Harsh Command"]
 	},
 	"Sakura": {
 		"color" : "Colorless",
@@ -1183,7 +1183,7 @@ var charInfo =
 		"weapon": ["Fear", "Assault"],
 		"special": ["Still-Water Balm", "Imbue"],
 		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
-		"command" : ["Physic", "Mend", "Heal"]
+		"assist" : ["Physic", "Mend", "Heal"]
 	}, 
 	"Sanaki" : {
 		"color" : "Red",
@@ -1197,7 +1197,7 @@ var charInfo =
 		"weapon": ["Cymbeline", "Bolganone", "Elfire", "Fire"],
 		"passive_a": ["Triangle Adept 3", "Triangle Adept 2", "Triangle Adept 1"],
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
-		"command" : ["Harsh Command"]
+		"assist" : ["Harsh Command"]
 	},
 	"Selena": {
 		"color" : "Red",
@@ -1211,7 +1211,7 @@ var charInfo =
 		"weapon": ["Armorslayer+", "Armorslayer", "Steel Sword", "Iron Sword"],
 		"passive_a": ["Triangle Adept 3", "Triangle Adept 2", "Triangle Adept 1"],
 		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"],
-		"command" : ["Reposition"]
+		"assist" : ["Reposition"]
 	},
 	"Seliph": {
 		"color" : "Red",
@@ -1225,7 +1225,7 @@ var charInfo =
 		"weapon": ["Tyrfing", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
 		"passive_b": ["Brash Assault 3", "Brash Assault 2", "Brash Assault 1"],
-		"command" : ["Rally Speed"]
+		"assist" : ["Rally Speed"]
 	},
 	"Serra": {
 		"color" : "Colorless",
@@ -1239,7 +1239,7 @@ var charInfo =
 		"weapon": ["Absorb", "Assault"],
 		"special": ["Swift-Winds Balm", "Imbue"],
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
-		"command" : ["Recover", "Mend", "Heal"]
+		"assist" : ["Recover", "Mend", "Heal"]
 	},
 	"Setsuna": {
 		"color" : "Colorless",
@@ -1253,7 +1253,7 @@ var charInfo =
 		"weapon": ["Assassin's Bow+", "Assassin's Bow", "Steel Bow", "Iron Bow"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
 		"passive_b": ["Bowbreaker 3", "Bowbreaker 2", "Bowbreaker 1"],
-		"command" : ["Reciprocal Aid"]
+		"assist" : ["Reciprocal Aid"]
 	},
 	"Shanna": {
 		"color" : "Blue",
@@ -1281,7 +1281,7 @@ var charInfo =
 		"weapon": ["Fensalir", "Silver Lance", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Speed +3", "Speed +2", "Speed +1"],
 		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
-		"command" : ["Rally Attack"]
+		"assist" : ["Rally Attack"]
 	},
 	"Sheena": {
 		"color" : "Green",
@@ -1323,7 +1323,7 @@ var charInfo =
 		"weapon": ["Ruby Sword+", "Ruby Sword", "Steel Sword", "Iron Sword"],
 		"passive_a": ["Defense +3", "Defense +2", "Defense +1"],
 		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"],
-		"command" : ["Swap"]
+		"assist" : ["Swap"]
 	},
 	"Subaki": {
 		"color" : "Blue",
@@ -1337,7 +1337,7 @@ var charInfo =
 		"weapon": ["Sapphire Lance+", "Sapphire Lance", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
 		"passive_b": ["Quick Riposte 3", "Quick Riposte 2", "Quick Riposte 1"],
-		"command" : ["Swap"]
+		"assist" : ["Swap"]
 	},
 	"Sully": {
 		"color" : "Blue",
@@ -1351,7 +1351,7 @@ var charInfo =
 		"weapon": ["Sapphire Lance+", "Sapphire Lance", "Steel Lance", "Iron Lance"],
 		"passive_b": ["Swordbreaker 3", "Swordbreaker 2", "Swordbreaker 1"],
 		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"],
-		"command" : ["Draw Back"]
+		"assist" : ["Draw Back"]
 	},
 	"Takumi": {
 		"color" : "Colorless",
@@ -1434,9 +1434,9 @@ var charInfo =
 		"def": 22,
 		"res": 36,
 		"move_type": "Infantry",
-		"weapon": ["Assault", "Slow"],
+		"weapon": ["Slow", "Assault"],
 		"special": ["Heavenly Light", "Imbue"],
 		"passive_b": ["Live to Serve 3", "Live to Serve 2", "Live to Serve 1"],
-		"command" : ["Rehabilitate", "Reconcile", "Heal"]
+		"assist" : ["Rehabilitate", "Reconcile", "Heal"]
 	}
-}
+};
