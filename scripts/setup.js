@@ -595,8 +595,11 @@ function simBattle() {
 		$(".hp-remain-block").hide();
 		$("#hp-remain-1").text($("#curr-hp-1").val().toString());
 		$("#hp-remain-2").text($("#curr-hp-2").val().toString());
-		$("#interaction-list").fadeIn("slow");
+		if (openLog) {
+			$("#interaction-list").fadeIn("slow");
+		}
 		$(".hp-remain-block").fadeIn("slow");
+		
 		return;
 	}
 	
