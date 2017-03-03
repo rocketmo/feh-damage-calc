@@ -164,11 +164,11 @@ var specInfo =
     },
     "Moonbow" : {
         "cooldown" : 2,
-        "enemy_def_res_mod" : 0.7
+        "enemy_def_res_mod" : 0.3
     },
     "New Moon" : {
         "cooldown" : 3,
-        "enemy_def_res_mod" : 0.7
+        "enemy_def_res_mod" : 0.3
     },
     "Night Sky" : {
         "cooldown" : 4,

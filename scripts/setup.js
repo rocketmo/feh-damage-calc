@@ -445,6 +445,8 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	var defClass;
 	var attacker;
 	var defender;
+	var atkSpec = false;	// set to true if special triggers
+	var defSpec = false;	
 	
 	if (initiator) {
 		atkClass = "attacker";
@@ -541,20 +543,46 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		atkPower = Math.floor(atkPower * atkMod);
 	}
 	
-	// calculate damage
-	var dmg = 0;
+	// determine if magical or not
+	var defReduct = 0;
 	if (attacker.weaponData.magical) {
-		dmg = Math.max(atkPower - defender.res, 0);
-		// halve staff damage
-		if (attacker.type === "Staff") {
-			dmg = Math.floor(dmg / 2);
-		}
+		defReduct = defender.res;
 	} else {
-		dmg = Math.max(atkPower - defender.def, 0);
+		defReduct = defender.def;
 	}
 	
-	defender.currHP = Math.max(defender.currHP - dmg, 0);
+	// defense and resistance lowering special
+	if (attacker.specialData.hasOwnProperty("enemy_def_res_mod") && attacker.specCurrCooldown <= 0) {
+		defReduct -= Math.floor(defReduct * attacker.specialData.enemy_def_res_mod);
+		battleInfo.logMsg += "Opponent's defense and resistance lowered by " + (attacker.specialData.enemy_def_res_mod * 100).toString() + "% [" + attacker.special + "]. ";
+		atkSpec = true;
+	}
+	
+	// calculate damage
+	var dmg = Math.max(atkPower - defReduct, 0);
+	
+	// halve staff damage
+	if (attacker.type === "Staff") {
+		dmg = Math.floor(dmg / 2);
+	}
+	
+	// damage buffs by stat
+	if (attacker.specialData.hasOwnProperty("dmg_buff_by_stat") && attacker.specCurrCooldown <= 0) {
+		dmg += Math.floor(attacker.specialData.dmg_buff_by_stat.buff * attacker[attacker.specialData.dmg_buff_by_stat.stat + "WS"]);
+		battleInfo.logMsg += "Damage boosted by " + (attacker.specialData.dmg_buff_by_stat.buff * 100).toString() + "% of " + statWord(attacker.specialData.dmg_buff_by_stat.stat) + " [" + attacker.special + "]. ";
+		atkSpec = true;
+	}
+	
 	battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + " damage dealt.</strong></span> ";
+	
+	// check for miracle
+	if (defender.currHP - dmg <= 0 && defender.specialData.hasOwnProperty("survive") && defender.currHP > 1 && defender.specCurrCooldown <= 0) {
+		defender.currHP = 1;
+		battleInfo.logMsg += "Opponent survives lethal attack [" + defender.special + "]. ";
+		defSpec = true;
+	} else {
+		defender.currHP = Math.max(defender.currHP - dmg, 0);
+	}
 	
 	// check for healing
 	var healMsg = "";
@@ -567,6 +595,19 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	}
 	
 	battleInfo.logMsg += "<br><span class='" + defClass + "'><strong>" + defender.name + " HP:</strong> " + oldHP.toString() + " → " + defender.currHP.toString() + "</span>" + healMsg + "</li>";
+	
+	// update cooldowns
+	if (atkSpec) {
+		attacker.specCurrCooldown = attacker.specialData.cooldown;
+	} else if (attacker.specCurrCooldown > 0) {
+		attacker.specCurrCooldown -= 1;
+	}
+	
+	if (defSpec) {
+		defender.specCurrCooldown = defender.specialData.cooldown;
+	} else if (defender.specCurrCooldown > 0) {
+		defender.specCurrCooldown -= 1;
+	}
 	
 	// store info
 	if (initiator) {
@@ -641,10 +682,13 @@ function simBattle() {
 	battleInfo.attacker.initHP = parseInt($("#curr-hp-1").val());
 	battleInfo.attacker.hp = parseInt($("#hp-1").val());
 	battleInfo.attacker.atk = Math.max(0, parseInt($("#atk-1").val()) + parseInt($("#atk-bonus-1").val()) + parseInt($("#atk-penalty-1").val()) + parseInt($("#atk-spur-1").val()));
-	battleInfo.attacker.atkWS = Math.max(0, parseInt($("#atk-1").val()) + parseInt($("#atk-bonus-1").val()) + parseInt($("#atk-penalty-1").val()));
 	battleInfo.attacker.spd = Math.max(0, parseInt($("#spd-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#spd-penalty-1").val()) + parseInt($("#spd-spur-1").val()));
 	battleInfo.attacker.def = Math.max(0, parseInt($("#def-1").val()) + parseInt($("#def-bonus-1").val()) + parseInt($("#def-penalty-1").val()) + parseInt($("#def-spur-1").val()));
 	battleInfo.attacker.res = Math.max(0, parseInt($("#res-1").val()) + parseInt($("#res-bonus-1").val()) + parseInt($("#res-penalty-1").val()) + parseInt($("#res-spur-1").val()));
+	battleInfo.attacker.atkWS = Math.max(0, parseInt($("#atk-1").val()) + parseInt($("#atk-bonus-1").val()) + parseInt($("#atk-penalty-1").val()));
+	battleInfo.attacker.spdWS = Math.max(0, parseInt($("#spd-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#spd-penalty-1").val()));
+	battleInfo.attacker.defWS = Math.max(0, parseInt($("#def-1").val()) + parseInt($("#def-bonus-1").val()) + parseInt($("#def-penalty-1").val()));
+	battleInfo.attacker.resWS = Math.max(0, parseInt($("#res-1").val()) + parseInt($("#res-bonus-1").val()) + parseInt($("#res-penalty-1").val()));
 	
 	// get all defender info
 	battleInfo.defender.name = $("#char-2").val();
@@ -678,10 +722,13 @@ function simBattle() {
 	battleInfo.defender.initHP = parseInt($("#curr-hp-2").val());
 	battleInfo.defender.hp = parseInt($("#hp-2").val());
 	battleInfo.defender.atk = Math.max(0, parseInt($("#atk-2").val()) + parseInt($("#atk-bonus-2").val()) + parseInt($("#atk-penalty-2").val()) + parseInt($("#atk-spur-2").val()));
-	battleInfo.defender.atkWS = Math.max(0, parseInt($("#atk-2").val()) + parseInt($("#atk-bonus-2").val()) + parseInt($("#atk-penalty-2").val()));
 	battleInfo.defender.spd = Math.max(0, parseInt($("#spd-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#spd-penalty-2").val()) + parseInt($("#spd-spur-2").val()));
 	battleInfo.defender.def = Math.max(0, parseInt($("#def-2").val()) + parseInt($("#def-bonus-2").val()) + parseInt($("#def-penalty-2").val()) + parseInt($("#def-spur-2").val()));
 	battleInfo.defender.res = Math.max(0, parseInt($("#res-2").val()) + parseInt($("#res-bonus-2").val()) + parseInt($("#res-penalty-2").val()) + parseInt($("#res-spur-2").val()));
+	battleInfo.defender.atkWS = Math.max(0, parseInt($("#atk-2").val()) + parseInt($("#atk-bonus-2").val()) + parseInt($("#atk-penalty-2").val()));
+	battleInfo.defender.spdWS = Math.max(0, parseInt($("#spd-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#spd-penalty-2").val()));
+	battleInfo.defender.defWS = Math.max(0, parseInt($("#def-2").val()) + parseInt($("#def-bonus-2").val()) + parseInt($("#def-penalty-2").val()));
+	battleInfo.defender.resWS = Math.max(0, parseInt($("#res-2").val()) + parseInt($("#res-bonus-2").val()) + parseInt($("#res-penalty-2").val()));
 	
 	// AOE damage before combat
 	if (battleInfo.attacker.specialData.hasOwnProperty("before_combat_aoe") && battleInfo.attacker.specCurrCooldown <= 0) {
