@@ -27,7 +27,7 @@ function setupStats () {
 	$(".stat-penalty").html(negOptions);
 	
 	for (i = 8; i <= 12; i++) {
-		options += "<option value='" + i.toString + "'>" + i.toString() + "</option>";
+		options += "<option value='" + i.toString() + "'>" + i.toString() + "</option>";
 	}
 	$(".stat-spur").html(options);
 }
@@ -629,11 +629,15 @@ function simBattle() {
 	battleInfo.attacker.passiveAData = $("#passive-a-1").data("info");
 	battleInfo.attacker.passiveBData = $("#passive-b-1").data("info");
 	battleInfo.attacker.passiveCData = $("#passive-c-1").data("info");
+	battleInfo.attacker.special = $("#special-1").val();
+	battleInfo.attacker.specCurrCooldown = parseInt($("#spec-cooldown-1").val());
+	battleInfo.attacker.specialData = $("#special-1").data("info");
 	
 	battleInfo.attacker.currHP = parseInt($("#curr-hp-1").val());
 	battleInfo.attacker.initHP = parseInt($("#curr-hp-1").val());
 	battleInfo.attacker.hp = parseInt($("#hp-1").val());
 	battleInfo.attacker.atk = Math.max(0, parseInt($("#atk-1").val()) + parseInt($("#atk-bonus-1").val()) + parseInt($("#atk-penalty-1").val()) + parseInt($("#atk-spur-1").val()));
+	battleInfo.attacker.atkWS = Math.max(0, parseInt($("#atk-1").val()) + parseInt($("#atk-bonus-1").val()) + parseInt($("#atk-penalty-1").val()));
 	battleInfo.attacker.spd = Math.max(0, parseInt($("#spd-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#spd-penalty-1").val()) + parseInt($("#spd-spur-1").val()));
 	battleInfo.attacker.def = Math.max(0, parseInt($("#def-1").val()) + parseInt($("#def-bonus-1").val()) + parseInt($("#def-penalty-1").val()) + parseInt($("#def-spur-1").val()));
 	battleInfo.attacker.res = Math.max(0, parseInt($("#res-1").val()) + parseInt($("#res-bonus-1").val()) + parseInt($("#res-penalty-1").val()) + parseInt($("#res-spur-1").val()));
@@ -662,14 +666,42 @@ function simBattle() {
 	battleInfo.defender.passiveAData = $("#passive-a-2").data("info");
 	battleInfo.defender.passiveBData = $("#passive-b-2").data("info");
 	battleInfo.defender.passiveCData = $("#passive-c-2").data("info");
+	battleInfo.defender.special = $("#special-2").val();
+	battleInfo.defender.specCurrCooldown = parseInt($("#spec-cooldown-2").val());
+	battleInfo.defender.specialData = $("#special-2").data("info");
 	
 	battleInfo.defender.currHP = parseInt($("#curr-hp-2").val());
 	battleInfo.defender.initHP = parseInt($("#curr-hp-2").val());
 	battleInfo.defender.hp = parseInt($("#hp-2").val());
 	battleInfo.defender.atk = Math.max(0, parseInt($("#atk-2").val()) + parseInt($("#atk-bonus-2").val()) + parseInt($("#atk-penalty-2").val()) + parseInt($("#atk-spur-2").val()));
+	battleInfo.defender.atkWS = Math.max(0, parseInt($("#atk-2").val()) + parseInt($("#atk-bonus-2").val()) + parseInt($("#atk-penalty-2").val()));
 	battleInfo.defender.spd = Math.max(0, parseInt($("#spd-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#spd-penalty-2").val()) + parseInt($("#spd-spur-2").val()));
 	battleInfo.defender.def = Math.max(0, parseInt($("#def-2").val()) + parseInt($("#def-bonus-2").val()) + parseInt($("#def-penalty-2").val()) + parseInt($("#def-spur-2").val()));
 	battleInfo.defender.res = Math.max(0, parseInt($("#res-2").val()) + parseInt($("#res-bonus-2").val()) + parseInt($("#res-penalty-2").val()) + parseInt($("#res-spur-2").val()));
+	
+	// AOE damage before combat
+	if (battleInfo.attacker.specialData.hasOwnProperty("before_combat_aoe") && battleInfo.attacker.specCurrCooldown <= 0) {
+		// reset cooldown
+		battleInfo.attacker.specCurrCooldown = battleInfo.attacker.specialData.cooldown;
+		
+		// calculate damage
+		var aoeDmg = battleInfo.attacker.atkWS ;
+		
+		// check for atk multiplier
+		if (battleInfo.attacker.specialData.hasOwnProperty("aoe_dmg_mod")) {
+			aoeDmg = Math.floor(aoeDmg * battleInfo.attacker.specialData.aoe_dmg_mod);
+		}
+		
+		if (battleInfo.attacker.weaponData.magical) {
+			aoeDmg -= battleInfo.defender.res;
+		} else {
+			aoeDmg -= battleInfo.defender.def;
+		}
+		
+		var oldHP = battleInfo.defender.currHP;
+		battleInfo.defender.currHP = Math.max(battleInfo.defender.currHP - aoeDmg, 1);
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> deals AOE damage before combat [" + battleInfo.attacker.special + "]. <span class='dmg'><strong>" + aoeDmg.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
+	}
 	
 	// attacker initate bonus
 	if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_mod")) {

@@ -64,15 +64,24 @@ var specInfo =
     },
     "Draconic Aura" : {
         "cooldown" : 3,
-        "atk_mod" : 1.3
+		"dmg_buff_by_stat" : {
+            "stat" : "atk",
+            "buff" : 0.3
+        }
     },
     "Dragon Fang" : {
         "cooldown" : 4,
-        "atk_mod" : 1.5
+		"dmg_buff_by_stat" : {
+            "stat" : "atk",
+            "buff" : 0.5
+        }
     },
     "Dragon Gaze" : {
         "cooldown" : 4,
-        "atk_mod" : 1.3
+		"dmg_buff_by_stat" : {
+            "stat" : "atk",
+            "buff" : 0.3
+        }
     },
     "Escutcheon" : {
         "cooldown" : 2,
