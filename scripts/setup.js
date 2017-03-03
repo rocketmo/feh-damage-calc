@@ -1,4 +1,5 @@
 var HIGHESTSTAT = 99;
+var openLog = true;
 
 // limits number inputs
 function limit (num, minNumber) {
@@ -833,7 +834,10 @@ function simBattle() {
 	$("#hp-remain-1").text(battleInfo.attacker.currHP.toString());
 	$("#hp-remain-2").text(battleInfo.defender.currHP.toString());
 	$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
-	$("#interaction-list").fadeIn("slow");
+	
+	if (openLog) {
+		$("#interaction-list").fadeIn("slow");
+	}
 	$(".hp-remain-block").fadeIn("slow");
 }
 
@@ -872,6 +876,9 @@ $(document).ready( function () {
 	$(".collapse-button").on("click", function() {
 		// toggle a section
 		$("#" + $(this).data("section")).toggle(700);
+		if ($(this).data("section") === "interaction-list") {
+			openLog = !openLog;
+		}
 	});
 
 	// setup number input changes
