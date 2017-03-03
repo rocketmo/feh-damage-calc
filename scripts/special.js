@@ -15,7 +15,7 @@ var specInfo =
     },
     "Astra" : {
         "cooldown" : 5,
-        "dmg_mod" : 2.5
+        "dmg_mod" : 1.5
     },
     "Blazing Flame" : {
         "cooldown" : 5,
@@ -48,7 +48,7 @@ var specInfo =
         "cooldown" : 3,
         "reduce_dmg" : {
             "range" : 1,
-            "dmg_mod" : 0.7
+            "dmg_mod" : 0.3
         }
     },
     "Chilling Wind" : {
@@ -100,7 +100,7 @@ var specInfo =
     },
     "Glimmer" : {
         "cooldown" : 3,
-        "dmg_mod" : 1.5
+        "dmg_mod" : 0.5
     },
     "Glowing Ember" : {
         "cooldown" : 4,
@@ -129,7 +129,7 @@ var specInfo =
         "cooldown" : 3,
         "reduce_dmg" : {
             "range" : 2,
-            "dmg_mod" : 0.7
+            "dmg_mod" : 0.3
         }
     },
     "Iceberg" : {
@@ -172,7 +172,7 @@ var specInfo =
     },
     "Night Sky" : {
         "cooldown" : 4,
-        "dmg_mod" : 1.5
+        "dmg_mod" : 0.5
     },
     "Noontime" : {
         "cooldown" : 3,
@@ -213,7 +213,7 @@ var specInfo =
         "cooldown" : 2,
         "reduce_dmg" : {
             "range" : 2,
-            "dmg_mod" : 0.7
+            "dmg_mod" : 0.3
         }
     },
     "Sol" : {

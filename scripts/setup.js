@@ -573,6 +573,20 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		atkSpec = true;
 	}
 	
+	// damage suffered buff
+	if (attacker.specialData.hasOwnProperty("dmg_suffer_buff") && attacker.specCurrCooldown <= 0) {
+		dmg += Math.floor((attacker.hp - attacker.currHP) * attacker.specialData.dmg_suffer_buff);
+		battleInfo.logMsg += "Damage boosted by " + (attacker.specialData.dmg_suffer_buff * 100).toString() + "% of damage suffered [" + attacker.special + "]. ";
+		atkSpec = true;
+	}
+	
+	// check for damage multiplier
+	if (attacker.specialData.hasOwnProperty("dmg_mod") && attacker.specCurrCooldown <= 0) {
+		dmg += Math.floor(dmg * attacker.specialData.dmg_mod);
+		battleInfo.logMsg += "Damage boosted by " + (attacker.specialData.dmg_mod * 100).toString() + "% [" + attacker.special + "]. ";
+		atkSpec = true;
+	}
+	
 	battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + " damage dealt.</strong></span> ";
 	
 	// check for miracle
