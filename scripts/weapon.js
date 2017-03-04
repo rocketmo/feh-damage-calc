@@ -678,24 +678,6 @@ var weaponInfo =
 		"range"   : 1,
 		"magical" : true
 	},
-	"Lightning Breath (Red)" : {
-		"color"   : "Red",
-		"type"    : "Red Breath",
-		"might"   : 7,
-		"range"   : 1,
-		"magical" : true,
-		"spec_cooldown_mod" : 1,
-		"counter" : true
-	},
-	"Lightning Breath+ (Red)" : {
-		"color"   : "Red",
-		"type"    : "Red Breath",
-		"might"   : 11,
-		"range"   : 1,
-		"magical" : true,
-		"spec_cooldown_mod" : 1,
-		"counter" : true
-	},
 	"Lightning Breath (Blue)" : {
 		"color"   : "Blue",
 		"type"    : "Blue Breath",
@@ -708,6 +690,42 @@ var weaponInfo =
 	"Lightning Breath+ (Blue)" : {
 		"color"   : "Blue",
 		"type"    : "Blue Breath",
+		"might"   : 11,
+		"range"   : 1,
+		"magical" : true,
+		"spec_cooldown_mod" : 1,
+		"counter" : true
+	},
+	"Lightning Breath (Green)" : {
+		"color"   : "Green",
+		"type"    : "Green Breath",
+		"might"   : 7,
+		"range"   : 1,
+		"magical" : true,
+		"spec_cooldown_mod" : 1,
+		"counter" : true
+	},
+	"Lightning Breath+ (Green)" : {
+		"color"   : "Green",
+		"type"    : "Green Breath",
+		"might"   : 11,
+		"range"   : 1,
+		"magical" : true,
+		"spec_cooldown_mod" : 1,
+		"counter" : true
+	},
+	"Lightning Breath (Red)" : {
+		"color"   : "Red",
+		"type"    : "Red Breath",
+		"might"   : 7,
+		"range"   : 1,
+		"magical" : true,
+		"spec_cooldown_mod" : 1,
+		"counter" : true
+	},
+	"Lightning Breath+ (Red)" : {
+		"color"   : "Red",
+		"type"    : "Red Breath",
 		"might"   : 11,
 		"range"   : 1,
 		"magical" : true,

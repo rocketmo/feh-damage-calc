@@ -119,7 +119,7 @@ function showSkills(singleChar, charNum, type) {
 		
 		for (var i = 0; i < singleChar["passive_" + type].length; i++) {
 			var skillName = singleChar["passive_" + type][i];
-			skills += "<option value='" + skillName + "'>" + skillName + "</option>";
+			skills += "<option value=\"" + skillName + "\">" + skillName + "</option>";
 		}
 		skills += "<option value='None'>None</option>";
 		$("#passive-" + type + "-" + charNum).html(skills);
@@ -214,6 +214,47 @@ function showSpecCooldown (selectedSpecial, charNum, changeCurr) {
 	}
 }
 
+// loads all weapons of the given type
+// weaponType is the weapon type to load, charNum determines which panel to load in
+function loadWeapons(weaponType, charNum) {
+	"use strict";
+	var options = "";
+	for (var key in weaponInfo) {
+		if (weaponInfo[key].type === weaponType) {
+			options += "<option value=\"" + key + "\">" + key + "</option>";
+		}
+	}
+	options += "<option value='None'>None</option>";
+	$("#weapon-" + charNum).html(options);
+}
+
+// load all passive skills of the given letter
+// letter is the passive skill letter, charNum determines which panel to load in
+function loadPassives(letter, charNum) {
+	"use strict";
+	var options = "";
+	for (var key in skillInfo[letter]) {
+		options += "<option value=\"" + key + "\">" + key + "</option>";
+	}
+	options += "<option value='None'>None</option>";
+	$("#passive-" + letter + "-" + charNum).html(options);
+}
+
+// changes the color to match the given weapon type
+// weaponType is the type of weapon, charNum determines which panel to display in
+function setColor(weaponType, charNum) {
+	"use strict";
+	if (weaponType === "Sword" || weaponType === "Red Tome" || weaponType === "Red Breath") {
+		$("#color-" + charNum).val("Red");
+	} else if (weaponType === "Axe" || weaponType === "Green Tome" || weaponType === "Green Breath") {
+		$("#color-" + charNum).val("Green");
+	} else if (weaponType === "Lance" || weaponType === "Blue Tome" || weaponType === "Blue Breath") {
+		$("#color-" + charNum).val("Blue");
+	} else {
+		$("#color-" + charNum).val("Colorless");
+	}
+}
+
 // displays character information in the character panels
 // singleChar contains only the character info to display, charNum determines which panel to display on
 function displayChar(singleChar, charNum) {
@@ -229,6 +270,55 @@ function displayChar(singleChar, charNum) {
 		$("#extra-char-info-" + charNum).show(700);
 		
 		// show all skills and weapons
+		var weaponType = $("#weapon-type-" + charNum).val();
+		var weapon = $("#weapon-" + charNum).val();
+		var passiveA = $("#passive-a-" + charNum).val();
+		var passiveB = $("#passive-b-" + charNum).val();
+		var passiveC = $("#passive-c-" + charNum).val();
+		var assist = $("#assist-" + charNum).val();
+		var special = $("#special-" + charNum).val();
+		
+		// load in all weapons of the current weapon type
+		loadWeapons(weaponType, charNum);
+		$("#weapon-" + charNum).val(weapon);
+		if (weapon === "None") {
+			$("#weapon-" + charNum).data("info", {});
+		} else {
+			$("#weapon-" + charNum).data("info", weaponInfo[weapon]);
+		}
+		
+		// load in passive skills
+		loadPassives('a', charNum);
+		$("#passive-a-" + charNum).val(passiveA);
+		getSkillData("#passive-a-" + charNum, 'a', false);
+		
+		loadPassives('b', charNum);
+		$("#passive-b-" + charNum).val(passiveB);
+		getSkillData("#passive-b-" + charNum, 'b', false);
+		
+		loadPassives('c', charNum);
+		$("#passive-c-" + charNum).val(passiveC);
+		getSkillData("#passive-c-" + charNum, 'c', false);
+		
+		// load in assist skills
+		var assistOptions = "";
+		for (var assistName in assistInfo) {
+			assistOptions += "<option value=\"" + assistName + "\">" + assistName + "</option>";
+		}
+		assistOptions += "<option value='None'>None</option>";
+		$("#assist-" + charNum).html(assistOptions);
+		$("#assist-" + charNum).val(assist);
+		
+		// load in specials
+		var specOptions = "";
+		for (var specName in specInfo) {
+			specOptions += "<option value=\"" + specName + "\">" + specName + "</option>";
+		}
+		specOptions += "<option value='None'>None</option>";
+		$("#special-" + charNum).html(specOptions);
+		$("#special-" + charNum).val(special);
+		getSpecialData(charNum);
+		
 		return;
 	}
 
@@ -270,9 +360,9 @@ function displayChar(singleChar, charNum) {
 		$("#skills-" + charNum + " .assist-label").css("color", "white");
 		
 		var selectedAssist = singleChar.assist[0];
-		var assists = "<option value='" + selectedAssist + "'>" + selectedAssist + "</option>";
+		var assists = "<option value=\"" + selectedAssist + "\">" + selectedAssist + "</option>";
 		for (var assistIndex = 1; assistIndex < singleChar.assist.length; assistIndex++) {
-			assists += "<option value='" + singleChar.assist[assistIndex] + "'>" + singleChar.assist[assistIndex] + "</option>";
+			assists += "<option value=\"" + singleChar.assist[assistIndex] + "\">" + singleChar.assist[assistIndex] + "</option>";
 		}
 		assists += "<option value='None'>None</option>";
 		$("#assist-" + charNum).html(assists);
@@ -289,9 +379,9 @@ function displayChar(singleChar, charNum) {
 		$("#skills-" + charNum + " .special-label").css("color", "white");
 		
 		var selectedSpecial = singleChar.special[0];
-		var specials = "<option value='" + selectedSpecial + "'>" + selectedSpecial + "</option>";
+		var specials = "<option value=\"" + selectedSpecial + "\">" + selectedSpecial + "</option>";
 		for (var specIndex = 1; specIndex < singleChar.special.length; specIndex++) {
-			specials += "<option value='" + singleChar.special[specIndex] + "'>" + singleChar.special[specIndex] + "</option>";
+			specials += "<option value=\"" + singleChar.special[specIndex] + "\">" + singleChar.special[specIndex] + "</option>";
 		}
 		specials += "<option value='None'>None</option>";
 		$("#special-" + charNum).html(specials);
@@ -309,13 +399,14 @@ function displayChar(singleChar, charNum) {
 		$("#skills-" + charNum + " .special-label").css("color", "#5b5b5b");
 		$("#spec-cooldown-max-" + charNum).text("x");
 		$("#spec-cooldown-line-" + charNum).css("color", "#5b5b5b");
+		getSpecialData(charNum);
 	}
 	
 	// show weapon
 	var selectedWeapon = singleChar.weapon[0];
-	var weapons = "<option value='" + selectedWeapon + "'>" + selectedWeapon + "</option>";
+	var weapons = "<option value=\"" + selectedWeapon + "\">" + selectedWeapon + "</option>";
 	for (var weaponIndex = 1; weaponIndex < singleChar.weapon.length; weaponIndex++) {
-		weapons += "<option value='" + singleChar.weapon[weaponIndex] + "'>" + singleChar.weapon[weaponIndex] + "</option>";
+		weapons += "<option value=\"" + singleChar.weapon[weaponIndex] + "\">" + singleChar.weapon[weaponIndex] + "</option>";
 	}
 	weapons += "<option value='None'>None</option>";
 	$("#weapon-" + charNum).html(weapons);
@@ -448,6 +539,61 @@ function healDmg(battleInfo, dmg, healAmount, healSource, initiator) {
 	}
 	battleInfo.logMsg += "Healed by " + (healAmount * 100).toString() +"% of damage dealt [" + healSource + "]. <span class='dmg'><strong>" + heal.toString() + " health restored. </strong></span>";
 	return battleInfo;
+}
+
+// extracts all character information from a panel and returns it
+// charNum determines which panel to take info from
+function getCharPanelData (charNum) {
+	"use strict";
+	var charData = {};
+	charData.name = $("#char-" + charNum).val();
+	if (charData.name === "Custom") {
+		if (charNum === '1') {
+			charData.name = "Custom Attacker";
+		} else {
+			charData.name = "Custom Defender";
+		}
+	}
+	
+	charData.color = $("#color-" + charNum).val();
+	charData.moveType = $("#move-type-" + charNum).val();
+	charData.type = $("#weapon-type-" + charNum).val();
+	charData.weaponName = $("#weapon-" + charNum).val();
+	charData.weaponData = $("#weapon-" + charNum).data("info");
+		
+	if ($("#dragon-" + charNum).val() === "Yes") {
+		charData.dragon = true;
+	} else {
+		charData.dragon = false;
+	}
+	
+	if (charData.weaponData.hasOwnProperty("add_bonus")) {
+		charData.addBonusAtk=parseInt($("#atk-bonus-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val());
+	}
+	
+	charData.passiveA = $("#passive-a-" + charNum).val();
+	charData.passiveB = $("#passive-b-" + charNum).val();
+	charData.passiveC = $("#passive-c-" + charNum).val();
+	charData.passiveAData = $("#passive-a-" + charNum).data("info");
+	charData.passiveBData = $("#passive-b-" + charNum).data("info");
+	charData.passiveCData = $("#passive-c-" + charNum).data("info");
+	charData.special = $("#special-" + charNum).val();
+	charData.specCurrCooldown = parseInt($("#spec-cooldown-" + charNum).val());
+	charData.specialData = $("#special-" + charNum).data("info");
+	
+	charData.currHP = parseInt($("#curr-hp-" + charNum).val());
+	charData.initHP = parseInt($("#curr-hp-" + charNum).val());
+	charData.hp = parseInt($("#hp-" + charNum).val());
+	charData.atk = Math.max(0, parseInt($("#atk-"+charNum).val()) + parseInt($("#atk-bonus-"+charNum).val()) + parseInt($("#atk-penalty-"+charNum).val()) + parseInt($("#atk-spur-"+charNum).val()));
+	charData.spd = Math.max(0, parseInt($("#spd-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#spd-penalty-"+charNum).val()) + parseInt($("#spd-spur-"+charNum).val()));
+	charData.def = Math.max(0, parseInt($("#def-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#def-penalty-"+charNum).val()) + parseInt($("#def-spur-"+charNum).val()));
+	charData.res = Math.max(0, parseInt($("#res-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val()) + parseInt($("#res-penalty-"+charNum).val()) + parseInt($("#res-spur-"+charNum).val()));
+	charData.atkWS = Math.max(0, parseInt($("#atk-"+charNum).val()) + parseInt($("#atk-bonus-"+charNum).val()) + parseInt($("#atk-penalty-"+charNum).val()));
+	charData.spdWS = Math.max(0, parseInt($("#spd-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#spd-penalty-"+charNum).val()));
+	charData.defWS = Math.max(0, parseInt($("#def-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#def-penalty-"+charNum).val()));
+	charData.resWS = Math.max(0, parseInt($("#res-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val()) + parseInt($("#res-penalty-"+charNum).val()));
+	
+	return charData;
 }
 
 // calculates how much damage the attacker will do to the defender in just one attack phase
@@ -702,90 +848,10 @@ function simBattle() {
 	
 	// contains both attacker, defender info and battle log messages
 	var battleInfo = {};
-	battleInfo.attacker = {};
-	battleInfo.defender = {};
+	battleInfo.attacker = getCharPanelData('1');
+	battleInfo.defender = getCharPanelData('2');
 	battleInfo.logMsg = "";
 	battleInfo.atkRange = $("#weapon-1").data("info").range;
-	
-	// get all attacker info
-	battleInfo.attacker.name = $("#char-1").val();
-	battleInfo.attacker.color = $("#color-1").val();
-	battleInfo.attacker.moveType = $("#move-type-1").val();
-	battleInfo.attacker.type = $("#weapon-type-1").val();
-	battleInfo.attacker.weaponName = $("#weapon-1").val();
-	battleInfo.attacker.weaponData = $("#weapon-1").data("info");
-		
-	if ($("#dragon-1").val() === "Yes") {
-		battleInfo.attacker.dragon = true;
-	} else {
-		battleInfo.attacker.dragon = false;
-	}
-	
-	if (battleInfo.attacker.weaponData.hasOwnProperty("add_bonus")) {
-		battleInfo.attacker.addBonusAtk = parseInt($("#atk-bonus-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#def-bonus-1").val()) + parseInt($("#res-bonus-1").val());
-	}
-	
-	battleInfo.attacker.passiveA = $("#passive-a-1").val();
-	battleInfo.attacker.passiveB = $("#passive-b-1").val();
-	battleInfo.attacker.passiveC = $("#passive-c-1").val();
-	battleInfo.attacker.passiveAData = $("#passive-a-1").data("info");
-	battleInfo.attacker.passiveBData = $("#passive-b-1").data("info");
-	battleInfo.attacker.passiveCData = $("#passive-c-1").data("info");
-	battleInfo.attacker.special = $("#special-1").val();
-	battleInfo.attacker.specCurrCooldown = parseInt($("#spec-cooldown-1").val());
-	battleInfo.attacker.specialData = $("#special-1").data("info");
-	
-	battleInfo.attacker.currHP = parseInt($("#curr-hp-1").val());
-	battleInfo.attacker.initHP = parseInt($("#curr-hp-1").val());
-	battleInfo.attacker.hp = parseInt($("#hp-1").val());
-	battleInfo.attacker.atk = Math.max(0, parseInt($("#atk-1").val()) + parseInt($("#atk-bonus-1").val()) + parseInt($("#atk-penalty-1").val()) + parseInt($("#atk-spur-1").val()));
-	battleInfo.attacker.spd = Math.max(0, parseInt($("#spd-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#spd-penalty-1").val()) + parseInt($("#spd-spur-1").val()));
-	battleInfo.attacker.def = Math.max(0, parseInt($("#def-1").val()) + parseInt($("#def-bonus-1").val()) + parseInt($("#def-penalty-1").val()) + parseInt($("#def-spur-1").val()));
-	battleInfo.attacker.res = Math.max(0, parseInt($("#res-1").val()) + parseInt($("#res-bonus-1").val()) + parseInt($("#res-penalty-1").val()) + parseInt($("#res-spur-1").val()));
-	battleInfo.attacker.atkWS = Math.max(0, parseInt($("#atk-1").val()) + parseInt($("#atk-bonus-1").val()) + parseInt($("#atk-penalty-1").val()));
-	battleInfo.attacker.spdWS = Math.max(0, parseInt($("#spd-1").val()) + parseInt($("#spd-bonus-1").val()) + parseInt($("#spd-penalty-1").val()));
-	battleInfo.attacker.defWS = Math.max(0, parseInt($("#def-1").val()) + parseInt($("#def-bonus-1").val()) + parseInt($("#def-penalty-1").val()));
-	battleInfo.attacker.resWS = Math.max(0, parseInt($("#res-1").val()) + parseInt($("#res-bonus-1").val()) + parseInt($("#res-penalty-1").val()));
-	
-	// get all defender info
-	battleInfo.defender.name = $("#char-2").val();
-	battleInfo.defender.color = $("#color-2").val();
-	battleInfo.defender.moveType = $("#move-type-2").val();
-	battleInfo.defender.type = $("#weapon-type-2").val();
-	battleInfo.defender.weaponName = $("#weapon-2").val();
-	battleInfo.defender.weaponData = $("#weapon-2").data("info");
-	
-	if ($("#dragon-2").val() === "Yes") {
-		battleInfo.defender.dragon = true;
-	} else {
-		battleInfo.defender.dragon = false;
-	}
-	
-	if (battleInfo.defender.weaponData.hasOwnProperty("add_bonus")) {
-		battleInfo.defender.addBonusAtk = parseInt($("#atk-bonus-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#def-bonus-2").val()) + parseInt($("#res-bonus-2").val());
-	}
-	
-	battleInfo.defender.passiveA = $("#passive-a-2").val();
-	battleInfo.defender.passiveB = $("#passive-b-2").val();
-	battleInfo.defender.passiveC = $("#passive-c-2").val();
-	battleInfo.defender.passiveAData = $("#passive-a-2").data("info");
-	battleInfo.defender.passiveBData = $("#passive-b-2").data("info");
-	battleInfo.defender.passiveCData = $("#passive-c-2").data("info");
-	battleInfo.defender.special = $("#special-2").val();
-	battleInfo.defender.specCurrCooldown = parseInt($("#spec-cooldown-2").val());
-	battleInfo.defender.specialData = $("#special-2").data("info");
-	
-	battleInfo.defender.currHP = parseInt($("#curr-hp-2").val());
-	battleInfo.defender.initHP = parseInt($("#curr-hp-2").val());
-	battleInfo.defender.hp = parseInt($("#hp-2").val());
-	battleInfo.defender.atk = Math.max(0, parseInt($("#atk-2").val()) + parseInt($("#atk-bonus-2").val()) + parseInt($("#atk-penalty-2").val()) + parseInt($("#atk-spur-2").val()));
-	battleInfo.defender.spd = Math.max(0, parseInt($("#spd-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#spd-penalty-2").val()) + parseInt($("#spd-spur-2").val()));
-	battleInfo.defender.def = Math.max(0, parseInt($("#def-2").val()) + parseInt($("#def-bonus-2").val()) + parseInt($("#def-penalty-2").val()) + parseInt($("#def-spur-2").val()));
-	battleInfo.defender.res = Math.max(0, parseInt($("#res-2").val()) + parseInt($("#res-bonus-2").val()) + parseInt($("#res-penalty-2").val()) + parseInt($("#res-spur-2").val()));
-	battleInfo.defender.atkWS = Math.max(0, parseInt($("#atk-2").val()) + parseInt($("#atk-bonus-2").val()) + parseInt($("#atk-penalty-2").val()));
-	battleInfo.defender.spdWS = Math.max(0, parseInt($("#spd-2").val()) + parseInt($("#spd-bonus-2").val()) + parseInt($("#spd-penalty-2").val()));
-	battleInfo.defender.defWS = Math.max(0, parseInt($("#def-2").val()) + parseInt($("#def-bonus-2").val()) + parseInt($("#def-penalty-2").val()));
-	battleInfo.defender.resWS = Math.max(0, parseInt($("#res-2").val()) + parseInt($("#res-bonus-2").val()) + parseInt($("#res-penalty-2").val()));
 	
 	// AOE damage before combat
 	if (battleInfo.attacker.specialData.hasOwnProperty("before_combat_aoe") && battleInfo.attacker.specCurrCooldown <= 0) {
@@ -1036,38 +1102,26 @@ $(document).ready( function () {
 	setupChars();
 	
 	// setup character select
-	$("#char-1").on("change", function () {
-		displayChar(charInfo[$("#char-1").val()], "1");
-		simBattle();
-	});
-	$("#char-2").on("change", function () {
-		displayChar(charInfo[$("#char-2").val()], "2");
+	$(".char-selector").on("change", function () {
+		var charNum = $(this).data("charnum").toString();
+		displayChar(charInfo[this.value], charNum);
 		simBattle();
 	});
 	
 	// setup weapon select
-	$("#weapon-1").on("change", function () {
-		showWeapon($("#weapon-1").val(), "1", true);
-		simBattle();
-	});
-	$("#weapon-2").on("change", function () {
-		showWeapon($("#weapon-2").val(), "2", true);
+	$(".weapon-selector").on("change", function () {
+		var charNum = $(this).data("charnum").toString();
+		showWeapon(this.value, charNum, true);
 		simBattle();
 	});
 	
 	// setup special select
-	$("#special-1").on("change", function () {
-		updateSpecCooldown("#weapon-1", '1', false);
-		getSpecialData('1');
-		showSpecCooldown($("#special-1").val(), "1", false);
-		updateSpecCooldown("#weapon-1", '1', true);
-		simBattle();
-	});
-	$("#special-2").on("change", function () {
-		updateSpecCooldown("#weapon-2", '2', false);
-		getSpecialData('2');
-		showSpecCooldown($("#special-2").val(), "2", false);
-		updateSpecCooldown("#weapon-2", '2', true);
+	$(".special-selector").on("change", function () {
+		var charNum = $(this).data("charnum").toString();
+		updateSpecCooldown("#weapon-" + charNum, charNum, false);
+		getSpecialData(charNum);
+		showSpecCooldown(this.value, charNum, false);
+		updateSpecCooldown("#weapon-" + charNum, charNum, true);
 		simBattle();
 	});
 	
@@ -1076,6 +1130,37 @@ $(document).ready( function () {
 		var charNum = $(this).data("charnum").toString();
 		var skillType = $(this).data("skilltype");
 		getSkillData(charNum, skillType, true);
+		simBattle();
+	});
+	
+	// set up weapon type changes
+	$(".weapon-type-selector").on("change", function () {
+		var charNum = $(this).data("charnum").toString();
+		loadWeapons(this.value, charNum);
+		setColor(this.value, charNum);
+		$("#weapon-" + charNum + " option:eq(0)").attr("selected", "selected");
+		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
+		simBattle();
+	});
+	
+	// set up color changes
+	$(".color-selector").on("change", function () {
+		var charNum = $(this).data("charnum").toString();
+		if (this.value === "Red") {
+			loadWeapons("Sword", charNum);
+			$("#weapon-type-" + charNum).val("Sword");
+		} else if (this.value === "Green") {
+			loadWeapons("Axe", charNum);
+			$("#weapon-type-" + charNum).val("Axe");
+		} else if (this.value === "Blue") {
+			loadWeapons("Lance", charNum);
+			$("#weapon-type-" + charNum).val("Lance");
+		} else {
+			loadWeapons("Bow", charNum);
+			$("#weapon-type-" + charNum).val("Bow");
+		}
+		$("#weapon-" + charNum + " option:eq(0)").attr("selected", "selected");
+		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
 		simBattle();
 	});
 	
