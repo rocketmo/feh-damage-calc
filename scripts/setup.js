@@ -430,6 +430,26 @@ function defCanCounter(battleInfo) {
 	return battleInfo.defender.weaponName !== "None" && (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range || battleInfo.defender.weaponData.hasOwnProperty("counter") || battleInfo.defender.passiveAData.hasOwnProperty("counter"));
 }
 
+// heals by damage dealt
+// battleInfo contains all battle information, dmg is the damage dealt, healAmount is the fraction to heal, healSource is the source of the healing, initiator determines who to heal
+function healDmg(battleInfo, dmg, healAmount, healSource, initiator) {
+	"use strict";
+	var heal = Math.floor(dmg * healAmount);
+	var oldHP = 0;
+	var currHP = 0;
+	if (initiator) {
+		oldHP = battleInfo.attacker.currHP;
+		battleInfo.attacker.currHP = Math.min(battleInfo.attacker.hp, battleInfo.attacker.currHP + heal);
+		currHP = battleInfo.attacker.currHP;
+	} else {
+		oldHP = battleInfo.defender.currHP;
+		battleInfo.defender.currHP = Math.min(battleInfo.defender.hp, battleInfo.defender.currHP + heal);
+		currHP = battleInfo.defender.currHP;
+	}
+	battleInfo.logMsg += "Healed by " + (healAmount * 100).toString() +"% of damage dealt [" + healSource + "]. <span class='dmg'><strong>" + heal.toString() + " health restored. </strong></span>";
+	return battleInfo;
+}
+
 // calculates how much damage the attacker will do to the defender in just one attack phase
 // battleInfo contains all necessary info for calculation, initiator determines if the battle initiator is attacking or not
 // logIntro describes the attack, brave is true if the attack is the second in a brave attack
@@ -587,6 +607,19 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		atkSpec = true;
 	}
 	
+	// damage reduction from defender
+	if (defender.specialData.hasOwnProperty("reduce_dmg") && defender.specCurrCooldown <= 0 && defender.specialData.reduce_dmg.range === battleInfo.atkRange) {
+		dmg -= Math.floor(dmg * defender.specialData.reduce_dmg.dmg_mod);
+		battleInfo.logMsg += "Opponent reduces damage inflicted from ";
+		if (battleInfo.atkRange === 1) {
+			battleInfo.logMsg += "adjacent attacks ";
+		} else {
+			battleInfo.logMsg += battleInfo.atkRange.toString() + " spaces away ";
+		}
+		battleInfo.logMsg += "by " + (defender.specialData.reduce_dmg.dmg_mod * 100).toString() + "% [" + defender.special + "]. ";
+		defSpec = true;
+	}
+	
 	battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + " damage dealt.</strong></span> ";
 	
 	// check for miracle
@@ -600,11 +633,20 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	
 	// check for healing
 	var healMsg = "";
-	if (attacker.weaponData.hasOwnProperty("heal_dmg")) {
-		var heal = Math.floor((oldHP - defender.currHP) * attacker.weaponData.heal_dmg);
-		var atkOldHP = attacker.currHP;
-		attacker.currHP = Math.min(attacker.hp, attacker.currHP + heal);
-		battleInfo.logMsg += "Healed by " + (attacker.weaponData.heal_dmg * 100).toString() +"% of damage dealt [" + attacker.weaponName + "]. <span class='dmg'><strong>" + heal.toString() + " health restored. </strong></span>";
+	var atkOldHP = attacker.currHP;
+	var didHeal = false;
+	if (attacker.weaponData.hasOwnProperty("heal_dmg") && attacker.specialData.hasOwnProperty("heal_dmg") && attacker.specCurrCooldown <= 0) {
+		battleInfo = healDmg(battleInfo, (oldHP - defender.currHP), attacker.weaponData.heal_dmg + attacker.specialData.heal_dmg, attacker.weaponName + ", " + attacker.special, initiator);
+		didHeal = true;
+	} else if (attacker.weaponData.hasOwnProperty("heal_dmg")) {
+		battleInfo = healDmg(battleInfo, (oldHP - defender.currHP), attacker.weaponData.heal_dmg, attacker.weaponName, initiator);
+		didHeal = true;
+	} else if (attacker.specialData.hasOwnProperty("heal_dmg") && attacker.specCurrCooldown <= 0) {
+		battleInfo = healDmg(battleInfo, (oldHP - defender.currHP), attacker.specialData.heal_dmg, attacker.special, initiator);
+		didHeal = true;
+	}
+	
+	if (didHeal) {
 		healMsg = " <span class='heal-seperator'>|</span> <span class='" + atkClass + "'><strong>" + attacker.name + " HP:</strong> " + atkOldHP.toString() + " → " + attacker.currHP.toString() + "</span>";
 	}
 	
@@ -663,6 +705,7 @@ function simBattle() {
 	battleInfo.attacker = {};
 	battleInfo.defender = {};
 	battleInfo.logMsg = "";
+	battleInfo.atkRange = $("#weapon-1").data("info").range;
 	
 	// get all attacker info
 	battleInfo.attacker.name = $("#char-1").val();
