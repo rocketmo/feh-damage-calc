@@ -1054,6 +1054,17 @@ function setDisabled(inSel, inLabel, disabled) {
 	}
 }
 
+// shows or hides the given div
+// divID is the id of the div to show/hide, visible is the visibility of the div
+function setVisible(divID, visible) {
+	"use strict";
+	if (visible) {
+		$(divID).show(700);
+	} else {
+		$(divID).hide(700);
+	}
+}
+
 // swaps info from the two character panels
 function swap() {
 	"use strict";
@@ -1111,6 +1122,9 @@ function swap() {
 	oldAtkInfo.assistDisabled = ($("#assist-1").attr("disabled") === "disabled");
 	oldAtkInfo.specialDisabled = ($("#special-1").attr("disabled") === "disabled");
 	oldAtkInfo.specCooldownDisabled = ($("#spec-cooldown-1").attr("disabled") === "disabled");
+	oldAtkInfo.extraCharInfoVisible = $("#extra-char-info-1").is(":visible");
+	oldAtkInfo.extraCharInfoVisible = $("#extra-char-info-1").is(":visible");
+	oldAtkInfo.extraWeaponInfoVisible = $("#extra-weapon-info-1").is(":visible");
 	
 	// place defender info in attacker panel
 	$("#char-1").val($("#char-2").val());
@@ -1166,6 +1180,8 @@ function swap() {
 	setDisabled("#assist-1", "#skills-1 .assist-label", ($("#assist-2").attr("disabled") === "disabled"));
 	setDisabled("#special-1", "#skills-1 .special-label", ($("#special-2").attr("disabled") === "disabled"));
 	setDisabled("#spec-cooldown-1", "#spec-cooldown-line-1", ($("#spec-cooldown-2").attr("disabled") === "disabled"));
+	setVisible("#extra-char-info-1", $("#extra-char-info-2").is(":visible"));
+	setVisible("#extra-weapon-info-1", $("#extra-weapon-info-2").is(":visible"));
 	
 	// place attacker info in defender panel
 	$("#char-2").val(oldAtkInfo.name);
@@ -1221,6 +1237,8 @@ function swap() {
 	setDisabled("#assist-2", "#skills-2 .assist-label", oldAtkInfo.assistDisabled);
 	setDisabled("#special-2", "#skills-2 .special-label", oldAtkInfo.specialDisabled);
 	setDisabled("#spec-cooldown-2", "#spec-cooldown-line-2", oldAtkInfo.specCooldownDisabled);
+	setVisible("#extra-char-info-2", oldAtkInfo.extraCharInfoVisible);
+	setVisible("#extra-weapon-info-2", oldAtkInfo.extraWeaponInfoVisible);
 }
 
 // setup inital page
