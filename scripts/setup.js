@@ -1041,6 +1041,188 @@ function setupChars() {
 	simBattle();
 }
 
+// sets the disabled attribute of an input
+// inSel is the jQuery selector of the input to enable/disable, inLabel is the label text to change color, disabled determines if the select needs to be disabled
+function setDisabled(inSel, inLabel, disabled) {
+	"use strict";
+	if (disabled) {
+		$(inSel).attr("disabled", "disabled");
+		$(inLabel).css("color", "#5b5b5b");
+	} else {
+		$(inSel).removeAttr("disabled");
+		$(inLabel).css("color", "white");
+	}
+}
+
+// swaps info from the two character panels
+function swap() {
+	"use strict";
+	// store old attacker info
+	var oldAtkInfo = {};
+	oldAtkInfo.name = $("#char-1").val();
+	oldAtkInfo.color = $("#color-1").val();
+	oldAtkInfo.weaponType = $("#weapon-type-1").val();
+	oldAtkInfo.moveType = $("#move-type-1").val();
+	oldAtkInfo.dragon = $("#dragon-1").val();
+	oldAtkInfo.weapon = $("#weapon-1").html();
+	oldAtkInfo.selectedWeapon = $("#weapon-1").val();
+	oldAtkInfo.weaponData = $("#weapon-1").data("info");
+	oldAtkInfo.weaponMight = $("#weapon-might-1").text();
+	oldAtkInfo.weaponRange = $("#weapon-range-1").text();
+	oldAtkInfo.weaponMagical = $("#weapon-magical-1").text();
+	oldAtkInfo.passiveA = $("#passive-a-1").html();
+	oldAtkInfo.selectedPassiveA = $("#passive-a-1").val();
+	oldAtkInfo.passiveAData = $("#passive-a-1").data("info");
+	oldAtkInfo.passiveB = $("#passive-b-1").html();
+	oldAtkInfo.selectedPassiveB = $("#passive-b-1").val();
+	oldAtkInfo.passiveBData = $("#passive-b-1").data("info");
+	oldAtkInfo.passiveC = $("#passive-c-1").html();
+	oldAtkInfo.selectedPassiveC = $("#passive-c-1").val();
+	oldAtkInfo.passiveCData = $("#passive-c-1").data("info");
+	oldAtkInfo.assist = $("#assist-1").html();
+	oldAtkInfo.selectedAssist = $("#assist-1").val();
+	oldAtkInfo.special = $("#special-1").html();
+	oldAtkInfo.selectedSpecial = $("#special-1").val();
+	oldAtkInfo.specialData = $("#special-1").data("info");
+	oldAtkInfo.specCooldown = $("#spec-cooldown-1").val();
+	oldAtkInfo.specCooldownMax = $("#spec-cooldown-max-1").text();
+	oldAtkInfo.hp = $("#hp-1").val();
+	oldAtkInfo.atk = $("#atk-1").val();
+	oldAtkInfo.atkBonus = $("#atk-bonus-1").val();
+	oldAtkInfo.atkPenalty = $("#atk-penalty-1").val();
+	oldAtkInfo.atkSpur = $("#atk-spur-1").val();
+	oldAtkInfo.spd = $("#spd-1").val();
+	oldAtkInfo.spdBonus = $("#spd-bonus-1").val();
+	oldAtkInfo.spdPenalty = $("#spd-penalty-1").val();
+	oldAtkInfo.spdSpur = $("#spd-spur-1").val();
+	oldAtkInfo.def = $("#def-1").val();
+	oldAtkInfo.defBonus = $("#def-bonus-1").val();
+	oldAtkInfo.defPenalty = $("#def-penalty-1").val();
+	oldAtkInfo.defSpur = $("#def-spur-1").val();
+	oldAtkInfo.res = $("#res-1").val();
+	oldAtkInfo.resBonus = $("#res-bonus-1").val();
+	oldAtkInfo.resPenalty = $("#res-penalty-1").val();
+	oldAtkInfo.resSpur = $("#res-spur-1").val();
+	oldAtkInfo.currHP = $("#curr-hp-1").val();
+	oldAtkInfo.extraCharInfoDisabled = ($("#color-1").attr("disabled") === "disabled");
+	oldAtkInfo.passiveADisabled = ($("#passive-a-1").attr("disabled") === "disabled");
+	oldAtkInfo.passiveBDisabled = ($("#passive-b-1").attr("disabled") === "disabled");
+	oldAtkInfo.passiveCDisabled = ($("#passive-c-1").attr("disabled") === "disabled");
+	oldAtkInfo.assistDisabled = ($("#assist-1").attr("disabled") === "disabled");
+	oldAtkInfo.specialDisabled = ($("#special-1").attr("disabled") === "disabled");
+	oldAtkInfo.specCooldownDisabled = ($("#spec-cooldown-1").attr("disabled") === "disabled");
+	
+	// place defender info in attacker panel
+	$("#char-1").val($("#char-2").val());
+	$("#color-1").val($("#color-2").val());
+	$("#weapon-type-1").val($("#weapon-type-2").val());
+	$("#move-type-1").val($("#move-type-2").val());
+	$("#dragon-1").val($("#dragon-2").val());
+	$("#weapon-1").html($("#weapon-2").html());
+	$("#weapon-1").val($("#weapon-2").val());
+	$("#weapon-1").data("info", $("#weapon-2").data("info"));
+	$("#weapon-might-1").text($("#weapon-might-2").text());
+	$("#weapon-range-1").text($("#weapon-range-2").text());
+	$("#weapon-magical-1").text($("#weapon-magical-2").text());
+	$("#passive-a-1").html($("#passive-a-2").html());
+	$("#passive-a-1").val($("#passive-a-2").val());
+	$("#passive-a-1").data("info", $("#passive-a-2").data("info"));
+	$("#passive-b-1").html($("#passive-b-2").html());
+	$("#passive-b-1").val($("#passive-b-2").val());
+	$("#passive-b-1").data("info", $("#passive-b-2").data("info"));
+	$("#passive-c-1").html($("#passive-c-2").html());
+	$("#passive-c-1").val($("#passive-c-2").val());
+	$("#passive-c-1").data("info", $("#passive-c-2").data("info"));
+	$("#assist-1").html($("#assist-2").html());
+	$("#assist-1").val($("#assist-2").val());
+	$("#special-1").html($("#special-2").html());
+	$("#special-1").val($("#special-2").val());
+	$("#special-1").data("info", $("#special-2").data("info"));
+	$("#spec-cooldown-1").val($("#spec-cooldown-2").val());
+	$("#spec-cooldown-max-1").text($("#spec-cooldown-max-2").text());
+	$("#hp-1").val($("#hp-2").val());
+	$("#atk-1").val($("#atk-2").val());
+	$("#atk-bonus-1").val($("#atk-bonus-2").val());
+	$("#atk-penalty-1").val($("#atk-penalty-2").val());
+	$("#atk-spur-1").val($("#atk-spur-2").val());
+	$("#spd-1").val($("#spd-2").val());
+	$("#spd-bonus-1").val($("#spd-bonus-2").val());
+	$("#spd-penalty-1").val($("#spd-penalty-2").val());
+	$("#spd-spur-1").val($("#spd-spur-2").val());
+	$("#def-1").val($("#def-2").val());
+	$("#def-bonus-1").val($("#def-bonus-2").val());
+	$("#def-penalty-1").val($("#def-penalty-2").val());
+	$("#def-spur-1").val($("#def-spur-2").val());
+	$("#res-1").val($("#res-2").val());
+	$("#res-bonus-1").val($("#res-bonus-2").val());
+	$("#res-penalty-1").val($("#res-penalty-2").val());
+	$("#res-spur-1").val($("#res-spur-2").val());
+	$("#curr-hp-1").val($("#curr-hp-2").val());
+	$(".hp-1-read").text($("#hp-2").val().toString());
+	setDisabled("#extra-char-info-1 select", "#extra-char-info-1", ($("#color-2").attr("disabled") === "disabled"));
+	setDisabled("#passive-a-1", "#skills-1 .passive-a-label", ($("#passive-a-2").attr("disabled") === "disabled"));
+	setDisabled("#passive-b-1", "#skills-1 .passive-b-label", ($("#passive-b-2").attr("disabled") === "disabled"));
+	setDisabled("#passive-c-1", "#skills-1 .passive-c-label", ($("#passive-c-2").attr("disabled") === "disabled"));
+	setDisabled("#assist-1", "#skills-1 .assist-label", ($("#assist-2").attr("disabled") === "disabled"));
+	setDisabled("#special-1", "#skills-1 .special-label", ($("#special-2").attr("disabled") === "disabled"));
+	setDisabled("#spec-cooldown-1", "#spec-cooldown-line-1", ($("#spec-cooldown-2").attr("disabled") === "disabled"));
+	
+	// place attacker info in defender panel
+	$("#char-2").val(oldAtkInfo.name);
+	$("#color-2").val(oldAtkInfo.color);
+	$("#weapon-type-2").val(oldAtkInfo.weaponType);
+	$("#move-type-2").val(oldAtkInfo.moveType);
+	$("#dragon-2").val(oldAtkInfo.dragon);
+	$("#weapon-2").html(oldAtkInfo.weapon);
+	$("#weapon-2").val(oldAtkInfo.selectedWeapon);
+	$("#weapon-2").data("info", oldAtkInfo.weaponData);
+	$("#weapon-might-2").text(oldAtkInfo.weaponMight);
+	$("#weapon-range-2").text(oldAtkInfo.weaponRange);
+	$("#weapon-magical-2").text(oldAtkInfo.weaponMagical);
+	$("#passive-a-2").html(oldAtkInfo.passiveA);
+	$("#passive-a-2").val(oldAtkInfo.selectedPassiveA);
+	$("#passive-a-2").data("info", oldAtkInfo.passiveAData);
+	$("#passive-b-2").html(oldAtkInfo.passiveB);
+	$("#passive-b-2").val(oldAtkInfo.selectedPassiveB);
+	$("#passive-b-2").data("info", oldAtkInfo.passiveAData);
+	$("#passive-c-2").html(oldAtkInfo.passiveC);
+	$("#passive-c-2").val(oldAtkInfo.selectedPassiveC);
+	$("#passive-c-2").data("info", oldAtkInfo.passiveCData);
+	$("#assist-2").html(oldAtkInfo.assist);
+	$("#assist-2").val(oldAtkInfo.selectedAssist);
+	$("#special-2").html(oldAtkInfo.special);
+	$("#special-2").val(oldAtkInfo.selectedSpecial);
+	$("#special-2").data("info", oldAtkInfo.specialData);
+	$("#spec-cooldown-2").val(oldAtkInfo.specCooldown);
+	$("#spec-cooldown-max-2").text(oldAtkInfo.specCooldownMax);
+	$("#hp-2").val(oldAtkInfo.hp);
+	$("#atk-2").val(oldAtkInfo.atk);
+	$("#atk-bonus-2").val(oldAtkInfo.atkBonus);
+	$("#atk-penalty-2").val(oldAtkInfo.atkPenalty);
+	$("#atk-spur-2").val(oldAtkInfo.atkSpur);
+	$("#spd-2").val(oldAtkInfo.spd);
+	$("#spd-bonus-2").val(oldAtkInfo.spdBonus);
+	$("#spd-penalty-2").val(oldAtkInfo.spdPenalty);
+	$("#spd-spur-2").val(oldAtkInfo.spdSpur);
+	$("#def-2").val(oldAtkInfo.def);
+	$("#def-bonus-2").val(oldAtkInfo.defBonus);
+	$("#def-penalty-2").val(oldAtkInfo.defPenalty);
+	$("#def-spur-2").val(oldAtkInfo.defSpur);
+	$("#res-2").val(oldAtkInfo.res);
+	$("#res-bonus-2").val(oldAtkInfo.resBonus);
+	$("#res-penalty-2").val(oldAtkInfo.resPenalty);
+	$("#res-spur-2").val(oldAtkInfo.resSpur);
+	$("#curr-hp-2").val(oldAtkInfo.currHP);
+	$(".hp-2-read").text(oldAtkInfo.hp);
+	setDisabled("#extra-char-info-2 select", "#extra-char-info-2", oldAtkInfo.extraCharInfoDisabled);
+	setDisabled("#passive-a-2", "#skills-2 .passive-a-label", oldAtkInfo.passiveADisabled);
+	setDisabled("#passive-b-2", "#skills-2 .passive-b-label", oldAtkInfo.passiveBDisabled);
+	setDisabled("#passive-c-2", "#skills-2 .passive-c-label", oldAtkInfo.passiveCDisabled);
+	setDisabled("#assist-2", "#skills-2 .assist-label", oldAtkInfo.assistDisabled);
+	setDisabled("#special-2", "#skills-2 .special-label", oldAtkInfo.specialDisabled);
+	setDisabled("#spec-cooldown-2", "#spec-cooldown-line-2", oldAtkInfo.specCooldownDisabled);
+}
+
 // setup inital page
 $(document).ready( function () {
 	"use strict";	
@@ -1166,6 +1348,12 @@ $(document).ready( function () {
 	
 	// setup other battle value changes
 	$(".battle-val").on("change", function () {
+		simBattle();
+	});
+	
+	// swap button
+	$("#swap-button").on("click", function () {
+		swap();
 		simBattle();
 	});
 });
