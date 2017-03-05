@@ -874,6 +874,7 @@ function simBattle() {
 		
 		var oldHP = battleInfo.defender.currHP;
 		battleInfo.defender.currHP = Math.max(battleInfo.defender.currHP - aoeDmg, 1);
+		battleInfo.defender.initHP = battleInfo.defender.currHP;
 		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> deals AOE damage before combat [" + battleInfo.attacker.special + "]. <span class='dmg'><strong>" + aoeDmg.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
 	}
 	
