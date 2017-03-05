@@ -521,11 +521,28 @@ function defCanCounter(battleInfo) {
 	return battleInfo.defender.weaponName !== "None" && (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range || battleInfo.defender.weaponData.hasOwnProperty("counter") || battleInfo.defender.passiveAData.hasOwnProperty("counter"));
 }
 
+// rounds numbers up or down, rounds to closest int if the difference is less than 0.01
+// unrounded is the number to round, roundUp is true if we need to round up
+function roundNum (unrounded, roundUp) {
+	"use strict";
+	if (roundUp) {
+		if (unrounded - Math.floor(unrounded) < 0.01) {
+			return Math.floor(unrounded);
+		} else {
+			return Math.ceil(unrounded);
+		}
+	} else if (Math.ceil(unrounded) - unrounded < 0.01) {
+		return Math.ceil(unrounded);
+	}
+	
+	return Math.floor(unrounded);
+}
+
 // heals by damage dealt
 // battleInfo contains all battle information, dmg is the damage dealt, healAmount is the fraction to heal, healSource is the source of the healing, initiator determines who to heal
 function healDmg(battleInfo, dmg, healAmount, healSource, initiator) {
 	"use strict";
-	var heal = Math.floor(dmg * healAmount);
+	var heal = roundNum(dmg * healAmount, false);
 	var oldHP = 0;
 	var currHP = 0;
 	if (initiator) {
@@ -537,7 +554,7 @@ function healDmg(battleInfo, dmg, healAmount, healSource, initiator) {
 		battleInfo.defender.currHP = Math.min(battleInfo.defender.hp, battleInfo.defender.currHP + heal);
 		currHP = battleInfo.defender.currHP;
 	}
-	battleInfo.logMsg += "Healed by " + (healAmount * 100).toString() +"% of damage dealt [" + healSource + "]. <span class='dmg'><strong>" + heal.toString() + " health restored. </strong></span>";
+	battleInfo.logMsg += "Healed by " + (healAmount * 100).toString() +"% of actual damage dealt [" + healSource + "]. <span class='dmg'><strong>" + heal.toString() + " health restored. </strong></span>";
 	return battleInfo;
 }
 
@@ -702,11 +719,12 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		battleInfo.logMsg += "Effectiveness against dragons increases attack by 50% [" + attacker.weaponName + "]. ";
 	}
 	
-	// calculate attack
+	// calculate attack and round
+	var unroundedAtk = atkPower * atkMod;
 	if (roundUp) {
-		atkPower = Math.ceil(atkPower * atkMod);
+		atkPower = roundNum(unroundedAtk, true);
 	} else if (atkMod > 1) {
-		atkPower = Math.floor(atkPower * atkMod);
+		atkPower = roundNum(unroundedAtk, false);
 	}
 	
 	// determine if magical or not
@@ -719,7 +737,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	
 	// defense and resistance lowering special
 	if (attacker.specialData.hasOwnProperty("enemy_def_res_mod") && attacker.specCurrCooldown <= 0) {
-		defReduct -= Math.floor(defReduct * attacker.specialData.enemy_def_res_mod);
+		defReduct -= roundNum(defReduct * attacker.specialData.enemy_def_res_mod, false);
 		battleInfo.logMsg += "Opponent's defense and resistance lowered by " + (attacker.specialData.enemy_def_res_mod * 100).toString() + "% [" + attacker.special + "]. ";
 		atkSpec = true;
 	}
@@ -729,33 +747,33 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	
 	// halve staff damage
 	if (attacker.type === "Staff") {
-		dmg = Math.floor(dmg / 2);
+		dmg = roundNum(dmg / 2, false);
 	}
 	
 	// damage buffs by stat
 	if (attacker.specialData.hasOwnProperty("dmg_buff_by_stat") && attacker.specCurrCooldown <= 0) {
-		dmg += Math.floor(attacker.specialData.dmg_buff_by_stat.buff * attacker[attacker.specialData.dmg_buff_by_stat.stat + "WS"]);
+		dmg += roundNum(attacker.specialData.dmg_buff_by_stat.buff * attacker[attacker.specialData.dmg_buff_by_stat.stat + "WS"], false);
 		battleInfo.logMsg += "Damage boosted by " + (attacker.specialData.dmg_buff_by_stat.buff * 100).toString() + "% of " + statWord(attacker.specialData.dmg_buff_by_stat.stat) + " [" + attacker.special + "]. ";
 		atkSpec = true;
 	}
 	
 	// damage suffered buff
 	if (attacker.specialData.hasOwnProperty("dmg_suffer_buff") && attacker.specCurrCooldown <= 0) {
-		dmg += Math.floor((attacker.hp - attacker.currHP) * attacker.specialData.dmg_suffer_buff);
+		dmg += roundNum((attacker.hp - attacker.currHP) * attacker.specialData.dmg_suffer_buff, false);
 		battleInfo.logMsg += "Damage boosted by " + (attacker.specialData.dmg_suffer_buff * 100).toString() + "% of damage suffered [" + attacker.special + "]. ";
 		atkSpec = true;
 	}
 	
 	// check for damage multiplier
 	if (attacker.specialData.hasOwnProperty("dmg_mod") && attacker.specCurrCooldown <= 0) {
-		dmg += Math.floor(dmg * attacker.specialData.dmg_mod);
+		dmg += roundNum(dmg * attacker.specialData.dmg_mod, false);
 		battleInfo.logMsg += "Damage boosted by " + (attacker.specialData.dmg_mod * 100).toString() + "% [" + attacker.special + "]. ";
 		atkSpec = true;
 	}
 	
 	// damage reduction from defender
 	if (defender.specialData.hasOwnProperty("reduce_dmg") && defender.specCurrCooldown <= 0 && defender.specialData.reduce_dmg.range === battleInfo.atkRange) {
-		dmg -= Math.floor(dmg * defender.specialData.reduce_dmg.dmg_mod);
+		dmg -= roundNum(dmg * defender.specialData.reduce_dmg.dmg_mod, false);
 		battleInfo.logMsg += "Opponent reduces damage inflicted from ";
 		if (battleInfo.atkRange === 1) {
 			battleInfo.logMsg += "adjacent attacks ";
@@ -863,7 +881,7 @@ function simBattle() {
 		
 		// check for atk multiplier
 		if (battleInfo.attacker.specialData.hasOwnProperty("aoe_dmg_mod")) {
-			aoeDmg = Math.floor(aoeDmg * battleInfo.attacker.specialData.aoe_dmg_mod);
+			aoeDmg = roundNum(aoeDmg * battleInfo.attacker.specialData.aoe_dmg_mod, false);
 		}
 		
 		if (battleInfo.attacker.weaponData.magical) {
