@@ -41,7 +41,10 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 2,
 		"magical" : false,
-		"move_effective" : "Flying"
+		"move_effective" : "Flying",
+		"breaker" : {
+            "weapon_type" : "Dagger"
+        }
 	},
 	"Assassin's Bow+" : {
 		"color"   : "Colorless",
@@ -49,7 +52,10 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 2,
 		"magical" : false,
-		"move_effective" : "Flying"
+		"move_effective" : "Flying",
+		"breaker" : {
+            "weapon_type" : "Dagger"
+        }
 	},
 	"Assault" : {
 		"color"   : "Colorless",

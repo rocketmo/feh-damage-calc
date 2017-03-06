@@ -961,14 +961,70 @@ function simBattle() {
 		
 		// if attacker hasn't been ko'd, check for follow ups
 		if (battleInfo.attacker.currHP > 0) {
-			// breaker skill > wary fighter
-			if (battleInfo.attacker.passiveBData.hasOwnProperty("breaker") && battleInfo.attacker.passiveBData.breaker.weapon_type === battleInfo.defender.type && battleInfo.attacker.initHP >= battleInfo.attacker.passiveBData.breaker.threshold * battleInfo.attacker.hp && battleInfo.defender.passiveBData.hasOwnProperty("breaker") && battleInfo.defender.passiveBData.breaker.weapon_type === battleInfo.attacker.type && battleInfo.defender.initHP >= battleInfo.defender.passiveBData.breaker.threshold * battleInfo.defender.hp && defCanCounter(battleInfo)) {
+			// get breaker information
+			var atkWeaponBreaker = battleInfo.attacker.weaponData.hasOwnProperty("breaker");
+			var atkPassiveBreaker = battleInfo.attacker.passiveBData.hasOwnProperty("breaker");
+			var defWeaponBreaker = battleInfo.defender.weaponData.hasOwnProperty("breaker");
+			var defPassiveBreaker = battleInfo.defender.passiveBData.hasOwnProperty("breaker");
+			
+			var atkPassiveBreakerType = "";
+			var atkPassiveBreakerThreshold = 1;
+			var defPassiveBreakerType = "";
+			var defPassiveBreakerThreshold = 1;
+			var atkWeaponBreakerType = "";
+			var defWeaponBreakerType = "";
+			
+			if (atkPassiveBreaker) {
+				atkPassiveBreakerType = battleInfo.attacker.passiveBData.breaker.weapon_type;
+				atkPassiveBreakerThreshold = battleInfo.attacker.passiveBData.breaker.threshold;
+			}
+			if (defPassiveBreaker) {
+				defPassiveBreakerType = battleInfo.defender.passiveBData.breaker.weapon_type;
+				defPassiveBreakerThreshold = battleInfo.defender.passiveBData.breaker.threshold;
+			}
+			if (atkWeaponBreaker) {
+				atkWeaponBreakerType = battleInfo.attacker.weaponData.breaker.weapon_type;
+			}
+			if (defWeaponBreaker) {
+				defWeaponBreakerType = battleInfo.defender.weaponData.breaker.weapon_type;
+			}
+			
+			// breaker skills
+			// both characters have passive breakers that cancel each other
+			if (atkPassiveBreaker && atkPassiveBreakerType === battleInfo.defender.type && battleInfo.attacker.initHP >= atkPassiveBreakerThreshold * battleInfo.attacker.hp && defPassiveBreaker && defPassiveBreakerType === battleInfo.attacker.type && battleInfo.defender.initHP >= defPassiveBreakerThreshold * battleInfo.defender.hp && defCanCounter(battleInfo)) {
 				battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.passiveB + ", " + battleInfo.defender.passiveB + "].</li>";
-			} else if (battleInfo.attacker.passiveBData.hasOwnProperty("breaker") && battleInfo.attacker.passiveBData.breaker.weapon_type === battleInfo.defender.type && battleInfo.attacker.initHP >= battleInfo.attacker.passiveBData.breaker.threshold * battleInfo.attacker.hp ) {
+			} 
+			// attacker has a passive breaker and defender has a breaker from a weapon that cancel each other
+			else if (atkPassiveBreaker && atkPassiveBreakerType === battleInfo.defender.type && battleInfo.attacker.initHP >= atkPassiveBreakerThreshold * battleInfo.attacker.hp && defWeaponBreaker && defWeaponBreakerType === battleInfo.attacker.type && defCanCounter(battleInfo)) {
+				battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.passiveB + ", " + battleInfo.defender.weaponName + "].</li>";
+			}
+			// attacker has a breaker from a weapon and defender a passive breaker that cancel each other
+			else if (atkWeaponBreaker && atkWeaponBreakerType === battleInfo.defender.type && defPassiveBreaker && defPassiveBreakerType === battleInfo.attacker.type && battleInfo.defender.initHP >= defPassiveBreakerThreshold * battleInfo.defender.hp && defCanCounter(battleInfo)) {
+				battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.weaponName + ", " + battleInfo.defender.passiveB + "].</li>";
+			}
+			// both characters have breakers from weapons that cancel each other
+			else if (atkWeaponBreaker && atkWeaponBreakerType === battleInfo.defender.type && defWeaponBreaker && defWeaponBreakerType === battleInfo.attacker.type && defCanCounter(battleInfo)) {
+				battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.weaponName + ", " + battleInfo.defender.weaponName + "].</li>";
+			}
+			// attacker breaker (passive)
+			else if (atkPassiveBreaker && atkPassiveBreakerType === battleInfo.defender.type && battleInfo.attacker.initHP >= atkPassiveBreakerThreshold * battleInfo.attacker.hp ) {
 				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while nullifying any follow-up attack from the opponent [" + battleInfo.attacker.passiveB + "]", false);
-			} else if (battleInfo.defender.passiveBData.hasOwnProperty("breaker") && battleInfo.defender.passiveBData.breaker.weapon_type === battleInfo.attacker.type && battleInfo.defender.initHP >= battleInfo.defender.passiveBData.breaker.threshold * battleInfo.defender.hp && defCanCounter(battleInfo)) {
+			} 
+			// defender breaker (passive)
+			else if (defPassiveBreaker && defPassiveBreakerType === battleInfo.attacker.type && battleInfo.defender.initHP >= defPassiveBreakerThreshold * battleInfo.defender.hp && defCanCounter(battleInfo)) {
 				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack, while nullifying any follow-up attack from the opponent [" + battleInfo.defender.passiveB + "]", false);
-			} else if (battleInfo.attacker.passiveBData.hasOwnProperty("wary") && battleInfo.attacker.initHP >= battleInfo.attacker.passiveBData.wary.threshold * battleInfo.attacker.hp) {
+			} 
+			// attacker breaker (weapon)
+			else if (atkWeaponBreaker && atkWeaponBreakerType === battleInfo.defender.type) {
+				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while nullifying any follow-up attack from the opponent [" + battleInfo.attacker.weaponName + "]", false);
+			}
+			// defender breaker (weapon)
+			else if (defWeaponBreaker && defWeaponBreakerType === battleInfo.attacker.type && defCanCounter(battleInfo)) {
+				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack, while nullifying any follow-up attack from the opponent [" + battleInfo.defender.weaponName + "]", false);
+			}
+			
+			// wary fighter
+			else if (battleInfo.attacker.passiveBData.hasOwnProperty("wary") && battleInfo.attacker.initHP >= battleInfo.attacker.passiveBData.wary.threshold * battleInfo.attacker.hp) {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> prevents any further follow-up attacks [" + battleInfo.attacker.passiveB + "].</li>";
 			} else if (battleInfo.defender.passiveBData.hasOwnProperty("wary") && battleInfo.defender.initHP >= battleInfo.defender.passiveBData.wary.threshold * battleInfo.defender.hp) {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> prevents any further follow-up attacks [" + battleInfo.defender.passiveB + "].</li>";
