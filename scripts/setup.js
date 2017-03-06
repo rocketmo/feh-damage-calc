@@ -878,16 +878,15 @@ function simBattle() {
 		
 		// calculate damage
 		var aoeDmg = battleInfo.attacker.atkWS ;
-		
-		// check for atk multiplier
-		if (battleInfo.attacker.specialData.hasOwnProperty("aoe_dmg_mod")) {
-			aoeDmg = roundNum(aoeDmg * battleInfo.attacker.specialData.aoe_dmg_mod, false);
-		}
-		
 		if (battleInfo.attacker.weaponData.magical) {
 			aoeDmg -= battleInfo.defender.res;
 		} else {
 			aoeDmg -= battleInfo.defender.def;
+		}
+		
+		// check for damage multiplier
+		if (battleInfo.attacker.specialData.hasOwnProperty("aoe_dmg_mod")) {
+			aoeDmg = roundNum(aoeDmg * battleInfo.attacker.specialData.aoe_dmg_mod, false);
 		}
 		
 		var oldHP = battleInfo.defender.currHP;
