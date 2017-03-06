@@ -224,6 +224,10 @@ var specInfo =
         "cooldown" : 1,
         "non_combat" : true
     },
+    "Still-Water Balm" : {
+        "cooldown" : 1,
+        "non_combat" : true
+    },
     "Swift-Winds Balm" : {
         "cooldown" : 1,
         "non_combat" : true
