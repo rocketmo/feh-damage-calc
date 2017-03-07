@@ -452,12 +452,12 @@ var skillInfo =
         },
         "Quick Riposte 2" : {
             "riposte" : {
-                "threshold" : 0.7
+                "threshold" : 0.8
             }
         },
         "Quick Riposte 3" : {
             "riposte" : {
-                "threshold" : 0.5
+                "threshold" : 0.7
             }
         },
         "R Tomebreaker 1" : {
