@@ -54,7 +54,8 @@ var charInfo =
 		"move_type": "Infantry",
 		"weapon": ["Emerald Axe+", "Emerald Axe", "Steel Axe", "Iron Axe"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
-		"passive_b": ["Lancebreaker 3", "Lancebreaker 2", "Lancebreaker 1"]
+		"passive_b": ["Lancebreaker 3", "Lancebreaker 2", "Lancebreaker 1"],
+		"assist" : ["Swap"]
 	},
 	"Azama": {
 		"color" : "Colorless",
@@ -94,7 +95,7 @@ var charInfo =
 		"res": 17,
 		"move_type": "Infantry",
 		"weapon": ["Brave Axe+", "Brave Axe", "Steel Axe", "Iron Axe"],
-		"passive_a": ["Knock Back"],
+		"passive_b": ["Knock Back"],
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"],
 		"assist" : ["Reposition"]
 	},
@@ -136,7 +137,6 @@ var charInfo =
 		"res": 34,
 		"move_type": "Flying",
 		"weapon": ["Armorslayer+", "Armorslayer", "Steel Sword", "Iron Sword"],
-		"special": ["Glimmer", "Night Sky"],
 		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
 		"passive_c": ["Fortify Fliers", "Fortify Res 2", "Fortify Res 1"],
 		"assist" : ["Rally Speed"]
@@ -265,8 +265,7 @@ var charInfo =
 		"weapon": ["Dark Breath+", "Dark Breath", "Fire Breath+ (Blue)", "Fire Breath (Blue)"],
 		"special": ["Draconic Aura", "Dragon Gaze"],
 		"passive_b": ["Seal Res 3", "Seal Res 2", "Seal Res 1"],
-		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
-		"dragon": true
+		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"]
 	},
 	"Corrin (M)": {
 		"color" : "Red",
@@ -294,7 +293,6 @@ var charInfo =
 		"res": 23,
 		"move_type": "Infantry",
 		"weapon": ["Brave Lance+", "Brave Lance", "Steel Lance", "Iron Lance"],
-		"special": ["Galeforce", "Astra", "Night Sky"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
 		"passive_b": ["Drag Back"],
 		"assist" : ["Reciprocal Aid"]
@@ -423,7 +421,6 @@ var charInfo =
 		"weapon": ["Light Breath+", "Light Breath", "Fire Breath+ (Green)", "Fire Breath (Green)"],
 		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
-		"dragon": true,
 		"assist" : ["Draw Back"]
 	},
 	"Felicia": {
@@ -957,7 +954,6 @@ var charInfo =
 		"weapon": ["Lightning Breath+ (Blue)", "Lightning Breath (Blue)", "Fire Breath+ (Blue)", "Fire Breath (Blue)"],
 		"passive_a": ["Defense +3", "Defense +2", "Defense +1"],
 		"passive_c": ["Threaten Res 3", "Threaten Res 2", "Threaten Res 1"],
-		"dragon": true,
 		"assist" : ["Rally Defense"]
 	},
 	"Oboro": {
@@ -1068,7 +1064,6 @@ var charInfo =
 		"res": 29,
 		"move_type": "Infantry",
 		"weapon": ["Rauðrwolf+", "Rauðrwolf", "Ruin", "Flux"],
-		"special": ["Growing Flame", "Rising Flame"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
 		"passive_b": ["Seal Res 3", "Seal Res 2", "Seal Res 1"],
 		"assist" : ["Rally Attack"]
@@ -1393,8 +1388,7 @@ var charInfo =
 		"weapon": ["Lightning Breath+ (Red)", "Lightning Breath (Red)", "Fire Breath+ (Red)", "Fire Breath (Red)"],
 		"special": ["Bonfire", "Glowing Ember"],
 		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
-		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"],
-		"dragon": true
+		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"]
 	},
 	"Tiki (Young)": {
 		"color" : "Red",
@@ -1408,8 +1402,7 @@ var charInfo =
 		"weapon": ["Flametongue+", "Flametongue", "Fire Breath+ (Red)", "Fire Breath (Red)"],
 		"special": ["Growing Flame", "Rising Flame"],
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
-		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"],
-		"dragon": true
+		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"]
 	},
 	"Virion": {
 		"color" : "Colorless",

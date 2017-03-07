@@ -353,10 +353,7 @@ var weaponInfo =
 		"type"    : "Red Tome",
 		"might"   : 9,
 		"range"   : 2,
-		"magical" : true,
-		"threaten" : {
-			"atk" : -4
-		}
+		"magical" : true
 	},
 	"Fenrir+" : {
 		"color"   : "Red",
@@ -370,7 +367,10 @@ var weaponInfo =
 		"type"    : "Lance",
 		"might"   : 16,
 		"range"   : 1,
-		"magical" : false
+		"magical" : false,
+		"threaten" : {
+			"atk" : -4
+		}
 	},
 	"Fire" : {
 		"color"   : "Red",
@@ -1139,8 +1139,11 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"defiant" : {
-			"def" : 4
+		"below_threshold_mod" : {
+			"threshold" : 0.5,
+			"stat_mod" : {
+				"def" : 4
+			}
 		}
 	},
 	"Wind" : {

@@ -331,13 +331,6 @@ function displayChar(singleChar, charNum) {
 	$("#weapon-type-" + charNum).val(singleChar.weapon_type);
 	$("#move-type-" + charNum).val(singleChar.move_type);
 	
-	// show dragon attribute
-	if (singleChar.hasOwnProperty("dragon")) {
-		$("#dragon-" + charNum).val("Yes");
-	} else {
-		$("#dragon-" + charNum).val("No");
-	}
-	
 	// show stats
 	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(singleChar.hp);
 	$(".hp-" + charNum + "-read").text(singleChar.hp);
@@ -514,6 +507,18 @@ function defendBonus(battleInfo, statMods, modSource) {
 	return battleInfo;
 }
 
+// handles bonuses by being under a certain hp threshold
+// battleInfo contains all battle information, belowThresholdMod contains all information for the bonuses, modSource is the source of the bonuses, charToUse is either "attacker" or "defender"
+function belowThresholdBonus (battleInfo, belowThresholdMod, modSource, charToUse) {
+	"use strict";
+	for (var stat in belowThresholdMod.stat_mod) {
+		battleInfo[charToUse][stat] += belowThresholdMod.stat_mod[stat];
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charToUse + "'><strong>" + battleInfo[charToUse].name + "</strong></span> gains " + belowThresholdMod.stat_mod[stat].toString() + " " + statWord(stat) + " for having HP ≤ " + (belowThresholdMod.threshold * 100).toString() +"% [" + modSource + "].</li>";
+	}
+	
+	return battleInfo;
+}
+
 // checks if the defender can counter
 // battleInfo contains all battle information
 function defCanCounter(battleInfo) {
@@ -577,12 +582,6 @@ function getCharPanelData (charNum) {
 	charData.type = $("#weapon-type-" + charNum).val();
 	charData.weaponName = $("#weapon-" + charNum).val();
 	charData.weaponData = $("#weapon-" + charNum).data("info");
-		
-	if ($("#dragon-" + charNum).val() === "Yes") {
-		charData.dragon = true;
-	} else {
-		charData.dragon = false;
-	}
 	
 	if (charData.weaponData.hasOwnProperty("add_bonus")) {
 		charData.addBonusAtk=parseInt($("#atk-bonus-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val());
@@ -714,7 +713,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	}
 	
 	// super effectiveness against dragons
-	if (attacker.weaponData.hasOwnProperty("dragon_effective") && defender.dragon) {
+	if (attacker.weaponData.hasOwnProperty("dragon_effective") && (defender.type === "Red Breath" || defender.type === "Green Breath" || defender.type === "Blue Breath")) {
 		atkMod *= 1.5;
 		battleInfo.logMsg += "Effectiveness against dragons increases attack by 50% [" + attacker.weaponName + "]. ";
 	}
@@ -906,6 +905,14 @@ function simBattle() {
 	// defending bonus
 	if (battleInfo.defender.weaponData.hasOwnProperty("defend_mod")) {
 		battleInfo = defendBonus(battleInfo, battleInfo.defender.weaponData.defend_mod, battleInfo.defender.weaponName);
+	}
+	
+	// below hp threshold bonus
+	if (battleInfo.attacker.weaponData.hasOwnProperty("below_threshold_mod") && battleInfo.attacker.initHP <= battleInfo.attacker.weaponData.below_threshold_mod.threshold * battleInfo.attacker.hp) {
+		battleInfo = belowThresholdBonus(battleInfo, battleInfo.attacker.weaponData.below_threshold_mod, battleInfo.attacker.weaponName, "attacker");
+	} 
+	if (battleInfo.defender.weaponData.hasOwnProperty("below_threshold_mod") && battleInfo.defender.initHP <= battleInfo.defender.weaponData.below_threshold_mod.threshold * battleInfo.defender.hp) {
+		battleInfo = belowThresholdBonus(battleInfo, battleInfo.defender.weaponData.below_threshold_mod, battleInfo.defender.weaponName, "defender");
 	}
 	
 	// vantage
@@ -1148,7 +1155,6 @@ function swap() {
 	oldAtkInfo.color = $("#color-1").val();
 	oldAtkInfo.weaponType = $("#weapon-type-1").val();
 	oldAtkInfo.moveType = $("#move-type-1").val();
-	oldAtkInfo.dragon = $("#dragon-1").val();
 	oldAtkInfo.weapon = $("#weapon-1").html();
 	oldAtkInfo.selectedWeapon = $("#weapon-1").val();
 	oldAtkInfo.weaponData = $("#weapon-1").data("info");
@@ -1205,7 +1211,6 @@ function swap() {
 	$("#color-1").val($("#color-2").val());
 	$("#weapon-type-1").val($("#weapon-type-2").val());
 	$("#move-type-1").val($("#move-type-2").val());
-	$("#dragon-1").val($("#dragon-2").val());
 	$("#weapon-1").html($("#weapon-2").html());
 	$("#weapon-1").val($("#weapon-2").val());
 	$("#weapon-1").data("info", $("#weapon-2").data("info"));
@@ -1262,7 +1267,6 @@ function swap() {
 	$("#color-2").val(oldAtkInfo.color);
 	$("#weapon-type-2").val(oldAtkInfo.weaponType);
 	$("#move-type-2").val(oldAtkInfo.moveType);
-	$("#dragon-2").val(oldAtkInfo.dragon);
 	$("#weapon-2").html(oldAtkInfo.weapon);
 	$("#weapon-2").val(oldAtkInfo.selectedWeapon);
 	$("#weapon-2").data("info", oldAtkInfo.weaponData);
