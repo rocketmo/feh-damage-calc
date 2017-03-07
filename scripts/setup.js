@@ -1039,7 +1039,7 @@ function simBattle() {
 				var attackFollow = false;	// true if attacker makes a follow up attack
 				
 				// check for brash assault
-				if (battleInfo.attacker.passiveBData.hasOwnProperty("brash") && defCounter && battleInfo.attacker.initHP <= battleInfo.attacker.passiveBData.brash.threshold * battleInfo.attacker.hp){
+				if (battleInfo.attacker.passiveBData.hasOwnProperty("brash") && defCounter && battleInfo.attacker.currHP <= battleInfo.attacker.passiveBData.brash.threshold * battleInfo.attacker.hp){
 					battleInfo = singleCombat(battleInfo, true, "makes an automatic follow-up attack [" + battleInfo.attacker.passiveB + "]", false);
 					attackFollow = true;
 				}
