@@ -301,7 +301,7 @@ var skillInfo =
         "Bowbreaker 3" : {
             "breaker" : {
                 "weapon_type" : "Bow",
-                "threshold" : 0.7
+                "threshold" : 0.5
             }
         },
         "B Tomebreaker 1" : {

@@ -939,10 +939,10 @@ function simBattle() {
 		
 	// desperation follow up
 	var desperation = false;
-	if (battleInfo.attacker.weaponData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= battleInfo.attacker.weaponData.desperation.threshold * battleInfo.attacker.hp) {
+	if (battleInfo.attacker.weaponData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= battleInfo.attacker.weaponData.desperation.threshold * battleInfo.attacker.hp && battleInfo.attacker.spd >= battleInfo.defender.spd + 5) {
 		desperation = true;
 		battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack [" + battleInfo.attacker.weaponName + "]", false);
-	} else if (battleInfo.attacker.passiveBData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= battleInfo.attacker.passiveBData.desperation.threshold * battleInfo.attacker.hp) {
+	} else if (battleInfo.attacker.passiveBData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= battleInfo.attacker.passiveBData.desperation.threshold * battleInfo.attacker.hp && battleInfo.attacker.spd >= battleInfo.defender.spd + 5) {
 		desperation = true;
 		battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack [" + battleInfo.attacker.passiveB + "]", false);
 	}
