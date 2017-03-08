@@ -2,6 +2,7 @@ var HIGHESTSTAT = 99;
 var openLog = true;
 
 // limits number inputs
+// num is a number input, minNumber is the lower limit
 function limit(num, minNumber) {
 	"use strict";
 	// check if value is outside of the limits
@@ -12,6 +13,35 @@ function limit(num, minNumber) {
 	} else if (Math.floor(num.value) !== num.value) {
 		num.value = Math.floor(num.value);
 	}
+}
+
+// rounds numbers up or down, rounds to closest int if the difference is less than 0.01
+// unrounded is the number to round, roundUp is true if we need to round up
+function roundNum(unrounded, roundUp) {
+	"use strict";
+	if (roundUp) {
+		if (unrounded - Math.floor(unrounded) < 0.01) {
+			return Math.floor(unrounded);
+		} else {
+			return Math.ceil(unrounded);
+		}
+	} else if (Math.ceil(unrounded) - unrounded < 0.01) {
+		return Math.ceil(unrounded);
+	}
+	
+	return Math.floor(unrounded);
+}
+
+// checks if the given number is within 0.01 of an integer, if it is, return that integer; otherwise just return the given number
+function checkRoundError(num) {
+	"use strict";
+	if (Math.ceil(num) - num < 0.01) {
+		return Math.ceil(num);
+	} else if (num - Math.floor(num) < 0.01) {
+		return Math.floor(num);
+	}
+	
+	return num;
 }
 
 // put options in the stat selects
@@ -540,23 +570,6 @@ function defCanCounter(battleInfo) {
 	return battleInfo.defender.weaponName !== "None" && (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range || battleInfo.defender.weaponData.hasOwnProperty("counter") || battleInfo.defender.passiveAData.hasOwnProperty("counter"));
 }
 
-// rounds numbers up or down, rounds to closest int if the difference is less than 0.01
-// unrounded is the number to round, roundUp is true if we need to round up
-function roundNum(unrounded, roundUp) {
-	"use strict";
-	if (roundUp) {
-		if (unrounded - Math.floor(unrounded) < 0.01) {
-			return Math.floor(unrounded);
-		} else {
-			return Math.ceil(unrounded);
-		}
-	} else if (Math.ceil(unrounded) - unrounded < 0.01) {
-		return Math.ceil(unrounded);
-	}
-	
-	return Math.floor(unrounded);
-}
-
 // heals by damage dealt
 // battleInfo contains all battle information, dmg is the damage dealt, healAmount is the fraction to heal, healSource is the source of the healing, initiator determines who to heal
 function healDmg(battleInfo, dmg, healAmount, healSource, initiator) {
@@ -630,7 +643,7 @@ function getCharPanelData(charNum) {
 // passiveData contains the data for a passive skill, oppWeapon is the opponent's weapon type, currHP is the current hp of the character with the passive, maxHP is the max hp of the character
 function hasBreakerPassive(passiveData, oppWeapon, initHP, maxHP) {
 	"use strict";
-	return (passiveData.hasOwnProperty("breaker") && passiveData.breaker.weapon_type === oppWeapon && initHP >= passiveData.breaker.threshold * maxHP);
+	return (passiveData.hasOwnProperty("breaker") && passiveData.breaker.weapon_type === oppWeapon && initHP >= checkRoundError(passiveData.breaker.threshold * maxHP));
 }
 
 // checks if the given weapon has a breaker effect that will activate
@@ -643,7 +656,7 @@ function hasBreakerWeapon(weaponData, oppWeapon) {
 // checks if the defender can activate a riposte effect
 // container contains weapon or passive skill info, initHP is the hp the defender started combat with, maxHP is the max hp of the defender, canCounter is true if the defender can counter
 function canActivateRiposte(container, initHP, maxHP, canCounter) {
-	return (container.hasOwnProperty("riposte") && initHP >= container.riposte.threshold * maxHP && canCounter);
+	return (container.hasOwnProperty("riposte") && initHP >= checkRoundError(container.riposte.threshold * maxHP) && canCounter);
 }
 
 // calculates how much damage the attacker will do to the defender in just one attack phase
@@ -936,25 +949,25 @@ function simBattle() {
 	}
 	
 	// below hp threshold bonus
-	if (battleInfo.attacker.weaponData.hasOwnProperty("below_threshold_mod") && battleInfo.attacker.initHP <= battleInfo.attacker.weaponData.below_threshold_mod.threshold * battleInfo.attacker.hp) {
+	if (battleInfo.attacker.weaponData.hasOwnProperty("below_threshold_mod") && battleInfo.attacker.initHP <= checkRoundError(battleInfo.attacker.weaponData.below_threshold_mod.threshold * battleInfo.attacker.hp)) {
 		battleInfo = belowThresholdBonus(battleInfo, battleInfo.attacker.weaponData.below_threshold_mod, battleInfo.attacker.weaponName, "attacker");
 	} 
-	if (battleInfo.defender.weaponData.hasOwnProperty("below_threshold_mod") && battleInfo.defender.initHP <= battleInfo.defender.weaponData.below_threshold_mod.threshold * battleInfo.defender.hp) {
+	if (battleInfo.defender.weaponData.hasOwnProperty("below_threshold_mod") && battleInfo.defender.initHP <= checkRoundError(battleInfo.defender.weaponData.below_threshold_mod.threshold * battleInfo.defender.hp)) {
 		battleInfo = belowThresholdBonus(battleInfo, battleInfo.defender.weaponData.below_threshold_mod, battleInfo.defender.weaponName, "defender");
 	}
 	
 	// vantage
 	var vantage = false;	// true if vantage activates
 	var defCounter = false;	// true if defender counters
-	if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range && battleInfo.defender.passiveBData.hasOwnProperty("vantage") && battleInfo.defender.initHP <= battleInfo.defender.passiveBData.vantage.threshold * battleInfo.defender.hp) {
+	if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range && battleInfo.defender.passiveBData.hasOwnProperty("vantage") && battleInfo.defender.initHP <= checkRoundError(battleInfo.defender.passiveBData.vantage.threshold * battleInfo.defender.hp)) {
 		battleInfo = singleCombat(battleInfo, false, "counter-attacks first [" + battleInfo.defender.passiveB + "]", false);
 		vantage = true;
 		defCounter = true;
-	} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.hasOwnProperty("counter") && battleInfo.defender.passiveBData.hasOwnProperty("vantage") && battleInfo.defender.initHP <= battleInfo.defender.passiveBData.vantage.threshold * battleInfo.defender.hp) {
+	} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.hasOwnProperty("counter") && battleInfo.defender.passiveBData.hasOwnProperty("vantage") && battleInfo.defender.initHP <= checkRoundError(battleInfo.defender.passiveBData.vantage.threshold * battleInfo.defender.hp)) {
 		battleInfo = singleCombat(battleInfo, false, "counter-attacks first, ignoring distance [" + battleInfo.defender.passiveB + ", " + battleInfo.defender.weaponName + "]", false);
 		vantage = true;
 		defCounter = true;
-	} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.passiveAData.hasOwnProperty("counter") && battleInfo.defender.passiveBData.hasOwnProperty("vantage") && battleInfo.defender.initHP <= battleInfo.defender.passiveBData.vantage.threshold * battleInfo.defender.hp) {
+	} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.passiveAData.hasOwnProperty("counter") && battleInfo.defender.passiveBData.hasOwnProperty("vantage") && battleInfo.defender.initHP <= checkRoundError(battleInfo.defender.passiveBData.vantage.threshold * battleInfo.defender.hp)) {
 		battleInfo = singleCombat(battleInfo, false, "counter-attacks first, ignoring distance [" + battleInfo.defender.passiveB + ", " + battleInfo.defender.passiveA + "]", false);
 		vantage = true;
 		defCounter = true;
@@ -967,10 +980,10 @@ function simBattle() {
 		
 	// desperation follow up
 	var desperation = false;
-	if (battleInfo.attacker.weaponData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= battleInfo.attacker.weaponData.desperation.threshold * battleInfo.attacker.hp && battleInfo.attacker.spd >= battleInfo.defender.spd + 5) {
+	if (battleInfo.attacker.weaponData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= checkRoundError(battleInfo.attacker.weaponData.desperation.threshold * battleInfo.attacker.hp) && battleInfo.attacker.spd >= battleInfo.defender.spd + 5) {
 		desperation = true;
 		battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack [" + battleInfo.attacker.weaponName + "]", false);
-	} else if (battleInfo.attacker.passiveBData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= battleInfo.attacker.passiveBData.desperation.threshold * battleInfo.attacker.hp && battleInfo.attacker.spd >= battleInfo.defender.spd + 5) {
+	} else if (battleInfo.attacker.passiveBData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= checkRoundError(battleInfo.attacker.passiveBData.desperation.threshold * battleInfo.attacker.hp) && battleInfo.attacker.spd >= battleInfo.defender.spd + 5) {
 		desperation = true;
 		battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack [" + battleInfo.attacker.passiveB + "]", false);
 	}
@@ -1031,7 +1044,7 @@ function simBattle() {
 			}
 			
 			// wary fighter
-			else if (battleInfo.attacker.passiveBData.hasOwnProperty("wary") && battleInfo.attacker.initHP >= battleInfo.attacker.passiveBData.wary.threshold * battleInfo.attacker.hp) {
+			else if (battleInfo.attacker.passiveBData.hasOwnProperty("wary") && battleInfo.attacker.initHP >= checkRoundError(battleInfo.attacker.passiveBData.wary.threshold * battleInfo.attacker.hp)) {
 				// check for quick riposte ability first
 				if (canActivateRiposte(battleInfo.defender.weaponData, battleInfo.defender.initHP, battleInfo.defender.hp, defCC)) {
 					battleInfo = singleCombat(battleInfo, false, "makes an automatic follow-up attack [" + battleInfo.defender.weaponName + "]", false);
@@ -1040,9 +1053,9 @@ function simBattle() {
 				} else {
 					battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> prevents any further follow-up attacks [" + battleInfo.attacker.passiveB + "].</li>";
 				}
-			} else if (battleInfo.defender.passiveBData.hasOwnProperty("wary") && battleInfo.defender.initHP >= battleInfo.defender.passiveBData.wary.threshold * battleInfo.defender.hp) {
+			} else if (battleInfo.defender.passiveBData.hasOwnProperty("wary") && battleInfo.defender.initHP >= checkRoundError(battleInfo.defender.passiveBData.wary.threshold * battleInfo.defender.hp)) {
 				// check for brash assault first
-				if (battleInfo.attacker.passiveBData.hasOwnProperty("brash") && defCounter && battleInfo.attacker.initHP <= battleInfo.attacker.passiveBData.brash.threshold * battleInfo.attacker.hp){
+				if (battleInfo.attacker.passiveBData.hasOwnProperty("brash") && defCounter && battleInfo.attacker.initHP <= checkRoundError(battleInfo.attacker.passiveBData.brash.threshold * battleInfo.attacker.hp)) {
 					battleInfo = singleCombat(battleInfo, true, "makes an automatic follow-up attack [" + battleInfo.attacker.passiveB + "]", false);
 				} else {
 					battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> prevents any further follow-up attacks [" + battleInfo.defender.passiveB + "].</li>";	
@@ -1061,7 +1074,7 @@ function simBattle() {
 				}
 				
 				// check for brash assault
-				if (battleInfo.attacker.passiveBData.hasOwnProperty("brash") && defCounter && battleInfo.attacker.initHP <= battleInfo.attacker.passiveBData.brash.threshold * battleInfo.attacker.hp){
+				if (battleInfo.attacker.passiveBData.hasOwnProperty("brash") && defCounter && battleInfo.attacker.initHP <= checkRoundError(battleInfo.attacker.passiveBData.brash.threshold * battleInfo.attacker.hp)) {
 					battleInfo = singleCombat(battleInfo, true, "makes an automatic follow-up attack [" + battleInfo.attacker.passiveB + "]", false);
 					attackFollow = true;
 				}
