@@ -1041,12 +1041,13 @@ function simBattle() {
 				if (!attackFollow && battleInfo.attacker.spd >= battleInfo.defender.spd + 5 && !desperation) { // attacker follows up
 					battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack", false);
 					attackFollow = true;
-					// defender follows up
+				} else if (!defendFollow && (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && defCC) { // defender follows up
 					battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack", false);
 					defendFollow = true;
 				}
 
 				// check for quick riposte ability
+				if (battleInfo.defender.currHP > 0 && !defendFollow && defCC) {
 					if (battleInfo.defender.weaponData.hasOwnProperty("riposte") && battleInfo.defender.initHP >= battleInfo.defender.weaponData.riposte.threshold * battleInfo.defender.hp) {
 						battleInfo = singleCombat(battleInfo, false, "makes an automatic follow-up attack [" + battleInfo.defender.weaponName + "]", false);
 					} else if (battleInfo.defender.passiveBData.hasOwnProperty("riposte") && battleInfo.defender.initHP >= battleInfo.defender.passiveBData.riposte.threshold * battleInfo.defender.hp) {
@@ -1055,7 +1056,24 @@ function simBattle() {
 				}	
 			}
 		}
+	}
+	
+	// check for poison damage
+	if (battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) {
+		if (battleInfo.attacker.weaponData.hasOwnProperty("poison")) {
+			battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.poison, battleInfo.attacker.weaponName);
 		}
+		if (battleInfo.attacker.passiveBData.hasOwnProperty("poison")) {
+			battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.passiveBData.poison, battleInfo.attacker.passiveB);
+		}
+	}
+
+	// check for recoil damage
+	if (battleInfo.attacker.currHP > 0 && battleInfo.attacker.passiveAData.hasOwnProperty("recoil_dmg")) {
+		battleInfo = recoilDmg(battleInfo, battleInfo.attacker.passiveAData.recoil_dmg, battleInfo.attacker.passiveA, true);
+	}
+	if (battleInfo.defender.currHP > 0 && battleInfo.defender.passiveAData.hasOwnProperty("recoil_dmg")) {
+		battleInfo = recoilDmg(battleInfo, battleInfo.defender.passiveAData.recoil_dmg, battleInfo.defender.passiveA, false);
 	}
 	
 	// display results
@@ -1131,12 +1149,14 @@ function swap() {
 	oldAtkInfo.color = $("#color-1").val();
 	oldAtkInfo.weaponType = $("#weapon-type-1").val();
 	oldAtkInfo.moveType = $("#move-type-1").val();
+	
 	oldAtkInfo.weapon = $("#weapon-1").html();
 	oldAtkInfo.selectedWeapon = $("#weapon-1").val();
 	oldAtkInfo.weaponData = $("#weapon-1").data("info");
 	oldAtkInfo.weaponMight = $("#weapon-might-1").text();
 	oldAtkInfo.weaponRange = $("#weapon-range-1").text();
 	oldAtkInfo.weaponMagical = $("#weapon-magical-1").text();
+	
 	oldAtkInfo.passiveA = $("#passive-a-1").html();
 	oldAtkInfo.selectedPassiveA = $("#passive-a-1").val();
 	oldAtkInfo.passiveAData = $("#passive-a-1").data("info");
@@ -1153,6 +1173,7 @@ function swap() {
 	oldAtkInfo.specialData = $("#special-1").data("info");
 	oldAtkInfo.specCooldown = $("#spec-cooldown-1").val();
 	oldAtkInfo.specCooldownMax = $("#spec-cooldown-max-1").text();
+	
 	oldAtkInfo.hp = $("#hp-1").val();
 	oldAtkInfo.atk = $("#atk-1").val();
 	oldAtkInfo.atkBonus = $("#atk-bonus-1").val();
@@ -1171,6 +1192,7 @@ function swap() {
 	oldAtkInfo.resPenalty = $("#res-penalty-1").val();
 	oldAtkInfo.resSpur = $("#res-spur-1").val();
 	oldAtkInfo.currHP = $("#curr-hp-1").val();
+	
 	oldAtkInfo.extraCharInfoDisabled = ($("#color-1").attr("disabled") === "disabled");
 	oldAtkInfo.passiveADisabled = ($("#passive-a-1").attr("disabled") === "disabled");
 	oldAtkInfo.passiveBDisabled = ($("#passive-b-1").attr("disabled") === "disabled");
@@ -1178,6 +1200,7 @@ function swap() {
 	oldAtkInfo.assistDisabled = ($("#assist-1").attr("disabled") === "disabled");
 	oldAtkInfo.specialDisabled = ($("#special-1").attr("disabled") === "disabled");
 	oldAtkInfo.specCooldownDisabled = ($("#spec-cooldown-1").attr("disabled") === "disabled");
+	
 	oldAtkInfo.extraCharInfoVisible = $("#extra-char-info-1").is(":visible");
 	oldAtkInfo.extraWeaponInfoVisible = $("#extra-weapon-info-1").is(":visible");
 	
@@ -1186,12 +1209,14 @@ function swap() {
 	$("#color-1").val($("#color-2").val());
 	$("#weapon-type-1").val($("#weapon-type-2").val());
 	$("#move-type-1").val($("#move-type-2").val());
+	
 	$("#weapon-1").html($("#weapon-2").html());
 	$("#weapon-1").val($("#weapon-2").val());
 	$("#weapon-1").data("info", $("#weapon-2").data("info"));
 	$("#weapon-might-1").text($("#weapon-might-2").text());
 	$("#weapon-range-1").text($("#weapon-range-2").text());
 	$("#weapon-magical-1").text($("#weapon-magical-2").text());
+	
 	$("#passive-a-1").html($("#passive-a-2").html());
 	$("#passive-a-1").val($("#passive-a-2").val());
 	$("#passive-a-1").data("info", $("#passive-a-2").data("info"));
@@ -1208,6 +1233,7 @@ function swap() {
 	$("#special-1").data("info", $("#special-2").data("info"));
 	$("#spec-cooldown-1").val($("#spec-cooldown-2").val());
 	$("#spec-cooldown-max-1").text($("#spec-cooldown-max-2").text());
+	
 	$("#hp-1").val($("#hp-2").val());
 	$("#atk-1").val($("#atk-2").val());
 	$("#atk-bonus-1").val($("#atk-bonus-2").val());
@@ -1227,6 +1253,7 @@ function swap() {
 	$("#res-spur-1").val($("#res-spur-2").val());
 	$("#curr-hp-1").val($("#curr-hp-2").val());
 	$(".hp-1-read").text($("#hp-2").val().toString());
+	
 	setDisabled("#extra-char-info-1 select", "#extra-char-info-1", ($("#color-2").attr("disabled") === "disabled"));
 	setDisabled("#passive-a-1", "#skills-1 .passive-a-label", ($("#passive-a-2").attr("disabled") === "disabled"));
 	setDisabled("#passive-b-1", "#skills-1 .passive-b-label", ($("#passive-b-2").attr("disabled") === "disabled"));
@@ -1234,6 +1261,7 @@ function swap() {
 	setDisabled("#assist-1", "#skills-1 .assist-label", ($("#assist-2").attr("disabled") === "disabled"));
 	setDisabled("#special-1", "#skills-1 .special-label", ($("#special-2").attr("disabled") === "disabled"));
 	setDisabled("#spec-cooldown-1", "#spec-cooldown-line-1", ($("#spec-cooldown-2").attr("disabled") === "disabled"));
+	
 	setVisible("#extra-char-info-1", $("#extra-char-info-2").is(":visible"));
 	setVisible("#extra-weapon-info-1", $("#extra-weapon-info-2").is(":visible"));
 	
@@ -1242,17 +1270,20 @@ function swap() {
 	$("#color-2").val(oldAtkInfo.color);
 	$("#weapon-type-2").val(oldAtkInfo.weaponType);
 	$("#move-type-2").val(oldAtkInfo.moveType);
+	
 	$("#weapon-2").html(oldAtkInfo.weapon);
 	$("#weapon-2").val(oldAtkInfo.selectedWeapon);
 	$("#weapon-2").data("info", oldAtkInfo.weaponData);
 	$("#weapon-might-2").text(oldAtkInfo.weaponMight);
 	$("#weapon-range-2").text(oldAtkInfo.weaponRange);
 	$("#weapon-magical-2").text(oldAtkInfo.weaponMagical);
+	
 	$("#passive-a-2").html(oldAtkInfo.passiveA);
 	$("#passive-a-2").val(oldAtkInfo.selectedPassiveA);
 	$("#passive-a-2").data("info", oldAtkInfo.passiveAData);
 	$("#passive-b-2").html(oldAtkInfo.passiveB);
 	$("#passive-b-2").val(oldAtkInfo.selectedPassiveB);
+	$("#passive-b-2").data("info", oldAtkInfo.passiveBData);
 	$("#passive-c-2").html(oldAtkInfo.passiveC);
 	$("#passive-c-2").val(oldAtkInfo.selectedPassiveC);
 	$("#passive-c-2").data("info", oldAtkInfo.passiveCData);
@@ -1263,6 +1294,7 @@ function swap() {
 	$("#special-2").data("info", oldAtkInfo.specialData);
 	$("#spec-cooldown-2").val(oldAtkInfo.specCooldown);
 	$("#spec-cooldown-max-2").text(oldAtkInfo.specCooldownMax);
+	
 	$("#hp-2").val(oldAtkInfo.hp);
 	$("#atk-2").val(oldAtkInfo.atk);
 	$("#atk-bonus-2").val(oldAtkInfo.atkBonus);
@@ -1282,6 +1314,7 @@ function swap() {
 	$("#res-spur-2").val(oldAtkInfo.resSpur);
 	$("#curr-hp-2").val(oldAtkInfo.currHP);
 	$(".hp-2-read").text(oldAtkInfo.hp);
+	
 	setDisabled("#extra-char-info-2 select", "#extra-char-info-2", oldAtkInfo.extraCharInfoDisabled);
 	setDisabled("#passive-a-2", "#skills-2 .passive-a-label", oldAtkInfo.passiveADisabled);
 	setDisabled("#passive-b-2", "#skills-2 .passive-b-label", oldAtkInfo.passiveBDisabled);
@@ -1289,6 +1322,7 @@ function swap() {
 	setDisabled("#assist-2", "#skills-2 .assist-label", oldAtkInfo.assistDisabled);
 	setDisabled("#special-2", "#skills-2 .special-label", oldAtkInfo.specialDisabled);
 	setDisabled("#spec-cooldown-2", "#spec-cooldown-line-2", oldAtkInfo.specCooldownDisabled);
+	
 	setVisible("#extra-char-info-2", oldAtkInfo.extraCharInfoVisible);
 	setVisible("#extra-weapon-info-2", oldAtkInfo.extraWeaponInfoVisible);
 }
