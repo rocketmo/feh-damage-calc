@@ -2,7 +2,7 @@ var HIGHESTSTAT = 99;
 var openLog = true;
 
 // limits number inputs
-function limit (num, minNumber) {
+function limit(num, minNumber) {
 	"use strict";
 	// check if value is outside of the limits
 	if (!$.isNumeric(num.value) || num.value <= minNumber) {
@@ -15,7 +15,7 @@ function limit (num, minNumber) {
 }
 
 // put options in the stat selects
-function setupStats () {
+function setupStats() {
 	"use strict";
 	var options = "<option value='0'>0</option>";
 	var negOptions = "<option value='0'>0</option>";
@@ -35,7 +35,7 @@ function setupStats () {
 
 // gets special data and stores it
 // charNum determines which panel to display it in
-function getSpecialData (charNum) {
+function getSpecialData(charNum) {
 	"use strict";
 	if ($("#special-" + charNum).val() === "None") {
 		$("#special-" + charNum).data("info", {});
@@ -57,11 +57,25 @@ function updateStatTotal(selectID, charNum, increment) {
 				total -= $(selectID).data("info").stat_mod[stat];
 			}
 			
+			// keep stats within limits
 			$("#" + stat + "-" + charNum).val(total);
 			if ($("#" + stat + "-" + charNum).hasClass("more-than-zero")) {
 				limit(document.getElementById(stat + "-" + charNum), 1);
 			} else {
 				limit(document.getElementById(stat + "-" + charNum), 0);
+			}
+			
+			// check if displayed hp needs to change
+			if (stat === "hp") {
+				var oldHP = parseInt($("#hp-" + charNum + "-denom").text());
+
+				// update hp value in rest of the page
+				$(".hp-" + charNum + "-read").text(total.toString());
+
+				// check if current hp needs to be updated as well
+				if ((total < parseInt($("#curr-hp-" + charNum).val())) || parseInt($("#curr-hp-" + charNum).val()) === oldHP) {
+					$("#curr-hp-" + charNum).val(total);
+				}
 			}
 		}
 	}
@@ -91,7 +105,7 @@ function updateSpecCooldown(selectID, charNum, increment) {
 
 // gets skill data and stores it
 // charNum determines which panel to display it in, skillType is the letter of the skill, update is true if stats need to be adjusted
-function getSkillData (charNum, skillType, update) {
+function getSkillData(charNum, skillType, update) {
 	"use strict";
 	var selectID = "#passive-" + skillType + "-" + charNum;
 	if ($(selectID).val() === "None") {	// no skill
@@ -189,7 +203,7 @@ function showWeapon(selectedWeapon, charNum, update) {
 
 // show special cooldown values
 // selectedSpecial is the special that is being displayed, charNum determines the panel, changeCurr is true if the current cooldown number needs to change
-function showSpecCooldown (selectedSpecial, charNum, changeCurr) {
+function showSpecCooldown(selectedSpecial, charNum, changeCurr) {
 	"use strict";
 	if (specInfo.hasOwnProperty(selectedSpecial)) {
 		var cool = specInfo[selectedSpecial].cooldown;
@@ -412,7 +426,7 @@ function displayChar(singleChar, charNum) {
 // determines if the attacker has triangle advantage
 // attackColor is the color of the attacker, defendColor is the color of the defender
 // returns 1 if advantage, -1 if disadvantage, 0 if neither
-function triAdvantage (attackColor, defendColor) {
+function triAdvantage(attackColor, defendColor) {
 	"use strict";
 	if (attackColor === defendColor || attackColor === "Colorless" || defendColor === "Colorless") {
 		return 0;
@@ -427,7 +441,7 @@ function triAdvantage (attackColor, defendColor) {
 // attackColor is the color of the attacker, defendColor is the color of the defender
 // attackWeapon is the weapon of the attack, defendWeapon is the weapon of the defender
 // returns 1 if advantage, -1 if disadvantage, 0 if neither
-function weaponColorAdvantage (attackColor, defendColor, attackWeapon, defendWeapon) {
+function weaponColorAdvantage(attackColor, defendColor, attackWeapon, defendWeapon) {
 	"use strict";
 	if (attackWeapon.hasOwnProperty("color_effective") && attackWeapon.color_effective === defendColor) {
 		return 1;
@@ -440,7 +454,7 @@ function weaponColorAdvantage (attackColor, defendColor, attackWeapon, defendWea
 
 // handles after combat damage (on the defender)
 // battleInfo contains all battle information, dmgAmount is the amount of damage to inflict, dmgSource is the source of the damage
-function afterCombatDmg (battleInfo, dmgAmount, dmgSource) {
+function afterCombatDmg(battleInfo, dmgAmount, dmgSource) {
 	"use strict";
 	var oldHP = battleInfo.defender.currHP;
 	battleInfo.defender.currHP = Math.max(oldHP - dmgAmount, 1);
@@ -509,7 +523,7 @@ function defendBonus(battleInfo, statMods, modSource) {
 
 // handles bonuses by being under a certain hp threshold
 // battleInfo contains all battle information, belowThresholdMod contains all information for the bonuses, modSource is the source of the bonuses, charToUse is either "attacker" or "defender"
-function belowThresholdBonus (battleInfo, belowThresholdMod, modSource, charToUse) {
+function belowThresholdBonus(battleInfo, belowThresholdMod, modSource, charToUse) {
 	"use strict";
 	for (var stat in belowThresholdMod.stat_mod) {
 		battleInfo[charToUse][stat] += belowThresholdMod.stat_mod[stat];
@@ -528,7 +542,7 @@ function defCanCounter(battleInfo) {
 
 // rounds numbers up or down, rounds to closest int if the difference is less than 0.01
 // unrounded is the number to round, roundUp is true if we need to round up
-function roundNum (unrounded, roundUp) {
+function roundNum(unrounded, roundUp) {
 	"use strict";
 	if (roundUp) {
 		if (unrounded - Math.floor(unrounded) < 0.01) {
@@ -565,7 +579,7 @@ function healDmg(battleInfo, dmg, healAmount, healSource, initiator) {
 
 // extracts all character information from a panel and returns it
 // charNum determines which panel to take info from
-function getCharPanelData (charNum) {
+function getCharPanelData(charNum) {
 	"use strict";
 	var charData = {};
 	charData.name = $("#char-" + charNum).val();
@@ -610,6 +624,20 @@ function getCharPanelData (charNum) {
 	charData.resWS = Math.max(0, parseInt($("#res-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val()) + parseInt($("#res-penalty-"+charNum).val()));
 	
 	return charData;
+}
+
+// checks if the given passive skill is a breaker skill that will activate
+// passiveData contains the data for a passive skill, oppWeapon is the opponent's weapon type, currHP is the current hp of the character with the passive, maxHP is the max hp of the character
+function hasBreakerPassive(passiveData, oppWeapon, initHP, maxHP) {
+	"use strict";
+	return (passiveData.hasOwnProperty("breaker") && passiveData.breaker.weapon_type === oppWeapon && initHP >= passiveData.breaker.threshold * maxHP);
+}
+
+// checks if the given weapon has a breaker effect that will activate
+// weaponData contains the data for a weapon, oppWeapon is the opponent's weapon type
+function hasBreakerWeapon(weaponData, oppWeapon) {
+	"use strict";
+	return (weaponData.hasOwnProperty("breaker") && weaponData.breaker.weapon_type === oppWeapon);
 }
 
 // calculates how much damage the attacker will do to the defender in just one attack phase
@@ -948,6 +976,7 @@ function simBattle() {
 	}
 	
 	// defender will try to counter-attack if they haven't been ko'd
+	var defCC = defCanCounter(battleInfo);
 	if (battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) {
 		// defender must be in range to counter-attack or have a counter ability
 		if (!vantage) {
@@ -967,65 +996,29 @@ function simBattle() {
 		
 		// if attacker hasn't been ko'd, check for follow ups
 		if (battleInfo.attacker.currHP > 0) {
-			// get breaker information
-			var atkWeaponBreaker = battleInfo.attacker.weaponData.hasOwnProperty("breaker");
-			var atkPassiveBreaker = battleInfo.attacker.passiveBData.hasOwnProperty("breaker");
-			var defWeaponBreaker = battleInfo.defender.weaponData.hasOwnProperty("breaker");
-			var defPassiveBreaker = battleInfo.defender.passiveBData.hasOwnProperty("breaker");
 			
-			var atkPassiveBreakerType = "";
-			var atkPassiveBreakerThreshold = 1;
-			var defPassiveBreakerType = "";
-			var defPassiveBreakerThreshold = 1;
-			var atkWeaponBreakerType = "";
-			var defWeaponBreakerType = "";
-			
-			if (atkPassiveBreaker) {
-				atkPassiveBreakerType = battleInfo.attacker.passiveBData.breaker.weapon_type;
-				atkPassiveBreakerThreshold = battleInfo.attacker.passiveBData.breaker.threshold;
-			}
-			if (defPassiveBreaker) {
-				defPassiveBreakerType = battleInfo.defender.passiveBData.breaker.weapon_type;
-				defPassiveBreakerThreshold = battleInfo.defender.passiveBData.breaker.threshold;
-			}
-			if (atkWeaponBreaker) {
-				atkWeaponBreakerType = battleInfo.attacker.weaponData.breaker.weapon_type;
-			}
-			if (defWeaponBreaker) {
-				defWeaponBreakerType = battleInfo.defender.weaponData.breaker.weapon_type;
-			}
+			// get breaker info
+			var atkBreakerPassive = hasBreakerPassive(battleInfo.attacker.passiveBData, battleInfo.defender.type, battleInfo.attacker.initHP, battleInfo.attacker.hp);
+			var atkBreakerWeapon = hasBreakerWeapon(battleInfo.attacker.weaponData, battleInfo.defender.type);
+			var defBreakerPassive = hasBreakerPassive(battleInfo.defender.passiveBData, battleInfo.attacker.type, battleInfo.defender.initHP, battleInfo.defender.hp);
+			var defBreakerWeapon = hasBreakerWeapon(battleInfo.defender.weaponData, battleInfo.attacker.type);
 			
 			// breaker skills
-			// both characters have passive breakers that cancel each other
-			if (atkPassiveBreaker && atkPassiveBreakerType === battleInfo.defender.type && battleInfo.attacker.initHP >= atkPassiveBreakerThreshold * battleInfo.attacker.hp && defPassiveBreaker && defPassiveBreakerType === battleInfo.attacker.type && battleInfo.defender.initHP >= defPassiveBreakerThreshold * battleInfo.defender.hp && defCanCounter(battleInfo)) {
+			if (atkBreakerPassive && defBreakerPassive && defCC) {	// double breaker passives
 				battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.passiveB + ", " + battleInfo.defender.passiveB + "].</li>";
-			} 
-			// attacker has a passive breaker and defender has a breaker from a weapon that cancel each other
-			else if (atkPassiveBreaker && atkPassiveBreakerType === battleInfo.defender.type && battleInfo.attacker.initHP >= atkPassiveBreakerThreshold * battleInfo.attacker.hp && defWeaponBreaker && defWeaponBreakerType === battleInfo.attacker.type && defCanCounter(battleInfo)) {
+			} else if (atkBreakerPassive && defBreakerWeapon && defCC) {  // passive - weapon
 				battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.passiveB + ", " + battleInfo.defender.weaponName + "].</li>";
-			}
-			// attacker has a breaker from a weapon and defender a passive breaker that cancel each other
-			else if (atkWeaponBreaker && atkWeaponBreakerType === battleInfo.defender.type && defPassiveBreaker && defPassiveBreakerType === battleInfo.attacker.type && battleInfo.defender.initHP >= defPassiveBreakerThreshold * battleInfo.defender.hp && defCanCounter(battleInfo)) {
+			} else if (atkBreakerWeapon && defBreakerPassive && defCC) {  // weapon - passive
 				battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.weaponName + ", " + battleInfo.defender.passiveB + "].</li>";
-			}
-			// both characters have breakers from weapons that cancel each other
-			else if (atkWeaponBreaker && atkWeaponBreakerType === battleInfo.defender.type && defWeaponBreaker && defWeaponBreakerType === battleInfo.attacker.type && defCanCounter(battleInfo)) {
+			} else if (atkBreakerWeapon && defBreakerWeapon && defCC) {  // double breaker weapons
 				battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.weaponName + ", " + battleInfo.defender.weaponName + "].</li>";
-			}
-			// attacker breaker (passive)
-			else if (atkPassiveBreaker && atkPassiveBreakerType === battleInfo.defender.type && battleInfo.attacker.initHP >= atkPassiveBreakerThreshold * battleInfo.attacker.hp ) {
+			} else if (atkBreakerPassive) {  // attacker breaker passive
 				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while nullifying any follow-up attack from the opponent [" + battleInfo.attacker.passiveB + "]", false);
-			} 
-			// defender breaker (passive)
-			else if (defPassiveBreaker && defPassiveBreakerType === battleInfo.attacker.type && battleInfo.defender.initHP >= defPassiveBreakerThreshold * battleInfo.defender.hp && defCanCounter(battleInfo)) {
+			} else if (defBreakerPassive && defCC) {  // defender breaker passive
 				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack, while nullifying any follow-up attack from the opponent [" + battleInfo.defender.passiveB + "]", false);
-			} 
-			// attacker breaker (weapon)
-			else if (atkWeaponBreaker && atkWeaponBreakerType === battleInfo.defender.type) {
+			} else if (atkBreakerWeapon) {  // attacker breaker weapon
 				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while nullifying any follow-up attack from the opponent [" + battleInfo.attacker.weaponName + "]", false);
-			}
-			// defender breaker (weapon)
-			else if (defWeaponBreaker && defWeaponBreakerType === battleInfo.attacker.type && defCanCounter(battleInfo)) {
+			} else if (defBreakerWeapon && defCC) {  // defender breaker weapon
 				battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack, while nullifying any follow-up attack from the opponent [" + battleInfo.defender.weaponName + "]", false);
 			}
 			
@@ -1048,14 +1041,12 @@ function simBattle() {
 				if (!attackFollow && battleInfo.attacker.spd >= battleInfo.defender.spd + 5 && !desperation) { // attacker follows up
 					battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack", false);
 					attackFollow = true;
-				} else if (!defendFollow && (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) && defCanCounter(battleInfo)) { 
 					// defender follows up
 					battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack", false);
 					defendFollow = true;
 				}
 
 				// check for quick riposte ability
-				if (battleInfo.defender.currHP > 0 && !defendFollow && defCanCounter(battleInfo)) {
 					if (battleInfo.defender.weaponData.hasOwnProperty("riposte") && battleInfo.defender.initHP >= battleInfo.defender.weaponData.riposte.threshold * battleInfo.defender.hp) {
 						battleInfo = singleCombat(battleInfo, false, "makes an automatic follow-up attack [" + battleInfo.defender.weaponName + "]", false);
 					} else if (battleInfo.defender.passiveBData.hasOwnProperty("riposte") && battleInfo.defender.initHP >= battleInfo.defender.passiveBData.riposte.threshold * battleInfo.defender.hp) {
@@ -1064,22 +1055,6 @@ function simBattle() {
 				}	
 			}
 		}
-		
-		// check for poison damage and recoil damage
-		if (battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) {
-			if (battleInfo.attacker.weaponData.hasOwnProperty("poison")) {
-				battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.poison, battleInfo.attacker.weaponName);
-			}
-			if (battleInfo.attacker.passiveBData.hasOwnProperty("poison")) {
-				battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.passiveBData.poison, battleInfo.attacker.passiveB);
-			}
-			
-			if (battleInfo.attacker.passiveAData.hasOwnProperty("recoil_dmg")) {
-				battleInfo = recoilDmg(battleInfo, battleInfo.attacker.passiveAData.recoil_dmg, battleInfo.attacker.passiveA, true);
-			}
-			if (battleInfo.defender.passiveAData.hasOwnProperty("recoil_dmg")) {
-				battleInfo = recoilDmg(battleInfo, battleInfo.defender.passiveAData.recoil_dmg, battleInfo.defender.passiveA, false);
-			}
 		}
 	}
 	
@@ -1204,7 +1179,6 @@ function swap() {
 	oldAtkInfo.specialDisabled = ($("#special-1").attr("disabled") === "disabled");
 	oldAtkInfo.specCooldownDisabled = ($("#spec-cooldown-1").attr("disabled") === "disabled");
 	oldAtkInfo.extraCharInfoVisible = $("#extra-char-info-1").is(":visible");
-	oldAtkInfo.extraCharInfoVisible = $("#extra-char-info-1").is(":visible");
 	oldAtkInfo.extraWeaponInfoVisible = $("#extra-weapon-info-1").is(":visible");
 	
 	// place defender info in attacker panel
@@ -1279,7 +1253,6 @@ function swap() {
 	$("#passive-a-2").data("info", oldAtkInfo.passiveAData);
 	$("#passive-b-2").html(oldAtkInfo.passiveB);
 	$("#passive-b-2").val(oldAtkInfo.selectedPassiveB);
-	$("#passive-b-2").data("info", oldAtkInfo.passiveAData);
 	$("#passive-c-2").html(oldAtkInfo.passiveC);
 	$("#passive-c-2").val(oldAtkInfo.selectedPassiveC);
 	$("#passive-c-2").data("info", oldAtkInfo.passiveCData);
