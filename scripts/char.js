@@ -659,8 +659,7 @@ var charInfo =
 		"weapon": ["Parthia", "Silver Bow", "Steel Bow", "Iron Bow"],
 		"special": ["Blazing Flame", "Rising Flame"],
 		"passive_b": ["Seal Atk 3", "Seal Atk 2", "Seal Atk 1"],
-		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
-		"assist" : ["Swap"]
+		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"]
 	},
 	"Julia": {
 		"color" : "Green",
