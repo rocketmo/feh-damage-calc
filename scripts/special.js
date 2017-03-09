@@ -85,7 +85,10 @@ var specInfo =
     },
     "Escutcheon" : {
         "cooldown" : 2,
-        "non_combat": true
+        "reduce_dmg" : {
+            "range" : 1,
+            "dmg_mod" : 0.3
+        }
     },
     "Galeforce" : {
         "cooldown" : 5,
