@@ -918,12 +918,14 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	if (attacker.weaponData.hasOwnProperty("heal_dmg") && attacker.specialData.hasOwnProperty("heal_dmg") && attacker.specCurrCooldown <= 0) {
 		battleInfo = healDmg(battleInfo, (defOldHP - defender.currHP), attacker.weaponData.heal_dmg + attacker.specialData.heal_dmg, attacker.weaponName + ", " + attacker.special, initiator);
 		didHeal = true;
+		atkSpec = true;
 	} else if (attacker.weaponData.hasOwnProperty("heal_dmg")) {
 		battleInfo = healDmg(battleInfo, (defOldHP - defender.currHP), attacker.weaponData.heal_dmg, attacker.weaponName, initiator);
 		didHeal = true;
 	} else if (attacker.specialData.hasOwnProperty("heal_dmg") && attacker.specCurrCooldown <= 0) {
 		battleInfo = healDmg(battleInfo, (defOldHP - defender.currHP), attacker.specialData.heal_dmg, attacker.special, initiator);
 		didHeal = true;
+		atkSpec = true;
 	}
 	
 	if (didHeal) {
