@@ -44,6 +44,71 @@ function checkRoundError(num) {
 	return num;
 }
 
+// generates the name for a custom unit based on the given weapon type and move type
+function customName(weaponType, moveType) {
+	"use strict";
+	var name = "";
+	
+	// name prefix
+	if (weaponType === "Sword" || weaponType === "Axe" || weaponType === "Lance" || weaponType === "Bow") {
+		name = weaponType;
+	} else if (weaponType === "Red Tome") {
+		if (moveType === "Infantry") {
+			return "Red Mage";
+		}
+		name = "Red";
+	} else if (weaponType === "Green Tome") {
+		if (moveType === "Infantry") {
+			return "Green Mage";
+		} 
+		name = "Green";
+	} else if (weaponType === "Blue Tome") {
+		if (moveType === "Infantry") {
+			return "Blue Mage";
+		} 
+		name = "Blue";
+	} else if (weaponType === "Staff") {
+		if (moveType === "Infantry") {
+			return "Cleric";
+		} else if (moveType === "Cavalry") {
+			return "Troubadour";
+		} 
+		name = "Staff";
+	} else if (weaponType === "Dagger") {
+		if (moveType === "Infantry") {
+			return "Thief";
+		}
+		name = "Dagger";
+	} else if (weaponType === "Red Breath") {
+		if (moveType === "Infantry") {
+			return "Red Dragon";
+		}
+		name = "Red Dragon";
+	} else if (weaponType === "Green Breath") {
+		if (moveType === "Infantry") {
+			return "Green Dragon";
+		}
+		name = "Green Dragon";
+	} else {
+		if (moveType === "Infantry") {
+			return "Blue Dragon";
+		}
+		name = "Blue Dragon";
+	}
+	
+	if (moveType === "Infantry") {
+		name += " Fighter";
+	} else if (moveType === "Cavalry") {
+		name += " Cavalier";
+	} else if (moveType === "Armored") {
+		name += " Knight";
+	} else {
+		name += " Flier";
+	}
+			
+	return name;
+}
+
 // put options in the stat selects
 function setupStats() {
 	"use strict";
@@ -602,18 +667,16 @@ function healDmg(battleInfo, dmg, healAmount, healSource, initiator) {
 function getCharPanelData(charNum) {
 	"use strict";
 	var charData = {};
-	charData.name = $("#char-" + charNum).val();
-	if (charData.name === "Custom") {
-		if (charNum === '1') {
-			charData.name = "Custom Attacker";
-		} else {
-			charData.name = "Custom Defender";
-		}
-	}
 	
 	charData.color = $("#color-" + charNum).val();
 	charData.moveType = $("#move-type-" + charNum).val();
 	charData.type = $("#weapon-type-" + charNum).val();
+	
+	charData.name = $("#char-" + charNum).val();
+	if (charData.name === "Custom") {
+		charData.name = customName(charData.type, charData.moveType);
+	}
+	
 	charData.weaponName = $("#weapon-" + charNum).val();
 	charData.weaponData = $("#weapon-" + charNum).data("info");
 	
