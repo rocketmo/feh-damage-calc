@@ -699,7 +699,7 @@ var charInfo =
 		"res" : 24,
 		"move_type": "Infantry",
 		"weapon": ["Brave Bow+", "Brave Bow", "Steel Bow", "Iron Bow"],
-		"special": ["Chilling Wind", "Glacies"],
+		"special": ["Glacies", "Chilling Wind"],
 		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
 		"passive_b": ["Quick Riposte 3", "Quick Riposte 2", "Quick Riposte 1"]
 	},
