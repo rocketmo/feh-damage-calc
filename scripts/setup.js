@@ -483,12 +483,19 @@ function weaponColorAdvantage(attackColor, defendColor, attackWeapon, defendWeap
 }
 
 // handles after combat damage (on the defender)
-// battleInfo contains all battle information, dmgAmount is the amount of damage to inflict, dmgSource is the source of the damage
-function afterCombatDmg(battleInfo, dmgAmount, dmgSource) {
+// battleInfo contains all battle information, dmgAmount is the amount of damage to inflict, dmgSource is the source of the damage, victim is either 'attacker' or 'defender'
+function afterCombatDmg(battleInfo, dmgAmount, dmgSource, victim) {
 	"use strict";
-	var oldHP = battleInfo.defender.currHP;
-	battleInfo.defender.currHP = Math.max(oldHP - dmgAmount, 1);
-	battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> inflicts after-combat damage [" + dmgSource + "]. <span class='dmg'><strong>" + dmgAmount.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
+	var inflictor = "";
+	if (victim === "defender") {
+		inflictor = "attacker";
+	} else {
+		inflictor = "defender";
+	}
+	
+	var oldHP = battleInfo[victim].currHP;
+	battleInfo[victim].currHP = Math.max(oldHP - dmgAmount, 1);
+	battleInfo.logMsg += "<li class='battle-interaction'><span class='" + inflictor + "'><strong>" + battleInfo[inflictor].name + "</strong></span> inflicts after-combat damage [" + dmgSource + "]. <span class='dmg'><strong>" + dmgAmount.toString() + " damage dealt.</strong></span><br><span class='" + victim + "'><strong>" + battleInfo[victim].name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo[victim].currHP.toString() + "</span></li>";
 	
 	return battleInfo;
 }
@@ -1098,15 +1105,16 @@ function simBattle() {
 				}
 			}
 		}
-	}
-	
-	// check for poison damage
-	if (battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) {
-		if (battleInfo.attacker.weaponData.hasOwnProperty("poison")) {
-			battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.poison, battleInfo.attacker.weaponName);
+		
+		// check for poison damage
+		if (battleInfo.attacker.passiveBData.hasOwnProperty("poison") && battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) {
+			battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.passiveBData.poison, battleInfo.attacker.passiveB, "defender");
 		}
-		if (battleInfo.attacker.passiveBData.hasOwnProperty("poison")) {
-			battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.passiveBData.poison, battleInfo.attacker.passiveB);
+		if (battleInfo.attacker.weaponData.hasOwnProperty("poison") && battleInfo.defender.currHP > 0) {
+			battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.poison, battleInfo.attacker.weaponName, "defender");
+		}
+		if (battleInfo.defender.weaponData.hasOwnProperty("poison") && battleInfo.attacker.currHP > 0 && defCC) {
+			battleInfo = afterCombatDmg(battleInfo, battleInfo.defender.weaponData.poison, battleInfo.defender.weaponName, "attacker");
 		}
 	}
 
