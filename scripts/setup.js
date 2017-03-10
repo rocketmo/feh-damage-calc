@@ -139,6 +139,37 @@ function getSpecialData(charNum) {
 	}
 }
 
+// gets assist data and stores it
+// charNum determines which panel to display it in
+function getAssistData(charNum) {
+	"use strict";
+	if ($("#assist-" + charNum).val() === "None") {
+		$("#assist-" + charNum).data("info", {});
+	} else {
+		$("#assist-" + charNum).data("info", assistInfo[$("#assist-" + charNum).val()]);
+	}
+}
+
+// gets the cooldown given special info and weapon info
+function getSpecialCooldown(specialData, weaponData, assistData) {
+	"use strict";
+	var cool = 0;
+	
+	if (specialData.hasOwnProperty("cooldown")) {
+		cool = specialData.cooldown;
+
+		if (weaponData.hasOwnProperty("spec_cooldown_mod")) {
+			cool += weaponData.spec_cooldown_mod;
+		}
+
+		if (assistData.hasOwnProperty("spec_cooldown_mod")) {
+			cool += assistData.spec_cooldown_mod;
+		}	
+	}
+	
+	return Math.max(cool, 0);
+}
+
 // updates a displayed stat if the given select has a stat_mod property
 // selectID is the select's id, charNum determines which panel's stats to change, increment is true if we need to add to the stat total and false otherwise
 function updateStatTotal(selectID, charNum, increment) {
@@ -178,16 +209,11 @@ function updateStatTotal(selectID, charNum, increment) {
 
 // updates the special cooldown max if the given select has a spec_cooldown_mod property
 // selectID is the select's id, charNum determines which panel's stats to change, increment is true if we need to apply mod to the cooldown and false otherwise
-function updateSpecCooldown(selectID, charNum, increment) {
+function updateSpecCooldown(charNum) {
 	"use strict";
-	if ($(selectID).data("info") !== undefined && $(selectID).data("info").hasOwnProperty("spec_cooldown_mod") && $.isNumeric($("#spec-cooldown-max-" + charNum).text())) {
-		var max = parseInt($("#spec-cooldown-max-" + charNum).text());
-		var oldMax = max;
-		if (increment) {
-			max += $(selectID).data("info").spec_cooldown_mod;
-		} else {
-			max -= $(selectID).data("info").spec_cooldown_mod;
-		}
+	if ($.isNumeric($("#spec-cooldown-max-" + charNum).text())) {
+		var oldMax = parseInt($("#spec-cooldown-max-" + charNum).text());
+		var max = getSpecialCooldown($("#special-" + charNum).data("info"), $("#weapon-" + charNum).data("info"), $("#assist-" + charNum).data("info"));
 		
 		// check if current cooldown needs to be fixed
 		if ((parseInt($("#spec-cooldown-" + charNum).val()) > max) || (parseInt($("#spec-cooldown-" + charNum).val()) === oldMax)) {
@@ -245,7 +271,7 @@ function showSkills(singleChar, charNum, type) {
 
 // shows extra weapon info
 // selectedWeapon is the weapon to display, charNum determines the panel
-// set update to true to update the character's atk value and remove previous weapon's special cooldown modifier
+// set update to true to update the character's atk value
 function showWeapon(selectedWeapon, charNum, update) {
 	"use strict";
 	
@@ -268,22 +294,19 @@ function showWeapon(selectedWeapon, charNum, update) {
 		// store weapon data
 		if (update) {
 			updateStatTotal("#weapon-" + charNum, charNum, false);
-			updateSpecCooldown("#weapon-" + charNum, charNum, false);
 			$("#weapon-" + charNum).data("info", weaponInfo[selectedWeapon]);
 			updateStatTotal("#weapon-" + charNum, charNum, true);
 		} else {
 			$("#weapon-" + charNum).data("info", weaponInfo[selectedWeapon]);
 		}
-		updateSpecCooldown("#weapon-" + charNum, charNum, true);
+		updateSpecCooldown(charNum);
 	} else {	// weapon not found
 		$("#weapon-might-" + charNum).text("n/a");
 		$("#weapon-range-" + charNum).text("n/a");
 		$("#weapon-magical-" + charNum).text("n/a");
 		updateStatTotal("#weapon-" + charNum, charNum, false);
-		if (update) {
-			updateSpecCooldown("#weapon-" + charNum, charNum, false);
-		}
 		$("#weapon-" + charNum).data("info", {});
+		updateSpecCooldown(charNum);
 	}
 	
 	// update atk
@@ -417,6 +440,7 @@ function displayChar(singleChar, charNum) {
 		assistOptions += "<option value='None'>None</option>";
 		$("#assist-" + charNum).html(assistOptions);
 		$("#assist-" + charNum).val(assist);
+		getAssistData(charNum);
 		
 		// load in specials
 		var specOptions = "";
@@ -456,6 +480,33 @@ function displayChar(singleChar, charNum) {
 	showSkills(singleChar, charNum, 'b');
 	showSkills(singleChar, charNum, 'c');
 	
+	// show special skill
+	if (singleChar.hasOwnProperty("special")) {
+		$("#special-" + charNum).removeAttr("disabled");
+		$("#skills-" + charNum + " .special-label").css("color", "white");
+		
+		var selectedSpecial = singleChar.special[0];
+		var specials = "<option value=\"" + selectedSpecial + "\">" + selectedSpecial + "</option>";
+		for (var specIndex = 1; specIndex < singleChar.special.length; specIndex++) {
+			specials += "<option value=\"" + singleChar.special[specIndex] + "\">" + singleChar.special[specIndex] + "</option>";
+		}
+		specials += "<option value='None'>None</option>";
+		$("#special-" + charNum).html(specials);
+		$("#special-" + charNum + " option:eq(0)").attr("selected", "selected");
+		
+		// show cooldown values
+		showSpecCooldown(selectedSpecial, charNum, true);
+	} else {
+		$("#special-" + charNum).html("<option value='None'>None<option>");
+		$("#special-" + charNum).attr("disabled", "disabled");
+		$("#spec-cooldown-" + charNum).val("0");
+		$("#spec-cooldown-" + charNum).attr("disabled", "disabled");
+		$("#skills-" + charNum + " .special-label").css("color", "#5b5b5b");
+		$("#spec-cooldown-max-" + charNum).text("x");
+		$("#spec-cooldown-line-" + charNum).css("color", "#5b5b5b");
+	}
+	getSpecialData(charNum);
+	
 	// show assist skill
 	if (singleChar.hasOwnProperty("assist")) {
 		$("#assist-" + charNum).removeAttr("disabled");
@@ -474,35 +525,7 @@ function displayChar(singleChar, charNum) {
 		$("#assist-" + charNum).attr("disabled", "disabled");
 		$("#skills-" + charNum + " .assist-label").css("color", "#5b5b5b");
 	}
-	
-	// show special skill
-	if (singleChar.hasOwnProperty("special")) {
-		$("#special-" + charNum).removeAttr("disabled");
-		$("#skills-" + charNum + " .special-label").css("color", "white");
-		
-		var selectedSpecial = singleChar.special[0];
-		var specials = "<option value=\"" + selectedSpecial + "\">" + selectedSpecial + "</option>";
-		for (var specIndex = 1; specIndex < singleChar.special.length; specIndex++) {
-			specials += "<option value=\"" + singleChar.special[specIndex] + "\">" + singleChar.special[specIndex] + "</option>";
-		}
-		specials += "<option value='None'>None</option>";
-		$("#special-" + charNum).html(specials);
-		$("#special-" + charNum + " option:eq(0)").attr("selected", "selected");
-		
-		// show cooldown values
-		getSpecialData(charNum);
-		showSpecCooldown(selectedSpecial, charNum, true);
-		
-	} else {
-		$("#special-" + charNum).html("<option value='None'>None<option>");
-		$("#special-" + charNum).attr("disabled", "disabled");
-		$("#spec-cooldown-" + charNum).val("0");
-		$("#spec-cooldown-" + charNum).attr("disabled", "disabled");
-		$("#skills-" + charNum + " .special-label").css("color", "#5b5b5b");
-		$("#spec-cooldown-max-" + charNum).text("x");
-		$("#spec-cooldown-line-" + charNum).css("color", "#5b5b5b");
-		getSpecialData(charNum);
-	}
+	getAssistData(charNum);
 	
 	// show weapon
 	var selectedWeapon = singleChar.weapon[0];
@@ -693,6 +716,7 @@ function getCharPanelData(charNum) {
 	charData.special = $("#special-" + charNum).val();
 	charData.specCurrCooldown = parseInt($("#spec-cooldown-" + charNum).val());
 	charData.specialData = $("#special-" + charNum).data("info");
+	charData.assistData = $("#assist-" + charNum).data("info");
 	
 	charData.currHP = parseInt($("#curr-hp-" + charNum).val());
 	charData.initHP = parseInt($("#curr-hp-" + charNum).val());
@@ -726,12 +750,14 @@ function hasBreakerWeapon(weaponData, oppWeapon) {
 // checks if the defender can activate a riposte effect
 // container contains weapon or passive skill info, initHP is the hp the defender started combat with, maxHP is the max hp of the defender, canCounter is true if the defender can counter
 function canActivateRiposte(container, initHP, maxHP, canCounter) {
+	"use strict";
 	return (container.hasOwnProperty("riposte") && initHP >= checkRoundError(container.riposte.threshold * maxHP) && canCounter);
 }
 
 // checks if the attacker can activate brash assault
 // container contains the skill info, initHP is the hp of the attacker at combat initiation, maxHP is the max hp of the attacker, defCanCounter is true if the defender can counter
 function canActivateBrash(container, initHP, maxHP, canCounter) {
+	"use strict";
 	return container.hasOwnProperty("brash") && canCounter && initHP <= checkRoundError(container.brash.threshold * maxHP);
 }
 
@@ -801,15 +827,23 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	var triAdv = triAdvantage(attacker.color, defender.color);
 	var atkMod = 1;
 	
+	// get base triangle advantage
 	if (weaponColorAdv > 0) {
-		atkPower = roundNum(atkPower * 1.2, false);
-		battleInfo.logMsg += "Weapon advantage against " + defender.color + " boosts attack by 20% [" + attacker.weaponName + "]. ";		
+		atkMod = 1.2;
+		battleInfo.logMsg += "Weapon advantage against " + defender.color + " boosts attack by 20% [" + attacker.weaponName + "]. ";
 	} else if (weaponColorAdv < 0) {
-		atkPower = roundNum(atkPower * 0.8, true);
+		atkMod = 0.8;
 		battleInfo.logMsg += "Opponent's weapon advantage reduces attack by 20% [" + defender.weaponName + "]. ";
 	} else if (triAdv > 0) {
 		atkMod = 1.2;
 		battleInfo.logMsg += "Triangle advantage boosts attack by 20%. ";
+	} else if (triAdv < 0) {
+		atkMod = 0.8;
+		battleInfo.logMsg += "Triangle disadvantage reduces attack by 20%. ";
+	}
+	
+	// check for any additional triangle advantage boost, then calculate if needed
+	if (atkMod > 1) {
 		if (attacker.weaponData.hasOwnProperty("tri_advantage")) {
 			atkMod += 0.2;
 			battleInfo.logMsg += "Attack is boosted by another 20% [" + attacker.weaponName + "]. ";
@@ -824,9 +858,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 			battleInfo.logMsg += "Opponent disadvantage boosts attack by another " + (defender.passiveAData.tri_advantage * 100).toString() + "% [" + defender.passiveA + "]. ";
 		}
 		atkPower = roundNum(atkPower * atkMod, false);
-	} else if (triAdv < 0) {
-		atkMod = 0.8;
-		battleInfo.logMsg += "Triangle disadvantage reduces attack by 20%. ";
+	} else if (atkMod < 1) {
 		if (attacker.weaponData.hasOwnProperty("tri_advantage")) {
 			atkMod -= 0.2;
 			battleInfo.logMsg += "Attack is reduced by another 20% [" + attacker.weaponName + "]. ";
@@ -936,13 +968,13 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	
 	// update cooldowns
 	if (atkSpec) {
-		attacker.specCurrCooldown = attacker.specialData.cooldown;
+		attacker.specCurrCooldown = getSpecialCooldown(attacker.specialData, attacker.weaponData, attacker.assistData);
 	} else if (attacker.specCurrCooldown > 0) {
 		attacker.specCurrCooldown -= 1;
 	}
 	
 	if (defSpec) {
-		defender.specCurrCooldown = defender.specialData.cooldown;
+		defender.specCurrCooldown = getSpecialCooldown(defender.specialData, defender.weaponData, defender.assistData);
 	} else if (defender.specCurrCooldown > 0) {
 		defender.specCurrCooldown -= 1;
 	}
@@ -992,7 +1024,7 @@ function simBattle() {
 	// AOE damage before combat
 	if (battleInfo.attacker.specialData.hasOwnProperty("before_combat_aoe") && battleInfo.attacker.specCurrCooldown <= 0) {
 		// reset cooldown
-		battleInfo.attacker.specCurrCooldown = battleInfo.attacker.specialData.cooldown;
+		battleInfo.attacker.specCurrCooldown = getSpecialCooldown(battleInfo.attacker.specialData, battleInfo.attacker.weaponData, battleInfo.attacker.assistData);
 		
 		// calculate damage
 		var aoeDmg = battleInfo.attacker.atkWS ;
@@ -1545,10 +1577,17 @@ $(document).ready( function () {
 	// setup special select
 	$(".special-selector").on("change", function () {
 		var charNum = $(this).data("charnum").toString();
-		updateSpecCooldown("#weapon-" + charNum, charNum, false);
 		getSpecialData(charNum);
 		showSpecCooldown(this.value, charNum, false);
-		updateSpecCooldown("#weapon-" + charNum, charNum, true);
+		updateSpecCooldown(charNum);
+		simBattle();
+	});
+	
+	// setup assist select
+	$(".assist-selector").on("change", function () {
+		var charNum = $(this).data("charnum").toString();
+		getAssistData(charNum);
+		updateSpecCooldown(charNum);
 		simBattle();
 	});
 	

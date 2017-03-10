@@ -6,7 +6,9 @@ var assistInfo =
     "Draw Back" : {},
     "Harsh Command" : {},
     "Heal" : {},
-    "Martyr" : {},
+    "Martyr" : {
+		"spec_cooldown_mod" : 1
+	},
     "Mend" : {},
     "Physic" : {},
     "Pivot" : {},
@@ -16,8 +18,12 @@ var assistInfo =
     "Rally Speed" : {},
     "Reciprocal Aid" : {},
 	"Reconcile" : {},
-    "Recover" : {},
-    "Rehabilitate" : {},
+    "Recover" : {
+		"spec_cooldown_mod" : 1
+	},
+    "Rehabilitate" : {
+		"spec_cooldown_mod" : 1
+	},
     "Reposition" : {},
     "Shove" : {},
     "Sing" : {},
