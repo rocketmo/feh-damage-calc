@@ -120,6 +120,10 @@ var specInfo =
         "cooldown" : 5,
         "before_combat_aoe" : true
     },
+	"Growing Thunder" : {
+        "cooldown" : 5,
+        "before_combat_aoe" : true
+    },
     "Growing Wind" : {
         "cooldown" : 5,
         "before_combat_aoe" : true

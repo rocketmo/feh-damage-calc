@@ -1403,6 +1403,20 @@ var charInfo =
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
 		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"]
 	},
+	"Ursula": {
+		"color" : "Blue",
+		"weapon_type" : "Blue Tome",
+		"hp": 35,
+		"atk": 39,
+		"spd": 32,
+		"def": 19,
+		"res": 30,
+		"move_type": "Cavalry",
+		"weapon": ["Blárwolf+", "Blárwolf", "Elthunder", "Thunder"],
+		"special": ["Growing Thunder", "Rising Thunder"],
+		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
+		"passive_c": ["Threaten Res 3", "Threaten Res 2", "Threaten Res 1"]
+	},
 	"Virion": {
 		"color" : "Colorless",
 		"weapon_type" : "Bow",

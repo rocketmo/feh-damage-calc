@@ -7,8 +7,8 @@ var assistInfo =
     "Harsh Command" : {},
     "Heal" : {},
     "Martyr" : {
-		"spec_cooldown_mod" : 1
-	},
+        "spec_cooldown_mod" : 1
+    },
     "Mend" : {},
     "Physic" : {},
     "Pivot" : {},
@@ -19,11 +19,11 @@ var assistInfo =
     "Reciprocal Aid" : {},
 	"Reconcile" : {},
     "Recover" : {
-		"spec_cooldown_mod" : 1
-	},
+        "spec_cooldown_mod" : 1
+    },
     "Rehabilitate" : {
-		"spec_cooldown_mod" : 1
-	},
+        "spec_cooldown_mod" : 1
+    },
     "Reposition" : {},
     "Shove" : {},
     "Sing" : {},
