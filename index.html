@@ -107,7 +107,7 @@
 											<select id="special-1" class="special-selector" data-charnum="1"></select>
 										</div>
 										<div id="spec-cooldown-line-1">
-											<label title="Special activates when cooldown is at 0">Special Cooldown</label>
+											<label title="Special skills activate when cooldown reaches 0.">Special Cooldown</label>
 											<input id="spec-cooldown-1" type="number" class="zero-or-more spec-cool" data-charnum="1" value="0">/<span id="spec-cooldown-max-1" class="denominator">x</span>
 										</div>
 									</div>
@@ -115,41 +115,41 @@
 										<table>
 											<tr>
 												<th></th>
-												<th class="center-cell" title="Default stat total with no buffs/debuffs">Base</th>
-												<th class="center-cell" title="Stat buff that lasts until the next turn">Bonus</th>
-												<th class="center-cell" title="Stat debuff that lasts until the next turn">Penalty</th>
-												<th class="center-cell" title="Stat buff from other allies, only available during combat">Spur</th>
+												<th class="center-cell"><label class="stat-header" title="Default stat total">Base</label></th>
+												<th class="center-cell"><label class="stat-header" title="Displayed stat buff">Bonus</label></th>
+												<th class="center-cell"><label class="stat-header" title="Displayed stat debuff">Penalty</label></th>
+												<th class="center-cell"><label class="stat-header" title="Combat-only stat buff granted by allies">Spur</label></th>
 											</tr>
 											<tr>
-												<td><label class="stat">HP</label></td>
+												<td><label class="stat" title="A unit is defeated if their Hit Points reach 0.">HP</label></td>
 												<td class="center-cell"><input type="number" id="hp-1" class="more-than-zero hp-stat" value="1"></td>
 												<td></td>
 												<td></td>
 												<td></td>
 											</tr>
 											<tr>
-												<td><label class="stat">ATK</label></td>
+												<td><label class="stat" title="The higher a unit's Attack, the more damage it will inflict on foes.">ATK</label></td>
 												<td class="center-cell"><input type="number" id="atk-1" class="zero-or-more battle-val" value="1"></td>
 												<td class="center-cell"><select id="atk-bonus-1" class="stat-bonus battle-val"></select></td>
 												<td class="center-cell"><select id="atk-penalty-1" class="stat-penalty battle-val"></select></td>
 												<td class="center-cell"><select id="atk-spur-1" class="stat-spur battle-val"></select></td>
 											</tr>
 											<tr>
-												<td><label class="stat">SPD</label></td>
+												<td><label class="stat" title="A unit will attack twice if their Speed is at least 5 more than their foe's Speed.">SPD</label></td>
 												<td class="center-cell"><input type="number" id="spd-1" class="zero-or-more battle-val" value="1"></td>
 												<td class="center-cell"><select id="spd-bonus-1" class="stat-bonus battle-val"></select></td>
 												<td class="center-cell"><select id="spd-penalty-1" class="stat-penalty battle-val"></select></td>
 												<td class="center-cell"><select id="spd-spur-1" class="stat-spur battle-val"></select></td>
 											</tr>
 											<tr>
-												<td><label class="stat">DEF</label></td>
+												<td><label class="stat" title="The higher a unit's Defense is, the less damage they take from physical attacks.">DEF</label></td>
 												<td class="center-cell"><input type="number" id="def-1" class="zero-or-more battle-val" value="1"></td>
 												<td class="center-cell"><select id="def-bonus-1" class="stat-bonus battle-val"></select></td>
 												<td class="center-cell"><select id="def-penalty-1" class="stat-penalty battle-val"></select></td>
 												<td class="center-cell"><select id="def-spur-1" class="stat-spur battle-val"></select></td>
 											</tr>
 											<tr>
-												<td><label class="stat">RES</label></td>
+												<td><label class="stat" title="The higher a unit's Resistance is, the less damage they take from magical attacks.">RES</label></td>
 												<td class="center-cell"><input type="number" id="res-1" class="zero-or-more battle-val" value="1"></td>
 												<td class="center-cell"><select id="res-bonus-1" class="stat-bonus battle-val"></select></td>
 												<td class="center-cell"><select id="res-penalty-1" class="stat-penalty battle-val"></select></td>
@@ -262,7 +262,7 @@
 											<select id="special-2" class="special-selector" data-charnum="2"></select>
 										</div>
 										<div id="spec-cooldown-line-2">
-											<label class="special-label" title="Special activates when cooldown is at 0">Special Cooldown</label>
+											<label class="special-label" title="Special skills activate when cooldown reaches 0.">Special Cooldown</label>
 											<input type="number" id="spec-cooldown-2" class="zero-or-more spec-cool" data-charnum="2" value="0">/<span id="spec-cooldown-max-2" class="denominator">x</span>
 										</div>
 									</div>
@@ -270,41 +270,41 @@
 										<table>
 											<tr>
 												<th></th>
-												<th class="center-cell" title="Default stat total with no buffs/debuffs">Base</th>
-												<th class="center-cell" title="Stat buff that lasts until the next turn">Bonus</th>
-												<th class="center-cell" title="Stat debuff that lasts until the next turn">Penalty</th>
-												<th class="center-cell" title="Stat buff from other allies, only available during combat">Spur</th>
+												<th class="center-cell"><label class="stat-header" title="Default stat total">Base</label></th>
+												<th class="center-cell"><label class="stat-header" title="Displayed stat buff">Bonus</label></th>
+												<th class="center-cell"><label class="stat-header" title="Displayed stat debuff">Penalty</label></th>
+												<th class="center-cell"><label class="stat-header" title="Combat-only stat buff granted by allies">Spur</label></th>
 											</tr>
 											<tr>
-												<td><label class="stat">HP</label></td>
+												<td><label class="stat" title="A unit is defeated if their Hit Points reach 0.">HP</label></td>
 												<td class="center-cell"><input type="number" class="more-than-zero hp-stat" id="hp-2" value="1"></td>
 												<td></td>
 												<td></td>
 												<td></td>
 											</tr>
 											<tr>
-												<td><label class="stat">ATK</label></td>
+												<td><label class="stat" title="The higher a unit's Attack, the more damage it will inflict on foes.">ATK</label></td>
 												<td class="center-cell"><input type="number" id="atk-2" class="zero-or-more battle-val" value="1"></td>
 												<td class="center-cell"><select id="atk-bonus-2" class="stat-bonus battle-val"></select></td>
 												<td class="center-cell"><select id="atk-penalty-2" class="stat-penalty battle-val"></select></td>
 												<td class="center-cell"><select id="atk-spur-2" class="stat-spur battle-val"></select></td>
 											</tr>
 											<tr>
-												<td><label class="stat">SPD</label></td>
+												<td><label class="stat" title="A unit will attack twice if their Speed is at least 5 more than their foe's Speed.">SPD</label></td>
 												<td class="center-cell"><input type="number" id="spd-2" class="zero-or-more battle-val" value="1"></td>
 												<td class="center-cell"><select id="spd-bonus-2" class="stat-bonus battle-val"></select></td>
 												<td class="center-cell"><select id="spd-penalty-2" class="stat-penalty battle-val"></select></td>
 												<td class="center-cell"><select id="spd-spur-2" class="stat-spur battle-val"></select></td>
 											</tr>
 											<tr>
-												<td><label class="stat">DEF</label></td>
+												<td><label class="stat" title="The higher a unit's Defense is, the less damage they take from physical attacks.">DEF</label></td>
 												<td class="center-cell"><input type="number" id="def-2" class="zero-or-more battle-val" value="1"></td>
 												<td class="center-cell"><select id="def-bonus-2" class="stat-bonus battle-val"></select></td>
 												<td class="center-cell"><select id="def-penalty-2" class="stat-penalty battle-val"></select></td>
 												<td class="center-cell"><select id="def-spur-2" class="stat-spur battle-val"></select></td>
 											</tr>
 											<tr>
-												<td><label class="stat">RES</label></td>
+												<td><label class="stat" title="The higher a unit's Resistance is, the less damage they take from magical attacks.">RES</label></td>
 												<td class="center-cell"><input type="number" id="res-2" class="zero-or-more battle-val" value="1"></td>
 												<td class="center-cell"><select id="res-bonus-2" class="stat-bonus battle-val"></select></td>
 												<td class="center-cell"><select id="res-penalty-2" class="stat-penalty battle-val"></select></td>

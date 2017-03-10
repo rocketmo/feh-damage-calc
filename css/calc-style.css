@@ -48,6 +48,10 @@ label {
 	width: 3em;
 }
 
+.stat-header {
+	width: auto;
+}
+
 .char-info .info-section {
 	margin: 0em 0em 1em 0em;
 }
