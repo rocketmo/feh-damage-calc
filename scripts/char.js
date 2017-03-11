@@ -235,7 +235,7 @@ var charInfo =
 		"res": 35,
 		"move_type": "Cavalry",
 		"weapon": ["Fear", "Assault"],
-		"special": ["Solid-Winds Balm", "Imbue"],
+		"special": ["Swift-Winds Balm", "Imbue"],
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
 		"assist" : ["Martyr", "Reconcile", "Heal"]
 	},
