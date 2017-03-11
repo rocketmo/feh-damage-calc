@@ -890,13 +890,8 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		atkSpec = true;
 	}
 	
-	// calculate damage
-	var dmg = Math.max(atkPower - defReduct, 0);
-	
-	// halve staff damage
-	if (attacker.type === "Staff") {
-		dmg = roundNum(dmg / 2, false);
-	}
+	// calculate base damage
+	var dmg = atkPower - defReduct;
 	
 	// damage buffs by stat
 	if (attacker.specialData.hasOwnProperty("dmg_buff_by_stat") && attacker.specCurrCooldown <= 0) {
@@ -910,6 +905,14 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		dmg += roundNum((attacker.hp - attacker.currHP) * attacker.specialData.dmg_suffer_buff, false);
 		battleInfo.logMsg += "Damage boosted by " + (attacker.specialData.dmg_suffer_buff * 100).toString() + "% of damage suffered [" + attacker.special + "]. ";
 		atkSpec = true;
+	}
+	
+	// cap damage at 0 if negative
+	dmg = Math.max(dmg, 0);
+	
+	// halve staff damage
+	if (attacker.type === "Staff") {
+		dmg = roundNum(dmg / 2, false);
 	}
 	
 	// check for damage multiplier
@@ -932,6 +935,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		defSpec = true;
 	}
 	
+	// print damage dealt
 	battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + " damage dealt.</strong></span> ";
 	
 	// check for miracle
@@ -964,6 +968,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		healMsg = " <span class='heal-seperator'>|</span> <span class='" + atkClass + "'><strong>" + attacker.name + " HP:</strong> " + atkOldHP.toString() + " → " + attacker.currHP.toString() + "</span>";
 	}
 	
+	// print hp before and after
 	battleInfo.logMsg += "<br><span class='" + defClass + "'><strong>" + defender.name + " HP:</strong> " + defOldHP.toString() + " → " + defender.currHP.toString() + "</span>" + healMsg + "</li>";
 	
 	// update cooldowns
