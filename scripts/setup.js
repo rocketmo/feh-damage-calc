@@ -291,6 +291,13 @@ function showWeapon(selectedWeapon, charNum, update) {
 			$("#weapon-magical-" + charNum).text("No");
 		}
 		
+		// show description
+		if (weaponInfo[selectedWeapon].hasOwnProperty("description")) {
+			$("#weapon-desc-" + charNum).text(weaponInfo[selectedWeapon].description);
+		} else {
+			$("#weapon-desc-" + charNum).text("No additional effects.");
+		}
+		
 		// store weapon data
 		if (update) {
 			updateStatTotal("#weapon-" + charNum, charNum, false);
@@ -304,6 +311,7 @@ function showWeapon(selectedWeapon, charNum, update) {
 		$("#weapon-might-" + charNum).text("n/a");
 		$("#weapon-range-" + charNum).text("n/a");
 		$("#weapon-magical-" + charNum).text("n/a");
+		$("#weapon-desc-" + charNum).text("No additional effects.");
 		updateStatTotal("#weapon-" + charNum, charNum, false);
 		$("#weapon-" + charNum).data("info", {});
 		updateSpecCooldown(charNum);

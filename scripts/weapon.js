@@ -7,7 +7,8 @@ var weaponInfo =
 		"might"   : 4,
 		"range"   : 2,
 		"magical" : true,
-		"heal_dmg" : 0.5
+		"heal_dmg" : 0.5,
+		"description" : "Recover 50% of damage dealt."
 	},
 	"Armads" : {
 		"color"   : "Green",
@@ -15,6 +16,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Unit makes a guaranteed follow-up attack when attacked at HP ≥ 80%.",
 		"riposte" : {
 			"threshold" : 0.8
 		}
@@ -25,6 +27,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Effective against armored units.",
 		"move_effective" : "Armored"
 	},
 	"Armorslayer+" : {
@@ -33,6 +36,7 @@ var weaponInfo =
 		"might"   : 12,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Effective against armored units.",
 		"move_effective" : "Armored"
 	},
 	"Assassin's Bow" : {
@@ -42,6 +46,7 @@ var weaponInfo =
 		"range"   : 2,
 		"magical" : false,
 		"move_effective" : "Flying",
+		"description" : "Effective against flying units. If target has a dagger, it cannot make a follow-up attack and this unit will.",
 		"breaker" : {
             "weapon_type" : "Dagger"
         }
@@ -52,6 +57,7 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "Effective against flying units. If target has a dagger, it cannot make a follow-up attack and this unit will.",
 		"move_effective" : "Flying",
 		"breaker" : {
             "weapon_type" : "Dagger"
@@ -69,7 +75,8 @@ var weaponInfo =
 		"type"    : "Blue Tome",
 		"might"   : 14,
 		"range"   : 2,
-		"magical" : true
+		"magical" : true,
+		"description" : "Restores 5 HP to adjacent allies after any combat this unit initiates."
 	},
 	"Binding Blade" : {
 		"color"   : "Red",
@@ -80,7 +87,8 @@ var weaponInfo =
 		"defend_mod" : {
 			"def" : 2,
 			"res" : 2
-		}
+		},
+		"description" : "Grants +2 DEF/RES when this unit is attacked."
 	},
 	"Blárblade" : {
 		"color"   : "Blue",
@@ -88,6 +96,7 @@ var weaponInfo =
 		"might"   : 9,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Slows Special trigger (cooldown count+1). Adds total bonuses on unit to attack.",
 		"spec_cooldown_mod" : 1,
 		"add_bonus": true
 	},
@@ -97,6 +106,7 @@ var weaponInfo =
 		"might"   : 13,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Slows Special trigger (cooldown count+1). Adds total bonuses on unit to attack.",
 		"spec_cooldown_mod" : 1,
 		"add_bonus" : true
 	},
@@ -106,6 +116,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Grants weapon advantage vs. colorless foes.",
 		"color_effective" : "Colorless"
 	},
 	"Blárraven+" : {
@@ -114,6 +125,7 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Grants weapon advantage vs. colorless foes.",
 		"color_effective" : "Colorless"
 	},
 	"Blárwolf" : {
@@ -122,6 +134,7 @@ var weaponInfo =
 		"might"   : 6,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Effective against cavalry units.",
 		"move_effective" : "Cavalry"
 	},
 	"Blárwolf+" : {
@@ -130,6 +143,7 @@ var weaponInfo =
 		"might"   : 10,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Effective against cavalry units.",
 		"move_effective" : "Cavalry"
 	},
 	"Bolganone" : {
@@ -152,6 +166,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "SPD-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -163,6 +178,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "SPD-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -174,6 +190,7 @@ var weaponInfo =
 		"might"   : 4,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "SPD-5. Effective against flying units. Attack twice when initiating combat.",
 		"brave"   : true,
 		"move_effective" : "Flying",
 		"stat_mod" : {
@@ -186,6 +203,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "SPD-5. Effective against flying units. Attack twice when initiating combat.",
 		"brave"   : true,
 		"move_effective" : "Flying",
 		"stat_mod" : {
@@ -198,6 +216,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "SPD-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -209,6 +228,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "SPD-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -220,6 +240,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "SPD-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -231,6 +252,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "SPD-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -241,28 +263,32 @@ var weaponInfo =
 		"type"    : "Red Tome",
 		"might"   : 14,
 		"range"   : 2,
-		"magical" : true
+		"magical" : true,
+		"description" : "If unit initiates attack, restrict foe from moving more than 1 space through their next actions."
 	},
 	"Cymbeline" : {
 		"color" : "Red",
 		"type" : "Red Tome",
 		"might" : 14,
 		"range" : 2,
-		"magical" : true
+		"magical" : true,
+		"description" : "Grants adjacent allies ATK+4 through their next actions after any combat this unit initiates."
 	},
 	"Dark Breath" : {
 		"color"   : "Blue",
 		"type"    : "Blue Breath",
 		"might"   : 9,
 		"range"   : 1,
-		"magical" : true
+		"magical" : true,
+		"description" : "After this unit attacks, foes within 2 spaces of target suffer ATK/SPD-5 through their next actions."
 	},
 	"Dark Breath+" : {
 		"color"   : "Blue",
 		"type"    : "Blue Breath",
 		"might"   : 13,
 		"range"   : 1,
-		"magical" : true
+		"magical" : true,
+		"description" : "After this unit attacks, foes within 2 spaces of target suffer ATK/SPD-5 through their next actions."
 	},
 	"Dire Thunder" : {
 		"color"   : "Blue",
@@ -270,6 +296,7 @@ var weaponInfo =
 		"might"   : 9,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "SPD-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -281,8 +308,9 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Grants ATK+5 when unit initiates combat.",
 		"initiate_mod" : {
-			"atk" : 5
+			"atk" : 4
 		}
 	},
 	"Elfire" : {
@@ -312,6 +340,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Gives ATK+20% if weapon triangle advantage, ATK-20% if disadvantage.",
 		"tri_advantage" : true
 	},
 	"Emerald Axe+" : {
@@ -320,6 +349,7 @@ var weaponInfo =
 		"might"   : 12,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Gives ATK+20% if weapon triangle advantage, ATK-20% if disadvantage.",
 		"tri_advantage" : true
 	},
 	"Excalibur" : {
@@ -328,6 +358,7 @@ var weaponInfo =
 		"might"   : 14,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Effective against flying units.",
 		"move_effective": "Flying"
 	},
 	"Falchion" : {
@@ -336,6 +367,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Effective against dragons. At the start of every third turn, unit recovers 10 HP.",
 		"dragon_effective" : true
 	},
 	"Fear" : {
@@ -344,6 +376,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "After combat, inflicts ATK-6 on foe through their next actions.",
 		"seal" : {
 			"atk" : -6
 		}
@@ -368,6 +401,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Inflicts ATK-4 on foes within 2 spaces through their next actions at the start of each turn.",
 		"threaten" : {
 			"atk" : -4
 		}
@@ -448,6 +482,7 @@ var weaponInfo =
 		"might"   : 14,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "Effective against flying units. Unit can pass through foes if own HP ≥ 50%.",
 		"move_effective" : "Flying"
 	},
 	"Fólkvangr" : {
@@ -456,6 +491,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Grants ATK+5 at start of turn if HP ≤ 50%.",
 		"defiant" : {
 			"atk" : 5
 		}
@@ -465,7 +501,8 @@ var weaponInfo =
 		"type"    : "Staff",
 		"might"   : 6,
 		"range"   : 2,
-		"magical" : true
+		"magical" : true,
+		"description" : "After any combat, restrict foe from moving more than 1 space through their next actions."
 	},
 	"Gronnblade" : {
 		"color"   : "Green",
@@ -473,6 +510,7 @@ var weaponInfo =
 		"might"   : 9,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Slows Special trigger (cooldown count+1). Adds total bonuses on unit to attack.",
 		"spec_cooldown_mod" : 1,
 		"add_bonus" : true
 	},
@@ -482,6 +520,7 @@ var weaponInfo =
 		"might"   : 13,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Slows Special trigger (cooldown count+1). Adds total bonuses on unit to attack.",
 		"spec_cooldown_mod" : 1,
 		"add_bonus" : true
 	},
@@ -491,6 +530,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Grants weapon advantage vs. colorless foes.",
 		"color_effective" : "Colorless"
 	},
 	"Gronnraven+" : {
@@ -499,6 +539,7 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Grants weapon advantage vs. colorless foes.",
 		"color_effective" : "Colorless"
 	},
 	"Gronnwolf" : {
@@ -507,6 +548,7 @@ var weaponInfo =
 		"might"   : 6,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Effective against cavalry units.",
 		"move_effective" : "Cavalry"
 	},
 	"Gronnwolf+" : {
@@ -515,6 +557,7 @@ var weaponInfo =
 		"might"   : 10,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Effective against cavalry units.",
 		"move_effective" : "Cavalry"
 	},
 	"Hammer" : {
@@ -523,6 +566,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Effective against armored units.",
 		"move_effective" : "Armored"
 	},
 	"Hammer+" : {
@@ -531,6 +575,7 @@ var weaponInfo =
 		"might"   : 12,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Effective against armored units.",
 		"move_effective" : "Armored"
 	},
 	"Hauteclere" : {
@@ -539,6 +584,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1
 	},
 	"Heavy Spear" : {
@@ -547,6 +593,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Effective against armored units.",
 		"move_effective" : "Armored"
 	},
 	"Heavy Spear+" : {
@@ -555,6 +602,7 @@ var weaponInfo =
 		"might"   : 12,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Effective against armored units.",
 		"move_effective" : "Armored"
 	},
 	"Iron Axe" : {
@@ -570,6 +618,7 @@ var weaponInfo =
 		"might"   : 4,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "Effective against flying units.",
 		"move_effective" : "Flying"
 	},
 	"Iron Dagger" : {
@@ -578,6 +627,7 @@ var weaponInfo =
 		"might"   : 3,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "After combat, inflict DEF/RES-3 on foe through their next actions.",
 		"seal" : {
 			"def" : -3,
 			"res" : -3
@@ -610,6 +660,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1
 	},
 	"Killer Axe+" : {
@@ -618,6 +669,7 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1
 	},
 	"Killer Bow" : {
@@ -626,6 +678,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "Effective against flying units. Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1,
 		"move_effective" : "Flying"
 	},
@@ -635,6 +688,7 @@ var weaponInfo =
 		"might"   : 9,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "Effective against flying units. Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1,
 		"move_effective" : "Flying"
 	},
@@ -644,6 +698,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1
 	},
 	"Killer Lance+" : {
@@ -652,6 +707,7 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1
 	},
 	"Killing Edge" : {
@@ -660,6 +716,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1
 	},
 	"Killing Edge+" : {
@@ -668,6 +725,7 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1
 	},
 	"Light Breath" : {
@@ -675,14 +733,16 @@ var weaponInfo =
 		"type"    : "Green Breath",
 		"might"   : 9,
 		"range"   : 1,
-		"magical" : true
+		"magical" : true,
+		"description" : "Grants adjacent allies DEF/RES+4 through their next actions after any combat this unit initiates."
 	},
 	"Light Breath+" : {
 		"color"   : "Green",
 		"type"    : "Green Breath",
 		"might"   : 13,
 		"range"   : 1,
-		"magical" : true
+		"magical" : true,
+		"description" : "Grants adjacent allies DEF/RES+4 through their next actions after any combat this unit initiates."
 	},
 	"Lightning Breath (Blue)" : {
 		"color"   : "Blue",
@@ -690,6 +750,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 1,
 		"magical" : true,
+		"description" : "Enables counter-attacker regardless of attacker's range. Slows Special trigger (cooldown count+1).",
 		"spec_cooldown_mod" : 1,
 		"counter" : true
 	},
@@ -699,6 +760,7 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 1,
 		"magical" : true,
+		"description" : "Enables counter-attacker regardless of attacker's range. Slows Special trigger (cooldown count+1).",
 		"spec_cooldown_mod" : 1,
 		"counter" : true
 	},
@@ -708,6 +770,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 1,
 		"magical" : true,
+		"description" : "Enables counter-attacker regardless of attacker's range. Slows Special trigger (cooldown count+1).",
 		"spec_cooldown_mod" : 1,
 		"counter" : true
 	},
@@ -717,6 +780,7 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 1,
 		"magical" : true,
+		"description" : "Enables counter-attacker regardless of attacker's range. Slows Special trigger (cooldown count+1).",
 		"spec_cooldown_mod" : 1,
 		"counter" : true
 	},
@@ -726,6 +790,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 1,
 		"magical" : true,
+		"description" : "Enables counter-attacker regardless of attacker's range. Slows Special trigger (cooldown count+1).",
 		"spec_cooldown_mod" : 1,
 		"counter" : true
 	},
@@ -735,6 +800,7 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 1,
 		"magical" : true,
+		"description" : "Enables counter-attacker regardless of attacker's range. Slows Special trigger (cooldown count+1).",
 		"spec_cooldown_mod" : 1,
 		"counter" : true
 	},
@@ -744,6 +810,7 @@ var weaponInfo =
 		"might" : 16,
 		"range" : 1,
 		"magical" : false,
+		"description" : "Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1
 	},
 	"Naga" : {
@@ -752,6 +819,7 @@ var weaponInfo =
 		"might"   : 14,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Effective against dragons. Grants DEF/RES+2 when this unit is attacked.",
 		"dragon_effective" : true,
 		"defend_mod" : {
 			"def" : 2,
@@ -763,7 +831,8 @@ var weaponInfo =
 		"type"    : "Axe",
 		"might"   : 16,
 		"range"   : 1,
-		"magical" : false
+		"magical" : false,
+		"description" : "Unit may move adjacent to any ally when HP ≤ 40%."
 	},
 	"Pain" : {
 		"color"   : "Colorless",
@@ -771,7 +840,8 @@ var weaponInfo =
 		"might"   : 3,
 		"range"   : 2,
 		"magical" : true,
-		"poison" : 10
+		"poison" : 10,
+		"description" : "Inflicts 10 damage on foe after combat."
 	},
 	"Panic" : {
 		"color"   : "Colorless",
@@ -779,7 +849,8 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 2,
 		"magical" : true,
-		"convert_penalties" : true
+		"convert_penalties" : true,
+		"description" : "After combat, bonuses on foe become penalties through their next action."
 	},
 	"Parthia" : {
 		"color"   : "Colorless",
@@ -787,6 +858,7 @@ var weaponInfo =
 		"might"   : 14,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "Effective against flying units. Grants RES+4 when unit initiates combat.",
 		"move_effective" : "Flying",
 		"initiate_mod" : {
 			"res" : 4
@@ -798,6 +870,7 @@ var weaponInfo =
 		"might"   : 2,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "Effective against infantry units. Infantry foes suffer DEF/RES-4 after combat through their next actions.",
 		"move_effective" : "Infantry",
 		"target_seal" : {
 			"target" : "Infantry",
@@ -811,6 +884,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "Effective against infantry units. Infantry foes suffer DEF/RES-6 after combat through their next actions.",
 		"move_effective" : "Infantry",
 		"target_seal" : {
 			"target" : "Infantry",
@@ -824,6 +898,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Enables counter-attacker regardless of attacker's range.",
 		"counter" : true
 	},
 	"Rauðrblade" : {
@@ -832,6 +907,7 @@ var weaponInfo =
 		"might"   : 9,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Slows Special trigger (cooldown count+1). Adds total bonuses on unit to attack.",
 		"spec_cooldown_mod" : 1,
 		"add_bonus" : true
 	},
@@ -841,6 +917,7 @@ var weaponInfo =
 		"might"   : 13,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Slows Special trigger (cooldown count+1). Adds total bonuses on unit to attack.",
 		"spec_cooldown_mod" : 1,
 		"add_bonus" : true
 	},
@@ -850,6 +927,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Grants weapon advantage vs. colorless foes.",
 		"color_effective" : "Colorless"
 	},
 	"Rauðrraven+" : {
@@ -858,6 +936,7 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Grants weapon advantage vs. colorless foes.",
 		"color_effective" : "Colorless"
 	},
 	"Rauðrwolf" : {
@@ -866,6 +945,7 @@ var weaponInfo =
 		"might"   : 6,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Effective against cavalry units.",
 		"move_effective" : "Cavalry"
 	},
 	"Rauðrwolf+" : {
@@ -874,6 +954,7 @@ var weaponInfo =
 		"might"   : 10,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "Effective against cavalry units.",
 		"move_effective" : "Cavalry"
 	},
 	"Rexcalibur" : {
@@ -889,6 +970,7 @@ var weaponInfo =
 		"might"   : 4,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "After combat, inflict DEF/RES-3 on foe through their next actions. Grants unit DEF/RES+3 for 1 turn.",
 		"seal" : {
 			"def" : -3,
 			"res" : -3
@@ -904,6 +986,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "After combat, inflict DEF/RES-3 on foe through their next actions. Grants unit DEF/RES+5 for 1 turn.",
 		"seal" : {
 			"def" : -5,
 			"res" : -5
@@ -919,6 +1002,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Gives ATK+20% if weapon triangle advantage, ATK-20% if disadvantage.",
 		"tri_advantage" : true
 	},
 	"Ruby Sword+" : {
@@ -927,6 +1011,7 @@ var weaponInfo =
 		"might"   : 12,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Gives ATK+20% if weapon triangle advantage, ATK-20% if disadvantage.",
 		"tri_advantage" : true
 	},
 	"Ruin" : {
@@ -942,6 +1027,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Gives ATK+20% if weapon triangle advantage, ATK-20% if disadvantage.",
 		"tri_advantage" : true
 	},
 	"Sapphire Lance+" : {
@@ -950,6 +1036,7 @@ var weaponInfo =
 		"might"   : 12,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Gives ATK+20% if weapon triangle advantage, ATK-20% if disadvantage.",
 		"tri_advantage" : true
 	},
 	"Sieglinde" : {
@@ -957,14 +1044,16 @@ var weaponInfo =
 		"type"    : "Sword",
 		"might"   : 16,
 		"range"   : 1,
-		"magical" : false
+		"magical" : false,
+		"description" : "Grants adjacent allies ATK+3 through their next actions at the start of each turn."
 	},
 	"Siegmund" : {
 		"color"   : "Blue",
 		"type"    : "Lance",
 		"might"   : 16,
 		"range"   : 1,
-		"magical" : false
+		"magical" : false,
+		"description" : "Grants adjacent allies ATK+3 through their next actions at the start of each turn."
 	},
 	"Silver Axe" : {
 		"color"   : "Green",
@@ -986,6 +1075,7 @@ var weaponInfo =
 		"might"   : 9,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "Effective against flying units.",
 		"move_effective" : "Flying"
 	},
 	"Silver Bow+" : {
@@ -994,6 +1084,7 @@ var weaponInfo =
 		"might"   : 13,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "Effective against flying units.",
 		"move_effective" : "Flying"
 	},
 	"Silver Dagger" : {
@@ -1001,14 +1092,16 @@ var weaponInfo =
 		"type"    : "Dagger",
 		"might"   : 7,
 		"range"   : 2,
-		"magical" : false
+		"magical" : false,
+		"description" : "After combat, inflict DEF/RES-5 on foe through their next actions."
 	},
 	"Silver Dagger+" : {
 		"color"   : "Colorless",
 		"type"    : "Dagger",
 		"might"   : 10,
 		"range"   : 2,
-		"magical" : false
+		"magical" : false,
+		"description" : "After combat, inflict DEF/RES-7 on foe through their next actions."
 	},
 	"Silver Lance" : {
 		"color"   : "Blue",
@@ -1044,6 +1137,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 2,
 		"magical" : true,
+		"description" : "After combat, inflicts SPD-6 on foe through their next actions.",
 		"seal" : {
 			"spd" : -6
 		}
@@ -1053,14 +1147,16 @@ var weaponInfo =
 		"type"    : "Dagger",
 		"might"   : 6,
 		"range"   : 2,
-		"magical" : false
+		"magical" : false,
+		"description" : "After combat, inflict DEF/RES-4 on foes within 2 spaces of target through their next actions."
 	},
 	"Smoke Dagger+" : {
 		"color"   : "Colorless",
 		"type"    : "Dagger",
 		"might"   : 9,
 		"range"   : 2,
-		"magical" : false
+		"magical" : false,
+		"description" : "After combat, inflict DEF/RES-4 on foes within 2 spaces of target through their next actions."
 	},
 	"Sol Katti" : {
 		"color"   : "Red",
@@ -1068,6 +1164,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "If unit initiates combat at HP ≤ 50%, any follow-up attack occurs immediately.",
 		"desperation" : {
 			"threshold" : 0.5
 		}
@@ -1085,6 +1182,7 @@ var weaponInfo =
 		"might"   : 6,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "Effective against flying units.",
 		"move_effective" : "Flying"
 	},
 	"Steel Dagger" : {
@@ -1093,6 +1191,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 2,
 		"magical" : false,
+		"description" : "After combat, inflict DEF/RES-3 on foe through their next actions.",
 		"seal" : {
 			"def" : -3,
 			"res" : -3
@@ -1139,6 +1238,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Grants DEF+4 if unit's HP ≤ 50%.",
 		"below_threshold_mod" : {
 			"threshold" : 0.5,
 			"stat_mod" : {
@@ -1159,6 +1259,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Grants SPD+4 when unit initiates combat.",
 		"initiate_mod" : {
 			"spd" : 4
 		}
