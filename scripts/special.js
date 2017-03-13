@@ -162,7 +162,7 @@ var specInfo =
         "non_combat" : true
     },
     "Luna" : {
-        "cooldown" : 4,
+        "cooldown" : 3,
         "enemy_def_res_mod" : 0.5
     },
     "Miracle" : {
