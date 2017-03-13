@@ -1265,14 +1265,36 @@ function simBattle() {
 	// display results
 	$("#interaction-list").hide().html(battleInfo.logMsg);
 	$(".hp-remain-block").hide();
+	$("#result-msg").hide();
 	$("#hp-remain-1").text(battleInfo.attacker.currHP.toString());
 	$("#hp-remain-2").text(battleInfo.defender.currHP.toString());
 	$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
+	
+	// victory message
+	if (battleInfo.attacker.currHP === 0) {
+		$("#result-msg").text("Defender is victorious!");
+		$("#result-msg").css("color", "#e34262");
+		$("#result-msg").css("padding", "0.5em 0em 0em 0em");
+		$("#result-msg").css("margin", "0.5em 0em 0em 0em");
+		$("#result-msg").css("border-top", "1px solid #6c6c6c");
+	} else if (battleInfo.defender.currHP === 0) {
+		$("#result-msg").text("Attacker is victorious!");
+		$("#result-msg").css("color", "deepskyblue");
+		$("#result-msg").css("padding", "0.5em 0em 0em 0em");
+		$("#result-msg").css("margin", "0.5em 0em 0em 0em");
+		$("#result-msg").css("border-top", "1px solid #6c6c6c");
+	} else {
+		$("#result-msg").text("");
+		$("#result-msg").css("padding", "0em");
+		$("#result-msg").css("margin", "0em");
+		$("#result-msg").css("border-top", "none");
+	}
 	
 	if (openLog) {
 		$("#interaction-list").fadeIn("slow");
 	}
 	$(".hp-remain-block").fadeIn("slow");
+	$("#result-msg").fadeIn("slow");
 }
 
 // put options in the character selects

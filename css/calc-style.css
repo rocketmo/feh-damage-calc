@@ -252,3 +252,12 @@ h3 {
 	width: 18.7em;
 	white-space: normal;
 }
+
+
+#result-msg {
+	margin: 0.5em 0em 0em 0em;
+	padding: 0.5em 0em 0em 0em;
+	font-weight: bold;
+	font-size: 1.4em;
+	border-top: 1px solid #6c6c6c;
+}

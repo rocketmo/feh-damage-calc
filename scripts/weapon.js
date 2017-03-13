@@ -308,7 +308,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Grants ATK+5 when unit initiates combat.",
+		"description" : "Grants ATK+4 when unit initiates combat.",
 		"initiate_mod" : {
 			"atk" : 4
 		}
