@@ -313,12 +313,31 @@ var weaponInfo =
 			"atk" : 4
 		}
 	},
+	"Eckesachs" : {
+		"color"   : "Red",
+		"type"    : "Sword",
+		"might"   : 16,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Inflicts DEF-4 on foes within 2 spaces through their next actions at the start of each turn.",
+		"threaten" : {
+			"def" : -4
+		}
+	},
 	"Elfire" : {
 		"color"   : "Red",
 		"type"    : "Red Tome",
 		"might"   : 6,
 		"range"   : 2,
 		"magical" : true
+	},
+	"Élivágar" : {
+		"color"   : "Green",
+		"type"    : "Green Tome",
+		"might"   : 14,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "If unit initiates attack, bonuses on foes within 2 spaces of the target become penalties through their next actions."
 	},
 	"Elthunder" : {
 		"color"   : "Blue",
@@ -495,6 +514,15 @@ var weaponInfo =
 		"defiant" : {
 			"atk" : 5
 		}
+	},
+	"Gradivus" : {
+		"color"   : "Blue",
+		"type"    : "Lance",
+		"might"   : 16,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Enables wielder to counter-attack regardless of attacker's range.",
+		"counter" : true
 	},
 	"Gravity" : {
 		"color"   : "Colorless",
@@ -750,7 +778,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "Enables counter-attacker regardless of attacker's range. Slows Special trigger (cooldown count+1).",
+		"description" : "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1).",
 		"spec_cooldown_mod" : 1,
 		"counter" : true
 	},
@@ -760,7 +788,7 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "Enables counter-attacker regardless of attacker's range. Slows Special trigger (cooldown count+1).",
+		"description" : "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1).",
 		"spec_cooldown_mod" : 1,
 		"counter" : true
 	},
@@ -770,7 +798,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "Enables counter-attacker regardless of attacker's range. Slows Special trigger (cooldown count+1).",
+		"description" : "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1).",
 		"spec_cooldown_mod" : 1,
 		"counter" : true
 	},
@@ -780,7 +808,7 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "Enables counter-attacker regardless of attacker's range. Slows Special trigger (cooldown count+1).",
+		"description" : "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1).",
 		"spec_cooldown_mod" : 1,
 		"counter" : true
 	},
@@ -790,7 +818,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "Enables counter-attacker regardless of attacker's range. Slows Special trigger (cooldown count+1).",
+		"description" : "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1).",
 		"spec_cooldown_mod" : 1,
 		"counter" : true
 	},
@@ -800,7 +828,7 @@ var weaponInfo =
 		"might"   : 11,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "Enables counter-attacker regardless of attacker's range. Slows Special trigger (cooldown count+1).",
+		"description" : "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1).",
 		"spec_cooldown_mod" : 1,
 		"counter" : true
 	},
@@ -898,7 +926,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Enables counter-attacker regardless of attacker's range.",
+		"description" : "Enables wielder to counter-attack regardless of attacker's range.",
 		"counter" : true
 	},
 	"Rauðrblade" : {
@@ -1038,6 +1066,15 @@ var weaponInfo =
 		"magical" : false,
 		"description" : "Gives ATK+20% if weapon triangle advantage, ATK-20% if disadvantage.",
 		"tri_advantage" : true
+	},
+	"Siegfried" : {
+		"color"   : "Red",
+		"type"    : "Sword",
+		"might"   : 16,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Enables wielder to counter-attack regardless of attacker's range.",
+		"counter" : true
 	},
 	"Sieglinde" : {
 		"color"   : "Red",
@@ -1245,6 +1282,17 @@ var weaponInfo =
 				"def" : 4
 			}
 		}
+	},
+	"Valaskjálf" : {
+		"color"   : "Blue",
+		"type"    : "Blue Tome",
+		"might"   : 14,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "Unit counter-attacks first when attacked at HP ≤ 50%.",
+		"vantage" : {
+            "threshold" : 0.5
+        }
 	},
 	"Wind" : {
 		"color"   : "Green",

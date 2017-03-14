@@ -1081,20 +1081,29 @@ function simBattle() {
 	
 	// vantage
 	var vantage = false;	// true if vantage activates
-	var defCounter = false;	// true if defender counters
-	if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range && battleInfo.defender.passiveBData.hasOwnProperty("vantage") && battleInfo.defender.initHP <= checkRoundError(battleInfo.defender.passiveBData.vantage.threshold * battleInfo.defender.hp)) {
-		battleInfo = singleCombat(battleInfo, false, "counter-attacks first [" + battleInfo.defender.passiveB + "]", false);
-		vantage = true;
-		defCounter = true;
-	} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.hasOwnProperty("counter") && battleInfo.defender.passiveBData.hasOwnProperty("vantage") && battleInfo.defender.initHP <= checkRoundError(battleInfo.defender.passiveBData.vantage.threshold * battleInfo.defender.hp)) {
-		battleInfo = singleCombat(battleInfo, false, "counter-attacks first, ignoring distance [" + battleInfo.defender.passiveB + ", " + battleInfo.defender.weaponName + "]", false);
-		vantage = true;
-		defCounter = true;
-	} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.passiveAData.hasOwnProperty("counter") && battleInfo.defender.passiveBData.hasOwnProperty("vantage") && battleInfo.defender.initHP <= checkRoundError(battleInfo.defender.passiveBData.vantage.threshold * battleInfo.defender.hp)) {
-		battleInfo = singleCombat(battleInfo, false, "counter-attacks first, ignoring distance [" + battleInfo.defender.passiveB + ", " + battleInfo.defender.passiveA + "]", false);
-		vantage = true;
-		defCounter = true;
-	} 
+	if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.passiveBData.hasOwnProperty("vantage") && battleInfo.defender.initHP <= checkRoundError(battleInfo.defender.passiveBData.vantage.threshold * battleInfo.defender.hp)) {
+		if (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range) {
+			battleInfo = singleCombat(battleInfo, false, "counter-attacks first [" + battleInfo.defender.passiveB + "]", false);
+			vantage = true;
+		} else if (battleInfo.defender.weaponData.hasOwnProperty("counter")) {
+			battleInfo = singleCombat(battleInfo, false, "counter-attacks first, ignoring distance [" + battleInfo.defender.passiveB + ", " + battleInfo.defender.weaponName + "]", false);
+			vantage = true;
+		} else if (battleInfo.defender.passiveAData.hasOwnProperty("counter")) {
+			battleInfo = singleCombat(battleInfo, false, "counter-attacks first, ignoring distance [" + battleInfo.defender.passiveB + ", " + battleInfo.defender.passiveA + "]", false);
+			vantage = true;
+		} 	
+	} else if (battleInfo.defender.weaponData.hasOwnProperty("vantage") && battleInfo.defender.initHP <= checkRoundError(battleInfo.defender.weaponData.vantage.threshold * battleInfo.defender.hp)) {
+		if (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range) {
+			battleInfo = singleCombat(battleInfo, false, "counter-attacks first [" + battleInfo.defender.weaponName + "]", false);
+			vantage = true;
+		} else if (battleInfo.defender.weaponData.hasOwnProperty("counter")) {
+			battleInfo = singleCombat(battleInfo, false, "counter-attacks first, ignoring distance [" + battleInfo.defender.weaponName + "]", false);
+			vantage = true;
+		} else if (battleInfo.defender.passiveAData.hasOwnProperty("counter")) {
+			battleInfo = singleCombat(battleInfo, false, "counter-attacks first, ignoring distance [" + battleInfo.defender.weaponName + ", " + battleInfo.defender.passiveA + "]", false);
+			vantage = true;
+		} 
+	}
 	
 	// attacker initiates
 	if (battleInfo.attacker.currHP > 0) {
@@ -1118,13 +1127,10 @@ function simBattle() {
 		if (!vantage) {
 			if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range) {
 				battleInfo = singleCombat(battleInfo, false, "counter-attacks", false);
-				defCounter = true;
 			} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.hasOwnProperty("counter")) {	
 				battleInfo = singleCombat(battleInfo, false, "counter-attacks, ignoring distance [" + battleInfo.defender.weaponName + "]", false);
-				defCounter = true;
 			} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.passiveAData.hasOwnProperty("counter")) {	
 				battleInfo = singleCombat(battleInfo, false, "counter-attacks, ignoring distance [" + battleInfo.defender.passiveA + "]", false);
-				defCounter = true;
 			} else {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is unable to counter-attack.</li>";
 			}

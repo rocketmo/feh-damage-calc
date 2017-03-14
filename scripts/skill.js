@@ -170,6 +170,9 @@ var skillInfo =
             },
             "recoil_dmg" : 6
         },
+        "Grani's Shield" : {
+            "cancel_effective" : true
+        },
         "HP +3" : {
             "stat_mod" : {
                 "hp" : 3
@@ -184,6 +187,9 @@ var skillInfo =
             "stat_mod" : {
                 "hp" : 5
             }
+        },
+        "Iote's Shield" : {
+            "cancel_effective" : true
         },
         "Life and Death 1" : {
             "stat_mod" : {
