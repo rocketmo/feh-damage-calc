@@ -30,16 +30,16 @@ var assistInfo =
         "description" : "Unit moves to opposite side of adjacent ally."
     },
     "Rally Attack" : {
-        "description" : "Grants ATK+4 to an adjacent ally until the end of the turn."
+        "description" : "Grants Atk+4 to an adjacent ally until the end of the turn."
     },
 	"Rally Defense" : {
-	    "description" : "Grants DEF+4 to an adjacent ally until the end of the turn."
+	    "description" : "Grants Def+4 to an adjacent ally until the end of the turn."
 	},
     "Rally Resistance" : {
-        "description" : "Grants RES+4 to an adjacent ally until the end of the turn."
+        "description" : "Grants Res+4 to an adjacent ally until the end of the turn."
     },
     "Rally Speed" : {
-        "description" : "Grants SPD+4 to an adjacent ally until the end of the turn."
+        "description" : "Grants Spd+4 to an adjacent ally until the end of the turn."
     },
     "Reciprocal Aid" : {
         "description" : "Swap HP with adjacent ally (neither unit can go above their max HP)."

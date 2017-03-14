@@ -88,7 +88,7 @@ var weaponInfo =
 			"def" : 2,
 			"res" : 2
 		},
-		"description" : "Grants +2 DEF/RES when this unit is attacked."
+		"description" : "Grants +2 Def/Res when this unit is attacked."
 	},
 	"Blárblade" : {
 		"color"   : "Blue",
@@ -166,7 +166,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "SPD-5. Attack twice when initiating combat.",
+		"description" : "Spd-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -178,7 +178,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "SPD-5. Attack twice when initiating combat.",
+		"description" : "Spd-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -190,7 +190,7 @@ var weaponInfo =
 		"might"   : 4,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "SPD-5. Effective against flying units. Attack twice when initiating combat.",
+		"description" : "Spd-5. Effective against flying units. Attack twice when initiating combat.",
 		"brave"   : true,
 		"move_effective" : "Flying",
 		"stat_mod" : {
@@ -203,7 +203,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "SPD-5. Effective against flying units. Attack twice when initiating combat.",
+		"description" : "Spd-5. Effective against flying units. Attack twice when initiating combat.",
 		"brave"   : true,
 		"move_effective" : "Flying",
 		"stat_mod" : {
@@ -216,7 +216,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "SPD-5. Attack twice when initiating combat.",
+		"description" : "Spd-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -228,7 +228,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "SPD-5. Attack twice when initiating combat.",
+		"description" : "Spd-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -240,7 +240,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "SPD-5. Attack twice when initiating combat.",
+		"description" : "Spd-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -252,7 +252,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "SPD-5. Attack twice when initiating combat.",
+		"description" : "Spd-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -272,7 +272,7 @@ var weaponInfo =
 		"might" : 14,
 		"range" : 2,
 		"magical" : true,
-		"description" : "Grants adjacent allies ATK+4 through their next actions after any combat this unit initiates."
+		"description" : "Grants adjacent allies Atk+4 through their next actions after any combat this unit initiates."
 	},
 	"Dark Breath" : {
 		"color"   : "Blue",
@@ -280,7 +280,7 @@ var weaponInfo =
 		"might"   : 9,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "After this unit attacks, foes within 2 spaces of target suffer ATK/SPD-5 through their next actions."
+		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions."
 	},
 	"Dark Breath+" : {
 		"color"   : "Blue",
@@ -288,7 +288,20 @@ var weaponInfo =
 		"might"   : 13,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "After this unit attacks, foes within 2 spaces of target suffer ATK/SPD-5 through their next actions."
+		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions."
+	},
+	"Deathly Dagger" : {
+		"color"   : "Colorless",
+		"type"    : "Dagger",
+		"might"   : 11,
+		"range"   : 2,
+		"magical" : false,
+		"description" : "After combat, inflict Def/Res-7 on foe through their next actions. If unit initiated combat, inflict 7 damage to foe after battle.",
+		"seal" : {
+			"def" : -7,
+			"res" : -7
+		},
+		"initiate_poison" : 7
 	},
 	"Dire Thunder" : {
 		"color"   : "Blue",
@@ -296,7 +309,7 @@ var weaponInfo =
 		"might"   : 9,
 		"range"   : 2,
 		"magical" : true,
-		"description" : "SPD-5. Attack twice when initiating combat.",
+		"description" : "Spd-5. Attack twice when initiating combat.",
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
@@ -308,7 +321,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Grants ATK+4 when unit initiates combat.",
+		"description" : "Grants Atk+4 when unit initiates combat.",
 		"initiate_mod" : {
 			"atk" : 4
 		}
@@ -319,7 +332,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Inflicts DEF-4 on foes within 2 spaces through their next actions at the start of each turn.",
+		"description" : "Inflicts Def-4 on foes within 2 spaces through their next actions at the start of each turn.",
 		"threaten" : {
 			"def" : -4
 		}
@@ -359,7 +372,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Gives ATK+20% if weapon triangle advantage, ATK-20% if disadvantage.",
+		"description" : "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
 		"tri_advantage" : true
 	},
 	"Emerald Axe+" : {
@@ -368,7 +381,7 @@ var weaponInfo =
 		"might"   : 12,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Gives ATK+20% if weapon triangle advantage, ATK-20% if disadvantage.",
+		"description" : "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
 		"tri_advantage" : true
 	},
 	"Excalibur" : {
@@ -395,7 +408,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 2,
 		"magical" : true,
-		"description" : "After combat, inflicts ATK-6 on foe through their next actions.",
+		"description" : "After combat, inflicts Atk-6 on foe through their next actions.",
 		"seal" : {
 			"atk" : -6
 		}
@@ -420,7 +433,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Inflicts ATK-4 on foes within 2 spaces through their next actions at the start of each turn.",
+		"description" : "Inflicts Atk-4 on foes within 2 spaces through their next actions at the start of each turn.",
 		"threaten" : {
 			"atk" : -4
 		}
@@ -432,9 +445,9 @@ var weaponInfo =
 		"range"   : 2,
 		"magical" : true
 	},
-	"Fire Breath (Red)" : {
-		"color"   : "Red",
-		"type"    : "Red Breath",
+	"Fire Breath (Blue)" : {
+		"color"   : "Blue",
+		"type"    : "Blue Breath",
 		"might"   : 6,
 		"range"   : 1,
 		"magical" : true
@@ -446,16 +459,16 @@ var weaponInfo =
 		"range"   : 1,
 		"magical" : true
 	},
-	"Fire Breath (Blue)" : {
-		"color"   : "Blue",
-		"type"    : "Blue Breath",
+	"Fire Breath (Red)" : {
+		"color"   : "Red",
+		"type"    : "Red Breath",
 		"might"   : 6,
 		"range"   : 1,
 		"magical" : true
 	},
-	"Fire Breath+ (Red)" : {
-		"color"   : "Red",
-		"type"    : "Red Breath",
+	"Fire Breath+ (Blue)" : {
+		"color"   : "Blue",
+		"type"    : "Blue Breath",
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : true
@@ -467,9 +480,9 @@ var weaponInfo =
 		"range"   : 1,
 		"magical" : true
 	},
-	"Fire Breath+ (Blue)" : {
-		"color"   : "Blue",
-		"type"    : "Blue Breath",
+	"Fire Breath+ (Red)" : {
+		"color"   : "Red",
+		"type"    : "Red Breath",
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : true
@@ -510,7 +523,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Grants ATK+5 at start of turn if HP ≤ 50%.",
+		"description" : "Grants Atk+5 at start of turn if HP ≤ 50%.",
 		"defiant" : {
 			"atk" : 5
 		}
@@ -655,7 +668,7 @@ var weaponInfo =
 		"might"   : 3,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "After combat, inflict DEF/RES-3 on foe through their next actions.",
+		"description" : "After combat, inflict Def/Res-3 on foe through their next actions.",
 		"seal" : {
 			"def" : -3,
 			"res" : -3
@@ -756,25 +769,77 @@ var weaponInfo =
 		"description" : "Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1
 	},
-	"Light Breath" : {
+	"Light Breath (Blue)" : {
+		"color"   : "Blue",
+		"type"    : "Blue Breath",
+		"might"   : 9,
+		"range"   : 1,
+		"magical" : true,
+		"description" : "Grants adjacent allies Def/Res+4 through their next actions after any combat this unit initiates."
+	},
+	"Light Breath (Green)" : {
 		"color"   : "Green",
 		"type"    : "Green Breath",
 		"might"   : 9,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "Grants adjacent allies DEF/RES+4 through their next actions after any combat this unit initiates."
+		"description" : "Grants adjacent allies Def/Res+4 through their next actions after any combat this unit initiates."
 	},
-	"Light Breath+" : {
+	"Light Breath (Red)" : {
+		"color"   : "Red",
+		"type"    : "Red Breath",
+		"might"   : 9,
+		"range"   : 1,
+		"magical" : true,
+		"description" : "Grants adjacent allies Def/Res+4 through their next actions after any combat this unit initiates."
+	},
+	"Light Breath+ (Blue)" : {
+		"color"   : "Blue",
+		"type"    : "Blue Breath",
+		"might"   : 13,
+		"range"   : 1,
+		"magical" : true,
+		"description" : "Grants adjacent allies Def/Res+4 through their next actions after any combat this unit initiates."
+	},
+	"Light Breath+ (Green)" : {
 		"color"   : "Green",
 		"type"    : "Green Breath",
 		"might"   : 13,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "Grants adjacent allies DEF/RES+4 through their next actions after any combat this unit initiates."
+		"description" : "Grants adjacent allies Def/Res+4 through their next actions after any combat this unit initiates."
+	},
+	"Light Breath+ (Red)" : {
+		"color"   : "Red",
+		"type"    : "Red Breath",
+		"might"   : 13,
+		"range"   : 1,
+		"magical" : true,
+		"description" : "Grants adjacent allies Def/Res+4 through their next actions after any combat this unit initiates."
 	},
 	"Lightning Breath (Blue)" : {
 		"color"   : "Blue",
 		"type"    : "Blue Breath",
+		"might"   : 7,
+		"range"   : 1,
+		"magical" : true,
+		"description" : "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1).",
+		"spec_cooldown_mod" : 1,
+		"counter" : true
+	},
+	"Lightning Breath (Green)" : {
+		"color"   : "Green",
+		"type"    : "Green Breath",
+		"might"   : 7,
+		"range"   : 1,
+		"magical" : true,
+		"description" : "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1).",
+		"spec_cooldown_mod" : 1,
+		"counter" : true
+	},
+	"Lightning Breath (Red)" : {
+		"color"   : "Red",
+		"type"    : "Red Breath",
 		"might"   : 7,
 		"range"   : 1,
 		"magical" : true,
@@ -792,30 +857,10 @@ var weaponInfo =
 		"spec_cooldown_mod" : 1,
 		"counter" : true
 	},
-	"Lightning Breath (Green)" : {
-		"color"   : "Green",
-		"type"    : "Green Breath",
-		"might"   : 7,
-		"range"   : 1,
-		"magical" : true,
-		"description" : "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1).",
-		"spec_cooldown_mod" : 1,
-		"counter" : true
-	},
 	"Lightning Breath+ (Green)" : {
 		"color"   : "Green",
 		"type"    : "Green Breath",
 		"might"   : 11,
-		"range"   : 1,
-		"magical" : true,
-		"description" : "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1).",
-		"spec_cooldown_mod" : 1,
-		"counter" : true
-	},
-	"Lightning Breath (Red)" : {
-		"color"   : "Red",
-		"type"    : "Red Breath",
-		"might"   : 7,
 		"range"   : 1,
 		"magical" : true,
 		"description" : "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1).",
@@ -847,7 +892,7 @@ var weaponInfo =
 		"might"   : 14,
 		"range"   : 2,
 		"magical" : true,
-		"description" : "Effective against dragons. Grants DEF/RES+2 when this unit is attacked.",
+		"description" : "Effective against dragons. Grants Def/Res+2 when this unit is attacked.",
 		"dragon_effective" : true,
 		"defend_mod" : {
 			"def" : 2,
@@ -868,8 +913,8 @@ var weaponInfo =
 		"might"   : 3,
 		"range"   : 2,
 		"magical" : true,
-		"poison" : 10,
-		"description" : "Inflicts 10 damage on foe after combat."
+		"description" : "Inflicts 10 damage on foe after combat.",
+		"poison" : 10
 	},
 	"Panic" : {
 		"color"   : "Colorless",
@@ -886,7 +931,7 @@ var weaponInfo =
 		"might"   : 14,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "Effective against flying units. Grants RES+4 when unit initiates combat.",
+		"description" : "Effective against flying units. Grants Res+4 when unit initiates combat.",
 		"move_effective" : "Flying",
 		"initiate_mod" : {
 			"res" : 4
@@ -898,7 +943,7 @@ var weaponInfo =
 		"might"   : 2,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "Effective against infantry units. Infantry foes suffer DEF/RES-4 after combat through their next actions.",
+		"description" : "Effective against infantry units. Infantry foes suffer Def/Res-4 after combat through their next actions.",
 		"move_effective" : "Infantry",
 		"target_seal" : {
 			"target" : "Infantry",
@@ -912,7 +957,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "Effective against infantry units. Infantry foes suffer DEF/RES-6 after combat through their next actions.",
+		"description" : "Effective against infantry units. Infantry foes suffer Def/Res-6 after combat through their next actions.",
 		"move_effective" : "Infantry",
 		"target_seal" : {
 			"target" : "Infantry",
@@ -998,7 +1043,7 @@ var weaponInfo =
 		"might"   : 4,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "After combat, inflict DEF/RES-3 on foe through their next actions. Grants unit DEF/RES+3 for 1 turn.",
+		"description" : "After combat, inflict Def/Res-3 on foe through their next actions. Grants unit Def/Res+3 for 1 turn.",
 		"seal" : {
 			"def" : -3,
 			"res" : -3
@@ -1014,7 +1059,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "After combat, inflict DEF/RES-3 on foe through their next actions. Grants unit DEF/RES+5 for 1 turn.",
+		"description" : "After combat, inflict Def/Res-3 on foe through their next actions. Grants unit Def/Res+5 for 1 turn.",
 		"seal" : {
 			"def" : -5,
 			"res" : -5
@@ -1030,7 +1075,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Gives ATK+20% if weapon triangle advantage, ATK-20% if disadvantage.",
+		"description" : "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
 		"tri_advantage" : true
 	},
 	"Ruby Sword+" : {
@@ -1039,7 +1084,7 @@ var weaponInfo =
 		"might"   : 12,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Gives ATK+20% if weapon triangle advantage, ATK-20% if disadvantage.",
+		"description" : "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
 		"tri_advantage" : true
 	},
 	"Ruin" : {
@@ -1055,7 +1100,7 @@ var weaponInfo =
 		"might"   : 8,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Gives ATK+20% if weapon triangle advantage, ATK-20% if disadvantage.",
+		"description" : "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
 		"tri_advantage" : true
 	},
 	"Sapphire Lance+" : {
@@ -1064,7 +1109,7 @@ var weaponInfo =
 		"might"   : 12,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Gives ATK+20% if weapon triangle advantage, ATK-20% if disadvantage.",
+		"description" : "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
 		"tri_advantage" : true
 	},
 	"Siegfried" : {
@@ -1082,7 +1127,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Grants adjacent allies ATK+3 through their next actions at the start of each turn."
+		"description" : "Grants adjacent allies Atk+3 through their next actions at the start of each turn."
 	},
 	"Siegmund" : {
 		"color"   : "Blue",
@@ -1090,7 +1135,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Grants adjacent allies ATK+3 through their next actions at the start of each turn."
+		"description" : "Grants adjacent allies Atk+3 through their next actions at the start of each turn."
 	},
 	"Silver Axe" : {
 		"color"   : "Green",
@@ -1130,7 +1175,11 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "After combat, inflict DEF/RES-5 on foe through their next actions."
+		"description" : "After combat, inflict Def/Res-5 on foe through their next actions.",
+		"seal" : {
+			"def" : -5,
+			"res" : -5
+		}
 	},
 	"Silver Dagger+" : {
 		"color"   : "Colorless",
@@ -1138,7 +1187,11 @@ var weaponInfo =
 		"might"   : 10,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "After combat, inflict DEF/RES-7 on foe through their next actions."
+		"description" : "After combat, inflict Def/Res-7 on foe through their next actions.",
+		"seal" : {
+			"def" : -7,
+			"res" : -7
+		}
 	},
 	"Silver Lance" : {
 		"color"   : "Blue",
@@ -1174,7 +1227,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 2,
 		"magical" : true,
-		"description" : "After combat, inflicts SPD-6 on foe through their next actions.",
+		"description" : "After combat, inflicts Spd-6 on foe through their next actions.",
 		"seal" : {
 			"spd" : -6
 		}
@@ -1185,7 +1238,7 @@ var weaponInfo =
 		"might"   : 6,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "After combat, inflict DEF/RES-4 on foes within 2 spaces of target through their next actions."
+		"description" : "After combat, inflict Def/Res-4 on foes within 2 spaces of target through their next actions."
 	},
 	"Smoke Dagger+" : {
 		"color"   : "Colorless",
@@ -1193,7 +1246,7 @@ var weaponInfo =
 		"might"   : 9,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "After combat, inflict DEF/RES-4 on foes within 2 spaces of target through their next actions."
+		"description" : "After combat, inflict Def/Res-4 on foes within 2 spaces of target through their next actions."
 	},
 	"Sol Katti" : {
 		"color"   : "Red",
@@ -1228,7 +1281,7 @@ var weaponInfo =
 		"might"   : 5,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "After combat, inflict DEF/RES-3 on foe through their next actions.",
+		"description" : "After combat, inflict Def/Res-3 on foe through their next actions.",
 		"seal" : {
 			"def" : -3,
 			"res" : -3
@@ -1275,7 +1328,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Grants DEF+4 if unit's HP ≤ 50%.",
+		"description" : "Grants Def+4 if unit's HP ≤ 50%.",
 		"below_threshold_mod" : {
 			"threshold" : 0.5,
 			"stat_mod" : {
@@ -1301,13 +1354,31 @@ var weaponInfo =
 		"range"   : 2,
 		"magical" : false
 	},
+	"Wo Dao" : {
+		"color"   : "Red",
+		"type"    : "Sword",
+		"might"   : 9,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Grants +10 to damage when Special triggers.",
+		"spec_damage_bonus" : 10
+	},
+	"Wo Dao+" : {
+		"color"   : "Red",
+		"type"    : "Sword",
+		"might"   : 13,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Grants +10 to damage when Special triggers.",
+		"spec_damage_bonus" : 10
+	},
 	"Yato" : {
 		"color"   : "Red",
 		"type"    : "Sword",
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Grants SPD+4 when unit initiates combat.",
+		"description" : "Grants Spd+4 when unit initiates combat.",
 		"initiate_mod" : {
 			"spd" : 4
 		}

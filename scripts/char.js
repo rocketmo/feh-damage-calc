@@ -418,7 +418,7 @@ var charInfo =
 		"def": 25,
 		"res": 30,
 		"move_type": "Infantry",
-		"weapon": ["Light Breath+", "Light Breath", "Fire Breath+ (Green)", "Fire Breath (Green)"],
+		"weapon": ["Light Breath+ (Green)", "Light Breath (Green)", "Fire Breath+ (Green)", "Fire Breath (Green)"],
 		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
 		"assist" : ["Draw Back"]
@@ -619,6 +619,20 @@ var charInfo =
 		"passive_a": ["Defiant Def 3", "Defiant Def 2", "Defiant Def 1"],
 		"passive_c": ["Hone Fliers", "Hone Spd 2", "Hone Spd 1"]
 	},
+	"Jaffar": {
+		"color" : "Colorless",
+		"weapon_type" : "Dagger",
+		"hp": 38,
+		"atk": 42,
+		"spd": 41,
+		"def": 20,
+		"res": 17,
+		"move_type": "Infantry",
+		"weapon": ["Deathly Dagger", "Silver Dagger", "Steel Dagger", "Iron Dagger"],
+		"special": ["Glimmer", "Night Sky"],
+		"passive_a": ["Life and Death 3", "Life and Death 2", "Life and Death 1"],
+		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"]
+	},
 	"Jagen": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
@@ -688,6 +702,20 @@ var charInfo =
 		"special": ["Reprisal", "Retribution"],
 		"passive_a": ["Warding Blow 3", "Warding Blow 2", "Warding Blow 1"],
 		"passive_b": ["Daggerbreaker 3", "Daggerbreaker 2", "Daggerbreaker 1"]
+	},
+	"Karel": {
+		"color" : "Red",
+		"weapon_type" : "Sword",
+		"hp": 47,
+		"atk": 43,
+		"spd": 35,
+		"def": 25,
+		"res": 20,
+		"move_type": "Infantry",
+		"weapon": ["Wo Dao+", "Wo Dao", "Steel Sword", "Iron Sword"],
+		"special": ["Reprisal", "Retribution"],
+		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
+		"passive_b": ["Desperation 3", "Desperation 2", "Desperation 1"]
 	},
 	"Klein" : {
 		"color" : "Colorless",
@@ -815,6 +843,20 @@ var charInfo =
 		"passive_a": ["Defiant Spd 3", "Defiant Spd 2", "Defiant Spd 1"],
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"]
 	},
+	"Lucius": {
+		"color" : "Colorless",
+		"weapon_type" : "Staff",
+		"hp": 42,
+		"atk": 35,
+		"spd": 30,
+		"def": 13,
+		"res": 35,
+		"move_type": "Infantry",
+		"weapon": ["Pain", "Assault"],
+		"special": ["Miracle", "Imbue"],
+		"passive_a": ["HP +5", "HP +4", "HP +3"],
+		"assist" : ["Martyr", "Reconcile", "Heal"]
+	},
 	"Lyn": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
@@ -926,6 +968,20 @@ var charInfo =
 		"special": ["Iceberg", "Chilling Wind"],
 		"passive_a": ["Warding Blow 3", "Warding Blow 2", "Warding Blow 1"],
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"]
+	},
+	"Ninian": {
+		"color" : "Blue",
+		"weapon_type" : "Blue Breath",
+		"hp": 42,
+		"atk": 37,
+		"spd": 33,
+		"def": 23,
+		"res": 27,
+		"move_type": "Infantry",
+		"weapon": ["Light Breath+ (Blue)", "Light Breath (Blue)", "Fire Breath+ (Blue)", "Fire Breath (Blue)"],
+		"passive_b": ["Escape Route 3", "Escape Route 2", "Escape Route 1"],
+		"passive_c": ["Fortify Dragons", "Fortify Def 2", "Fortify Def 1"],
+		"assist" : ["Dance"]
 	},
 	"Nino": {
 		"color" : "Green",
@@ -1053,6 +1109,20 @@ var charInfo =
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
 		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"]
 	},
+	"Priscilla": {
+		"color" : "Colorless",
+		"weapon_type" : "Staff",
+		"hp": 17,
+		"atk": 7,
+		"spd": 7,
+		"def": 4,
+		"res": 8,
+		"move_type": "Cavalry",
+		"weapon": ["Panic", "Assault"],
+		"special": ["Still-Water Balm", "Imbue"],
+		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"],
+		"assist" : ["Rehabilitate", "Reconcile", "Heal"]
+	},
 	"Raigh": {
 		"color" : "Red",
 		"weapon_type" : "Red Tome",
@@ -1080,6 +1150,20 @@ var charInfo =
 		"special": ["Sol", "Daylight"],
 		"passive_a": ["Defiant Spd 3", "Defiant Spd 2", "Defiant Spd 1"],
 		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"]
+	},
+	"Rebecca": {
+		"color" : "Colorless",
+		"weapon_type" : "Bow",
+		"hp": 37,
+		"atk": 42,
+		"spd": 34,
+		"def": 24,
+		"res": 23,
+		"move_type": "Infantry",
+		"weapon": ["Silver Bow+", "Silver Bow", "Steel Bow", "Iron Bow"],
+		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
+		"passive_b": ["Seal Atk 3", "Seal Atk 2", "Seal Atk 1"],
+		"assist" : ["Ardent Sacrifice"]
 	},
 	"Reinhardt": {
 		"color" : "Blue",

@@ -512,6 +512,7 @@ function displayChar(singleChar, charNum) {
 		$("#skills-" + charNum + " .special-label").css("color", "#5b5b5b");
 		$("#spec-cooldown-max-" + charNum).text("x");
 		$("#spec-cooldown-line-" + charNum).css("color", "#5b5b5b");
+		$("#spec-cooldown-line-" + charNum + " label").css("color", "#5b5b5b");
 	}
 	getSpecialData(charNum);
 	
@@ -915,6 +916,12 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		atkSpec = true;
 	}
 	
+	// check for bonus damage on special proc
+	if (attacker.weaponData.hasOwnProperty("spec_damage_bonus") && (atkSpec || ((attacker.specialData.hasOwnProperty("dmg_mod") || attacker.specialData.hasOwnProperty("heal_dmg")) && attacker.specCurrCooldown <= 0))) {
+		dmg += attacker.weaponData.spec_damage_bonus;
+		battleInfo.logMsg += "Damage boosted by " + attacker.weaponData.spec_damage_bonus.toString() + " on Special trigger [" + attacker.weaponName + "]. ";
+	}
+	
 	// cap damage at 0 if negative
 	dmg = Math.max(dmg, 0);
 	
@@ -1257,6 +1264,9 @@ function simBattle() {
 		}
 		if (battleInfo.defender.weaponData.hasOwnProperty("poison") && battleInfo.attacker.currHP > 0 && defCC) {
 			battleInfo = afterCombatDmg(battleInfo, battleInfo.defender.weaponData.poison, battleInfo.defender.weaponName, "attacker");
+		}
+		if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_poison") && battleInfo.defender.currHP > 0) {
+			battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.initiate_poison, battleInfo.attacker.weaponName, "defender");
 		}
 	}
 

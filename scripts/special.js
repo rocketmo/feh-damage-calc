@@ -10,7 +10,7 @@ var specInfo =
         }
     },
     "Aether" : {
-        "description" : "Resolve combat as if foe suffered DEF/RES-50%. Recover 50% of damage dealt.",
+        "description" : "Resolve combat as if foe suffered Def/Res-50%. Recover 50% of damage dealt.",
         "cooldown" : 5,
         "heal_dmg" : 0.5,
         "enemy_def_res_mod" : 0.5
@@ -21,31 +21,31 @@ var specInfo =
         "dmg_mod" : 1.5
     },
     "Blazing Flame" : {
-        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's ATK minus foe's DEF or RES).",
+        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's Atk minus foe's Def or Res).",
         "cooldown" : 5,
         "before_combat_aoe" : true,
         "aoe_dmg_mod" : 1.5
     },
     "Blazing Light" : {
-        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's ATK minus foe's DEF or RES).",
+        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's Atk minus foe's Def or Res).",
         "cooldown" : 5,
         "before_combat_aoe" : true,
         "aoe_dmg_mod" : 1.5
     },
     "Blazing Thunder" : {
-        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's ATK minus foe's DEF or RES).",
+        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's Atk minus foe's Def or Res).",
         "cooldown" : 5,
         "before_combat_aoe" : true,
         "aoe_dmg_mod" : 1.5
     },
     "Blazing Wind" : {
-        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's ATK minus foe's DEF or RES).",
+        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's Atk minus foe's Def or Res).",
         "cooldown" : 5,
         "before_combat_aoe" : true,
         "aoe_dmg_mod" : 1.5
     },
     "Bonfire" : {
-        "description" : "Boosts damage dealt by 50% of unit's DEF.",
+        "description" : "Boosts damage dealt by 50% of unit's Def.",
         "cooldown" : 3,
         "dmg_buff_by_stat" : {
             "stat" : "def",
@@ -61,7 +61,7 @@ var specInfo =
         }
     },
     "Chilling Wind" : {
-        "description" : "Boosts damage dealt by 50% of unit's RES.",
+        "description" : "Boosts damage dealt by 50% of unit's Res.",
         "cooldown" : 4,
         "dmg_buff_by_stat" : {
             "stat" : "res",
@@ -74,7 +74,7 @@ var specInfo =
         "heal_dmg" : 0.3
     },
     "Draconic Aura" : {
-        "description" : "Boosts damage dealt by 30% of unit's ATK.",
+        "description" : "Boosts damage dealt by 30% of unit's Atk.",
         "cooldown" : 3,
 		"dmg_buff_by_stat" : {
             "stat" : "atk",
@@ -82,7 +82,7 @@ var specInfo =
         }
     },
     "Dragon Fang" : {
-        "description" : "Boosts damage dealt by 50% of unit's ATK.",
+        "description" : "Boosts damage dealt by 50% of unit's Atk.",
         "cooldown" : 4,
 		"dmg_buff_by_stat" : {
             "stat" : "atk",
@@ -90,7 +90,7 @@ var specInfo =
         }
     },
     "Dragon Gaze" : {
-        "description" : "Boosts damage dealt by 30% of unit's ATK.",
+        "description" : "Boosts damage dealt by 30% of unit's Atk.",
         "cooldown" : 4,
 		"dmg_buff_by_stat" : {
             "stat" : "atk",
@@ -111,7 +111,7 @@ var specInfo =
         "non_combat" : true
     },
     "Glacies" : {
-        "description" : "Boosts damage dealt by 80% of unit's RES.",
+        "description" : "Boosts damage dealt by 80% of unit's Res.",
         "cooldown" : 4,
         "dmg_buff_by_stat" : {
             "stat" : "res",
@@ -124,7 +124,7 @@ var specInfo =
         "dmg_mod" : 0.5
     },
     "Glowing Ember" : {
-        "description" : "Boosts damage dealt by 50% of unit's DEF.",
+        "description" : "Boosts damage dealt by 50% of unit's Def.",
         "cooldown" : 4,
         "dmg_buff_by_stat" : {
             "stat" : "def",
@@ -132,22 +132,22 @@ var specInfo =
         }
     },
     "Growing Flame" : {
-        "description" : "Before initiating combat, foes in a wide area near target take damage equal to unit's ATK minus foe's DEF or RES.",
+        "description" : "Before initiating combat, foes in a wide area near target take damage equal to unit's Atk minus foe's Def or Res.",
         "cooldown" : 5,
         "before_combat_aoe" : true
     },
     "Growing Light" : {
-        "description" : "Before initiating combat, foes in a wide area near target take damage equal to unit's ATK minus foe's DEF or RES.",
+        "description" : "Before initiating combat, foes in a wide area near target take damage equal to unit's Atk minus foe's Def or Res.",
         "cooldown" : 5,
         "before_combat_aoe" : true
     },
 	"Growing Thunder" : {
-	    "description" : "Before initiating combat, foes in a wide area near target take damage equal to unit's ATK minus foe's DEF or RES.",
+	    "description" : "Before initiating combat, foes in a wide area near target take damage equal to unit's Atk minus foe's Def or Res.",
         "cooldown" : 5,
         "before_combat_aoe" : true
     },
     "Growing Wind" : {
-        "description" : "Before initiating combat, foes in a wide area near target take damage equal to unit's ATK minus foe's DEF or RES.",
+        "description" : "Before initiating combat, foes in a wide area near target take damage equal to unit's Atk minus foe's Def or Res.",
         "cooldown" : 5,
         "before_combat_aoe" : true
     },
@@ -165,7 +165,7 @@ var specInfo =
         }
     },
     "Iceberg" : {
-        "description" : "Boosts damage dealt by 50% of unit's RES.",
+        "description" : "Boosts damage dealt by 50% of unit's Res.",
         "cooldown" : 3,
         "dmg_buff_by_stat" : {
             "stat" : "res",
@@ -173,7 +173,7 @@ var specInfo =
         }
     },
     "Ignis" : {
-        "description" : "Boosts damage dealt by 80% of unit's DEF.",
+        "description" : "Boosts damage dealt by 80% of unit's Def.",
         "cooldown" : 4,
         "dmg_buff_by_stat" : {
             "stat" : "def",
@@ -186,12 +186,12 @@ var specInfo =
         "non_combat" : true
     },
     "Kindled-Fire Balm" : {
-        "description" : "When healing an ally with a staff, grants all allies ATK+4 for 1 turn.",
+        "description" : "When healing an ally with a staff, grants all allies Atk+4 for 1 turn.",
         "cooldown" : 1,
         "non_combat" : true
     },
     "Luna" : {
-        "description" : "Resolve combat as if foe suffered DEF/RES-50%.",
+        "description" : "Resolve combat as if foe suffered Def/Res-50%.",
         "cooldown" : 3,
         "enemy_def_res_mod" : 0.5
     },
@@ -201,12 +201,12 @@ var specInfo =
         "survive" : true
     },
     "Moonbow" : {
-        "description" : "Resolve combat as if foe suffered DEF/RES-30%.",
+        "description" : "Resolve combat as if foe suffered Def/Res-30%.",
         "cooldown" : 2,
         "enemy_def_res_mod" : 0.3
     },
     "New Moon" : {
-        "description" : "Resolve combat as if foe suffered DEF/RES-30%.",
+        "description" : "Resolve combat as if foe suffered Def/Res-30%.",
         "cooldown" : 3,
         "enemy_def_res_mod" : 0.3
     },
@@ -239,22 +239,22 @@ var specInfo =
         "dmg_suffer_buff" : 0.3
     },
     "Rising Flame" : {
-        "description" : "Before initiating combat, foes in an area near target take damage equal to unit's ATK minus foe's DEF or RES.",
+        "description" : "Before initiating combat, foes in an area near target take damage equal to unit's Atk minus foe's Def or Res.",
         "cooldown" : 5,
         "before_combat_aoe" : true
     },
     "Rising Light" : {
-        "description" : "Before initiating combat, foes in an area near target take damage equal to unit's ATK minus foe's DEF or RES.",
+        "description" : "Before initiating combat, foes in an area near target take damage equal to unit's Atk minus foe's Def or Res.",
         "cooldown" : 5,
         "before_combat_aoe" : true
     },
     "Rising Thunder" : {
-        "description" : "Before initiating combat, foes in an area near target take damage equal to unit's ATK minus foe's DEF or RES.",
+        "description" : "Before initiating combat, foes in an area near target take damage equal to unit's Atk minus foe's Def or Res.",
         "cooldown" : 5,
         "before_combat_aoe" : true
     },
     "Rising Wind" : {
-        "description" : "Before initiating combat, foes in an area near target take damage equal to unit's ATK minus foe's DEF or RES.",
+        "description" : "Before initiating combat, foes in an area near target take damage equal to unit's Atk minus foe's Def or Res.",
         "cooldown" : 5,
         "before_combat_aoe" : true
     },
@@ -272,17 +272,17 @@ var specInfo =
         "heal_dmg" : 0.5
     },
     "Solid-Earth Balm" : {
-        "description" : "When healing an ally with a staff, grants all allies DEF+4 for 1 turn.",
+        "description" : "When healing an ally with a staff, grants all allies Def+4 for 1 turn.",
         "cooldown" : 1,
         "non_combat" : true
     },
     "Still-Water Balm" : {
-        "description" : "When healing an ally with a staff, grants all allies RES+4 for 1 turn.",
+        "description" : "When healing an ally with a staff, grants all allies Res+4 for 1 turn.",
         "cooldown" : 1,
         "non_combat" : true
     },
     "Swift-Winds Balm" : {
-        "description" : "When healing an ally with a staff, grants all allies SPD+4 for 1 turn.",
+        "description" : "When healing an ally with a staff, grants all allies Spd+4 for 1 turn.",
         "cooldown" : 1,
         "non_combat" : true
     },
