@@ -743,7 +743,7 @@ function getCharPanelData(charNum) {
 }
 
 // checks if the given passive skill is a breaker skill that will activate
-// passiveData contains the data for a passive skill, oppWeapon is the opponent's weapon type, currHP is the current hp of the character with the passive, maxHP is the max hp of the character
+// passiveData contains the data for a passive skill, oppWeapon is the opponent's weapon type, initHP is the initial hp of the character with the passive, maxHP is the max hp of the character
 function hasBreakerPassive(passiveData, oppWeapon, initHP, maxHP) {
 	"use strict";
 	return (passiveData.hasOwnProperty("breaker") && passiveData.breaker.weapon_type === oppWeapon && initHP >= checkRoundError(passiveData.breaker.threshold * maxHP));
@@ -1041,6 +1041,12 @@ function simBattle() {
 	battleInfo.logMsg = "";
 	battleInfo.atkRange = $("#weapon-1").data("info").range;
 	
+	// get breaker info
+	var atkBreakerPassive = hasBreakerPassive(battleInfo.attacker.passiveBData, battleInfo.defender.type, battleInfo.attacker.initHP, battleInfo.attacker.hp);
+	var atkBreakerWeapon = hasBreakerWeapon(battleInfo.attacker.weaponData, battleInfo.defender.type);
+	var defBreakerPassive = hasBreakerPassive(battleInfo.defender.passiveBData, battleInfo.attacker.type, battleInfo.defender.initHP, battleInfo.defender.hp);
+	var defBreakerWeapon = hasBreakerWeapon(battleInfo.defender.weaponData, battleInfo.attacker.type);
+	
 	// AOE damage before combat
 	if (battleInfo.attacker.specialData.hasOwnProperty("before_combat_aoe") && battleInfo.attacker.specCurrCooldown <= 0) {
 		// reset cooldown
@@ -1119,12 +1125,14 @@ function simBattle() {
 		
 	// desperation follow up
 	var desperation = false;
-	if (battleInfo.attacker.weaponData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= checkRoundError(battleInfo.attacker.weaponData.desperation.threshold * battleInfo.attacker.hp) && battleInfo.attacker.spd >= battleInfo.defender.spd + 5) {
-		desperation = true;
-		battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack [" + battleInfo.attacker.weaponName + "]", false);
-	} else if (battleInfo.attacker.passiveBData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= checkRoundError(battleInfo.attacker.passiveBData.desperation.threshold * battleInfo.attacker.hp) && battleInfo.attacker.spd >= battleInfo.defender.spd + 5) {
-		desperation = true;
-		battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack [" + battleInfo.attacker.passiveB + "]", false);
+	if (!defBreakerPassive && !defBreakerWeapon && !(battleInfo.defender.passiveBData.hasOwnProperty("wary") && battleInfo.defender.initHP >= checkRoundError(battleInfo.defender.passiveBData.wary.threshold * battleInfo.defender.hp)) && battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) {
+		if (battleInfo.attacker.weaponData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= checkRoundError(battleInfo.attacker.weaponData.desperation.threshold * battleInfo.attacker.hp) && battleInfo.attacker.spd >= battleInfo.defender.spd + 5) {
+			desperation = true;
+			battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack [" + battleInfo.attacker.weaponName + "]", false);
+		} else if (battleInfo.attacker.passiveBData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= checkRoundError(battleInfo.attacker.passiveBData.desperation.threshold * battleInfo.attacker.hp) && battleInfo.attacker.spd >= battleInfo.defender.spd + 5) {
+			desperation = true;
+			battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack [" + battleInfo.attacker.passiveB + "]", false);
+		}	
 	}
 	
 	// defender will try to counter-attack if they haven't been ko'd
@@ -1145,12 +1153,6 @@ function simBattle() {
 		
 		// if attacker hasn't been ko'd, check for follow ups
 		if (battleInfo.attacker.currHP > 0) {
-			
-			// get breaker info
-			var atkBreakerPassive = hasBreakerPassive(battleInfo.attacker.passiveBData, battleInfo.defender.type, battleInfo.attacker.initHP, battleInfo.attacker.hp);
-			var atkBreakerWeapon = hasBreakerWeapon(battleInfo.attacker.weaponData, battleInfo.defender.type);
-			var defBreakerPassive = hasBreakerPassive(battleInfo.defender.passiveBData, battleInfo.attacker.type, battleInfo.defender.initHP, battleInfo.defender.hp);
-			var defBreakerWeapon = hasBreakerWeapon(battleInfo.defender.weaponData, battleInfo.attacker.type);
 			
 			// wary fighter
 			if (battleInfo.attacker.passiveBData.hasOwnProperty("wary") && battleInfo.attacker.initHP >= checkRoundError(battleInfo.attacker.passiveBData.wary.threshold * battleInfo.attacker.hp)) {
