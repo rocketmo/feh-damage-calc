@@ -6,19 +6,22 @@ var skillInfo =
             "description" : "Grants Def+2 if unit initiates combat.",
             "initiate_mod" : {
                 "def" : 2
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Armored Blow 2" : {
             "description" : "Grants Def+4 if unit initiates combat.",
             "initiate_mod" : {
                 "def" : 4
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Armored Blow 3" : {
             "description" : "Grants Def+6 if unit initiates combat.",
             "initiate_mod" : {
                 "def" : 6
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Attack +1" : {
             "description" : "Grants Atk+1.",
@@ -40,43 +43,50 @@ var skillInfo =
         },
         "Close Counter" : {
             "description" : "Enables unit to counter-attack regardless of distance to attacker.",
-            "counter" : true
+            "counter" : true,
+			"range_unique" : 2
         },
         "Darting Blow 1" : {
             "description" : "Grants Spd+2 if unit initiates combat.",
             "initiate_mod" : {
                 "spd" : 2
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Darting Blow 2" : {
             "description" : "Grants Spd+4 if unit initiates combat.",
             "initiate_mod" : {
                 "spd" : 4
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Darting Blow 3" : {
             "description" : "Grants Spd+6 if unit initiates combat.",
             "initiate_mod" : {
                 "spd" : 6
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Death Blow 1" : {
             "description" : "Grants Atk+2 if unit initiates combat.",
             "initiate_mod" : {
                 "atk" : 2
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Death Blow 2" : {
             "description" : "Grants Atk+4 if unit initiates combat.",
             "initiate_mod" : {
                 "atk" : 4
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Death Blow 3" : {
             "description" : "Grants Atk+6 if unit initiates combat.",
             "initiate_mod" : {
                 "atk" : 6
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Defense +1" : {
             "description" : "Grants Def+1.",
@@ -170,7 +180,8 @@ var skillInfo =
         },
         "Distant Counter" : {
             "description" : "Enables unit to counter-attack regardless of distance to attacker.",
-            "counter" : true
+            "counter" : true,
+			"range_unique" : 1
         },
         "Fury 1" : {
             "description" : "Grants Atk/Spd/Def/Res+1. Unit takes 2 damage after combat.",
@@ -180,7 +191,8 @@ var skillInfo =
                 "def" : 1,
                 "res" : 1
             },
-            "recoil_dmg" : 2
+            "recoil_dmg" : 2,
+			"weapon_restrict" : "Staff"
         },
         "Fury 2" : {
             "description" : "Grants Atk/Spd/Def/Res+2. Unit takes 4 damage after combat.",
@@ -190,7 +202,8 @@ var skillInfo =
                 "def" : 2,
                 "res" : 2
             },
-            "recoil_dmg" : 4
+            "recoil_dmg" : 4,
+			"weapon_restrict" : "Staff"
         },
         "Fury 3" : {
             "description" : "Grants Atk/Spd/Def/Res+3. Unit takes 6 damage after combat.",
@@ -200,11 +213,13 @@ var skillInfo =
                 "def" : 3,
                 "res" : 3
             },
-            "recoil_dmg" : 6
+            "recoil_dmg" : 6,
+			"weapon_restrict" : "Staff"
         },
         "Grani's Shield" : {
             "description" : "Neutralizes \"effective against\" bonuses.",
-            "cancel_effective" : true
+            "cancel_effective" : true,
+            "char_unique" : true
         },
         "HP +3" : {
             "description" : "Grants HP+3.",
@@ -226,7 +241,8 @@ var skillInfo =
         },
         "Iote's Shield" : {
             "description" : "Neutralizes \"effective against\" bonuses.",
-            "cancel_effective" : true
+            "cancel_effective" : true,
+            "char_unique" : true
         },
         "Life and Death 1" : {
             "description" : "Grants Atk/Spd+3. Inflicts Def/Res-3.",
@@ -235,7 +251,8 @@ var skillInfo =
                 "spd" : 3,
                 "def" : -3,
                 "res" : -3
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Life and Death 2" : {
             "description" : "Grants Atk/Spd+4. Inflicts Def/Res-4.",
@@ -244,7 +261,8 @@ var skillInfo =
                 "spd" : 4,
                 "def" : -4,
                 "res" : -4
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Life and Death 3" : {
             "description" : "Grants Atk/Spd+5. Inflicts Def/Res-5.",
@@ -253,7 +271,8 @@ var skillInfo =
                 "spd" : 5,
                 "def" : -5,
                 "res" : -5
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Resistance +1" : {
             "description" : "Grants Res+1.",
@@ -293,37 +312,44 @@ var skillInfo =
         },
         "Svalinn Shield" : {
             "description" : "Neutralizes \"effective against\" bonuses.",
-            "cancel_effective" : true
+            "cancel_effective" : true,
+            "move_unique" : "Armored"
         },
         "Triangle Adept 1" : {
             "description" : "Gives Atk+10% if unit has a weapon-triangle advantage, Atk-10% if disadvantage.",
-            "tri_advantage" : 0.1
+            "tri_advantage" : 0.1,
+            "color_restrict" : "Colorless"
         },
         "Triangle Adept 2" : {
             "description" : "Gives Atk+15% if unit has a weapon-triangle advantage, Atk-15% if disadvantage.",
-            "tri_advantage" : 0.15
+            "tri_advantage" : 0.15,
+            "color_restrict" : "Colorless"
         },
         "Triangle Adept 3" : {
             "description" : "Gives Atk+20% if unit has a weapon-triangle advantage, Atk-20% if disadvantage.",
-            "tri_advantage" : 0.2
+            "tri_advantage" : 0.2,
+            "color_restrict" : "Colorless"
         },
         "Warding Blow 1" : {
             "description" : "Grants Res+2 if unit initiates combat.",
             "initiate_mod" : {
                 "res" : 2
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Warding Blow 2" : {
             "description" : "Grants Res+4 if unit initiates combat.",
             "initiate_mod" : {
                 "res" : 4
-            }
+            },
+			"weapon_restrict" : "Staff"
         },
         "Warding Blow 3" : {
             "description" : "Grants Res+6 if unit initiates combat.",
             "initiate_mod" : {
                 "res" : 6
-            }
+            },
+			"weapon_restrict" : "Staff"
         }
     },
     "b" : {
@@ -332,21 +358,24 @@ var skillInfo =
             "breaker" : {
                 "weapon_type" : "Axe",
                 "threshold" : 0.9
-            }
+            },
+            "color_restrict" : "Blue"
         },
         "Axebreaker 2" : {
             "description" : "If unit's HP ≥ 70% in combat against an Axe user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Axe",
                 "threshold" : 0.7
-            }
+            },
+            "color_restrict" : "Blue"
         },
         "Axebreaker 3" : {
             "description" : "If unit's HP ≥ 50% in combat against an Axe user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Axe",
                 "threshold" : 0.5
-            }
+            },
+            "color_restrict" : "Blue"
         },
         "Bowbreaker 1" : {
             "description" : "If unit's HP ≥ 90% in combat against a Bow user, unit makes a follow-up attack and foe cannot.",
@@ -374,21 +403,24 @@ var skillInfo =
             "breaker" : {
                 "weapon_type" : "Blue Tome",
                 "threshold" : 0.9
-            }
+            },
+            "color_restrict" : "Red"
         },
         "B Tomebreaker 2" : {
             "description" : "If unit's HP ≥ 70% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Blue Tome",
                 "threshold" : 0.7
-            }
+            },
+            "color_restrict" : "Red"
         },
         "B Tomebreaker 3" : {
             "description" : "If unit's HP ≥ 50% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Blue Tome",
                 "threshold" : 0.5
-            }
+            },
+            "color_restrict" : "Red"
         },
         "Brash Assault 1" : {
             "description" : "Unit automatically makes a follow-up attack when at HP ≤ 30% and attacking a foe that can counter.",
@@ -448,7 +480,8 @@ var skillInfo =
             }
         },
         "Drag Back" : {
-            "description" : "If unit initiates attack, unit moves 1 space away after combat. Foe moves into unit's previous space."
+            "description" : "If unit initiates attack, unit moves 1 space away after combat. Foe moves into unit's previous space.",
+			"range_unique" : 1
         },
         "Escape Route 1" : {
             "description" : "Enables unit with HP ≤ 30% to warp adjacent to any ally."
@@ -464,57 +497,68 @@ var skillInfo =
             "breaker" : {
                 "weapon_type" : "Green Tome",
                 "threshold" : 0.9
-            }
+            },
+            "color_restrict" : "Blue"
         },
         "G Tomebreaker 2" : {
             "description" : "If unit's HP ≥ 70% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Green Tome",
                 "threshold" : 0.7
-            }
+            },
+            "color_restrict" : "Blue"
         },
         "G Tomebreaker 3" : {
             "description" : "If unit's HP ≥ 50% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Green Tome",
                 "threshold" : 0.5
-            }
+            },
+            "color_restrict" : "Blue"
         },
         "Knock Back" : {
-            "description" : "If unit initiates attack, foe is moved 1 space away after combat."
+            "description" : "If unit initiates attack, foe is moved 1 space away after combat.",
+			"range_unique" : 1
         },
         "Lancebreaker 1" : {
             "description" : "If unit's HP ≥ 90% in combat against a Lance user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Lance",
                 "threshold" : 0.9
-            }
+            },
+            "color_restrict" : "Red"
         },
         "Lancebreaker 2" : {
             "description" : "If unit's HP ≥ 70% in combat against a Lance user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Lance",
                 "threshold" : 0.7
-            }
+            },
+            "color_restrict" : "Red"
         },
         "Lancebreaker 3" : {
             "description" : "If unit's HP ≥ 50% in combat against a Lance user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Lance",
                 "threshold" : 0.5
-            }
+            },
+            "color_restrict" : "Red"
         },
         "Live to Serve 1" : {
-            "description" : "When healing allies with a staff, unit also recovers 50% of the HP restored."
+            "description" : "When healing allies with a staff, unit also recovers 50% of the HP restored.",
+            "weapon_unique" : "Staff"
         },
         "Live to Serve 2" : {
-            "description" : "When healing allies with a staff, unit also recovers 75% of the HP restored."
+            "description" : "When healing allies with a staff, unit also recovers 75% of the HP restored.",
+            "weapon_unique" : "Staff"
         },
         "Live to Serve 3" : {
-            "description" : "When healing allies with a staff, unit also recovers the same amount."
+            "description" : "When healing allies with a staff, unit also recovers the same amount.",
+            "weapon_unique" : "Staff"
         },
         "Lunge" : {
-            "description" : "If unit initiates attack, after combat, unit and foe swap places."
+            "description" : "If unit initiates attack, after combat, unit and foe swap places.",
+			"range_unique" : 1
         },
         "Obstruct 1" : {
             "description" : "Prevents foes from moving through adjacent spaces while this unit's HP ≥ 90%."
@@ -569,21 +613,24 @@ var skillInfo =
             "breaker" : {
                 "weapon_type" : "Red Tome",
                 "threshold" : 0.9
-            }
+            },
+            "color_restrict" : "Green"
         },
         "R Tomebreaker 2" : {
             "description" : "If unit's HP ≥ 70% in combat against a Red Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Red Tome",
                 "threshold" : 0.7
-            }
+            },
+            "color_restrict" : "Green"
         },
         "R Tomebreaker 3" : {
             "description" : "If unit's HP ≥ 50% in combat against a Red Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Red Tome",
                 "threshold" : 0.5
-            }
+            },
+            "color_restrict" : "Green"
         },
         "Renewal 1" : {
             "description" : "At the start of every fourth turn, restores 10 HP.",
@@ -684,21 +731,24 @@ var skillInfo =
             "breaker" : {
                 "weapon_type" : "Sword",
                 "threshold" : 0.9
-            }
+            },
+            "color_restrict" : "Green"
         },
         "Swordbreaker 2" : {
             "description" : "If unit's HP ≥ 70% in combat against a Sword user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Sword",
                 "threshold" : 0.7
-            }
+            },
+            "color_restrict" : "Green"
         },
         "Swordbreaker 3" : {
             "description" : "If unit's HP ≥ 50% in combat against a Sword user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Sword",
                 "threshold" : 0.5
-            }
+            },
+            "color_restrict" : "Green"
         },
         "Vantage 1" : {
             "description" : "Unit counter-attacks first when attacked at HP ≤ 25%.",
@@ -757,10 +807,12 @@ var skillInfo =
             "description" : "If unit initiates attack, adjacent allies recover 7 HP after combat."
         },
         "Fortify Armor" : {
-            "description" : "Grants adjacent armored allies Def/Res+6 through their next actions at the start of each turn."
+            "description" : "Grants adjacent armored allies Def/Res+6 through their next actions at the start of each turn.",
+            "move_unique" : "Armored"
         },
         "Fortify Cavalry" : {
-            "description" : "Grants adjacent cavalry allies Def/Res+6 through their next actions at the start of each turn."
+            "description" : "Grants adjacent cavalry allies Def/Res+6 through their next actions at the start of each turn.",
+            "move_unique" : "Cavalry"
         },
         "Fortify Def 1" : {
             "description" : "Grants adjacent allies Def+2 through their next actions at the start of each turn."
@@ -772,10 +824,12 @@ var skillInfo =
             "description" : "Grants adjacent allies Def+4 through their next actions at the start of each turn."
         },
         "Fortify Dragons" : {
-            "description" : "Grants adjacent dragon allies Def/Res+6 through their next actions at the start of each turn."
+            "description" : "Grants adjacent dragon allies Def/Res+6 through their next actions at the start of each turn.",
+            "dragon_unique" : true
         },
         "Fortify Fliers" : {
-            "description" : "Grants adjacent flying allies Def/Res+6 through their next actions at the start of each turn."
+            "description" : "Grants adjacent flying allies Def/Res+6 through their next actions at the start of each turn.",
+            "move_unique" : "Flying"
         },
         "Fortify Res 1" : {
             "description" : "Grants adjacent allies Res+2 through their next actions at the start of each turn."
@@ -787,16 +841,20 @@ var skillInfo =
             "description" : "Grants adjacent allies Res+4 through their next actions at the start of each turn."
         },
         "Goad Armor" : {
-            "description" : "Grants armored allies within 2 spaces Atk/Spd+4 during combat."
+            "description" : "Grants armored allies within 2 spaces Atk/Spd+4 during combat.",
+            "move_unique" : "Armored"
         },
         "Goad Cavalry" : {
-            "description" : "Grants cavalry allies within 2 spaces Atk/Spd+4 during combat."
+            "description" : "Grants cavalry allies within 2 spaces Atk/Spd+4 during combat.",
+            "move_unique" : "Cavalry"
         },
         "Goad Fliers" : {
-            "description" : "Grants flying allies within 2 spaces Atk/Spd+4 during combat."
+            "description" : "Grants flying allies within 2 spaces Atk/Spd+4 during combat.",
+            "move_unique" : "Flying"
         },
         "Hone Armor" : {
-            "description" : "Grants adjacent armored allies Atk/Spd+6 through their next actions at the start of each turn."
+            "description" : "Grants adjacent armored allies Atk/Spd+6 through their next actions at the start of each turn.",
+            "move_unique" : "Armored"
         },
         "Hone Atk 1" : {
             "description" : "Grants adjacent allies Atk+2 through their next actions at the start of each turn."
@@ -808,10 +866,12 @@ var skillInfo =
             "description" : "Grants adjacent allies Atk+4 through their next actions at the start of each turn."
         },
         "Hone Cavalry" : {
-            "description" : "Grants adjacent cavalry allies Atk/Spd+6 through their next actions at the start of each turn."
+            "description" : "Grants adjacent cavalry allies Atk/Spd+6 through their next actions at the start of each turn.",
+            "move_unique" : "Cavalry"
         },
         "Hone Fliers" : {
-            "description" : "Grants adjacent flying allies Atk/Spd+6 through their next actions at the start of each turn."
+            "description" : "Grants adjacent flying allies Atk/Spd+6 through their next actions at the start of each turn.",
+            "move_unique" : "Flying"
         },
         "Hone Spd 1" : {
             "description" : "Grants adjacent allies Spd+2 through their next actions at the start of each turn."
@@ -940,13 +1000,16 @@ var skillInfo =
             }
         },
         "Ward Armor" : {
-            "description" : "Grants armored allies within 2 spaces Def/Res+4 during combat."
+            "description" : "Grants armored allies within 2 spaces Def/Res+4 during combat.",
+            "move_unique" : "Armored"
         },
         "Ward Cavalry" : {
-            "description" : "Grants cavalry allies within 2 spaces Def/Res+4 during combat."
+            "description" : "Grants cavalry allies within 2 spaces Def/Res+4 during combat.",
+            "move_unique" : "Cavalry"
         },
         "Ward Fliers" : {
-            "description" : "Grants flying allies within 2 spaces Def/Res+4 during combat."
+            "description" : "Grants flying allies within 2 spaces Def/Res+4 during combat.",
+            "move_unique" : "Flying"
         }
     }
 };

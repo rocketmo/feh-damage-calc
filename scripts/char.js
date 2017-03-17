@@ -262,7 +262,7 @@ var charInfo =
 		"def": 34,
 		"res": 21,
 		"move_type": "Infantry",
-		"weapon": ["Dark Breath+", "Dark Breath", "Fire Breath+ (Blue)", "Fire Breath (Blue)"],
+		"weapon": ["Dark Breath+ (Blue)", "Dark Breath (Blue)", "Fire Breath+ (Blue)", "Fire Breath (Blue)"],
 		"special": ["Draconic Aura", "Dragon Gaze"],
 		"passive_b": ["Seal Res 3", "Seal Res 2", "Seal Res 1"],
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"]
@@ -390,7 +390,7 @@ var charInfo =
 		"def": 32,
 		"res": 20,
 		"move_type": "Infantry",
-		"weapon": ["Siegmund", "Heavy Spear", "Steel Spear", "Iron Spear"],
+		"weapon": ["Siegmund", "Heavy Spear", "Steel Lance", "Iron Lance"],
 		"special": ["Moonbow", "New Moon"],
 		"passive_b": ["Seal Def 3", "Seal Def 2", "Seal Def 1"],
 		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"]
@@ -1482,7 +1482,7 @@ var charInfo =
 		"def": 32,
 		"res": 29,
 		"move_type": "Infantry",
-		"weapon": ["Flametongue+", "Flametongue", "Fire Breath+ (Red)", "Fire Breath (Red)"],
+		"weapon": ["Flametongue+ (Red)", "Flametongue (Red)", "Fire Breath+ (Red)", "Fire Breath (Red)"],
 		"special": ["Growing Flame", "Rising Flame"],
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
 		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"]

@@ -109,6 +109,34 @@ function customName(weaponType, moveType) {
 	return name;
 }
 
+// determines if the given skill is inheritable by the character in the given panel
+function isInheritable(skill, charNum) {
+	"use strict";
+	var moveType = $("#move-type-" + charNum).val();
+	var color = $("#color-" + charNum).val();
+	var weaponType = $("#weapon-type-" + charNum).val();
+	
+	var range = 1;
+	if (weaponType === "Red Tome" || weaponType === "Green Tome" || weaponType === "Blue Tome" || weaponType === "Bow" || weaponType === "Dagger" || weaponType === "Staff") {
+		range = 2;
+	}
+	
+	var dragon = false;
+	if (weaponType === "Red Breath" || weaponType === "Green Breath" || weaponType === "Blue Breath") {
+		dragon = true;
+	}
+	
+	return (!skill.hasOwnProperty("char_unique") && (!skill.hasOwnProperty("move_unique") || skill.move_unique === moveType) && (!skill.hasOwnProperty("color_restrict") || skill.color_restrict !== color) && (!skill.hasOwnProperty("range_unique") || skill.range_unique === range) && (!skill.hasOwnProperty("weapon_restrict") || skill.weapon_restrict !== weaponType) && (!skill.hasOwnProperty("weapon_unique") || skill.weapon_unique === weaponType) && (!skill.hasOwnProperty("dragon_unique") || dragon));
+}
+
+// determines if the given weapon is inheritable by the character in the given panel
+function isInheritableWeapon(weapon, charNum) {
+	"use strict";
+	var weaponType = $("#weapon-type-" + charNum).val();
+	
+	return !weapon.hasOwnProperty("char_unique") && (weapon.type === weaponType);
+}
+
 // put options in the stat selects
 function setupStats() {
 	"use strict";
@@ -247,23 +275,34 @@ function getSkillData(charNum, skillType, update) {
 // singleChar contains the data for a single character, charNum determines which panel to display on, type determines the skill type
 function showSkills(singleChar, charNum, type) {
 	"use strict";
+	var skills = "";
+	var selectedSkill = "";
+	var defaultSkills = {};
+	
 	if (singleChar.hasOwnProperty("passive_" + type)) {
-		var skills = "";
-		$("#passive-" + type + "-" + charNum).removeAttr("disabled");
-		$("#skills-" + charNum + " .passive-" + type + "-label").css("color", "white");
+		selectedSkill = singleChar["passive_" + type][0];
 		
 		for (var i = 0; i < singleChar["passive_" + type].length; i++) {
 			var skillName = singleChar["passive_" + type][i];
-			skills += "<option value=\"" + skillName + "\">" + skillName + "</option>";
+			skills = "<option value=\"" + skillName + "\">" + skillName + "</option>" + skills;
+			defaultSkills[skillName] = true;
 		}
-		skills += "<option value='None'>None</option>";
-		$("#passive-" + type + "-" + charNum).html(skills);
-		$("#passive-" + type + "-" + charNum + " option:eq(0)").attr("selected", "selected");
+		skills = "<option value='None'>None</option>" + skills;
 	} else { // no passive skill of the given type
-		$("#passive-" + type + "-" + charNum).html("<option value='None'>None</option>");
-		$("#passive-" + type + "-" + charNum).attr("disabled", "disabled");
-		$("#skills-" + charNum + " .passive-" + type + "-label").css("color", "#5b5b5b");
+		skills = "<option value='None'>None</option>";
+		selectedSkill = "None";
 	}
+	
+	// get inherited skills
+	for (var key in skillInfo[type]) {
+		if (isInheritable(skillInfo[type][key], charNum) && !defaultSkills.hasOwnProperty(key)) {
+			skills += "<option class='inherit' value=\"" + key + "\">" + key + "</option>";
+		}
+	}
+	
+	// set value
+	$("#passive-" + type + "-" + charNum).html(skills);
+	$("#passive-" + type + "-" + charNum).val(selectedSkill);
 	
 	// store skill data
 	getSkillData(charNum, type, false);
@@ -358,13 +397,12 @@ function showSpecCooldown(selectedSpecial, charNum, changeCurr) {
 // weaponType is the weapon type to load, charNum determines which panel to load in
 function loadWeapons(weaponType, charNum) {
 	"use strict";
-	var options = "";
+	var options = "<option value='None'>None</option>";
 	for (var key in weaponInfo) {
 		if (weaponInfo[key].type === weaponType) {
 			options += "<option value=\"" + key + "\">" + key + "</option>";
 		}
 	}
-	options += "<option value='None'>None</option>";
 	$("#weapon-" + charNum).html(options);
 }
 
@@ -372,11 +410,10 @@ function loadWeapons(weaponType, charNum) {
 // letter is the passive skill letter, charNum determines which panel to load in
 function loadPassives(letter, charNum) {
 	"use strict";
-	var options = "";
+	var options = "<option value='None'>None</option>";
 	for (var key in skillInfo[letter]) {
 		options += "<option value=\"" + key + "\">" + key + "</option>";
 	}
-	options += "<option value='None'>None</option>";
 	$("#passive-" + letter + "-" + charNum).html(options);
 }
 
@@ -402,9 +439,7 @@ function displayChar(singleChar, charNum) {
 	if (!singleChar.hasOwnProperty("move_type")) { // no info -> custom option
 		// enable inputs
 		$("#extra-char-info-" + charNum).css("color", "white");
-		$("#skills-" + charNum + " label").css("color", "white");
 		$("#extra-char-info-" + charNum + " select").removeAttr("disabled");
-		$("#skills-" + charNum + " select").removeAttr("disabled");
 		
 		// show collapsed section
 		$("#extra-char-info-" + charNum).show(700);
@@ -441,21 +476,19 @@ function displayChar(singleChar, charNum) {
 		getSkillData("#passive-c-" + charNum, 'c', false);
 		
 		// load in assist skills
-		var assistOptions = "";
+		var assistOptions = "<option value='None'>None</option>";
 		for (var assistName in assistInfo) {
 			assistOptions += "<option value=\"" + assistName + "\">" + assistName + "</option>";
 		}
-		assistOptions += "<option value='None'>None</option>";
 		$("#assist-" + charNum).html(assistOptions);
 		$("#assist-" + charNum).val(assist);
 		getAssistData(charNum);
 		
 		// load in specials
-		var specOptions = "";
+		var specOptions = "<option value='None'>None</option>";
 		for (var specName in specInfo) {
 			specOptions += "<option value=\"" + specName + "\">" + specName + "</option>";
 		}
-		specOptions += "<option value='None'>None</option>";
 		$("#special-" + charNum).html(specOptions);
 		$("#special-" + charNum).val(special);
 		getSpecialData(charNum);
@@ -488,63 +521,90 @@ function displayChar(singleChar, charNum) {
 	showSkills(singleChar, charNum, 'b');
 	showSkills(singleChar, charNum, 'c');
 	
-	// show special skill
+	// show special skill	
+	var specials = "";
+	var selectedSpecial = "";
+	var defaultSpecials = {};
+	
 	if (singleChar.hasOwnProperty("special")) {
-		$("#special-" + charNum).removeAttr("disabled");
-		$("#skills-" + charNum + " .special-label").css("color", "white");
-		
-		var selectedSpecial = singleChar.special[0];
-		var specials = "<option value=\"" + selectedSpecial + "\">" + selectedSpecial + "</option>";
-		for (var specIndex = 1; specIndex < singleChar.special.length; specIndex++) {
-			specials += "<option value=\"" + singleChar.special[specIndex] + "\">" + singleChar.special[specIndex] + "</option>";
+		selectedSpecial = singleChar.special[0];
+		for (var specIndex = 0; specIndex < singleChar.special.length; specIndex++) {
+			var specName = singleChar.special[specIndex];
+			specials = "<option value=\"" + specName + "\">" + specName + "</option>" + specials;
+			defaultSpecials[specName] = true;
 		}
-		specials += "<option value='None'>None</option>";
-		$("#special-" + charNum).html(specials);
-		$("#special-" + charNum + " option:eq(0)").attr("selected", "selected");
-		
-		// show cooldown values
-		showSpecCooldown(selectedSpecial, charNum, true);
+		specials = "<option value='None'>None</option>" + specials;
 	} else {
-		$("#special-" + charNum).html("<option value='None'>None<option>");
-		$("#special-" + charNum).attr("disabled", "disabled");
-		$("#spec-cooldown-" + charNum).val("0");
-		$("#spec-cooldown-" + charNum).attr("disabled", "disabled");
-		$("#skills-" + charNum + " .special-label").css("color", "#5b5b5b");
-		$("#spec-cooldown-max-" + charNum).text("x");
-		$("#spec-cooldown-line-" + charNum).css("color", "#5b5b5b");
-		$("#spec-cooldown-line-" + charNum + " label").css("color", "#5b5b5b");
+		specials = "<option value='None'>None</option>";
+		selectedSpecial = "None";
 	}
+	
+	// get inherited specials
+	for (var specKey in specInfo) {
+		if (isInheritable(specInfo[specKey], charNum)  && !defaultSpecials.hasOwnProperty(specKey)) {
+			specials += "<option class='inherit' value=\"" + specKey + "\">" + specKey + "</option>";
+		}
+	}
+	
+	// show cooldown values
+	showSpecCooldown(selectedSpecial, charNum, true);
+	
+	// set values
+	$("#special-" + charNum).html(specials);
+	$("#special-" + charNum).val(selectedSpecial);
 	getSpecialData(charNum);
 	
 	// show assist skill
+	var assists = "";
+	var selectedAssist = "";
+	var defaultAssists = {};
+	
 	if (singleChar.hasOwnProperty("assist")) {
-		$("#assist-" + charNum).removeAttr("disabled");
-		$("#skills-" + charNum + " .assist-label").css("color", "white");
-		
-		var selectedAssist = singleChar.assist[0];
-		var assists = "<option value=\"" + selectedAssist + "\">" + selectedAssist + "</option>";
-		for (var assistIndex = 1; assistIndex < singleChar.assist.length; assistIndex++) {
-			assists += "<option value=\"" + singleChar.assist[assistIndex] + "\">" + singleChar.assist[assistIndex] + "</option>";
+		selectedAssist = singleChar.assist[0];
+		for (var assistIndex = 0; assistIndex < singleChar.assist.length; assistIndex++) {
+			var assistName = singleChar.assist[assistIndex];
+			assists = "<option value=\"" + assistName + "\">" + assistName + "</option>" + assists;
+			defaultAssists[assistName] = true;
 		}
-		assists += "<option value='None'>None</option>";
-		$("#assist-" + charNum).html(assists);
-		$("#assist-" + charNum + " option:eq(0)").attr("selected", "selected");
+		assists = "<option value='None'>None</option>" + assists;
 	} else {
-		$("#assist-" + charNum).html("<option value='None'>None<option>");
-		$("#assist-" + charNum).attr("disabled", "disabled");
-		$("#skills-" + charNum + " .assist-label").css("color", "#5b5b5b");
+		assists = "<option value='None'>None</option>";
+		selectedAssist = "None";
 	}
+	
+	// get inherited assists
+	for (var assistKey in assistInfo) {
+		if (isInheritable(assistInfo[assistKey], charNum) && !defaultAssists.hasOwnProperty(assistKey)) {
+			assists += "<option class='inherit' value=\"" + assistKey + "\">" + assistKey + "</option>";
+		}
+	}
+	
+	// set values
+	$("#assist-" + charNum).html(assists);
+	$("#assist-" + charNum).val(selectedAssist);
 	getAssistData(charNum);
 	
 	// show weapon
+	var weapons = "";
 	var selectedWeapon = singleChar.weapon[0];
-	var weapons = "<option value=\"" + selectedWeapon + "\">" + selectedWeapon + "</option>";
-	for (var weaponIndex = 1; weaponIndex < singleChar.weapon.length; weaponIndex++) {
-		weapons += "<option value=\"" + singleChar.weapon[weaponIndex] + "\">" + singleChar.weapon[weaponIndex] + "</option>";
+	var defaultWeapons = {};
+	
+	for (var weaponIndex = 0; weaponIndex < singleChar.weapon.length; weaponIndex++) {
+		var weaponName = singleChar.weapon[weaponIndex];
+		weapons = "<option value=\"" + weaponName + "\">" + weaponName + "</option>" + weapons;
+		defaultWeapons[weaponName] = true;
 	}
-	weapons += "<option value='None'>None</option>";
+	weapons = "<option value='None'>None</option>" + weapons;
+	
+	// get inherited weapons
+	for (var weaponKey in weaponInfo) {
+		if (isInheritableWeapon(weaponInfo[weaponKey], charNum) && !defaultWeapons.hasOwnProperty(weaponKey)) {
+			weapons += "<option class='inherit' value=\"" + weaponKey + "\">" + weaponKey + "</option>";
+		}
+	}
+	
 	$("#weapon-" + charNum).html(weapons);
-	$("#weapon-" + charNum + " option:eq(0)").attr("selected", "selected");
+	$("#weapon-" + charNum).val(selectedWeapon);
 	
 	// show extra weapon info
 	showWeapon(selectedWeapon, charNum, false);
@@ -1680,7 +1740,7 @@ $(document).ready( function () {
 		var charNum = $(this).data("charnum").toString();
 		loadWeapons(this.value, charNum);
 		setColor(this.value, charNum);
-		$("#weapon-" + charNum + " option:eq(0)").attr("selected", "selected");
+		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
 		simBattle();
 	});
@@ -1701,7 +1761,7 @@ $(document).ready( function () {
 			loadWeapons("Bow", charNum);
 			$("#weapon-type-" + charNum).val("Bow");
 		}
-		$("#weapon-" + charNum + " option:eq(0)").attr("selected", "selected");
+		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
 		simBattle();
 	});
