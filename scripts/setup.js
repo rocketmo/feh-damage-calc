@@ -1217,6 +1217,10 @@ function simBattle() {
 				battleInfo = singleCombat(battleInfo, true, "makes an immediate, automatic follow-up attack [" + battleInfo.attacker.weaponName + ", " + battleInfo.attacker.passiveB + "]", false);
 			}
 		}
+	} else if (atkBreakerPassive && (defBreakerPassive || defBreakerWeapon) && (battleInfo.attacker.weaponData.hasOwnProperty("desperation") && battleInfo.attacker.initHP <= checkRoundError(battleInfo.attacker.weaponData.desperation.threshold * battleInfo.attacker.hp)) && battleInfo.attacker.spd >= battleInfo.defender.spd + 5) {
+		desperation = true;
+		despBreaker = true;
+		battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack, while canceling any follow-up attack from the opponent [" + battleInfo.attacker.weaponName + ", " + battleInfo.attacker.passiveB + "]", false);
 	}
 	
 	// defender will try to counter-attack if they haven't been ko'd
@@ -1278,13 +1282,53 @@ function simBattle() {
 			
 			// breaker skills
 			else if (atkBreakerPassive && defBreakerPassive) {	// double breaker passives
-				battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.passiveB + ", " + battleInfo.defender.passiveB + "].</li>";
+				if (battleInfo.attacker.spd >= battleInfo.defender.spd + 5 && !desperation) { // regular attacker follow
+					battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + battleInfo.attacker.passiveB + "]", false);
+				} else if (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) { // regular defender follow
+					if (defCC) {
+						battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + battleInfo.defender.passiveB + "]", false);
+					} else {
+						battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> cancels any follow-up attacks from the opponent [" + battleInfo.defender.passiveB + "].</li>";
+					}
+				} else if (!desperation) {
+					battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.passiveB + ", " + battleInfo.defender.passiveB + "].</li>";
+				}
 			} else if (atkBreakerPassive && defBreakerWeapon) {  // passive - weapon
-				battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.passiveB + ", " + battleInfo.defender.weaponName + "].</li>";
+				if (battleInfo.attacker.spd >= battleInfo.defender.spd + 5 && !desperation) { // regular attacker follow
+					battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + battleInfo.attacker.passiveB + "]", false);
+				} else if (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) { // regular defender follow
+					if (defCC) {
+						battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + battleInfo.defender.weaponName + "]", false);
+					} else {
+						battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> cancels any follow-up attacks from the opponent [" + battleInfo.defender.weaponName + "].</li>";
+					}
+				} else if (!desperation) {
+					battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.passiveB + ", " + battleInfo.defender.weaponName + "].</li>";
+				}
 			} else if (atkBreakerWeapon && defBreakerPassive) {  // weapon - passive
-				battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.weaponName + ", " + battleInfo.defender.passiveB + "].</li>";
+				if (battleInfo.attacker.spd >= battleInfo.defender.spd + 5 && !desperation) { // regular attacker follow
+					battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + battleInfo.attacker.weaponName + "]", false);
+				} else if (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) { // regular defender follow
+					if (defCC) {
+						battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + battleInfo.defender.passiveB + "]", false);
+					} else {
+						battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> cancels any follow-up attacks from the opponent [" + battleInfo.defender.passiveB + "].</li>";
+					}
+				} else if (!desperation) {
+					battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.weaponName + ", " + battleInfo.defender.passiveB + "].</li>";
+				}
 			} else if (atkBreakerWeapon && defBreakerWeapon) {  // double breaker weapons
-				battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.weaponName + ", " + battleInfo.defender.weaponName + "].</li>";
+				if (battleInfo.attacker.spd >= battleInfo.defender.spd + 5 && !desperation) { // regular attacker follow
+					battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + battleInfo.attacker.weaponName + "]", false);
+				} else if (battleInfo.defender.spd >= battleInfo.attacker.spd + 5) { // regular defender follow
+					if (defCC) {
+						battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + battleInfo.defender.weaponName + "]", false);
+					} else {
+						battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> cancels any follow-up attacks from the opponent [" + battleInfo.defender.weaponName + "].</li>";
+					}
+				} else if (!desperation) {
+					battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + battleInfo.attacker.weaponName + ", " + battleInfo.defender.weaponName + "].</li>";
+				}
 			} else if (atkBreakerPassive && !desperation) {  // attacker breaker passive
 				battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + battleInfo.attacker.passiveB + "]", false);
 			} else if (defBreakerPassive) {  // defender breaker passive
