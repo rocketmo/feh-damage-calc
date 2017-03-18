@@ -1509,6 +1509,7 @@ function swap() {
 	oldAtkInfo.weaponMight = $("#weapon-might-1").text();
 	oldAtkInfo.weaponRange = $("#weapon-range-1").text();
 	oldAtkInfo.weaponMagical = $("#weapon-magical-1").text();
+	oldAtkInfo.weaponDesc = $("#weapon-desc-1").text();
 	
 	oldAtkInfo.passiveA = $("#passive-a-1").html();
 	oldAtkInfo.selectedPassiveA = $("#passive-a-1").val();
@@ -1569,6 +1570,7 @@ function swap() {
 	$("#weapon-might-1").text($("#weapon-might-2").text());
 	$("#weapon-range-1").text($("#weapon-range-2").text());
 	$("#weapon-magical-1").text($("#weapon-magical-2").text());
+	$("#weapon-desc-1").text($("#weapon-desc-2").text());
 	
 	$("#passive-a-1").html($("#passive-a-2").html());
 	$("#passive-a-1").val($("#passive-a-2").val());
@@ -1630,6 +1632,7 @@ function swap() {
 	$("#weapon-might-2").text(oldAtkInfo.weaponMight);
 	$("#weapon-range-2").text(oldAtkInfo.weaponRange);
 	$("#weapon-magical-2").text(oldAtkInfo.weaponMagical);
+	$("#weapon-desc-2").text(oldAtkInfo.weaponDesc);
 	
 	$("#passive-a-2").html(oldAtkInfo.passiveA);
 	$("#passive-a-2").val(oldAtkInfo.selectedPassiveA);
