@@ -160,33 +160,33 @@ function setupStats() {
 // charNum determines which panel to display it in
 function getSpecialData(charNum) {
 	"use strict";
-	if ($("#special-" + charNum).val() === "None") {
-		$("#special-" + charNum).data("info", {});
-		$("#special-desc-" + charNum).text("No effect.");
-	} else {
+	if (specInfo.hasOwnProperty($("#special-" + charNum).val())) {
 		$("#special-" + charNum).data("info", specInfo[$("#special-" + charNum).val()]);
 		if (specInfo[$("#special-" + charNum).val()].hasOwnProperty("description")) {
 			$("#special-desc-" + charNum).text(specInfo[$("#special-" + charNum).val()].description);
 		} else {
 			$("#special-desc-" + charNum).text("No effect.");
 		}
-	}
+	} else {	// no special
+		$("#special-" + charNum).data("info", {});
+		$("#special-desc-" + charNum).text("No effect.");
+	} 
 }
 
 // gets assist data and stores it
 // charNum determines which panel to display it in
 function getAssistData(charNum) {
 	"use strict";
-	if ($("#assist-" + charNum).val() === "None") {
-		$("#assist-" + charNum).data("info", {});
-		$("#assist-desc-" + charNum).text("No effect.");
-	} else {
+	if (assistInfo.hasOwnProperty($("#assist-" + charNum).val())) {
 		$("#assist-" + charNum).data("info", assistInfo[$("#assist-" + charNum).val()]);
 		if (assistInfo[$("#assist-" + charNum).val()].hasOwnProperty("description")) {
 			$("#assist-desc-" + charNum).text(assistInfo[$("#assist-" + charNum).val()].description);
 		} else {
 			$("#assist-desc-" + charNum).text("No effect.");
 		}
+	} else {	// no assist
+		$("#assist-" + charNum).data("info", {});
+		$("#assist-desc-" + charNum).text("No effect.");
 	}
 }
 
@@ -269,14 +269,9 @@ function updateSpecCooldown(charNum) {
 function getSkillData(charNum, skillType, update) {
 	"use strict";
 	var selectID = "#passive-" + skillType + "-" + charNum;
-	if ($(selectID).val() === "None") {	// no skill
-		if (update) {
-			updateStatTotal(selectID, charNum, false);
-		}
-		$(selectID).data("info", {});
-		$("#passive-" + skillType + "-desc-" + charNum).text("No effect.");
-	} else {
-		var skillName = $(selectID).val();
+	var skillName = $(selectID).val();
+	
+	if (skillInfo[skillType].hasOwnProperty(skillName)) {
 		if (update) {
 			updateStatTotal(selectID, charNum, false);
 			$(selectID).data("info", skillInfo[skillType][skillName]);
@@ -290,7 +285,14 @@ function getSkillData(charNum, skillType, update) {
 		} else {
 			$("#passive-" + skillType + "-desc-" + charNum).text("No effect.");
 		}
-	}
+	} else {	// no skill
+		if (update) {
+			updateStatTotal(selectID, charNum, false);
+		}
+		
+		$(selectID).data("info", {});
+		$("#passive-" + skillType + "-desc-" + charNum).text("No effect.");
+	} 
 }
 
 // displays passive skills
