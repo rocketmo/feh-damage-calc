@@ -62,6 +62,7 @@ label {
 
 .char-info .info-section th {
 	padding: 0em 0.3em;
+	font-size: 0.8em;
 }
 
 input[type=number]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
@@ -93,10 +94,6 @@ input[type="number"] {
 
 .stat-info select{
 	width: 2.8em;	
-}
-
-.stat-info th {
-	font-size: 0.8em;
 }
 
 .current-hp input[type=number], .skill-select input[type=number] {
@@ -220,7 +217,6 @@ h3 {
 
 .collapse-button {
 	cursor: pointer;
-	font-weight: bold;
 }
 
 .collapse-button:hover {
@@ -235,7 +231,7 @@ h3 {
 	display: none;
 }
 
-.extra-weapon {
+.extra-info {
 	color: #5b5b5b;
 }
 

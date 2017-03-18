@@ -16,7 +16,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Unit makes a guaranteed follow-up attack when attacked at HP ≥ 80%.",
+		"description" : "Unit makes a guaranteed follow-up attack when attacked at HP ≥ 80%.",
 		"riposte" : {
 			"threshold" : 0.8
 		},
@@ -587,7 +587,7 @@ var weaponInfo =
 		"might"   : 14,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "Effective against flying units. Unit can pass through foes if own HP ≥ 50%.",
+		"description" : "Effective against flying units. Unit can pass through foes if own HP ≥ 50%.",
 		"move_effective" : "Flying",
 		"char_unique" : true
 	},
@@ -1340,7 +1340,7 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "If unit initiates combat at HP ≤ 50%, any follow-up attack occurs immediately.",
+		"description" : "If unit initiates combat at HP ≤ 50%, any follow-up attack occurs immediately.",
 		"desperation" : {
 			"threshold" : 0.5
 		},

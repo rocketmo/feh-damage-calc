@@ -22,7 +22,7 @@ var assistInfo =
 		"weapon_unique" : "Staff"
     },
     "Martyr" : {
-        "description" : "Restores HP = 7 plus this unit's suffered damage. Unit heals 50% of suffered damage. Slows Special trigger (cooldown count+1).",
+        "description" : "Restores 7 HP plus this unit's suffered damage. Unit heals 50% of suffered damage. Slows Special trigger (cooldown count+1).",
         "spec_cooldown_mod" : 1,
 		"weapon_unique" : "Staff"
     },

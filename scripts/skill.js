@@ -107,73 +107,73 @@ var skillInfo =
             }
         },
         "Defiant Atk 1" : {
-            "description" : "Grants Atk+3 at start of turn if unit's HP ≤ 50%.",
+            "description" : "Grants Atk+3 at start of turn if unit's HP ≤ 50%.",
             "defiant" : {
                 "atk" : 3
             }
         },
         "Defiant Atk 2" : {
-            "description" : "Grants Atk+5 at start of turn if unit's HP ≤ 50%.",
+            "description" : "Grants Atk+5 at start of turn if unit's HP ≤ 50%.",
             "defiant" : {
                 "atk" : 5
             }
         },
         "Defiant Atk 3" : {
-            "description" : "Grants Atk+7 at start of turn if unit's HP ≤ 50%.",
+            "description" : "Grants Atk+7 at start of turn if unit's HP ≤ 50%.",
             "defiant" : {
                 "atk" : 7
             }
         },
         "Defiant Def 1" : {
-            "description" : "Grants Def+3 at start of turn if unit's HP ≤ 50%.",
+            "description" : "Grants Def+3 at start of turn if unit's HP ≤ 50%.",
             "defiant" : {
                 "def" : 3
             }
         },
         "Defiant Def 2" : {
-            "description" : "Grants Def+5 at start of turn if unit's HP ≤ 50%.",
+            "description" : "Grants Def+5 at start of turn if unit's HP ≤ 50%.",
             "defiant" : {
                 "def" : 5
             }
         },
         "Defiant Def 3" : {
-            "description" : "Grants Def+7 at start of turn if unit's HP ≤ 50%.",
+            "description" : "Grants Def+7 at start of turn if unit's HP ≤ 50%.",
             "defiant" : {
                 "def" : 7
             }
         },
         "Defiant Res 1" : {
-            "description" : "Grants Res+3 at start of turn if unit's HP ≤ 50%.",
+            "description" : "Grants Res+3 at start of turn if unit's HP ≤ 50%.",
             "defiant" : {
                 "res" : 3
             }
         },
         "Defiant Res 2" : {
-            "description" : "Grants Res+5 at start of turn if unit's HP ≤ 50%.",
+            "description" : "Grants Res+5 at start of turn if unit's HP ≤ 50%.",
             "defiant" : {
                 "res" : 5
             }
         },
         "Defiant Res 3" : {
-            "description" : "Grants Res+7 at start of turn if unit's HP ≤ 50%.",
+            "description" : "Grants Res+7 at start of turn if unit's HP ≤ 50%.",
             "defiant" : {
                 "res" : 7
             }
         },
         "Defiant Spd 1" : {
-            "description" : "Grants Spd+3 at start of turn if unit's HP ≤ 50%.",
+            "description" : "Grants Spd+3 at start of turn if unit's HP ≤ 50%.",
             "defiant" : {
                 "spd" : 3
             }
         },
         "Defiant Spd 2" : {
-            "description" : "Grants Spd+5 at start of turn if unit's HP ≤ 50%.",
+            "description" : "Grants Spd+5 at start of turn if unit's HP ≤ 50%.",
             "defiant" : {
                 "spd" : 5
             }
         },
         "Defiant Spd 3" : {
-            "description" : "Grants Spd+7 at start of turn if unit's HP ≤ 50%.",
+            "description" : "Grants Spd+7 at start of turn if unit's HP ≤ 50%.",
             "defiant" : {
                 "spd" : 7
             }
@@ -354,7 +354,7 @@ var skillInfo =
     },
     "b" : {
         "Axebreaker 1" : {
-            "description" : "If unit's HP ≥ 90% in combat against an Axe user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 90% in combat against an Axe user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Axe",
                 "threshold" : 0.9
@@ -362,7 +362,7 @@ var skillInfo =
             "color_restrict" : "Blue"
         },
         "Axebreaker 2" : {
-            "description" : "If unit's HP ≥ 70% in combat against an Axe user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 70% in combat against an Axe user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Axe",
                 "threshold" : 0.7
@@ -370,7 +370,7 @@ var skillInfo =
             "color_restrict" : "Blue"
         },
         "Axebreaker 3" : {
-            "description" : "If unit's HP ≥ 50% in combat against an Axe user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 50% in combat against an Axe user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Axe",
                 "threshold" : 0.5
@@ -378,28 +378,28 @@ var skillInfo =
             "color_restrict" : "Blue"
         },
         "Bowbreaker 1" : {
-            "description" : "If unit's HP ≥ 90% in combat against a Bow user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 90% in combat against a Bow user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Bow",
                 "threshold" : 0.9
             }
         },
         "Bowbreaker 2" : {
-            "description" : "If unit's HP ≥ 70% in combat against a Bow user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 70% in combat against a Bow user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Bow",
                 "threshold" : 0.7
             }
         },
         "Bowbreaker 3" : {
-            "description" : "If unit's HP ≥ 50% in combat against a Bow user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 50% in combat against a Bow user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Bow",
                 "threshold" : 0.5
             }
         },
         "B Tomebreaker 1" : {
-            "description" : "If unit's HP ≥ 90% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 90% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Blue Tome",
                 "threshold" : 0.9
@@ -407,7 +407,7 @@ var skillInfo =
             "color_restrict" : "Red"
         },
         "B Tomebreaker 2" : {
-            "description" : "If unit's HP ≥ 70% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 70% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Blue Tome",
                 "threshold" : 0.7
@@ -415,7 +415,7 @@ var skillInfo =
             "color_restrict" : "Red"
         },
         "B Tomebreaker 3" : {
-            "description" : "If unit's HP ≥ 50% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 50% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Blue Tome",
                 "threshold" : 0.5
@@ -423,58 +423,58 @@ var skillInfo =
             "color_restrict" : "Red"
         },
         "Brash Assault 1" : {
-            "description" : "Unit automatically makes a follow-up attack when at HP ≤ 30% and attacking a foe that can counter.",
+            "description" : "Unit automatically makes a follow-up attack when at HP ≤ 30% and attacking a foe that can counter.",
             "brash" : {
                 "threshold" : 0.3
             }
         },
         "Brash Assault 2" : {
-            "description" : "Unit automatically makes a follow-up attack when at HP ≤ 40% and attacking a foe that can counter.",
+            "description" : "Unit automatically makes a follow-up attack when at HP ≤ 40% and attacking a foe that can counter.",
             "brash" : {
                 "threshold" : 0.4
             }
         },
         "Brash Assault 3" : {
-            "description" : "Unit automatically makes a follow-up attack when at HP ≤ 50% and attacking a foe that can counter.",
+            "description" : "Unit automatically makes a follow-up attack when at HP ≤ 50% and attacking a foe that can counter.",
             "brash" : {
                 "threshold" : 0.5
             }
         },
         "Daggerbreaker 1" : {
-            "description" : "If unit's HP ≥ 90% in combat against a Dagger user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 90% in combat against a Dagger user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Dagger",
                 "threshold" : 0.9
             }
         },
         "Daggerbreaker 2" : {
-            "description" : "If unit's HP ≥ 70% in combat against a Dagger user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 70% in combat against a Dagger user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Dagger",
                 "threshold" : 0.7
             }
         },
         "Daggerbreaker 3" : {
-            "description" : "If unit's HP ≥ 50% in combat against a Dagger user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 50% in combat against a Dagger user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Dagger",
                 "threshold" : 0.5
             }
         },
         "Desperation 1" : {
-            "description" : "If unit initiates combat with HP ≤ 25%, any follow-up attack occurs immediately.",
+            "description" : "If unit initiates combat with HP ≤ 25%, any follow-up attack occurs immediately.",
             "desperation" : {
                 "threshold" : 0.25
             }
         },
         "Desperation 2" : {
-            "description" : "If unit initiates combat with HP ≤ 50%, any follow-up attack occurs immediately.",
+            "description" : "If unit initiates combat with HP ≤ 50%, any follow-up attack occurs immediately.",
             "desperation" : {
                 "threshold" : 0.5
             }
         },
         "Desperation 3" : {
-            "description" : "If unit initiates combat with HP ≤ 75%, any follow-up attack occurs immediately.",
+            "description" : "If unit initiates combat with HP ≤ 75%, any follow-up attack occurs immediately.",
             "desperation" : {
                 "threshold" : 0.75
             }
@@ -484,16 +484,16 @@ var skillInfo =
 			"range_unique" : 1
         },
         "Escape Route 1" : {
-            "description" : "Enables unit with HP ≤ 30% to warp adjacent to any ally."
+            "description" : "Enables unit with HP ≤ 30% to warp adjacent to any ally."
         },
         "Escape Route 2" : {
-            "description" : "Enables unit with HP ≤ 40% to warp adjacent to any ally."
+            "description" : "Enables unit with HP ≤ 40% to warp adjacent to any ally."
         },
         "Escape Route 3" : {
-            "description" : "Enables unit with HP ≤ 50% to warp adjacent to any ally."
+            "description" : "Enables unit with HP ≤ 50% to warp adjacent to any ally."
         },
         "G Tomebreaker 1" : {
-            "description" : "If unit's HP ≥ 90% in combat against a Green Tome user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 90% in combat against a Green Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Green Tome",
                 "threshold" : 0.9
@@ -501,7 +501,7 @@ var skillInfo =
             "color_restrict" : "Blue"
         },
         "G Tomebreaker 2" : {
-            "description" : "If unit's HP ≥ 70% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 70% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Green Tome",
                 "threshold" : 0.7
@@ -509,7 +509,7 @@ var skillInfo =
             "color_restrict" : "Blue"
         },
         "G Tomebreaker 3" : {
-            "description" : "If unit's HP ≥ 50% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 50% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Green Tome",
                 "threshold" : 0.5
@@ -521,7 +521,7 @@ var skillInfo =
 			"range_unique" : 1
         },
         "Lancebreaker 1" : {
-            "description" : "If unit's HP ≥ 90% in combat against a Lance user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 90% in combat against a Lance user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Lance",
                 "threshold" : 0.9
@@ -529,7 +529,7 @@ var skillInfo =
             "color_restrict" : "Red"
         },
         "Lancebreaker 2" : {
-            "description" : "If unit's HP ≥ 70% in combat against a Lance user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 70% in combat against a Lance user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Lance",
                 "threshold" : 0.7
@@ -537,7 +537,7 @@ var skillInfo =
             "color_restrict" : "Red"
         },
         "Lancebreaker 3" : {
-            "description" : "If unit's HP ≥ 50% in combat against a Lance user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 50% in combat against a Lance user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Lance",
                 "threshold" : 0.5
@@ -561,22 +561,22 @@ var skillInfo =
 			"range_unique" : 1
         },
         "Obstruct 1" : {
-            "description" : "Prevents foes from moving through adjacent spaces while this unit's HP ≥ 90%."
+            "description" : "Prevents foes from moving through adjacent spaces while this unit's HP ≥ 90%."
         },
         "Obstruct 2" : {
-            "description" : "Prevents foes from moving through adjacent spaces while this unit's HP ≥ 70%."
+            "description" : "Prevents foes from moving through adjacent spaces while this unit's HP ≥ 70%."
         },
         "Obstruct 3" : {
-            "description" : "Prevents foes from moving through adjacent spaces while this unit's HP ≥ 50%."
+            "description" : "Prevents foes from moving through adjacent spaces while this unit's HP ≥ 50%."
         },
         "Pass 1" : {
-            "description" : "Unit can pass through foes if their own HP ≥ 75%."
+            "description" : "Unit can pass through foes if their own HP ≥ 75%."
         },
         "Pass 2" : {
-            "description" : "Unit can pass through foes if their own HP ≥ 50%."
+            "description" : "Unit can pass through foes if their own HP ≥ 50%."
         },
         "Pass 3" : {
-            "description" : "Unit can pass through foes if their own HP ≥ 25%."
+            "description" : "Unit can pass through foes if their own HP ≥ 25%."
         },
         "Poison Strike 1" : {
             "description" : "Inflicts 4 damage to foe after any combat this unit initiates.",
@@ -591,25 +591,25 @@ var skillInfo =
             "poison" : 10
         },
         "Quick Riposte 1" : {
-            "description" : "Unit automatically makes a follow-up attack if attacked at HP ≥ 90%.",
+            "description" : "Unit automatically makes a follow-up attack if attacked at HP ≥ 90%.",
             "riposte" : {
                 "threshold" : 0.9
             }
         },
         "Quick Riposte 2" : {
-            "description" : "Unit automatically makes a follow-up attack if attacked at HP ≥ 80%.",
+            "description" : "Unit automatically makes a follow-up attack if attacked at HP ≥ 80%.",
             "riposte" : {
                 "threshold" : 0.8
             }
         },
         "Quick Riposte 3" : {
-            "description" : "Unit automatically makes a follow-up attack if attacked at HP ≥ 70%.",
+            "description" : "Unit automatically makes a follow-up attack if attacked at HP ≥ 70%.",
             "riposte" : {
                 "threshold" : 0.7
             }
         },
         "R Tomebreaker 1" : {
-            "description" : "If unit's HP ≥ 90% in combat against a Red Tome user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 90% in combat against a Red Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Red Tome",
                 "threshold" : 0.9
@@ -617,7 +617,7 @@ var skillInfo =
             "color_restrict" : "Green"
         },
         "R Tomebreaker 2" : {
-            "description" : "If unit's HP ≥ 70% in combat against a Red Tome user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 70% in combat against a Red Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Red Tome",
                 "threshold" : 0.7
@@ -625,7 +625,7 @@ var skillInfo =
             "color_restrict" : "Green"
         },
         "R Tomebreaker 3" : {
-            "description" : "If unit's HP ≥ 50% in combat against a Red Tome user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 50% in combat against a Red Tome user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Red Tome",
                 "threshold" : 0.5
@@ -727,7 +727,7 @@ var skillInfo =
             }
         },
         "Swordbreaker 1" : {
-            "description" : "If unit's HP ≥ 90% in combat against a Sword user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 90% in combat against a Sword user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Sword",
                 "threshold" : 0.9
@@ -735,7 +735,7 @@ var skillInfo =
             "color_restrict" : "Green"
         },
         "Swordbreaker 2" : {
-            "description" : "If unit's HP ≥ 70% in combat against a Sword user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 70% in combat against a Sword user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Sword",
                 "threshold" : 0.7
@@ -743,7 +743,7 @@ var skillInfo =
             "color_restrict" : "Green"
         },
         "Swordbreaker 3" : {
-            "description" : "If unit's HP ≥ 50% in combat against a Sword user, unit makes a follow-up attack and foe cannot.",
+            "description" : "If unit's HP ≥ 50% in combat against a Sword user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Sword",
                 "threshold" : 0.5
@@ -751,49 +751,49 @@ var skillInfo =
             "color_restrict" : "Green"
         },
         "Vantage 1" : {
-            "description" : "Unit counter-attacks first when attacked at HP ≤ 25%.",
+            "description" : "Unit counter-attacks first when attacked at HP ≤ 25%.",
             "vantage" : {
                 "threshold" : 0.25
             }
         },
         "Vantage 2" : {
-            "description" : "Unit counter-attacks first when attacked at HP ≤ 50%.",
+            "description" : "Unit counter-attacks first when attacked at HP ≤ 50%.",
             "vantage" : {
                 "threshold" : 0.5
             }
         },
         "Vantage 3" : {
-            "description" : "Unit counter-attacks first when attacked at HP ≤ 75%.",
+            "description" : "Unit counter-attacks first when attacked at HP ≤ 75%.",
             "vantage" : {
                 "threshold" : 0.75
             }
         },
         "Wary Fighter 1" : {
-            "description" : "Prevents follow up attack in combat from unit and foe if unit's HP ≤ 90%.",
+            "description" : "Prevents follow up attack in combat from unit and foe if unit's HP ≤ 90%.",
             "wary" : {
                 "threshold" : 0.9
             }
         },
         "Wary Fighter 2" : {
-            "description" : "Prevents follow up attack in combat from unit and foe if unit's HP ≤ 70%.",
+            "description" : "Prevents follow up attack in combat from unit and foe if unit's HP ≤ 70%.",
             "wary" : {
                 "threshold" : 0.7
             }
         },
         "Wary Fighter 3" : {
-            "description" : "Prevents follow up attack in combat from unit and foe if unit's HP ≤ 50%.",
+            "description" : "Prevents follow up attack in combat from unit and foe if unit's HP ≤ 50%.",
             "wary" : {
                 "threshold" : 0.5
             }
         },
         "Wings of Mercy 1" : {
-            "description" : "Enables unit to warp adjacent to any ally with HP ≤ 30%."
+            "description" : "Enables unit to warp adjacent to any ally with HP ≤ 30%."
         },
         "Wings of Mercy 2" : {
-            "description" : "Enables unit to warp adjacent to any ally with HP ≤ 40%."
+            "description" : "Enables unit to warp adjacent to any ally with HP ≤ 40%."
         },
         "Wings of Mercy 3" : {
-            "description" : "Enables unit to warp adjacent to any ally with HP ≤ 50%."
+            "description" : "Enables unit to warp adjacent to any ally with HP ≤ 50%."
         }
     },
     "c" : {
