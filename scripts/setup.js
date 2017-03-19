@@ -1106,8 +1106,8 @@ function simBattle() {
 	
 	// check if attacker has a weapon, if not no attack
 	if ($("#weapon-1").val() === "None") {
-		$("#interaction-list").hide().html("<li class='battle-interaction-final'><span class='attacker'><strong>" + $("#char-1").val() + "</strong></span> cannot attack without a weapon.</li>");
-		$(".hp-remain-block").hide();
+		$("#interaction-list").stop(true, true).hide().html("<li class='battle-interaction-final'><span class='attacker'><strong>" + $("#char-1").val() + "</strong></span> cannot attack without a weapon.</li>");
+		$(".hp-remain-block").stop(true, true).hide();
 		$("#hp-remain-1").text($("#curr-hp-1").val().toString());
 		$("#hp-remain-2").text($("#curr-hp-2").val().toString());
 		if (openLog) {
@@ -1432,9 +1432,9 @@ function simBattle() {
 	}
 	
 	// display results
-	$("#interaction-list").hide().html(battleInfo.logMsg);
-	$(".hp-remain-block").hide();
-	$("#result-msg").hide();
+	$("#interaction-list").stop(true, true).hide().html(battleInfo.logMsg);
+	$(".hp-remain-block").stop(true, true).hide();
+	$("#result-msg").stop(true, true).hide();
 	$("#hp-remain-1").text(battleInfo.attacker.currHP.toString());
 	$("#hp-remain-2").text(battleInfo.defender.currHP.toString());
 	$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
@@ -1511,9 +1511,9 @@ function setDisabled(inSel, inLabel, disabled) {
 function setVisible(divID, visible, hasSwapped) {
 	"use strict";
 	if (visible && hasSwapped) {
-		$(divID).show(700);
+		$(divID).stop(true, true).show(700);
 	} else if (!visible && !hasSwapped) {
-		$(divID).hide(700);
+		$(divID).stop(true, true).hide(700);
 	}
 }
 
@@ -1580,22 +1580,22 @@ function swap() {
 	oldAtkInfo.extraCharInfoDisabled = ($("#color-1").attr("disabled") === "disabled");
 	oldAtkInfo.specCooldownDisabled = ($("#spec-cooldown-1").attr("disabled") === "disabled");
 	
-	oldAtkInfo.extraCharInfoVisible = $("#extra-char-info-1").is(":visible");
-	oldAtkInfo.extraWeaponInfoVisible = $("#extra-weapon-info-1").is(":visible");
-	oldAtkInfo.extraPassiveAInfoVisible = $("#extra-passive-a-info-1").is(":visible");
-	oldAtkInfo.extraPassiveBInfoVisible = $("#extra-passive-b-info-1").is(":visible");
-	oldAtkInfo.extraPassiveCInfoVisible = $("#extra-passive-c-info-1").is(":visible");
-	oldAtkInfo.extraAssistInfoVisible = $("#extra-assist-info-1").is(":visible");
-	oldAtkInfo.extraSpecialInfoVisible = $("#extra-special-info-1").is(":visible");
+	oldAtkInfo.extraCharInfoVisible = $("#extra-char-info-1").stop(true, true).is(":visible");
+	oldAtkInfo.extraWeaponInfoVisible = $("#extra-weapon-info-1").stop(true, true).is(":visible");
+	oldAtkInfo.extraPassiveAInfoVisible = $("#extra-passive-a-info-1").stop(true, true).is(":visible");
+	oldAtkInfo.extraPassiveBInfoVisible = $("#extra-passive-b-info-1").stop(true, true).is(":visible");
+	oldAtkInfo.extraPassiveCInfoVisible = $("#extra-passive-c-info-1").stop(true, true).is(":visible");
+	oldAtkInfo.extraAssistInfoVisible = $("#extra-assist-info-1").stop(true, true).is(":visible");
+	oldAtkInfo.extraSpecialInfoVisible = $("#extra-special-info-1").stop(true, true).is(":visible");
 	
 	// place defender info in attacker panel
-	setVisible("#extra-char-info-1", $("#extra-char-info-2").is(":visible"), false);
-	setVisible("#extra-weapon-info-1", $("#extra-weapon-info-2").is(":visible"), false);
-	setVisible("#extra-passive-a-info-1", $("#extra-passive-a-info-2").is(":visible"), false);
-	setVisible("#extra-passive-b-info-1", $("#extra-passive-b-info-2").is(":visible"), false);
-	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").is(":visible"), false);
-	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").is(":visible"), false);
-	setVisible("#extra-special-info-1", $("#extra-special-info-2").is(":visible"), false);
+	setVisible("#extra-char-info-1", $("#extra-char-info-2").stop(true, true).is(":visible"), false);
+	setVisible("#extra-weapon-info-1", $("#extra-weapon-info-2").stop(true, true).is(":visible"), false);
+	setVisible("#extra-passive-a-info-1", $("#extra-passive-a-info-2").stop(true, true).is(":visible"), false);
+	setVisible("#extra-passive-b-info-1", $("#extra-passive-b-info-2").stop(true, true).is(":visible"), false);
+	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), false);
+	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), false);
+	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), false);
 	
 	$("#char-1").val($("#char-2").val());
 	$("#color-1").val($("#color-2").val());
@@ -1656,13 +1656,13 @@ function swap() {
 	setDisabled("#extra-char-info-1 select", "#extra-char-info-1", ($("#color-2").attr("disabled") === "disabled"));
 	setDisabled("#spec-cooldown-1", "#spec-cooldown-line-1", ($("#spec-cooldown-2").attr("disabled") === "disabled"));
 	
-	setVisible("#extra-char-info-1", $("#extra-char-info-2").is(":visible"), true);
-	setVisible("#extra-weapon-info-1", $("#extra-weapon-info-2").is(":visible"), true);
-	setVisible("#extra-passive-a-info-1", $("#extra-passive-a-info-2").is(":visible"), true);
-	setVisible("#extra-passive-b-info-1", $("#extra-passive-b-info-2").is(":visible"), true);
-	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").is(":visible"), true);
-	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").is(":visible"), true);
-	setVisible("#extra-special-info-1", $("#extra-special-info-2").is(":visible"), true);
+	setVisible("#extra-char-info-1", $("#extra-char-info-2").stop(true, true).is(":visible"), true);
+	setVisible("#extra-weapon-info-1", $("#extra-weapon-info-2").stop(true, true).is(":visible"), true);
+	setVisible("#extra-passive-a-info-1", $("#extra-passive-a-info-2").stop(true, true).is(":visible"), true);
+	setVisible("#extra-passive-b-info-1", $("#extra-passive-b-info-2").stop(true, true).is(":visible"), true);
+	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), true);
+	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), true);
+	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), true);
 	
 	// place attacker info in defender panel
 	setVisible("#extra-char-info-2", oldAtkInfo.extraCharInfoVisible, false);
