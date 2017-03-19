@@ -49,8 +49,8 @@ var weaponInfo =
 		"move_effective" : "Flying",
 		"description" : "Effective against flying units. If target has a dagger, it cannot make a follow-up attack and this unit will.",
 		"breaker" : {
-            "weapon_type" : "Dagger"
-        }
+			"weapon_type" : "Dagger"
+		}
 	},
 	"Assassin's Bow+" : {
 		"color"   : "Colorless",
@@ -61,8 +61,8 @@ var weaponInfo =
 		"description" : "Effective against flying units. If target has a dagger, it cannot make a follow-up attack and this unit will.",
 		"move_effective" : "Flying",
 		"breaker" : {
-            "weapon_type" : "Dagger"
-        }
+			"weapon_type" : "Dagger"
+		}
 	},
 	"Assault" : {
 		"color"   : "Colorless",

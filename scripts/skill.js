@@ -7,21 +7,21 @@ var skillInfo =
             "initiate_mod" : {
                 "def" : 2
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Armored Blow 2" : {
             "description" : "Grants Def+4 if unit initiates combat.",
             "initiate_mod" : {
                 "def" : 4
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Armored Blow 3" : {
             "description" : "Grants Def+6 if unit initiates combat.",
             "initiate_mod" : {
                 "def" : 6
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Attack +1" : {
             "description" : "Grants Atk+1.",
@@ -44,49 +44,49 @@ var skillInfo =
         "Close Counter" : {
             "description" : "Enables unit to counter-attack regardless of distance to attacker.",
             "counter" : true,
-			"range_unique" : 2
+            "range_unique" : 2
         },
         "Darting Blow 1" : {
             "description" : "Grants Spd+2 if unit initiates combat.",
             "initiate_mod" : {
                 "spd" : 2
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Darting Blow 2" : {
             "description" : "Grants Spd+4 if unit initiates combat.",
             "initiate_mod" : {
                 "spd" : 4
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Darting Blow 3" : {
             "description" : "Grants Spd+6 if unit initiates combat.",
             "initiate_mod" : {
                 "spd" : 6
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Death Blow 1" : {
             "description" : "Grants Atk+2 if unit initiates combat.",
             "initiate_mod" : {
                 "atk" : 2
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Death Blow 2" : {
             "description" : "Grants Atk+4 if unit initiates combat.",
             "initiate_mod" : {
                 "atk" : 4
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Death Blow 3" : {
             "description" : "Grants Atk+6 if unit initiates combat.",
             "initiate_mod" : {
                 "atk" : 6
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Defense +1" : {
             "description" : "Grants Def+1.",
@@ -181,7 +181,7 @@ var skillInfo =
         "Distant Counter" : {
             "description" : "Enables unit to counter-attack regardless of distance to attacker.",
             "counter" : true,
-			"range_unique" : 1
+            "range_unique" : 1
         },
         "Fury 1" : {
             "description" : "Grants Atk/Spd/Def/Res+1. Unit takes 2 damage after combat.",
@@ -192,7 +192,7 @@ var skillInfo =
                 "res" : 1
             },
             "recoil_dmg" : 2,
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Fury 2" : {
             "description" : "Grants Atk/Spd/Def/Res+2. Unit takes 4 damage after combat.",
@@ -203,7 +203,7 @@ var skillInfo =
                 "res" : 2
             },
             "recoil_dmg" : 4,
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Fury 3" : {
             "description" : "Grants Atk/Spd/Def/Res+3. Unit takes 6 damage after combat.",
@@ -214,7 +214,7 @@ var skillInfo =
                 "res" : 3
             },
             "recoil_dmg" : 6,
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Grani's Shield" : {
             "description" : "Neutralizes \"effective against\" bonuses.",
@@ -252,7 +252,7 @@ var skillInfo =
                 "def" : -3,
                 "res" : -3
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Life and Death 2" : {
             "description" : "Grants Atk/Spd+4. Inflicts Def/Res-4.",
@@ -262,7 +262,7 @@ var skillInfo =
                 "def" : -4,
                 "res" : -4
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Life and Death 3" : {
             "description" : "Grants Atk/Spd+5. Inflicts Def/Res-5.",
@@ -272,7 +272,7 @@ var skillInfo =
                 "def" : -5,
                 "res" : -5
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Resistance +1" : {
             "description" : "Grants Res+1.",
@@ -335,21 +335,21 @@ var skillInfo =
             "initiate_mod" : {
                 "res" : 2
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Warding Blow 2" : {
             "description" : "Grants Res+4 if unit initiates combat.",
             "initiate_mod" : {
                 "res" : 4
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         },
         "Warding Blow 3" : {
             "description" : "Grants Res+6 if unit initiates combat.",
             "initiate_mod" : {
                 "res" : 6
             },
-			"weapon_restrict" : "Staff"
+            "weapon_restrict" : "Staff"
         }
     },
     "b" : {
@@ -518,7 +518,7 @@ var skillInfo =
         },
         "Knock Back" : {
             "description" : "If unit initiates attack, foe is moved 1 space away after combat.",
-			"range_unique" : 1
+            "range_unique" : 1
         },
         "Lancebreaker 1" : {
             "description" : "If unit's HP ≥ 90% in combat against a Lance user, unit makes a follow-up attack and foe cannot.",
@@ -558,7 +558,7 @@ var skillInfo =
         },
         "Lunge" : {
             "description" : "If unit initiates attack, after combat, unit and foe swap places.",
-			"range_unique" : 1
+            "range_unique" : 1
         },
         "Obstruct 1" : {
             "description" : "Prevents foes from moving through adjacent spaces while this unit's HP ≥ 90%."
