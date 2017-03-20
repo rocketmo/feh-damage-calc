@@ -580,15 +580,18 @@ var skillInfo =
         },
         "Poison Strike 1" : {
             "description" : "Inflicts 4 damage to foe after any combat this unit initiates.",
-            "poison" : 4
+            "poison" : 4,
+            "weapon_restrict" : "Staff"
         },
         "Poison Strike 2" : {
             "description" : "Inflicts 7 damage to foe after any combat this unit initiates.",
-            "poison" : 7
+            "poison" : 7,
+            "weapon_restrict" : "Staff"
         },
         "Poison Strike 3" : {
             "description" : "Inflicts 10 damage to foe after any combat this unit initiates.",
-            "poison" : 10
+            "poison" : 10,
+            "weapon_restrict" : "Staff"
         },
         "Quick Riposte 1" : {
             "description" : "Unit automatically makes a follow-up attack if attacked at HP ≥ 90%.",
