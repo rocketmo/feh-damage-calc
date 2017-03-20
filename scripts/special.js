@@ -24,28 +24,28 @@ var specInfo =
         "weapon_restrict" : "Staff"
     },
     "Blazing Flame" : {
-        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's Atk minus foe's Def or Res).",
+        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's Atk minus foe's Def or Res).",
         "cooldown" : 5,
         "before_combat_aoe" : true,
         "aoe_dmg_mod" : 1.5,
         "weapon_restrict" : "Staff"
     },
     "Blazing Light" : {
-        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's Atk minus foe's Def or Res).",
+        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's Atk minus foe's Def or Res).",
         "cooldown" : 5,
         "before_combat_aoe" : true,
         "aoe_dmg_mod" : 1.5,
         "weapon_restrict" : "Staff"
     },
     "Blazing Thunder" : {
-        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's Atk minus foe's Def or Res).",
+        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's Atk minus foe's Def or Res).",
         "cooldown" : 5,
         "before_combat_aoe" : true,
         "aoe_dmg_mod" : 1.5,
         "weapon_restrict" : "Staff"
     },
     "Blazing Wind" : {
-        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's Atk minus foe's Def or Res).",
+        "description" : "Before initiating combat, foes in an area near target take damage equal to 1.5 × (unit's Atk minus foe's Def or Res).",
         "cooldown" : 5,
         "before_combat_aoe" : true,
         "aoe_dmg_mod" : 1.5,

@@ -169,6 +169,20 @@ var charInfo =
 		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
 		"passive_c": ["Savage Blow 3", "Savage Blow 2", "Savage Blow 1"]
 	},
+	"Camus": {
+		"color" : "Blue",
+		"weapon_type" : "Lance",
+		"hp": 42,
+		"atk": 48,
+		"spd": 33,
+		"def": 31,
+		"res": 17,
+		"move_type": "Cavalry",
+		"weapon": ["Gradivus", "Silver Lance", "Steel Lance", "Iron Lance"],
+		"special": ["Growing Thunder", "Rising Thunder"],
+		"passive_a": ["Grani's Shield"],
+		"passive_c": ["Goad Cavalry", "Spur Atk 2", "Spur Atk 1"]
+	},
 	"Catria": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
@@ -927,6 +941,20 @@ var charInfo =
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"]
 	},
+	"Michalis": {
+		"color" : "Green",
+		"weapon_type" : "Axe",
+		"hp": 43,
+		"atk": 50,
+		"spd": 26,
+		"def": 35,
+		"res": 19,
+		"move_type": "Flying",
+		"weapon": ["Hauteclere", "Silver Axe", "Steel Axe", "Iron Axe"],
+		"special": ["Blazing Thunder", "Rising Thunder"],
+		"passive_a": ["Iote's Shield"],
+		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"]
+	},
 	"Minerva": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
@@ -954,6 +982,20 @@ var charInfo =
 		"special": ["Vengeance", "Retribution"],
 		"passive_b": ["Lancebreaker 3", "Lancebreaker 2", "Lancebreaker 1"],
 		"passive_c": ["Savage Blow 3", "Savage Blow 2", "Savage Blow 1"]
+	},
+	"Navarre": {
+		"color" : "Red",
+		"weapon_type" : "Sword",
+		"hp": 42,
+		"atk": 39,
+		"spd": 37,
+		"def": 23,
+		"res": 28,
+		"move_type": "Infantry",
+		"weapon": ["Killing Edge+", "Killing Edge", "Steel Sword", "Iron Sword"],
+		"special": ["Blazing Wind", "Rising Wind"],
+		"passive_b": ["Desperation 3", "Desperation 2", "Desperation 1"],
+		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"]
 	},
 	"Niles": {
 		"color" : "Colorless",
@@ -1528,5 +1570,33 @@ var charInfo =
 		"special": ["Heavenly Light", "Imbue"],
 		"passive_b": ["Live to Serve 3", "Live to Serve 2", "Live to Serve 1"],
 		"assist" : ["Rehabilitate", "Reconcile", "Heal"]
+	},
+	"Xander": {
+		"color" : "Red",
+		"weapon_type" : "Sword",
+		"hp": 44,
+		"atk": 48,
+		"spd": 24,
+		"def": 37,
+		"res": 17,
+		"move_type": "Cavalry",
+		"weapon": ["Siegfried", "Silver Sword", "Steel Sword", "Iron Sword"],
+		"special": ["Blazing Light", "Rising Light"],
+		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
+		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"]
+	},
+	"Zephiel": {
+		"color" : "Red",
+		"weapon_type" : "Sword",
+		"hp": 55,
+		"atk": 53,
+		"spd": 21,
+		"def": 36,
+		"res": 19,
+		"move_type": "Armored",
+		"weapon": ["Eckesachs", "Silver Sword", "Steel Sword", "Iron Sword"],
+		"special": ["Reprisal", "Retribution"],
+		"passive_a": ["Life and Death 3", "Life and Death 2", "Life and Death 1"],
+		"passive_b": ["Wary Fighter 3", "Wary Fighter 2", "Wary Fighter 1"]
 	}
 };

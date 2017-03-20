@@ -219,7 +219,7 @@ var skillInfo =
         "Grani's Shield" : {
             "description" : "Neutralizes \"effective against\" bonuses.",
             "cancel_effective" : true,
-            "char_unique" : true
+            "move_unique" : "Cavalry"
         },
         "HP +3" : {
             "description" : "Grants HP+3.",
@@ -242,7 +242,7 @@ var skillInfo =
         "Iote's Shield" : {
             "description" : "Neutralizes \"effective against\" bonuses.",
             "cancel_effective" : true,
-            "char_unique" : true
+            "move_unique" : "Flying"
         },
         "Life and Death 1" : {
             "description" : "Grants Atk/Spd+3. Inflicts Def/Res-3.",
