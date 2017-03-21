@@ -384,7 +384,7 @@ function showWeapon(selectedWeapon, charNum, update) {
 	if (update) {
 		var atk = parseInt($("#atk-" + charNum).val()) + mt - $("#weapon-might-" + charNum).data("oldmt");
 		atk = Math.min(atk, HIGHESTSTAT);
-		atk = Math.max(atk, 1);
+		atk = Math.max(atk, 0);
 		$("#atk-" + charNum).val(atk);
 	}
 	$("#weapon-might-" + charNum).data("oldmt", mt);
@@ -1055,6 +1055,9 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		defSpec = true;
 	}
 	
+	// double check dmg
+	dmg = Math.max(dmg, 0);
+	
 	// print damage dealt
 	battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + " damage dealt.</strong></span> ";
 	
@@ -1166,6 +1169,9 @@ function simBattle() {
 		if (battleInfo.attacker.specialData.hasOwnProperty("aoe_dmg_mod")) {
 			aoeDmg = roundNum(aoeDmg * battleInfo.attacker.specialData.aoe_dmg_mod, false);
 		}
+		
+		// cap dmg at 0
+		aoeDmg = Math.max(aoeDmg, 0);
 		
 		var oldHP = battleInfo.defender.currHP;
 		battleInfo.defender.currHP = Math.max(battleInfo.defender.currHP - aoeDmg, 1);
