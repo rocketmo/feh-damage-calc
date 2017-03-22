@@ -1179,10 +1179,6 @@ function simBattle() {
 		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> deals AOE damage before combat [" + battleInfo.attacker.special + "]. <span class='dmg'><strong>" + aoeDmg.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
 	}
 	
-	// outspeed info
-	var atkOutspeed = battleInfo.attacker.spd >= battleInfo.defender.spd + 5;
-	var defOutspeed = battleInfo.defender.spd >= battleInfo.attacker.spd + 5;
-	
 	// breaker info
 	var atkBreakerPassive = hasBreakerPassive(battleInfo.attacker.passiveBData, battleInfo.defender.type, battleInfo.attacker.initHP, battleInfo.attacker.hp);
 	var atkBreakerWeapon = hasBreakerWeapon(battleInfo.attacker.weaponData, battleInfo.defender.type);
@@ -1233,6 +1229,10 @@ function simBattle() {
 	if (battleInfo.defender.weaponData.hasOwnProperty("below_threshold_mod") && battleInfo.defender.initHP <= checkRoundError(battleInfo.defender.weaponData.below_threshold_mod.threshold * battleInfo.defender.hp)) {
 		battleInfo = belowThresholdBonus(battleInfo, battleInfo.defender.weaponData.below_threshold_mod, battleInfo.defender.weaponName, "defender");
 	}
+	
+	// outspeed info
+	var atkOutspeed = battleInfo.attacker.spd >= battleInfo.defender.spd + 5;
+	var defOutspeed = battleInfo.defender.spd >= battleInfo.attacker.spd + 5;
 	
 	// vantage
 	if ((battleInfo.defender.weaponName !== "None" && vantagePassive) || vantageWeapon) {
