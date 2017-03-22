@@ -2,14 +2,8 @@ html {
 	background-color: #0b0b0b;
 }
 
-#wrapper {
-	white-space: nowrap;
-	width: 780px;
-	margin: 0px auto;
-}
-
 body {
-	width: 820px;
+	width: 860px;
 	margin: 15px auto;
 	padding: 20px 20px 50px 20px;
 	font-family: Cambria, Hoefler Text, Liberation Serif, Times, Times New Roman, serif;
@@ -18,6 +12,12 @@ body {
 	background-color: #161a1b;
 	border: 3px solid gold;
 	border-radius: 6px;
+}
+
+#wrapper {
+	white-space: nowrap;
+	width: 840px;
+	margin: 0px auto;
 }
 
 #calc {
@@ -62,6 +62,7 @@ label {
 
 .char-info .info-section th {
 	padding: 0em 0.3em;
+	font-size: 0.8em;
 }
 
 input[type=number]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
@@ -93,10 +94,6 @@ input[type="number"] {
 
 .stat-info select{
 	width: 2.8em;	
-}
-
-.stat-info th {
-	font-size: 0.8em;
 }
 
 .current-hp input[type=number], .skill-select input[type=number] {
@@ -220,7 +217,6 @@ h3 {
 
 .collapse-button {
 	cursor: pointer;
-	font-weight: bold;
 }
 
 .collapse-button:hover {
@@ -235,7 +231,7 @@ h3 {
 	display: none;
 }
 
-.extra-weapon {
+.extra-info {
 	color: #5b5b5b;
 }
 
@@ -260,3 +256,8 @@ h3 {
 	font-weight: bold;
 	font-size: 1.4em;
 }
+
+.inherit {
+	color: #C30003;
+}
+

@@ -16,10 +16,11 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Unit makes a guaranteed follow-up attack when attacked at HP ≥ 80%.",
+		"description" : "Unit makes a guaranteed follow-up attack when attacked at HP ≥ 80%.",
 		"riposte" : {
 			"threshold" : 0.8
-		}
+		},
+		"char_unique" : true
 	},
 	"Armorslayer" : {
 		"color"   : "Red",
@@ -48,8 +49,8 @@ var weaponInfo =
 		"move_effective" : "Flying",
 		"description" : "Effective against flying units. If target has a dagger, it cannot make a follow-up attack and this unit will.",
 		"breaker" : {
-            "weapon_type" : "Dagger"
-        }
+			"weapon_type" : "Dagger"
+		}
 	},
 	"Assassin's Bow+" : {
 		"color"   : "Colorless",
@@ -60,8 +61,8 @@ var weaponInfo =
 		"description" : "Effective against flying units. If target has a dagger, it cannot make a follow-up attack and this unit will.",
 		"move_effective" : "Flying",
 		"breaker" : {
-            "weapon_type" : "Dagger"
-        }
+			"weapon_type" : "Dagger"
+		}
 	},
 	"Assault" : {
 		"color"   : "Colorless",
@@ -76,7 +77,8 @@ var weaponInfo =
 		"might"   : 14,
 		"range"   : 2,
 		"magical" : true,
-		"description" : "Restores 5 HP to adjacent allies after any combat this unit initiates."
+		"description" : "Restores 5 HP to adjacent allies after any combat this unit initiates.",
+		"char_unique" : true
 	},
 	"Binding Blade" : {
 		"color"   : "Red",
@@ -84,11 +86,12 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
+		"description" : "Grants +2 Def/Res when this unit is attacked.",
 		"defend_mod" : {
 			"def" : 2,
 			"res" : 2
 		},
-		"description" : "Grants +2 Def/Res when this unit is attacked."
+		"char_unique" : true
 	},
 	"Blárblade" : {
 		"color"   : "Blue",
@@ -264,7 +267,8 @@ var weaponInfo =
 		"might"   : 14,
 		"range"   : 2,
 		"magical" : true,
-		"description" : "If unit initiates attack, restrict foe from moving more than 1 space through their next actions."
+		"description" : "If unit initiates attack, restrict foe from moving more than 1 space through their next actions.",
+		"char_unique" : true
 	},
 	"Cymbeline" : {
 		"color" : "Red",
@@ -272,9 +276,10 @@ var weaponInfo =
 		"might" : 14,
 		"range" : 2,
 		"magical" : true,
-		"description" : "Grants adjacent allies Atk+4 through their next actions after any combat this unit initiates."
+		"description" : "Grants adjacent allies Atk+4 through their next actions after any combat this unit initiates.",
+		"char_unique" : true
 	},
-	"Dark Breath" : {
+	"Dark Breath (Blue)" : {
 		"color"   : "Blue",
 		"type"    : "Blue Breath",
 		"might"   : 9,
@@ -282,9 +287,41 @@ var weaponInfo =
 		"magical" : true,
 		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions."
 	},
-	"Dark Breath+" : {
+	"Dark Breath (Green)" : {
+		"color"   : "Green",
+		"type"    : "Green Breath",
+		"might"   : 9,
+		"range"   : 1,
+		"magical" : true,
+		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions."
+	},
+	"Dark Breath (Red)" : {
+		"color"   : "Red",
+		"type"    : "Red Breath",
+		"might"   : 9,
+		"range"   : 1,
+		"magical" : true,
+		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions."
+	},
+	"Dark Breath+ (Blue)" : {
 		"color"   : "Blue",
 		"type"    : "Blue Breath",
+		"might"   : 13,
+		"range"   : 1,
+		"magical" : true,
+		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions."
+	},
+	"Dark Breath+ (Green)" : {
+		"color"   : "Green",
+		"type"    : "Green Breath",
+		"might"   : 13,
+		"range"   : 1,
+		"magical" : true,
+		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions."
+	},
+	"Dark Breath+ (Red)" : {
+		"color"   : "Red",
+		"type"    : "Red Breath",
 		"might"   : 13,
 		"range"   : 1,
 		"magical" : true,
@@ -301,7 +338,8 @@ var weaponInfo =
 			"def" : -7,
 			"res" : -7
 		},
-		"initiate_poison" : 7
+		"initiate_poison" : 7,
+		"char_unique" : true
 	},
 	"Dire Thunder" : {
 		"color"   : "Blue",
@@ -313,7 +351,8 @@ var weaponInfo =
 		"brave"   : true,
 		"stat_mod" : {
 			"spd" : -5
-		}
+		},
+		"char_unique" : true
 	},
 	"Durandal" : {
 		"color"   : "Red",
@@ -324,7 +363,8 @@ var weaponInfo =
 		"description" : "Grants Atk+4 when unit initiates combat.",
 		"initiate_mod" : {
 			"atk" : 4
-		}
+		},
+		"char_unique" : true
 	},
 	"Eckesachs" : {
 		"color"   : "Red",
@@ -335,7 +375,8 @@ var weaponInfo =
 		"description" : "Inflicts Def-4 on foes within 2 spaces through their next actions at the start of each turn.",
 		"threaten" : {
 			"def" : -4
-		}
+		},
+		"char_unique" : true
 	},
 	"Elfire" : {
 		"color"   : "Red",
@@ -350,7 +391,8 @@ var weaponInfo =
 		"might"   : 14,
 		"range"   : 2,
 		"magical" : true,
-		"description" : "If unit initiates attack, bonuses on foes within 2 spaces of the target become penalties through their next actions."
+		"description" : "If unit initiates attack, bonuses on foes within 2 spaces of the target become penalties through their next actions.",
+		"char_unique" : true
 	},
 	"Elthunder" : {
 		"color"   : "Blue",
@@ -391,7 +433,8 @@ var weaponInfo =
 		"range"   : 2,
 		"magical" : true,
 		"description" : "Effective against flying units.",
-		"move_effective": "Flying"
+		"move_effective": "Flying",
+		"char_unique" : true
 	},
 	"Falchion" : {
 		"color"   : "Red",
@@ -400,7 +443,8 @@ var weaponInfo =
 		"range"   : 1,
 		"magical" : false,
 		"description" : "Effective against dragons. At the start of every third turn, unit recovers 10 HP.",
-		"dragon_effective" : true
+		"dragon_effective" : true,
+		"char_unique" : true
 	},
 	"Fear" : {
 		"color"   : "Colorless",
@@ -436,7 +480,8 @@ var weaponInfo =
 		"description" : "Inflicts Atk-4 on foes within 2 spaces through their next actions at the start of each turn.",
 		"threaten" : {
 			"atk" : -4
-		}
+		},
+		"char_unique" : true
 	},
 	"Fire" : {
 		"color"   : "Red",
@@ -487,14 +532,42 @@ var weaponInfo =
 		"range"   : 1,
 		"magical" : true
 	},
-	"Flametongue" : {
+	"Flametongue (Blue)" : {
+		"color"   : "Blue",
+		"type"    : "Blue Breath",
+		"might"   : 11,
+		"range"   : 1,
+		"magical" : true
+	},
+	"Flametongue (Green)" : {
+		"color"   : "Green",
+		"type"    : "Green Breath",
+		"might"   : 11,
+		"range"   : 1,
+		"magical" : true
+	},
+	"Flametongue (Red)" : {
 		"color"   : "Red",
 		"type"    : "Red Breath",
 		"might"   : 11,
 		"range"   : 1,
 		"magical" : true
 	},
-	"Flametongue+" : {
+	"Flametongue+ (Blue)" : {
+		"color"   : "Blue",
+		"type"    : "Blue Breath",
+		"might"   : 15,
+		"range"   : 1,
+		"magical" : true
+	},
+	"Flametongue+ (Green)" : {
+		"color"   : "Green",
+		"type"    : "Green Breath",
+		"might"   : 15,
+		"range"   : 1,
+		"magical" : true
+	},
+	"Flametongue+ (Red)" : {
 		"color"   : "Red",
 		"type"    : "Red Breath",
 		"might"   : 15,
@@ -514,8 +587,9 @@ var weaponInfo =
 		"might"   : 14,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "Effective against flying units. Unit can pass through foes if own HP ≥ 50%.",
-		"move_effective" : "Flying"
+		"description" : "Effective against flying units. Unit can pass through foes if own HP ≥ 50%.",
+		"move_effective" : "Flying",
+		"char_unique" : true
 	},
 	"Fólkvangr" : {
 		"color"   : "Red",
@@ -526,7 +600,8 @@ var weaponInfo =
 		"description" : "Grants Atk+5 at start of turn if HP ≤ 50%.",
 		"defiant" : {
 			"atk" : 5
-		}
+		},
+		"char_unique" : true
 	},
 	"Gradivus" : {
 		"color"   : "Blue",
@@ -535,7 +610,8 @@ var weaponInfo =
 		"range"   : 1,
 		"magical" : false,
 		"description" : "Enables wielder to counter-attack regardless of attacker's range.",
-		"counter" : true
+		"counter" : true,
+		"char_unique" : true
 	},
 	"Gravity" : {
 		"color"   : "Colorless",
@@ -626,7 +702,8 @@ var weaponInfo =
 		"range"   : 1,
 		"magical" : false,
 		"description" : "Accelerates Special trigger (cooldown count-1).",
-		"spec_cooldown_mod" : -1
+		"spec_cooldown_mod" : -1,
+		"char_unique" : true
 	},
 	"Heavy Spear" : {
 		"color"   : "Blue",
@@ -675,13 +752,6 @@ var weaponInfo =
 		}
 	},
 	"Iron Lance" : {
-		"color"   : "Blue",
-		"type"    : "Lance",
-		"might"   : 6,
-		"range"   : 1,
-		"magical" : false
-	},
-	"Iron Spear" : {
 		"color"   : "Blue",
 		"type"    : "Lance",
 		"might"   : 6,
@@ -884,7 +954,8 @@ var weaponInfo =
 		"range" : 1,
 		"magical" : false,
 		"description" : "Accelerates Special trigger (cooldown count-1).",
-		"spec_cooldown_mod" : -1
+		"spec_cooldown_mod" : -1,
+		"char_unique" : true
 	},
 	"Naga" : {
 		"color"   : "Green",
@@ -897,7 +968,8 @@ var weaponInfo =
 		"defend_mod" : {
 			"def" : 2,
 			"res" : 2
-		}
+		},
+		"char_unique" : true
 	},
 	"Nóatún" : {
 		"color"   : "Green",
@@ -905,7 +977,8 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Unit may move adjacent to any ally when HP ≤ 40%."
+		"description" : "Unit may move adjacent to any ally when HP ≤ 40%.",
+		"char_unique" : true
 	},
 	"Pain" : {
 		"color"   : "Colorless",
@@ -935,7 +1008,8 @@ var weaponInfo =
 		"move_effective" : "Flying",
 		"initiate_mod" : {
 			"res" : 4
-		}
+		},
+		"char_unique" : true
 	},
 	"Poison Dagger" : {
 		"color"   : "Colorless",
@@ -972,7 +1046,8 @@ var weaponInfo =
 		"range"   : 1,
 		"magical" : false,
 		"description" : "Enables wielder to counter-attack regardless of attacker's range.",
-		"counter" : true
+		"counter" : true,
+		"char_unique" : true
 	},
 	"Rauðrblade" : {
 		"color"   : "Red",
@@ -1036,6 +1111,14 @@ var weaponInfo =
 		"might"   : 9,
 		"range"   : 2,
 		"magical" : true
+	},
+	"Rexcalibur+" : {
+		"color"   : "Green",
+		"type"    : "Green Tome",
+		"might"   : 13,
+		"range"   : 2,
+		"magical" : true,
+		"char_unique" : true
 	},
 	"Rogue Dagger" : {
 		"color"   : "Colorless",
@@ -1119,7 +1202,8 @@ var weaponInfo =
 		"range"   : 1,
 		"magical" : false,
 		"description" : "Enables wielder to counter-attack regardless of attacker's range.",
-		"counter" : true
+		"counter" : true,
+		"char_unique" : true
 	},
 	"Sieglinde" : {
 		"color"   : "Red",
@@ -1127,7 +1211,8 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Grants adjacent allies Atk+3 through their next actions at the start of each turn."
+		"description" : "Grants adjacent allies Atk+3 through their next actions at the start of each turn.",
+		"char_unique" : true
 	},
 	"Siegmund" : {
 		"color"   : "Blue",
@@ -1135,7 +1220,8 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Grants adjacent allies Atk+3 through their next actions at the start of each turn."
+		"description" : "Grants adjacent allies Atk+3 through their next actions at the start of each turn.",
+		"char_unique" : true
 	},
 	"Silver Axe" : {
 		"color"   : "Green",
@@ -1254,10 +1340,11 @@ var weaponInfo =
 		"might"   : 16,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "If unit initiates combat at HP ≤ 50%, any follow-up attack occurs immediately.",
+		"description" : "If unit initiates combat at HP ≤ 50%, any follow-up attack occurs immediately.",
 		"desperation" : {
 			"threshold" : 0.5
-		}
+		},
+		"char_unique" : true
 	},
 	"Steel Axe" : {
 		"color"   : "Green",
@@ -1294,13 +1381,6 @@ var weaponInfo =
 		"range"   : 1,
 		"magical" : false
 	},
-	"Steel Spear" : {
-		"color"   : "Blue",
-		"type"    : "Lance",
-		"might"   : 8,
-		"range"   : 1,
-		"magical" : false
-	},
 	"Steel Sword" : {
 		"color"   : "Red",
 		"type"    : "Sword",
@@ -1314,6 +1394,14 @@ var weaponInfo =
 		"might"   : 9,
 		"range"   : 2,
 		"magical" : true
+	},
+	"Thoron+" : {
+		"color"   : "Blue",
+		"type"    : "Blue Tome",
+		"might"   : 13,
+		"range"   : 2,
+		"magical" : true,
+		"char_unique" : true
 	},
 	"Thunder" : {
 		"color"   : "Blue",
@@ -1334,7 +1422,8 @@ var weaponInfo =
 			"stat_mod" : {
 				"def" : 4
 			}
-		}
+		},
+		"char_unique" : true
 	},
 	"Valaskjálf" : {
 		"color"   : "Blue",
@@ -1345,7 +1434,8 @@ var weaponInfo =
 		"description" : "Unit counter-attacks first when attacked at HP ≤ 50%.",
 		"vantage" : {
             "threshold" : 0.5
-        }
+        },
+		"char_unique" : true
 	},
 	"Wind" : {
 		"color"   : "Green",
@@ -1381,6 +1471,7 @@ var weaponInfo =
 		"description" : "Grants Spd+4 when unit initiates combat.",
 		"initiate_mod" : {
 			"spd" : 4
-		}
+		},
+		"char_unique" : true
 	}
 };
