@@ -821,7 +821,7 @@ function selectCharTab(attacker, newIndex) {
 	var oldTabID = attacker ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString();
 	var newTabID = (attacker ? "#atk-tab-" : "#def-tab-") + newIndex.toString();
 	$(oldTabID).removeClass("char-tab-selected").addClass("char-tab");
-	$(newTabID).removeClass("char-tab").addClass("char-tab-selected");
+	$(newTabID).removeClass("char-tab").removeClass("char-tab-unselected").addClass("char-tab-selected");
 	
 	// store current character info
 	storeCharTabInfo(attacker);
@@ -1686,9 +1686,6 @@ function setupChars() {
 
 	// add to html
 	$(".char-selector").html(options);
-
-	// setup default image on character slots
-	getPortrait(".char-tab", "Other");
 	
 	// select character slot in each panel
 	selectCharTab(true, 0);
@@ -2014,7 +2011,7 @@ $(document).ready( function() {
 	});
 	
 	// setup character tab changes
-	$(".char-tab").on("click", function() {
+	$(".char-tab, .char-tab-unselected").on("click", function() {
 		selectCharTab($(this).data("charnum") === 1, $(this).data("index"));
 		simBattle();
 	});

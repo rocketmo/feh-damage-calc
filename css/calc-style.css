@@ -137,7 +137,7 @@ h1, h2, h3 {
 
 body:after {
 	display: none;
-	content: url(../img/swap-hover.png) url(../img/swap-press.png);
+	content: url(../img/swap-hover.png) url(../img/swap-press.png) url(../img/Portraits/Unselected-hover.png);
 }
 
 #swap-button:focus {
@@ -289,4 +289,22 @@ h3 {
 	background-color: #FCE77E;
 	background-size: cover;
 	vertical-align: middle;
+}
+
+.char-tab-unselected {
+	display: inline-block;
+	width: 17%;
+	border: solid 1px #c0c0c0;
+	background-color: transparent;
+	background-size: cover;
+	vertical-align: middle;
+}
+
+.char-tab-unselected:hover {
+	content: url(../img/Portraits/Unselected-hover.png);
+	cursor: pointer;
+}
+
+.char-tab-unselected:active {
+	background-color: #FFF7C9;
 }
