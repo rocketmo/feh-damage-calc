@@ -1,5 +1,16 @@
+// stat total upper limit
 var HIGHESTSTAT = 99;
+
+// true if battle log is open, false otherwise
 var openLog = true;
+
+// index of the selected characters
+var selectedAttacker = 0;
+var selectedDefender = 0;
+
+// character slots
+var attackerTeam = [{}, {}, {}, {}, {}];
+var defenderTeam = [{}, {}, {}, {}, {}];
 
 // limits number inputs
 // num is a number input, minNumber is the lower limit
@@ -208,6 +219,28 @@ function getSpecialCooldown(specialData, weaponData, assistData) {
 	}
 	
 	return Math.max(cool, 0);
+}
+
+// loads the given character portrait into the given img
+function getPortrait(imgID, portraitName) {
+	"use strict";
+	$(imgID).attr("src", "https://rocketmo.github.io/feh-damage-calc/img/Portraits/" + portraitName + ".png");
+}
+
+// marks a character tab as selected and deselects the previous
+// attacker is true if we are selecting from the attacker panel, newIndex is the index of the tab to select
+function selectCharTab(attacker, newIndex) {
+	"use strict";
+	var oldTabID = attacker ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString();
+	var newTabID = (attacker ? "#atk-tab-" : "#def-tab-") + newIndex.toString();
+	$(oldTabID).removeClass("char-tab-selected").addClass("char-tab");
+	$(newTabID).removeClass("char-tab").addClass("char-tab-selected");
+	
+	if (attacker) {
+		selectedAttacker = newIndex;
+	} else {
+		selectedDefender = newIndex;
+	}
 }
 
 // updates a displayed stat if the given select has a stat_mod property
@@ -458,9 +491,13 @@ function setColor(weaponType, charNum) {
 
 // displays character information in the character panels
 // singleChar contains only the character info to display, charNum determines which panel to display on
-function displayChar(singleChar, charNum) {
+function displayChar(charName, charNum) {
 	"use strict";
+	var singleChar = charInfo[charName];
 	if (!singleChar.hasOwnProperty("move_type")) { // no info -> custom option
+		// display portrait
+		getPortrait((charNum === '1' ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString()), "Other");
+		
 		// enable inputs
 		$("#extra-char-info-" + charNum).css("color", "white");
 		$("#extra-char-info-" + charNum + " select").removeAttr("disabled");
@@ -519,6 +556,9 @@ function displayChar(singleChar, charNum) {
 		
 		return;
 	}
+	
+	// display portrait
+	getPortrait((charNum === '1' ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString()), charName);
 
 	// grey out disabled input fields
 	$("#extra-char-info-" + charNum).css("color", "#5b5b5b");
@@ -1484,11 +1524,18 @@ function setupChars() {
 	// add to html
 	$(".char-selector").html(options);
 
+	// setup default image on character slots
+	getPortrait(".char-tab", "Other");
+	
+	// select character slot in each panel
+	selectCharTab(true, 0);
+	selectCharTab(false, 0);
+	
 	// set default characters
 	$("#char-1 option:eq(0)").attr("selected", "selected");
-	displayChar(charInfo[$("#char-1").val()], "1");
+	displayChar($("#char-1").val(), "1");
 	$("#char-2 option:eq(1)").attr("selected", "selected");
-	displayChar(charInfo[$("#char-2").val()], "2");
+	displayChar($("#char-2").val(), "2");
 
 	// simulate initial battle
 	simBattle();
@@ -1743,7 +1790,7 @@ function swap() {
 }
 
 // setup inital page
-$(document).ready( function () {
+$(document).ready( function() {
 	"use strict";	
 	
 	// setup show/hide buttons
@@ -1756,15 +1803,15 @@ $(document).ready( function () {
 	});
 
 	// setup number input changes
-	$(".more-than-zero").on("change", function () {
+	$(".more-than-zero").on("change", function() {
 		limit(this, 1);	
 	});
-	$(".zero-or-more").on("change", function () {
+	$(".zero-or-more").on("change", function() {
 		limit(this, 0);	
 	});
 
 	// setup hp value updates
-	$(".hp-stat").on("change", function () {
+	$(".hp-stat").on("change", function() {
 		// old value
 		var oldHP = parseInt($("#" + this.id + "-denom").text());
 
@@ -1778,7 +1825,7 @@ $(document).ready( function () {
 		
 		simBattle();
 	});
-	$(".curr-hp-val").on("change", function () {
+	$(".curr-hp-val").on("change", function() {
 		// current hp cannot be greater than base hp
 		var baseHP = parseInt($("#hp-" + $(this).data("charnum")).val());
 		if (this.value > baseHP) {
@@ -1789,7 +1836,7 @@ $(document).ready( function () {
 	});
 	
 	// setup special cooldown updates
-	$(".spec-cool").on("change", function () {
+	$(".spec-cool").on("change", function() {
 		var maxCooldown = parseInt($("#spec-cooldown-max-" + $(this).data("charnum")).text());
 		if (this.value > maxCooldown) {
 			this.value = maxCooldown;
@@ -1798,26 +1845,31 @@ $(document).ready( function () {
 		simBattle();
 	});
 	
+	// make character tabs load default image on error
+	$(".char-tab").on("error", function() {
+		$(this).attr("src", "https://rocketmo.github.io/feh-damage-calc/img/Portraits/Other.png");
+	});
+	
 	// setup initial display
 	setupStats();
 	setupChars();
 	
 	// setup character select
-	$(".char-selector").on("change", function () {
+	$(".char-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
-		displayChar(charInfo[this.value], charNum);
+		displayChar(this.value, charNum);
 		simBattle();
 	});
 	
 	// setup weapon select
-	$(".weapon-selector").on("change", function () {
+	$(".weapon-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		showWeapon(this.value, charNum, true);
 		simBattle();
 	});
 	
 	// setup special select
-	$(".special-selector").on("change", function () {
+	$(".special-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		getSpecialData(charNum);
 		showSpecCooldown(this.value, charNum, false);
@@ -1826,7 +1878,7 @@ $(document).ready( function () {
 	});
 	
 	// setup assist select
-	$(".assist-selector").on("change", function () {
+	$(".assist-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		getAssistData(charNum);
 		updateSpecCooldown(charNum);
@@ -1834,7 +1886,7 @@ $(document).ready( function () {
 	});
 	
 	// setup skill select
-	$(".passive-selector").on("change", function () {
+	$(".passive-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		var skillType = $(this).data("skilltype");
 		getSkillData(charNum, skillType, true);
@@ -1842,7 +1894,7 @@ $(document).ready( function () {
 	});
 	
 	// set up weapon type changes
-	$(".weapon-type-selector").on("change", function () {
+	$(".weapon-type-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		loadWeapons(this.value, charNum);
 		setColor(this.value, charNum);
@@ -1852,7 +1904,7 @@ $(document).ready( function () {
 	});
 	
 	// set up color changes
-	$(".color-selector").on("change", function () {
+	$(".color-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
 		if (this.value === "Red") {
 			loadWeapons("Sword", charNum);
@@ -1873,12 +1925,12 @@ $(document).ready( function () {
 	});
 	
 	// setup other battle value changes
-	$(".battle-val").on("change", function () {
+	$(".battle-val").on("change", function() {
 		simBattle();
 	});
 	
 	// swap button
-	$("#swap-button").on("click", function () {
+	$("#swap-button").on("click", function() {
 		swap();
 		simBattle();
 	});

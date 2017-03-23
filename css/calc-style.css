@@ -26,7 +26,7 @@ body {
 }
 
 fieldset {
-	padding: 0.5em 1.6em 0.6em 0.8em;
+	padding: 0.5em 1em 0.6em 1em;
 	border-radius: 6px;
 	border-color: #c0c0c0;
 }
@@ -83,10 +83,6 @@ input[type="number"] {
 
 .char-info-panel {
 	height: 100%;
-}
-
-.weapon-select input[type=number] {
-	padding-left: 3px;
 }
 
 .stat-info input[type=number], .current-hp input[type=number], .skill-select input[type=number] {
@@ -265,16 +261,16 @@ h3 {
 .char-slots {
 	display: inline-block;
 	text-align: center;
-	width: 100%;
+	width: 18.7em;
 }
 
 .char-tab {
 	display: inline-block;
 	width: 17%;
-	padding-top: 17%;
 	border: solid 1px #c0c0c0;
 	background-color: white;
 	background-size: cover;
+	vertical-align: middle;
 }
 
 .char-tab:hover {
@@ -283,13 +279,13 @@ h3 {
 }
 
 .char-tab:active {
-	background-color: #FFE96C;
+	background-color: #8B8461;
 }
 .char-tab-selected {
 	display: inline-block;
 	width: 17%;
-	padding-top: 17%;
 	border: solid 1px gold;
 	background-color: #f5de60;
 	background-size: cover;
+	vertical-align: middle;
 }
