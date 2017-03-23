@@ -274,18 +274,19 @@ h3 {
 }
 
 .char-tab:hover {
-	background-color: #FFF4B5;
+	background-color: #FFF7C9;
 	cursor: pointer;
 }
 
 .char-tab:active {
-	background-color: #8B8461;
+	background-color: #FCE77E;
 }
+
 .char-tab-selected {
 	display: inline-block;
 	width: 17%;
 	border: solid 1px gold;
-	background-color: #f5de60;
+	background-color: #FCE77E;
 	background-size: cover;
 	vertical-align: middle;
 }
