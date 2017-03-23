@@ -775,19 +775,22 @@ var skillInfo =
             "description" : "Prevents follow up attack in combat from unit and foe if unit's HP ≤ 90%.",
             "wary" : {
                 "threshold" : 0.9
-            }
+            },
+            "move_unique" : "Armored"
         },
         "Wary Fighter 2" : {
             "description" : "Prevents follow up attack in combat from unit and foe if unit's HP ≤ 70%.",
             "wary" : {
                 "threshold" : 0.7
-            }
+            },
+            "move_unique" : "Armored"
         },
         "Wary Fighter 3" : {
             "description" : "Prevents follow up attack in combat from unit and foe if unit's HP ≤ 50%.",
             "wary" : {
                 "threshold" : 0.5
-            }
+            },
+            "move_unique" : "Armored"
         },
         "Wings of Mercy 1" : {
             "description" : "Enables unit to warp adjacent to any ally with HP ≤ 30%."
