@@ -304,7 +304,3 @@ h3 {
 	content: url(../img/Portraits/Unselected-hover.png);
 	cursor: pointer;
 }
-
-.char-tab-unselected:active {
-	background-color: #FFF7C9;
-}

@@ -821,7 +821,14 @@ function selectCharTab(attacker, newIndex) {
 	var oldTabID = attacker ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString();
 	var newTabID = (attacker ? "#atk-tab-" : "#def-tab-") + newIndex.toString();
 	$(oldTabID).removeClass("char-tab-selected").addClass("char-tab");
-	$(newTabID).removeClass("char-tab").removeClass("char-tab-unselected").addClass("char-tab-selected");
+	
+	var newTab = false;
+	if ($(newTabID).hasClass("char-tab-unselected") && (oldTabID !== newTabID)) {
+		$(newTabID).hide().removeClass("char-tab-unselected").addClass("char-tab-selected");
+		newTab = true;
+	} else {
+		$(newTabID).removeClass("char-tab-unselected").removeClass("char-tab").addClass("char-tab-selected");
+	}
 	
 	// store current character info
 	storeCharTabInfo(attacker);
@@ -835,6 +842,11 @@ function selectCharTab(attacker, newIndex) {
 	
 	// retrieve selected character info
 	getCharTabInfo(attacker);
+	
+	// fade in new tab
+	if (newTab) {
+		$(newTabID).fadeIn();
+	}
 }
 
 // determines if the attacker has triangle advantage
