@@ -1,5 +1,16 @@
+// stat total upper limit
 var HIGHESTSTAT = 99;
+
+// true if battle log is open, false otherwise
 var openLog = true;
+
+// index of the selected characters
+var selectedAttacker = 0;
+var selectedDefender = 0;
+
+// character slots
+var attackerTeam = [{}, {}, {}, {}, {}];
+var defenderTeam = [{}, {}, {}, {}, {}];
 
 // limits number inputs
 // num is a number input, minNumber is the lower limit
@@ -247,8 +258,8 @@ function updateStatTotal(selectID, charNum, increment) {
 	}
 }
 
-// updates the special cooldown max if the given select has a spec_cooldown_mod property
-// selectID is the select's id, charNum determines which panel's stats to change, increment is true if we need to apply mod to the cooldown and false otherwise
+// updates the special cooldown max
+// charNum determines which panel's stats to change
 function updateSpecCooldown(charNum) {
 	"use strict";
 	if ($.isNumeric($("#spec-cooldown-max-" + charNum).text())) {
@@ -456,11 +467,21 @@ function setColor(weaponType, charNum) {
 	}
 }
 
+// loads the given character portrait into the given img
+function getPortrait(imgID, portraitName) {
+	"use strict";
+	$(imgID).attr("src", "img/Portraits/" + portraitName + ".png");
+}
+
 // displays character information in the character panels
 // singleChar contains only the character info to display, charNum determines which panel to display on
-function displayChar(singleChar, charNum) {
+function displayChar(charName, charNum) {
 	"use strict";
+	var singleChar = charInfo[charName];
 	if (!singleChar.hasOwnProperty("move_type")) { // no info -> custom option
+		// display portrait
+		getPortrait((charNum === "1" ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString()), "Other");
+		
 		// enable inputs
 		$("#extra-char-info-" + charNum).css("color", "white");
 		$("#extra-char-info-" + charNum + " select").removeAttr("disabled");
@@ -487,17 +508,17 @@ function displayChar(singleChar, charNum) {
 		}
 		
 		// load in passive skills
-		loadPassives('a', charNum);
+		loadPassives("a", charNum);
 		$("#passive-a-" + charNum).val(passiveA);
-		getSkillData("#passive-a-" + charNum, 'a', false);
+		getSkillData("#passive-a-" + charNum, "a", false);
 		
-		loadPassives('b', charNum);
+		loadPassives("b", charNum);
 		$("#passive-b-" + charNum).val(passiveB);
-		getSkillData("#passive-b-" + charNum, 'b', false);
+		getSkillData("#passive-b-" + charNum, "b", false);
 		
-		loadPassives('c', charNum);
+		loadPassives("c", charNum);
 		$("#passive-c-" + charNum).val(passiveC);
-		getSkillData("#passive-c-" + charNum, 'c', false);
+		getSkillData("#passive-c-" + charNum, "c", false);
 		
 		// load in assist skills
 		var assistOptions = "<option value='None'>None</option>";
@@ -519,6 +540,9 @@ function displayChar(singleChar, charNum) {
 		
 		return;
 	}
+	
+	// display portrait
+	getPortrait((charNum === "1" ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString()), charName);
 
 	// grey out disabled input fields
 	$("#extra-char-info-" + charNum).css("color", "#5b5b5b");
@@ -541,9 +565,9 @@ function displayChar(singleChar, charNum) {
 	$("#stats-" + charNum + " .stat-bonus, #stats-" + charNum + " .stat-penalty, #stats-" + charNum + " .stat-spur").val(0);
 	
 	// show passive skills
-	showSkills(singleChar, charNum, 'a');
-	showSkills(singleChar, charNum, 'b');
-	showSkills(singleChar, charNum, 'c');
+	showSkills(singleChar, charNum, "a");
+	showSkills(singleChar, charNum, "b");
+	showSkills(singleChar, charNum, "c");
 	
 	// show special skill	
 	var specials = "";
@@ -632,6 +656,183 @@ function displayChar(singleChar, charNum) {
 	
 	// show extra weapon info
 	showWeapon(selectedWeapon, charNum, false);
+}
+
+// stores the currently selected character for later
+// attacker is true if the character is in the attacker panel
+function storeCharTabInfo(attacker) {
+	var charNum = attacker ? "1" : "2";
+	var infoToStore = {};
+	
+	// char info
+	infoToStore.character = $("#char-" + charNum).val();
+	infoToStore.color = $("#color-" + charNum).val();
+	infoToStore.weaponType = $("#weapon-type-" + charNum).val();
+	infoToStore.moveType = $("#move-type-" + charNum).val();
+	
+	// weapon and skill info
+	infoToStore.weapon = $("#weapon-" + charNum).val();
+	infoToStore.passiveA = $("#passive-a-" + charNum).val();
+	infoToStore.passiveB = $("#passive-b-" + charNum).val();
+	infoToStore.passiveC = $("#passive-c-" + charNum).val();
+	infoToStore.assist = $("#assist-" + charNum).val();
+	infoToStore.special = $("#special-" + charNum).val();
+	infoToStore.specCooldown = $("#spec-cooldown-" + charNum).val();
+	
+	// hp and current hp
+	infoToStore.hp = $("#hp-" + charNum).val();
+	infoToStore.currentHP = $("#curr-hp-" + charNum).val();
+	
+	// attack
+	infoToStore.atk = $("#atk-" + charNum).val();
+	infoToStore.atkBonus = $("#atk-bonus-" + charNum).val();
+	infoToStore.atkPenalty = $("#atk-penalty-" + charNum).val();
+	infoToStore.atkSpur = $("#atk-spur-" + charNum).val();
+	
+	// speed
+	infoToStore.spd = $("#spd-" + charNum).val();
+	infoToStore.spdBonus = $("#spd-bonus-" + charNum).val();
+	infoToStore.spdPenalty = $("#spd-penalty-" + charNum).val();
+	infoToStore.spdSpur = $("#spd-spur-" + charNum).val();
+	
+	// defense
+	infoToStore.def = $("#def-" + charNum).val();
+	infoToStore.defBonus = $("#def-bonus-" + charNum).val();
+	infoToStore.defPenalty = $("#def-penalty-" + charNum).val();
+	infoToStore.defSpur = $("#def-spur-" + charNum).val();
+	
+	// resistance
+	infoToStore.res = $("#res-" + charNum).val();
+	infoToStore.resBonus = $("#res-bonus-" + charNum).val();
+	infoToStore.resPenalty = $("#res-penalty-" + charNum).val();
+	infoToStore.resSpur = $("#res-spur-" + charNum).val();
+	
+	// store info
+	if (attacker) {
+		attackerTeam[selectedAttacker] = infoToStore;
+	} else {
+		defenderTeam[selectedDefender] = infoToStore;
+	}
+}
+
+// gets the currently selected character and displays their info
+// attacker is true if the character is in the attacker panel
+function getCharTabInfo(attacker) {
+	var charNum = attacker ? "1" : "2";
+	var charTabInfo = attacker ? attackerTeam[selectedAttacker] : defenderTeam[selectedDefender];
+	
+	if (!charTabInfo.hasOwnProperty("character")) { // no character stored, display default
+		if (attacker) {
+			$("#char-1").val($("#char-1 option:eq(0)").val());
+			displayChar($("#char-1").val(), "1");
+		} else {
+			$("#char-2").val($("#char-2 option:eq(1)").val());
+			displayChar($("#char-2").val(), "2");
+		}
+	} else {  // display stored info
+		// get and show default character info
+		$("#char-" + charNum).val(charTabInfo.character);
+		displayChar(charTabInfo.character, charNum);
+		
+		// change extra character info if Custom unit was selected
+		if (charTabInfo.character === "Custom") {
+			$("#color-" + charNum).val(charTabInfo.color);
+			$("#weapon-type-" + charNum).val(charTabInfo.weaponType);
+			$("#move-type-" + charNum).val(charTabInfo.moveType);
+		}
+		
+		// change hp values
+		$("#hp-" + charNum).val(charTabInfo.hp);
+		$(".hp-" + charNum + "-read").text(charTabInfo.hp);
+		$("#curr-hp-" + charNum).val(charTabInfo.currentHP);
+		
+		// change attack values
+		$("#atk-" + charNum).val(charTabInfo.atk);
+		$("#atk-bonus-" + charNum).val(charTabInfo.atkBonus);
+		$("#atk-penalty-" + charNum).val(charTabInfo.atkPenalty);
+		$("#atk-spur-" + charNum).val(charTabInfo.atkSpur);
+		
+		// change speed values
+		$("#spd-" + charNum).val(charTabInfo.spd);
+		$("#spd-bonus-" + charNum).val(charTabInfo.spdBonus);
+		$("#spd-penalty-" + charNum).val(charTabInfo.spdPenalty);
+		$("#spd-spur-" + charNum).val(charTabInfo.spdSpur);
+		
+		// change defense values
+		$("#def-" + charNum).val(charTabInfo.def);
+		$("#def-bonus-" + charNum).val(charTabInfo.defBonus);
+		$("#def-penalty-" + charNum).val(charTabInfo.defPenalty);
+		$("#def-spur-" + charNum).val(charTabInfo.defSpur);
+		
+		// change resistance values
+		$("#res-" + charNum).val(charTabInfo.res);
+		$("#res-bonus-" + charNum).val(charTabInfo.resBonus);
+		$("#res-penalty-" + charNum).val(charTabInfo.resPenalty);
+		$("#res-spur-" + charNum).val(charTabInfo.resSpur);
+		
+		// change passives
+		$("#passive-a-" + charNum).val(charTabInfo.passiveA);
+		$("#passive-b-" + charNum).val(charTabInfo.passiveB);
+		$("#passive-c-" + charNum).val(charTabInfo.passiveC);
+		getSkillData(charNum, "a", false);
+		getSkillData(charNum, "b", false);
+		getSkillData(charNum, "c", false);
+		
+		// change special
+		$("#special-" + charNum).val(charTabInfo.special);
+		showSpecCooldown(charTabInfo.special, charNum, true);
+		getSpecialData(charNum);
+		
+		// change assist
+		$("#assist-" + charNum).val(charTabInfo.assist);
+		getAssistData(charNum);
+		
+		// change weapon
+		if (charTabInfo.character === "Custom") {
+			loadWeapons(charTabInfo.weaponType, charNum);
+		} 
+		
+		$("#weapon-" + charNum).val(charTabInfo.weapon);
+		showWeapon(charTabInfo.weapon, charNum, false);
+		
+		// change special cooldown
+		$("#spec-cooldown-" + charNum).val(charTabInfo.specCooldown);
+	}
+}
+
+// marks a character tab as selected and deselects the previous
+// attacker is true if we are selecting from the attacker panel, newIndex is the index of the tab to select
+function selectCharTab(attacker, newIndex) {
+	"use strict";
+	var oldTabID = attacker ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString();
+	var newTabID = (attacker ? "#atk-tab-" : "#def-tab-") + newIndex.toString();
+	$(oldTabID).removeClass("char-tab-selected").addClass("char-tab");
+	
+	var newTab = false;
+	if ($(newTabID).hasClass("char-tab-unselected") && (oldTabID !== newTabID)) {
+		$(newTabID).hide().removeClass("char-tab-unselected").addClass("char-tab-selected");
+		newTab = true;
+	} else {
+		$(newTabID).removeClass("char-tab-unselected").removeClass("char-tab").addClass("char-tab-selected");
+	}
+	
+	// store current character info
+	storeCharTabInfo(attacker);
+	
+	// change index
+	if (attacker) {
+		selectedAttacker = newIndex;
+	} else {
+		selectedDefender = newIndex;
+	}
+	
+	// retrieve selected character info
+	getCharTabInfo(attacker);
+	
+	// fade in new tab
+	if (newTab) {
+		$(newTabID).fadeIn();
+	}
 }
 
 // determines if the attacker has triangle advantage
@@ -1144,8 +1345,8 @@ function simBattle() {
 	
 	// contains both attacker, defender info and battle log messages
 	var battleInfo = {};
-	battleInfo.attacker = getCharPanelData('1');
-	battleInfo.defender = getCharPanelData('2');
+	battleInfo.attacker = getCharPanelData("1");
+	battleInfo.defender = getCharPanelData("2");
 	battleInfo.logMsg = "";
 	battleInfo.atkRange = $("#weapon-1").data("info").range;
 	
@@ -1483,15 +1684,35 @@ function setupChars() {
 
 	// add to html
 	$(".char-selector").html(options);
-
+	
+	// select character slot in each panel
+	selectCharTab(true, 0);
+	selectCharTab(false, 0);
+	
 	// set default characters
 	$("#char-1 option:eq(0)").attr("selected", "selected");
-	displayChar(charInfo[$("#char-1").val()], "1");
+	displayChar($("#char-1").val(), "1");
 	$("#char-2 option:eq(1)").attr("selected", "selected");
-	displayChar(charInfo[$("#char-2").val()], "2");
+	displayChar($("#char-2").val(), "2");
 
 	// simulate initial battle
 	simBattle();
+}
+
+// sets the class for the given character tab
+// attacker is true if the tab is in the attacker panel, charIndex is the index of the character in the panel
+function setCharTabClass(attacker, charIndex) {
+	var tabID = attacker ? "#atk-tab-" + charIndex.toString() : "#def-tab-" + charIndex.toString();
+	var tabSelected = attacker ? selectedAttacker : selectedDefender;
+	var tabInfo = attacker ? attackerTeam[charIndex] : defenderTeam[charIndex];
+	
+	if (charIndex === tabSelected) {
+		$(tabID).removeClass("char-tab-unselected").removeClass("char-tab").addClass("char-tab-selected");
+	} else if (tabInfo.hasOwnProperty("character")) {
+		$(tabID).removeClass("char-tab-unselected").removeClass("char-tab-selected").addClass("char-tab");
+	} else {
+		$(tabID).removeClass("char-tab").removeClass("char-tab-selected").addClass("char-tab-unselected");
+	}
 }
 
 // sets the disabled attribute of an input
@@ -1740,10 +1961,29 @@ function swap() {
 	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, true);
 	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, true);
 	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, true);
+	
+	// swap teams
+	var tempTeam = attackerTeam;
+	var tempSelected = selectedAttacker;
+	attackerTeam = defenderTeam;
+	selectedAttacker = selectedDefender;
+	defenderTeam = tempTeam;
+	selectedDefender = tempSelected;
+	
+	// swap portraits
+	for (var charIndex = 0; charIndex < 5; charIndex++) {
+		var atkSrc = $("#atk-tab-" + charIndex.toString()).attr("src");
+		$("#atk-tab-" + charIndex.toString()).attr("src", $("#def-tab-" + charIndex.toString()).attr("src"));
+		$("#def-tab-" + charIndex.toString()).attr("src", atkSrc);
+		
+		// set classes
+		setCharTabClass(true, charIndex);
+		setCharTabClass(false, charIndex);
+	}
 }
 
 // setup inital page
-$(document).ready( function () {
+$(document).ready( function() {
 	"use strict";	
 	
 	// setup show/hide buttons
@@ -1756,15 +1996,15 @@ $(document).ready( function () {
 	});
 
 	// setup number input changes
-	$(".more-than-zero").on("change", function () {
+	$(".more-than-zero").on("change", function() {
 		limit(this, 1);	
 	});
-	$(".zero-or-more").on("change", function () {
+	$(".zero-or-more").on("change", function() {
 		limit(this, 0);	
 	});
 
 	// setup hp value updates
-	$(".hp-stat").on("change", function () {
+	$(".hp-stat").on("change", function() {
 		// old value
 		var oldHP = parseInt($("#" + this.id + "-denom").text());
 
@@ -1778,7 +2018,7 @@ $(document).ready( function () {
 		
 		simBattle();
 	});
-	$(".curr-hp-val").on("change", function () {
+	$(".curr-hp-val").on("change", function() {
 		// current hp cannot be greater than base hp
 		var baseHP = parseInt($("#hp-" + $(this).data("charnum")).val());
 		if (this.value > baseHP) {
@@ -1789,7 +2029,7 @@ $(document).ready( function () {
 	});
 	
 	// setup special cooldown updates
-	$(".spec-cool").on("change", function () {
+	$(".spec-cool").on("change", function() {
 		var maxCooldown = parseInt($("#spec-cooldown-max-" + $(this).data("charnum")).text());
 		if (this.value > maxCooldown) {
 			this.value = maxCooldown;
@@ -1798,26 +2038,37 @@ $(document).ready( function () {
 		simBattle();
 	});
 	
+	// make character tabs load default image on error
+	$(".char-tab, .char-tab-selected, .char-tab-unselected").on("error", function() {
+		$(this).attr("src", "img/Portraits/Other.png");
+	});
+	
+	// setup character tab changes
+	$(".char-tab, .char-tab-unselected").on("click", function() {
+		selectCharTab($(this).data("charnum") === 1, $(this).data("index"));
+		simBattle();
+	});
+	
 	// setup initial display
 	setupStats();
 	setupChars();
 	
 	// setup character select
-	$(".char-selector").on("change", function () {
+	$(".char-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
-		displayChar(charInfo[this.value], charNum);
+		displayChar(this.value, charNum);
 		simBattle();
 	});
 	
 	// setup weapon select
-	$(".weapon-selector").on("change", function () {
+	$(".weapon-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		showWeapon(this.value, charNum, true);
 		simBattle();
 	});
 	
 	// setup special select
-	$(".special-selector").on("change", function () {
+	$(".special-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		getSpecialData(charNum);
 		showSpecCooldown(this.value, charNum, false);
@@ -1826,7 +2077,7 @@ $(document).ready( function () {
 	});
 	
 	// setup assist select
-	$(".assist-selector").on("change", function () {
+	$(".assist-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		getAssistData(charNum);
 		updateSpecCooldown(charNum);
@@ -1834,7 +2085,7 @@ $(document).ready( function () {
 	});
 	
 	// setup skill select
-	$(".passive-selector").on("change", function () {
+	$(".passive-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		var skillType = $(this).data("skilltype");
 		getSkillData(charNum, skillType, true);
@@ -1842,7 +2093,7 @@ $(document).ready( function () {
 	});
 	
 	// set up weapon type changes
-	$(".weapon-type-selector").on("change", function () {
+	$(".weapon-type-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		loadWeapons(this.value, charNum);
 		setColor(this.value, charNum);
@@ -1852,7 +2103,7 @@ $(document).ready( function () {
 	});
 	
 	// set up color changes
-	$(".color-selector").on("change", function () {
+	$(".color-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
 		if (this.value === "Red") {
 			loadWeapons("Sword", charNum);
@@ -1873,12 +2124,12 @@ $(document).ready( function () {
 	});
 	
 	// setup other battle value changes
-	$(".battle-val").on("change", function () {
+	$(".battle-val").on("change", function() {
 		simBattle();
 	});
 	
 	// swap button
-	$("#swap-button").on("click", function () {
+	$("#swap-button").on("click", function() {
 		swap();
 		simBattle();
 	});

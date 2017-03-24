@@ -26,8 +26,9 @@ body {
 }
 
 fieldset {
-	padding: 0.5em 1.6em 0.6em 0.8em;
+	padding: 0.5em 1em 0.6em 1em;
 	border-radius: 6px;
+	border-color: #c0c0c0;
 }
 
 #char-panel {
@@ -84,10 +85,6 @@ input[type="number"] {
 	height: 100%;
 }
 
-.weapon-select input[type=number] {
-	padding-left: 3px;
-}
-
 .stat-info input[type=number], .current-hp input[type=number], .skill-select input[type=number] {
 	width: 2.5em;
 }
@@ -138,9 +135,9 @@ h1, h2, h3 {
 	border: none;
 }
 
-body:after {
+body::after {
 	display: none;
-	content: url(../img/swap-hover.png) url(../img/swap-press.png);
+	content: url(../img/swap-hover.png) url(../img/swap-press.png) url(../img/Portraits/Unselected-hover.png);
 }
 
 #swap-button:focus {
@@ -261,3 +258,52 @@ h3 {
 	color: #C30003;
 }
 
+.char-slots {
+	display: inline-block;
+	text-align: center;
+	width: 18.7em;
+}
+
+.char-tab {
+	display: inline-block;
+	width: 17%;
+	border: solid 1px #c0c0c0;
+	background-color: white;
+	background-size: cover;
+	vertical-align: middle;
+}
+
+.char-tab:hover {
+	background-color: #FFF7C9;
+	border: solid 1px gold;
+	cursor: pointer;
+}
+
+.char-tab:active {
+	background-color: #FCE77E;
+}
+
+.char-tab-selected {
+	display: inline-block;
+	width: 17%;
+	border: solid 1px gold;
+	background-color: #FCE77E;
+	background-size: cover;
+	vertical-align: middle;
+}
+
+.char-tab-unselected {
+	display: inline-block;
+	width: 17%;
+	border: solid 1px #c0c0c0;
+	background-color: transparent;
+	background-size: cover;
+	vertical-align: middle;
+}
+
+.char-tab-unselected:hover {
+	content: url(../img/Portraits/Unselected-hover.png);
+	cursor: pointer;
+	background-color: #22292C;
+	border: solid 1px white;
+}
