@@ -798,24 +798,6 @@ function getCharTabInfo(attacker) {
 		// change special cooldown
 		$("#spec-cooldown-" + charNum).val(charTabInfo.specCooldown);
 	}
-	
-	/*
-	
-	// weapon and skill info
-	infoToStore.weapon = $("#weapon-" + charNum).val();
-	infoToStore.passiveA = $("#passive-a-" + charNum).val();
-	infoToStore.passiveB = $("#passive-b-" + charNum).val();
-	infoToStore.passiveC = $("#passive-c-" + charNum).val();
-	infoToStore.assist = $("#assist-" + charNum).val();
-	infoToStore.special = $("#special-" + charNum).val();
-	infoToStore.specCooldown = $("#spec-cooldown-" + charNum).val();
-	
-	// store info
-	if (attacker) {
-		attackerTeam[selectedAttacker] = infoToStore;
-	} else {
-		defenderTeam[selectedDefender] = infoToStore;
-	} */
 }
 
 // marks a character tab as selected and deselects the previous
