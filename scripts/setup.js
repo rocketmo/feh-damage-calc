@@ -1014,6 +1014,7 @@ function getCharPanelData(charNum) {
 	
 	charData.currHP = parseInt($("#curr-hp-" + charNum).val());
 	charData.initHP = parseInt($("#curr-hp-" + charNum).val());
+	charData.startHP = parseInt($("#curr-hp-" + charNum).val());
 	charData.hp = parseInt($("#hp-" + charNum).val());
 	charData.atk = Math.max(0, parseInt($("#atk-"+charNum).val()) + parseInt($("#atk-bonus-"+charNum).val()) + parseInt($("#atk-penalty-"+charNum).val()) + parseInt($("#atk-spur-"+charNum).val()));
 	charData.spd = Math.max(0, parseInt($("#spd-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#spd-penalty-"+charNum).val()) + parseInt($("#spd-spur-"+charNum).val()));
@@ -1637,8 +1638,8 @@ function simBattle() {
 	$("#interaction-list").stop(true, true).hide().html(battleInfo.logMsg);
 	$(".hp-remain-block").stop(true, true).hide();
 	$("#result-msg").stop(true, true).hide();
-	$("#hp-remain-1").text(battleInfo.attacker.currHP.toString());
-	$("#hp-remain-2").text(battleInfo.defender.currHP.toString());
+	$("#hp-remain-1").text(battleInfo.attacker.startHP.toString() + " → " + battleInfo.attacker.currHP.toString());
+	$("#hp-remain-2").text(battleInfo.defender.startHP.toString() + " → " + battleInfo.defender.currHP.toString());
 	$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
 	
 	// victory message
