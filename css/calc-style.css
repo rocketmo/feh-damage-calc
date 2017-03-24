@@ -135,7 +135,7 @@ h1, h2, h3 {
 	border: none;
 }
 
-body:after {
+body::after {
 	display: none;
 	content: url(../img/swap-hover.png) url(../img/swap-press.png) url(../img/Portraits/Unselected-hover.png);
 }
@@ -275,6 +275,7 @@ h3 {
 
 .char-tab:hover {
 	background-color: #FFF7C9;
+	border: solid 1px gold;
 	cursor: pointer;
 }
 
@@ -303,4 +304,6 @@ h3 {
 .char-tab-unselected:hover {
 	content: url(../img/Portraits/Unselected-hover.png);
 	cursor: pointer;
+	background-color: #22292C;
+	border: solid 1px white;
 }

@@ -470,7 +470,7 @@ function setColor(weaponType, charNum) {
 // loads the given character portrait into the given img
 function getPortrait(imgID, portraitName) {
 	"use strict";
-	$(imgID).attr("src", "https://rocketmo.github.io/feh-damage-calc/img/Portraits/" + portraitName + ".png");
+	$(imgID).attr("src", "img/Portraits/" + portraitName + ".png");
 }
 
 // displays character information in the character panels
@@ -788,6 +788,10 @@ function getCharTabInfo(attacker) {
 		getAssistData(charNum);
 		
 		// change weapon
+		if (charTabInfo.character === "Custom") {
+			loadWeapons(charTabInfo.weaponType, charNum);
+		} 
+		
 		$("#weapon-" + charNum).val(charTabInfo.weapon);
 		showWeapon(charTabInfo.weapon, charNum, false);
 		
@@ -1713,6 +1717,22 @@ function setupChars() {
 	simBattle();
 }
 
+// sets the class for the given character tab
+// attacker is true if the tab is in the attacker panel, charIndex is the index of the character in the panel
+function setCharTabClass(attacker, charIndex) {
+	var tabID = attacker ? "#atk-tab-" + charIndex.toString() : "#def-tab-" + charIndex.toString();
+	var tabSelected = attacker ? selectedAttacker : selectedDefender;
+	var tabInfo = attacker ? attackerTeam[charIndex] : defenderTeam[charIndex];
+	
+	if (charIndex === tabSelected) {
+		$(tabID).removeClass("char-tab-unselected").removeClass("char-tab").addClass("char-tab-selected");
+	} else if (tabInfo.hasOwnProperty("character")) {
+		$(tabID).removeClass("char-tab-unselected").removeClass("char-tab-selected").addClass("char-tab");
+	} else {
+		$(tabID).removeClass("char-tab").removeClass("char-tab-selected").addClass("char-tab-unselected");
+	}
+}
+
 // sets the disabled attribute of an input
 // inSel is the jQuery selector of the input to enable/disable, inLabel is the label text to change color, disabled determines if the select needs to be disabled
 function setDisabled(inSel, inLabel, disabled) {
@@ -1959,6 +1979,25 @@ function swap() {
 	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, true);
 	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, true);
 	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, true);
+	
+	// swap teams
+	var tempTeam = attackerTeam;
+	var tempSelected = selectedAttacker;
+	attackerTeam = defenderTeam;
+	selectedAttacker = selectedDefender;
+	defenderTeam = tempTeam;
+	selectedDefender = tempSelected;
+	
+	// swap portraits
+	for (var charIndex = 0; charIndex < 5; charIndex++) {
+		var atkSrc = $("#atk-tab-" + charIndex.toString()).attr("src");
+		$("#atk-tab-" + charIndex.toString()).attr("src", $("#def-tab-" + charIndex.toString()).attr("src"));
+		$("#def-tab-" + charIndex.toString()).attr("src", atkSrc);
+		
+		// set classes
+		setCharTabClass(true, charIndex);
+		setCharTabClass(false, charIndex);
+	}
 }
 
 // setup inital page
@@ -2018,8 +2057,8 @@ $(document).ready( function() {
 	});
 	
 	// make character tabs load default image on error
-	$(".char-tab").on("error", function() {
-		$(this).attr("src", "https://rocketmo.github.io/feh-damage-calc/img/Portraits/Other.png");
+	$(".char-tab, .char-tab-selected, .char-tab-unselected").on("error", function() {
+		$(this).attr("src", "img/Portraits/Other.png");
 	});
 	
 	// setup character tab changes
