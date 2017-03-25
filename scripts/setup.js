@@ -1331,7 +1331,7 @@ function simBattle() {
 	
 	// check if attacker has a weapon, if not no attack
 	if ($("#weapon-1").val() === "None") {
-		$("#interaction-list").stop(true, true).hide().html("<li class='battle-interaction-final'><span class='attacker'><strong>" + $("#char-1").val() + "</strong></span> cannot attack without a weapon.</li>");
+		$("#interaction-list").stop(true, true).hide().html("<li class='battle-interaction-only'><span class='attacker'><strong>" + $("#char-1").val() + "</strong></span> cannot attack without a weapon.</li>");
 		$(".hp-remain-block").stop(true, true).hide();
 		$("#hp-remain-1").text($("#curr-hp-1").val().toString());
 		$("#hp-remain-2").text($("#curr-hp-2").val().toString());
@@ -1639,6 +1639,7 @@ function simBattle() {
 	$("#result-msg").stop(true, true).hide();
 	$("#hp-remain-1").text(battleInfo.attacker.currHP.toString());
 	$("#hp-remain-2").text(battleInfo.defender.currHP.toString());
+	$("#interaction-list").children().first().removeClass("battle-interaction").addClass("battle-interaction-first");
 	$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
 	
 	// victory message
