@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="Description" content="A Damage Calculator for Fire Emblem: Heroes which can be used to simulate battle interactions.">
+		<meta name="Description" content="A tool to simulate battles in Fire Emblem: Heroes.">
 		<title>Fire Emblem: Heroes Damage Calculator</title>
 		<link rel="icon" href="img/favicon.ico">
 		<link rel="stylesheet" href="css/calc-style.css">
@@ -10,7 +10,19 @@
 	</head>
 	<body>
 		<div id="wrapper">
-			<h1>Fire Emblem: Heroes<br><span class="sub-h1">Damage Calculator</span></h1>
+			<div id="calc-header">
+				<h1>Fire Emblem: Heroes Damage Calculator</h1>
+				<div id="modes-container">
+					<div id="modes" title="Select a mode of calculation.">
+						<input id="one-vs-one" class="mode-button" type="radio" name="mode" checked="checked">
+						<label class="mode-button-label button-left" for="one-vs-one">One vs. One</label>
+						<input id="one-vs-all" class="mode-button" type="radio" name="mode">
+						<label class="mode-button-label button-middle" for="one-vs-all">One vs. All</label>
+						<input id="all-vs-one" class="mode-button" type="radio" name="mode">
+						<label class="mode-button-label button-right" for="all-vs-one">All vs. One</label>
+					</div>
+				</div>
+			</div>
 			<div>
 				<table id="calc">
 					<tr id="char-panel">
@@ -430,6 +442,42 @@
 					</tr>
 					<tr>
 						<td colspan="3">
+							<div id="battle-result">
+								<fieldset>
+									<legend><h2>Result</h2></legend>
+									<table id="result-table">
+										<tr>
+											<td class="column-line">
+												<div>
+													<h3 class="attacker">Attacker HP</h3>
+													<div id="hp-remain-block-1" class="hp-remain-block">
+														<span id="hp-remain-1" class="numerator"></span>
+													</div>
+												</div>	
+											</td>
+											<td>
+												<div>
+													<h3 class="defender">Defender HP</h3>
+													<div id="hp-remain-block-2" class="hp-remain-block">
+														<span id="hp-remain-2" class="numerator"></span>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2">
+												<div>
+													<p id="result-msg"></p>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</fieldset>
+							</div>	
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">
 							<div id="matchups">
 								<fieldset>
 									<legend><h2>Matchups</h2></legend>
@@ -475,42 +523,6 @@
 									</table>
 								</fieldset>
 							</div>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="3">
-							<div id="battle-result">
-								<fieldset>
-									<legend><h2>Result</h2></legend>
-									<table id="result-table">
-										<tr>
-											<td class="column-line">
-												<div>
-													<h3 class="attacker">Attacker HP</h3>
-													<div id="hp-remain-block-1" class="hp-remain-block">
-														<span id="hp-remain-1" class="numerator"></span>
-													</div>
-												</div>	
-											</td>
-											<td>
-												<div>
-													<h3 class="defender">Defender HP</h3>
-													<div id="hp-remain-block-2" class="hp-remain-block">
-														<span id="hp-remain-2" class="numerator"></span>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td colspan="2">
-												<div>
-													<p id="result-msg"></p>
-												</div>
-											</td>
-										</tr>
-									</table>
-								</fieldset>
-							</div>	
 						</td>
 					</tr>
 				</table>

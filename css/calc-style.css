@@ -144,17 +144,16 @@ body::after {
 	outline: none;
 }
 
-h1 {
-	font-size: 4.2em;
-	margin: 0.3em;
-	color: gold;
+#calc-header {
 	text-align: center;
-	white-space: normal;
-	line-height: 75%;
 }
 
-.sub-h1 {
-	font-size: 0.7em;
+#calc-header h1 {
+	margin-bottom: 0.4em;
+	font-size: 2.1em;
+	color: gold;
+	white-space: normal;
+	vertical-align: middle;
 }
 
 h2 {
@@ -164,7 +163,7 @@ h2 {
 
 h3 {
 	font-size: 1.1em;
-	margin: 0em 0em 0.2em 0em;
+	margin-bottom: 0.1em;
 }
 
 .attacker {
@@ -335,7 +334,6 @@ h3 {
 }
 
 .matchup-header {
-	border-bottom: 1px solid #6c6c6c;
 	background-color: #0F1315;
 }
 
@@ -351,4 +349,57 @@ h3 {
 
 #matchup-table td {
 	border: 1px solid #6c6c6c;
+}
+
+#modes-container {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	margin: 0;
+}
+
+#modes {
+	display: inline-block;
+}
+
+.mode-button-label {
+	font-family: Constantia, Lucida Bright, DejaVu Serif, Georgia, serif;
+	font-size: 1.05em;
+	font-weight: bold;
+	padding: 0.4em;
+	width: auto;
+	border: 1px solid #c0c0c0;
+}
+
+.mode-button-label:hover {
+	cursor: pointer;
+	background-color: #22292C;
+}
+
+.mode-button:checked+label {
+	color: #161a1b;
+	background-color: gold;
+	border: 1px solid gold;
+}
+
+.button-middle, .button-right {
+	border-left: none;
+}
+
+.button-left {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+.button-right {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+.mode-button:checked+label.button-middle, .mode-button:checked+label.button-right {
+	margin-left: -1px;
+}
+
+.mode-button {
+	display:none;
 }
