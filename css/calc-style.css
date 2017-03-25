@@ -307,3 +307,43 @@ h3 {
 	background-color: #22292C;
 	border: solid 1px white;
 }
+
+#matchups {
+	display: none;
+}
+
+#matchup-table {
+	width: 700px;
+	margin: 0 auto;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+#matchup-table img {
+	width: 40px;
+	height: 40px;
+	vertical-align: middle;
+}
+
+.matchup-char {
+	font-weight: bold;
+}
+
+.matchup-header {
+	border-bottom: 1px solid #6c6c6c;
+	background-color: #0F1315;
+}
+
+.matchup-row-offset {
+	background-color: #0F1315;
+}
+
+#matchup-table th {
+	color: gold;
+	padding: 0.3em 0;
+	border: 1px solid #6c6c6c;
+}
+
+#matchup-table td {
+	border: 1px solid #6c6c6c;
+}
