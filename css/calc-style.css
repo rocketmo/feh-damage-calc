@@ -142,7 +142,7 @@ body::after {
 
 #calc-header {
 	width: 100%;
-	min-width: 800px;
+	min-width: 840px;
 	background-color: gold;
 	margin-bottom: 1em;
 	vertical-align: middle;
@@ -415,7 +415,7 @@ h3 {
 
 #attacker-portrait {
 	border: 1px solid #00384C;
-	background-color: #80DDFF;
+	background-color: #9DE4FF;
 }
 
 #defender-portrait {
