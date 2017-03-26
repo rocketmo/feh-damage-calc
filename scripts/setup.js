@@ -1035,6 +1035,52 @@ function getCharPanelData(charNum) {
 	return charData;
 }
 
+// gets info of a default character
+// charName is the default character's name, charName must be a valid character and cannot be Custom
+function getDefaultCharData(charName) {
+	"use strict";
+	var charData = {};
+	
+	charData.color = charInfo[charName].color;
+	charData.moveType = charInfo[charName].move_type;
+	charData.type = charInfo[charName].weapon_type;
+	
+	charData.name = charName;
+	
+	charData.weaponName = charInfo[charName].weapon[0];
+	charData.weaponData = weaponInfo[charData.weaponName];
+	
+	if (charData.weaponData.hasOwnProperty("add_bonus")) {
+		charData.addBonusAtk = 0;
+	}
+	
+	charData.passiveA = charInfo[charName].hasOwnProperty("passive_a") ? charInfo[charName].passive_a[0] : "None";
+	charData.passiveB = charInfo[charName].hasOwnProperty("passive_b") ? charInfo[charName].passive_b[0] : "None";
+	charData.passiveC = charInfo[charName].hasOwnProperty("passive_c") ? charInfo[charName].passive_c[0] : "None";
+	charData.passiveAData = charInfo[charName].hasOwnProperty("passive_a") ? skillInfo.a[charData.passiveA] : {};
+	charData.passiveBData = charInfo[charName].hasOwnProperty("passive_b") ? skillInfo.b[charData.passiveB] : {};
+	charData.passiveCData = charInfo[charName].hasOwnProperty("passive_c") ? skillInfo.c[charData.passiveC] : {};
+	charData.special = charInfo[charName].hasOwnProperty("special") ? charInfo[charName].special[0] : "None";
+	charData.specCurrCooldown = charInfo[charName].hasOwnProperty("special") ? specInfo[charData.special].cooldown : 0;
+	charData.specialData = charInfo[charName].hasOwnProperty("special") ? specInfo[charData.special] : {};
+	charData.assistData = charInfo[charName].hasOwnProperty("assist") ? assistInfo[charInfo[charName].assist[0]] : {};
+	
+	charData.currHP = charInfo[charName].hp;
+	charData.initHP = charInfo[charName].hp;
+	charData.startHP = charInfo[charName].hp;
+	charData.hp = charInfo[charName].hp;
+	charData.atk = charInfo[charName].atk;
+	charData.spd = charInfo[charName].spd;
+	charData.def = charInfo[charName].def;
+	charData.res = charInfo[charName].res;
+	charData.atkWS = charInfo[charName].atk;
+	charData.spdWS = charInfo[charName].spd;
+	charData.defWS = charInfo[charName].def;
+	charData.resWS = charInfo[charName].res;
+	
+	return charData;
+}
+
 // returns an object containing all the info in the attacker and defender panels needed to simulate a battle
 function getBattleInfo() {
 	"use strict";
@@ -1043,6 +1089,26 @@ function getBattleInfo() {
 	battleInfo.defender = getCharPanelData("2");
 	battleInfo.logMsg = "";
 	battleInfo.atkRange = $("#weapon-1").data("info").range;
+	return battleInfo;
+}
+
+// returns an object containing all the info needed to simulate a battle between one character from one the character panels and a default character from the data
+// attacker is true if we take info from the the attacker panel, charName is the name of the default character
+function getBattleInfoWithDefault(attacker, charName) {
+	"use strict";
+	var battleInfo = {};
+	
+	if (attacker) {
+		battleInfo.attacker = getCharPanelData("1");
+		battleInfo.defender = getDefaultCharData(charName);
+		battleInfo.atkRange = $("#weapon-1").data("info").range;
+	} else {
+		battleInfo.attacker = getDefaultCharData(charName);
+		battleInfo.defender = getCharPanelData("2");
+		battleInfo.atkRange = weaponInfo[battleInfo.attacker.weaponName].range;
+	}
+	
+	battleInfo.logMsg = "";
 	return battleInfo;
 }
 
@@ -2013,6 +2079,71 @@ function enableCharPanel(charNum, enable) {
 	}
 }
 
+// calculates and prints info of every battle matchup for one character
+// attacker is true if we are using the attacker panel as our base character
+function calculateMatchups(attacker) {
+	"use strict";
+	var battleInfo = {};
+	var winCount = 0;
+	var lossCount = 0;
+	var drawCount = 0;
+	var tableHTML = "";
+	var charCount = 0;
+	
+	// add table headers
+	if (attacker) {
+		tableHTML += "<tr class='matchup-header'><th></th><th>Defender</th><th>Attacker DMG</th><th>Defender DMG</th><th>Attacker HP</th><th>Defender HP</th><th>Result</th></tr>";
+	} else {
+		tableHTML += "<tr class='matchup-header'><th></th><th>Attacker</th><th>Attacker DMG</th><th>Defender DMG</th><th>Attacker HP</th><th>Defender HP</th><th>Result</th></tr>";
+	}
+	
+	// add table rows
+	for (var key in charInfo) {
+		if (key !== "Custom") {
+			// sim battle
+			battleInfo = simBattle(getBattleInfoWithDefault(attacker, key), false);
+			
+			// add to table
+			tableHTML += (charCount % 2 === 1) ? "<tr class='matchup-row-offset'>" : "<tr>";
+			tableHTML += "<td><img src=\"img/Portraits/" + key + ".png\"></td>";
+			tableHTML += "<td><span class='matchup-char'>" + key + "</span></td>";
+			tableHTML += "<td>" + (battleInfo.defender.startHP - battleInfo.defender.currHP).toString() + "</td>";
+			tableHTML += "<td>" + (battleInfo.attacker.startHP - battleInfo.attacker.currHP).toString() + "</td>";
+			tableHTML += "<td>" + battleInfo.attacker.startHP.toString() + " → " + battleInfo.attacker.currHP.toString() + "</td>";
+			tableHTML += "<td>" + battleInfo.defender.startHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</td>";
+			
+			if (battleInfo.attacker.currHP <= 0) {
+				tableHTML += "<td class='defender'><strong>Defender Wins</strong></td>";
+				
+				if (attacker) {
+					lossCount += 1;
+				} else {
+					winCount += 1;
+				}
+			} else if (battleInfo.defender.currHP <= 0) {
+				tableHTML += "<td class='attacker'><strong>Attacker Wins</strong></td>";
+				
+				if (attacker) {
+					winCount += 1;
+				} else {
+					lossCount += 1;
+				}
+			} else {
+				tableHTML += "<td><strong>Draw</strong></td>";
+				drawCount += 1;
+			}
+			
+			tableHTML += "</tr>"
+			
+			// increment counter
+			charCount += 1;
+		}
+	}
+	
+	// display results
+	$("#matchup-table").hide().html(tableHTML).fadeIn("slow");
+}
+
 // setup inital page
 $(document).ready( function() {
 	"use strict";	
@@ -2219,6 +2350,14 @@ $(document).ready( function() {
 			// disable attacker input, enable defender input
 			enableCharPanel("1", false);
 			enableCharPanel("2", true);
+		}
+	});
+	
+	$("#calc-matchups-btn").on("click", function() {
+		if ($("#one-vs-all").is(":checked")) {
+			calculateMatchups(true);
+		} else {
+			calculateMatchups(false);
 		}
 	});
 });

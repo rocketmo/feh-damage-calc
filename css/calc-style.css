@@ -324,7 +324,7 @@ h3 {
 
 #matchup-table {
 	width: 700px;
-	margin: 0 auto;
+	margin: 0.5em auto;
 	text-align: center;
 	border-collapse: collapse;
 }
@@ -445,7 +445,7 @@ h3 {
 	font-size: 1.05em;
 	font-weight: bold;
 	padding: 0.2em 0.5em;
-	margin: 0 auto;
+	margin: 0.5em auto;
 }
 
 #calc-matchups-btn:hover {
