@@ -663,6 +663,7 @@ function displayChar(charName, charNum) {
 // stores the currently selected character for later
 // attacker is true if the character is in the attacker panel
 function storeCharTabInfo(attacker) {
+	"use strict";
 	var charNum = attacker ? "1" : "2";
 	var infoToStore = {};
 	
@@ -720,6 +721,7 @@ function storeCharTabInfo(attacker) {
 // gets the currently selected character and displays their info
 // attacker is true if the character is in the attacker panel
 function getCharTabInfo(attacker) {
+	"use strict";
 	var charNum = attacker ? "1" : "2";
 	var charTabInfo = attacker ? attackerTeam[selectedAttacker] : defenderTeam[selectedDefender];
 	
@@ -1030,6 +1032,17 @@ function getCharPanelData(charNum) {
 	return charData;
 }
 
+// returns an object containing all the info in the attacker and defender panels needed to simulate a battle
+function getBattleInfo() {
+	"use strict";
+	var battleInfo = {};
+	battleInfo.attacker = getCharPanelData("1");
+	battleInfo.defender = getCharPanelData("2");
+	battleInfo.logMsg = "";
+	battleInfo.atkRange = $("#weapon-1").data("info").range;
+	return battleInfo;
+}
+
 // checks if the given passive skill is a breaker skill that will activate
 // passiveData contains the data for a passive skill, oppWeapon is the opponent's weapon type, initHP is the initial hp of the character with the passive, maxHP is the max hp of the character
 function hasBreakerPassive(passiveData, oppWeapon, initHP, maxHP) {
@@ -1329,7 +1342,9 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 }
 
 // simulates a battle between the characters currently on display and outputs to the battle log and results section
-function simBattle() {
+// battleInfo contains all the inital combat data before the combat starts, displayMsg is true if we need to print the battle log
+// returns battleInfo
+function simBattle(battleInfo, displayMsg) {
 	"use strict";
 	
 	// check if attacker has a weapon, if not no attack
@@ -1345,13 +1360,6 @@ function simBattle() {
 		
 		return;
 	}
-	
-	// contains both attacker, defender info and battle log messages
-	var battleInfo = {};
-	battleInfo.attacker = getCharPanelData("1");
-	battleInfo.defender = getCharPanelData("2");
-	battleInfo.logMsg = "";
-	battleInfo.atkRange = $("#weapon-1").data("info").range;
 	
 	// can defender counter
 	var defCC = defCanCounter(battleInfo);
@@ -1637,31 +1645,35 @@ function simBattle() {
 	}
 	
 	// display results
-	$("#interaction-list").stop(true, true).hide().html(battleInfo.logMsg);
-	$("#result-msg").stop(true, true).hide();
-	$("#hp-remain-1").stop(true, true).hide().text(battleInfo.attacker.startHP.toString() + " → " + battleInfo.attacker.currHP.toString());
-	$("#hp-remain-2").stop(true, true).hide().text(battleInfo.defender.startHP.toString() + " → " + battleInfo.defender.currHP.toString());
-	$("#interaction-list").children().first().removeClass("battle-interaction").addClass("battle-interaction-first");
-	$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
-	
-	// victory message
-	if (battleInfo.attacker.currHP === 0) {
-		$("#result-msg").text("Defender is victorious!");
-		$("#result-msg").css("color", "#e34262");
-	} else if (battleInfo.defender.currHP === 0) {
-		$("#result-msg").text("Attacker is victorious!");
-		$("#result-msg").css("color", "deepskyblue");
-	} else {
-		$("#result-msg").text("Draw!");
-		$("#result-msg").css("color", "white");
+	if (displayMsg) {
+		$("#interaction-list").stop(true, true).hide().html(battleInfo.logMsg);
+		$("#result-msg").stop(true, true).hide();
+		$("#hp-remain-1").stop(true, true).hide().text(battleInfo.attacker.startHP.toString() + " → " + battleInfo.attacker.currHP.toString());
+		$("#hp-remain-2").stop(true, true).hide().text(battleInfo.defender.startHP.toString() + " → " + battleInfo.defender.currHP.toString());
+		$("#interaction-list").children().first().removeClass("battle-interaction").addClass("battle-interaction-first");
+		$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
+
+		// victory message
+		if (battleInfo.attacker.currHP === 0) {
+			$("#result-msg").text("Defender is victorious!");
+			$("#result-msg").css("color", "#e34262");
+		} else if (battleInfo.defender.currHP === 0) {
+			$("#result-msg").text("Attacker is victorious!");
+			$("#result-msg").css("color", "deepskyblue");
+		} else {
+			$("#result-msg").text("Draw!");
+			$("#result-msg").css("color", "white");
+		}
+
+		if (openLog) {
+			$("#interaction-list").fadeIn("slow");
+		}
+		$("#hp-remain-1").fadeIn("slow");
+		$("#hp-remain-2").fadeIn("slow");
+		$("#result-msg").fadeIn("slow");
 	}
 	
-	if (openLog) {
-		$("#interaction-list").fadeIn("slow");
-	}
-	$("#hp-remain-1").fadeIn("slow");
-	$("#hp-remain-2").fadeIn("slow");
-	$("#result-msg").fadeIn("slow");
+	return battleInfo;
 }
 
 // put options in the character selects
@@ -1692,12 +1704,13 @@ function setupChars() {
 	displayChar($("#char-2").val(), "2");
 
 	// simulate initial battle
-	simBattle();
+	simBattle(getBattleInfo(), true);
 }
 
 // sets the class for the given character tab
 // attacker is true if the tab is in the attacker panel, charIndex is the index of the character in the panel
 function setCharTabClass(attacker, charIndex) {
+	"use strict";
 	var tabID = attacker ? "#atk-tab-" + charIndex.toString() : "#def-tab-" + charIndex.toString();
 	var tabSelected = attacker ? selectedAttacker : selectedDefender;
 	var tabInfo = attacker ? attackerTeam[charIndex] : defenderTeam[charIndex];
@@ -2012,7 +2025,7 @@ $(document).ready( function() {
 			$("#curr-" + this.id).val(this.value);
 		}
 		
-		simBattle();
+		simBattle(getBattleInfo(), true);
 	});
 	$(".curr-hp-val").on("change", function() {
 		// current hp cannot be greater than base hp
@@ -2021,7 +2034,7 @@ $(document).ready( function() {
 			this.value = baseHP;
 		}
 		
-		simBattle();
+		simBattle(getBattleInfo(), true);
 	});
 	
 	// setup special cooldown updates
@@ -2031,7 +2044,7 @@ $(document).ready( function() {
 			this.value = maxCooldown;
 		}
 		
-		simBattle();
+		simBattle(getBattleInfo(), true);
 	});
 	
 	// make character tabs load default image on error
@@ -2042,7 +2055,7 @@ $(document).ready( function() {
 	// setup character tab changes
 	$(".char-tab, .char-tab-unselected").on("click", function() {
 		selectCharTab($(this).data("charnum") === 1, $(this).data("index"));
-		simBattle();
+		simBattle(getBattleInfo(), true);
 	});
 	
 	// setup initial display
@@ -2053,14 +2066,14 @@ $(document).ready( function() {
 	$(".char-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
 		displayChar(this.value, charNum);
-		simBattle();
+		simBattle(getBattleInfo(), true);
 	});
 	
 	// setup weapon select
 	$(".weapon-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		showWeapon(this.value, charNum, true);
-		simBattle();
+		simBattle(getBattleInfo(), true);
 	});
 	
 	// setup special select
@@ -2069,7 +2082,7 @@ $(document).ready( function() {
 		getSpecialData(charNum);
 		showSpecCooldown(this.value, charNum, false);
 		updateSpecCooldown(charNum);
-		simBattle();
+		simBattle(getBattleInfo(), true);
 	});
 	
 	// setup assist select
@@ -2077,7 +2090,7 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		getAssistData(charNum);
 		updateSpecCooldown(charNum);
-		simBattle();
+		simBattle(getBattleInfo(), true);
 	});
 	
 	// setup skill select
@@ -2085,7 +2098,7 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		var skillType = $(this).data("skilltype");
 		getSkillData(charNum, skillType, true);
-		simBattle();
+		simBattle(getBattleInfo(), true);
 	});
 	
 	// set up weapon type changes
@@ -2095,7 +2108,7 @@ $(document).ready( function() {
 		setColor(this.value, charNum);
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
-		simBattle();
+		simBattle(getBattleInfo(), true);
 	});
 	
 	// set up color changes
@@ -2116,17 +2129,17 @@ $(document).ready( function() {
 		}
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
-		simBattle();
+		simBattle(getBattleInfo(), true);
 	});
 	
 	// setup other battle value changes
 	$(".battle-val").on("change", function() {
-		simBattle();
+		simBattle(getBattleInfo(), true);
 	});
 	
 	// swap button
 	$("#swap-button").on("click", function() {
 		swap();
-		simBattle();
+		simBattle(getBattleInfo(), true);
 	});
 });
