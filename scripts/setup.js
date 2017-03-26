@@ -481,6 +481,7 @@ function displayChar(charName, charNum) {
 	if (!singleChar.hasOwnProperty("move_type")) { // no info -> custom option
 		// display portrait
 		getPortrait((charNum === "1" ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString()), "Other");
+		getPortrait((charNum === "1" ? "#attacker-portrait" : "#defender-portrait"), "Other");
 		
 		// enable inputs
 		$("#extra-char-info-" + charNum).css("color", "white");
@@ -543,6 +544,7 @@ function displayChar(charName, charNum) {
 	
 	// display portrait
 	getPortrait((charNum === "1" ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString()), charName);
+	getPortrait((charNum === "1" ? "#attacker-portrait" : "#defender-portrait"), charName);
 
 	// grey out disabled input fields
 	$("#extra-char-info-" + charNum).css("color", "#5b5b5b");
@@ -1333,13 +1335,13 @@ function simBattle() {
 	// check if attacker has a weapon, if not no attack
 	if ($("#weapon-1").val() === "None") {
 		$("#interaction-list").stop(true, true).hide().html("<li class='battle-interaction-only'><span class='attacker'><strong>" + $("#char-1").val() + "</strong></span> cannot attack without a weapon.</li>");
-		$(".hp-remain-block").stop(true, true).hide();
-		$("#hp-remain-1").text($("#curr-hp-1").val().toString());
-		$("#hp-remain-2").text($("#curr-hp-2").val().toString());
+		$("#hp-remain-1").stop(true, true).hide().text($("#curr-hp-1").val().toString());
+		$("#hp-remain-2").stop(true, true).hide().text($("#curr-hp-2").val().toString());
 		if (openLog) {
 			$("#interaction-list").fadeIn("slow");
 		}
-		$(".hp-remain-block").fadeIn("slow");
+		$("#hp-remain-1").fadeIn("slow");
+		$("#hp-remain-2").fadeIn("slow");
 		
 		return;
 	}
@@ -1636,10 +1638,9 @@ function simBattle() {
 	
 	// display results
 	$("#interaction-list").stop(true, true).hide().html(battleInfo.logMsg);
-	$(".hp-remain-block").stop(true, true).hide();
 	$("#result-msg").stop(true, true).hide();
-	$("#hp-remain-1").text(battleInfo.attacker.startHP.toString() + " → " + battleInfo.attacker.currHP.toString());
-	$("#hp-remain-2").text(battleInfo.defender.startHP.toString() + " → " + battleInfo.defender.currHP.toString());
+	$("#hp-remain-1").stop(true, true).hide().text(battleInfo.attacker.startHP.toString() + " → " + battleInfo.attacker.currHP.toString());
+	$("#hp-remain-2").stop(true, true).hide().text(battleInfo.defender.startHP.toString() + " → " + battleInfo.defender.currHP.toString());
 	$("#interaction-list").children().first().removeClass("battle-interaction").addClass("battle-interaction-first");
 	$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
 	
@@ -1647,26 +1648,19 @@ function simBattle() {
 	if (battleInfo.attacker.currHP === 0) {
 		$("#result-msg").text("Defender is victorious!");
 		$("#result-msg").css("color", "#e34262");
-		$("#result-msg").css("padding", "0.5em 0em 0em 0em");
-		$("#result-msg").css("margin", "0.5em 0em 0em 0em");
-		$("#result-msg").css("border-top", "1px solid #6c6c6c");
 	} else if (battleInfo.defender.currHP === 0) {
 		$("#result-msg").text("Attacker is victorious!");
 		$("#result-msg").css("color", "deepskyblue");
-		$("#result-msg").css("padding", "0.5em 0em 0em 0em");
-		$("#result-msg").css("margin", "0.5em 0em 0em 0em");
-		$("#result-msg").css("border-top", "1px solid #6c6c6c");
 	} else {
-		$("#result-msg").text("");
-		$("#result-msg").css("padding", "0em");
-		$("#result-msg").css("margin", "0em");
-		$("#result-msg").css("border-top", "none");
+		$("#result-msg").text("Draw!");
+		$("#result-msg").css("color", "white");
 	}
 	
 	if (openLog) {
 		$("#interaction-list").fadeIn("slow");
 	}
-	$(".hp-remain-block").fadeIn("slow");
+	$("#hp-remain-1").fadeIn("slow");
+	$("#hp-remain-2").fadeIn("slow");
 	$("#result-msg").fadeIn("slow");
 }
 

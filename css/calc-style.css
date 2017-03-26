@@ -1,17 +1,13 @@
 html {
-	background-color: #0b0b0b;
+	background-color: #161a1b;
 }
 
 body {
-	width: 860px;
-	margin: 15px auto;
-	padding: 20px 20px 50px 20px;
+	margin: 0 auto;
+	padding-bottom: 20px;
 	font-family: Cambria, Hoefler Text, Liberation Serif, Times, Times New Roman, serif;
 	color: white;
 	font-size: 1em;
-	background-color: #161a1b;
-	border: 3px solid gold;
-	border-radius: 6px;
 }
 
 #wrapper {
@@ -145,15 +141,25 @@ body::after {
 }
 
 #calc-header {
-	text-align: center;
+	width: 100%;
+	min-width: 800px;
+	background-color: gold;
+	margin-bottom: 1em;
+	vertical-align: middle;
 }
 
 #calc-header h1 {
-	margin-bottom: 0.4em;
-	font-size: 2.1em;
-	color: gold;
+	display: inline-block;
+	padding: 0.3em;
+	font-size: 1.1em;
+	color: #0b0b0b;
 	white-space: normal;
-	vertical-align: middle;
+}
+
+#calc-header a {
+	padding: 0.3em;
+	margin: 0 0.2em;
+	float: right;
 }
 
 h2 {
@@ -162,7 +168,7 @@ h2 {
 }
 
 h3 {
-	font-size: 1.1em;
+	font-size: 1.4em;
 	margin-bottom: 0.1em;
 }
 
@@ -183,12 +189,8 @@ h3 {
 }
 
 #result-table {
-	width: 100%;
+	margin: 0 auto;
 	text-align: center;
-}
-
-.column-line {
-	border-right: 1px solid #6c6c6c;
 }
 
 #interaction-list {
@@ -252,7 +254,7 @@ h3 {
 
 #result-msg {
 	margin: 0em;
-	padding: 0em;
+	padding: 0.1em 0;
 	font-weight: bold;
 	font-size: 1.4em;
 }
@@ -352,7 +354,6 @@ h3 {
 }
 
 #modes-container {
-	display: inline-block;
 	text-align: center;
 	vertical-align: middle;
 	margin: 0;
@@ -366,8 +367,9 @@ h3 {
 	font-family: Constantia, Lucida Bright, DejaVu Serif, Georgia, serif;
 	font-size: 1.05em;
 	font-weight: bold;
-	padding: 0.4em;
-	width: auto;
+	padding: 0.3em;
+	width: 140px;
+	text-align: center;
 	border: 1px solid #c0c0c0;
 }
 
@@ -402,4 +404,30 @@ h3 {
 
 .mode-button {
 	display:none;
+}
+
+.combat-portrait {
+	margin: 0 auto 0.2em auto;
+	display: block;
+	width: 75px;
+	height: 75px;
+}
+
+#attacker-portrait {
+	border: 1px solid #00384C;
+	background-color: #80DDFF;
+}
+
+#defender-portrait {
+	border: 1px solid #500B19;
+	background-color: #E7627C;
+}
+
+.hp-remain {
+	font-weight: bold;
+	font-size: 1.1em;
+}
+
+.combat-char {
+	padding: 0 1.5em;
 }
