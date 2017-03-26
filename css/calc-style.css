@@ -128,7 +128,6 @@ h1, h2, h3 {
 
 #swap-button:active {
 	background-image: url(../img/swap-press.png);
-	border: none;
 }
 
 body::after {
@@ -136,7 +135,7 @@ body::after {
 	content: url(../img/swap-hover.png) url(../img/swap-press.png) url(../img/Portraits/Unselected-hover.png);
 }
 
-#swap-button:focus {
+button:focus {
 	outline: none;
 }
 
@@ -164,7 +163,7 @@ body::after {
 
 h2 {
 	font-size: 1.5em;
-	color: #f5de60;
+	color: gold;
 }
 
 h3 {
@@ -318,6 +317,11 @@ h3 {
 	display: none;
 }
 
+#matchup-container {
+	width: 700px;
+	margin: 0 auto;
+}
+
 #matchup-table {
 	width: 700px;
 	margin: 0 auto;
@@ -430,4 +434,27 @@ h3 {
 
 .combat-char {
 	padding: 0 1.5em;
+}
+
+#calc-matchups-btn {
+	display: block;
+	background-color: gold;
+	border: 1px solid gold;
+	color: #161a1b;
+	font-family: Constantia, Lucida Bright, DejaVu Serif, Georgia, serif;
+	font-size: 1.05em;
+	font-weight: bold;
+	padding: 0.2em 0.5em;
+	margin: 0 auto;
+}
+
+#calc-matchups-btn:hover {
+	cursor: pointer;
+	background-color: #a8900e;
+	border-color: #a8900e;
+}
+
+#calc-matchups-btn:active {
+	background-color: #594e13;
+	border-color: #594e13;
 }
