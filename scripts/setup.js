@@ -417,9 +417,12 @@ function showSpecCooldown(selectedSpecial, charNum, changeCurr) {
 			$("#spec-cooldown-" + charNum).val(cool);
 		}
 		
-		$("#spec-cooldown-" + charNum).removeAttr("disabled");
-		$("#spec-cooldown-line-" + charNum).css("color", "white");
 		$("#spec-cooldown-max-" + charNum).text(cool);
+		
+		if ($("#one-vs-one").is(":checked") || ($("#one-vs-all").is(":checked") && charNum === "1") || ($("#all-vs-one").is(":checked") && charNum === "2")) {
+			$("#spec-cooldown-line-" + charNum).css("color", "white");
+			$("#spec-cooldown-" + charNum).removeAttr("disabled");
+		}
 	} else { // special not found
 		$("#spec-cooldown-" + charNum).val("0");
 		$("#spec-cooldown-" + charNum).attr("disabled", "disabled");
@@ -1737,7 +1740,7 @@ function setDisabled(inSel, inLabel, disabled) {
 	}
 }
 
-// shows or hides the given div
+// shows or hides the given div (used with the swap function)
 // divID is the id of the div to show/hide, visible is the visibility of the div, hasSwapped is true if the data has been swapped
 function setVisible(divID, visible, hasSwapped) {
 	"use strict";
@@ -1809,7 +1812,6 @@ function swap() {
 	oldAtkInfo.currHP = $("#curr-hp-1").val();
 	
 	oldAtkInfo.extraCharInfoDisabled = ($("#color-1").attr("disabled") === "disabled");
-	oldAtkInfo.specCooldownDisabled = ($("#spec-cooldown-1").attr("disabled") === "disabled");
 	
 	oldAtkInfo.extraCharInfoVisible = $("#extra-char-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraWeaponInfoVisible = $("#extra-weapon-info-1").stop(true, true).is(":visible");
@@ -1885,7 +1887,8 @@ function swap() {
 	$(".hp-1-read").text($("#hp-2").val().toString());
 	
 	setDisabled("#extra-char-info-1 select", "#extra-char-info-1", ($("#color-2").attr("disabled") === "disabled"));
-	setDisabled("#spec-cooldown-1", "#spec-cooldown-line-1", ($("#spec-cooldown-2").attr("disabled") === "disabled"));
+	showSpecCooldown($("#special-1").val(), "1", false);
+	updateSpecCooldown("1");
 	
 	setVisible("#extra-char-info-1", $("#extra-char-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-weapon-info-1", $("#extra-weapon-info-2").stop(true, true).is(":visible"), true);
@@ -1961,7 +1964,8 @@ function swap() {
 	$(".hp-2-read").text(oldAtkInfo.hp);
 	
 	setDisabled("#extra-char-info-2 select", "#extra-char-info-2", oldAtkInfo.extraCharInfoDisabled);
-	setDisabled("#spec-cooldown-2", "#spec-cooldown-line-2", oldAtkInfo.specCooldownDisabled);
+	showSpecCooldown($("#special-2").val(), "2", false);
+	updateSpecCooldown("2");
 	
 	setVisible("#extra-char-info-2", oldAtkInfo.extraCharInfoVisible, true);
 	setVisible("#extra-weapon-info-2", oldAtkInfo.extraWeaponInfoVisible, true);
@@ -1988,6 +1992,24 @@ function swap() {
 		// set classes
 		setCharTabClass(true, charIndex);
 		setCharTabClass(false, charIndex);
+	}
+}
+
+// enables or disables a character panel
+// charNum determines the panel, enable is true if we are enabling a panel
+function enableCharPanel(charNum, enable) {
+	"use strict";
+	var textID = (charNum === "1") ? "#attack-panel .info-section, #attack-panel .info-section-bottom, #spec-cooldown-line-1" : "#defend-panel .info-section, #defend-panel .info-section-bottom, #spec-cooldown-line-2";
+	var inputID = (charNum === "1") ? "#attack-panel select, #attack-panel input" : "#defend-panel select, #defend-panel input";
+	
+	if (enable) {
+		$(textID).css("color", "white");
+		$(inputID).removeAttr("disabled");
+		showSpecCooldown($("#special-" + charNum).val(), charNum, false);
+		updateSpecCooldown(charNum);
+	} else {
+		$(textID).css("color", "#5b5b5b");
+		$(inputID).attr("disabled", "disabled");
 	}
 }
 
@@ -2025,7 +2047,9 @@ $(document).ready( function() {
 			$("#curr-" + this.id).val(this.value);
 		}
 		
-		simBattle(getBattleInfo(), true);
+		if ($("#one-vs-one").is(":checked")) {
+			simBattle(getBattleInfo(), true);
+		}
 	});
 	$(".curr-hp-val").on("change", function() {
 		// current hp cannot be greater than base hp
@@ -2034,7 +2058,9 @@ $(document).ready( function() {
 			this.value = baseHP;
 		}
 		
-		simBattle(getBattleInfo(), true);
+		if ($("#one-vs-one").is(":checked")) {
+			simBattle(getBattleInfo(), true);
+		}
 	});
 	
 	// setup special cooldown updates
@@ -2044,7 +2070,9 @@ $(document).ready( function() {
 			this.value = maxCooldown;
 		}
 		
-		simBattle(getBattleInfo(), true);
+		if ($("#one-vs-one").is(":checked")) {
+			simBattle(getBattleInfo(), true);
+		}
 	});
 	
 	// make character tabs load default image on error
@@ -2055,7 +2083,9 @@ $(document).ready( function() {
 	// setup character tab changes
 	$(".char-tab, .char-tab-unselected").on("click", function() {
 		selectCharTab($(this).data("charnum") === 1, $(this).data("index"));
-		simBattle(getBattleInfo(), true);
+		if ($("#one-vs-one").is(":checked")) {
+			simBattle(getBattleInfo(), true);
+		}
 	});
 	
 	// setup initial display
@@ -2066,14 +2096,18 @@ $(document).ready( function() {
 	$(".char-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
 		displayChar(this.value, charNum);
-		simBattle(getBattleInfo(), true);
+		if ($("#one-vs-one").is(":checked")) {
+			simBattle(getBattleInfo(), true);
+		}
 	});
 	
 	// setup weapon select
 	$(".weapon-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		showWeapon(this.value, charNum, true);
-		simBattle(getBattleInfo(), true);
+		if ($("#one-vs-one").is(":checked")) {
+			simBattle(getBattleInfo(), true);
+		}
 	});
 	
 	// setup special select
@@ -2082,7 +2116,9 @@ $(document).ready( function() {
 		getSpecialData(charNum);
 		showSpecCooldown(this.value, charNum, false);
 		updateSpecCooldown(charNum);
-		simBattle(getBattleInfo(), true);
+		if ($("#one-vs-one").is(":checked")) {
+			simBattle(getBattleInfo(), true);
+		}
 	});
 	
 	// setup assist select
@@ -2090,7 +2126,9 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		getAssistData(charNum);
 		updateSpecCooldown(charNum);
-		simBattle(getBattleInfo(), true);
+		if ($("#one-vs-one").is(":checked")) {
+			simBattle(getBattleInfo(), true);
+		}
 	});
 	
 	// setup skill select
@@ -2098,7 +2136,9 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		var skillType = $(this).data("skilltype");
 		getSkillData(charNum, skillType, true);
-		simBattle(getBattleInfo(), true);
+		if ($("#one-vs-one").is(":checked")) {
+			simBattle(getBattleInfo(), true);
+		}
 	});
 	
 	// set up weapon type changes
@@ -2108,7 +2148,9 @@ $(document).ready( function() {
 		setColor(this.value, charNum);
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
-		simBattle(getBattleInfo(), true);
+		if ($("#one-vs-one").is(":checked")) {
+			simBattle(getBattleInfo(), true);
+		}
 	});
 	
 	// set up color changes
@@ -2129,17 +2171,54 @@ $(document).ready( function() {
 		}
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
-		simBattle(getBattleInfo(), true);
+		if ($("#one-vs-one").is(":checked")) {
+			simBattle(getBattleInfo(), true);
+		}
 	});
 	
 	// setup other battle value changes
 	$(".battle-val").on("change", function() {
-		simBattle(getBattleInfo(), true);
+		if ($("#one-vs-one").is(":checked")) {
+			simBattle(getBattleInfo(), true);
+		}
 	});
 	
 	// swap button
 	$("#swap-button").on("click", function() {
 		swap();
-		simBattle(getBattleInfo(), true);
+		if ($("#one-vs-one").is(":checked")) {
+			simBattle(getBattleInfo(), true);
+		}
+	});
+	
+	// change mode
+	$("input[type=radio][name=mode]").on("change", function() {
+		if (this.id === "one-vs-one") {
+			$("#battle-result").stop(true, true).show(700);
+			$("#battle-log").stop(true, true).show(700);
+			$("#matchups").stop(true, true).hide(700);
+			
+			// enable all inputs
+			enableCharPanel("1", true);
+			enableCharPanel("2", true);
+			
+			simBattle(getBattleInfo(), true);
+		} else if (this.id === "one-vs-all") {
+			$("#battle-result").stop(true, true).hide(700);
+			$("#battle-log").stop(true, true).hide(700);
+			$("#matchups").stop(true, true).show(700);
+			
+			// disable defender input, enable attacker input
+			enableCharPanel("1", true);
+			enableCharPanel("2", false);
+		} else {
+			$("#battle-result").stop(true, true).hide(700);
+			$("#battle-log").stop(true, true).hide(700);
+			$("#matchups").stop(true, true).show(700);
+			
+			// disable attacker input, enable defender input
+			enableCharPanel("1", false);
+			enableCharPanel("2", true);
+		}
 	});
 });
