@@ -1361,9 +1361,9 @@ function simBattle() {
 		// calculate damage
 		var aoeDmg = battleInfo.attacker.atkWS ;
 		if (battleInfo.attacker.weaponData.magical) {
-			aoeDmg -= battleInfo.defender.res;
+			aoeDmg -= battleInfo.defender.resWS;
 		} else {
-			aoeDmg -= battleInfo.defender.def;
+			aoeDmg -= battleInfo.defender.defWS;
 		}
 		
 		// check for damage multiplier
