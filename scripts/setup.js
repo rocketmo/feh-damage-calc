@@ -2107,10 +2107,15 @@ function calculateMatchups(attacker) {
 	
 	// add table headers
 	if (attacker) {
-		tableHTML += "<tr class='matchup-header'><th></th><th>Defender</th><th>Attacker DMG</th><th>Defender DMG</th><th>Attacker HP</th><th>Defender HP</th><th>Result</th></tr>";
+		tableHTML += "<thead><tr class='matchup-header'><th data-tsorter='img'></th><th data-tsorter='link'>Defender</th>";
 	} else {
-		tableHTML += "<tr class='matchup-header'><th></th><th>Attacker</th><th>Attacker DMG</th><th>Defender DMG</th><th>Attacker HP</th><th>Defender HP</th><th>Result</th></tr>";
+		tableHTML += "<thead><tr class='matchup-header'><th data-tsorter='img'></th><th data-tsorter='link'>Attacker</th>";
 	}
+	
+	tableHTML += "<th data-tsorter='numeric'>Attacker DMG</th><th data-tsorter='numeric'>Defender DMG</th><th data-tsorter='text-span-num'>Attacker HP</th><th data-tsorter='text-span-num'>Defender HP</th><th data-tsorter='link'>Result</th></tr></thead>";
+	
+	// start tbody
+	tableHTML += "<tbody>";
 	
 	// add table rows
 	for (var key in charInfo) {
@@ -2124,8 +2129,8 @@ function calculateMatchups(attacker) {
 			tableHTML += "<td><span class='matchup-char " + foeClass + "'>" + key + "</span></td>";
 			tableHTML += "<td class='attacker'>" + (battleInfo.defender.startHP - battleInfo.defender.currHP).toString() + "</td>";
 			tableHTML += "<td class='defender'>" + (battleInfo.attacker.startHP - battleInfo.attacker.currHP).toString() + "</td>";
-			tableHTML += "<td class='attacker'>" + battleInfo.attacker.startHP.toString() + " → " + battleInfo.attacker.currHP.toString() + "</td>";
-			tableHTML += "<td class='defender'>" + battleInfo.defender.startHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</td>";
+			tableHTML += "<td class='attacker'>" + battleInfo.attacker.startHP.toString() + " → <span>" + battleInfo.attacker.currHP.toString() + "</span></td>";
+			tableHTML += "<td class='defender'>" + battleInfo.defender.startHP.toString() + " → <span>" + battleInfo.defender.currHP.toString() + "</span></td>";
 			
 			if (battleInfo.attacker.currHP <= 0) {
 				tableHTML += "<td class='defender'><strong>Defender Wins</strong></td>";
@@ -2148,16 +2153,24 @@ function calculateMatchups(attacker) {
 				drawCount += 1;
 			}
 			
-			tableHTML += "</tr>"
+			tableHTML += "</tr>";
 			
 			// increment counter
 			charCount += 1;
 		}
 	}
 	
-	// display results
+	// end tbody
+	tableHTML += "</tbody>";
+	
+	// create table
 	$("#matchup-display").stop(true, true).hide();
 	$("#matchup-table").html(tableHTML);
+	
+	// make table sortable
+	tsorter.create("matchup-table");
+	
+	// display results
 	$("#matchup-display").fadeIn("slow");
 	
 	// setup events to view one vs one info
@@ -2183,6 +2196,20 @@ function calculateMatchups(attacker) {
 		$("#char-" + (attacker ? "1" : "2")).val(charName);
 		displayChar(charName, (attacker ? "1" : "2"));
 		simBattle(getBattleInfo(), true);
+	});
+	
+	// recolor rows when sorting
+	$("#matchup-table th").on("click", function() {
+		var rowCount = 0;
+		$("#matchup-table > tbody > tr").each(function() {
+			if (rowCount % 2 === 1) {
+				$(this).addClass("matchup-row-offset");
+			} else {
+				$(this).removeClass("matchup-row-offset");
+			}
+			
+			rowCount += 1;
+		});
 	});
 }
 
