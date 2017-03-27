@@ -2093,6 +2093,22 @@ function enableCharPanel(charNum, enable) {
 	}
 }
 
+// recolors matchup table rows
+function recolorMatchupRows() {
+	var rowCount = 0;
+	$("#matchup-table > tbody > tr").each(function() {
+		if($(this).is(":visible")) {
+			if (rowCount % 2 === 1) {
+				$(this).addClass("matchup-row-offset");
+			} else {
+				$(this).removeClass("matchup-row-offset");
+			}
+
+			rowCount += 1;
+		}
+	});
+}
+
 // calculates and prints info of every battle matchup for one character
 // attacker is true if we are using the attacker panel as our base character
 function calculateMatchups(attacker) {
@@ -2170,6 +2186,19 @@ function calculateMatchups(attacker) {
 	// make table sortable
 	tsorter.create("matchup-table");
 	
+	// add table title
+	var mainCharName = "";
+	if (attacker) {
+		mainCharName = ($("#char-1").val() === "Custom") ? customName($("#weapon-type-1").val(), $("#move-type-1").val()) : $("#char-1").val();
+		$("#matchup-title").text(mainCharName + " vs. All").removeClass("defender").addClass("attacker");
+	} else {
+		mainCharName = ($("#char-2").val() === "Custom") ? customName($("#weapon-type-2").val(), $("#move-type-2").val()) : $("#char-2").val();
+		$("#matchup-title").text("All vs. " + mainCharName).removeClass("attacker").addClass("defender");
+	}
+	
+	// show overview
+	$("#matchup-overview").html(winCount.toString() + " wins &middot; " + lossCount.toString() + " losses &middot; " + drawCount.toString() + " draws");
+	
 	// display results
 	$("#matchup-display").fadeIn("slow");
 	
@@ -2200,16 +2229,7 @@ function calculateMatchups(attacker) {
 	
 	// recolor rows when sorting
 	$("#matchup-table th").on("click", function() {
-		var rowCount = 0;
-		$("#matchup-table > tbody > tr").each(function() {
-			if (rowCount % 2 === 1) {
-				$(this).addClass("matchup-row-offset");
-			} else {
-				$(this).removeClass("matchup-row-offset");
-			}
-			
-			rowCount += 1;
-		});
+		recolorMatchupRows();
 	});
 }
 

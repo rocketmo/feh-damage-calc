@@ -447,6 +447,7 @@ h3 {
 	display: block;
 	background-color: gold;
 	border: 1px solid gold;
+	border-radius: 4px;
 	color: #161a1b;
 	font-family: Constantia, Lucida Bright, DejaVu Serif, Georgia, serif;
 	font-size: 1.05em;
@@ -464,4 +465,15 @@ h3 {
 #calc-matchups-btn:active {
 	background-color: #594e13;
 	border-color: #594e13;
+}
+
+#matchup-title {
+	text-align: center;
+}
+
+#matchup-overview {
+	display: block;
+	margin-bottom: 0.8em;
+	text-align: center;
+	font-weight: bold;
 }
