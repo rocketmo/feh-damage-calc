@@ -2076,6 +2076,11 @@ function swap() {
 		setCharTabClass(true, charIndex);
 		setCharTabClass(false, charIndex);
 	}
+	
+	// swap results portraits
+	var atkPortrait = $("#attacker-portrait").attr("src");
+	$("#attacker-portrait").attr("src", $("#defender-portrait").attr("src"));
+	$("#defender-portrait").attr("src", atkPortrait);
 }
 
 // enables or disables a character panel
