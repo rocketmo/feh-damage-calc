@@ -34,7 +34,40 @@ fieldset {
 label {
 	display: inline-block;
 	float: left;
+	text-align: left;
 	width: 8.7em;
+}
+
+#matchup-filters {
+	display: none;
+	text-align: center;
+	white-space: normal;
+	margin: 0.5em auto 1em auto;
+}
+
+#filter-title {
+	text-align: center;
+	font-size: 1.05em;
+	margin: 1em 0;
+}
+
+#matchup-filters label {
+	width: 6.5em;
+}
+
+#matchup-filters select, #matchup-filters input[type=text] {
+	width: 8em;
+	box-sizing: content-box; 
+}
+
+#matchup-filters button {
+	margin: 0.5em;
+}
+
+.matchup-filter-block {
+	display: inline-block;
+	width: 14em;
+	margin: 0.1em 1em;
 }
 
 .curr-hp-label {
@@ -62,11 +95,11 @@ label {
 	font-size: 0.8em;
 }
 
-input[type=number]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 }
 
-input[type="number"] {
+input[type=number] {
     -moz-appearance: textfield;
 }
 
@@ -314,19 +347,14 @@ h3 {
 	display: none;
 }
 
-#matchup-container {
-	width: 700px;
-	margin: 0 auto;
-}
-
 #matchup-display {
+	width: 700px;
 	display: none;
-	margin: 1em auto 0.5em auto;
+	margin: 0em auto 0.5em auto;
 }
 
 #matchup-table {
 	width: 700px;
-	margin: 0 auto;
 	text-align: center;
 	border-collapse: collapse;
 }

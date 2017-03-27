@@ -13,6 +13,7 @@
 		<div id="calc-header">
 			<h1>Fire Emblem: Heroes Damage Calculator</h1>
 			<a href="https://github.com/rocketmo/feh-damage-calc">GitHub repository</a>
+			<a href="https://www.reddit.com/user/rocketMo/">Message me on reddit</a>
 		</div>
 		<div id="wrapper">
 			<div id="modes-container">
@@ -474,12 +475,60 @@
 							<div id="matchups">
 								<fieldset>
 									<legend><h2>Matchups</h2></legend>
-									<div id="matchup-container">
-										<div id="matchup-display">
-											<h3 id="matchup-title"></h3>
-											<span id="matchup-overview"></span>
-											<table id="matchup-table" class="sortable"></table>
+									<div id="matchup-display">
+										<h3 id="matchup-title"></h3>
+										<span id="matchup-overview"></span>
+										<div id="matchup-filter-container">
+											<h3 id="filter-title"><span class="collapse-button" data-section="matchup-filters">Open Filters</span></h3>
+											<div id="matchup-filters">
+												<div class="matchup-filter-block">
+													<label>Name</label>
+													<input type="text">
+												</div>
+												<div class="matchup-filter-block">
+													<label>Color</label>
+													<select>
+														<option value="All">All</option>
+														<option value="Red">Red</option>
+														<option value="Green">Green</option>
+														<option value="Blue">Blue</option>
+														<option value="Colorless">Colorless</option>
+													</select>
+												</div><br>
+												<div class="matchup-filter-block">
+													<label>Move Type</label>
+													<select>
+														<option value="All">All</option>
+														<option value="Infantry">Infantry</option>
+														<option value="Cavalry">Cavalry</option>
+														<option value="Flying">Flying</option>
+														<option value="Armored">Armored</option>
+													</select>
+												</div>
+												<div class="matchup-filter-block">
+													<label>Weapon Type</label>
+													<select>
+														<option value="All">All</option>
+														<option value="Sword">Sword</option>
+														<option value="Red Tome">Red Tome</option>
+														<option value="Red Breath">Red Breath</option>
+														<option value="Axe">Axe</option>
+														<option value="Green Tome">Green Tome</option>
+														<option value="Green Breath">Green Breath</option>
+														<option value="Lance">Lance</option>
+														<option value="Blue Tome">Blue Tome</option>
+														<option value="Blue Breath">Blue Breath</option>
+														<option value="Bow">Bow</option>
+														<option value="Dagger">Dagger</option>
+														<option value="Staff">Staff</option>														
+													</select>
+												</div>
+												<div class="matchup-filter-block">
+													<button>Reset</button>
+												</div>
+											</div>
 										</div>
+										<table id="matchup-table" class="sortable"></table>
 									</div>
 								</fieldset>
 							</div>
