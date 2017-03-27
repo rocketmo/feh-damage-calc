@@ -443,30 +443,6 @@ h3 {
 	padding: 0 1.5em;
 }
 
-#calc-matchups-btn {
-	display: block;
-	background-color: gold;
-	border: 1px solid gold;
-	border-radius: 4px;
-	color: #161a1b;
-	font-family: Constantia, Lucida Bright, DejaVu Serif, Georgia, serif;
-	font-size: 1.05em;
-	font-weight: bold;
-	padding: 0.2em 0.5em;
-	margin: 0 auto;
-}
-
-#calc-matchups-btn:hover {
-	cursor: pointer;
-	background-color: #a8900e;
-	border-color: #a8900e;
-}
-
-#calc-matchups-btn:active {
-	background-color: #594e13;
-	border-color: #594e13;
-}
-
 #matchup-title {
 	text-align: center;
 }

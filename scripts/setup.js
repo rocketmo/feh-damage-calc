@@ -12,9 +12,6 @@ var selectedDefender = 0;
 var attackerTeam = [{}, {}, {}, {}, {}];
 var defenderTeam = [{}, {}, {}, {}, {}];
 
-// the previous mode used, true = one vs all, false = all vs one
-var previousMode = true;
-
 // limits number inputs
 // num is a number input, minNumber is the lower limit
 function limit(num, minNumber) {
@@ -2205,7 +2202,7 @@ function calculateMatchups(attacker) {
 	}
 	
 	// show overview
-	$("#matchup-overview").html(winCount.toString() + " wins &middot; " + lossCount.toString() + " losses &middot; " + drawCount.toString() + " draws");
+	$("#matchup-overview").html(winCount.toString() + " wins · " + lossCount.toString() + " losses · " + drawCount.toString() + " draws");
 	
 	// display results
 	$("#matchup-display").fadeIn("slow");
@@ -2241,17 +2238,14 @@ function calculateMatchups(attacker) {
 	});
 }
 
-// hides the matchup table
-function hideMatchupTable() {
-	$("#matchup-display").hide(800);
-}
-
-// checks if the matchup table needs to be reset; if it does, hide it
-// charNum is the panel which was altered
-function resetMatchupTable(charNum) {
-	"use strict";
-	if ((charNum === "1" && previousMode) || (charNum === "2" && !previousMode)) {
-		hideMatchupTable();
+// updates infomation depending on the mode selected
+function updateDisplay() {
+	if ($("#one-vs-one").is(":checked")) {
+		simBattle(getBattleInfo(), true);
+	} else if ($("#one-vs-all").is(":checked")) {
+		calculateMatchups(true);
+	} else {
+		calculateMatchups(false);
 	}
 }
 
@@ -2279,7 +2273,6 @@ $(document).ready( function() {
 	// setup hp value updates
 	$(".hp-stat").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
-		resetMatchupTable(charNum);
 		
 		// old value
 		var oldHP = parseInt($("#" + this.id + "-denom").text());
@@ -2292,13 +2285,10 @@ $(document).ready( function() {
 			$("#curr-" + this.id).val(this.value);
 		}
 		
-		if ($("#one-vs-one").is(":checked")) {
-			simBattle(getBattleInfo(), true);
-		}
+		updateDisplay();
 	});
 	$(".curr-hp-val").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
-		resetMatchupTable(charNum);
 		
 		// current hp cannot be greater than base hp
 		var baseHP = parseInt($("#hp-" + charNum).val());
@@ -2306,24 +2296,19 @@ $(document).ready( function() {
 			this.value = baseHP;
 		}
 		
-		if ($("#one-vs-one").is(":checked")) {
-			simBattle(getBattleInfo(), true);
-		}
+		updateDisplay();
 	});
 	
 	// setup special cooldown updates
 	$(".spec-cool").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
-		resetMatchupTable(charNum);
 		
 		var maxCooldown = parseInt($("#spec-cooldown-max-" + charNum).text());
 		if (this.value > maxCooldown) {
 			this.value = maxCooldown;
 		}
 		
-		if ($("#one-vs-one").is(":checked")) {
-			simBattle(getBattleInfo(), true);
-		}
+		updateDisplay();
 	});
 	
 	// make character tabs load default image on error
@@ -2333,11 +2318,8 @@ $(document).ready( function() {
 	
 	// setup character tab changes
 	$(".char-tab, .char-tab-unselected").on("click", function() {
-		hideMatchupTable();
 		selectCharTab($(this).data("charnum") === 1, $(this).data("index"));
-		if ($("#one-vs-one").is(":checked")) {
-			simBattle(getBattleInfo(), true);
-		}
+		updateDisplay();
 	});
 	
 	// setup initial display
@@ -2347,80 +2329,58 @@ $(document).ready( function() {
 	// setup character select
 	$(".char-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
-		resetMatchupTable(charNum);
 		
 		displayChar(this.value, charNum);
-		if ($("#one-vs-one").is(":checked")) {
-			simBattle(getBattleInfo(), true);
-		}
+		updateDisplay();
 	});
 	
 	// setup weapon select
 	$(".weapon-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
-		resetMatchupTable(charNum);
 		
 		showWeapon(this.value, charNum, true);
-		if ($("#one-vs-one").is(":checked")) {
-			simBattle(getBattleInfo(), true);
-		}
+		updateDisplay();
 	});
 	
 	// setup special select
 	$(".special-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
-		resetMatchupTable(charNum);
 		
 		getSpecialData(charNum);
 		showSpecCooldown(this.value, charNum, false);
 		updateSpecCooldown(charNum);
-		if ($("#one-vs-one").is(":checked")) {
-			simBattle(getBattleInfo(), true);
-		}
+		updateDisplay();
 	});
 	
 	// setup assist select
 	$(".assist-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
-		resetMatchupTable(charNum);
-		
 		getAssistData(charNum);
 		updateSpecCooldown(charNum);
-		if ($("#one-vs-one").is(":checked")) {
-			simBattle(getBattleInfo(), true);
-		}
+		updateDisplay();
 	});
 	
 	// setup skill select
 	$(".passive-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
-		resetMatchupTable(charNum);
-		
 		var skillType = $(this).data("skilltype");
 		getSkillData(charNum, skillType, true);
-		if ($("#one-vs-one").is(":checked")) {
-			simBattle(getBattleInfo(), true);
-		}
+		updateDisplay();
 	});
 	
 	// set up weapon type changes
 	$(".weapon-type-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
-		resetMatchupTable(charNum);
-		
 		loadWeapons(this.value, charNum);
 		setColor(this.value, charNum);
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
-		if ($("#one-vs-one").is(":checked")) {
-			simBattle(getBattleInfo(), true);
-		}
+		updateDisplay();
 	});
 	
 	// set up color changes
 	$(".color-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
-		resetMatchupTable(charNum);
 		
 		if (this.value === "Red") {
 			loadWeapons("Sword", charNum);
@@ -2437,31 +2397,23 @@ $(document).ready( function() {
 		}
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
-		if ($("#one-vs-one").is(":checked")) {
-			simBattle(getBattleInfo(), true);
-		}
+		updateDisplay();
 	});
 	
 	// setup other battle value changes
 	$(".battle-val").on("change", function() {
-		resetMatchupTable($(this).data("charnum").toString());
-		
-		if ($("#one-vs-one").is(":checked")) {
-			simBattle(getBattleInfo(), true);
-		}
+		updateDisplay();
 	});
 	
 	// swap button
 	$("#swap-button").on("click", function() {
 		swap();
-		hideMatchupTable();
-		if ($("#one-vs-one").is(":checked")) {
-			simBattle(getBattleInfo(), true);
-		}
+		updateDisplay();
 	});
 	
 	// change mode
 	$("input[type=radio][name=mode]").on("change", function() {
+		updateDisplay();
 		if (this.id === "one-vs-one") {
 			$("#battle-result").stop(true, true).show(700);
 			$("#battle-log").stop(true, true).show(700);
@@ -2480,12 +2432,6 @@ $(document).ready( function() {
 			// disable defender input, enable attacker input
 			enableCharPanel("1", true);
 			enableCharPanel("2", false);
-			
-			if (!previousMode) {
-				hideMatchupTable();
-			}
-			
-			previousMode = true;
 		} else {
 			$("#battle-result").stop(true, true).hide(700);
 			$("#battle-log").stop(true, true).hide(700);
@@ -2494,21 +2440,6 @@ $(document).ready( function() {
 			// disable attacker input, enable defender input
 			enableCharPanel("1", false);
 			enableCharPanel("2", true);
-			
-			if (previousMode) {
-				hideMatchupTable();
-			}
-			
-			previousMode = false;
-		}
-	});
-	
-	// calculate matchups button press
-	$("#calc-matchups-btn").on("click", function() {
-		if ($("#one-vs-all").is(":checked")) {
-			calculateMatchups(true);
-		} else {
-			calculateMatchups(false);
 		}
 	});
 });
