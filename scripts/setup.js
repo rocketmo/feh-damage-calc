@@ -842,6 +842,20 @@ function selectCharTab(attacker, newIndex) {
 	}
 }
 
+// selects the first empty tab in a character panel, if all are take stay on the current tab
+// attacker is true if we are selecting from the attacker panel
+function selectEmptyCharTab(attacker) {
+	var team = attacker ? attackerTeam : defenderTeam;
+	var selected = attacker ? selectedAttacker : selectedDefender;
+	
+	for (var i = 0; i < 5; i++) {
+		if (!team[i].hasOwnProperty("character") && i !== selected) {
+			selectCharTab(attacker, i);
+			return;
+		}
+	}
+}
+
 // determines if the attacker has triangle advantage
 // attackColor is the color of the attacker, defendColor is the color of the defender
 // returns 1 if advantage, -1 if disadvantage, 0 if neither
@@ -2089,6 +2103,7 @@ function calculateMatchups(attacker) {
 	var drawCount = 0;
 	var tableHTML = "";
 	var charCount = 0;
+	var foeClass = attacker ? "defender" : "attacker";
 	
 	// add table headers
 	if (attacker) {
@@ -2106,11 +2121,11 @@ function calculateMatchups(attacker) {
 			// add to table
 			tableHTML += (charCount % 2 === 1) ? "<tr class='matchup-row-offset'>" : "<tr>";
 			tableHTML += "<td><img src=\"img/Portraits/" + key + ".png\"></td>";
-			tableHTML += "<td><span class='matchup-char'>" + key + "</span></td>";
-			tableHTML += "<td>" + (battleInfo.defender.startHP - battleInfo.defender.currHP).toString() + "</td>";
-			tableHTML += "<td>" + (battleInfo.attacker.startHP - battleInfo.attacker.currHP).toString() + "</td>";
-			tableHTML += "<td>" + battleInfo.attacker.startHP.toString() + " → " + battleInfo.attacker.currHP.toString() + "</td>";
-			tableHTML += "<td>" + battleInfo.defender.startHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</td>";
+			tableHTML += "<td><span class='matchup-char " + foeClass + "'>" + key + "</span></td>";
+			tableHTML += "<td class='attacker'>" + (battleInfo.defender.startHP - battleInfo.defender.currHP).toString() + "</td>";
+			tableHTML += "<td class='defender'>" + (battleInfo.attacker.startHP - battleInfo.attacker.currHP).toString() + "</td>";
+			tableHTML += "<td class='attacker'>" + battleInfo.attacker.startHP.toString() + " → " + battleInfo.attacker.currHP.toString() + "</td>";
+			tableHTML += "<td class='defender'>" + battleInfo.defender.startHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</td>";
 			
 			if (battleInfo.attacker.currHP <= 0) {
 				tableHTML += "<td class='defender'><strong>Defender Wins</strong></td>";
@@ -2141,7 +2156,34 @@ function calculateMatchups(attacker) {
 	}
 	
 	// display results
-	$("#matchup-table").hide().html(tableHTML).fadeIn("slow");
+	$("#matchup-display").stop(true, true).hide();
+	$("#matchup-table").html(tableHTML);
+	$("#matchup-display").fadeIn("slow");
+	
+	// setup events to view one vs one info
+	$(".matchup-char").on("click", function() {
+		var attacker = ($("#one-vs-all").is(":checked")) ? false : true;
+		var charName = $(this).text();
+		
+		// select empty tab if possible
+		selectEmptyCharTab(attacker);
+		
+		// check one vs one radio button
+		$("input[type=radio][name=mode]").val(["one-vs-one"]);
+		
+		// show one vs one info
+		$("#battle-result").stop(true, true).show(700);
+		$("#battle-log").stop(true, true).show(700);
+		$("#matchups").stop(true, true).hide(700);
+
+		// enable all inputs
+		enableCharPanel("1", true);
+		enableCharPanel("2", true);
+		
+		$("#char-" + (attacker ? "1" : "2")).val(charName);
+		displayChar(charName, (attacker ? "1" : "2"));
+		simBattle(getBattleInfo(), true);
+	});
 }
 
 // setup inital page
@@ -2353,6 +2395,7 @@ $(document).ready( function() {
 		}
 	});
 	
+	// calculate matchups button press
 	$("#calc-matchups-btn").on("click", function() {
 		if ($("#one-vs-all").is(":checked")) {
 			calculateMatchups(true);

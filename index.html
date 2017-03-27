@@ -16,11 +16,11 @@
 		<div id="wrapper">
 			<div id="modes-container">
 				<div id="modes" title="Select a mode of calculation.">
-					<input id="one-vs-one" class="mode-button" type="radio" name="mode" checked="checked">
+					<input id="one-vs-one" class="mode-button" type="radio" name="mode" value="one-vs-one" checked="checked">
 					<label class="mode-button-label button-left" for="one-vs-one">One vs. One</label>
-					<input id="one-vs-all" class="mode-button" type="radio" name="mode">
+					<input id="one-vs-all" class="mode-button" type="radio" name="mode" value="one-vs-all" >
 					<label class="mode-button-label button-middle" for="one-vs-all">One vs. All</label>
-					<input id="all-vs-one" class="mode-button" type="radio" name="mode">
+					<input id="all-vs-one" class="mode-button" type="radio" name="mode" value="all-vs-one" >
 					<label class="mode-button-label button-right" for="all-vs-one">All vs. One</label>
 				</div>
 			</div>
@@ -475,46 +475,9 @@
 									<legend><h2>Matchups</h2></legend>
 									<div id="matchup-container">
 										<button id="calc-matchups-btn">Calculate Matchups</button>
-										<table id="matchup-table">
-											<!-- DELETE THIS LATER
-											<tr class="matchup-header">
-												<th></th>
-												<th>Character</th>
-												<th>Attacker DMG</th>
-												<th>Defender DMG</th>
-												<th>Attacker HP</th>
-												<th>Defender HP</th>
-												<th>Result</th>
-											</tr>
-											<tr>
-												<td><img src="img/Portraits/Gwendolyn.png"></td>
-												<td><span class="matchup-char">Gwendolyn</span></td>
-												<td>40</td>
-												<td>20</td>
-												<td>40 → 20</td>
-												<td>40 → 0</td>
-												<td class="attacker"><strong>Attacker Wins</strong></td>
-											</tr>
-											<tr class="matchup-row-offset">
-												<td><img src="img/Portraits/Tiki (Young).png"></td>
-												<td><span class="matchup-char">Tiki (Young)</span></td>
-												<td>20</td>
-												<td>40</td>
-												<td>40 → 0</td>
-												<td>40 → 20</td>
-												<td class="defender"><strong>Defender Wins</strong></td>
-											</tr>
-											<tr>
-												<td><img src="img/Portraits/Gwendolyn.png"></td>
-												<td><span class="matchup-char">Gwendolyn</span></td>
-												<td>40</td>
-												<td>20</td>
-												<td>40 → 20</td>
-												<td>40 → 0</td>
-												<td class="attacker"><strong>Attacker Wins</strong></td>
-											</tr>
-											-->
-										</table>
+										<div id="matchup-display">
+											<table id="matchup-table"></table>
+										</div>
 									</div>
 								</fieldset>
 							</div>
