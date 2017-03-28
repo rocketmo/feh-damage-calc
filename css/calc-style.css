@@ -164,7 +164,7 @@ body::after {
 	content: url(../img/swap-hover.png) url(../img/Portraits/Unselected-hover.png);
 }
 
-button:focus {
+#swap-button:focus {
 	outline: none;
 }
 
