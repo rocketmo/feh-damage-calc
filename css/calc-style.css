@@ -52,7 +52,7 @@ label {
 }
 
 #matchup-filters label {
-	width: 6.5em;
+	width: 6.9em;
 }
 
 #matchup-filters select, #matchup-filters input[type=text] {
@@ -66,7 +66,7 @@ label {
 
 .matchup-filter-block {
 	display: inline-block;
-	width: 14em;
+	width: 15em;
 	margin: 0.1em 1em;
 }
 
