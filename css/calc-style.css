@@ -45,9 +45,9 @@ label {
 	margin: 0.5em auto 1em auto;
 }
 
-#filter-title {
+#matchup-filter-title {
 	text-align: center;
-	font-size: 1.05em;
+	font-size: 1em;
 	margin: 1em 0;
 }
 
@@ -159,13 +159,9 @@ h1, h2, h3 {
 	cursor: pointer;
 }
 
-#swap-button:active {
-	background-image: url(../img/swap-press.png);
-}
-
 body::after {
 	display: none;
-	content: url(../img/swap-hover.png) url(../img/swap-press.png) url(../img/Portraits/Unselected-hover.png);
+	content: url(../img/swap-hover.png) url(../img/Portraits/Unselected-hover.png);
 }
 
 button:focus {
@@ -313,11 +309,6 @@ h3 {
 	cursor: pointer;
 }
 
-.char-tab:active {
-	background-color: #FCE77E;
-	border: solid 1px gold;
-}
-
 .char-tab-selected {
 	display: inline-block;
 	width: 17%;
@@ -351,6 +342,10 @@ h3 {
 	width: 700px;
 	display: none;
 	margin: 0em auto 0.5em auto;
+}
+
+#matchup-table-container {
+	margin: 1em auto 0.5em auto;
 }
 
 #matchup-table {
@@ -473,6 +468,17 @@ h3 {
 
 #matchup-title {
 	text-align: center;
+}
+
+#matchup-filter-button {
+	color: #161a1b;
+	background-color: gold;
+	border-radius: 4px;
+	padding: 0.2em 0.5em;
+}
+
+#matchup-filter-button:hover {
+	background-color: #a8900e;
 }
 
 #matchup-overview {

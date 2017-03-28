@@ -13,7 +13,7 @@
 		<div id="calc-header">
 			<h1>Fire Emblem: Heroes Damage Calculator</h1>
 			<a href="https://github.com/rocketmo/feh-damage-calc">GitHub repository</a>
-			<a href="https://www.reddit.com/user/rocketMo/">Message me on reddit</a>
+			<a href="https://www.reddit.com/user/rocketMo/">Contact on reddit</a>
 		</div>
 		<div id="wrapper">
 			<div id="modes-container">
@@ -479,16 +479,16 @@
 										<h3 id="matchup-title"></h3>
 										<span id="matchup-overview"></span>
 										<div id="matchup-filter-container">
-											<h3 id="filter-title"><span class="collapse-button" data-section="matchup-filters">Open Filters</span></h3>
+											<h3 id="matchup-filter-title"><span id="matchup-filter-button" class="collapse-button" data-section="matchup-filters">Open Filters</span></h3>
 											<div id="matchup-filters">
 												<div class="matchup-filter-block">
 													<label>Name</label>
-													<input type="text">
+													<input id="matchup-filter-name" type="text" class="matchup-filter-input">
 												</div>
 												<div class="matchup-filter-block">
 													<label>Color</label>
-													<select>
-														<option value="All">All</option>
+													<select id="matchup-filter-color" class="matchup-filter-input">
+														<option value="Any">Any</option>
 														<option value="Red">Red</option>
 														<option value="Green">Green</option>
 														<option value="Blue">Blue</option>
@@ -497,8 +497,8 @@
 												</div><br>
 												<div class="matchup-filter-block">
 													<label>Move Type</label>
-													<select>
-														<option value="All">All</option>
+													<select id="matchup-filter-move" class="matchup-filter-input">
+														<option value="Any">Any</option>
 														<option value="Infantry">Infantry</option>
 														<option value="Cavalry">Cavalry</option>
 														<option value="Flying">Flying</option>
@@ -507,8 +507,8 @@
 												</div>
 												<div class="matchup-filter-block">
 													<label>Weapon Type</label>
-													<select>
-														<option value="All">All</option>
+													<select id="matchup-filter-weapon" class="matchup-filter-input">
+														<option value="Any">Any</option>
 														<option value="Sword">Sword</option>
 														<option value="Red Tome">Red Tome</option>
 														<option value="Red Breath">Red Breath</option>
@@ -524,11 +524,13 @@
 													</select>
 												</div>
 												<div class="matchup-filter-block">
-													<button>Reset</button>
+													<button id="matchup-filter-reset">Reset</button>
 												</div>
 											</div>
 										</div>
-										<table id="matchup-table" class="sortable"></table>
+										<div id="matchup-table-container">
+											<table id="matchup-table" class="sortable"></table>
+										</div>
 									</div>
 								</fieldset>
 							</div>

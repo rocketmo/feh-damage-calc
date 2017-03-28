@@ -12,6 +12,10 @@ var selectedDefender = 0;
 var attackerTeam = [{}, {}, {}, {}, {}];
 var defenderTeam = [{}, {}, {}, {}, {}];
 
+// matchup table info
+var previousTable = true; // true if one vs all, false if all vs one
+var keepTable = false;	// true if we keep the matchup table currently displayed
+
 // limits number inputs
 // num is a number input, minNumber is the lower limit
 function limit(num, minNumber) {
@@ -119,6 +123,21 @@ function customName(weaponType, moveType) {
 			
 	return name;
 }
+
+// given a weapon type, return its color
+function weaponToColor(weaponType) {
+	"use strict";
+	if (weaponType === "Sword" || weaponType === "Red Tome" || weaponType === "Red Breath") {
+		return "Red";
+	} else if (weaponType === "Axe" || weaponType === "Green Tome" || weaponType === "Green Breath") {
+		return "Green";
+	} else if (weaponType === "Lance" || weaponType === "Blue Tome" || weaponType === "Blue Breath") {
+		return "Blue";
+	} 
+	
+	return "Colorless";
+}
+
 
 // determines if the given skill is inheritable by the character in the given panel
 function isInheritable(skill, charNum) {
@@ -2100,6 +2119,7 @@ function enableCharPanel(charNum, enable) {
 
 // recolors matchup table rows
 function recolorMatchupRows() {
+	"use strict";
 	var rowCount = 0;
 	$("#matchup-table > tbody > tr").each(function() {
 		if($(this).is(":visible")) {
@@ -2114,6 +2134,36 @@ function recolorMatchupRows() {
 	});
 }
 
+// filters the matchup table depending on the current filters
+// set fadeIn to true to fade in results
+function filterMatchupTable(fadeIn) {
+	"use strict";
+	var name = $("#matchup-filter-name").val().toLowerCase();
+	var move = $("#matchup-filter-move").val();
+	var color = $("#matchup-filter-color").val();
+	var weapon = $("#matchup-filter-weapon").val();
+	
+	$("#matchup-table tbody tr").each(function() {
+		var rowName = this.childNodes[1].firstChild.firstChild.nodeValue;
+		var rowMove = charInfo[rowName].move_type;
+		var rowColor = charInfo[rowName].color;
+		var rowWeapon = charInfo[rowName].weapon_type;
+		rowName = rowName.toLowerCase();
+		
+		if ((name === "" || rowName.indexOf(name) > -1) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon)) {
+			$(this).show();
+		} else {
+			$(this).hide();
+		}
+	});
+	
+	recolorMatchupRows();
+	
+	if (fadeIn) {
+		$("#matchup-table").hide().fadeIn("slow");
+	}
+}
+
 // calculates and prints info of every battle matchup for one character
 // attacker is true if we are using the attacker panel as our base character
 function calculateMatchups(attacker) {
@@ -2125,6 +2175,7 @@ function calculateMatchups(attacker) {
 	var tableHTML = "";
 	var charCount = 0;
 	var foeClass = attacker ? "defender" : "attacker";
+	keepTable = true;
 	
 	// add table headers
 	if (attacker) {
@@ -2187,6 +2238,7 @@ function calculateMatchups(attacker) {
 	// create table
 	$("#matchup-display").stop(true, true).hide();
 	$("#matchup-table").html(tableHTML);
+	filterMatchupTable(false);
 	
 	// make table sortable
 	tsorter.create("matchup-table");
@@ -2230,6 +2282,7 @@ function calculateMatchups(attacker) {
 		$("#char-" + (attacker ? "1" : "2")).val(charName);
 		displayChar(charName, (attacker ? "1" : "2"));
 		simBattle(getBattleInfo(), true);
+		keepTable = true;
 	});
 	
 	// recolor rows when sorting
@@ -2242,9 +2295,9 @@ function calculateMatchups(attacker) {
 function updateDisplay() {
 	if ($("#one-vs-one").is(":checked")) {
 		simBattle(getBattleInfo(), true);
-	} else if ($("#one-vs-all").is(":checked")) {
+	} else if ($("#one-vs-all").is(":checked") && (!keepTable || !previousTable)) {
 		calculateMatchups(true);
-	} else {
+	} else if ($("#all-vs-one").is(":checked") && (!keepTable || previousTable)) {
 		calculateMatchups(false);
 	}
 }
@@ -2285,6 +2338,7 @@ $(document).ready( function() {
 			$("#curr-" + this.id).val(this.value);
 		}
 		
+		keepTable = false;
 		updateDisplay();
 	});
 	$(".curr-hp-val").on("change", function() {
@@ -2296,6 +2350,7 @@ $(document).ready( function() {
 			this.value = baseHP;
 		}
 		
+		keepTable = false;
 		updateDisplay();
 	});
 	
@@ -2308,6 +2363,7 @@ $(document).ready( function() {
 			this.value = maxCooldown;
 		}
 		
+		keepTable = false;
 		updateDisplay();
 	});
 	
@@ -2319,6 +2375,7 @@ $(document).ready( function() {
 	// setup character tab changes
 	$(".char-tab, .char-tab-unselected").on("click", function() {
 		selectCharTab($(this).data("charnum") === 1, $(this).data("index"));
+		keepTable = false;
 		updateDisplay();
 	});
 	
@@ -2329,26 +2386,26 @@ $(document).ready( function() {
 	// setup character select
 	$(".char-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
-		
 		displayChar(this.value, charNum);
+		keepTable = false;
 		updateDisplay();
 	});
 	
 	// setup weapon select
 	$(".weapon-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
-		
 		showWeapon(this.value, charNum, true);
+		keepTable = false;
 		updateDisplay();
 	});
 	
 	// setup special select
 	$(".special-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
-		
 		getSpecialData(charNum);
 		showSpecCooldown(this.value, charNum, false);
 		updateSpecCooldown(charNum);
+		keepTable = false;
 		updateDisplay();
 	});
 	
@@ -2357,6 +2414,7 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		getAssistData(charNum);
 		updateSpecCooldown(charNum);
+		keepTable = false;
 		updateDisplay();
 	});
 	
@@ -2365,6 +2423,7 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		var skillType = $(this).data("skilltype");
 		getSkillData(charNum, skillType, true);
+		keepTable = false;
 		updateDisplay();
 	});
 	
@@ -2375,6 +2434,7 @@ $(document).ready( function() {
 		setColor(this.value, charNum);
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
+		keepTable = false;
 		updateDisplay();
 	});
 	
@@ -2397,17 +2457,20 @@ $(document).ready( function() {
 		}
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
+		keepTable = false;
 		updateDisplay();
 	});
 	
 	// setup other battle value changes
 	$(".battle-val").on("change", function() {
+		keepTable = false;
 		updateDisplay();
 	});
 	
 	// swap button
 	$("#swap-button").on("click", function() {
 		swap();
+		keepTable = false;
 		updateDisplay();
 	});
 	
@@ -2422,8 +2485,6 @@ $(document).ready( function() {
 			// enable all inputs
 			enableCharPanel("1", true);
 			enableCharPanel("2", true);
-			
-			simBattle(getBattleInfo(), true);
 		} else if (this.id === "one-vs-all") {
 			$("#battle-result").stop(true, true).hide(700);
 			$("#battle-log").stop(true, true).hide(700);
@@ -2432,6 +2493,9 @@ $(document).ready( function() {
 			// disable defender input, enable attacker input
 			enableCharPanel("1", true);
 			enableCharPanel("2", false);
+			
+			// update info
+			previousTable = true;
 		} else {
 			$("#battle-result").stop(true, true).hide(700);
 			$("#battle-log").stop(true, true).hide(700);
@@ -2440,6 +2504,39 @@ $(document).ready( function() {
 			// disable attacker input, enable defender input
 			enableCharPanel("1", false);
 			enableCharPanel("2", true);
+			
+			// update info
+			previousTable = false;
 		}
+	});
+	
+	// change filter title when pressed 
+	$("#matchup-filter-button").on("click", function() {
+		if ($(this).text() === "Open Filters") {
+			$(this).text("Close Filters");
+		} else {
+			$(this).text("Open Filters");
+		}
+	});
+	
+	// update table when filters are changed
+	$(".matchup-filter-input").on("change", function() {
+		// make sure weapons and colors are correct
+		if (this.id === "matchup-filter-color" && this.value !== "Any" && $("#matchup-filter-weapon").val() !== "Any" && this.value !== weaponToColor($("#matchup-filter-weapon").val())) {
+			$("#matchup-filter-weapon").val("Any");
+		} else if (this.id === "matchup-filter-weapon" && this.value !== "Any" && $("#matchup-filter-color").val() !== "Any" && weaponToColor(this.value) !== $("#matchup-filter-color").val()) {
+			$("#matchup-filter-color").val(weaponToColor(this.value));
+		}
+		
+		filterMatchupTable(true);
+	});
+	
+	// reset filters
+	$("#matchup-filter-reset").on("click", function() {
+		$("#matchup-filter-name").val("");
+		$("#matchup-filter-move").val("Any");
+		$("#matchup-filter-color").val("Any");
+		$("#matchup-filter-weapon").val("Any");
+		filterMatchupTable(true);
 	});
 });
