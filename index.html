@@ -2,15 +2,57 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="Description" content="A Damage Calculator for Fire Emblem: Heroes which can be used to simulate battle interactions.">
+		<meta name="Description" content="A tool to simulate battles in Fire Emblem: Heroes.">
 		<title>Fire Emblem: Heroes Damage Calculator</title>
 		<link rel="icon" href="img/favicon.ico">
 		<link rel="stylesheet" href="css/calc-style.css">
+		<link rel="stylesheet" href="css/sorter.css">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	</head>
 	<body>
+		<div id="calc-header">
+			<h1>Fire Emblem: Heroes Damage Calculator</h1>
+			<a href="https://github.com/rocketmo/feh-damage-calc">GitHub repository</a>
+			<a href="https://www.reddit.com/user/rocketMo/">Contact on reddit</a>
+		</div>
 		<div id="wrapper">
-			<h1>Fire Emblem: Heroes<br><span class="sub-h1">Damage Calculator</span></h1>
+			<div id="modes-container">
+				<div id="modes" title="Select a mode of calculation.">
+					<input id="one-vs-one" class="mode-button" type="radio" name="mode" value="one-vs-one" checked="checked">
+					<label class="mode-button-label button-left" for="one-vs-one">One vs. One</label>
+					<input id="one-vs-all" class="mode-button" type="radio" name="mode" value="one-vs-all" >
+					<label class="mode-button-label button-middle" for="one-vs-all">One vs. All</label>
+					<input id="all-vs-one" class="mode-button" type="radio" name="mode" value="all-vs-one" >
+					<label class="mode-button-label button-right" for="all-vs-one">All vs. One</label>
+				</div>
+			</div>
+			<div id="battle-result">
+				<table id="result-table">
+					<tr>
+						<td>
+							<div class="combat-char">
+								<h3 class="attacker">Attacker</h3>
+								<img id="attacker-portrait" class="combat-portrait">
+								<span id="hp-remain-1" class="hp-remain"></span>
+							</div>	
+						</td>
+						<td>
+							<div class="combat-char">
+								<h3 class="defender">Defender</h3>
+								<img id="defender-portrait" class="combat-portrait">
+								<span id="hp-remain-2" class="hp-remain"></span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<div>
+								<p id="result-msg"></p>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
 			<div>
 				<table id="calc">
 					<tr id="char-panel">
@@ -61,7 +103,7 @@
 											</div>
 											<div>
 												<label>Move Type</label>
-												<select id="move-type-1" class="battle-val">
+												<select id="move-type-1" class="battle-val" data-charnum="1">
 													<option value="Infantry">Infantry</option>
 													<option value="Cavalry">Cavalry</option>
 													<option value="Flying">Flying</option>
@@ -171,38 +213,38 @@
 											</tr>
 											<tr>
 												<td><label class="stat" title="A unit is defeated if their Hit Points reach 0.">HP</label></td>
-												<td class="center-cell"><input type="number" id="hp-1" class="more-than-zero hp-stat" value="1"></td>
+												<td class="center-cell"><input type="number" id="hp-1" class="more-than-zero hp-stat" value="1" data-charnum="1"></td>
 												<td></td>
 												<td></td>
 												<td></td>
 											</tr>
 											<tr>
 												<td><label class="stat" title="The higher a unit's Attack, the more damage it will inflict on foes.">ATK</label></td>
-												<td class="center-cell"><input type="number" id="atk-1" class="zero-or-more battle-val" value="1"></td>
-												<td class="center-cell"><select id="atk-bonus-1" class="stat-bonus battle-val"></select></td>
-												<td class="center-cell"><select id="atk-penalty-1" class="stat-penalty battle-val"></select></td>
-												<td class="center-cell"><select id="atk-spur-1" class="stat-spur battle-val"></select></td>
+												<td class="center-cell"><input type="number" id="atk-1" class="zero-or-more battle-val" value="1" data-charnum="1"></td>
+												<td class="center-cell"><select id="atk-bonus-1" class="stat-bonus battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="atk-penalty-1" class="stat-penalty battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="atk-spur-1" class="stat-spur battle-val" data-charnum="1"></select></td>
 											</tr>
 											<tr>
 												<td><label class="stat" title="A unit will attack twice if their Speed is at least 5 more than their foe's Speed.">SPD</label></td>
-												<td class="center-cell"><input type="number" id="spd-1" class="zero-or-more battle-val" value="1"></td>
-												<td class="center-cell"><select id="spd-bonus-1" class="stat-bonus battle-val"></select></td>
-												<td class="center-cell"><select id="spd-penalty-1" class="stat-penalty battle-val"></select></td>
-												<td class="center-cell"><select id="spd-spur-1" class="stat-spur battle-val"></select></td>
+												<td class="center-cell"><input type="number" id="spd-1" class="zero-or-more battle-val" value="1" data-charnum="1"></td>
+												<td class="center-cell"><select id="spd-bonus-1" class="stat-bonus battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="spd-penalty-1" class="stat-penalty battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="spd-spur-1" class="stat-spur battle-val" data-charnum="1"></select></td>
 											</tr>
 											<tr>
 												<td><label class="stat" title="The higher a unit's Defense is, the less damage they take from physical attacks.">DEF</label></td>
-												<td class="center-cell"><input type="number" id="def-1" class="zero-or-more battle-val" value="1"></td>
-												<td class="center-cell"><select id="def-bonus-1" class="stat-bonus battle-val"></select></td>
-												<td class="center-cell"><select id="def-penalty-1" class="stat-penalty battle-val"></select></td>
-												<td class="center-cell"><select id="def-spur-1" class="stat-spur battle-val"></select></td>
+												<td class="center-cell"><input type="number" id="def-1" class="zero-or-more battle-val" value="1" data-charnum="1"></td>
+												<td class="center-cell"><select id="def-bonus-1" class="stat-bonus battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="def-penalty-1" class="stat-penalty battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="def-spur-1" class="stat-spur battle-val" data-charnum="1"></select></td>
 											</tr>
 											<tr>
 												<td><label class="stat" title="The higher a unit's Resistance is, the less damage they take from magical attacks.">RES</label></td>
-												<td class="center-cell"><input type="number" id="res-1" class="zero-or-more battle-val" value="1"></td>
-												<td class="center-cell"><select id="res-bonus-1" class="stat-bonus battle-val"></select></td>
-												<td class="center-cell"><select id="res-penalty-1" class="stat-penalty battle-val"></select></td>
-												<td class="center-cell"><select id="res-spur-1" class="stat-spur battle-val"></select></td>
+												<td class="center-cell"><input type="number" id="res-1" class="zero-or-more battle-val" value="1" data-charnum="1"></td>
+												<td class="center-cell"><select id="res-bonus-1" class="stat-bonus battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="res-penalty-1" class="stat-penalty battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="res-spur-1" class="stat-spur battle-val" data-charnum="1"></select></td>
 											</tr>
 										</table>
 									</div>
@@ -265,7 +307,7 @@
 											</div>
 											<div>
 												<label>Move Type</label>
-												<select id="move-type-2" class="battle-val">
+												<select id="move-type-2" class="battle-val" data-charnum="1">
 													<option value="Infantry">Infantry</option>
 													<option value="Cavalry">Cavalry</option>
 													<option value="Flying">Flying</option>
@@ -375,38 +417,38 @@
 											</tr>
 											<tr>
 												<td><label class="stat" title="A unit is defeated if their Hit Points reach 0.">HP</label></td>
-												<td class="center-cell"><input type="number" id="hp-2" class="more-than-zero hp-stat" value="1"></td>
+												<td class="center-cell"><input type="number" id="hp-2" class="more-than-zero hp-stat" value="1" data-charnum="1"></td>
 												<td></td>
 												<td></td>
 												<td></td>
 											</tr>
 											<tr>
 												<td><label class="stat" title="The higher a unit's Attack, the more damage it will inflict on foes.">ATK</label></td>
-												<td class="center-cell"><input type="number" id="atk-2" class="zero-or-more battle-val" value="1"></td>
-												<td class="center-cell"><select id="atk-bonus-2" class="stat-bonus battle-val"></select></td>
-												<td class="center-cell"><select id="atk-penalty-2" class="stat-penalty battle-val"></select></td>
-												<td class="center-cell"><select id="atk-spur-2" class="stat-spur battle-val"></select></td>
+												<td class="center-cell"><input type="number" id="atk-2" class="zero-or-more battle-val" value="1" data-charnum="1"></td>
+												<td class="center-cell"><select id="atk-bonus-2" class="stat-bonus battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="atk-penalty-2" class="stat-penalty battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="atk-spur-2" class="stat-spur battle-val" data-charnum="1"></select></td>
 											</tr>
 											<tr>
 												<td><label class="stat" title="A unit will attack twice if their Speed is at least 5 more than their foe's Speed.">SPD</label></td>
-												<td class="center-cell"><input type="number" id="spd-2" class="zero-or-more battle-val" value="1"></td>
-												<td class="center-cell"><select id="spd-bonus-2" class="stat-bonus battle-val"></select></td>
-												<td class="center-cell"><select id="spd-penalty-2" class="stat-penalty battle-val"></select></td>
-												<td class="center-cell"><select id="spd-spur-2" class="stat-spur battle-val"></select></td>
+												<td class="center-cell"><input type="number" id="spd-2" class="zero-or-more battle-val" value="1" data-charnum="1"></td>
+												<td class="center-cell"><select id="spd-bonus-2" class="stat-bonus battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="spd-penalty-2" class="stat-penalty battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="spd-spur-2" class="stat-spur battle-val" data-charnum="1"></select></td>
 											</tr>
 											<tr>
 												<td><label class="stat" title="The higher a unit's Defense is, the less damage they take from physical attacks.">DEF</label></td>
-												<td class="center-cell"><input type="number" id="def-2" class="zero-or-more battle-val" value="1"></td>
-												<td class="center-cell"><select id="def-bonus-2" class="stat-bonus battle-val"></select></td>
-												<td class="center-cell"><select id="def-penalty-2" class="stat-penalty battle-val"></select></td>
-												<td class="center-cell"><select id="def-spur-2" class="stat-spur battle-val"></select></td>
+												<td class="center-cell"><input type="number" id="def-2" class="zero-or-more battle-val" value="1" data-charnum="1"></td>
+												<td class="center-cell"><select id="def-bonus-2" class="stat-bonus battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="def-penalty-2" class="stat-penalty battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="def-spur-2" class="stat-spur battle-val" data-charnum="1"></select></td>
 											</tr>
 											<tr>
 												<td><label class="stat" title="The higher a unit's Resistance is, the less damage they take from magical attacks.">RES</label></td>
-												<td class="center-cell"><input type="number" id="res-2" class="zero-or-more battle-val" value="1"></td>
-												<td class="center-cell"><select id="res-bonus-2" class="stat-bonus battle-val"></select></td>
-												<td class="center-cell"><select id="res-penalty-2" class="stat-penalty battle-val"></select></td>
-												<td class="center-cell"><select id="res-spur-2" class="stat-spur battle-val"></select></td>
+												<td class="center-cell"><input type="number" id="res-2" class="zero-or-more battle-val" value="1" data-charnum="1"></td>
+												<td class="center-cell"><select id="res-bonus-2" class="stat-bonus battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="res-penalty-2" class="stat-penalty battle-val" data-charnum="1"></select></td>
+												<td class="center-cell"><select id="res-spur-2" class="stat-spur battle-val" data-charnum="1"></select></td>
 											</tr>
 										</table>
 									</div>
@@ -422,49 +464,76 @@
 						<td colspan="3">
 							<div id="battle-log">
 								<fieldset>
-									<legend><h2>
-										<span id="interaction-list-btn" class="collapse-button" data-section="interaction-list">Battle Log</span>
-									</h2></legend>
-									<ul id="interaction-list">
-									</ul>
+									<legend><h2><span id="interaction-list-btn" class="collapse-button" data-section="interaction-list">Battle Log</span></h2></legend>
+									<ul id="interaction-list"></ul>
 								</fieldset>
 							</div>	
 						</td>
 					</tr>
 					<tr>
 						<td colspan="3">
-							<div id="battle-result">
+							<div id="matchups">
 								<fieldset>
-									<legend><h2>Result</h2></legend>
-									<table id="result-table">
-										<tr>
-											<td class="column-line">
-												<div>
-													<h3 class="attacker">Attacker HP Remaining</h3>
-													<div id="hp-remain-block-1" class="hp-remain-block">
-														<span id="hp-remain-1" class="numerator">x</span>/<span class="denominator hp-1-read">1</span>
-													</div>
-												</div>	
-											</td>
-											<td>
-												<div>
-													<h3 class="defender">Defender HP Remaining</h3>
-													<div id="hp-remain-block-2" class="hp-remain-block">
-														<span id="hp-remain-2" class="numerator">x</span>/<span class="denominator hp-2-read">1</span>
-													</div>
+									<legend><h2>Matchups</h2></legend>
+									<div id="matchup-display">
+										<h3 id="matchup-title"></h3>
+										<span id="matchup-overview"></span>
+										<div id="matchup-filter-container">
+											<h3 id="matchup-filter-title"><span id="matchup-filter-button" class="collapse-button" data-section="matchup-filters">Open Filters</span></h3>
+											<div id="matchup-filters">
+												<div class="matchup-filter-block">
+													<label>Name</label>
+													<input id="matchup-filter-name" type="text" class="matchup-filter-input">
 												</div>
-											</td>
-										</tr>
-										<tr>
-											<td colspan="2">
-												<div>
-													<p id="result-msg"></p>
+												<div class="matchup-filter-block">
+													<label>Color</label>
+													<select id="matchup-filter-color" class="matchup-filter-input">
+														<option value="Any">Any</option>
+														<option value="Red">Red</option>
+														<option value="Green">Green</option>
+														<option value="Blue">Blue</option>
+														<option value="Colorless">Colorless</option>
+													</select>
+												</div><br>
+												<div class="matchup-filter-block">
+													<label>Move Type</label>
+													<select id="matchup-filter-move" class="matchup-filter-input">
+														<option value="Any">Any</option>
+														<option value="Infantry">Infantry</option>
+														<option value="Cavalry">Cavalry</option>
+														<option value="Flying">Flying</option>
+														<option value="Armored">Armored</option>
+													</select>
 												</div>
-											</td>
-										</tr>
-									</table>
+												<div class="matchup-filter-block">
+													<label>Weapon Type</label>
+													<select id="matchup-filter-weapon" class="matchup-filter-input">
+														<option value="Any">Any</option>
+														<option value="Sword">Sword</option>
+														<option value="Red Tome">Red Tome</option>
+														<option value="Red Breath">Red Breath</option>
+														<option value="Axe">Axe</option>
+														<option value="Green Tome">Green Tome</option>
+														<option value="Green Breath">Green Breath</option>
+														<option value="Lance">Lance</option>
+														<option value="Blue Tome">Blue Tome</option>
+														<option value="Blue Breath">Blue Breath</option>
+														<option value="Bow">Bow</option>
+														<option value="Dagger">Dagger</option>
+														<option value="Staff">Staff</option>														
+													</select>
+												</div>
+												<div class="matchup-filter-block">
+													<button id="matchup-filter-reset">Reset</button>
+												</div>
+											</div>
+										</div>
+										<div id="matchup-table-container">
+											<table id="matchup-table" class="sortable"></table>
+										</div>
+									</div>
 								</fieldset>
-							</div>	
+							</div>
 						</td>
 					</tr>
 				</table>
@@ -475,6 +544,7 @@
 		<script type="text/javascript" src="scripts/skill.js"></script>
 		<script type="text/javascript" src="scripts/special.js"></script>
 		<script type="text/javascript" src="scripts/assist.js"></script>
+		<script type="text/javascript" src="scripts/tsorter.js"></script>
 		<script type="text/javascript" src="scripts/setup.js"></script>
 	</body>
 </html>

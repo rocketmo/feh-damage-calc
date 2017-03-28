@@ -12,6 +12,10 @@ var selectedDefender = 0;
 var attackerTeam = [{}, {}, {}, {}, {}];
 var defenderTeam = [{}, {}, {}, {}, {}];
 
+// matchup table info
+var previousTable = true; // true if one vs all, false if all vs one
+var keepTable = false;	// true if we keep the matchup table currently displayed
+
 // limits number inputs
 // num is a number input, minNumber is the lower limit
 function limit(num, minNumber) {
@@ -119,6 +123,21 @@ function customName(weaponType, moveType) {
 			
 	return name;
 }
+
+// given a weapon type, return its color
+function weaponToColor(weaponType) {
+	"use strict";
+	if (weaponType === "Sword" || weaponType === "Red Tome" || weaponType === "Red Breath") {
+		return "Red";
+	} else if (weaponType === "Axe" || weaponType === "Green Tome" || weaponType === "Green Breath") {
+		return "Green";
+	} else if (weaponType === "Lance" || weaponType === "Blue Tome" || weaponType === "Blue Breath") {
+		return "Blue";
+	} 
+	
+	return "Colorless";
+}
+
 
 // determines if the given skill is inheritable by the character in the given panel
 function isInheritable(skill, charNum) {
@@ -417,9 +436,12 @@ function showSpecCooldown(selectedSpecial, charNum, changeCurr) {
 			$("#spec-cooldown-" + charNum).val(cool);
 		}
 		
-		$("#spec-cooldown-" + charNum).removeAttr("disabled");
-		$("#spec-cooldown-line-" + charNum).css("color", "white");
 		$("#spec-cooldown-max-" + charNum).text(cool);
+		
+		if ($("#one-vs-one").is(":checked") || ($("#one-vs-all").is(":checked") && charNum === "1") || ($("#all-vs-one").is(":checked") && charNum === "2")) {
+			$("#spec-cooldown-line-" + charNum).css("color", "white");
+			$("#spec-cooldown-" + charNum).removeAttr("disabled");
+		}
 	} else { // special not found
 		$("#spec-cooldown-" + charNum).val("0");
 		$("#spec-cooldown-" + charNum).attr("disabled", "disabled");
@@ -481,6 +503,7 @@ function displayChar(charName, charNum) {
 	if (!singleChar.hasOwnProperty("move_type")) { // no info -> custom option
 		// display portrait
 		getPortrait((charNum === "1" ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString()), "Other");
+		getPortrait((charNum === "1" ? "#attacker-portrait" : "#defender-portrait"), "Other");
 		
 		// enable inputs
 		$("#extra-char-info-" + charNum).css("color", "white");
@@ -543,6 +566,7 @@ function displayChar(charName, charNum) {
 	
 	// display portrait
 	getPortrait((charNum === "1" ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString()), charName);
+	getPortrait((charNum === "1" ? "#attacker-portrait" : "#defender-portrait"), charName);
 
 	// grey out disabled input fields
 	$("#extra-char-info-" + charNum).css("color", "#5b5b5b");
@@ -661,6 +685,7 @@ function displayChar(charName, charNum) {
 // stores the currently selected character for later
 // attacker is true if the character is in the attacker panel
 function storeCharTabInfo(attacker) {
+	"use strict";
 	var charNum = attacker ? "1" : "2";
 	var infoToStore = {};
 	
@@ -718,6 +743,7 @@ function storeCharTabInfo(attacker) {
 // gets the currently selected character and displays their info
 // attacker is true if the character is in the attacker panel
 function getCharTabInfo(attacker) {
+	"use strict";
 	var charNum = attacker ? "1" : "2";
 	var charTabInfo = attacker ? attackerTeam[selectedAttacker] : defenderTeam[selectedDefender];
 	
@@ -832,6 +858,20 @@ function selectCharTab(attacker, newIndex) {
 	// fade in new tab
 	if (newTab) {
 		$(newTabID).fadeIn();
+	}
+}
+
+// selects the first empty tab in a character panel, if all are take stay on the current tab
+// attacker is true if we are selecting from the attacker panel
+function selectEmptyCharTab(attacker) {
+	var team = attacker ? attackerTeam : defenderTeam;
+	var selected = attacker ? selectedAttacker : selectedDefender;
+	
+	for (var i = 0; i < 5; i++) {
+		if (!team[i].hasOwnProperty("character") && i !== selected) {
+			selectCharTab(attacker, i);
+			return;
+		}
 	}
 }
 
@@ -1014,6 +1054,7 @@ function getCharPanelData(charNum) {
 	
 	charData.currHP = parseInt($("#curr-hp-" + charNum).val());
 	charData.initHP = parseInt($("#curr-hp-" + charNum).val());
+	charData.startHP = parseInt($("#curr-hp-" + charNum).val());
 	charData.hp = parseInt($("#hp-" + charNum).val());
 	charData.atk = Math.max(0, parseInt($("#atk-"+charNum).val()) + parseInt($("#atk-bonus-"+charNum).val()) + parseInt($("#atk-penalty-"+charNum).val()) + parseInt($("#atk-spur-"+charNum).val()));
 	charData.spd = Math.max(0, parseInt($("#spd-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#spd-penalty-"+charNum).val()) + parseInt($("#spd-spur-"+charNum).val()));
@@ -1025,6 +1066,83 @@ function getCharPanelData(charNum) {
 	charData.resWS = Math.max(0, parseInt($("#res-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val()) + parseInt($("#res-penalty-"+charNum).val()));
 	
 	return charData;
+}
+
+// gets info of a default character
+// charName is the default character's name, charName must be a valid character and cannot be Custom
+function getDefaultCharData(charName) {
+	"use strict";
+	var charData = {};
+	
+	charData.color = charInfo[charName].color;
+	charData.moveType = charInfo[charName].move_type;
+	charData.type = charInfo[charName].weapon_type;
+	
+	charData.name = charName;
+	
+	charData.weaponName = charInfo[charName].weapon[0];
+	charData.weaponData = weaponInfo[charData.weaponName];
+	
+	if (charData.weaponData.hasOwnProperty("add_bonus")) {
+		charData.addBonusAtk = 0;
+	}
+	
+	charData.passiveA = charInfo[charName].hasOwnProperty("passive_a") ? charInfo[charName].passive_a[0] : "None";
+	charData.passiveB = charInfo[charName].hasOwnProperty("passive_b") ? charInfo[charName].passive_b[0] : "None";
+	charData.passiveC = charInfo[charName].hasOwnProperty("passive_c") ? charInfo[charName].passive_c[0] : "None";
+	charData.passiveAData = charInfo[charName].hasOwnProperty("passive_a") ? skillInfo.a[charData.passiveA] : {};
+	charData.passiveBData = charInfo[charName].hasOwnProperty("passive_b") ? skillInfo.b[charData.passiveB] : {};
+	charData.passiveCData = charInfo[charName].hasOwnProperty("passive_c") ? skillInfo.c[charData.passiveC] : {};
+	charData.special = charInfo[charName].hasOwnProperty("special") ? charInfo[charName].special[0] : "None";
+	charData.specCurrCooldown = charInfo[charName].hasOwnProperty("special") ? specInfo[charData.special].cooldown : 0;
+	charData.specialData = charInfo[charName].hasOwnProperty("special") ? specInfo[charData.special] : {};
+	charData.assistData = charInfo[charName].hasOwnProperty("assist") ? assistInfo[charInfo[charName].assist[0]] : {};
+	
+	charData.currHP = charInfo[charName].hp;
+	charData.initHP = charInfo[charName].hp;
+	charData.startHP = charInfo[charName].hp;
+	charData.hp = charInfo[charName].hp;
+	charData.atk = charInfo[charName].atk;
+	charData.spd = charInfo[charName].spd;
+	charData.def = charInfo[charName].def;
+	charData.res = charInfo[charName].res;
+	charData.atkWS = charInfo[charName].atk;
+	charData.spdWS = charInfo[charName].spd;
+	charData.defWS = charInfo[charName].def;
+	charData.resWS = charInfo[charName].res;
+	
+	return charData;
+}
+
+// returns an object containing all the info in the attacker and defender panels needed to simulate a battle
+function getBattleInfo() {
+	"use strict";
+	var battleInfo = {};
+	battleInfo.attacker = getCharPanelData("1");
+	battleInfo.defender = getCharPanelData("2");
+	battleInfo.logMsg = "";
+	battleInfo.atkRange = $("#weapon-1").data("info").range;
+	return battleInfo;
+}
+
+// returns an object containing all the info needed to simulate a battle between one character from one the character panels and a default character from the data
+// attacker is true if we take info from the the attacker panel, charName is the name of the default character
+function getBattleInfoWithDefault(attacker, charName) {
+	"use strict";
+	var battleInfo = {};
+	
+	if (attacker) {
+		battleInfo.attacker = getCharPanelData("1");
+		battleInfo.defender = getDefaultCharData(charName);
+		battleInfo.atkRange = $("#weapon-1").data("info").range;
+	} else {
+		battleInfo.attacker = getDefaultCharData(charName);
+		battleInfo.defender = getCharPanelData("2");
+		battleInfo.atkRange = weaponInfo[battleInfo.attacker.weaponName].range;
+	}
+	
+	battleInfo.logMsg = "";
+	return battleInfo;
 }
 
 // checks if the given passive skill is a breaker skill that will activate
@@ -1326,29 +1444,24 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 }
 
 // simulates a battle between the characters currently on display and outputs to the battle log and results section
-function simBattle() {
+// battleInfo contains all the inital combat data before the combat starts, displayMsg is true if we need to print the battle log
+// returns battleInfo
+function simBattle(battleInfo, displayMsg) {
 	"use strict";
 	
 	// check if attacker has a weapon, if not no attack
 	if ($("#weapon-1").val() === "None") {
 		$("#interaction-list").stop(true, true).hide().html("<li class='battle-interaction-only'><span class='attacker'><strong>" + $("#char-1").val() + "</strong></span> cannot attack without a weapon.</li>");
-		$(".hp-remain-block").stop(true, true).hide();
-		$("#hp-remain-1").text($("#curr-hp-1").val().toString());
-		$("#hp-remain-2").text($("#curr-hp-2").val().toString());
+		$("#hp-remain-1").stop(true, true).hide().text($("#curr-hp-1").val().toString());
+		$("#hp-remain-2").stop(true, true).hide().text($("#curr-hp-2").val().toString());
 		if (openLog) {
 			$("#interaction-list").fadeIn("slow");
 		}
-		$(".hp-remain-block").fadeIn("slow");
+		$("#hp-remain-1").fadeIn("slow");
+		$("#hp-remain-2").fadeIn("slow");
 		
 		return;
 	}
-	
-	// contains both attacker, defender info and battle log messages
-	var battleInfo = {};
-	battleInfo.attacker = getCharPanelData("1");
-	battleInfo.defender = getCharPanelData("2");
-	battleInfo.logMsg = "";
-	battleInfo.atkRange = $("#weapon-1").data("info").range;
 	
 	// can defender counter
 	var defCC = defCanCounter(battleInfo);
@@ -1634,39 +1747,35 @@ function simBattle() {
 	}
 	
 	// display results
-	$("#interaction-list").stop(true, true).hide().html(battleInfo.logMsg);
-	$(".hp-remain-block").stop(true, true).hide();
-	$("#result-msg").stop(true, true).hide();
-	$("#hp-remain-1").text(battleInfo.attacker.currHP.toString());
-	$("#hp-remain-2").text(battleInfo.defender.currHP.toString());
-	$("#interaction-list").children().first().removeClass("battle-interaction").addClass("battle-interaction-first");
-	$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
-	
-	// victory message
-	if (battleInfo.attacker.currHP === 0) {
-		$("#result-msg").text("Defender is victorious!");
-		$("#result-msg").css("color", "#e34262");
-		$("#result-msg").css("padding", "0.5em 0em 0em 0em");
-		$("#result-msg").css("margin", "0.5em 0em 0em 0em");
-		$("#result-msg").css("border-top", "1px solid #6c6c6c");
-	} else if (battleInfo.defender.currHP === 0) {
-		$("#result-msg").text("Attacker is victorious!");
-		$("#result-msg").css("color", "deepskyblue");
-		$("#result-msg").css("padding", "0.5em 0em 0em 0em");
-		$("#result-msg").css("margin", "0.5em 0em 0em 0em");
-		$("#result-msg").css("border-top", "1px solid #6c6c6c");
-	} else {
-		$("#result-msg").text("");
-		$("#result-msg").css("padding", "0em");
-		$("#result-msg").css("margin", "0em");
-		$("#result-msg").css("border-top", "none");
+	if (displayMsg) {
+		$("#interaction-list").stop(true, true).hide().html(battleInfo.logMsg);
+		$("#result-msg").stop(true, true).hide();
+		$("#hp-remain-1").stop(true, true).hide().text(battleInfo.attacker.startHP.toString() + " → " + battleInfo.attacker.currHP.toString());
+		$("#hp-remain-2").stop(true, true).hide().text(battleInfo.defender.startHP.toString() + " → " + battleInfo.defender.currHP.toString());
+		$("#interaction-list").children().first().removeClass("battle-interaction").addClass("battle-interaction-first");
+		$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
+
+		// victory message
+		if (battleInfo.attacker.currHP === 0) {
+			$("#result-msg").text("Defender is victorious!");
+			$("#result-msg").css("color", "#e34262");
+		} else if (battleInfo.defender.currHP === 0) {
+			$("#result-msg").text("Attacker is victorious!");
+			$("#result-msg").css("color", "deepskyblue");
+		} else {
+			$("#result-msg").text("Draw!");
+			$("#result-msg").css("color", "white");
+		}
+
+		if (openLog) {
+			$("#interaction-list").fadeIn("slow");
+		}
+		$("#hp-remain-1").fadeIn("slow");
+		$("#hp-remain-2").fadeIn("slow");
+		$("#result-msg").fadeIn("slow");
 	}
 	
-	if (openLog) {
-		$("#interaction-list").fadeIn("slow");
-	}
-	$(".hp-remain-block").fadeIn("slow");
-	$("#result-msg").fadeIn("slow");
+	return battleInfo;
 }
 
 // put options in the character selects
@@ -1697,12 +1806,13 @@ function setupChars() {
 	displayChar($("#char-2").val(), "2");
 
 	// simulate initial battle
-	simBattle();
+	simBattle(getBattleInfo(), true);
 }
 
 // sets the class for the given character tab
 // attacker is true if the tab is in the attacker panel, charIndex is the index of the character in the panel
 function setCharTabClass(attacker, charIndex) {
+	"use strict";
 	var tabID = attacker ? "#atk-tab-" + charIndex.toString() : "#def-tab-" + charIndex.toString();
 	var tabSelected = attacker ? selectedAttacker : selectedDefender;
 	var tabInfo = attacker ? attackerTeam[charIndex] : defenderTeam[charIndex];
@@ -1729,7 +1839,7 @@ function setDisabled(inSel, inLabel, disabled) {
 	}
 }
 
-// shows or hides the given div
+// shows or hides the given div (used with the swap function)
 // divID is the id of the div to show/hide, visible is the visibility of the div, hasSwapped is true if the data has been swapped
 function setVisible(divID, visible, hasSwapped) {
 	"use strict";
@@ -1801,7 +1911,6 @@ function swap() {
 	oldAtkInfo.currHP = $("#curr-hp-1").val();
 	
 	oldAtkInfo.extraCharInfoDisabled = ($("#color-1").attr("disabled") === "disabled");
-	oldAtkInfo.specCooldownDisabled = ($("#spec-cooldown-1").attr("disabled") === "disabled");
 	
 	oldAtkInfo.extraCharInfoVisible = $("#extra-char-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraWeaponInfoVisible = $("#extra-weapon-info-1").stop(true, true).is(":visible");
@@ -1877,7 +1986,8 @@ function swap() {
 	$(".hp-1-read").text($("#hp-2").val().toString());
 	
 	setDisabled("#extra-char-info-1 select", "#extra-char-info-1", ($("#color-2").attr("disabled") === "disabled"));
-	setDisabled("#spec-cooldown-1", "#spec-cooldown-line-1", ($("#spec-cooldown-2").attr("disabled") === "disabled"));
+	showSpecCooldown($("#special-1").val(), "1", false);
+	updateSpecCooldown("1");
 	
 	setVisible("#extra-char-info-1", $("#extra-char-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-weapon-info-1", $("#extra-weapon-info-2").stop(true, true).is(":visible"), true);
@@ -1953,7 +2063,8 @@ function swap() {
 	$(".hp-2-read").text(oldAtkInfo.hp);
 	
 	setDisabled("#extra-char-info-2 select", "#extra-char-info-2", oldAtkInfo.extraCharInfoDisabled);
-	setDisabled("#spec-cooldown-2", "#spec-cooldown-line-2", oldAtkInfo.specCooldownDisabled);
+	showSpecCooldown($("#special-2").val(), "2", false);
+	updateSpecCooldown("2");
 	
 	setVisible("#extra-char-info-2", oldAtkInfo.extraCharInfoVisible, true);
 	setVisible("#extra-weapon-info-2", oldAtkInfo.extraWeaponInfoVisible, true);
@@ -1981,6 +2092,214 @@ function swap() {
 		setCharTabClass(true, charIndex);
 		setCharTabClass(false, charIndex);
 	}
+	
+	// swap results portraits
+	var atkPortrait = $("#attacker-portrait").attr("src");
+	$("#attacker-portrait").attr("src", $("#defender-portrait").attr("src"));
+	$("#defender-portrait").attr("src", atkPortrait);
+}
+
+// enables or disables a character panel
+// charNum determines the panel, enable is true if we are enabling a panel
+function enableCharPanel(charNum, enable) {
+	"use strict";
+	var textID = (charNum === "1") ? "#attack-panel .info-section, #attack-panel .info-section-bottom, #spec-cooldown-line-1" : "#defend-panel .info-section, #defend-panel .info-section-bottom, #spec-cooldown-line-2";
+	var inputID = (charNum === "1") ? "#attack-panel select, #attack-panel input" : "#defend-panel select, #defend-panel input";
+	
+	if (enable) {
+		$(textID).css("color", "white");
+		$(inputID).removeAttr("disabled");
+		showSpecCooldown($("#special-" + charNum).val(), charNum, false);
+		updateSpecCooldown(charNum);
+	} else {
+		$(textID).css("color", "#5b5b5b");
+		$(inputID).attr("disabled", "disabled");
+	}
+}
+
+// recolors matchup table rows
+function recolorMatchupRows() {
+	"use strict";
+	var rowCount = 0;
+	$("#matchup-table > tbody > tr").each(function() {
+		if($(this).is(":visible")) {
+			if (rowCount % 2 === 1) {
+				$(this).addClass("matchup-row-offset");
+			} else {
+				$(this).removeClass("matchup-row-offset");
+			}
+
+			rowCount += 1;
+		}
+	});
+}
+
+// filters the matchup table depending on the current filters
+// set fadeIn to true to fade in results
+function filterMatchupTable(fadeIn) {
+	"use strict";
+	var name = $("#matchup-filter-name").val().toLowerCase();
+	var move = $("#matchup-filter-move").val();
+	var color = $("#matchup-filter-color").val();
+	var weapon = $("#matchup-filter-weapon").val();
+	
+	$("#matchup-table tbody tr").each(function() {
+		var rowName = this.childNodes[1].firstChild.firstChild.nodeValue;
+		var rowMove = charInfo[rowName].move_type;
+		var rowColor = charInfo[rowName].color;
+		var rowWeapon = charInfo[rowName].weapon_type;
+		rowName = rowName.toLowerCase();
+		
+		if ((name === "" || rowName.indexOf(name) > -1) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon)) {
+			$(this).show();
+		} else {
+			$(this).hide();
+		}
+	});
+	
+	recolorMatchupRows();
+	
+	if (fadeIn) {
+		$("#matchup-table").hide().fadeIn("slow");
+	}
+}
+
+// calculates and prints info of every battle matchup for one character
+// attacker is true if we are using the attacker panel as our base character
+function calculateMatchups(attacker) {
+	"use strict";
+	var battleInfo = {};
+	var winCount = 0;
+	var lossCount = 0;
+	var drawCount = 0;
+	var tableHTML = "";
+	var charCount = 0;
+	var foeClass = attacker ? "defender" : "attacker";
+	keepTable = true;
+	
+	// add table headers
+	if (attacker) {
+		tableHTML += "<thead><tr class='matchup-header'><th data-tsorter='img'></th><th data-tsorter='link'>Defender</th>";
+	} else {
+		tableHTML += "<thead><tr class='matchup-header'><th data-tsorter='img'></th><th data-tsorter='link'>Attacker</th>";
+	}
+	
+	tableHTML += "<th data-tsorter='numeric'>Attacker DMG</th><th data-tsorter='numeric'>Defender DMG</th><th data-tsorter='text-span-num'>Attacker HP</th><th data-tsorter='text-span-num'>Defender HP</th><th data-tsorter='link'>Result</th></tr></thead>";
+	
+	// start tbody
+	tableHTML += "<tbody>";
+	
+	// add table rows
+	for (var key in charInfo) {
+		if (key !== "Custom") {
+			// sim battle
+			battleInfo = simBattle(getBattleInfoWithDefault(attacker, key), false);
+			
+			// add to table
+			tableHTML += (charCount % 2 === 1) ? "<tr class='matchup-row-offset'>" : "<tr>";
+			tableHTML += "<td><img src=\"img/Portraits/" + key + ".png\"></td>";
+			tableHTML += "<td><span class='matchup-char " + foeClass + "'>" + key + "</span></td>";
+			tableHTML += "<td class='attacker'>" + (battleInfo.defender.startHP - battleInfo.defender.currHP).toString() + "</td>";
+			tableHTML += "<td class='defender'>" + (battleInfo.attacker.startHP - battleInfo.attacker.currHP).toString() + "</td>";
+			tableHTML += "<td class='attacker'>" + battleInfo.attacker.startHP.toString() + " → <span>" + battleInfo.attacker.currHP.toString() + "</span></td>";
+			tableHTML += "<td class='defender'>" + battleInfo.defender.startHP.toString() + " → <span>" + battleInfo.defender.currHP.toString() + "</span></td>";
+			
+			if (battleInfo.attacker.currHP <= 0) {
+				tableHTML += "<td class='defender'><strong>Defender Wins</strong></td>";
+				
+				if (attacker) {
+					lossCount += 1;
+				} else {
+					winCount += 1;
+				}
+			} else if (battleInfo.defender.currHP <= 0) {
+				tableHTML += "<td class='attacker'><strong>Attacker Wins</strong></td>";
+				
+				if (attacker) {
+					winCount += 1;
+				} else {
+					lossCount += 1;
+				}
+			} else {
+				tableHTML += "<td><strong>Draw</strong></td>";
+				drawCount += 1;
+			}
+			
+			tableHTML += "</tr>";
+			
+			// increment counter
+			charCount += 1;
+		}
+	}
+	
+	// end tbody
+	tableHTML += "</tbody>";
+	
+	// create table
+	$("#matchup-display").stop(true, true).hide();
+	$("#matchup-table").html(tableHTML);
+	filterMatchupTable(false);
+	
+	// make table sortable
+	tsorter.create("matchup-table");
+	
+	// add table title
+	var mainCharName = "";
+	if (attacker) {
+		mainCharName = ($("#char-1").val() === "Custom") ? customName($("#weapon-type-1").val(), $("#move-type-1").val()) : $("#char-1").val();
+		$("#matchup-title").text(mainCharName + " vs. All").removeClass("defender").addClass("attacker");
+	} else {
+		mainCharName = ($("#char-2").val() === "Custom") ? customName($("#weapon-type-2").val(), $("#move-type-2").val()) : $("#char-2").val();
+		$("#matchup-title").text("All vs. " + mainCharName).removeClass("attacker").addClass("defender");
+	}
+	
+	// show overview
+	$("#matchup-overview").html(winCount.toString() + " wins · " + lossCount.toString() + " losses · " + drawCount.toString() + " draws");
+	
+	// display results
+	$("#matchup-display").fadeIn("slow");
+	
+	// setup events to view one vs one info
+	$(".matchup-char").on("click", function() {
+		var attacker = ($("#one-vs-all").is(":checked")) ? false : true;
+		var charName = $(this).text();
+		
+		// select empty tab if possible
+		selectEmptyCharTab(attacker);
+		
+		// check one vs one radio button
+		$("input[type=radio][name=mode]").val(["one-vs-one"]);
+		
+		// show one vs one info
+		$("#battle-result").stop(true, true).show(700);
+		$("#battle-log").stop(true, true).show(700);
+		$("#matchups").stop(true, true).hide(700);
+
+		// enable all inputs
+		enableCharPanel("1", true);
+		enableCharPanel("2", true);
+		
+		$("#char-" + (attacker ? "1" : "2")).val(charName);
+		displayChar(charName, (attacker ? "1" : "2"));
+		simBattle(getBattleInfo(), true);
+		keepTable = true;
+	});
+	
+	// recolor rows when sorting
+	$("#matchup-table th").on("click", function() {
+		recolorMatchupRows();
+	});
+}
+
+// updates infomation depending on the mode selected
+function updateDisplay() {
+	if ($("#one-vs-one").is(":checked")) {
+		simBattle(getBattleInfo(), true);
+	} else if ($("#one-vs-all").is(":checked") && (!keepTable || !previousTable)) {
+		calculateMatchups(true);
+	} else if ($("#all-vs-one").is(":checked") && (!keepTable || previousTable)) {
+		calculateMatchups(false);
+	}
 }
 
 // setup inital page
@@ -2006,6 +2325,8 @@ $(document).ready( function() {
 
 	// setup hp value updates
 	$(".hp-stat").on("change", function() {
+		var charNum = $(this).data("charnum").toString();
+		
 		// old value
 		var oldHP = parseInt($("#" + this.id + "-denom").text());
 
@@ -2017,26 +2338,33 @@ $(document).ready( function() {
 			$("#curr-" + this.id).val(this.value);
 		}
 		
-		simBattle();
+		keepTable = false;
+		updateDisplay();
 	});
 	$(".curr-hp-val").on("change", function() {
+		var charNum = $(this).data("charnum").toString();
+		
 		// current hp cannot be greater than base hp
-		var baseHP = parseInt($("#hp-" + $(this).data("charnum")).val());
+		var baseHP = parseInt($("#hp-" + charNum).val());
 		if (this.value > baseHP) {
 			this.value = baseHP;
 		}
 		
-		simBattle();
+		keepTable = false;
+		updateDisplay();
 	});
 	
 	// setup special cooldown updates
 	$(".spec-cool").on("change", function() {
-		var maxCooldown = parseInt($("#spec-cooldown-max-" + $(this).data("charnum")).text());
+		var charNum = $(this).data("charnum").toString();
+		
+		var maxCooldown = parseInt($("#spec-cooldown-max-" + charNum).text());
 		if (this.value > maxCooldown) {
 			this.value = maxCooldown;
 		}
 		
-		simBattle();
+		keepTable = false;
+		updateDisplay();
 	});
 	
 	// make character tabs load default image on error
@@ -2047,7 +2375,8 @@ $(document).ready( function() {
 	// setup character tab changes
 	$(".char-tab, .char-tab-unselected").on("click", function() {
 		selectCharTab($(this).data("charnum") === 1, $(this).data("index"));
-		simBattle();
+		keepTable = false;
+		updateDisplay();
 	});
 	
 	// setup initial display
@@ -2058,14 +2387,16 @@ $(document).ready( function() {
 	$(".char-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
 		displayChar(this.value, charNum);
-		simBattle();
+		keepTable = false;
+		updateDisplay();
 	});
 	
 	// setup weapon select
 	$(".weapon-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		showWeapon(this.value, charNum, true);
-		simBattle();
+		keepTable = false;
+		updateDisplay();
 	});
 	
 	// setup special select
@@ -2074,7 +2405,8 @@ $(document).ready( function() {
 		getSpecialData(charNum);
 		showSpecCooldown(this.value, charNum, false);
 		updateSpecCooldown(charNum);
-		simBattle();
+		keepTable = false;
+		updateDisplay();
 	});
 	
 	// setup assist select
@@ -2082,7 +2414,8 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		getAssistData(charNum);
 		updateSpecCooldown(charNum);
-		simBattle();
+		keepTable = false;
+		updateDisplay();
 	});
 	
 	// setup skill select
@@ -2090,7 +2423,8 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		var skillType = $(this).data("skilltype");
 		getSkillData(charNum, skillType, true);
-		simBattle();
+		keepTable = false;
+		updateDisplay();
 	});
 	
 	// set up weapon type changes
@@ -2100,12 +2434,14 @@ $(document).ready( function() {
 		setColor(this.value, charNum);
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
-		simBattle();
+		keepTable = false;
+		updateDisplay();
 	});
 	
 	// set up color changes
 	$(".color-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
+		
 		if (this.value === "Red") {
 			loadWeapons("Sword", charNum);
 			$("#weapon-type-" + charNum).val("Sword");
@@ -2121,17 +2457,86 @@ $(document).ready( function() {
 		}
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
-		simBattle();
+		keepTable = false;
+		updateDisplay();
 	});
 	
 	// setup other battle value changes
 	$(".battle-val").on("change", function() {
-		simBattle();
+		keepTable = false;
+		updateDisplay();
 	});
 	
 	// swap button
 	$("#swap-button").on("click", function() {
 		swap();
-		simBattle();
+		keepTable = false;
+		updateDisplay();
+	});
+	
+	// change mode
+	$("input[type=radio][name=mode]").on("change", function() {
+		updateDisplay();
+		if (this.id === "one-vs-one") {
+			$("#battle-result").stop(true, true).show(700);
+			$("#battle-log").stop(true, true).show(700);
+			$("#matchups").stop(true, true).hide(700);
+			
+			// enable all inputs
+			enableCharPanel("1", true);
+			enableCharPanel("2", true);
+		} else if (this.id === "one-vs-all") {
+			$("#battle-result").stop(true, true).hide(700);
+			$("#battle-log").stop(true, true).hide(700);
+			$("#matchups").stop(true, true).show(700);
+			
+			// disable defender input, enable attacker input
+			enableCharPanel("1", true);
+			enableCharPanel("2", false);
+			
+			// update info
+			previousTable = true;
+		} else {
+			$("#battle-result").stop(true, true).hide(700);
+			$("#battle-log").stop(true, true).hide(700);
+			$("#matchups").stop(true, true).show(700);
+			
+			// disable attacker input, enable defender input
+			enableCharPanel("1", false);
+			enableCharPanel("2", true);
+			
+			// update info
+			previousTable = false;
+		}
+	});
+	
+	// change filter title when pressed 
+	$("#matchup-filter-button").on("click", function() {
+		if ($(this).text() === "Open Filters") {
+			$(this).text("Close Filters");
+		} else {
+			$(this).text("Open Filters");
+		}
+	});
+	
+	// update table when filters are changed
+	$(".matchup-filter-input").on("change", function() {
+		// make sure weapons and colors are correct
+		if (this.id === "matchup-filter-color" && this.value !== "Any" && $("#matchup-filter-weapon").val() !== "Any" && this.value !== weaponToColor($("#matchup-filter-weapon").val())) {
+			$("#matchup-filter-weapon").val("Any");
+		} else if (this.id === "matchup-filter-weapon" && this.value !== "Any" && $("#matchup-filter-color").val() !== "Any" && weaponToColor(this.value) !== $("#matchup-filter-color").val()) {
+			$("#matchup-filter-color").val(weaponToColor(this.value));
+		}
+		
+		filterMatchupTable(true);
+	});
+	
+	// reset filters
+	$("#matchup-filter-reset").on("click", function() {
+		$("#matchup-filter-name").val("");
+		$("#matchup-filter-move").val("Any");
+		$("#matchup-filter-color").val("Any");
+		$("#matchup-filter-weapon").val("Any");
+		filterMatchupTable(true);
 	});
 });
