@@ -2143,6 +2143,11 @@ function filterMatchupTable(fadeIn) {
 	var color = $("#matchup-filter-color").val();
 	var weapon = $("#matchup-filter-weapon").val();
 	
+	var winCount = 0;
+	var lossCount = 0;
+	var drawCount = 0;
+	var attacker = $("#one-vs-all").is(":checked");
+	
 	$("#matchup-table tbody tr").each(function() {
 		var rowName = this.childNodes[1].firstChild.firstChild.nodeValue;
 		var rowMove = charInfo[rowName].move_type;
@@ -2152,15 +2157,35 @@ function filterMatchupTable(fadeIn) {
 		
 		if ((name === "" || rowName.indexOf(name) > -1) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon)) {
 			$(this).show();
+			
+			// update counters
+			var result = this.childNodes[6].firstChild.firstChild.nodeValue;
+			if (result === "Draw") {
+				drawCount += 1;
+			} else if (result === "Attacker Wins") {
+				if (attacker) {
+					winCount += 1;
+				} else {
+					lossCount += 1;
+				}
+			} else {
+				if (attacker) {
+					lossCount += 1;
+				} else {
+					winCount += 1;
+				}
+			}
 		} else {
 			$(this).hide();
 		}
 	});
 	
 	recolorMatchupRows();
+	$("#matchup-overview").html(winCount.toString() + " wins · " + lossCount.toString() + " losses · " + drawCount.toString() + " draws");
 	
 	if (fadeIn) {
 		$("#matchup-table").hide().fadeIn("slow");
+		$("#matchup-overview").hide().fadeIn("slow");
 	}
 }
 
@@ -2238,7 +2263,6 @@ function calculateMatchups(attacker) {
 	// create table
 	$("#matchup-display").stop(true, true).hide();
 	$("#matchup-table").html(tableHTML);
-	filterMatchupTable(false);
 	
 	// make table sortable
 	tsorter.create("matchup-table");
@@ -2253,8 +2277,8 @@ function calculateMatchups(attacker) {
 		$("#matchup-title").text("All vs. " + mainCharName).removeClass("attacker").addClass("defender");
 	}
 	
-	// show overview
-	$("#matchup-overview").html(winCount.toString() + " wins · " + lossCount.toString() + " losses · " + drawCount.toString() + " draws");
+	// filter and show overview
+	filterMatchupTable(false);
 	
 	// display results
 	$("#matchup-display").fadeIn("slow");
