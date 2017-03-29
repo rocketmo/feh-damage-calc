@@ -294,6 +294,23 @@ function updateSpecCooldown(charNum) {
 	}
 }
 
+// enables special cooldown input if there is a special selected, disables if not
+// charNum determines the panel the special is in
+function enableSpecCooldown(charNum) {
+	"use strict";
+	if ($("special-" + charNum).val() !== "None") {
+		if ($("#one-vs-one").is(":checked") || ($("#one-vs-all").is(":checked") && charNum === "1") || ($("#all-vs-one").is(":checked") && charNum === "2")) {
+			$("#spec-cooldown-line-" + charNum).css("color", "white");
+			$("#spec-cooldown-" + charNum).removeAttr("disabled");
+		}
+	} else { // no special
+		$("#spec-cooldown-" + charNum).val("0");
+		$("#spec-cooldown-" + charNum).attr("disabled", "disabled");
+		$("#spec-cooldown-max-" + charNum).text("x");
+		$("#spec-cooldown-line-" + charNum).css("color", "#5b5b5b");
+	}
+}
+
 // gets skill data and stores it
 // charNum determines which panel to display it in, skillType is the letter of the skill, update is true if stats need to be adjusted
 function getSkillData(charNum, skillType, update) {
@@ -1986,8 +2003,7 @@ function swap() {
 	$(".hp-1-read").text($("#hp-2").val().toString());
 	
 	setDisabled("#extra-char-info-1 select", "#extra-char-info-1", ($("#color-2").attr("disabled") === "disabled"));
-	showSpecCooldown($("#special-1").val(), "1", false);
-	updateSpecCooldown("1");
+	enableSpecCooldown("1");
 	
 	setVisible("#extra-char-info-1", $("#extra-char-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-weapon-info-1", $("#extra-weapon-info-2").stop(true, true).is(":visible"), true);
@@ -2063,8 +2079,7 @@ function swap() {
 	$(".hp-2-read").text(oldAtkInfo.hp);
 	
 	setDisabled("#extra-char-info-2 select", "#extra-char-info-2", oldAtkInfo.extraCharInfoDisabled);
-	showSpecCooldown($("#special-2").val(), "2", false);
-	updateSpecCooldown("2");
+	enableSpecCooldown("2");
 	
 	setVisible("#extra-char-info-2", oldAtkInfo.extraCharInfoVisible, true);
 	setVisible("#extra-weapon-info-2", oldAtkInfo.extraWeaponInfoVisible, true);
@@ -2109,8 +2124,7 @@ function enableCharPanel(charNum, enable) {
 	if (enable) {
 		$(textID).css("color", "white");
 		$(inputID).removeAttr("disabled");
-		showSpecCooldown($("#special-" + charNum).val(), charNum, false);
-		updateSpecCooldown(charNum);
+		enableSpecCooldown(charNum);
 	} else {
 		$(textID).css("color", "#5b5b5b");
 		$(inputID).attr("disabled", "disabled");
