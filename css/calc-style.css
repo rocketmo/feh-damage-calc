@@ -487,3 +487,26 @@ h3 {
 	text-align: center;
 	font-weight: bold;
 }
+
+.character-select .rarity-select {
+	width: 12.3em;
+}
+
+
+.character-select .level-select {
+	width: 7.8em;
+	margin: 0 0.4em 0 0;
+}
+
+.character-select .merge-select {
+	width: 4.1em;
+}
+
+.character-select .boon-select {
+	width: 5.95em;
+	margin: 0 0.4em 0 0;
+}
+
+.character-select .bane-select {
+	width: 5.95em;
+}
