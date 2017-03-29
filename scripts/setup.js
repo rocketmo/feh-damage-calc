@@ -2317,6 +2317,7 @@ function calculateMatchups(attacker) {
 
 // updates infomation depending on the mode selected
 function updateDisplay() {
+	"use strict";
 	if ($("#one-vs-one").is(":checked")) {
 		simBattle(getBattleInfo(), true);
 	} else if ($("#one-vs-all").is(":checked") && (!keepTable || !previousTable)) {
@@ -2324,6 +2325,15 @@ function updateDisplay() {
 	} else if ($("#all-vs-one").is(":checked") && (!keepTable || previousTable)) {
 		calculateMatchups(false);
 	}
+}
+
+// determines if the matchup table needs to be updated whenever a change in data occurs
+// charNum is the panel that the change originated from
+function keepMatchupTable(charNum) {
+	"use strict";
+	if (!($("#one-vs-one").is(":checked")) || (previousTable && charNum === "1") || (!previousTable && charNum === "2")) {
+		keepTable = false;
+	} 
 }
 
 // setup inital page
@@ -2349,8 +2359,6 @@ $(document).ready( function() {
 
 	// setup hp value updates
 	$(".hp-stat").on("change", function() {
-		var charNum = $(this).data("charnum").toString();
-		
 		// old value
 		var oldHP = parseInt($("#" + this.id + "-denom").text());
 
@@ -2362,7 +2370,7 @@ $(document).ready( function() {
 			$("#curr-" + this.id).val(this.value);
 		}
 		
-		keepTable = false;
+		keepMatchupTable($(this).data("charnum").toString());
 		updateDisplay();
 	});
 	$(".curr-hp-val").on("change", function() {
@@ -2374,7 +2382,7 @@ $(document).ready( function() {
 			this.value = baseHP;
 		}
 		
-		keepTable = false;
+		keepMatchupTable(charNum);
 		updateDisplay();
 	});
 	
@@ -2387,7 +2395,7 @@ $(document).ready( function() {
 			this.value = maxCooldown;
 		}
 		
-		keepTable = false;
+		keepMatchupTable(charNum);
 		updateDisplay();
 	});
 	
@@ -2399,7 +2407,7 @@ $(document).ready( function() {
 	// setup character tab changes
 	$(".char-tab, .char-tab-unselected").on("click", function() {
 		selectCharTab($(this).data("charnum") === 1, $(this).data("index"));
-		keepTable = false;
+		keepMatchupTable($(this).data("charnum").toString());
 		updateDisplay();
 	});
 	
@@ -2411,7 +2419,7 @@ $(document).ready( function() {
 	$(".char-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
 		displayChar(this.value, charNum);
-		keepTable = false;
+		keepMatchupTable(charNum);
 		updateDisplay();
 	});
 	
@@ -2419,7 +2427,7 @@ $(document).ready( function() {
 	$(".weapon-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		showWeapon(this.value, charNum, true);
-		keepTable = false;
+		keepMatchupTable(charNum);
 		updateDisplay();
 	});
 	
@@ -2429,7 +2437,7 @@ $(document).ready( function() {
 		getSpecialData(charNum);
 		showSpecCooldown(this.value, charNum, false);
 		updateSpecCooldown(charNum);
-		keepTable = false;
+		keepMatchupTable(charNum);
 		updateDisplay();
 	});
 	
@@ -2438,7 +2446,7 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		getAssistData(charNum);
 		updateSpecCooldown(charNum);
-		keepTable = false;
+		keepMatchupTable(charNum);
 		updateDisplay();
 	});
 	
@@ -2447,7 +2455,7 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		var skillType = $(this).data("skilltype");
 		getSkillData(charNum, skillType, true);
-		keepTable = false;
+		keepMatchupTable(charNum);
 		updateDisplay();
 	});
 	
@@ -2458,7 +2466,7 @@ $(document).ready( function() {
 		setColor(this.value, charNum);
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
-		keepTable = false;
+		keepMatchupTable(charNum);
 		updateDisplay();
 	});
 	
@@ -2481,13 +2489,13 @@ $(document).ready( function() {
 		}
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
-		keepTable = false;
+		keepMatchupTable(charNum);
 		updateDisplay();
 	});
 	
 	// setup other battle value changes
 	$(".battle-val").on("change", function() {
-		keepTable = false;
+		keepMatchupTable($(this).data("charnum").toString());
 		updateDisplay();
 	});
 	
