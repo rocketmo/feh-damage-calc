@@ -545,7 +545,7 @@ function getStatTotals(charNum) {
 		var statNames = ["hp", "atk", "spd", "def", "res"];
 		var mergeBonusOrder = ["hp", "atk", "spd", "def", "res"];
 		
-		// sort stats from highest to lowest
+		// sort stats from highest to lowest with insertion sort haha
 		for (var statsIndex = 1; statsIndex < 5; statsIndex++) {
 			var inserted = false;
 			for (var orderIndex = 0; orderIndex < statsIndex; orderIndex++) {
@@ -2755,6 +2755,15 @@ $(document).ready( function() {
 	
 	$(".build-select").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
+		
+		// check if banes and boons match
+		if ($(this).hasClass("boon-select") && this.value === $("#bane-" + charNum).val()) {
+			$("#bane-" + charNum).val("neutral");
+		}
+		if ($(this).hasClass("bane-select") && this.value === $("#boon-" + charNum).val()) {
+			$("#boon-" + charNum).val("neutral");
+		}
+		
 		if (charInfo[$("#char-" + charNum).val()].hasOwnProperty("base_stat")) {
 			getStatTotals(charNum);
 		}
