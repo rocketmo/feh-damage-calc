@@ -725,6 +725,14 @@ function storeCharTabInfo(attacker) {
 	infoToStore.weaponType = $("#weapon-type-" + charNum).val();
 	infoToStore.moveType = $("#move-type-" + charNum).val();
 	
+	// stat variants
+	infoToStore.rarityHTML = $("#rarity-" + charNum).html();
+	infoToStore.rarity = $("#rarity-" + charNum).val();
+	infoToStore.level = $("#level-" + charNum).val();
+	infoToStore.merge = $("#merge-" + charNum).val();
+	infoToStore.boon = $("#boon-" + charNum).val();
+	infoToStore.bane = $("#bane-" + charNum).val();
+	
 	// weapon and skill info
 	infoToStore.weapon = $("#weapon-" + charNum).val();
 	infoToStore.passiveA = $("#passive-a-" + charNum).val();
@@ -796,6 +804,14 @@ function getCharTabInfo(attacker) {
 			$("#weapon-type-" + charNum).val(charTabInfo.weaponType);
 			$("#move-type-" + charNum).val(charTabInfo.moveType);
 		}
+		
+		// change stat variants
+		$("#rarity-" + charNum).html(charTabInfo.rarityHTML);
+		$("#rarity-" + charNum).val(charTabInfo.rarity);
+		$("#level-" + charNum).val(charTabInfo.level);
+		$("#merge-" + charNum).val(charTabInfo.merge);
+		$("#boon-" + charNum).val(charTabInfo.boon);
+		$("#bane-" + charNum).val(charTabInfo.bane);
 		
 		// change hp values
 		$("#hp-" + charNum).val(charTabInfo.hp);
