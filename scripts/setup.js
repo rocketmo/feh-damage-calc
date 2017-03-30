@@ -16,6 +16,13 @@ var defenderTeam = [{}, {}, {}, {}, {}];
 var previousTable = true; // true if one vs all, false if all vs one
 var keepTable = false;	// true if we keep the matchup table currently displayed
 
+// stat growth amounts from lvl 1 to lvl 40
+var statGrowths = [[4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26],
+				  [5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27],
+				  [7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29],
+				  [8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30],
+				  [8, 10, 13, 15, 17, 19, 22, 24, 26, 28, 30, 33]];
+
 // limits number inputs
 // num is a number input, minNumber is the lower limit
 function limit(num, minNumber) {
@@ -1927,6 +1934,13 @@ function swap() {
 	oldAtkInfo.resSpur = $("#res-spur-1").val();
 	oldAtkInfo.currHP = $("#curr-hp-1").val();
 	
+	oldAtkInfo.rarityHTML = $("#rarity-1").html();
+	oldAtkInfo.rarity = $("#rarity-1").val();
+	oldAtkInfo.level = $("#level-1").val();
+	oldAtkInfo.merge = $("#merge-1").val();
+	oldAtkInfo.boon = $("#boon-1").val();
+	oldAtkInfo.bane = $("#bane-1").val();
+	
 	oldAtkInfo.extraCharInfoDisabled = ($("#color-1").attr("disabled") === "disabled");
 	
 	oldAtkInfo.extraCharInfoVisible = $("#extra-char-info-1").stop(true, true).is(":visible");
@@ -2001,6 +2015,13 @@ function swap() {
 	$("#res-spur-1").val($("#res-spur-2").val());
 	$("#curr-hp-1").val($("#curr-hp-2").val());
 	$(".hp-1-read").text($("#hp-2").val().toString());
+	
+	$("#rarity-1").html($("#rarity-2").html());
+	$("#rarity-1").val($("#rarity-2").val());
+	$("#level-1").val($("#level-2").val());
+	$("#merge-1").val($("#merge-2").val());
+	$("#boon-1").val($("#boon-2").val());
+	$("#bane-1").val($("#bane-2").val());
 	
 	setDisabled("#extra-char-info-1 select", "#extra-char-info-1", ($("#color-2").attr("disabled") === "disabled"));
 	enableSpecCooldown("1");
@@ -2077,6 +2098,13 @@ function swap() {
 	$("#res-spur-2").val(oldAtkInfo.resSpur);
 	$("#curr-hp-2").val(oldAtkInfo.currHP);
 	$(".hp-2-read").text(oldAtkInfo.hp);
+	
+	$("#rarity-2").html(oldAtkInfo.rarityHTML);
+	$("#rarity-2").val(oldAtkInfo.rarity);
+	$("#level-2").val(oldAtkInfo.level);
+	$("#merge-2").val(oldAtkInfo.merge);
+	$("#boon-2").val(oldAtkInfo.boon);
+	$("#bane-2").val(oldAtkInfo.bane);
 	
 	setDisabled("#extra-char-info-2 select", "#extra-char-info-2", oldAtkInfo.extraCharInfoDisabled);
 	enableSpecCooldown("2");
