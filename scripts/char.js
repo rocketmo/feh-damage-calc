@@ -4,6 +4,11 @@ var charInfo =
 	"Abel": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
+		"hp": 44,
+		"atk": 41,
+		"spd": 27,
+		"def": 25,
+		"res": 25,
 		"move_type": "Cavalry",
 		"weapon": ["Brave Lance+", "Brave Lance", "Steel Lance", "Iron Lance"],
 		"special": ["Aegis", "Holy Vestments"],
@@ -27,7 +32,14 @@ var charInfo =
 		"weapon": ["Fólkvangr", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"special": ["Sol", "Daylight"],
 		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
-		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"]
+		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 9, "spd" : 6, "def" : 8, "res" : 5},
+			"star-4" : {"hp" : 18, "atk" : 9, "spd" : 5, "def" : 8, "res" : 4},
+			"star-3" : {"hp" : 18, "atk" : 8, "spd" : 5, "def" : 7, "res" : 4},
+			"star-2" : {"hp" : 17, "atk" : 8, "spd" : 4, "def" : 7, "res" : 3},
+			"growth" : {"hp" : 7, "atk" : 8, "spd" : 5, "def" : 7, "res" : 4}
+		}
 	},
 	"Anna": {
 		"color" : "Green",

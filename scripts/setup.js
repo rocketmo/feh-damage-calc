@@ -519,18 +519,13 @@ function getPortrait(imgID, portraitName) {
 	$(imgID).attr("src", "img/Portraits/" + portraitName + ".png");
 }
 
-// gets that stat totals given the current settings
-// charNum determines the character panel
-function getStatTotals(charNum) {
+// gets that stat totals given the data
+// charName is the name of the character, weaponName is the equipped weapon, passiveA is the equipped passive a skill
+// rarity is the rarity of the character, level is the level of the character, merge is the number of units merged with the given one
+// boon is the boon stat, bane is the bane stat
+function  getStatTotals(charName, weaponName, passiveA, rarity, level, merge, boon, bane) {
 	"use strict";
 	// get info
-	var charName = $("#char-" + charNum).val();
-	var weaponName = $("#weapon-" + charNum).val();
-	var rarity = parseInt($("#rarity-" + charNum).val());
-	var level = parseInt($("#level-" + charNum).val());
-	var merge = parseInt($("#merge-" + charNum).val());
-	var boon = $("#boon-" + charNum).val();
-	var bane = $("#bane-" + charNum).val();
 	
 	// base stats + boons/banes
 	var stats = {};
@@ -586,10 +581,54 @@ function getStatTotals(charNum) {
 		stats.res += statGrowths[rarity-1][charInfo[charName].base_stat.growth.res + ((boon === "res") ? 1 : 0) + ((bane === "res") ? -1 : 0)];
 	}
 	
-	// apply weapon stats
+	// apply weapon stats and stat mods
 	if (weaponName !== "None") {
 		stats.atk += weaponInfo[weaponName].might;
+		
+		if (weaponInfo[weaponName].hasOwnProperty("stat_mod")) {
+			for (var wKey in weaponInfo[weaponName].stat_mod) {
+				stats[wKey] += weaponInfo[weaponName].stat_mod[wKey];
+				if (stats[wKey] < 0) {
+					stats[wKey] = 0;
+				} else if (stats[wKey] > 99) {
+					stats[wKey] = 99;
+				}
+			}
+		}
 	}
+	
+	// apply passive a stat mods
+	if (passiveA !== "None" && skillInfo.a[passiveA].hasOwnProperty("stat_mod")) {
+		for (var pKey in skillInfo.a[passiveA].stat_mod) {
+			stats[pKey] += skillInfo.a[passiveA].stat_mod[pKey];
+			if (stats[pKey] < 0) {
+				stats[pKey] = 0;
+			} else if (stats[pKey] > 99) {
+				stats[pKey] = 99;
+			}
+		}
+	}
+	
+	return stats;
+}
+
+// displays stat totals given the current settings
+// charNum determines the character panel
+function displayStatTotals(charNum) {
+	"use strict";
+	
+	// get info
+	var charName = $("#char-" + charNum).val();
+	var weaponName = $("#weapon-" + charNum).val();
+	var passiveA = $("#passive-a-" + charNum).val();
+	var rarity = parseInt($("#rarity-" + charNum).val());
+	var level = parseInt($("#level-" + charNum).val());
+	var merge = parseInt($("#merge-" + charNum).val());
+	var boon = $("#boon-" + charNum).val();
+	var bane = $("#bane-" + charNum).val();
+	
+	// get stats
+	var stats = getStatTotals(charName, weaponName, passiveA, rarity, level, merge, boon, bane);
 	
 	// display stats
 	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(stats.hp);
@@ -598,10 +637,6 @@ function getStatTotals(charNum) {
 	$("#spd-" + charNum).val(stats.spd);
 	$("#def-" + charNum).val(stats.def);
 	$("#res-" + charNum).val(stats.res);
-	
-	// apply stat mods
-	updateStatTotal("#weapon-" + charNum, charNum, true);
-	updateStatTotal("#passive-a-" + charNum, charNum, true);
 }
 
 // displays character information in the character panels
@@ -812,7 +847,7 @@ function displayChar(charName, charNum) {
 	
 	// show stats
 	if (singleChar.hasOwnProperty("base_stat")) {
-		getStatTotals(charNum);
+		displayStatTotals(charNum);
 	} else {
 		$("#hp-" + charNum + ", #curr-hp-" + charNum).val(singleChar.hp);
 		$(".hp-" + charNum + "-read").text(singleChar.hp);
@@ -1256,18 +1291,36 @@ function getDefaultCharData(charName) {
 	charData.specialData = charInfo[charName].hasOwnProperty("special") ? specInfo[charData.special] : {};
 	charData.assistData = charInfo[charName].hasOwnProperty("assist") ? assistInfo[charInfo[charName].assist[0]] : {};
 	
-	charData.currHP = charInfo[charName].hp;
-	charData.initHP = charInfo[charName].hp;
-	charData.startHP = charInfo[charName].hp;
-	charData.hp = charInfo[charName].hp;
-	charData.atk = charInfo[charName].atk;
-	charData.spd = charInfo[charName].spd;
-	charData.def = charInfo[charName].def;
-	charData.res = charInfo[charName].res;
-	charData.atkWS = charInfo[charName].atk;
-	charData.spdWS = charInfo[charName].spd;
-	charData.defWS = charInfo[charName].def;
-	charData.resWS = charInfo[charName].res;
+	// show stats
+	if (charInfo[charName].hasOwnProperty("base_stat")) {
+		var stats = getStatTotals(charName, charData.weaponName, charData.passiveA, 5, 40, 0, "neutral", "neutral");
+		console.log(stats);
+		charData.currHP = stats.hp;
+		charData.initHP = stats.hp;
+		charData.startHP = stats.hp;
+		charData.hp = stats.hp;
+		charData.atk = stats.atk;
+		charData.spd = stats.spd;
+		charData.def = stats.def;
+		charData.res = stats.res;
+		charData.atkWS = stats.atk;
+		charData.spdWS = stats.spd;
+		charData.defWS = stats.def;
+		charData.resWS = stats.res;
+	} else {
+		charData.currHP = charInfo[charName].hp;
+		charData.initHP = charInfo[charName].hp;
+		charData.startHP = charInfo[charName].hp;
+		charData.hp = charInfo[charName].hp;
+		charData.atk = charInfo[charName].atk;
+		charData.spd = charInfo[charName].spd;
+		charData.def = charInfo[charName].def;
+		charData.res = charInfo[charName].res;
+		charData.atkWS = charInfo[charName].atk;
+		charData.spdWS = charInfo[charName].spd;
+		charData.defWS = charInfo[charName].def;
+		charData.resWS = charInfo[charName].res;
+	}
 	
 	return charData;
 }
@@ -2765,7 +2818,7 @@ $(document).ready( function() {
 		}
 		
 		if (charInfo[$("#char-" + charNum).val()].hasOwnProperty("base_stat")) {
-			getStatTotals(charNum);
+			displayStatTotals(charNum);
 		}
 		keepMatchupTable(charNum);
 		updateDisplay();
