@@ -536,6 +536,9 @@ function displayChar(charName, charNum) {
 		// show collapsed section
 		$("#extra-char-info-" + charNum).show(700);
 		
+		// hide stat variants
+		$("#char-build-info-" + charNum).hide(700);
+		
 		// show all skills and weapons
 		var weaponType = $("#weapon-type-" + charNum).val();
 		var weapon = $("#weapon-" + charNum).val();
@@ -592,6 +595,9 @@ function displayChar(charName, charNum) {
 	getPortrait((charNum === "1" ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString()), charName);
 	getPortrait((charNum === "1" ? "#attacker-portrait" : "#defender-portrait"), charName);
 
+	// show stat variants
+	$("#char-build-info-" + charNum).show(700);
+	
 	// grey out disabled input fields
 	$("#extra-char-info-" + charNum).css("color", "#5b5b5b");
 	$("#extra-char-info-" + charNum + " select").attr("disabled", "disabled");
@@ -1950,6 +1956,7 @@ function swap() {
 	oldAtkInfo.extraPassiveCInfoVisible = $("#extra-passive-c-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraAssistInfoVisible = $("#extra-assist-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraSpecialInfoVisible = $("#extra-special-info-1").stop(true, true).is(":visible");
+	oldAtkInfo.buildInfoVisible = $("#char-build-info-1").stop(true, true).is(":visible");
 	
 	// place defender info in attacker panel
 	setVisible("#extra-char-info-1", $("#extra-char-info-2").stop(true, true).is(":visible"), false);
@@ -1959,6 +1966,7 @@ function swap() {
 	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), false);
+	setVisible("#char-build-info-1", $("#char-build-info-2").stop(true, true).is(":visible"), false);
 	
 	$("#char-1").val($("#char-2").val());
 	$("#color-1").val($("#color-2").val());
@@ -2033,6 +2041,7 @@ function swap() {
 	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), true);
+	setVisible("#char-build-info-1", $("#char-build-info-2").stop(true, true).is(":visible"), true);
 	
 	// place attacker info in defender panel
 	setVisible("#extra-char-info-2", oldAtkInfo.extraCharInfoVisible, false);
@@ -2042,6 +2051,7 @@ function swap() {
 	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, false);
 	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, false);
 	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, false);
+	setVisible("#char-build-info-2", oldAtkInfo.buildInfoVisible, false);
 	
 	$("#char-2").val(oldAtkInfo.name);
 	$("#color-2").val(oldAtkInfo.color);
@@ -2116,6 +2126,7 @@ function swap() {
 	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, true);
 	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, true);
 	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, true);
+	setVisible("#char-build-info-2", oldAtkInfo.buildInfoVisible, true);
 	
 	// swap teams
 	var tempTeam = attackerTeam;
