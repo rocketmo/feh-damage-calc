@@ -519,6 +519,54 @@ function getPortrait(imgID, portraitName) {
 	$(imgID).attr("src", "img/Portraits/" + portraitName + ".png");
 }
 
+// gets that stat totals given the current settings
+// charNum determines the character panel
+function getStatTotals(charNum) {
+	"use strict";
+	// get info
+	var charName = $("#char-" + charNum).val();
+	var weaponName = $("#weapon-" + charNum).val();
+	var rarity = parseInt($("#rarity-" + charNum).val());
+	var level = parseInt($("#level-" + charNum).val());
+	var merge = parseInt($("#merge-" + charNum).val());
+	var boon = $("#boon-" + charNum).val();
+	var bane = $("#bane-" + charNum).val();
+	
+	// base stats + boons/banes
+	var stats = {}
+	stats.hp = charInfo[charName].base_stat["star-" + rarity.toString()].hp + ((boon === "hp") ? 1 : 0) + ((bane === "hp") ? -1 : 0);
+	stats.atk = charInfo[charName].base_stat["star-" + rarity.toString()].atk + ((boon === "atk") ? 1 : 0) + ((bane === "atk") ? -1 : 0);
+	stats.spd = charInfo[charName].base_stat["star-" + rarity.toString()].spd + ((boon === "spd") ? 1 : 0) + ((bane === "spd") ? -1 : 0);
+	stats.def = charInfo[charName].base_stat["star-" + rarity.toString()].def + ((boon === "def") ? 1 : 0) + ((bane === "def") ? -1 : 0);
+	stats.res = charInfo[charName].base_stat["star-" + rarity.toString()].res + ((boon === "res") ? 1 : 0) + ((bane === "res") ? -1 : 0);
+	
+	// apply stat growths
+	if (level === 40) {
+		stats.hp += statGrowths[rarity-1][charInfo[charName].base_stat.growth.hp + ((boon === "hp") ? 1 : 0) + ((bane === "hp") ? -1 : 0)];
+		stats.atk += statGrowths[rarity-1][charInfo[charName].base_stat.growth.atk + ((boon === "atk") ? 1 : 0) + ((bane === "atk") ? -1 : 0)];
+		stats.spd += statGrowths[rarity-1][charInfo[charName].base_stat.growth.spd + ((boon === "spd") ? 1 : 0) + ((bane === "spd") ? -1 : 0)];
+		stats.def += statGrowths[rarity-1][charInfo[charName].base_stat.growth.def + ((boon === "def") ? 1 : 0) + ((bane === "def") ? -1 : 0)];
+		stats.res += statGrowths[rarity-1][charInfo[charName].base_stat.growth.res + ((boon === "res") ? 1 : 0) + ((bane === "res") ? -1 : 0)];
+	}
+	
+	// apply weapon stats
+	if (weaponName !== "None") {
+		stats.atk += weaponInfo[weaponName].might;
+	}
+	
+	// display stats
+	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(stats.hp);
+	$(".hp-" + charNum + "-read").text(stats.hp);
+	$("#atk-" + charNum).val(stats.atk);
+	$("#spd-" + charNum).val(stats.spd);
+	$("#def-" + charNum).val(stats.def);
+	$("#res-" + charNum).val(stats.res);
+	
+	// apply stat mods
+	updateStatTotal("#weapon-" + charNum, charNum, true);
+	updateStatTotal("#passive-a-" + charNum, charNum, true);
+}
+
 // displays character information in the character panels
 // singleChar contains only the character info to display, charNum determines which panel to display on
 function displayChar(charName, charNum) {
@@ -606,14 +654,6 @@ function displayChar(charName, charNum) {
 	$("#color-" + charNum).val(singleChar.color);
 	$("#weapon-type-" + charNum).val(singleChar.weapon_type);
 	$("#move-type-" + charNum).val(singleChar.move_type);
-	
-	// show stats
-	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(singleChar.hp);
-	$(".hp-" + charNum + "-read").text(singleChar.hp);
-	$("#atk-" + charNum).val(singleChar.atk);
-	$("#spd-" + charNum).val(singleChar.spd);
-	$("#def-" + charNum).val(singleChar.def);
-	$("#res-" + charNum).val(singleChar.res);
 	
 	// reset buffs/debuffs
 	$("#stats-" + charNum + " .stat-bonus, #stats-" + charNum + " .stat-penalty, #stats-" + charNum + " .stat-spur").val(0);
@@ -710,6 +750,40 @@ function displayChar(charName, charNum) {
 	
 	// show extra weapon info
 	showWeapon(selectedWeapon, charNum, false);
+	
+	// set default stat variant
+	$("#level-" + charNum).val(40);
+	$("#merge-" + charNum).val(0);
+	$("#boon-" + charNum).val("neutral");
+	$("#bane-" + charNum).val("neutral");
+	
+	// set rarities
+	var rarities = "<option value='5'>5 Stars</option>";
+	if (singleChar.hasOwnProperty("base_stat")) {
+		for (var starIndex = 4; starIndex >= 1; starIndex--) {
+			if (singleChar.base_stat.hasOwnProperty("star-" + starIndex.toString())) {
+				if (starIndex === 1) {
+					rarities += "<option value='1'>1 Star</option>";
+				} else {
+					rarities += "<option value='" + starIndex.toString() + "'>" + starIndex.toString() + " Stars</option>";
+				}
+			}
+		}
+	}
+	
+	$("#rarity-" + charNum).html(rarities);
+	
+	// show stats
+	if (singleChar.hasOwnProperty("base_stat")) {
+		getStatTotals(charNum);
+	} else {
+		$("#hp-" + charNum + ", #curr-hp-" + charNum).val(singleChar.hp);
+		$(".hp-" + charNum + "-read").text(singleChar.hp);
+		$("#atk-" + charNum).val(singleChar.atk);
+		$("#spd-" + charNum).val(singleChar.spd);
+		$("#def-" + charNum).val(singleChar.def);
+		$("#res-" + charNum).val(singleChar.res);
+	}
 }
 
 // stores the currently selected character for later
@@ -2639,5 +2713,14 @@ $(document).ready( function() {
 		$("#matchup-filter-color").val("Any");
 		$("#matchup-filter-weapon").val("Any");
 		filterMatchupTable(true);
+	});
+	
+	$(".build-select").on("change", function() {
+		var charNum = $(this).data("charnum").toString();
+		if (charInfo[$("#char-" + charNum).val()].hasOwnProperty("base_stat")) {
+			getStatTotals(charNum);
+		}
+		keepMatchupTable(charNum);
+		updateDisplay();
 	});
 });

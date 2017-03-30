@@ -4,16 +4,16 @@ var charInfo =
 	"Abel": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 44,
-		"atk": 41,
-		"spd": 27,
-		"def": 25,
-		"res": 25,
 		"move_type": "Cavalry",
 		"weapon": ["Brave Lance+", "Brave Lance", "Steel Lance", "Iron Lance"],
 		"special": ["Aegis", "Holy Vestments"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
-		"passive_b": ["Swordbreaker 3", "Swordbreaker 2", "Swordbreaker 1"]
+		"passive_b": ["Swordbreaker 3", "Swordbreaker 2", "Swordbreaker 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 8, "res" : 6},
+			"star-4" : {"hp" : 16, "atk" : 6, "spd" : 8, "def" : 8, "res" : 5},
+			"growth" : {"hp" : 6, "atk" : 8, "spd" : 7, "def" : 4, "res" : 5}
+		}
 	},
 	"Alfonse": {
 		"color" : "Red",
