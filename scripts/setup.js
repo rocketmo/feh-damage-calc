@@ -533,12 +533,49 @@ function getStatTotals(charNum) {
 	var bane = $("#bane-" + charNum).val();
 	
 	// base stats + boons/banes
-	var stats = {}
+	var stats = {};
 	stats.hp = charInfo[charName].base_stat["star-" + rarity.toString()].hp + ((boon === "hp") ? 1 : 0) + ((bane === "hp") ? -1 : 0);
 	stats.atk = charInfo[charName].base_stat["star-" + rarity.toString()].atk + ((boon === "atk") ? 1 : 0) + ((bane === "atk") ? -1 : 0);
 	stats.spd = charInfo[charName].base_stat["star-" + rarity.toString()].spd + ((boon === "spd") ? 1 : 0) + ((bane === "spd") ? -1 : 0);
 	stats.def = charInfo[charName].base_stat["star-" + rarity.toString()].def + ((boon === "def") ? 1 : 0) + ((bane === "def") ? -1 : 0);
 	stats.res = charInfo[charName].base_stat["star-" + rarity.toString()].res + ((boon === "res") ? 1 : 0) + ((bane === "res") ? -1 : 0);
+	
+	// merged units
+	if (merge > 0) {
+		var statNames = ["hp", "atk", "spd", "def", "res"];
+		var mergeBonusOrder = ["hp", "atk", "spd", "def", "res"];
+		
+		// sort stats from highest to lowest
+		for (var statsIndex = 1; statsIndex < 5; statsIndex++) {
+			var inserted = false;
+			for (var orderIndex = 0; orderIndex < statsIndex; orderIndex++) {
+				if (stats[statNames[statsIndex]] > stats[mergeBonusOrder[orderIndex]]) {
+					// push back
+					for (var pushIndex = statsIndex - 1; pushIndex >= orderIndex; pushIndex--) {
+						mergeBonusOrder[pushIndex + 1] = mergeBonusOrder[pushIndex];
+					}
+					
+					// insert
+					mergeBonusOrder[orderIndex] = statNames[statsIndex];
+					inserted = true;
+					break;
+				}
+			}
+			
+			if (!inserted) {
+				mergeBonusOrder[statsIndex] = statNames[statsIndex];
+			}
+		}
+		
+		// apply bonuses
+		var bonusIndex = 0;
+		for (var mergeCount = 0; mergeCount < merge; mergeCount++) {
+			for (var i = 0; i < 2; i++) {
+				stats[mergeBonusOrder[bonusIndex]] += 1;
+				bonusIndex = (bonusIndex + 1) % 5;
+			}
+		}
+	}
 	
 	// apply stat growths
 	if (level === 40) {
@@ -984,6 +1021,7 @@ function selectCharTab(attacker, newIndex) {
 // selects the first empty tab in a character panel, if all are take stay on the current tab
 // attacker is true if we are selecting from the attacker panel
 function selectEmptyCharTab(attacker) {
+	"use strict";
 	var team = attacker ? attackerTeam : defenderTeam;
 	var selected = attacker ? selectedAttacker : selectedDefender;
 	
