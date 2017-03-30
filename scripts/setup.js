@@ -1193,22 +1193,12 @@ function defCanCounter(battleInfo) {
 }
 
 // heals by damage dealt
-// battleInfo contains all battle information, dmg is the damage dealt, healAmount is the fraction to heal, healSource is the source of the healing, initiator determines who to heal
-function healDmg(battleInfo, dmg, healAmount, healSource, initiator) {
+// battleInfo contains all battle information, dmg is the damage dealt, healAmount is the fraction to heal, healSource is the source of the healing, multiple is true if unit has healed once already
+function healDmg(battleInfo, dmg, healAmount, healSource, multiple) {
 	"use strict";
 	var heal = roundNum(dmg * healAmount, false);
-	var oldHP = 0;
-	var currHP = 0;
-	if (initiator) {
-		oldHP = battleInfo.attacker.currHP;
-		battleInfo.attacker.currHP = Math.min(battleInfo.attacker.hp, battleInfo.attacker.currHP + heal);
-		currHP = battleInfo.attacker.currHP;
-	} else {
-		oldHP = battleInfo.defender.currHP;
-		battleInfo.defender.currHP = Math.min(battleInfo.defender.hp, battleInfo.defender.currHP + heal);
-		currHP = battleInfo.defender.currHP;
-	}
-	battleInfo.logMsg += "Healed by " + (healAmount * 100).toString() +"% of actual damage dealt [" + healSource + "]. <span class='dmg'><strong>" + heal.toString() + " health restored. </strong></span>";
+	battleInfo.logMsg += "Healed by " + (multiple ? "another " : "")+ (healAmount * 100).toString() +"% of actual damage dealt [" + healSource + "]. ";
+	battleInfo.healAmt += heal;
 	return battleInfo;
 }
 
@@ -1604,20 +1594,22 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	var healMsg = "";
 	var atkOldHP = attacker.currHP;
 	var didHeal = false;
-	if (attacker.weaponData.hasOwnProperty("heal_dmg") && attacker.specialData.hasOwnProperty("heal_dmg") && attacker.specCurrCooldown <= 0) {
-		battleInfo = healDmg(battleInfo, (defOldHP - defender.currHP), attacker.weaponData.heal_dmg + attacker.specialData.heal_dmg, attacker.weaponName + ", " + attacker.special, initiator);
+	battleInfo.healAmt = 0;
+	
+	// heal from damage dealt
+	if (attacker.weaponData.hasOwnProperty("heal_dmg")) {
+		battleInfo = healDmg(battleInfo, (defOldHP - defender.currHP), attacker.weaponData.heal_dmg, attacker.weaponName, didHeal);
 		didHeal = true;
-		atkSpec = true;
-	} else if (attacker.weaponData.hasOwnProperty("heal_dmg")) {
-		battleInfo = healDmg(battleInfo, (defOldHP - defender.currHP), attacker.weaponData.heal_dmg, attacker.weaponName, initiator);
-		didHeal = true;
-	} else if (attacker.specialData.hasOwnProperty("heal_dmg") && attacker.specCurrCooldown <= 0) {
-		battleInfo = healDmg(battleInfo, (defOldHP - defender.currHP), attacker.specialData.heal_dmg, attacker.special, initiator);
+	} 
+	if (attacker.specialData.hasOwnProperty("heal_dmg") && attacker.specCurrCooldown <= 0) {
+		battleInfo = healDmg(battleInfo, (defOldHP - defender.currHP), attacker.specialData.heal_dmg, attacker.special, didHeal);
 		didHeal = true;
 		atkSpec = true;
 	}
 	
 	if (didHeal) {
+		attacker.currHP = Math.min(attacker.hp, attacker.currHP + battleInfo.healAmt);
+		battleInfo.logMsg += "<span class='dmg'><strong>" + battleInfo.healAmt.toString() + " health restored. </strong></span>";
 		healMsg = " <span class='heal-seperator'>|</span> <span class='" + atkClass + "'><strong>" + attacker.name + " HP:</strong> " + atkOldHP.toString() + " → " + attacker.currHP.toString() + "</span>";
 	}
 	
@@ -1676,6 +1668,7 @@ function simBattle(battleInfo, displayMsg) {
 	
 	// can defender counter
 	var defCC = defCanCounter(battleInfo);
+	var defAttacks = false;
 	
 	// AOE damage before combat
 	if (battleInfo.attacker.specialData.hasOwnProperty("before_combat_aoe") && battleInfo.attacker.specCurrCooldown <= 0) {
@@ -1763,12 +1756,15 @@ function simBattle(battleInfo, displayMsg) {
 	if ((battleInfo.defender.weaponName !== "None" && vantagePassive) || vantageWeapon) {
 		if (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range) {
 			battleInfo = singleCombat(battleInfo, false, "counter-attacks first [" + vantageSource + "]", false);
+			defAttacks = true;
 			vantage = true;
 		} else if (battleInfo.defender.weaponData.hasOwnProperty("counter")) {
 			battleInfo = singleCombat(battleInfo, false, "counter-attacks first, ignoring distance [" + vantageSource + ", " + battleInfo.defender.weaponName + "]", false);
+			defAttacks = true;
 			vantage = true;
 		} else if (battleInfo.defender.passiveAData.hasOwnProperty("counter")) {
 			battleInfo = singleCombat(battleInfo, false, "counter-attacks first, ignoring distance [" + vantageSource + ", " + battleInfo.defender.passiveA + "]", false);
+			defAttacks = true;
 			vantage = true;
 		}
 	}
@@ -1812,10 +1808,13 @@ function simBattle(battleInfo, displayMsg) {
 		if (!vantage) {
 			if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range) {
 				battleInfo = singleCombat(battleInfo, false, "counter-attacks", false);
+				defAttacks = true;
 			} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.hasOwnProperty("counter")) {	
 				battleInfo = singleCombat(battleInfo, false, "counter-attacks, ignoring distance [" + battleInfo.defender.weaponName + "]", false);
+				defAttacks = true;
 			} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.passiveAData.hasOwnProperty("counter")) {	
 				battleInfo = singleCombat(battleInfo, false, "counter-attacks, ignoring distance [" + battleInfo.defender.passiveA + "]", false);
+				defAttacks = true;
 			} else {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is unable to counter-attack.</li>";
 			}
@@ -1933,22 +1932,29 @@ function simBattle(battleInfo, displayMsg) {
 				}
 			}
 		}
-		
-		// check for poison damage
-		if (battleInfo.attacker.passiveBData.hasOwnProperty("poison") && battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) {
-			battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.passiveBData.poison, battleInfo.attacker.passiveB, "defender");
-		}
-		if (battleInfo.attacker.weaponData.hasOwnProperty("poison") && battleInfo.defender.currHP > 0) {
-			battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.poison, battleInfo.attacker.weaponName, "defender");
-		}
-		if (battleInfo.defender.weaponData.hasOwnProperty("poison") && battleInfo.attacker.currHP > 0 && defCC) {
-			battleInfo = afterCombatDmg(battleInfo, battleInfo.defender.weaponData.poison, battleInfo.defender.weaponName, "attacker");
-		}
-		if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_poison") && battleInfo.defender.currHP > 0) {
-			battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.initiate_poison, battleInfo.attacker.weaponName, "defender");
-		}
 	}
 
+	// check for after combat healing
+	if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_heal") && battleInfo.attacker.currHP > 0) {
+		var prevHP = battleInfo.attacker.currHP;
+		battleInfo.attacker.currHP = Math.min(prevHP + battleInfo.attacker.weaponData.initiate_heal, battleInfo.attacker.hp);
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> recovers HP for initiating combat [" + battleInfo.attacker.weaponName + "]. <span class='dmg'><strong>" + battleInfo.attacker.weaponData.initiate_heal.toString() + " health restored.</strong></span><br><span class='attacker'><strong>" + battleInfo.attacker.name + " HP:</strong> " + prevHP.toString() + " → " + battleInfo.attacker.currHP.toString() + "</span></li>";
+	}
+	
+	// check for poison damage
+	if (battleInfo.attacker.passiveBData.hasOwnProperty("poison") && battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) {
+		battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.passiveBData.poison, battleInfo.attacker.passiveB, "defender");
+	}
+	if (battleInfo.attacker.weaponData.hasOwnProperty("poison") && battleInfo.defender.currHP > 0) {
+		battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.poison, battleInfo.attacker.weaponName, "defender");
+	}
+	if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_poison") && battleInfo.defender.currHP > 0) {
+		battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.initiate_poison, battleInfo.attacker.weaponName, "defender");
+	}
+	if (battleInfo.defender.weaponData.hasOwnProperty("poison") && battleInfo.attacker.currHP > 0 && defAttacks) {
+		battleInfo = afterCombatDmg(battleInfo, battleInfo.defender.weaponData.poison, battleInfo.defender.weaponName, "attacker");
+	}
+	
 	// check for recoil damage
 	if (battleInfo.attacker.currHP > 0 && battleInfo.attacker.passiveAData.hasOwnProperty("recoil_dmg")) {
 		battleInfo = recoilDmg(battleInfo, battleInfo.attacker.passiveAData.recoil_dmg, battleInfo.attacker.passiveA, true);
@@ -2634,7 +2640,7 @@ $(document).ready( function() {
 	});
 	
 	// make character tabs load default image on error
-	$(".char-tab, .char-tab-selected, .char-tab-unselected").on("error", function() {
+	$(".char-tab, .char-tab-selected, .char-tab-unselected, #attacker-portrait, #defender-portrait").on("error", function() {
 		$(this).attr("src", "img/Portraits/Other.png");
 	});
 	

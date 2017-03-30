@@ -304,7 +304,7 @@ h3 {
 }
 
 .char-tab:hover {
-	background-color: white;
+	background-color: #22292C;
 	border: solid 1px white;
 	cursor: pointer;
 }
@@ -350,6 +350,7 @@ h3 {
 
 #matchup-table {
 	width: 700px;
+	font-size: 0.9em;
 	text-align: center;
 	border-collapse: collapse;
 }

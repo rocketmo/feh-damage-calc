@@ -41,6 +41,20 @@ var skillInfo =
                 "atk" : 3
             }
         },
+        "Attack/Def +1" : {
+            "description" : "Grants Atk/Def+1.",
+            "stat_mod" : {
+                "atk" : 1,
+				"def" : 1
+            }
+        },
+        "Attack/Def +2" : {
+            "description" : "Grants Atk/Def+2.",
+            "stat_mod" : {
+                "atk" : 2,
+				"def" : 2
+            }
+        },
         "Close Counter" : {
             "description" : "Enables unit to counter-attack regardless of distance to attacker.",
             "counter" : true,
@@ -315,6 +329,22 @@ var skillInfo =
             "cancel_effective" : true,
             "move_unique" : "Armored"
         },
+        "Swift Sparrow 1" : {
+            "description" : "Grants Atk/Spd+2 if unit initiates combat.",
+            "initiate_mod" : {
+                "atk" : 2,
+                "spd" : 2
+            },
+            "weapon_restrict" : "Staff"
+        },
+        "Swift Sparrow 2" : {
+            "description" : "Grants Atk/Spd+4 if unit initiates combat.",
+            "initiate_mod" : {
+                "atk" : 4,
+                "spd" : 4
+            },
+            "weapon_restrict" : "Staff"
+        },
         "Triangle Adept 1" : {
             "description" : "Gives Atk+10% if unit has a weapon-triangle advantage, Atk-10% if disadvantage.",
             "tri_advantage" : 0.1,
@@ -543,6 +573,12 @@ var skillInfo =
                 "threshold" : 0.5
             },
             "color_restrict" : "Red"
+        },
+        "Live for Bounty" : {
+            "description" : "If unit survives, get 1.5x normal badges from a Training Tower map."
+        },
+        "Live for Honor" : {
+            "description" : "If unit survives, get 1.5x normal badges from a Training Tower map."
         },
         "Live to Serve 1" : {
             "description" : "When healing allies with a staff, unit also recovers 50% of the HP restored.",
@@ -803,6 +839,18 @@ var skillInfo =
         }
     },
     "c" : {
+        "Axe Experience 1" : {
+            "description" : "If unit survives, unit gets 1.5x EXP.",
+            "weapon_unique" : "Axe"
+        },
+        "Axe Experience 2" : {
+            "description" : "If unit survives, all axe users on team get 1.5x EXP.",
+            "weapon_unique" : "Axe"
+        },
+        "Axe Experience 3" : {
+            "description" : "If unit survives, all axe users on team get 2x EXP.",
+            "weapon_unique" : "Axe"
+        },
         "Breath of Life 1" : {
             "description" : "If unit initiates attack, adjacent allies recover 3 HP after combat."
         },
