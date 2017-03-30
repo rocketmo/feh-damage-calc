@@ -149,6 +149,24 @@ var weaponInfo =
 		"description" : "Effective against cavalry units.",
 		"move_effective" : "Cavalry"
 	},
+	"Blue Egg" : {
+		"color"   : "Blue",
+		"type"    : "Blue Tome",
+		"might"   : 7,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "If unit initiates attack, unit recovers 4 HP after the battle.",
+		"initiate_heal" : 4
+	},
+	"Blue Egg+" : {
+		"color"   : "Blue",
+		"type"    : "Blue Tome",
+		"might"   : 11,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "If unit initiates attack, unit recovers 4 HP after the battle.",
+		"initiate_heal" : 4
+	},
 	"Bolganone" : {
 		"color"   : "Red",
 		"type"    : "Red Tome",
@@ -269,6 +287,42 @@ var weaponInfo =
 		"magical" : true,
 		"description" : "If unit initiates attack, restrict foe from moving more than 1 space through their next actions.",
 		"char_unique" : true
+	},
+	"Carrot Axe" : {
+		"color"   : "Green",
+		"type"    : "Axe",
+		"might"   : 9,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "If unit initiates attack, unit recovers 4 HP after the battle.",
+		"initiate_heal" : 4
+	},
+	"Carrot Axe+" : {
+		"color"   : "Green",
+		"type"    : "Axe",
+		"might"   : 13,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "If unit initiates attack, unit recovers 4 HP after the battle.",
+		"initiate_heal" : 4
+	},
+	"Carrot Lance" : {
+		"color"   : "Blue",
+		"type"    : "Lance",
+		"might"   : 9,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "If unit initiates attack, unit recovers 4 HP after the battle.",
+		"initiate_heal" : 4
+	},
+	"Carrot Lance+" : {
+		"color"   : "Blue",
+		"type"    : "Lance",
+		"might"   : 13,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "If unit initiates attack, unit recovers 4 HP after the battle.",
+		"initiate_heal" : 4
 	},
 	"Cymbeline" : {
 		"color" : "Red",
@@ -620,6 +674,24 @@ var weaponInfo =
 		"range"   : 2,
 		"magical" : true,
 		"description" : "After any combat, restrict foe from moving more than 1 space through their next actions."
+	},
+	"Green Egg" : {
+		"color"   : "Green",
+		"type"    : "Green Tome",
+		"might"   : 7,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "If unit initiates attack, unit recovers 4 HP after the battle.",
+		"initiate_heal" : 4
+	},
+	"Green Egg+" : {
+		"color"   : "Green",
+		"type"    : "Green Tome",
+		"might"   : 11,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "If unit initiates attack, unit recovers 4 HP after the battle.",
+		"initiate_heal" : 4
 	},
 	"Gronnblade" : {
 		"color"   : "Green",

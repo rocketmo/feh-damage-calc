@@ -169,6 +169,20 @@ var charInfo =
 		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
 		"passive_c": ["Savage Blow 3", "Savage Blow 2", "Savage Blow 1"]
 	},
+	"Camilla (Spring)": {
+		"color" : "Green",
+		"weapon_type" : "Green Tome",
+		"hp": 39,
+		"atk": 46,
+		"spd": 25,
+		"def": 30,
+		"res": 19,
+		"move_type": "Flying", 
+		"weapon": ["Green Egg+", "Green Egg", "Elwind", "Wind"],
+		"passive_a": ["Defiant Spd 3", "Defiant Spd 2", "Defiant Spd 1"],
+		"passive_b": ["Live for Bounty"],
+		"assist" : ["Rally Attack"]
+	},
 	"Camus": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
@@ -238,6 +252,20 @@ var charInfo =
 		"special": ["Aether", "Sol", "Daylight"],
 		"passive_a": ["Defiant Def 3", "Defiant Def 2", "Defiant Def 1"],
 		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"]
+	},
+	"Chrom (Spring)": {
+		"color" : "Green",
+		"weapon_type" : "Axe",
+		"hp": 43,
+		"atk": 50,
+		"spd": 32,
+		"def": 30,
+		"res": 20,
+		"move_type": "Infantry",
+		"weapon": ["Carrot Axe+", "Carrot Axe", "Steel Axe", "Iron Axe"],
+		"passive_a": ["Attack/Def +2", "Attack/Def +1", "Defense +1"],
+		"passive_c": ["Axe Experience 3", "Axe Experience 2", "Axe Experience 1"],
+		"assist" : ["Shove"]
 	},
 	"Clarine": {
 		"color" : "Colorless",
@@ -856,6 +884,20 @@ var charInfo =
 		"special": ["Aether", "Luna", "New Moon"],
 		"passive_a": ["Defiant Spd 3", "Defiant Spd 2", "Defiant Spd 1"],
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"]
+	},
+	"Lucina (Spring)": {
+		"color" : "Blue",
+		"weapon_type" : "Blue Tome",
+		"hp": 35,
+		"atk": 40,
+		"spd": 36,
+		"def": 22,
+		"res": 25,
+		"move_type": "Infantry",
+		"weapon": ["Blue Egg+", "Blue Egg", "Elthunder", "Thunder"],
+		"passive_a": ["Swift Sparrow 2", "Swift Sparrow 1", "Darting Blow 1"],
+		"passive_b": ["Seal Res 3", "Seal Res 2", "Seal Res 1"],
+		"assist" : ["Rally Speed"]
 	},
 	"Lucius": {
 		"color" : "Colorless",
@@ -1584,6 +1626,20 @@ var charInfo =
 		"special": ["Blazing Light", "Rising Light"],
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
 		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"]
+	},
+	"Xander (Spring)": {
+		"color" : "Blue",
+		"weapon_type" : "Lance",
+		"hp": 40,
+		"atk": 38,
+		"spd": 28,
+		"def": 35,
+		"res": 26,
+		"move_type": "Cavalry",
+		"weapon": ["Carrot Lance+", "Carrot Lance", "Steel Lance", "Iron Lance"],
+		"passive_b": ["Live for Honor"],
+		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
+		"assist" : ["Swap"]
 	},
 	"Zephiel": {
 		"color" : "Red",
