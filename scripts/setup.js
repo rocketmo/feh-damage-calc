@@ -722,6 +722,9 @@ function displayChar(charName, charNum) {
 	$("#extra-char-info-" + charNum).css("color", "#5b5b5b");
 	$("#extra-char-info-" + charNum + " select").attr("disabled", "disabled");
 	
+	// hide extra info
+	$("#extra-char-info-" + charNum).hide(700);
+	
 	// show general character info
 	$("#color-" + charNum).val(singleChar.color);
 	$("#weapon-type-" + charNum).val(singleChar.weapon_type);

@@ -207,114 +207,119 @@ var charInfo =
 	"Catria": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 39,
-		"atk": 42,
-		"spd": 34,
-		"def": 29,
-		"res": 25,
 		"move_type": "Flying",
 		"weapon": ["Killer Lance+", "Killer Lance", "Steel Lance", "Iron Lance"],
 		"special": ["Luna", "New Moon"],
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
-		"passive_b": ["Seal Atk 3", "Seal Atk 2", "Seal Atk 1"]
+		"passive_b": ["Seal Atk 3", "Seal Atk 2", "Seal Atk 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 10, "def" : 7, "res" : 6},
+			"star-4" : {"hp" : 16, "atk" : 7, "spd" : 10, "def" : 6, "res" : 5},
+			"growth" : {"hp" : 6, "atk" : 7, "spd" : 7, "def" : 6, "res" : 5}
+		}
 	},
 	"Cecilia": {
 		"color" : "Green",
 		"weapon_type" : "Green Tome",
-		"hp": 36,
-		"atk": 46,
-		"spd": 25,
-		"def": 22,
-		"res": 29,
 		"move_type": "Cavalry",
 		"weapon": ["Gronnraven+", "Gronnraven", "Elwind", "Wind"],
 		"passive_a": ["Attack +3", "Attack +2", "Attack +1"],
 		"passive_b": ["Escape Route 3", "Escape Route 2", "Escape Route 1"],
-		"assist" : ["Rally Resistance"]
+		"assist" : ["Rally Resistance"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 8, "spd" : 6, "def" : 5, "res" : 7},
+			"star-4" : {"hp" : 16, "atk" : 8, "spd" : 5, "def" : 4, "res" : 7},
+			"star-3" : {"hp" : 16, "atk" : 7, "spd" : 5, "def" : 4, "res" : 6},
+			"star-2" : {"hp" : 15, "atk" : 7, "spd" : 4, "def" : 3, "res" : 6},
+			"star-1" : {"hp" : 15, "atk" : 6, "spd" : 4, "def" : 3, "res" : 5},
+			"growth" : {"hp" : 5, "atk" : 7, "spd" : 5, "def" : 4, "res" : 6}
+		}
 	},
 	"Cherche": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
-		"hp": 46,
-		"atk": 53,
-		"spd": 25,
-		"def": 32,
-		"res": 16,
 		"move_type": "Flying",
 		"weapon": ["Hammer+", "Hammer", "Steel Axe", "Iron Axe"],
 		"passive_a": ["Attack +3", "Attack +2", "Attack +1"],
 		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
-		"assist" : ["Pivot"]
+		"assist" : ["Pivot"],
+		"base_stat" : {
+			"star-5" : {"hp" : 20, "atk" : 10, "spd" : 6, "def" : 8, "res" : 3},
+			"star-4" : {"hp" : 19, "atk" : 10, "spd" : 5, "def" : 8, "res" : 2},
+			"star-3" : {"hp" : 19, "atk" : 9, "spd" : 5, "def" : 7, "res" : 2},
+			"growth" : {"hp" : 8, "atk" : 9, "spd" : 5, "def" : 7, "res" : 2}
+		}
 	},
 	"Chrom": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 47,
-		"atk": 53,
-		"spd": 25,
-		"def": 31,
-		"res": 17,
 		"move_type": "Infantry",
 		"weapon": ["Falchion", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"special": ["Aether", "Sol", "Daylight"],
 		"passive_a": ["Defiant Def 3", "Defiant Def 2", "Defiant Def 1"],
-		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"]
+		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 21, "atk" : 9, "spd" : 6, "def" : 7, "res" : 4},
+			"star-4" : {"hp" : 20, "atk" : 9, "spd" : 5, "def" : 7, "res" : 3},
+			"growth" : {"hp" : 8, "atk" : 9, "spd" : 5, "def" : 7, "res" : 2}
+		}
 	},
 	"Chrom (Spring)": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
-		"hp": 43,
-		"atk": 50,
-		"spd": 32,
-		"def": 30,
-		"res": 20,
 		"move_type": "Infantry",
 		"weapon": ["Carrot Axe+", "Carrot Axe", "Steel Axe", "Iron Axe"],
 		"passive_a": ["Attack/Def +2", "Attack/Def +1", "Defense +1"],
 		"passive_c": ["Axe Experience 3", "Axe Experience 2", "Axe Experience 1"],
-		"assist" : ["Shove"]
+		"assist" : ["Shove"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 9, "spd" : 8, "def" : 6, "res" : 5},
+			"growth" : {"hp" : 7, "atk" : 8, "spd" : 7, "def" : 6, "res" : 3}
+		}
 	},
 	"Clarine": {
 		"color" : "Colorless",
 		"weapon_type" : "Staff",
-		"hp": 35,
-		"atk": 30,
-		"spd": 33,
-		"def": 22,
-		"res": 32,
 		"move_type": "Cavalry",
 		"weapon": ["Fear", "Assault"],
 		"special": ["Swift-Winds Balm", "Imbue"],
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
-		"assist" : ["Martyr", "Reconcile", "Heal"]
+		"assist" : ["Martyr", "Reconcile", "Heal"],
+		"base_stat" : {
+			"star-5" : {"hp" : 16, "atk" : 6, "spd" : 9, "def" : 5, "res" : 7},
+			"star-4" : {"hp" : 15, "atk" : 5, "spd" : 9, "def" : 4, "res" : 7},
+			"star-3" : {"hp" : 15, "atk" : 5, "spd" : 8, "def" : 4, "res" : 6},
+			"growth" : {"hp" : 5, "atk" : 5, "spd" : 7, "def" : 4, "res" : 6}
+		}
 	},
 	"Cordelia": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 40,
-		"atk": 43,
-		"spd": 30,
-		"def": 22,
-		"res": 25,
 		"move_type": "Flying",
 		"weapon": ["Brave Lance+", "Brave Lance", "Steel Lance", "Iron Lance"],
 		"special": ["Galeforce", "Astra", "Night Sky"],
 		"passive_a": ["Triangle Adept 3", "Triangle Adept 2", "Triangle Adept 1"],
-		"passive_b": ["Pass 3", "Pass 2", "Pass 1"]
+		"passive_b": ["Pass 3", "Pass 2", "Pass 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 9, "spd" : 9, "def" : 5, "res" : 6},
+			"star-4" : {"hp" : 17, "atk" : 9, "spd" : 9, "def" : 4, "res" : 5},
+			"growth" : {"hp" : 6, "atk" : 8, "spd" : 8, "def" : 4, "res" : 5}
+		}
 	},
 	"Corrin (F)": {
 		"color" : "Blue",
 		"weapon_type" : "Blue Breath",
-		"hp": 41,
-		"atk": 40,
-		"spd": 34,
-		"def": 34,
-		"res": 21,
 		"move_type": "Infantry",
 		"weapon": ["Dark Breath+ (Blue)", "Dark Breath (Blue)", "Fire Breath+ (Blue)", "Fire Breath (Blue)"],
 		"special": ["Draconic Aura", "Dragon Gaze"],
 		"passive_b": ["Seal Res 3", "Seal Res 2", "Seal Res 1"],
-		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"]
+		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 6, "def" : 8, "res" : 6},
+			"star-4" : {"hp" : 18, "atk" : 8, "spd" : 5, "def" : 8, "res" : 5},
+			"star-3" : {"hp" : 18, "atk" : 7, "spd" : 5, "def" : 7, "res" : 5},
+			"growth" : {"hp" : 6, "atk" : 5, "spd" : 9, "def" : 8, "res" : 3}
+		}
 	},
 	"Corrin (M)": {
 		"color" : "Red",
