@@ -4,11 +4,6 @@ var charInfo =
 	"Abel": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 44,
-		"atk": 41,
-		"spd": 27,
-		"def": 25,
-		"res": 25,
 		"move_type": "Cavalry",
 		"weapon": ["Brave Lance+", "Brave Lance", "Steel Lance", "Iron Lance"],
 		"special": ["Aegis", "Holy Vestments"],
@@ -23,11 +18,6 @@ var charInfo =
 	"Alfonse": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 43,
-		"atk": 51,
-		"spd": 25,
-		"def": 32,
-		"res": 22,
 		"move_type": "Infantry",
 		"weapon": ["Fólkvangr", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"special": ["Sol", "Daylight"],
@@ -44,156 +34,161 @@ var charInfo =
 	"Anna": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
-		"hp": 41,
-		"atk": 45,
-		"spd": 38,
-		"def": 22,
-		"res": 28,
 		"move_type": "Infantry",
 		"weapon": ["Nóatún", "Silver Axe", "Steel Axe", "Iron Axe"],
 		"special": ["Astra", "Night Sky"],
 		"passive_b": ["Vantage 3", "Vantage 2", "Vantage 1"],
-		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"]
+		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 7, "spd" : 10, "def" : 5, "res" : 6},
+			"star-4" : {"hp" : 18, "atk" : 7, "spd" : 10, "def" : 4, "res" : 5},
+			"star-3" : {"hp" : 18, "atk" : 6, "spd" : 9, "def" : 4, "res" : 5},
+			"star-2" : {"hp" : 17, "atk" : 6, "spd" : 9, "def" : 3, "res" : 4},
+			"growth" : {"hp" : 6, "atk" : 6, "spd" : 9, "def" : 4, "res" : 6}
+		}
 	},
 	"Arthur": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
-		"hp": 48,
-		"atk": 44,
-		"spd": 29,
-		"def": 30,
-		"res": 24,
 		"move_type": "Infantry",
 		"weapon": ["Emerald Axe+", "Emerald Axe", "Steel Axe", "Iron Axe"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
 		"passive_b": ["Lancebreaker 3", "Lancebreaker 2", "Lancebreaker 1"],
-		"assist" : ["Swap"]
+		"assist" : ["Swap"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 7, "def" : 8, "res" : 5},
+			"star-4" : {"hp" : 18, "atk" : 8, "spd" : 6, "def" : 8, "res" : 4},
+			"star-3" : {"hp" : 18, "atk" : 7, "spd" : 6, "def" : 7, "res" : 4},
+			"growth" : {"hp" : 7, "atk" : 7, "spd" : 6, "def" : 6, "res" : 5}
+		}
 	},
 	"Azama": {
 		"color" : "Colorless",
 		"weapon_type" : "Staff",
-		"hp": 43,
-		"atk": 24,
-		"spd": 26,
-		"def": 32,
-		"res": 25,
 		"move_type": "Infantry",
 		"weapon": ["Pain", "Assault"],
 		"special": ["Solid-Earth Balm", "Imbue"],
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
-		"assist" : ["Martyr", "Reconcile", "Heal"]
+		"assist" : ["Martyr", "Reconcile", "Heal"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 4, "spd" : 7, "def" : 8, "res" : 6},
+			"star-4" : {"hp" : 18, "atk" : 3, "spd" : 7, "def" : 8, "res" : 5},
+			"star-3" : {"hp" : 18, "atk" : 3, "spd" : 6, "def" : 7, "res" : 5},
+			"growth" : {"hp" : 7, "atk" : 4, "spd" : 5, "def" : 7, "res" : 5}
+		}
 	},
 	"Azura": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 36,
-		"atk": 43,
-		"spd": 36,
-		"def": 21,
-		"res": 28,
 		"move_type": "Infantry",
 		"weapon": ["Sapphire Lance+", "Sapphire Lance", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Speed +3", "Speed +2", "Speed +1"],
 		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
-		"assist" : ["Sing"]
+		"assist" : ["Sing"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 5, "spd" : 7, "def" : 4, "res" : 6},
+			"growth" : {"hp" : 5, "atk" : 8, "spd" : 8, "def" : 4, "res" : 6}
+		}
 	},
 	"Barst": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
-		"hp": 46,
-		"atk": 41,
-		"spd": 27,
-		"def": 30,
-		"res": 17,
 		"move_type": "Infantry",
 		"weapon": ["Brave Axe+", "Brave Axe", "Steel Axe", "Iron Axe"],
 		"passive_b": ["Knock Back"],
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"],
-		"assist" : ["Reposition"]
+		"assist" : ["Reposition"],
+		"base_stat" : {
+			"star-5" : {"hp" : 20, "atk" : 9, "spd" : 8, "def" : 6, "res" : 4},
+			"star-4" : {"hp" : 19, "atk" : 9, "spd" : 8, "def" : 5, "res" : 3},
+			"star-3" : {"hp" : 19, "atk" : 8, "spd" : 7, "def" : 5, "res" : 3},
+			"growth" : {"hp" : 8, "atk" : 7, "spd" : 7, "def" : 7, "res" : 2}
+		}
 	},
 	"Bartre": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
-		"hp": 49,
-		"atk": 51,
-		"spd": 28,
-		"def": 36,
-		"res": 16,
 		"move_type": "Infantry",
 		"weapon": ["Hammer+", "Hammer", "Steel Axe", "Iron Axe"],
 		"passive_a": ["Fury 3", "Fury 2", "Fury 1"],
 		"passive_b": ["Brash Assault 3", "Brash Assault 2", "Brash Assault 1"],
-		"assist" : ["Smite"]
+		"assist" : ["Smite"],
+		"base_stat" : {
+			"star-5" : {"hp" : 21, "atk" : 10, "spd" : 6, "def" : 7, "res" : 3},
+			"star-4" : {"hp" : 20, "atk" : 10, "spd" : 5, "def" : 7, "res" : 2},
+			"star-3" : {"hp" : 20, "atk" : 9, "spd" : 5, "def" : 6, "res" : 2},
+			"growth" : {"hp" : 9, "atk" : 8, "spd" : 5, "def" : 8, "res" : 1}
+		}
 	},
 	"Beruka": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
-		"hp": 46,
-		"atk": 40,
-		"spd": 23,
-		"def": 37,
-		"res": 22,
 		"move_type": "Flying",
 		"weapon": ["Killer Axe+", "Killer Axe", "Steel Axe", "Iron Axe"],
 		"special": ["Glimmer", "Night Sky"],
 		"passive_a": ["Defiant Def 3", "Defiant Def 2", "Defiant Def 1"],
-		"passive_b": ["Lunge"]
+		"passive_b": ["Lunge"],
+		"base_stat" : {
+			"star-5" : {"hp" : 20, "atk" : 7, "spd" : 6, "def" : 9, "res" : 5},
+			"star-4" : {"hp" : 19, "atk" : 7, "spd" : 5, "def" : 9, "res" : 4},
+			"star-3" : {"hp" : 19, "atk" : 6, "spd" : 5, "def" : 8, "res" : 4},
+			"growth" : {"hp" : 8, "atk" : 6, "spd" : 4, "def" : 9, "res" : 4}
+		}
 	},
 	"Caeda": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 36,
-		"atk": 37,
-		"spd": 37,
-		"def": 24,
-		"res": 34,
 		"move_type": "Flying",
 		"weapon": ["Armorslayer+", "Armorslayer", "Steel Sword", "Iron Sword"],
 		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
 		"passive_c": ["Fortify Fliers", "Fortify Res 2", "Fortify Res 1"],
-		"assist" : ["Rally Speed"]
+		"assist" : ["Rally Speed"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 6, "spd" : 9, "def" : 5, "res" : 10},
+			"star-4" : {"hp" : 16, "atk" : 5, "spd" : 9, "def" : 4, "res" : 10},
+			"growth" : {"hp" : 5, "atk" : 5, "spd" : 9, "def" : 5, "res" : 7}
+		}
 	},
 	"Cain": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 42,
-		"atk": 40,
-		"spd": 27,
-		"def": 27,
-		"res": 21,
 		"move_type": "Cavalry",
 		"weapon": ["Brave Sword+", "Brave Sword", "Steel Sword", "Iron Sword"],
 		"special": ["Escutcheon", "Buckler"],
 		"passive_b": ["Wings of Mercy 3", "Wings of Mercy 2", "Wings of Mercy 1"],
-		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"]
+		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 8, "spd" : 6, "def" : 8, "res" : 6},
+			"star-4" : {"hp" : 17, "atk" : 8, "spd" : 5, "def" : 8, "res" : 5},
+			"growth" : {"hp" : 7, "atk" : 7, "spd" : 8, "def" : 5, "res" : 3}
+		}
 	},
 	"Camilla": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
-		"hp": 37,
-		"atk": 38,
-		"spd": 27,
-		"def": 28,
-		"res": 31,
 		"move_type": "Flying",
 		"weapon": ["Brave Axe+", "Brave Axe", "Steel Axe", "Iron Axe"],
 		"special": ["Draconic Aura", "Dragon Gaze"],
 		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
-		"passive_c": ["Savage Blow 3", "Savage Blow 2", "Savage Blow 1"]
+		"passive_c": ["Savage Blow 3", "Savage Blow 2", "Savage Blow 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 8, "spd" : 8, "def" : 6, "res" : 7},
+			"star-4" : {"hp" : 17, "atk" : 8, "spd" : 8, "def" : 5, "res" : 6},
+			"growth" : {"hp" : 5, "atk" : 6, "spd" : 7, "def" : 6, "res" : 7}
+		}
 	},
 	"Camilla (Spring)": {
 		"color" : "Green",
 		"weapon_type" : "Green Tome",
-		"hp": 39,
-		"atk": 46,
-		"spd": 25,
-		"def": 30,
-		"res": 19,
 		"move_type": "Flying", 
 		"weapon": ["Green Egg+", "Green Egg", "Elwind", "Wind"],
 		"passive_a": ["Defiant Spd 3", "Defiant Spd 2", "Defiant Spd 1"],
 		"passive_b": ["Live for Bounty"],
-		"assist" : ["Rally Attack"]
+		"assist" : ["Rally Attack"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 9, "spd" : 6, "def" : 8, "res" : 4},
+			"growth" : {"hp" : 6, "atk" : 8, "spd" : 5, "def" : 6, "res" : 3}
+		}
 	},
 	"Camus": {
 		"color" : "Blue",

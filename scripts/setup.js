@@ -848,6 +848,8 @@ function displayChar(charName, charNum) {
 	// show stats
 	if (singleChar.hasOwnProperty("base_stat")) {
 		displayStatTotals(charNum);
+		$("#char-build-info-" + charNum).css("color", "white");
+		$("#char-build-info-" + charNum + " select").removeAttr("disabled");
 	} else {
 		$("#hp-" + charNum + ", #curr-hp-" + charNum).val(singleChar.hp);
 		$(".hp-" + charNum + "-read").text(singleChar.hp);
@@ -855,6 +857,8 @@ function displayChar(charName, charNum) {
 		$("#spd-" + charNum).val(singleChar.spd);
 		$("#def-" + charNum).val(singleChar.def);
 		$("#res-" + charNum).val(singleChar.res);
+		$("#char-build-info-" + charNum).css("color", "#5b5b5b");
+		$("#char-build-info-" + charNum + " select").attr("disabled", "disabled");
 	}
 }
 
