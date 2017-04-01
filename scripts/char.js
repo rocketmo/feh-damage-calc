@@ -546,254 +546,261 @@ var charInfo =
 	"Gaius": {
 		"color" : "Colorless",
 		"weapon_type" : "Dagger",
-		"hp": 42,
-		"atk": 36,
-		"spd": 36,
-		"def": 22,
-		"res": 19,
 		"move_type": "Infantry",
 		"weapon": ["Rogue Dagger+", "Rogue Dagger", "Steel Dagger", "Iron Dagger"],
 		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
 		"passive_b": ["Pass 3", "Pass 2", "Pass 1"],
-		"assist" : ["Rally Speed"]
+		"assist" : ["Rally Speed"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 10, "def" : 5, "res" : 4},
+			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 10, "def" : 4, "res" : 3},
+			"star-3" : {"hp" : 17, "atk" : 6, "spd" : 9, "def" : 4, "res" : 3},
+			"growth" : {"hp" : 7, "atk" : 6, "spd" : 8, "def" : 4, "res" : 3}
+		}
 	},
 	"Gordin": {
 		"color" : "Colorless",
 		"weapon_type" : "Bow",
-		"hp": 43,
-		"atk": 41,
-		"spd": 20,
-		"def": 32,
-		"res": 17,
 		"move_type": "Infantry",
 		"weapon": ["Brave Bow+", "Brave Bow", "Steel Bow", "Iron Bow"],
 		"passive_a": ["Attack +3", "Attack +2", "Attack +1"],
 		"passive_b": ["Vantage 3", "Vantage 2", "Vantage 1"],
-		"assist" : ["Shove"]
+		"assist" : ["Shove"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 7, "spd" : 6, "def" : 8, "res" : 4},
+			"star-4" : {"hp" : 18, "atk" : 7, "spd" : 5, "def" : 8, "res" : 3},
+			"star-3" : {"hp" : 18, "atk" : 6, "spd" : 5, "def" : 7, "res" : 3},
+			"growth" : {"hp" : 7, "atk" : 7, "spd" : 5, "def" : 7, "res" : 2}
+		}
 	},
 	"Gunter": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
-		"hp": 43,
-		"atk": 47,
-		"spd": 24,
-		"def": 33,
-		"res": 18,
 		"move_type": "Cavalry",
 		"weapon": ["Silver Axe+", "Silver Axe", "Steel Axe", "Iron Axe"],
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
 		"passive_c": ["Hone Cavalry", "Hone Atk 2", "Hone Atk 1"],
-		"assist" : ["Harsh Command"]
+		"assist" : ["Harsh Command"],
+		"base_stat" : {
+			"star-5" : {"hp" : 21, "atk" : 10, "spd" : 7, "def" : 11, "res" : 5},
+			"star-4" : {"hp" : 20, "atk" : 10, "spd" : 6, "def" : 11, "res" : 4},
+			"star-3" : {"hp" : 20, "atk" : 9, "spd" : 6, "def" : 10, "res" : 4},
+			"star-2" : {"hp" : 19, "atk" : 9, "spd" : 5, "def" : 10, "res" : 3},
+			"star-1" : {"hp" : 19, "atk" : 8, "spd" : 5, "def" : 9, "res" : 3},
+			"growth" : {"hp" : 6, "atk" : 6, "spd" : 4, "def" : 6, "res" : 2}
+		}
 	},
 	"Gwendolyn": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 49,
-		"atk": 41,
-		"spd": 24,
-		"def": 38,
-		"res": 28,
 		"move_type": "Armored",
 		"weapon": ["Killer Lance+", "Killer Lance", "Steel Lance", "Iron Lance"],
 		"special": ["Escutcheon", "Buckler"],
 		"passive_b": ["Drag Back"],
-		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"]
+		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 23, "atk" : 8, "spd" : 5, "def" : 12, "res" : 6},
+			"star-4" : {"hp" : 22, "atk" : 8, "spd" : 4, "def" : 12, "res" : 5},
+			"star-3" : {"hp" : 22, "atk" : 7, "spd" : 4, "def" : 11, "res" : 5},
+			"growth" : {"hp" : 8, "atk" : 6, "spd" : 5, "def" : 8, "res" : 6}
+		}
 	},
 	"Hana": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 37,
-		"atk": 52,
-		"spd": 41,
-		"def": 18,
-		"res": 21,
 		"move_type": "Infantry",
 		"weapon": ["Armorslayer+", "Armorslayer", "Steel Sword", "Iron Sword"],
 		"passive_a": ["Life and Death 3", "Life and Death 2", "Life and Death 1"],
 		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"],
-		"assist" : ["Rally Attack"]
+		"assist" : ["Rally Attack"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 9, "spd" : 10, "def" : 6, "res" : 4},
+			"star-4" : {"hp" : 17, "atk" : 9, "spd" : 10, "def" : 5, "res" : 3},
+			"star-3" : {"hp" : 17, "atk" : 8, "spd" : 9, "def" : 5, "res" : 3},
+			"star-2" : {"hp" : 16, "atk" : 8, "spd" : 9, "def" : 4, "res" : 2},
+			"star-1" : {"hp" : 16, "atk" : 7, "spd" : 8, "def" : 4, "res" : 2},
+			"growth" : {"hp" : 5, "atk" : 8, "spd" : 8, "def" : 4, "res" : 6}
+		}
 	},
 	"Hawkeye": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
-		"hp": 45,
-		"atk": 44,
-		"spd": 22,
-		"def": 28,
-		"res": 30,
 		"move_type": "Infantry",
 		"weapon": ["Killer Axe+", "Killer Axe", "Steel Axe", "Iron Axe"],
 		"special": ["Growing Light", "Rising Light"],
 		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
-		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"]
+		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 21, "atk" : 9, "spd" : 5, "def" : 6, "res" : 6},
+			"star-4" : {"hp" : 20, "atk" : 9, "spd" : 4, "def" : 6, "res" : 5},
+			"growth" : {"hp" : 7, "atk" : 7, "spd" : 4, "def" : 6, "res" : 7}
+		}
 	},
 	"Hector": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
-		"hp": 52,
-		"atk": 52,
-		"spd": 24,
-		"def": 37,
-		"res": 19,
 		"move_type": "Armored",
 		"weapon": ["Armads", "Silver Axe", "Steel Axe", "Iron Axe"],
 		"special": ["Pavise", "Buckler"],
 		"passive_a": ["Distant Counter"],
-		"passive_c": ["Goad Armor", "Spur Attack 2", "Spur Attack 1"]
+		"passive_c": ["Goad Armor", "Spur Attack 2", "Spur Attack 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 24, "atk" : 10, "spd" : 5, "def" : 11, "res" : 4},
+			"growth" : {"hp" : 9, "atk" : 8, "spd" : 5, "def" : 8, "res" : 3}
+		}
 	},
 	"Henry": {
 		"color" : "Red",
 		"weapon_type" : "Red Tome",
-		"hp": 45,
-		"atk": 34,
-		"spd": 22,
-		"def": 32,
-		"res": 25,
 		"move_type": "Infantry",
 		"weapon": ["Rauðrraven+", "Rauðrraven", "Ruin", "Flux"],
 		"special": ["Ignis", "Glowing Ember"],
 		"passive_a": ["Defiant Def 3", "Defiant Def 2", "Defiant Def 1"],
-		"passive_b": ["G Tomebreaker 3", "G Tomebreaker 2", "G Tomebreaker 1"]
+		"passive_b": ["G Tomebreaker 3", "G Tomebreaker 2", "G Tomebreaker 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 6, "spd" : 5, "def" : 8, "res" : 6},
+			"star-4" : {"hp" : 18, "atk" : 6, "spd" : 4, "def" : 8, "res" : 5},
+			"star-3" : {"hp" : 18, "atk" : 5, "spd" : 4, "def" : 7, "res" : 5},
+			"growth" : {"hp" : 8, "atk" : 4, "spd" : 4, "def" : 7, "res" : 5}
+		}
 	},
 	"Hinata": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 47,
-		"atk": 47,
-		"spd": 27,
-		"def": 39,
-		"res": 21,
 		"move_type": "Infantry",
 		"weapon": ["Ruby Sword+", "Ruby Sword", "Steel Sword", "Iron Sword"],
 		"special": ["Pavise", "Buckler"],
 		"passive_a": ["Fury 3", "Fury 2", "Fury 1"],
-		"passive_b": ["Brash Assault 3", "Brash Assault 2", "Brash Assault 1"]
+		"passive_b": ["Brash Assault 3", "Brash Assault 2", "Brash Assault 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 21, "atk" : 8, "spd" : 5, "def" : 10, "res" : 3},
+			"star-4" : {"hp" : 20, "atk" : 8, "spd" : 4, "def" : 10, "res" : 2},
+			"star-3" : {"hp" : 20, "atk" : 7, "spd" : 4, "def" : 9, "res" : 2},
+			"growth" : {"hp" : 8, "atk" : 7, "spd" : 5, "def" : 8, "res" : 3}
+		}
 	},
 	"Hinoka": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 41,
-		"atk": 43,
-		"spd": 27,
-		"def": 25,
-		"res": 24,
 		"move_type": "Flying",
 		"weapon": ["Brave Lance+", "Brave Lance", "Steel Lance", "Iron Lance"],
 		"special": ["Blazing Wind", "Rising Wind"],
 		"passive_a": ["Defiant Def 3", "Defiant Def 2", "Defiant Def 1"],
-		"passive_c": ["Hone Fliers", "Hone Spd 2", "Hone Spd 1"]
+		"passive_c": ["Hone Fliers", "Hone Spd 2", "Hone Spd 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 7, "spd" : 8, "def" : 6, "res" : 7},
+			"growth" : {"hp" : 6, "atk" : 9, "spd" : 7, "def" : 5, "res" : 4}
+		}
 	},
 	"Jaffar": {
 		"color" : "Colorless",
 		"weapon_type" : "Dagger",
-		"hp": 41,
-		"atk": 42,
-		"spd": 38,
-		"def": 20,
-		"res": 17,
 		"move_type": "Infantry",
 		"weapon": ["Deathly Dagger", "Silver Dagger", "Steel Dagger", "Iron Dagger"],
 		"special": ["Glimmer", "Night Sky"],
 		"passive_a": ["Life and Death 3", "Life and Death 2", "Life and Death 1"],
-		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"]
+		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 6, "res" : 5},
+			"growth" : {"hp" : 7, "atk" : 5, "spd" : 7, "def" : 5, "res" : 4}
+		}
 	},
 	"Jagen": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 37,
-		"atk": 45,
-		"spd": 27,
-		"def": 28,
-		"res": 38,
 		"move_type": "Cavalry",
 		"weapon": ["Silver Lance+", "Silver Lance", "Steel Lance", "Iron Lance"],
 		"special": ["Aegis", "Holy Vestments"],
 		"passive_a": ["Fury 3", "Fury 2", "Fury 1"],
-		"passive_c": ["Fortify Cavalry", "Fortify Res 2", "Fortify Res 1"]
+		"passive_c": ["Fortify Cavalry", "Fortify Res 2", "Fortify Res 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 20, "atk" : 8, "spd" : 7, "def" : 8, "res" : 11},
+			"star-4" : {"hp" : 19, "atk" : 8, "spd" : 6, "def" : 7, "res" : 11},
+			"star-3" : {"hp" : 19, "atk" : 7, "spd" : 6, "def" : 7, "res" : 10},
+			"growth" : {"hp" : 4, "atk" : 5, "spd" : 4, "def" : 4, "res" : 7}
+		}
 	},
 	"Jakob": {
 		"color" : "Colorless",
 		"weapon_type" : "Dagger",
-		"hp": 39,
-		"atk": 39,
-		"spd": 31,
-		"def": 28,
-		"res": 24,
 		"move_type": "Infantry",
 		"weapon": ["Silver Dagger+", "Silver Dagger", "Steel Dagger", "Iron Dagger"],
 		"passive_a": ["Defense +3", "Defense +2", "Defense +1"],
 		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
-		"assist" : ["Rally Resistance"]
+		"assist" : ["Rally Resistance"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 6, "res" : 5},
+			"star-4" : {"hp" : 16, "atk" : 7, "spd" : 9, "def" : 5, "res" : 4},
+			"growth" : {"hp" : 6, "atk" : 6, "spd" : 6, "def" : 5, "res" : 5}
+		}
 	},
 	"Jeorge": {
 		"color" : "Colorless",
 		"weapon_type" : "Bow",
-		"hp": 37,
-		"atk": 46,
-		"spd": 32,
-		"def": 24,
-		"res": 22,
 		"move_type": "Infantry",
 		"weapon": ["Parthia", "Silver Bow", "Steel Bow", "Iron Bow"],
 		"special": ["Blazing Flame", "Rising Flame"],
 		"passive_b": ["Seal Atk 3", "Seal Atk 2", "Seal Atk 1"],
-		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"]
+		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 8, "spd" : 8, "def" : 5, "res" : 5},
+			"star-4" : {"hp" : 17, "atk" : 8, "spd" : 8, "def" : 4, "res" : 4},
+			"growth" : {"hp" : 5, "atk" : 7, "spd" : 7, "def" : 5, "res" : 4}
+		}
 	},
 	"Julia": {
 		"color" : "Green",
 		"weapon_type" : "Green Tome",
-		"hp": 38,
-		"atk": 49,
-		"spd": 26,
-		"def": 17,
-		"res": 35,
 		"move_type": "Infantry",
 		"weapon": ["Naga", "Rexcalibur", "Elwind", "Wind"],
 		"special": ["Dragon Fang", "Dragon Gaze"],
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
-		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"]
+		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 16, "atk" : 9, "spd" : 7, "def" : 4, "res" : 8},
+			"growth" : {"hp" : 6, "atk" : 8, "spd" : 5, "def" : 2, "res" : 7}
+		}
 	},
 	"Kagero": {
 		"color" : "Colorless",
 		"weapon_type" : "Dagger",
-		"hp": 31,
-		"atk": 40,
-		"spd": 32,
-		"def": 22,
-		"res": 28,
 		"move_type": "Infantry",
 		"weapon": ["Poison Dagger+", "Poison Dagger", "Steel Dagger", "Iron Dagger"],
 		"special": ["Reprisal", "Retribution"],
 		"passive_a": ["Warding Blow 3", "Warding Blow 2", "Warding Blow 1"],
-		"passive_b": ["Daggerbreaker 3", "Daggerbreaker 2", "Daggerbreaker 1"]
+		"passive_b": ["Daggerbreaker 3", "Daggerbreaker 2", "Daggerbreaker 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 16, "atk" : 9, "spd" : 8, "def" : 5, "res" : 6},
+			"star-4" : {"hp" : 15, "atk" : 9, "spd" : 8, "def" : 4, "res" : 5},
+			"growth" : {"hp" : 3, "atk" : 8, "spd" : 7, "def" : 4, "res" : 6}
+		}
 	},
 	"Karel": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 47,
-		"atk": 43,
-		"spd": 35,
-		"def": 25,
-		"res": 20,
 		"move_type": "Infantry",
 		"weapon": ["Wo Dao+", "Wo Dao", "Steel Sword", "Iron Sword"],
 		"special": ["Reprisal", "Retribution"],
 		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
-		"passive_b": ["Desperation 3", "Desperation 2", "Desperation 1"]
+		"passive_b": ["Desperation 3", "Desperation 2", "Desperation 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 9, "def" : 6, "res" : 5},
+			"growth" : {"hp" : 9, "atk" : 6, "spd" : 8, "def" : 5, "res" : 3}
+		}
 	},
 	"Klein" : {
 		"color" : "Colorless",
 		"weapon_type" : "Bow",
-		"hp" : 40,
-		"atk" : 38,
-		"spd" : 28,
-		"def" : 20,
-		"res" : 24,
 		"move_type": "Infantry",
 		"weapon": ["Brave Bow+", "Brave Bow", "Steel Bow", "Iron Bow"],
 		"special": ["Glacies", "Chilling Wind"],
 		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
-		"passive_b": ["Quick Riposte 3", "Quick Riposte 2", "Quick Riposte 1"]
+		"passive_b": ["Quick Riposte 3", "Quick Riposte 2", "Quick Riposte 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 9, "spd" : 7, "def" : 5, "res" : 5},
+			"star-4" : {"hp" : 17, "atk" : 9, "spd" : 7, "def" : 4, "res" : 4},
+			"growth" : {"hp" : 6, "atk" : 6, "spd" : 8, "def" : 3, "res" : 5}
+		}
 	},
 	"Lachesis" : {
 		"color" : "Colorless",

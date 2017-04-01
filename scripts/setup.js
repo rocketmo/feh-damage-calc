@@ -1297,7 +1297,6 @@ function getDefaultCharData(charName) {
 	// show stats
 	if (charInfo[charName].hasOwnProperty("base_stat")) {
 		var stats = getStatTotals(charName, charData.weaponName, charData.passiveA, 5, 40, 0, "neutral", "neutral");
-		console.log(stats);
 		charData.currHP = stats.hp;
 		charData.initHP = stats.hp;
 		charData.startHP = stats.hp;
