@@ -1466,16 +1466,18 @@ function simBattle(battleInfo, displayMsg) {
 	
 	// check if attacker has a weapon, if not no attack
 	if ($("#weapon-1").val() === "None") {
-		$("#interaction-list").stop(true, true).hide().html("<li class='battle-interaction-only'><span class='attacker'><strong>" + $("#char-1").val() + "</strong></span> cannot attack without a weapon.</li>");
-		$("#hp-remain-1").stop(true, true).hide().text($("#curr-hp-1").val().toString() + " → " + $("#curr-hp-1").val().toString());
-		$("#hp-remain-2").stop(true, true).hide().text($("#curr-hp-2").val().toString() + " → " + $("#curr-hp-2").val().toString());
-		if (openLog) {
-			$("#interaction-list").fadeIn("slow");
+		if (displayMsg) {
+			$("#interaction-list").stop(true, true).hide().html("<li class='battle-interaction-only'><span class='attacker'><strong>" + $("#char-1").val() + "</strong></span> cannot attack without a weapon.</li>");
+			$("#hp-remain-1").stop(true, true).hide().text($("#curr-hp-1").val().toString() + " → " + $("#curr-hp-1").val().toString());
+			$("#hp-remain-2").stop(true, true).hide().text($("#curr-hp-2").val().toString() + " → " + $("#curr-hp-2").val().toString());
+			if (openLog) {
+				$("#interaction-list").fadeIn("slow");
+			}
+			$("#hp-remain-1").fadeIn("slow");
+			$("#hp-remain-2").fadeIn("slow");
 		}
-		$("#hp-remain-1").fadeIn("slow");
-		$("#hp-remain-2").fadeIn("slow");
 		
-		return;
+		return battleInfo;
 	}
 	
 	// can defender counter
