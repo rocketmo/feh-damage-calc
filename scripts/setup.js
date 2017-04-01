@@ -529,7 +529,7 @@ function getPortrait(imgID, portraitName) {
 // charName is the name of the character, weaponName is the equipped weapon, passiveA is the equipped passive a skill
 // rarity is the rarity of the character, level is the level of the character, merge is the number of units merged with the given one
 // boon is the boon stat, bane is the bane stat
-function  getStatTotals(charName, weaponName, passiveA, rarity, level, merge, boon, bane) {
+function getStatTotals(charName, weaponName, passiveA, rarity, level, merge, boon, bane) {
 	"use strict";
 	// get info
 	
@@ -2594,6 +2594,118 @@ function keepMatchupTable(charNum) {
 	} 
 }
 
+// updates weapon on rarity change
+// charNum determines the panel to look at, rarity is the rarity of the selected character
+function rarityUpdateWeapon(charNum, rarity) {
+	"use strict";
+	var charName = $("#char-" + charNum).val();
+	var selectedWeapon = "";
+	
+	if (charInfo[charName].hasOwnProperty("rarity_restrict") && rarity < 5) {
+		var rarityRestrict = charInfo[charName].rarity_restrict["star-" + rarity.toString()];
+		
+		// change weapon
+		if (rarityRestrict.hasOwnProperty("weapon") && $("#weapon-" + charNum).val() !== "None" && $("#weapon-" + charNum + " option:selected").index() <= charInfo[charName].weapon.length) {
+			selectedWeapon = charInfo[charName].weapon[rarityRestrict.weapon];
+			$("#weapon-" + charNum).val(selectedWeapon);
+			showWeapon(selectedWeapon, charNum, true);
+		}
+	} else if (rarity === 5) {
+		if ($("#weapon-" + charNum).val() !== "None" && $("#weapon-" + charNum + " option:selected").index() <= charInfo[charName].weapon.length) {
+			selectedWeapon = charInfo[charName].weapon[0];
+			$("#weapon-" + charNum).val(selectedWeapon);
+			showWeapon(selectedWeapon, charNum, true);
+		}
+	}
+}
+
+// updates passive skill on rarity change
+// charNum determines the panel to look at, rarity is the rarity of the selected character, type is the passive type
+function rarityUpdatePassive(charNum, rarity, type) {
+	"use strict";
+	var charName = $("#char-" + charNum).val();
+	var selectedPassive = "";
+	
+	if (charInfo[charName].hasOwnProperty("rarity_restrict") && rarity < 5) {
+		var rarityRestrict = charInfo[charName].rarity_restrict["star-" + rarity.toString()];
+		
+		if (rarityRestrict.hasOwnProperty("passive_" + type) && charInfo[charName].hasOwnProperty("passive_" + type) && $("#passive-" + type + "-" + charNum + " option:selected").index() <= charInfo[charName]["passive_" + type].length) {
+			selectedPassive = rarityRestrict["passive_" + type] < 0 ? "None" : charInfo[charName]["passive_" + type][rarityRestrict["passive_" + type]];
+			$("#passive-" + type + "-" + charNum).val(selectedPassive);
+			getSkillData(charNum, type, true);
+		}
+		
+	} else if (rarity === 5) {
+		if (charInfo[charName].hasOwnProperty("passive_" + type) && $("#passive-" + type + "-" + charNum + " option:selected").index() <= charInfo[charName]["passive_" + type].length) {
+			selectedPassive = charInfo[charName]["passive_" + type][0];
+			$("#passive-" + type + "-" + charNum).val(selectedPassive);
+			getSkillData(charNum, type, true);
+		}
+	}
+}
+
+// updates special on rarity change
+// charNum determines the panel to look at, rarity is the rarity of the selected character
+function rarityUpdateSpecial(charNum, rarity) {
+	"use strict";
+	var charName = $("#char-" + charNum).val();
+	var selectedSpecial = "";
+	
+	if (charInfo[charName].hasOwnProperty("rarity_restrict") && rarity < 5) {
+		var rarityRestrict = charInfo[charName].rarity_restrict["star-" + rarity.toString()];
+		
+		if (rarityRestrict.hasOwnProperty("special") && $("#special-" + charNum + " option:selected").index() <= charInfo[charName].special.length) {
+			selectedSpecial = rarityRestrict.special < 0 ? "None" : charInfo[charName].special[rarityRestrict.special];
+			$("#special-" + charNum).val(selectedSpecial);
+			showSpecCooldown(selectedSpecial, charNum, false);
+			getSpecialData(charNum);
+		}
+	} else if (rarity === 5) {
+		if (charInfo[charName].hasOwnProperty("special") && $("#special-" + charNum + " option:selected").index() <= charInfo[charName].special.length) {
+			selectedSpecial = charInfo[charName].special[0];
+			$("#special-" + charNum).val(selectedSpecial);
+			showSpecCooldown(selectedSpecial, charNum, false);
+			getSpecialData(charNum);
+		}
+	}
+}
+
+// updates assist on rarity change
+// charNum determines the panel to look at, rarity is the rarity of the selected character
+function rarityUpdateAssist(charNum, rarity) {
+	"use strict";
+	var charName = $("#char-" + charNum).val();
+	var selectedAssist = "";
+	
+	if (charInfo[charName].hasOwnProperty("rarity_restrict") && rarity < 5) {
+		var rarityRestrict = charInfo[charName].rarity_restrict["star-" + rarity.toString()];
+		
+		if (rarityRestrict.hasOwnProperty("assist") && $("#assist-" + charNum + " option:selected").index() <= charInfo[charName].assist.length) {
+			selectedAssist = rarityRestrict.assist < 0 ? "None" : charInfo[charName].assist[rarityRestrict.assist];
+			$("#assist-" + charNum).val(selectedAssist);
+			getAssistData(charNum);
+		}
+	} else if (rarity === 5) {
+		if (charInfo[charName].hasOwnProperty("assist") && $("#assist-" + charNum + " option:selected").index() <= charInfo[charName].assist.length) {
+			selectedAssist = charInfo[charName].assist[0];
+			$("#assist-" + charNum).val(selectedAssist);
+			getAssistData(charNum);
+		}
+	}
+}
+
+// updates weapons and skills on rarity change
+// charNum determines the panel to look at, rarity is the rarity of the selected character
+function rarityUpdate(charNum, rarity) {
+	"use strict";
+	rarityUpdateSpecial(charNum, rarity);
+	rarityUpdateAssist(charNum, rarity);
+	rarityUpdatePassive(charNum, rarity, "a");
+	rarityUpdatePassive(charNum, rarity, "b");
+	rarityUpdatePassive(charNum, rarity, "c");
+	rarityUpdateWeapon(charNum, rarity);
+}
+
 // setup inital page
 $(document).ready( function() {
 	"use strict";	
@@ -2850,6 +2962,11 @@ $(document).ready( function() {
 		}
 		if ($(this).hasClass("bane-select") && this.value === $("#boon-" + charNum).val()) {
 			$("#boon-" + charNum).val("neutral");
+		}
+		
+		// check if skills need to change due to rarity change
+		if ($(this).hasClass("rarity-select")) {
+			rarityUpdate(charNum, parseInt(this.value));
 		}
 		
 		if (charInfo[$("#char-" + charNum).val()].hasOwnProperty("base_stat")) {

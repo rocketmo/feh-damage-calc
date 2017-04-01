@@ -13,6 +13,9 @@ var charInfo =
 			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 8, "res" : 6},
 			"star-4" : {"hp" : 16, "atk" : 6, "spd" : 8, "def" : 8, "res" : 5},
 			"growth" : {"hp" : 6, "atk" : 8, "spd" : 7, "def" : 4, "res" : 5}
+		},
+		"rarity_restrict" : {
+			"star-4" : {"weapon" : 1, "passive_a" : 1}
 		}
 	},
 	"Alfonse": {
@@ -29,6 +32,11 @@ var charInfo =
 			"star-3" : {"hp" : 18, "atk" : 8, "spd" : 5, "def" : 7, "res" : 4},
 			"star-2" : {"hp" : 17, "atk" : 8, "spd" : 4, "def" : 7, "res" : 3},
 			"growth" : {"hp" : 7, "atk" : 8, "spd" : 5, "def" : 7, "res" : 4}
+		},
+		"rarity_restrict" : {
+			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 0, "passive_c" : 1},
+			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 1, "passive_c" : 2},
+			"star-2" : {"weapon" : 2, "special" : 1, "passive_a" : 1, "passive_c" : -1}
 		}
 	},
 	"Anna": {
@@ -233,6 +241,12 @@ var charInfo =
 			"star-2" : {"hp" : 15, "atk" : 7, "spd" : 4, "def" : 3, "res" : 6},
 			"star-1" : {"hp" : 15, "atk" : 6, "spd" : 4, "def" : 3, "res" : 5},
 			"growth" : {"hp" : 5, "atk" : 7, "spd" : 5, "def" : 4, "res" : 6}
+		},
+		"rarity_restrict" : {
+			"star-4" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 0},
+			"star-3" : {"weapon" : 1, "assist" : 0, "passive_a" : 2, "passive_b" : 1},
+			"star-2" : {"weapon" : 2, "assist" : -1, "passive_a" : -1, "passive_b" : 1},
+			"star-1" : {"weapon" : 3, "assist" : -1, "passive_a" : -1, "passive_b" : 2}
 		}
 	},
 	"Cherche": {
@@ -1476,6 +1490,10 @@ var charInfo =
 			"star-4" : {"hp" : 16, "atk" : 8, "spd" : 9, "def" : 5, "res" : 6},
 			"star-3" : {"hp" : 16, "atk" : 7, "spd" : 8, "def" : 5, "res" : 6},
 			"growth" : {"hp" : 6, "atk" : 6, "spd" : 8, "def" : 5, "res" : 6}
+		},
+		"rarity_restrict" : {
+			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 0, "passive_c" : 1},
+			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 1, "passive_c" : 2},
 		}
 	},
 	"Sharena": {
