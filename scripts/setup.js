@@ -145,6 +145,15 @@ function weaponToColor(weaponType) {
 	return "Colorless";
 }
 
+// given a weapon type, return its range
+function weaponTypeRange(weaponType) {
+	var range = 1;
+	if (weaponType === "Red Tome" || weaponType === "Green Tome" || weaponType === "Blue Tome" || weaponType === "Bow" || weaponType === "Dagger" || weaponType === "Staff") {
+		range = 2;
+	}
+	
+	return range;
+}
 
 // determines if the given skill is inheritable by the character in the given panel
 function isInheritable(skill, charNum) {
@@ -153,10 +162,7 @@ function isInheritable(skill, charNum) {
 	var color = $("#color-" + charNum).val();
 	var weaponType = $("#weapon-type-" + charNum).val();
 	
-	var range = 1;
-	if (weaponType === "Red Tome" || weaponType === "Green Tome" || weaponType === "Blue Tome" || weaponType === "Bow" || weaponType === "Dagger" || weaponType === "Staff") {
-		range = 2;
-	}
+	var range = weaponTypeRange(weaponType);
 	
 	var dragon = false;
 	if (weaponType === "Red Breath" || weaponType === "Green Breath" || weaponType === "Blue Breath") {
@@ -2389,6 +2395,8 @@ function filterMatchupTable(fadeIn) {
 	var move = $("#matchup-filter-move").val();
 	var color = $("#matchup-filter-color").val();
 	var weapon = $("#matchup-filter-weapon").val();
+	var range = $("#matchup-filter-range").val();
+	var results = $("#matchup-filter-result").val();
 	
 	var winCount = 0;
 	var lossCount = 0;
@@ -2400,9 +2408,11 @@ function filterMatchupTable(fadeIn) {
 		var rowMove = charInfo[rowName].move_type;
 		var rowColor = charInfo[rowName].color;
 		var rowWeapon = charInfo[rowName].weapon_type;
+		var rowRange = weaponTypeRange(rowWeapon);
+		var rowResult = this.childNodes[6].firstChild.firstChild.nodeValue;
 		rowName = rowName.toLowerCase();
 		
-		if ((name === "" || rowName.indexOf(name) > -1) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon)) {
+		if ((name === "" || rowName.indexOf(name) > -1) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon) && (range === "Any" || parseInt(range) === rowRange) && (results === "Any" || results === rowResult)) {
 			$(this).show();
 			
 			// update counters
@@ -2803,8 +2813,16 @@ $(document).ready( function() {
 		// make sure weapons and colors are correct
 		if (this.id === "matchup-filter-color" && this.value !== "Any" && $("#matchup-filter-weapon").val() !== "Any" && this.value !== weaponToColor($("#matchup-filter-weapon").val())) {
 			$("#matchup-filter-weapon").val("Any");
-		} else if (this.id === "matchup-filter-weapon" && this.value !== "Any" && $("#matchup-filter-color").val() !== "Any" && weaponToColor(this.value) !== $("#matchup-filter-color").val()) {
-			$("#matchup-filter-color").val(weaponToColor(this.value));
+		} else if (this.id === "matchup-filter-weapon" && this.value !== "Any") {
+			if ($("#matchup-filter-color").val() !== "Any" && weaponToColor(this.value) !== $("#matchup-filter-color").val()) {
+				$("#matchup-filter-color").val(weaponToColor(this.value));
+			}
+			
+			if ($("#matchup-filter-range").val() !== "Any" && weaponTypeRange(this.value) !== parseInt($("#matchup-filter-range").val())) {
+				$("#matchup-filter-range").val(weaponTypeRange(this.value));
+			}
+		} else if (this.id === "matchup-filter-range" && this.value !== "Any" && $("#matchup-filter-weapon").val() !== "Any" && parseInt(this.value) !== weaponTypeRange($("#matchup-filter-weapon").val())) {
+			$("#matchup-filter-weapon").val("Any");
 		}
 		
 		filterMatchupTable(true);
@@ -2816,6 +2834,9 @@ $(document).ready( function() {
 		$("#matchup-filter-move").val("Any");
 		$("#matchup-filter-color").val("Any");
 		$("#matchup-filter-weapon").val("Any");
+		$("#matchup-filter-range").val("Any");
+		$("#matchup-filter-result").val("Any");
+		
 		filterMatchupTable(true);
 	});
 	

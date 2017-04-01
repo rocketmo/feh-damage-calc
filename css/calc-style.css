@@ -56,7 +56,7 @@ label {
 }
 
 #matchup-filters select, #matchup-filters input[type=text] {
-	width: 8em;
+	width: 8.7em;
 	box-sizing: content-box; 
 }
 
