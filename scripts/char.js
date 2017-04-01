@@ -324,214 +324,224 @@ var charInfo =
 	"Corrin (M)": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 42,
-		"atk": 48,
-		"spd": 32,
-		"def": 31,
-		"res": 24,
 		"move_type": "Infantry",
 		"weapon": ["Yato", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"special": ["Dragon Fang", "Dragon Gaze"],
 		"passive_a": ["Defense +3", "Defense +2", "Defense +1"],
-		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"]
+		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 20, "atk" : 8, "spd" : 8, "def" : 6, "res" : 5},
+			"star-4" : {"hp" : 19, "atk" : 8, "spd" : 8, "def" : 5, "res" : 4},
+			"growth" : {"hp" : 6, "atk" : 7, "spd" : 7, "def" : 6, "res" : 5}
+		}
 	},
 	"Custom": {	
 	},
 	"Donnel": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 48,
-		"atk": 43,
-		"spd": 24,
-		"def": 32,
-		"res": 23,
 		"move_type": "Infantry",
 		"weapon": ["Brave Lance+", "Brave Lance", "Steel Lance", "Iron Lance"],
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
 		"passive_b": ["Drag Back"],
-		"assist" : ["Reciprocal Aid"]
+		"assist" : ["Reciprocal Aid"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 5, "def" : 6, "res" : 4},
+			"star-4" : {"hp" : 16, "atk" : 7, "spd" : 4, "def" : 6, "res" : 3},
+			"star-3" : {"hp" : 16, "atk" : 6, "spd" : 4, "def" : 5, "res" : 3},
+			"star-2" : {"hp" : 15, "atk" : 6, "spd" : 3, "def" : 5, "res" : 2},
+			"star-1" : {"hp" : 15, "atk" : 5, "spd" : 3, "def" : 4, "res" : 2},
+			"growth" : {"hp" : 8, "atk" : 9, "spd" : 7, "def" : 8, "res" : 5}
+		}
 	},
 	"Draug": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 50,
-		"atk": 38,
-		"spd": 27,
-		"def": 39,
-		"res": 18,
 		"move_type": "Armored",
 		"weapon": ["Brave Sword+", "Brave Sword", "Steel Sword", "Iron Sword"],
 		"special": ["Pavise", "Buckler"],
 		"passive_b": ["Lunge"],
-		"passive_c": ["Ward Armor", "Spur Def 2", "Spur Def 1"]
+		"passive_c": ["Ward Armor", "Spur Def 2", "Spur Def 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 24, "atk" : 8, "spd" : 6, "def" : 13, "res" : 3},
+			"star-4" : {"hp" : 23, "atk" : 8, "spd" : 5, "def" : 13, "res" : 2},
+			"star-3" : {"hp" : 23, "atk" : 7, "spd" : 5, "def" : 12, "res" : 2},
+			"star-2" : {"hp" : 22, "atk" : 7, "spd" : 4, "def" : 12, "res" : 1},
+			"growth" : {"hp" : 8, "atk" : 6, "spd" : 8, "def" : 8, "res" : 3}
+		}
 	},
 	"Effie": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 50,
-		"atk": 55,
-		"spd": 22,
-		"def": 33,
-		"res": 23,
 		"move_type": "Armored",
 		"weapon": ["Silver Lance+", "Silver Lance", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
 		"passive_b": ["Wary Fighter 3", "Wary Fighter 2", "Wary Fighter 1"],
-		"assist" : ["Smite"]
+		"assist" : ["Smite"],
+		"base_stat" : {
+			"star-5" : {"hp" : 22, "atk" : 12, "spd" : 5, "def" : 11, "res" : 4},
+			"star-4" : {"hp" : 21, "atk" : 12, "spd" : 4, "def" : 11, "res" : 3},
+			"growth" : {"hp" : 9, "atk" : 9, "spd" : 4, "def" : 6, "res" : 5}
+		}
 	},
 	"Eirika": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 42,
-		"atk": 42,
-		"spd": 35,
-		"def": 26,
-		"res": 28,
 		"move_type": "Infantry",
 		"weapon": ["Sieglinde", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"passive_b": ["Drag Back"],
 		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"],
-		"assist" : ["Pivot"]
+		"assist" : ["Pivot"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 9, "def" : 7, "res" : 6},
+			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 6, "res" : 5},
+			"growth" : {"hp" : 7, "atk" : 5, "spd" : 8, "def" : 5, "res" : 6}
+		}
 	},
 	"Eldigan" : {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp" : 45,
-		"atk" : 51,
-		"spd" : 27,
-		"def" : 37,
-		"res" : 22,
 		"move_type": "Cavalry",
 		"weapon": ["Mystletainn", "Killing Edge", "Steel Sword", "Iron Sword"],
 		"special": ["Growing Light", "Rising Light"],
 		"passive_a": ["Fury 3", "Fury 2", "Fury 1"],
-		"passive_b": ["Lunge"]
+		"passive_b": ["Lunge"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 5, "def" : 8, "res" : 6},
+			"growth" : {"hp" : 8, "atk" : 7, "spd" : 5, "def" : 8, "res" : 2}
+		}
 	},
 	"Elise": {
 		"color" : "Colorless",
 		"weapon_type" : "Staff",
-		"hp": 30,
-		"atk": 38,
-		"spd": 32,
-		"def": 19,
-		"res": 32,
 		"move_type": "Cavalry",
 		"weapon": ["Gravity", "Assault"],
 		"special": ["Kindled-Fire Balm", "Imbue"],
 		"passive_b": ["Live to Serve 3", "Live to Serve 2", "Live to Serve 1"],
-		"assist" : ["Recover", "Mend", "Heal"]
+		"assist" : ["Recover", "Mend", "Heal"],
+		"base_stat" : {
+			"star-5" : {"hp" : 15, "atk" : 8, "spd" : 8, "def" : 4, "res" : 8},
+			"growth" : {"hp" : 3, "atk" : 7, "spd" : 7, "def" : 3, "res" : 7}
+		}
 	},
 	"Eliwood": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 39,
-		"atk": 47,
-		"spd": 30,
-		"def": 23,
-		"res": 32,
 		"move_type": "Cavalry",
 		"weapon": ["Durandal", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"special": ["Sacred Cowl", "Holy Vestments"],
 		"passive_b": ["Axebreaker 3", "Axebreaker 2", "Axebreaker 1"],
-		"passive_c": ["Ward Cavalry", "Spur Res 2", "Spur Res 1"]
+		"passive_c": ["Ward Cavalry", "Spur Res 2", "Spur Res 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 6, "res" : 8},
+			"star-4" : {"hp" : 16, "atk" : 6, "spd" : 8, "def" : 5, "res" : 8},
+			"star-3" : {"hp" : 16, "atk" : 6, "spd" : 7, "def" : 5, "res" : 7},
+			"growth" : {"hp" : 6, "atk" : 7, "spd" : 6, "def" : 4, "res" : 7}
+		}
 	},
 	"Ephraim": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 45,
-		"atk": 51,
-		"spd": 25,
-		"def": 32,
-		"res": 20,
 		"move_type": "Infantry",
 		"weapon": ["Siegmund", "Heavy Spear", "Steel Lance", "Iron Lance"],
 		"special": ["Moonbow", "New Moon"],
 		"passive_b": ["Seal Def 3", "Seal Def 2", "Seal Def 1"],
-		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"]
+		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 9, "spd" : 6, "def" : 8, "res" : 5},
+			"growth" : {"hp" : 8, "atk" : 8, "spd" : 5, "def" : 7, "res" : 3}
+		}
 	},
 	"Est": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 36,
-		"atk": 47,
-		"spd": 30,
-		"def": 24,
-		"res": 32,
 		"move_type": "Flying",
 		"weapon": ["Heavy Spear+", "Heavy Spear", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Defiant Res 3", "Defiant Res 2", "Defiant Res 1"],
 		"passive_b": ["Seal Spd 3", "Seal Spd 2", "Seal Spd 1"],
-		"assist" : ["Shove"]
+		"assist" : ["Shove"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 9, "spd" : 8, "def" : 5, "res" : 8},
+			"star-4" : {"hp" : 16, "atk" : 9, "spd" : 8, "def" : 4, "res" : 7},
+			"star-3" : {"hp" : 16, "atk" : 8, "spd" : 7, "def" : 4, "res" : 7},
+			"growth" : {"hp" : 5, "atk" : 8, "spd" : 6, "def" : 5, "res" : 7}
+		}
 	},
 	"Fae": {
 		"color" : "Green",
 		"weapon_type" : "Green Breath",
-		"hp": 46,
-		"atk": 46,
-		"spd": 28,
-		"def": 25,
-		"res": 30,
 		"move_type": "Infantry",
 		"weapon": ["Light Breath+ (Green)", "Light Breath (Green)", "Fire Breath+ (Green)", "Fire Breath (Green)"],
 		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
-		"assist" : ["Draw Back"]
+		"assist" : ["Draw Back"],
+		"base_stat" : {
+			"star-5" : {"hp" : 16, "atk" : 5, "spd" : 4, "def" : 6, "res" : 8},
+			"star-4" : {"hp" : 15, "atk" : 4, "spd" : 3, "def" : 6, "res" : 8},
+			"growth" : {"hp" : 10, "atk" : 9, "spd" : 7, "def" : 5, "res" : 6}
+		}
 	},
 	"Felicia": {
 		"color" : "Colorless",
 		"weapon_type" : "Dagger",
-		"hp": 34,
-		"atk": 33,
-		"spd": 37,
-		"def": 18,
-		"res": 38,
 		"move_type": "Infantry",
 		"weapon": ["Silver Dagger+", "Silver Dagger", "Steel Dagger", "Iron Dagger"],
 		"special": ["Glacies", "Chilling Wind"],
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
-		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"]
+		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 15, "atk" : 6, "spd" : 11, "def" : 3, "res" : 9},
+			"star-4" : {"hp" : 14, "atk" : 5, "spd" : 11, "def" : 2, "res" : 9},
+			"star-3" : {"hp" : 14, "atk" : 5, "spd" : 10, "def" : 2, "res" : 8},
+			"star-2" : {"hp" : 13, "atk" : 4, "spd" : 10, "def" : 1, "res" : 8},
+			"star-1" : {"hp" : 13, "atk" : 4, "spd" : 9, "def" : 1, "res" : 7},
+			"growth" : {"hp" : 5, "atk" : 4, "spd" : 8, "def" : 3, "res" : 8}
+		}
 	},
 	"Fir": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 41,
-		"atk": 36,
-		"spd": 39,
-		"def": 24,
-		"res": 31,
 		"move_type": "Infantry",
 		"weapon": ["Killing Edge+", "Killing Edge", "Steel Sword", "Iron Sword"],
 		"special": ["Glacies", "Chilling Wind"],
 		"passive_a": ["Speed +3", "Speed +2", "Speed +1"],
-		"passive_b": ["Pass 3", "Pass 2", "Pass 1"]
+		"passive_b": ["Pass 3", "Pass 2", "Pass 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 6, "spd" : 10, "def" : 5, "res" : 7},
+			"star-4" : {"hp" : 18, "atk" : 5, "spd" : 10, "def" : 4, "res" : 7},
+			"star-3" : {"hp" : 18, "atk" : 5, "spd" : 9, "def" : 4, "res" : 6},
+			"growth" : {"hp" : 6, "atk" : 5, "spd" : 8, "def" : 5, "res" : 7}
+		}
 	},
 	"Florina": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 42,
-		"atk": 41,
-		"spd": 27,
-		"def": 25,
-		"res": 34,
 		"move_type": "Flying",
 		"weapon": ["Heavy Spear+", "Heavy Spear", "Steel Lance", "Iron Lance"],
 		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
 		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"],
-		"assist" : ["Ardent Sacrifice"]
+		"assist" : ["Ardent Sacrifice"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 6, "res" : 8},
+			"star-4" : {"hp" : 17, "atk" : 6, "spd" : 8, "def" : 5, "res" : 8},
+			"star-3" : {"hp" : 17, "atk" : 6, "spd" : 7, "def" : 5, "res" : 7},
+			"growth" : {"hp" : 7, "atk" : 6, "spd" : 5, "def" : 5, "res" : 8}
+		}
 	},
 	"Frederick": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
-		"hp": 43,
-		"atk": 47,
-		"spd": 25,
-		"def": 36,
-		"res": 14,
 		"move_type": "Cavalry",
 		"weapon": ["Hammer+", "Hammer", "Steel Axe", "Iron Axe"],
 		"special": ["Luna", "New Moon"],
 		"passive_b": ["Wings of Mercy 3", "Wings of Mercy 2", "Wings of Mercy 1"],
-		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"]
+		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 9, "spd" : 6, "def" : 8, "res" : 4},
+			"star-4" : {"hp" : 18, "atk" : 9, "spd" : 5, "def" : 8, "res" : 3},
+			"star-3" : {"hp" : 18, "atk" : 8, "spd" : 5, "def" : 7, "res" : 3},
+			"growth" : {"hp" : 7, "atk" : 8, "spd" : 5, "def" : 9, "res" : 1}
+		}
 	},
 	"Gaius": {
 		"color" : "Colorless",
