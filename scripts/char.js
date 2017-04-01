@@ -1577,100 +1577,106 @@ var charInfo =
 	"Takumi": {
 		"color" : "Colorless",
 		"weapon_type" : "Bow",
-		"hp": 40,
-		"atk": 46,
-		"spd": 33,
-		"def": 25,
-		"res": 18,
 		"move_type": "Infantry",
 		"weapon": ["Fujin Yumi", "Silver Bow", "Steel Bow", "Iron Bow"],
 		"special": ["Vengeance", "Retribution"],
 		"passive_a": ["Close Counter"],
-		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"]
+		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 8, "spd" : 7, "def" : 6, "res" : 5},
+			"growth" : {"hp" : 6, "atk" : 7, "spd" : 8, "def" : 5, "res" : 2}
+		}
 	},
 	"Tharja": {
 		"color" : "Red",
 		"weapon_type" : "Red Tome",
-		"hp": 39,
-		"atk": 45,
-		"spd": 34,
-		"def": 23,
-		"res": 20,
 		"move_type": "Infantry",
 		"weapon": ["Rauðrblade+", "Rauðrblade", "Ruin", "Flux"],
 		"special": ["Vengeance", "Retribution"],
 		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
-		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"]
+		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 8, "spd" : 8, "def" : 6, "res" : 5},
+			"star-4" : {"hp" : 16, "atk" : 8, "spd" : 8, "def" : 5, "res" : 4},
+			"growth" : {"hp" : 6, "atk" : 7, "spd" : 8, "def" : 4, "res" : 3}
+		}
 	},
 	"Tiki (Adult)": {
 		"color" : "Red",
 		"weapon_type" : "Red Breath",
-		"hp": 40,
-		"atk": 46,
-		"spd": 23,
-		"def": 35,
-		"res": 24,
 		"move_type": "Infantry",
 		"weapon": ["Lightning Breath+ (Red)", "Lightning Breath (Red)", "Fire Breath+ (Red)", "Fire Breath (Red)"],
 		"special": ["Bonfire", "Glowing Ember"],
 		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
-		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"]
+		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 6, "def" : 9, "res" : 7},
+			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 5, "def" : 9, "res" : 6},
+			"star-3" : {"hp" : 17, "atk" : 6, "spd" : 5, "def" : 8, "res" : 6},
+			"growth" : {"hp" : 6, "atk" : 9, "spd" : 4, "def" : 8, "res" : 4}
+		}
 	},
 	"Tiki (Young)": {
 		"color" : "Red",
 		"weapon_type" : "Red Breath",
-		"hp": 41,
-		"atk": 46,
-		"spd": 30,
-		"def": 32,
-		"res": 29,
 		"move_type": "Infantry",
 		"weapon": ["Flametongue+ (Red)", "Flametongue (Red)", "Fire Breath+ (Red)", "Fire Breath (Red)"],
 		"special": ["Growing Flame", "Rising Flame"],
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
-		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"]
+		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 15, "atk" : 5, "spd" : 4, "def" : 8, "res" : 7},
+			"growth" : {"hp" : 8, "atk" : 8, "spd" : 8, "def" : 7, "res" : 6}
+		}
 	},
 	"Ursula": {
 		"color" : "Blue",
 		"weapon_type" : "Blue Tome",
-		"hp": 35,
-		"atk": 39,
-		"spd": 32,
-		"def": 19,
-		"res": 30,
 		"move_type": "Cavalry",
 		"weapon": ["Blárwolf+", "Blárwolf", "Elthunder", "Thunder"],
 		"special": ["Growing Thunder", "Rising Thunder"],
 		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
-		"passive_c": ["Threaten Res 3", "Threaten Res 2", "Threaten Res 1"]
+		"passive_c": ["Threaten Res 3", "Threaten Res 2", "Threaten Res 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 16, "atk" : 7, "spd" : 8, "def" : 4, "res" : 8},
+			"star-4" : {"hp" : 15, "atk" : 6, "spd" : 8, "def" : 3, "res" : 8},
+			"star-3" : {"hp" : 15, "atk" : 6, "spd" : 7, "def" : 3, "res" : 7},
+			"growth" : {"hp" : 5, "atk" : 6, "spd" : 7, "def" : 3, "res" : 6}
+		}
 	},
 	"Virion": {
 		"color" : "Colorless",
 		"weapon_type" : "Bow",
-		"hp": 46,
-		"atk": 44,
-		"spd": 31,
-		"def": 26,
-		"res": 13,
 		"move_type": "Infantry",
 		"weapon": ["Silver Bow+", "Silver Bow", "Steel Bow", "Iron Bow"],
 		"special": ["Astra", "Night Sky"],
 		"passive_a": ["Defiant Res 3", "Defiant Res 2", "Defiant Res 1"],
-		"passive_b": ["Seal Spd 3", "Seal Spd 2", "Seal Spd 1"]
+		"passive_b": ["Seal Spd 3", "Seal Spd 2", "Seal Spd 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 20, "atk" : 7, "spd" : 7, "def" : 7, "res" : 3},
+			"star-4" : {"hp" : 19, "atk" : 7, "spd" : 7, "def" : 6, "res" : 2},
+			"star-3" : {"hp" : 19, "atk" : 6, "spd" : 6, "def" : 6, "res" : 2},
+			"star-2" : {"hp" : 18, "atk" : 6, "spd" : 6, "def" : 5, "res" : 1},
+			"star-1" : {"hp" : 18, "atk" : 5, "spd" : 5, "def" : 5, "res" : 1},
+			"growth" : {"hp" : 8, "atk" : 7, "spd" : 7, "def" : 5, "res" : 1}
+		}
 	},
 	"Wrys": {
 		"color" : "Colorless",
 		"weapon_type" : "Staff",
-		"hp": 42,
-		"atk": 29,
-		"spd": 23,
-		"def": 22,
-		"res": 36,
 		"move_type": "Infantry",
 		"weapon": ["Slow", "Assault"],
 		"special": ["Heavenly Light", "Imbue"],
 		"passive_b": ["Live to Serve 3", "Live to Serve 2", "Live to Serve 1"],
-		"assist" : ["Rehabilitate", "Reconcile", "Heal"]
+		"assist" : ["Rehabilitate", "Reconcile", "Heal"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 5, "spd" : 6, "def" : 5, "res" : 10},
+			"star-4" : {"hp" : 17, "atk" : 4, "spd" : 6, "def" : 4, "res" : 10},
+			"star-3" : {"hp" : 17, "atk" : 4, "spd" : 5, "def" : 4, "res" : 9},
+			"star-2" : {"hp" : 16, "atk" : 3, "spd" : 5, "def" : 3, "res" : 9},
+			"star-1" : {"hp" : 16, "atk" : 3, "spd" : 4, "def" : 3, "res" : 8},
+			"growth" : {"hp" : 7, "atk" : 5, "spd" : 4, "def" : 4, "res" : 8}
+		}
 	},
 	"Xander": {
 		"color" : "Red",
@@ -1689,16 +1695,15 @@ var charInfo =
 	"Xander (Spring)": {
 		"color" : "Blue",
 		"weapon_type" : "Lance",
-		"hp": 40,
-		"atk": 38,
-		"spd": 28,
-		"def": 35,
-		"res": 26,
 		"move_type": "Cavalry",
 		"weapon": ["Carrot Lance+", "Carrot Lance", "Steel Lance", "Iron Lance"],
 		"passive_b": ["Live for Honor"],
 		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
-		"assist" : ["Swap"]
+		"assist" : ["Swap"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 6, "spd" : 6, "def" : 9, "res" : 7},
+			"growth" : {"hp" : 6, "atk" : 5, "spd" : 6, "def" : 8, "res" : 5}
+		}
 	},
 	"Zephiel": {
 		"color" : "Red",
