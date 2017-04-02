@@ -2684,12 +2684,14 @@ function rarityUpdateAssist(charNum, rarity) {
 			selectedAssist = rarityRestrict.assist < 0 ? "None" : charInfo[charName].assist[rarityRestrict.assist];
 			$("#assist-" + charNum).val(selectedAssist);
 			getAssistData(charNum);
+			updateSpecCooldown(charNum);
 		}
 	} else if (rarity === 5) {
 		if (charInfo[charName].hasOwnProperty("assist") && $("#assist-" + charNum + " option:selected").index() <= charInfo[charName].assist.length) {
 			selectedAssist = charInfo[charName].assist[0];
 			$("#assist-" + charNum).val(selectedAssist);
 			getAssistData(charNum);
+			updateSpecCooldown(charNum);
 		}
 	}
 }
@@ -2699,10 +2701,10 @@ function rarityUpdateAssist(charNum, rarity) {
 function rarityUpdate(charNum, rarity) {
 	"use strict";
 	rarityUpdateSpecial(charNum, rarity);
-	rarityUpdateAssist(charNum, rarity);
 	rarityUpdatePassive(charNum, rarity, "a");
 	rarityUpdatePassive(charNum, rarity, "b");
 	rarityUpdatePassive(charNum, rarity, "c");
+	rarityUpdateAssist(charNum, rarity);
 	rarityUpdateWeapon(charNum, rarity);
 }
 
