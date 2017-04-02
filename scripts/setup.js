@@ -340,6 +340,19 @@ function enableCharBuild(charNum) {
 	}
 }
 
+// enables extra character info if the character in the given panel is Custom
+// charNum determines the panel to look at
+function enableExtraCharInfo(charNum) {
+	"use strict";
+	if ($("#char-" + charNum).val() === "Custom") {
+		$("#extra-char-info-" + charNum).css("color", "white");
+		$("#extra-char-info-" + charNum + " select").removeAttr("disabled");
+	} else {
+		$("#extra-char-info-" + charNum).css("color", "#5b5b5b");
+		$("#extra-char-info-" + charNum + " select").attr("disabled", "disabled");
+	}
+}
+
 // gets skill data and stores it
 // charNum determines which panel to display it in, skillType is the letter of the skill, update is true if stats need to be adjusted
 function getSkillData(charNum, skillType, update) {
@@ -2374,7 +2387,7 @@ function swap() {
 // charNum determines the panel, enable is true if we are enabling a panel
 function enableCharPanel(charNum, enable) {
 	"use strict";
-	var textID = (charNum === "1") ? "#attack-panel .info-section, #attack-panel .info-section-bottom, #spec-cooldown-line-1, #char-build-info-1 label" : "#defend-panel .info-section, #defend-panel .info-section-bottom, #spec-cooldown-line-2, #char-build-info-2 label";
+	var textID = (charNum === "1") ? "#attack-panel .info-section, #attack-panel .info-section-bottom, #spec-cooldown-line-1, #char-build-info-1 label, #extra-char-info-1" : "#defend-panel .info-section, #defend-panel .info-section-bottom, #spec-cooldown-line-2, #char-build-info-2 label, #extra-char-info-2";
 	var inputID = (charNum === "1") ? "#attack-panel select, #attack-panel input" : "#defend-panel select, #defend-panel input";
 	
 	if (enable) {
@@ -2382,6 +2395,7 @@ function enableCharPanel(charNum, enable) {
 		$(inputID).removeAttr("disabled");
 		enableSpecCooldown(charNum);
 		enableCharBuild(charNum);
+		enableExtraCharInfo(charNum);
 	} else {
 		$(textID).css("color", "#5b5b5b");
 		$(inputID).attr("disabled", "disabled");
