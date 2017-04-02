@@ -886,8 +886,10 @@ function displayChar(charName, charNum) {
 	// show stats
 	if (singleChar.hasOwnProperty("base_stat")) {
 		displayStatTotals(charNum);
-		$("#char-build-info-" + charNum + " label").css("color", "white");
-		$("#char-build-info-" + charNum + " select").removeAttr("disabled");
+		if ($("#one-vs-one").is(":checked") || ($("#one-vs-all").is(":checked") && charNum === "1") || ($("#all-vs-one").is(":checked") && charNum === "2")) {
+			$("#char-build-info-" + charNum + " label").css("color", "white");
+			$("#char-build-info-" + charNum + " select").removeAttr("disabled");
+		}
 	} else {
 		$("#hp-" + charNum + ", #curr-hp-" + charNum).val(singleChar.hp);
 		$(".hp-" + charNum + "-read").text(singleChar.hp);
