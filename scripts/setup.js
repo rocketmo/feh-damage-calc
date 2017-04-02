@@ -16,6 +16,13 @@ var defenderTeam = [{}, {}, {}, {}, {}];
 var previousTable = true; // true if one vs all, false if all vs one
 var keepTable = false;	// true if we keep the matchup table currently displayed
 
+// stat growth amounts from lvl 1 to lvl 40
+var statGrowths = [[4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26],
+				  [5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27],
+				  [7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29],
+				  [8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30],
+				  [8, 10, 13, 15, 17, 19, 22, 24, 26, 28, 30, 33]];
+
 // limits number inputs
 // num is a number input, minNumber is the lower limit
 function limit(num, minNumber) {
@@ -518,6 +525,126 @@ function getPortrait(imgID, portraitName) {
 	$(imgID).attr("src", "img/Portraits/" + portraitName + ".png");
 }
 
+// gets that stat totals given the data
+// charName is the name of the character, weaponName is the equipped weapon, passiveA is the equipped passive a skill
+// rarity is the rarity of the character, level is the level of the character, merge is the number of units merged with the given one
+// boon is the boon stat, bane is the bane stat
+function getStatTotals(charName, weaponName, passiveA, rarity, level, merge, boon, bane) {
+	"use strict";
+	// get info
+	
+	// base stats + boons/banes
+	var stats = {};
+	stats.hp = charInfo[charName].base_stat["star-" + rarity.toString()].hp + ((boon === "hp") ? 1 : 0) + ((bane === "hp") ? -1 : 0);
+	stats.atk = charInfo[charName].base_stat["star-" + rarity.toString()].atk + ((boon === "atk") ? 1 : 0) + ((bane === "atk") ? -1 : 0);
+	stats.spd = charInfo[charName].base_stat["star-" + rarity.toString()].spd + ((boon === "spd") ? 1 : 0) + ((bane === "spd") ? -1 : 0);
+	stats.def = charInfo[charName].base_stat["star-" + rarity.toString()].def + ((boon === "def") ? 1 : 0) + ((bane === "def") ? -1 : 0);
+	stats.res = charInfo[charName].base_stat["star-" + rarity.toString()].res + ((boon === "res") ? 1 : 0) + ((bane === "res") ? -1 : 0);
+	
+	// merged units
+	if (merge > 0) {
+		var statNames = ["hp", "atk", "spd", "def", "res"];
+		var mergeBonusOrder = ["hp", "atk", "spd", "def", "res"];
+		
+		// sort stats from highest to lowest with insertion sort haha
+		for (var statsIndex = 1; statsIndex < 5; statsIndex++) {
+			var inserted = false;
+			for (var orderIndex = 0; orderIndex < statsIndex; orderIndex++) {
+				if (stats[statNames[statsIndex]] > stats[mergeBonusOrder[orderIndex]]) {
+					// push back
+					for (var pushIndex = statsIndex - 1; pushIndex >= orderIndex; pushIndex--) {
+						mergeBonusOrder[pushIndex + 1] = mergeBonusOrder[pushIndex];
+					}
+					
+					// insert
+					mergeBonusOrder[orderIndex] = statNames[statsIndex];
+					inserted = true;
+					break;
+				}
+			}
+			
+			if (!inserted) {
+				mergeBonusOrder[statsIndex] = statNames[statsIndex];
+			}
+		}
+		
+		// apply bonuses
+		var bonusIndex = 0;
+		for (var mergeCount = 0; mergeCount < merge; mergeCount++) {
+			for (var i = 0; i < 2; i++) {
+				stats[mergeBonusOrder[bonusIndex]] += 1;
+				bonusIndex = (bonusIndex + 1) % 5;
+			}
+		}
+	}
+	
+	// apply stat growths
+	if (level === 40) {
+		stats.hp += statGrowths[rarity-1][charInfo[charName].base_stat.growth.hp + ((boon === "hp") ? 1 : 0) + ((bane === "hp") ? -1 : 0)];
+		stats.atk += statGrowths[rarity-1][charInfo[charName].base_stat.growth.atk + ((boon === "atk") ? 1 : 0) + ((bane === "atk") ? -1 : 0)];
+		stats.spd += statGrowths[rarity-1][charInfo[charName].base_stat.growth.spd + ((boon === "spd") ? 1 : 0) + ((bane === "spd") ? -1 : 0)];
+		stats.def += statGrowths[rarity-1][charInfo[charName].base_stat.growth.def + ((boon === "def") ? 1 : 0) + ((bane === "def") ? -1 : 0)];
+		stats.res += statGrowths[rarity-1][charInfo[charName].base_stat.growth.res + ((boon === "res") ? 1 : 0) + ((bane === "res") ? -1 : 0)];
+	}
+	
+	// apply weapon stats and stat mods
+	if (weaponName !== "None") {
+		stats.atk += weaponInfo[weaponName].might;
+		
+		if (weaponInfo[weaponName].hasOwnProperty("stat_mod")) {
+			for (var wKey in weaponInfo[weaponName].stat_mod) {
+				stats[wKey] += weaponInfo[weaponName].stat_mod[wKey];
+				if (stats[wKey] < 0) {
+					stats[wKey] = 0;
+				} else if (stats[wKey] > 99) {
+					stats[wKey] = 99;
+				}
+			}
+		}
+	}
+	
+	// apply passive a stat mods
+	if (passiveA !== "None" && skillInfo.a[passiveA].hasOwnProperty("stat_mod")) {
+		for (var pKey in skillInfo.a[passiveA].stat_mod) {
+			stats[pKey] += skillInfo.a[passiveA].stat_mod[pKey];
+			if (stats[pKey] < 0) {
+				stats[pKey] = 0;
+			} else if (stats[pKey] > 99) {
+				stats[pKey] = 99;
+			}
+		}
+	}
+	
+	return stats;
+}
+
+// displays stat totals given the current settings
+// charNum determines the character panel
+function displayStatTotals(charNum) {
+	"use strict";
+	
+	// get info
+	var charName = $("#char-" + charNum).val();
+	var weaponName = $("#weapon-" + charNum).val();
+	var passiveA = $("#passive-a-" + charNum).val();
+	var rarity = parseInt($("#rarity-" + charNum).val());
+	var level = parseInt($("#level-" + charNum).val());
+	var merge = parseInt($("#merge-" + charNum).val());
+	var boon = $("#boon-" + charNum).val();
+	var bane = $("#bane-" + charNum).val();
+	
+	// get stats
+	var stats = getStatTotals(charName, weaponName, passiveA, rarity, level, merge, boon, bane);
+	
+	// display stats
+	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(stats.hp);
+	$(".hp-" + charNum + "-read").text(stats.hp);
+	$("#atk-" + charNum).val(stats.atk);
+	$("#spd-" + charNum).val(stats.spd);
+	$("#def-" + charNum).val(stats.def);
+	$("#res-" + charNum).val(stats.res);
+}
+
 // displays character information in the character panels
 // singleChar contains only the character info to display, charNum determines which panel to display on
 function displayChar(charName, charNum) {
@@ -534,6 +661,9 @@ function displayChar(charName, charNum) {
 		
 		// show collapsed section
 		$("#extra-char-info-" + charNum).show(700);
+		
+		// hide stat variants
+		$("#char-build-info-" + charNum).hide(700);
 		
 		// show all skills and weapons
 		var weaponType = $("#weapon-type-" + charNum).val();
@@ -591,22 +721,20 @@ function displayChar(charName, charNum) {
 	getPortrait((charNum === "1" ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString()), charName);
 	getPortrait((charNum === "1" ? "#attacker-portrait" : "#defender-portrait"), charName);
 
+	// show stat variants
+	$("#char-build-info-" + charNum).show(700);
+	
 	// grey out disabled input fields
 	$("#extra-char-info-" + charNum).css("color", "#5b5b5b");
 	$("#extra-char-info-" + charNum + " select").attr("disabled", "disabled");
+	
+	// hide extra info
+	$("#extra-char-info-" + charNum).hide(700);
 	
 	// show general character info
 	$("#color-" + charNum).val(singleChar.color);
 	$("#weapon-type-" + charNum).val(singleChar.weapon_type);
 	$("#move-type-" + charNum).val(singleChar.move_type);
-	
-	// show stats
-	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(singleChar.hp);
-	$(".hp-" + charNum + "-read").text(singleChar.hp);
-	$("#atk-" + charNum).val(singleChar.atk);
-	$("#spd-" + charNum).val(singleChar.spd);
-	$("#def-" + charNum).val(singleChar.def);
-	$("#res-" + charNum).val(singleChar.res);
 	
 	// reset buffs/debuffs
 	$("#stats-" + charNum + " .stat-bonus, #stats-" + charNum + " .stat-penalty, #stats-" + charNum + " .stat-spur").val(0);
@@ -703,6 +831,44 @@ function displayChar(charName, charNum) {
 	
 	// show extra weapon info
 	showWeapon(selectedWeapon, charNum, false);
+	
+	// set default stat variant
+	$("#level-" + charNum).val(40);
+	$("#merge-" + charNum).val(0);
+	$("#boon-" + charNum).val("neutral");
+	$("#bane-" + charNum).val("neutral");
+	
+	// set rarities
+	var rarities = "<option value='5'>5 Stars</option>";
+	if (singleChar.hasOwnProperty("base_stat")) {
+		for (var starIndex = 4; starIndex >= 1; starIndex--) {
+			if (singleChar.base_stat.hasOwnProperty("star-" + starIndex.toString())) {
+				if (starIndex === 1) {
+					rarities += "<option value='1'>1 Star</option>";
+				} else {
+					rarities += "<option value='" + starIndex.toString() + "'>" + starIndex.toString() + " Stars</option>";
+				}
+			}
+		}
+	}
+	
+	$("#rarity-" + charNum).html(rarities);
+	
+	// show stats
+	if (singleChar.hasOwnProperty("base_stat")) {
+		displayStatTotals(charNum);
+		$("#char-build-info-" + charNum).css("color", "white");
+		$("#char-build-info-" + charNum + " select").removeAttr("disabled");
+	} else {
+		$("#hp-" + charNum + ", #curr-hp-" + charNum).val(singleChar.hp);
+		$(".hp-" + charNum + "-read").text(singleChar.hp);
+		$("#atk-" + charNum).val(singleChar.atk);
+		$("#spd-" + charNum).val(singleChar.spd);
+		$("#def-" + charNum).val(singleChar.def);
+		$("#res-" + charNum).val(singleChar.res);
+		$("#char-build-info-" + charNum).css("color", "#5b5b5b");
+		$("#char-build-info-" + charNum + " select").attr("disabled", "disabled");
+	}
 }
 
 // stores the currently selected character for later
@@ -717,6 +883,14 @@ function storeCharTabInfo(attacker) {
 	infoToStore.color = $("#color-" + charNum).val();
 	infoToStore.weaponType = $("#weapon-type-" + charNum).val();
 	infoToStore.moveType = $("#move-type-" + charNum).val();
+	
+	// stat variants
+	infoToStore.rarityHTML = $("#rarity-" + charNum).html();
+	infoToStore.rarity = $("#rarity-" + charNum).val();
+	infoToStore.level = $("#level-" + charNum).val();
+	infoToStore.merge = $("#merge-" + charNum).val();
+	infoToStore.boon = $("#boon-" + charNum).val();
+	infoToStore.bane = $("#bane-" + charNum).val();
 	
 	// weapon and skill info
 	infoToStore.weapon = $("#weapon-" + charNum).val();
@@ -789,6 +963,14 @@ function getCharTabInfo(attacker) {
 			$("#weapon-type-" + charNum).val(charTabInfo.weaponType);
 			$("#move-type-" + charNum).val(charTabInfo.moveType);
 		}
+		
+		// change stat variants
+		$("#rarity-" + charNum).html(charTabInfo.rarityHTML);
+		$("#rarity-" + charNum).val(charTabInfo.rarity);
+		$("#level-" + charNum).val(charTabInfo.level);
+		$("#merge-" + charNum).val(charTabInfo.merge);
+		$("#boon-" + charNum).val(charTabInfo.boon);
+		$("#bane-" + charNum).val(charTabInfo.bane);
 		
 		// change hp values
 		$("#hp-" + charNum).val(charTabInfo.hp);
@@ -887,6 +1069,7 @@ function selectCharTab(attacker, newIndex) {
 // selects the first empty tab in a character panel, if all are take stay on the current tab
 // attacker is true if we are selecting from the attacker panel
 function selectEmptyCharTab(attacker) {
+	"use strict";
 	var team = attacker ? attackerTeam : defenderTeam;
 	var selected = attacker ? selectedAttacker : selectedDefender;
 	
@@ -1111,18 +1294,35 @@ function getDefaultCharData(charName) {
 	charData.specialData = charInfo[charName].hasOwnProperty("special") ? specInfo[charData.special] : {};
 	charData.assistData = charInfo[charName].hasOwnProperty("assist") ? assistInfo[charInfo[charName].assist[0]] : {};
 	
-	charData.currHP = charInfo[charName].hp;
-	charData.initHP = charInfo[charName].hp;
-	charData.startHP = charInfo[charName].hp;
-	charData.hp = charInfo[charName].hp;
-	charData.atk = charInfo[charName].atk;
-	charData.spd = charInfo[charName].spd;
-	charData.def = charInfo[charName].def;
-	charData.res = charInfo[charName].res;
-	charData.atkWS = charInfo[charName].atk;
-	charData.spdWS = charInfo[charName].spd;
-	charData.defWS = charInfo[charName].def;
-	charData.resWS = charInfo[charName].res;
+	// show stats
+	if (charInfo[charName].hasOwnProperty("base_stat")) {
+		var stats = getStatTotals(charName, charData.weaponName, charData.passiveA, 5, 40, 0, "neutral", "neutral");
+		charData.currHP = stats.hp;
+		charData.initHP = stats.hp;
+		charData.startHP = stats.hp;
+		charData.hp = stats.hp;
+		charData.atk = stats.atk;
+		charData.spd = stats.spd;
+		charData.def = stats.def;
+		charData.res = stats.res;
+		charData.atkWS = stats.atk;
+		charData.spdWS = stats.spd;
+		charData.defWS = stats.def;
+		charData.resWS = stats.res;
+	} else {
+		charData.currHP = charInfo[charName].hp;
+		charData.initHP = charInfo[charName].hp;
+		charData.startHP = charInfo[charName].hp;
+		charData.hp = charInfo[charName].hp;
+		charData.atk = charInfo[charName].atk;
+		charData.spd = charInfo[charName].spd;
+		charData.def = charInfo[charName].def;
+		charData.res = charInfo[charName].res;
+		charData.atkWS = charInfo[charName].atk;
+		charData.spdWS = charInfo[charName].spd;
+		charData.defWS = charInfo[charName].def;
+		charData.resWS = charInfo[charName].res;
+	}
 	
 	return charData;
 }
@@ -1941,6 +2141,13 @@ function swap() {
 	oldAtkInfo.resSpur = $("#res-spur-1").val();
 	oldAtkInfo.currHP = $("#curr-hp-1").val();
 	
+	oldAtkInfo.rarityHTML = $("#rarity-1").html();
+	oldAtkInfo.rarity = $("#rarity-1").val();
+	oldAtkInfo.level = $("#level-1").val();
+	oldAtkInfo.merge = $("#merge-1").val();
+	oldAtkInfo.boon = $("#boon-1").val();
+	oldAtkInfo.bane = $("#bane-1").val();
+	
 	oldAtkInfo.extraCharInfoDisabled = ($("#color-1").attr("disabled") === "disabled");
 	
 	oldAtkInfo.extraCharInfoVisible = $("#extra-char-info-1").stop(true, true).is(":visible");
@@ -1950,6 +2157,7 @@ function swap() {
 	oldAtkInfo.extraPassiveCInfoVisible = $("#extra-passive-c-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraAssistInfoVisible = $("#extra-assist-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraSpecialInfoVisible = $("#extra-special-info-1").stop(true, true).is(":visible");
+	oldAtkInfo.buildInfoVisible = $("#char-build-info-1").stop(true, true).is(":visible");
 	
 	// place defender info in attacker panel
 	setVisible("#extra-char-info-1", $("#extra-char-info-2").stop(true, true).is(":visible"), false);
@@ -1959,6 +2167,7 @@ function swap() {
 	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), false);
+	setVisible("#char-build-info-1", $("#char-build-info-2").stop(true, true).is(":visible"), false);
 	
 	$("#char-1").val($("#char-2").val());
 	$("#color-1").val($("#color-2").val());
@@ -2016,6 +2225,13 @@ function swap() {
 	$("#curr-hp-1").val($("#curr-hp-2").val());
 	$(".hp-1-read").text($("#hp-2").val().toString());
 	
+	$("#rarity-1").html($("#rarity-2").html());
+	$("#rarity-1").val($("#rarity-2").val());
+	$("#level-1").val($("#level-2").val());
+	$("#merge-1").val($("#merge-2").val());
+	$("#boon-1").val($("#boon-2").val());
+	$("#bane-1").val($("#bane-2").val());
+	
 	setDisabled("#extra-char-info-1 select", "#extra-char-info-1", ($("#color-2").attr("disabled") === "disabled"));
 	enableSpecCooldown("1");
 	
@@ -2026,6 +2242,7 @@ function swap() {
 	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), true);
+	setVisible("#char-build-info-1", $("#char-build-info-2").stop(true, true).is(":visible"), true);
 	
 	// place attacker info in defender panel
 	setVisible("#extra-char-info-2", oldAtkInfo.extraCharInfoVisible, false);
@@ -2035,6 +2252,7 @@ function swap() {
 	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, false);
 	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, false);
 	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, false);
+	setVisible("#char-build-info-2", oldAtkInfo.buildInfoVisible, false);
 	
 	$("#char-2").val(oldAtkInfo.name);
 	$("#color-2").val(oldAtkInfo.color);
@@ -2092,6 +2310,13 @@ function swap() {
 	$("#curr-hp-2").val(oldAtkInfo.currHP);
 	$(".hp-2-read").text(oldAtkInfo.hp);
 	
+	$("#rarity-2").html(oldAtkInfo.rarityHTML);
+	$("#rarity-2").val(oldAtkInfo.rarity);
+	$("#level-2").val(oldAtkInfo.level);
+	$("#merge-2").val(oldAtkInfo.merge);
+	$("#boon-2").val(oldAtkInfo.boon);
+	$("#bane-2").val(oldAtkInfo.bane);
+	
 	setDisabled("#extra-char-info-2 select", "#extra-char-info-2", oldAtkInfo.extraCharInfoDisabled);
 	enableSpecCooldown("2");
 	
@@ -2102,6 +2327,7 @@ function swap() {
 	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, true);
 	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, true);
 	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, true);
+	setVisible("#char-build-info-2", oldAtkInfo.buildInfoVisible, true);
 	
 	// swap teams
 	var tempTeam = attackerTeam;
@@ -2368,6 +2594,120 @@ function keepMatchupTable(charNum) {
 	} 
 }
 
+// updates weapon on rarity change
+// charNum determines the panel to look at, rarity is the rarity of the selected character
+function rarityUpdateWeapon(charNum, rarity) {
+	"use strict";
+	var charName = $("#char-" + charNum).val();
+	var selectedWeapon = "";
+	
+	if (charInfo[charName].hasOwnProperty("rarity_restrict") && rarity < 5) {
+		var rarityRestrict = charInfo[charName].rarity_restrict["star-" + rarity.toString()];
+		
+		// change weapon
+		if (rarityRestrict.hasOwnProperty("weapon") && $("#weapon-" + charNum).val() !== "None" && $("#weapon-" + charNum + " option:selected").index() <= charInfo[charName].weapon.length) {
+			selectedWeapon = charInfo[charName].weapon[rarityRestrict.weapon];
+			$("#weapon-" + charNum).val(selectedWeapon);
+			showWeapon(selectedWeapon, charNum, true);
+		}
+	} else if (rarity === 5) {
+		if ($("#weapon-" + charNum).val() !== "None" && $("#weapon-" + charNum + " option:selected").index() <= charInfo[charName].weapon.length) {
+			selectedWeapon = charInfo[charName].weapon[0];
+			$("#weapon-" + charNum).val(selectedWeapon);
+			showWeapon(selectedWeapon, charNum, true);
+		}
+	}
+}
+
+// updates passive skill on rarity change
+// charNum determines the panel to look at, rarity is the rarity of the selected character, type is the passive type
+function rarityUpdatePassive(charNum, rarity, type) {
+	"use strict";
+	var charName = $("#char-" + charNum).val();
+	var selectedPassive = "";
+	
+	if (charInfo[charName].hasOwnProperty("rarity_restrict") && rarity < 5) {
+		var rarityRestrict = charInfo[charName].rarity_restrict["star-" + rarity.toString()];
+		
+		if (rarityRestrict.hasOwnProperty("passive_" + type) && charInfo[charName].hasOwnProperty("passive_" + type) && $("#passive-" + type + "-" + charNum + " option:selected").index() <= charInfo[charName]["passive_" + type].length) {
+			selectedPassive = rarityRestrict["passive_" + type] < 0 ? "None" : charInfo[charName]["passive_" + type][rarityRestrict["passive_" + type]];
+			$("#passive-" + type + "-" + charNum).val(selectedPassive);
+			getSkillData(charNum, type, true);
+		}
+		
+	} else if (rarity === 5) {
+		if (charInfo[charName].hasOwnProperty("passive_" + type) && $("#passive-" + type + "-" + charNum + " option:selected").index() <= charInfo[charName]["passive_" + type].length) {
+			selectedPassive = charInfo[charName]["passive_" + type][0];
+			$("#passive-" + type + "-" + charNum).val(selectedPassive);
+			getSkillData(charNum, type, true);
+		}
+	}
+}
+
+// updates special on rarity change
+// charNum determines the panel to look at, rarity is the rarity of the selected character
+function rarityUpdateSpecial(charNum, rarity) {
+	"use strict";
+	var charName = $("#char-" + charNum).val();
+	var selectedSpecial = "";
+	
+	if (charInfo[charName].hasOwnProperty("rarity_restrict") && rarity < 5) {
+		var rarityRestrict = charInfo[charName].rarity_restrict["star-" + rarity.toString()];
+		
+		if (rarityRestrict.hasOwnProperty("special") && $("#special-" + charNum + " option:selected").index() <= charInfo[charName].special.length) {
+			selectedSpecial = rarityRestrict.special < 0 ? "None" : charInfo[charName].special[rarityRestrict.special];
+			$("#special-" + charNum).val(selectedSpecial);
+			showSpecCooldown(selectedSpecial, charNum, false);
+			getSpecialData(charNum);
+		}
+	} else if (rarity === 5) {
+		if (charInfo[charName].hasOwnProperty("special") && $("#special-" + charNum + " option:selected").index() <= charInfo[charName].special.length) {
+			selectedSpecial = charInfo[charName].special[0];
+			$("#special-" + charNum).val(selectedSpecial);
+			showSpecCooldown(selectedSpecial, charNum, false);
+			getSpecialData(charNum);
+		}
+	}
+}
+
+// updates assist on rarity change
+// charNum determines the panel to look at, rarity is the rarity of the selected character
+function rarityUpdateAssist(charNum, rarity) {
+	"use strict";
+	var charName = $("#char-" + charNum).val();
+	var selectedAssist = "";
+	
+	if (charInfo[charName].hasOwnProperty("rarity_restrict") && rarity < 5) {
+		var rarityRestrict = charInfo[charName].rarity_restrict["star-" + rarity.toString()];
+		
+		if (rarityRestrict.hasOwnProperty("assist") && $("#assist-" + charNum + " option:selected").index() <= charInfo[charName].assist.length) {
+			selectedAssist = rarityRestrict.assist < 0 ? "None" : charInfo[charName].assist[rarityRestrict.assist];
+			$("#assist-" + charNum).val(selectedAssist);
+			getAssistData(charNum);
+			updateSpecCooldown(charNum);
+		}
+	} else if (rarity === 5) {
+		if (charInfo[charName].hasOwnProperty("assist") && $("#assist-" + charNum + " option:selected").index() <= charInfo[charName].assist.length) {
+			selectedAssist = charInfo[charName].assist[0];
+			$("#assist-" + charNum).val(selectedAssist);
+			getAssistData(charNum);
+			updateSpecCooldown(charNum);
+		}
+	}
+}
+
+// updates weapons and skills on rarity change
+// charNum determines the panel to look at, rarity is the rarity of the selected character
+function rarityUpdate(charNum, rarity) {
+	"use strict";
+	rarityUpdateSpecial(charNum, rarity);
+	rarityUpdatePassive(charNum, rarity, "a");
+	rarityUpdatePassive(charNum, rarity, "b");
+	rarityUpdatePassive(charNum, rarity, "c");
+	rarityUpdateAssist(charNum, rarity);
+	rarityUpdateWeapon(charNum, rarity);
+}
+
 // setup inital page
 $(document).ready( function() {
 	"use strict";	
@@ -2613,5 +2953,28 @@ $(document).ready( function() {
 		$("#matchup-filter-result").val("Any");
 		
 		filterMatchupTable(true);
+	});
+	
+	$(".build-select").on("change", function() {
+		var charNum = $(this).data("charnum").toString();
+		
+		// check if banes and boons match
+		if ($(this).hasClass("boon-select") && this.value === $("#bane-" + charNum).val()) {
+			$("#bane-" + charNum).val("neutral");
+		}
+		if ($(this).hasClass("bane-select") && this.value === $("#boon-" + charNum).val()) {
+			$("#boon-" + charNum).val("neutral");
+		}
+		
+		// check if skills need to change due to rarity change
+		if ($(this).hasClass("rarity-select")) {
+			rarityUpdate(charNum, parseInt(this.value));
+		}
+		
+		if (charInfo[$("#char-" + charNum).val()].hasOwnProperty("base_stat")) {
+			displayStatTotals(charNum);
+		}
+		keepMatchupTable(charNum);
+		updateDisplay();
 	});
 });
