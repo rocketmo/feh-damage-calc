@@ -412,21 +412,24 @@ var skillInfo =
             "breaker" : {
                 "weapon_type" : "Bow",
                 "threshold" : 0.9
-            }
+            },
+            "move_restrict" : "Flying"
         },
         "Bowbreaker 2" : {
             "description" : "If unit's HP ≥ 70% in combat against a Bow user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Bow",
                 "threshold" : 0.7
-            }
+            },
+            "move_restrict" : "Flying"
         },
         "Bowbreaker 3" : {
             "description" : "If unit's HP ≥ 50% in combat against a Bow user, unit makes a follow-up attack and foe cannot.",
             "breaker" : {
                 "weapon_type" : "Bow",
                 "threshold" : 0.5
-            }
+            },
+            "move_restrict" : "Flying"
         },
         "B Tomebreaker 1" : {
             "description" : "If unit's HP ≥ 90% in combat against a Blue Tome user, unit makes a follow-up attack and foe cannot.",
@@ -696,74 +699,85 @@ var skillInfo =
             "description" : "After combat, foe suffers Atk-3 through their next actions.",
             "seal" : {
                 "atk" : -3
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "Seal Atk 2" : {
             "description" : "After combat, foe suffers Atk-5 through their next actions.",
             "seal" : {
                 "atk" : -5
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "Seal Atk 3" : {
             "description" : "After combat, foe suffers Atk-7 through their next actions.",
             "seal" : {
                 "atk" : -7
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "Seal Def 1" : {
             "description" : "After combat, foe suffers Def-3 through their next actions.",
             "seal" : {
                 "def" : -3
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "Seal Def 2" : {
             "description" : "After combat, foe suffers Def-5 through their next actions.",
             "seal" : {
                 "def" : -5
-            }
-
+            },
+            "weapon_restrict" : "Staff"
         },
         "Seal Def 3" : {
             "description" : "After combat, foe suffers Def-7 through their next actions.",
             "seal" : {
                 "def" : -7
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "Seal Res 1" : {
             "description" : "After combat, foe suffers Res-3 through their next actions.",
             "seal" : {
                 "res" : -3
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "Seal Res 2" : {
             "description" : "After combat, foe suffers Res-5 through their next actions.",
             "seal" : {
                 "res" : -5
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "Seal Res 3" : {
             "description" : "After combat, foe suffers Res-7 through their next actions.",
             "seal" : {
                 "res" : -7
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "Seal Spd 1" : {
             "description" : "After combat, foe suffers Spd-3 through their next actions.",
             "seal" : {
                 "spd" : -3
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "Seal Spd 2" : {
             "description" : "After combat, foe suffers Spd-5 through their next actions.",
             "seal" : {
                 "spd" : -5
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "Seal Spd 3" : {
             "description" : "After combat, foe suffers Spd-7 through their next actions.",
             "seal" : {
                 "spd" : -7
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "Swordbreaker 1" : {
             "description" : "If unit's HP ≥ 90% in combat against a Sword user, unit makes a follow-up attack and foe cannot.",

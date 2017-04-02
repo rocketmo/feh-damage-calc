@@ -169,7 +169,10 @@ function isInheritable(skill, charNum) {
 		dragon = true;
 	}
 	
-	return (!skill.hasOwnProperty("char_unique") && (!skill.hasOwnProperty("move_unique") || skill.move_unique === moveType) && (!skill.hasOwnProperty("color_restrict") || skill.color_restrict !== color) && (!skill.hasOwnProperty("range_unique") || skill.range_unique === range) && (!skill.hasOwnProperty("weapon_restrict") || skill.weapon_restrict !== weaponType) && (!skill.hasOwnProperty("weapon_unique") || skill.weapon_unique === weaponType) && (!skill.hasOwnProperty("dragon_unique") || dragon));
+	return (!skill.hasOwnProperty("char_unique") && (!skill.hasOwnProperty("move_unique") || skill.move_unique === moveType) && 
+			(!skill.hasOwnProperty("color_restrict") || skill.color_restrict !== color) && (!skill.hasOwnProperty("range_unique") || skill.range_unique === range) && 
+			(!skill.hasOwnProperty("weapon_restrict") || skill.weapon_restrict !== weaponType) && (!skill.hasOwnProperty("weapon_unique") || skill.weapon_unique === weaponType) && 
+			(!skill.hasOwnProperty("dragon_unique") || dragon) && (!skill.hasOwnProperty("move_restrict") || skill.move_restrict !== moveType));
 }
 
 // determines if the given weapon is inheritable by the character in the given panel
