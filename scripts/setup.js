@@ -327,6 +327,19 @@ function enableSpecCooldown(charNum) {
 	}
 }
 
+// enables stat variance selects depending on the character selected
+// charNum determines the panel to look at
+function enableCharBuild(charNum) {
+	"use strict";
+	if (charInfo[$("#char-" + charNum).val()].hasOwnProperty("base_stat")) {
+		$("#char-build-info-" + charNum + " label").css("color", "white");
+		$("#char-build-info-" + charNum + " select").removeAttr("disabled");
+	} else {
+		$("#char-build-info-" + charNum + " label").css("color", "#5b5b5b");
+		$("#char-build-info-" + charNum + " select").attr("disabled", "disabled");
+	}
+}
+
 // gets skill data and stores it
 // charNum determines which panel to display it in, skillType is the letter of the skill, update is true if stats need to be adjusted
 function getSkillData(charNum, skillType, update) {
@@ -860,7 +873,7 @@ function displayChar(charName, charNum) {
 	// show stats
 	if (singleChar.hasOwnProperty("base_stat")) {
 		displayStatTotals(charNum);
-		$("#char-build-info-" + charNum).css("color", "white");
+		$("#char-build-info-" + charNum + " label").css("color", "white");
 		$("#char-build-info-" + charNum + " select").removeAttr("disabled");
 	} else {
 		$("#hp-" + charNum + ", #curr-hp-" + charNum).val(singleChar.hp);
@@ -869,7 +882,7 @@ function displayChar(charName, charNum) {
 		$("#spd-" + charNum).val(singleChar.spd);
 		$("#def-" + charNum).val(singleChar.def);
 		$("#res-" + charNum).val(singleChar.res);
-		$("#char-build-info-" + charNum).css("color", "#5b5b5b");
+		$("#char-build-info-" + charNum + " label").css("color", "#5b5b5b");
 		$("#char-build-info-" + charNum + " select").attr("disabled", "disabled");
 	}
 }
@@ -2361,13 +2374,14 @@ function swap() {
 // charNum determines the panel, enable is true if we are enabling a panel
 function enableCharPanel(charNum, enable) {
 	"use strict";
-	var textID = (charNum === "1") ? "#attack-panel .info-section, #attack-panel .info-section-bottom, #spec-cooldown-line-1" : "#defend-panel .info-section, #defend-panel .info-section-bottom, #spec-cooldown-line-2";
+	var textID = (charNum === "1") ? "#attack-panel .info-section, #attack-panel .info-section-bottom, #spec-cooldown-line-1, #char-build-info-1 label" : "#defend-panel .info-section, #defend-panel .info-section-bottom, #spec-cooldown-line-2, #char-build-info-2 label";
 	var inputID = (charNum === "1") ? "#attack-panel select, #attack-panel input" : "#defend-panel select, #defend-panel input";
 	
 	if (enable) {
 		$(textID).css("color", "white");
 		$(inputID).removeAttr("disabled");
 		enableSpecCooldown(charNum);
+		enableCharBuild(charNum);
 	} else {
 		$(textID).css("color", "#5b5b5b");
 		$(inputID).attr("disabled", "disabled");
@@ -2958,6 +2972,7 @@ $(document).ready( function() {
 		filterMatchupTable(true);
 	});
 	
+	// stat variants change
 	$(".build-select").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
 		
