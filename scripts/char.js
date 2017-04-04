@@ -1276,16 +1276,21 @@ var charInfo =
 	"Navarre": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 42,
-		"atk": 39,
-		"spd": 37,
-		"def": 23,
-		"res": 28,
 		"move_type": "Infantry",
 		"weapon": ["Killing Edge+", "Killing Edge", "Steel Sword", "Iron Sword"],
 		"special": ["Blazing Wind", "Rising Wind"],
 		"passive_b": ["Desperation 3", "Desperation 2", "Desperation 1"],
-		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"]
+		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 11, "def" : 6, "res" : 5},
+			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 11, "def" : 5, "res" : 4},
+			"star-3" : {"hp" : 17, "atk" : 6, "spd" : 10, "def" : 5, "res" : 4},
+			"growth" : {"hp" : 7, "atk" : 7, "spd" : 8, "def" : 4, "res" : 5}
+		},
+		"rarity_restrict" : {
+			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 1, "passive_c" : 0},
+			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 2, "passive_c" : 1}
+		}
 	},
 	"Niles": {
 		"color" : "Colorless",
