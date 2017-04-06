@@ -1141,37 +1141,33 @@ function weaponColorAdvantage(attackColor, defendColor, attackWeapon, defendWeap
 	return 0;
 }
 
-// handles after combat damage (on the defender)
-// battleInfo contains all battle information, dmgAmount is the amount of damage to inflict, dmgSource is the source of the damage, victim is either 'attacker' or 'defender'
-function afterCombatDmg(battleInfo, dmgAmount, dmgSource, victim) {
+// handles after combat damage and healing
+// battleInfo contains information about the battle, charClass is 'attacker' or 'defender' depending on who the effects will be applied to
+// poison is the amount of poison damage taken, poisonSource is the source of the poison damage
+// recoil is the amount of recoil damage taken, recoilSource is the source of the recoil damage
+// heal is the amount of health restored, healSource is the source of the healing
+function afterCombatEffects(battleInfo, charClass, poison, poisonSource, recoil, recoilSource, heal, healSource) {
 	"use strict";
-	var inflictor = "";
-	if (victim === "defender") {
-		inflictor = "attacker";
-	} else {
-		inflictor = "defender";
-	}
+	var oldHP = battleInfo[charClass].currHP;
+	var opponentClass = (charClass === "attacker") ? "defender" : "attacker";
 	
-	var oldHP = battleInfo[victim].currHP;
-	battleInfo[victim].currHP = Math.max(oldHP - dmgAmount, 1);
-	battleInfo.logMsg += "<li class='battle-interaction'><span class='" + inflictor + "'><strong>" + battleInfo[inflictor].name + "</strong></span> inflicts after-combat damage [" + dmgSource + "]. <span class='dmg'><strong>" + dmgAmount.toString() + " damage dealt.</strong></span><br><span class='" + victim + "'><strong>" + battleInfo[victim].name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo[victim].currHP.toString() + "</span></li>";
-	
-	return battleInfo;
-}
-
-// handles self-inflicted after combat damage
-// battleInfo contains all battle information, dmgAmount is the amount of damage to inflict, dmgSource is the source of the damage, initiator is true if the attacker is damaged
-function recoilDmg(battleInfo, dmgAmount, dmgSource, initiator) {
-	"use strict";
-	var oldHP = 0;
-	if (initiator) {
-		oldHP = battleInfo.attacker.currHP;
-		battleInfo.attacker.currHP = Math.max(oldHP - dmgAmount, 1);
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> takes damage after combat [" + dmgSource + "]. <span class='dmg'><strong>" + dmgAmount.toString() + " damage dealt.</strong></span><br><span class='attacker'><strong>" + battleInfo.attacker.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.attacker.currHP.toString() + "</span></li>";
-	} else {
-		oldHP = battleInfo.defender.currHP;
-		battleInfo.defender.currHP = Math.max(oldHP - dmgAmount, 1);
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> takes damage after combat [" + dmgSource + "]. <span class='dmg'><strong>" + dmgAmount.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
+	if (poison > 0 && (poison + recoil > heal)) {
+		battleInfo[charClass].currHP = Math.max(oldHP - poison - recoil + heal, 1);
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='" + opponentClass + "'><strong>" + battleInfo[opponentClass].name + "</strong></span> inflicts after-combat damage [" + poisonSource + "]. ";
+		battleInfo.logMsg += (recoil > 0) ? "Oppenent takes additional after-combat damage [" + recoilSource + "]. " : "";
+		battleInfo.logMsg += (heal > 0) ? "Oppenent reduces damage taken due to healing effect [" + healSource + "]. " : "";
+		battleInfo.logMsg += "<span class='dmg'><strong>" + (poison + recoil - heal).toString() + " damage dealt.</strong></span><br><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</span></li>";
+	} else if (recoil > 0 && recoil > heal) {
+		battleInfo[charClass].currHP = Math.max(oldHP - recoil + heal, 1);
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> takes damage after combat [" + recoilSource + "]. ";
+		battleInfo.logMsg += (heal > 0) ? "Damage taken is reduced due to healing effect [" + healSource + "]. " : "";
+		battleInfo.logMsg += "<span class='dmg'><strong>" + (recoil - heal).toString() + " damage dealt.</strong></span><br><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</span></li>";
+	} else if (heal > 0) {
+		battleInfo[charClass].currHP = Math.min(oldHP + heal - poison - recoil, battleInfo[charClass].hp);
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> recovers HP after combat [" + healSource + "]. ";
+		battleInfo.logMsg += (poison > 0) ? "Opponent reduces health gained by inflicting after combat damage [" + poisonSource + "]. " : "";
+		battleInfo.logMsg += (recoil > 0) ? "Health recovery reduced due to self-inflicted damage [" + recoilSource + "]. " : "";
+		battleInfo.logMsg += "<span class='dmg'><strong>" + (heal - poison - recoil).toString() + " health restored.</strong></span><br><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</span></li>";
 	}
 	
 	return battleInfo;
@@ -1978,35 +1974,59 @@ function simBattle(battleInfo, displayMsg) {
 			}
 		}
 	}
-
+	
+	// after combat effects
+	var atkAfterHeal = 0;
+	var atkAfterHealSource = "";
+	
+	var atkPoison = 0;
+	var atkPoisonSource = "";
+	var defPoison = 0;
+	var defPoisonSource = "";
+	
+	var atkRecoil = 0;
+	var atkRecoilSource = "";
+	var defRecoil = 0;
+	var defRecoilSource = "";
+	
 	// check for after combat healing
 	if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_heal") && battleInfo.attacker.currHP > 0) {
-		var prevHP = battleInfo.attacker.currHP;
-		battleInfo.attacker.currHP = Math.min(prevHP + battleInfo.attacker.weaponData.initiate_heal, battleInfo.attacker.hp);
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> recovers HP for initiating combat [" + battleInfo.attacker.weaponName + "]. <span class='dmg'><strong>" + battleInfo.attacker.weaponData.initiate_heal.toString() + " health restored.</strong></span><br><span class='attacker'><strong>" + battleInfo.attacker.name + " HP:</strong> " + prevHP.toString() + " → " + battleInfo.attacker.currHP.toString() + "</span></li>";
+		atkAfterHeal = battleInfo.attacker.weaponData.initiate_heal;
+		atkAfterHealSource = battleInfo.attacker.weaponName;
 	}
 	
 	// check for poison damage
 	if (battleInfo.attacker.passiveBData.hasOwnProperty("poison") && battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) {
-		battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.passiveBData.poison, battleInfo.attacker.passiveB, "defender");
+		atkPoison = battleInfo.attacker.passiveBData.poison;
+		atkPoisonSource = battleInfo.attacker.passiveB;
 	}
 	if (battleInfo.attacker.weaponData.hasOwnProperty("poison") && battleInfo.defender.currHP > 0) {
-		battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.poison, battleInfo.attacker.weaponName, "defender");
+		atkPoison += battleInfo.attacker.weaponData.poison;
+		atkPoisonSource += (atkPoisonSource.length > 0) ? ", " + battleInfo.attacker.weaponName : battleInfo.attacker.weaponName;
 	}
 	if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_poison") && battleInfo.defender.currHP > 0) {
-		battleInfo = afterCombatDmg(battleInfo, battleInfo.attacker.weaponData.initiate_poison, battleInfo.attacker.weaponName, "defender");
+		atkPoison += battleInfo.attacker.weaponData.initiate_poison;
+		atkPoisonSource += (atkPoisonSource.length > 0) ? ", " + battleInfo.attacker.weaponName : battleInfo.attacker.weaponName;
 	}
 	if (battleInfo.defender.weaponData.hasOwnProperty("poison") && battleInfo.attacker.currHP > 0 && defAttacks) {
-		battleInfo = afterCombatDmg(battleInfo, battleInfo.defender.weaponData.poison, battleInfo.defender.weaponName, "attacker");
+		defPoison = battleInfo.defender.weaponData.poison;
+		defPoisonSource = battleInfo.defender.weaponName;
 	}
 	
 	// check for recoil damage
 	if (battleInfo.attacker.currHP > 0 && battleInfo.attacker.passiveAData.hasOwnProperty("recoil_dmg")) {
-		battleInfo = recoilDmg(battleInfo, battleInfo.attacker.passiveAData.recoil_dmg, battleInfo.attacker.passiveA, true);
+		atkRecoil = battleInfo.attacker.passiveAData.recoil_dmg;
+		atkRecoilSource = battleInfo.attacker.passiveA;
 	}
 	if (battleInfo.defender.currHP > 0 && battleInfo.defender.passiveAData.hasOwnProperty("recoil_dmg")) {
-		battleInfo = recoilDmg(battleInfo, battleInfo.defender.passiveAData.recoil_dmg, battleInfo.defender.passiveA, false);
+		defRecoil = battleInfo.defender.passiveAData.recoil_dmg;
+		defRecoilSource = battleInfo.defender.passiveA;
 	}
+	
+	// print after combat effects
+	battleInfo = afterCombatEffects(battleInfo, "attacker", defPoison, defPoisonSource, atkRecoil, atkRecoilSource, atkAfterHeal, atkAfterHealSource);
+	battleInfo = afterCombatEffects(battleInfo, "defender", atkPoison, atkPoisonSource, defRecoil, defRecoilSource, 0, "");
+	
 	
 	// display results
 	if (displayMsg) {
