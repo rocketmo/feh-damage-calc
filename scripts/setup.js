@@ -2967,12 +2967,24 @@ $(document).ready( function() {
 		}
 	});
 	
-	// change filter title when pressed 
-	$("#matchup-filter-button").on("click", function() {
-		if ($(this).text() === "Open Filters") {
-			$(this).text("Close Filters");
+	// matchup button presses
+	$(".matchup-button").on("click", function() {
+		if ($(this).hasClass("matchup-button")) {
+			$(this).removeClass("matchup-button");
+			$(this).addClass("matchup-button-selected");
+			
+			if (this.id === "matchup-filter-button" && $("#matchup-override-button").hasClass("matchup-button-selected")) {
+				$("#matchup-override-button").removeClass("matchup-button-selected");
+				$("#matchup-override-button").addClass("matchup-button");
+				$("#" + $("#matchup-override-button").data("section")).hide(700);
+			} else if (this.id === "matchup-override-button" && $("#matchup-filter-button").hasClass("matchup-button-selected")) {
+				$("#matchup-filter-button").removeClass("matchup-button-selected");
+				$("#matchup-filter-button").addClass("matchup-button");
+				$("#" + $("#matchup-filter-button").data("section")).hide(700);
+			}
 		} else {
-			$(this).text("Open Filters");
+			$(this).removeClass("matchup-button-selected");
+			$(this).addClass("matchup-button");
 		}
 	});
 	
