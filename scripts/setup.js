@@ -1153,6 +1153,7 @@ function afterCombatEffects(battleInfo, charClass, poison, poisonSource, recoil,
 	
 	if (poison > 0 && (poison + recoil > heal)) {
 		battleInfo[charClass].currHP = Math.max(oldHP - poison - recoil + heal, 1);
+		battleInfo[opponentClass].damageDealt += poison - heal;
 		battleInfo.logMsg += "<li class='battle-interaction'><span class='" + opponentClass + "'><strong>" + battleInfo[opponentClass].name + "</strong></span> inflicts after-combat damage [" + poisonSource + "]. ";
 		battleInfo.logMsg += (recoil > 0) ? "Oppenent takes additional after-combat damage [" + recoilSource + "]. " : "";
 		battleInfo.logMsg += (heal > 0) ? "Oppenent reduces damage taken due to healing effect [" + healSource + "]. " : "";
@@ -1288,6 +1289,8 @@ function getCharPanelData(charNum) {
 	charData.defWS = Math.max(0, parseInt($("#def-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#def-penalty-"+charNum).val()));
 	charData.resWS = Math.max(0, parseInt($("#res-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val()) + parseInt($("#res-penalty-"+charNum).val()));
 	
+	charData.damageDealt = 0;
+	
 	return charData;
 }
 
@@ -1350,6 +1353,8 @@ function getDefaultCharData(charName) {
 		charData.defWS = charInfo[charName].def;
 		charData.resWS = charInfo[charName].res;
 	}
+	
+	charData.damageDealt = 0;
 	
 	return charData;
 }
@@ -1450,7 +1455,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	var attacker;
 	var defender;
 	var atkSpec = false;	// set to true if special triggers
-	var defSpec = false;	
+	var defSpec = false;	// set to true if special triggers
 	
 	if (initiator) {
 		atkClass = "attacker";
@@ -1620,6 +1625,9 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	// print damage dealt
 	battleInfo.logMsg += "<span class='dmg'><strong>" + dmg.toString() + " damage dealt.</strong></span> ";
 	
+	// add to damage total counter
+	attacker.damageDealt += dmg;
+	
 	// check for miracle
 	if (defender.currHP - dmg <= 0 && defender.specialData.hasOwnProperty("survive") && defender.currHP > 1 && defender.specCurrCooldown <= 0) {
 		defender.currHP = 1;
@@ -1731,6 +1739,9 @@ function simBattle(battleInfo, displayMsg) {
 		
 		// cap dmg at 0
 		aoeDmg = Math.max(aoeDmg, 0);
+		
+		// add to damage dealt counter
+		battleInfo.attacker.damageDealt += aoeDmg;
 		
 		var oldHP = battleInfo.defender.currHP;
 		battleInfo.defender.currHP = Math.max(battleInfo.defender.currHP - aoeDmg, 1);
@@ -2535,8 +2546,8 @@ function calculateMatchups(attacker) {
 			tableHTML += (charCount % 2 === 1) ? "<tr class='matchup-row-offset'>" : "<tr>";
 			tableHTML += "<td><img src=\"img/Portraits/" + key + ".png\"></td>";
 			tableHTML += "<td><span class='matchup-char " + foeClass + "'>" + key + "</span></td>";
-			tableHTML += "<td class='attacker'>" + (battleInfo.defender.startHP - battleInfo.defender.currHP).toString() + "</td>";
-			tableHTML += "<td class='defender'>" + (battleInfo.attacker.startHP - battleInfo.attacker.currHP).toString() + "</td>";
+			tableHTML += "<td class='attacker'>" + battleInfo.attacker.damageDealt.toString() + "</td>";
+			tableHTML += "<td class='defender'>" + battleInfo.defender.damageDealt.toString() + "</td>";
 			tableHTML += "<td class='attacker'>" + battleInfo.attacker.startHP.toString() + " → <span>" + battleInfo.attacker.currHP.toString() + "</span></td>";
 			tableHTML += "<td class='defender'>" + battleInfo.defender.startHP.toString() + " → <span>" + battleInfo.defender.currHP.toString() + "</span></td>";
 			
