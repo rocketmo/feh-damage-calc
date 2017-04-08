@@ -2527,7 +2527,7 @@ function calculateMatchups(attacker) {
 	
 	// add table rows
 	for (var key in charInfo) {
-		if (key !== "Custom") {
+		if (key !== "Custom" && charInfo[key].hasOwnProperty("base_stat")) {
 			// sim battle
 			battleInfo = simBattle(getBattleInfoWithDefault(attacker, key), false);
 			
