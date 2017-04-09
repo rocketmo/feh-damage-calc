@@ -2613,7 +2613,7 @@ function calculateMatchups(attacker) {
 	tableHTML += "</tbody>";
 	
 	// create table
-	$("#matchup-display").stop(true, true).hide();
+	$("#matchup-title, #matchup-overview, #matchup-table-container").stop(true, true).hide();
 	$("#matchup-table").html(tableHTML);
 	
 	// make table sortable
@@ -2633,7 +2633,7 @@ function calculateMatchups(attacker) {
 	filterMatchupTable(false);
 	
 	// display results
-	$("#matchup-display").fadeIn("slow");
+	$("#matchup-title, #matchup-overview, #matchup-table-container").fadeIn("slow");
 	
 	// setup events to view one vs one info
 	$(".matchup-char").on("click", function() {
@@ -2670,6 +2670,7 @@ function calculateMatchups(attacker) {
 // updates infomation depending on the mode selected
 function updateDisplay() {
 	"use strict";
+	var scrollTop = $(window).scrollTop();
 	if ($("#one-vs-one").is(":checked")) {
 		simBattle(getBattleInfo(), true);
 	} else if ($("#one-vs-all").is(":checked") && (!keepTable || !previousTable)) {
@@ -2677,6 +2678,7 @@ function updateDisplay() {
 	} else if ($("#all-vs-one").is(":checked") && (!keepTable || previousTable)) {
 		calculateMatchups(false);
 	}
+	$(window).scrollTop(scrollTop);
 }
 
 // determines if the matchup table needs to be updated whenever a change in data occurs
@@ -2955,6 +2957,22 @@ $(document).ready( function() {
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon($("#weapon-" + charNum).val(), charNum, true);
 		keepMatchupTable(charNum);
+		updateDisplay();
+	});
+	
+	// set up weapon type changes for overrides
+	$("#override-weapon-type").on("change", function (){
+		var selectedWeapon = $("#override-weapon").val();
+		loadWeapons(this.value, "#override-weapon");
+		$("#override-weapon").html("<option value='No Override'>No Override</option>" + $("#override-weapon").html());
+		keepTable = false;
+		
+		if (selectedWeapon === "No Override" || selectedWeapon === "None" || this.value === "Any" || weaponInfo[selectedWeapon].type === this.value) {
+			$("#override-weapon").val(selectedWeapon);
+		} else {
+			$("#override-weapon option:eq(0)").attr("selected", "selected");
+		}
+		
 		updateDisplay();
 	});
 	
