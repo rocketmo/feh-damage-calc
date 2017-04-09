@@ -30,8 +30,12 @@ function limit(num, minNumber) {
 	// check if value is outside of the limits
 	if (!$.isNumeric(num.value) || num.value <= minNumber) {
 		num.value = minNumber;
+	} else if (num.id === "override-curr-hp") {
+		if (num.value >= 100) {
+			num.value = 100;
+		}
 	} else if (num.value >= HIGHESTSTAT) {
-		num.value = HIGHESTSTAT;
+		num.value = HIGHESTSTAT; 
 	} else if (Math.floor(num.value) !== num.value) {
 		num.value = Math.floor(num.value);
 	}
@@ -510,12 +514,12 @@ function showSpecCooldown(selectedSpecial, charNum, changeCurr) {
 }
 
 // loads all weapons of the given type
-// weaponType is the weapon type to load, selectID determines which select to load in
-function loadWeapons(weaponType, selectID) {
+// weaponType is the weapon type to load, selectID determines which select to load in, set inheritOnly to true if unique weapons should not be included
+function loadWeapons(weaponType, selectID, inheritOnly) {
 	"use strict";
 	var options = "<option value='None'>None</option>";
 	for (var key in weaponInfo) {
-		if (weaponType === "Any" || weaponInfo[key].type === weaponType) {
+		if ((weaponType === "Any" || weaponInfo[key].type === weaponType) && (!inheritOnly || !weaponInfo[key].hasOwnProperty("char_unique"))) {
 			options += "<option value=\"" + key + "\">" + key + "</option>";
 		}
 	}
@@ -726,7 +730,7 @@ function displayChar(charName, charNum) {
 		var special = $("#special-" + charNum).val();
 		
 		// load in all weapons of the current weapon type
-		loadWeapons(weaponType, "#weapon-" + charNum);
+		loadWeapons(weaponType, "#weapon-" + charNum, false);
 		$("#weapon-" + charNum).val(weapon);
 		if (weapon === "None") {
 			$("#weapon-" + charNum).data("info", {});
@@ -1065,7 +1069,7 @@ function getCharTabInfo(attacker) {
 		
 		// change weapon
 		if (charTabInfo.character === "Custom") {
-			loadWeapons(charTabInfo.weaponType, "#weapon-" + charNum);
+			loadWeapons(charTabInfo.weaponType, "#weapon-" + charNum, false);
 		} 
 		
 		$("#weapon-" + charNum).val(charTabInfo.weapon);
@@ -2809,7 +2813,7 @@ function setupOverrides() {
 	"use strict";
 	
 	// load in options
-	loadWeapons("Any", "#override-weapon");
+	loadWeapons("Any", "#override-weapon", true);
 	loadPassives("a", "#override-passive-a");
 	loadPassives("b", "#override-passive-b");
 	loadPassives("c", "#override-passive-c");
@@ -2952,7 +2956,7 @@ $(document).ready( function() {
 	// set up weapon type changes
 	$(".weapon-type-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
-		loadWeapons(this.value, "#weapon-" + charNum);
+		loadWeapons(this.value, "#weapon-" + charNum, false);
 		setColor(this.value, charNum);
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
 		showWeapon($("#weapon-" + charNum).val(), charNum, true);
@@ -2963,7 +2967,7 @@ $(document).ready( function() {
 	// set up weapon type changes for overrides
 	$("#override-weapon-type").on("change", function (){
 		var selectedWeapon = $("#override-weapon").val();
-		loadWeapons(this.value, "#override-weapon");
+		loadWeapons(this.value, "#override-weapon", true);
 		$("#override-weapon").html("<option value='No Override'>No Override</option>" + $("#override-weapon").html());
 		keepTable = false;
 		
@@ -2981,16 +2985,16 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		
 		if (this.value === "Red") {
-			loadWeapons("Sword", "#weapon-" + charNum);
+			loadWeapons("Sword", "#weapon-" + charNum, false);
 			$("#weapon-type-" + charNum).val("Sword");
 		} else if (this.value === "Green") {
-			loadWeapons("Axe", "#weapon-" + charNum);
+			loadWeapons("Axe", "#weapon-" + charNum, false);
 			$("#weapon-type-" + charNum).val("Axe");
 		} else if (this.value === "Blue") {
-			loadWeapons("Lance", "#weapon-" + charNum);
+			loadWeapons("Lance", "#weapon-" + charNum, false);
 			$("#weapon-type-" + charNum).val("Lance");
 		} else {
-			loadWeapons("Bow", "#weapon-" + charNum);
+			loadWeapons("Bow", "#weapon-" + charNum, false);
 			$("#weapon-type-" + charNum).val("Bow");
 		}
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
