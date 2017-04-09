@@ -510,27 +510,49 @@ function showSpecCooldown(selectedSpecial, charNum, changeCurr) {
 }
 
 // loads all weapons of the given type
-// weaponType is the weapon type to load, charNum determines which panel to load in
-function loadWeapons(weaponType, charNum) {
+// weaponType is the weapon type to load, selectID determines which select to load in
+function loadWeapons(weaponType, selectID) {
 	"use strict";
 	var options = "<option value='None'>None</option>";
 	for (var key in weaponInfo) {
-		if (weaponInfo[key].type === weaponType) {
+		if (weaponType === "Any" || weaponInfo[key].type === weaponType) {
 			options += "<option value=\"" + key + "\">" + key + "</option>";
 		}
 	}
-	$("#weapon-" + charNum).html(options);
+	$(selectID).html(options);
 }
 
 // load all passive skills of the given letter
-// letter is the passive skill letter, charNum determines which panel to load in
-function loadPassives(letter, charNum) {
+// letter is the passive skill letter, selectID determines which select to load in
+function loadPassives(letter, selectID) {
 	"use strict";
 	var options = "<option value='None'>None</option>";
 	for (var key in skillInfo[letter]) {
 		options += "<option value=\"" + key + "\">" + key + "</option>";
 	}
-	$("#passive-" + letter + "-" + charNum).html(options);
+	$(selectID).html(options);
+}
+
+// load all assist skills
+// selectID determines which select to load in
+function loadAssists(selectID) {
+	"use strict";
+	var assistOptions = "<option value='None'>None</option>";
+	for (var assistName in assistInfo) {
+		assistOptions += "<option value=\"" + assistName + "\">" + assistName + "</option>";
+	}
+	$(selectID).html(assistOptions);
+}
+
+// load all special skills
+// selectID determines which select to load in
+function loadSpecials(selectID) {
+	"use strict";
+	var specOptions = "<option value='None'>None</option>";
+	for (var specName in specInfo) {
+		specOptions += "<option value=\"" + specName + "\">" + specName + "</option>";
+	}
+	$(selectID).html(specOptions);
 }
 
 // changes the color to match the given weapon type
@@ -704,7 +726,7 @@ function displayChar(charName, charNum) {
 		var special = $("#special-" + charNum).val();
 		
 		// load in all weapons of the current weapon type
-		loadWeapons(weaponType, charNum);
+		loadWeapons(weaponType, "#weapon-" + charNum);
 		$("#weapon-" + charNum).val(weapon);
 		if (weapon === "None") {
 			$("#weapon-" + charNum).data("info", {});
@@ -713,33 +735,25 @@ function displayChar(charName, charNum) {
 		}
 		
 		// load in passive skills
-		loadPassives("a", charNum);
+		loadPassives("a", "#passive-a-" + charNum);
 		$("#passive-a-" + charNum).val(passiveA);
 		getSkillData("#passive-a-" + charNum, "a", false);
 		
-		loadPassives("b", charNum);
+		loadPassives("b", "#passive-b-" + charNum);
 		$("#passive-b-" + charNum).val(passiveB);
 		getSkillData("#passive-b-" + charNum, "b", false);
 		
-		loadPassives("c", charNum);
+		loadPassives("c", "#passive-c-" + charNum);
 		$("#passive-c-" + charNum).val(passiveC);
 		getSkillData("#passive-c-" + charNum, "c", false);
 		
 		// load in assist skills
-		var assistOptions = "<option value='None'>None</option>";
-		for (var assistName in assistInfo) {
-			assistOptions += "<option value=\"" + assistName + "\">" + assistName + "</option>";
-		}
-		$("#assist-" + charNum).html(assistOptions);
+		loadAssists("#assist-" + charNum);
 		$("#assist-" + charNum).val(assist);
 		getAssistData(charNum);
 		
 		// load in specials
-		var specOptions = "<option value='None'>None</option>";
-		for (var specName in specInfo) {
-			specOptions += "<option value=\"" + specName + "\">" + specName + "</option>";
-		}
-		$("#special-" + charNum).html(specOptions);
+		loadSpecials("#special-" + charNum);
 		$("#special-" + charNum).val(special);
 		getSpecialData(charNum);
 		
@@ -1051,7 +1065,7 @@ function getCharTabInfo(attacker) {
 		
 		// change weapon
 		if (charTabInfo.character === "Custom") {
-			loadWeapons(charTabInfo.weaponType, charNum);
+			loadWeapons(charTabInfo.weaponType, "#weapon-" + charNum);
 		} 
 		
 		$("#weapon-" + charNum).val(charTabInfo.weapon);
@@ -2772,6 +2786,27 @@ function rarityUpdate(charNum, rarity) {
 	rarityUpdateWeapon(charNum, rarity);
 }
 
+// sets up matchup overrides section
+function setupOverrides() {
+	"use strict";
+	
+	// load in options
+	loadWeapons("Any", "#override-weapon");
+	loadPassives("a", "#override-passive-a");
+	loadPassives("b", "#override-passive-b");
+	loadPassives("c", "#override-passive-c");
+	loadAssists("#override-assist");
+	loadSpecials("#override-special");
+	
+	// add No override option
+	$("#override-weapon").html("<option value='No Override'>No Override</option>" + $("#override-weapon").html());
+	$("#override-passive-a").html("<option value='No Override'>No Override</option>" + $("#override-passive-a").html());
+	$("#override-passive-b").html("<option value='No Override'>No Override</option>" + $("#override-passive-b").html());
+	$("#override-passive-c").html("<option value='No Override'>No Override</option>" + $("#override-passive-c").html());
+	$("#override-assist").html("<option value='No Override'>No Override</option>" + $("#override-assist").html());
+	$("#override-special").html("<option value='No Override'>No Override</option>" + $("#override-special").html());
+}
+
 // setup inital page
 $(document).ready( function() {
 	"use strict";	
@@ -2850,6 +2885,7 @@ $(document).ready( function() {
 	// setup initial display
 	setupStats();
 	setupChars();
+	setupOverrides();
 	
 	// setup character select
 	$(".char-selector").on("change", function() {
@@ -2898,10 +2934,10 @@ $(document).ready( function() {
 	// set up weapon type changes
 	$(".weapon-type-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
-		loadWeapons(this.value, charNum);
+		loadWeapons(this.value, "#weapon-" + charNum);
 		setColor(this.value, charNum);
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
-		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
+		showWeapon($("#weapon-" + charNum).val(), charNum, true);
 		keepMatchupTable(charNum);
 		updateDisplay();
 	});
@@ -2911,16 +2947,16 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		
 		if (this.value === "Red") {
-			loadWeapons("Sword", charNum);
+			loadWeapons("Sword", "#weapon-" + charNum);
 			$("#weapon-type-" + charNum).val("Sword");
 		} else if (this.value === "Green") {
-			loadWeapons("Axe", charNum);
+			loadWeapons("Axe", "#weapon-" + charNum);
 			$("#weapon-type-" + charNum).val("Axe");
 		} else if (this.value === "Blue") {
-			loadWeapons("Lance", charNum);
+			loadWeapons("Lance", "#weapon-" + charNum);
 			$("#weapon-type-" + charNum).val("Lance");
 		} else {
-			loadWeapons("Bow", charNum);
+			loadWeapons("Bow", "#weapon-" + charNum);
 			$("#weapon-type-" + charNum).val("Bow");
 		}
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
