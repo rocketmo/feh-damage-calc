@@ -1225,6 +1225,15 @@ function belowThresholdBonus(battleInfo, belowThresholdMod, modSource, charToUse
 	return battleInfo;
 }
 
+// handles atk bonus from -blade tomes
+// battleInfo contains all battle information, bonusAtk is the total amount of bonuses to add to atk, charToUse is either "attacker" or "defender"
+function bladeTomeBonus(battleInfo, bonusAtk, charToUse) {
+	"use strict";
+	battleInfo[charToUse].atk += bonusAtk;
+	battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charToUse + "'><strong>" + battleInfo[charToUse].name + "</strong></span> adds total bonuses to attack, increasing attack by " + bonusAtk.toString() + " [" + battleInfo[charToUse].weaponName + "].</li>";
+	return battleInfo;
+}
+
 // checks if the defender can counter
 // battleInfo contains all battle information
 function defCanCounter(battleInfo) {
@@ -1470,11 +1479,6 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	// determine base attack
 	var atkPower = attacker.atk;
 	
-	if (attacker.hasOwnProperty("addBonusAtk") && attacker.addBonusAtk > 0) {
-		atkPower += attacker.addBonusAtk;
-		battleInfo.logMsg += "Attack is boosted by " + attacker.addBonusAtk.toString() + " [" + attacker.weaponName + "]. ";
-	}
-	
 	// super effectiveness against movement types
 	if (attacker.weaponData.hasOwnProperty("move_effective") && attacker.weaponData.move_effective === defender.moveType) {
 		if (defender.passiveAData.hasOwnProperty("cancel_effective")) {
@@ -1568,7 +1572,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	
 	// damage buffs by stat
 	if (attacker.specialData.hasOwnProperty("dmg_buff_by_stat") && attacker.specCurrCooldown <= 0) {
-		dmg += roundNum(attacker.specialData.dmg_buff_by_stat.buff * attacker[attacker.specialData.dmg_buff_by_stat.stat + "WS"], false);
+		dmg += roundNum(attacker.specialData.dmg_buff_by_stat.buff * attacker[attacker.specialData.dmg_buff_by_stat.stat], false);
 		battleInfo.logMsg += "Damage boosted by " + (attacker.specialData.dmg_buff_by_stat.buff * 100).toString() + "% of " + statWord(attacker.specialData.dmg_buff_by_stat.stat) + " [" + attacker.special + "]. ";
 		atkSpec = true;
 	}
@@ -1768,7 +1772,7 @@ function simBattle(battleInfo, displayMsg) {
 	var desperationWeapon = canActivateDesperation(battleInfo.attacker.weaponData, battleInfo.attacker.initHP, battleInfo.attacker.hp);
 	var desperationSource = desperationPassive ? battleInfo.attacker.passiveB : battleInfo.attacker.weaponName;
 	
-	// attacker initate bonus
+	// attacker initiate bonus
 	if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_mod")) {
 		battleInfo = initiateBonus(battleInfo, battleInfo.attacker.weaponData.initiate_mod, battleInfo.attacker.weaponName);
 	}
@@ -1776,17 +1780,29 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo = initiateBonus(battleInfo, battleInfo.attacker.passiveAData.initiate_mod, battleInfo.attacker.passiveA);
 	}
 	
+	// attacker below hp threshold bonus
+	if (battleInfo.attacker.weaponData.hasOwnProperty("below_threshold_mod") && battleInfo.attacker.initHP <= checkRoundError(battleInfo.attacker.weaponData.below_threshold_mod.threshold * battleInfo.attacker.hp)) {
+		battleInfo = belowThresholdBonus(battleInfo, battleInfo.attacker.weaponData.below_threshold_mod, battleInfo.attacker.weaponName, "attacker");
+	} 
+	
+	// attacker blade tome bonuses
+	if (battleInfo.attacker.hasOwnProperty("addBonusAtk") && battleInfo.attacker.addBonusAtk > 0) {
+		battleInfo = bladeTomeBonus(battleInfo, battleInfo.attacker.addBonusAtk, "attacker");
+	}
+	
 	// defending bonus
 	if (battleInfo.defender.weaponData.hasOwnProperty("defend_mod")) {
 		battleInfo = defendBonus(battleInfo, battleInfo.defender.weaponData.defend_mod, battleInfo.defender.weaponName);
 	}
 	
-	// below hp threshold bonus
-	if (battleInfo.attacker.weaponData.hasOwnProperty("below_threshold_mod") && battleInfo.attacker.initHP <= checkRoundError(battleInfo.attacker.weaponData.below_threshold_mod.threshold * battleInfo.attacker.hp)) {
-		battleInfo = belowThresholdBonus(battleInfo, battleInfo.attacker.weaponData.below_threshold_mod, battleInfo.attacker.weaponName, "attacker");
-	} 
+	// defender below hp threshold bonus
 	if (battleInfo.defender.weaponData.hasOwnProperty("below_threshold_mod") && battleInfo.defender.initHP <= checkRoundError(battleInfo.defender.weaponData.below_threshold_mod.threshold * battleInfo.defender.hp)) {
 		battleInfo = belowThresholdBonus(battleInfo, battleInfo.defender.weaponData.below_threshold_mod, battleInfo.defender.weaponName, "defender");
+	}
+	
+	// defender blade tome bonuses
+	if (battleInfo.defender.hasOwnProperty("addBonusAtk") && battleInfo.defender.addBonusAtk > 0) {
+		battleInfo = bladeTomeBonus(battleInfo, battleInfo.defender.addBonusAtk, "defender");
 	}
 	
 	// outspeed info
