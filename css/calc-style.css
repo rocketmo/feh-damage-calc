@@ -554,10 +554,10 @@ h3 {
 	padding: 0;
 }
 
-#matchup-overrides table #override-msg {
-	text-align: center;
+#override-msg {
+	margin: 0;
+	line-height: 130%;
 	white-space: normal;
-	padding-top: 0.5em;
 	font-style: italic;
 	color: #5b5b5b;
 }
