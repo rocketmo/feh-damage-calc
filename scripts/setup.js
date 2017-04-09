@@ -3105,6 +3105,38 @@ $(document).ready( function() {
 		filterMatchupTable(true);
 	});
 	
+	// override options
+	$(".override-option").on("change", function() {
+		keepTable = false;
+		updateDisplay();
+	});
+	
+	// reset overrides
+	$("#override-reset").on("click", function() {
+		$("#override-rarity").val(5);
+		$("#override-level").val(40);
+		$("#override-merge").val(0);
+		$("#override-boon").val("neutral");
+		$("#override-bane").val("neutral");
+		
+		loadWeapons("Any", "#override-weapon", true);
+		$("#override-weapon").html("<option value='No Override'>No Override</option>" + $("#override-weapon").html());
+		$("#override-weapon").val("No Override");
+		
+		$("#override-passive-a").val("No Override");
+		$("#override-passive-b").val("No Override");
+		$("#override-passive-c").val("No Override");
+		$("#override-assist").val("No Override");
+		$("#override-special").val("No Override");
+		$("#override-spec-cooldown").val("max");
+		
+		$(".override-stat").val(0);
+		$("#override-curr-hp").val(100);
+		
+		keepTable = false;
+		updateDisplay();
+	});
+	
 	// stat variants change
 	$(".build-select").on("change", function() {
 		var charNum = $(this).data("charnum").toString();

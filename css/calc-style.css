@@ -512,21 +512,21 @@ h3 {
 	width: 12.3em;
 }
 
-.character-select .level-select, #matchup-overrides .level-select {
+.character-select .level-select, #matchup-overrides #override-level {
 	width: 7.8em;
 	margin: 0 0.4em 0 0;
 }
 
-.character-select .merge-select, #matchup-overrides .merge-select {
+.character-select .merge-select, #matchup-overrides #override-merge {
 	width: 4.1em;
 }
 
-.character-select .boon-select, #matchup-overrides .boon-select {
+.character-select .boon-select, #matchup-overrides #override-boon {
 	width: 5.95em;
 	margin: 0 0.4em 0 0;
 }
 
-.character-select .bane-select, #matchup-overrides .bane-select {
+.character-select .bane-select, #matchup-overrides #override-bane {
 	width: 5.95em;
 }
 

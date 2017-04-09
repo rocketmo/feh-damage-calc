@@ -645,20 +645,20 @@
 															<div class="info-section">
 																<div>
 																	<label>Rarity</label>
-																	<select id="override-rarity" class="rarity-select">
+																	<select id="override-rarity" class="override-option">
 																		<option value="5">5 Stars</option>
 																		<option value="4">4 Stars</option>
 																		<option value="3">3 Stars</option>
 																		<option value="2">2 Stars</option>
-																		<option value="1">1 Stars</option>
+																		<option value="1">1 Star</option>
 																	</select>
 																</div>
 																<div>
 																	<label>Level</label>
-																	<select id="override-level" class="level-select">
+																	<select id="override-level" class="override-option">
 																		<option value="40">Lvl. 40</option>
 																		<option value="1">Lvl. 1</option>
-																	</select><select id="override-merge" class="merge-select" title="Merged units">
+																	</select><select id="override-merge" class="override-option" title="Merged units">
 																		<option value="0">+0</option>
 																		<option value="1">+1</option>
 																		<option value="2">+2</option>
@@ -674,14 +674,14 @@
 																</div>
 																<div>
 																	<label>Boon/Bane</label>
-																	<select id="override-boon" class="boon-select" title="Boon">
+																	<select id="override-boon" class="override-option" title="Boon">
 																		<option value="neutral">Neutral</option>
 																		<option value="hp">+HP</option>
 																		<option value="atk">+ATK</option>
 																		<option value="spd">+SPD</option>
 																		<option value="def">+DEF</option>
 																		<option value="res">+RES</option>
-																	</select><select id="override-bane" class="bane-select" title="Bane">
+																	</select><select id="override-bane" class="override-option" title="Bane">
 																		<option value="neutral">Neutral</option>
 																		<option value="hp">-HP</option>
 																		<option value="atk">-ATK</option>
@@ -696,7 +696,7 @@
 																	<label>
 																		<span id="override-weapon-button" class="collapse-button" data-section="override-weapon-type-container">Weapon</span>
 																	</label>
-																	<select id="override-weapon"></select>
+																	<select id="override-weapon" class="override-option"></select>
 																</div>
 																<div id="override-weapon-type-container" class="collapsable">
 																	<label>Weapon Type</label>
@@ -720,27 +720,27 @@
 															<div class="info-section-bottom">
 																<div>
 																	<label class="passive-a-label">Passive Skill A</label>
-																	<select id="override-passive-a" data-skilltype="a"></select>
+																	<select id="override-passive-a" class="override-option" data-skilltype="a"></select>
 																</div>
 																<div>
 																	<label class="passive-b-label">Passive Skill B</label>
-																	<select id="override-passive-b" data-skilltype="b"></select>
+																	<select id="override-passive-b" class="override-option" data-skilltype="b"></select>
 																</div>
 																<div>
 																	<label class="passive-c-label">Passive Skill C</label>
-																	<select id="override-passive-c" data-skilltype="c"></select>
+																	<select id="override-passive-c" class="override-option" data-skilltype="c"></select>
 																</div>
 																<div>
 																	<label class="assist-label">Assist Skill</label>
-																	<select id="override-assist"></select>
+																	<select id="override-assist" class="override-option"></select>
 																</div>
 																<div>
 																	<label class="special-label">Special Skill</label>
-																	<select id="override-special"></select>
+																	<select id="override-special" class="override-option"></select>
 																</div>
 																<div>
 																	<label title="Special skills activate when cooldown reaches 0.">Special Cooldown</label>
-																	<select id="override-spec-cooldown">
+																	<select id="override-spec-cooldown" class="override-option">
 																		<option value="max">Max</option>
 																		<option value="5">5</option>
 																		<option value="4">4</option>
@@ -763,33 +763,33 @@
 																	</tr>
 																	<tr>
 																		<td><label class="stat" title="The higher a unit's Attack, the more damage it will inflict on foes.">ATK</label></td>
-																		<td class="center-cell"><select id="override-atk-bonus" class="stat-bonus"></select></td>
-																		<td class="center-cell"><select id="override-atk-penalty" class="stat-penalty"></select></td>
-																		<td class="center-cell"><select id="override-atk-spur" class="stat-spur"></select></td>
+																		<td class="center-cell"><select id="override-atk-bonus" class="stat-bonus override-option override-stat"></select></td>
+																		<td class="center-cell"><select id="override-atk-penalty" class="stat-penalty override-option override-stat"></select></td>
+																		<td class="center-cell"><select id="override-atk-spur" class="stat-spur override-option override-stat"></select></td>
 																	</tr>
 																	<tr>
 																		<td><label class="stat" title="A unit will attack twice if their Speed is at least 5 more than their foe's Speed.">SPD</label></td>
-																		<td class="center-cell"><select id="override-spd-bonus" class="stat-bonus"></select></td>
-																		<td class="center-cell"><select id="override-spd-penalty" class="stat-penalty"></select></td>
-																		<td class="center-cell"><select id="override-spd-spur" class="stat-spur"></select></td>
+																		<td class="center-cell"><select id="override-spd-bonus" class="stat-bonus override-option override-stat"></select></td>
+																		<td class="center-cell"><select id="override-spd-penalty" class="stat-penalty override-option override-stat"></select></td>
+																		<td class="center-cell"><select id="override-spd-spur" class="stat-spur override-option override-stat"></select></td>
 																	</tr>
 																	<tr>
 																		<td><label class="stat" title="The higher a unit's Defense is, the less damage they take from physical attacks.">DEF</label></td>
-																		<td class="center-cell"><select id="override-def-bonus" class="stat-bonus"></select></td>
-																		<td class="center-cell"><select id="override-def-penalty" class="stat-penalty"></select></td>
-																		<td class="center-cell"><select id="override-def-spur" class="stat-spur"></select></td>
+																		<td class="center-cell"><select id="override-def-bonus" class="stat-bonus override-option override-stat"></select></td>
+																		<td class="center-cell"><select id="override-def-penalty" class="stat-penalty override-option override-stat"></select></td>
+																		<td class="center-cell"><select id="override-def-spur" class="stat-spur override-option override-stat"></select></td>
 																	</tr>
 																	<tr>
 																		<td><label class="stat" title="The higher a unit's Resistance is, the less damage they take from magical attacks.">RES</label></td>
-																		<td class="center-cell"><select id="override-res-bonus" class="stat-bonus battle-val" data-charnum="1"></select></td>
-																		<td class="center-cell"><select id="override-res-penalty" class="stat-penalty battle-val" data-charnum="1"></select></td>
-																		<td class="center-cell"><select id="override-res-spur" class="stat-spur battle-val" data-charnum="1"></select></td>
+																		<td class="center-cell"><select id="override-res-bonus" class="stat-bonus override-option override-stat"></select></td>
+																		<td class="center-cell"><select id="override-res-penalty" class="stat-penalty override-option override-stat"></select></td>
+																		<td class="center-cell"><select id="override-res-spur" class="stat-spur override-option override-stat"></select></td>
 																	</tr>
 																</table>
 															</div>
 															<div class="info-section current-hp">
 																<label class="curr-hp-label">Current HP</label>
-																<input type="number" id="override-curr-hp" class="more-than-zero" value="100">%
+																<input type="number" id="override-curr-hp" class="more-than-zero override-option" value="100">%
 															</div>
 															<div class="info-section">
 																<button id="override-reset">Reset</button>
