@@ -711,8 +711,10 @@ function displayChar(charName, charNum) {
 		getPortrait((charNum === "1" ? "#attacker-portrait" : "#defender-portrait"), "Other");
 		
 		// enable inputs
-		$("#extra-char-info-" + charNum).css("color", "white");
-		$("#extra-char-info-" + charNum + " select").removeAttr("disabled");
+		if ($("#one-vs-one").is(":checked") || ($("#one-vs-all").is(":checked") && charNum === "1") || ($("#all-vs-one").is(":checked") && charNum === "2")) {
+			$("#extra-char-info-" + charNum).css("color", "white");
+			$("#extra-char-info-" + charNum + " select").removeAttr("disabled");
+		}
 		
 		// show collapsed section
 		$("#extra-char-info-" + charNum).show(700);
@@ -2666,132 +2668,6 @@ function filterMatchupTable(fadeIn) {
 	}
 }
 
-// calculates and prints info of every battle matchup for one character
-// attacker is true if we are using the attacker panel as our base character
-function calculateMatchups(attacker) {
-	"use strict";
-	var battleInfo = {};
-	var winCount = 0;
-	var lossCount = 0;
-	var drawCount = 0;
-	var tableHTML = "";
-	var charCount = 0;
-	var foeClass = attacker ? "defender" : "attacker";
-	keepTable = true;
-	
-	// add table headers
-	if (attacker) {
-		tableHTML += "<thead><tr class='matchup-header'><th data-tsorter='img'></th><th data-tsorter='link'>Defender</th>";
-	} else {
-		tableHTML += "<thead><tr class='matchup-header'><th data-tsorter='img'></th><th data-tsorter='link'>Attacker</th>";
-	}
-	
-	tableHTML += "<th data-tsorter='numeric'>Attacker DMG</th><th data-tsorter='numeric'>Defender DMG</th><th data-tsorter='text-span-num'>Attacker HP</th><th data-tsorter='text-span-num'>Defender HP</th><th data-tsorter='link'>Result</th></tr></thead>";
-	
-	// start tbody
-	tableHTML += "<tbody>";
-	
-	// add table rows
-	for (var key in charInfo) {
-		if (key !== "Custom" && charInfo[key].hasOwnProperty("base_stat")) {
-			// sim battle
-			battleInfo = simBattle(getBattleInfoWithDefault(attacker, key), false);
-			
-			// add to table
-			tableHTML += (charCount % 2 === 1) ? "<tr class='matchup-row-offset'>" : "<tr>";
-			tableHTML += "<td><img src=\"img/Portraits/" + key + ".png\"></td>";
-			tableHTML += "<td><span class='matchup-char " + foeClass + "'>" + key + "</span></td>";
-			tableHTML += "<td class='attacker'>" + battleInfo.attacker.damageDealt.toString() + "</td>";
-			tableHTML += "<td class='defender'>" + battleInfo.defender.damageDealt.toString() + "</td>";
-			tableHTML += "<td class='attacker'>" + battleInfo.attacker.startHP.toString() + " → <span>" + battleInfo.attacker.currHP.toString() + "</span></td>";
-			tableHTML += "<td class='defender'>" + battleInfo.defender.startHP.toString() + " → <span>" + battleInfo.defender.currHP.toString() + "</span></td>";
-			
-			if (battleInfo.attacker.currHP <= 0) {
-				tableHTML += "<td class='defender'><strong>Defender Wins</strong></td>";
-				
-				if (attacker) {
-					lossCount += 1;
-				} else {
-					winCount += 1;
-				}
-			} else if (battleInfo.defender.currHP <= 0) {
-				tableHTML += "<td class='attacker'><strong>Attacker Wins</strong></td>";
-				
-				if (attacker) {
-					winCount += 1;
-				} else {
-					lossCount += 1;
-				}
-			} else {
-				tableHTML += "<td><strong>Draw</strong></td>";
-				drawCount += 1;
-			}
-			
-			tableHTML += "</tr>";
-			
-			// increment counter
-			charCount += 1;
-		}
-	}
-	
-	// end tbody
-	tableHTML += "</tbody>";
-	
-	// create table
-	$("#matchup-title, #matchup-overview, #matchup-table-container").stop(true, true).hide();
-	$("#matchup-table").html(tableHTML);
-	
-	// make table sortable
-	tsorter.create("matchup-table");
-	
-	// add table title
-	var mainCharName = "";
-	if (attacker) {
-		mainCharName = ($("#char-1").val() === "Custom") ? customName($("#weapon-type-1").val(), $("#move-type-1").val()) : $("#char-1").val();
-		$("#matchup-title").text(mainCharName + " vs. All").removeClass("defender").addClass("attacker");
-	} else {
-		mainCharName = ($("#char-2").val() === "Custom") ? customName($("#weapon-type-2").val(), $("#move-type-2").val()) : $("#char-2").val();
-		$("#matchup-title").text("All vs. " + mainCharName).removeClass("attacker").addClass("defender");
-	}
-	
-	// filter and show overview
-	filterMatchupTable(false);
-	
-	// display results
-	$("#matchup-title, #matchup-overview, #matchup-table-container").fadeIn("slow");
-	
-	// setup events to view one vs one info
-	$(".matchup-char").on("click", function() {
-		var changeAttacker = ($("#one-vs-all").is(":checked")) ? false : true;
-		var charName = $(this).text();
-		
-		// select empty tab if possible
-		selectEmptyCharTab(changeAttacker);
-		
-		// check one vs one radio button
-		$("input[type=radio][name=mode]").val(["one-vs-one"]);
-		
-		// show one vs one info
-		$("#battle-result").stop(true, true).show(700);
-		$("#battle-log").stop(true, true).show(700);
-		$("#matchups").stop(true, true).hide(700);
-
-		// enable all inputs
-		enableCharPanel("1", true);
-		enableCharPanel("2", true);
-		
-		$("#char-" + (changeAttacker ? "1" : "2")).val(charName);
-		displayChar(charName, (changeAttacker ? "1" : "2"));
-		simBattle(getBattleInfo(), true);
-		keepTable = true;
-	});
-	
-	// recolor rows when sorting
-	$("#matchup-table th").on("click", function() {
-		recolorMatchupRows();
-	});
-}
-
 // updates infomation depending on the mode selected
 function updateDisplay() {
 	"use strict";
@@ -2927,6 +2803,273 @@ function rarityUpdate(charNum, rarity) {
 	rarityUpdatePassive(charNum, rarity, "c");
 	rarityUpdateAssist(charNum, rarity);
 	rarityUpdateWeapon(charNum, rarity);
+}
+
+// applies overrides to the character in the given panel
+function applyOverrides(charNum) {
+	"use strict";
+	
+	var charName = $("#char-" + charNum).val();
+	
+	// get build info
+	var rarity = 5;
+	var level = parseInt($("#override-level").val());
+	var merge = parseInt($("#override-merge").val());
+	var boon = $("#override-boon").val();
+	var bane = $("#override-bane").val();
+	
+	// display build info
+	$("#level-" + charNum).val(level);
+	$("#merge-" + charNum).val(merge);
+	$("#boon-" + charNum).val(boon);
+	$("#bane-" + charNum).val(bane);
+	
+	// override rarity
+	var overrideRarity = parseInt($("#override-rarity").val());
+	if (overrideRarity < 5 && charInfo[charName].hasOwnProperty("base_stat")) {
+		if (charInfo[charName].base_stat.hasOwnProperty("star-" + overrideRarity.toString())) {
+			rarity = overrideRarity;
+		} else {
+			for (var rarityIndex = 4; rarityIndex >= overrideRarity; rarityIndex--) {
+				if (!charInfo[charName].base_stat.hasOwnProperty("star-" + rarityIndex.toString())) {
+					break;
+				}
+				rarity = rarityIndex;
+			}
+		}
+		
+		// update data
+		$("#rarity-" + charNum).val(rarity);
+		rarityUpdate(charNum, rarity);
+	}
+	
+	// override weapon
+	if ($("#override-weapon").val() !== "No Override") {
+		if ($("#override-weapon").val() === "None") {
+			$("#weapon-" + charNum).val("None");
+			showWeapon("None", charNum, true);
+		} else if (charInfo[charName].weapon_type === weaponInfo[$("#override-weapon").val()].type) {
+			$("#weapon-" + charNum).val($("#override-weapon").val());
+			showWeapon($("#override-weapon").val(), charNum, true);
+		}
+	}
+	
+	// override passives
+	if ($("#override-passive-a").val() !== "No Override") {
+		if ($("#override-passive-a").val() === "None") {
+			$("#passive-a-" + charNum).val("None");
+			getSkillData(charNum, "a", true);
+		} else if (isInheritable(skillInfo.a[$("#override-passive-a").val()], charName)) {
+			$("#passive-a-" + charNum).val($("#override-passive-a").val());
+			getSkillData(charNum, "a", true);
+		}
+	}
+	if ($("#override-passive-b").val() !== "No Override") {
+		if ($("#override-passive-b").val() === "None") {
+			$("#passive-b-" + charNum).val("None");
+			getSkillData(charNum, "b", true);
+		} else if (isInheritable(skillInfo.b[$("#override-passive-b").val()], charName)) {
+			$("#passive-b-" + charNum).val($("#override-passive-b").val());
+			getSkillData(charNum, "b", true);
+		}
+	}
+	if ($("#override-passive-c").val() !== "No Override") {
+		if ($("#override-passive-c").val() === "None") {
+			$("#passive-c-" + charNum).val("None");
+			getSkillData(charNum, "c", true);
+		} else if (isInheritable(skillInfo.c[$("#override-passive-c").val()], charName)) {
+			$("#passive-c-" + charNum).val($("#override-passive-c").val());
+			getSkillData(charNum, "c", true);
+		}
+	}
+	
+	// override assist
+	if ($("#override-assist").val() !== "No Override") {
+		if ($("#override-assist").val() === "None") {
+			$("#assist-" + charNum).val("None");
+			getAssistData(charNum);
+			updateSpecCooldown(charNum);
+		} else if (isInheritable(assistInfo[$("#override-assist").val()], charName)) {
+			$("#assist-" + charNum).val($("#override-assist").val());
+			getAssistData(charNum);
+			updateSpecCooldown(charNum);
+		}
+	}
+	
+	// override special
+	if ($("#override-special").val() !== "No Override") {
+		if ($("#override-special").val() === "None") {
+			$("#special-" + charNum).val("None");
+			getSpecialData(charNum);
+			showSpecCooldown("None", charNum, false);
+			updateSpecCooldown(charNum);
+		} else if (isInheritable(specInfo[$("#override-special").val()], charName)) {
+			$("#special-" + charNum).val($("#override-special").val());
+			getSpecialData(charNum);
+			showSpecCooldown($("#override-special").val(), charNum, false);
+			updateSpecCooldown(charNum);
+		}
+	}
+	
+	// override special cooldown
+	if ($("#override-spec-cooldown").val() !== "max") {
+		$("#spec-cooldown-" + charNum).val(Math.min($("#spec-cooldown-" + charNum).val(), parseInt($("#override-spec-cooldown").val())));
+	}
+	
+	// show stats
+	if (charInfo[charName].hasOwnProperty("base_stat")) {
+		displayStatTotals(charNum);
+	}
+	
+	// override bonuses, penalties and spurs
+	$("#atk-bonus-" + charNum).val($("#override-atk-bonus").val());
+	$("#spd-bonus-" + charNum).val($("#override-spd-bonus").val());
+	$("#def-bonus-" + charNum).val($("#override-def-bonus").val());
+	$("#res-bonus-" + charNum).val($("#override-res-bonus").val());
+	$("#atk-penalty-" + charNum).val($("#override-atk-penalty").val());
+	$("#spd-penalty-" + charNum).val($("#override-spd-penalty").val());
+	$("#def-penalty-" + charNum).val($("#override-def-penalty").val());
+	$("#res-penalty-" + charNum).val($("#override-res-penalty").val());
+	$("#atk-spur-" + charNum).val($("#override-atk-spur").val());
+	$("#spd-spur-" + charNum).val($("#override-spd-spur").val());
+	$("#def-spur-" + charNum).val($("#override-def-spur").val());
+	$("#res-spur-" + charNum).val($("#override-res-spur").val());
+	
+	// override current hp
+	if (parseInt($("#override-curr-hp").val()) < 100) {
+		var overrideHP = roundNum(parseInt($("#hp-" + charNum).val()) * (parseInt($("#override-curr-hp").val()) / 100), false);
+		overrideHP = Math.min(overrideHP, $("#hp-" + charNum).val());
+		overrideHP = Math.max(overrideHP, 1);
+		$("#curr-hp-" + charNum).val(overrideHP);
+	}
+}
+
+// calculates and prints info of every battle matchup for one character
+// attacker is true if we are using the attacker panel as our base character
+function calculateMatchups(attacker) {
+	"use strict";
+	var battleInfo = {};
+	var winCount = 0;
+	var lossCount = 0;
+	var drawCount = 0;
+	var tableHTML = "";
+	var charCount = 0;
+	var foeClass = attacker ? "defender" : "attacker";
+	keepTable = true;
+	
+	// add table headers
+	if (attacker) {
+		tableHTML += "<thead><tr class='matchup-header'><th data-tsorter='img'></th><th data-tsorter='link'>Defender</th>";
+	} else {
+		tableHTML += "<thead><tr class='matchup-header'><th data-tsorter='img'></th><th data-tsorter='link'>Attacker</th>";
+	}
+	
+	tableHTML += "<th data-tsorter='numeric'>Attacker DMG</th><th data-tsorter='numeric'>Defender DMG</th><th data-tsorter='text-span-num'>Attacker HP</th><th data-tsorter='text-span-num'>Defender HP</th><th data-tsorter='link'>Result</th></tr></thead>";
+	
+	// start tbody
+	tableHTML += "<tbody>";
+	
+	// add table rows
+	for (var key in charInfo) {
+		if (key !== "Custom" && charInfo[key].hasOwnProperty("base_stat")) {
+			// sim battle
+			battleInfo = simBattle(getBattleInfoWithDefault(attacker, key), false);
+			
+			// add to table
+			tableHTML += (charCount % 2 === 1) ? "<tr class='matchup-row-offset'>" : "<tr>";
+			tableHTML += "<td><img src=\"img/Portraits/" + key + ".png\"></td>";
+			tableHTML += "<td><span class='matchup-char " + foeClass + "'>" + key + "</span></td>";
+			tableHTML += "<td class='attacker'>" + battleInfo.attacker.damageDealt.toString() + "</td>";
+			tableHTML += "<td class='defender'>" + battleInfo.defender.damageDealt.toString() + "</td>";
+			tableHTML += "<td class='attacker'>" + battleInfo.attacker.startHP.toString() + " → <span>" + battleInfo.attacker.currHP.toString() + "</span></td>";
+			tableHTML += "<td class='defender'>" + battleInfo.defender.startHP.toString() + " → <span>" + battleInfo.defender.currHP.toString() + "</span></td>";
+			
+			if (battleInfo.attacker.currHP <= 0) {
+				tableHTML += "<td class='defender'><strong>Defender Wins</strong></td>";
+				
+				if (attacker) {
+					lossCount += 1;
+				} else {
+					winCount += 1;
+				}
+			} else if (battleInfo.defender.currHP <= 0) {
+				tableHTML += "<td class='attacker'><strong>Attacker Wins</strong></td>";
+				
+				if (attacker) {
+					winCount += 1;
+				} else {
+					lossCount += 1;
+				}
+			} else {
+				tableHTML += "<td><strong>Draw</strong></td>";
+				drawCount += 1;
+			}
+			
+			tableHTML += "</tr>";
+			
+			// increment counter
+			charCount += 1;
+		}
+	}
+	
+	// end tbody
+	tableHTML += "</tbody>";
+	
+	// create table
+	$("#matchup-title, #matchup-overview, #matchup-table-container").stop(true, true).hide();
+	$("#matchup-table").html(tableHTML);
+	
+	// make table sortable
+	tsorter.create("matchup-table");
+	
+	// add table title
+	var mainCharName = "";
+	if (attacker) {
+		mainCharName = ($("#char-1").val() === "Custom") ? customName($("#weapon-type-1").val(), $("#move-type-1").val()) : $("#char-1").val();
+		$("#matchup-title").text(mainCharName + " vs. All").removeClass("defender").addClass("attacker");
+	} else {
+		mainCharName = ($("#char-2").val() === "Custom") ? customName($("#weapon-type-2").val(), $("#move-type-2").val()) : $("#char-2").val();
+		$("#matchup-title").text("All vs. " + mainCharName).removeClass("attacker").addClass("defender");
+	}
+	
+	// filter and show overview
+	filterMatchupTable(false);
+	
+	// display results
+	$("#matchup-title, #matchup-overview, #matchup-table-container").fadeIn("slow");
+	
+	// setup events to view one vs one info
+	$(".matchup-char").on("click", function() {
+		var changeAttacker = ($("#one-vs-all").is(":checked")) ? false : true;
+		var charName = $(this).text();
+		
+		// select empty tab if possible
+		selectEmptyCharTab(changeAttacker);
+		
+		// check one vs one radio button
+		$("input[type=radio][name=mode]").val(["one-vs-one"]);
+		
+		// show one vs one info
+		$("#battle-result").stop(true, true).show(700);
+		$("#battle-log").stop(true, true).show(700);
+		$("#matchups").stop(true, true).hide(700);
+
+		// enable all inputs
+		enableCharPanel("1", true);
+		enableCharPanel("2", true);
+		
+		// input data
+		$("#char-" + (changeAttacker ? "1" : "2")).val(charName);
+		displayChar(charName, (changeAttacker ? "1" : "2"));
+		applyOverrides(changeAttacker ? "1" : "2");
+		simBattle(getBattleInfo(), true);
+		keepTable = true;
+	});
+	
+	// recolor rows when sorting
+	$("#matchup-table th").on("click", function() {
+		recolorMatchupRows();
+	});
 }
 
 // sets up matchup overrides section
@@ -3228,6 +3371,14 @@ $(document).ready( function() {
 	
 	// override options
 	$(".override-option").on("change", function() {
+		// check if boon and bane match
+		if (this.id === "override-boon" && this.value === $("#override-bane").val()) {
+			$("#override-bane").val("neutral");
+		}
+		if (this.id === "override-bane" && this.value === $("#override-boon").val()) {
+			$("#override-boon").val("neutral");
+		}
+		
 		keepTable = false;
 		updateDisplay();
 	});
