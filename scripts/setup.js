@@ -159,12 +159,12 @@ function weaponTypeRange(weaponType) {
 	return range;
 }
 
-// determines if the given skill is inheritable by the character in the given panel
-function isInheritable(skill, charNum) {
+// determines if the given skill is inheritable by the given character
+function isInheritable(skill, charName) {
 	"use strict";
-	var moveType = $("#move-type-" + charNum).val();
-	var color = $("#color-" + charNum).val();
-	var weaponType = $("#weapon-type-" + charNum).val();
+	var moveType = charInfo[charName].move_type;
+	var color = charInfo[charName].color;
+	var weaponType = charInfo[charName].weapon_type;
 	
 	var range = weaponTypeRange(weaponType);
 	
@@ -179,10 +179,10 @@ function isInheritable(skill, charNum) {
 			(!skill.hasOwnProperty("dragon_unique") || dragon) && (!skill.hasOwnProperty("move_restrict") || skill.move_restrict !== moveType));
 }
 
-// determines if the given weapon is inheritable by the character in the given panel
-function isInheritableWeapon(weapon, charNum) {
+// determines if the given weapon is inheritable by the given character
+function isInheritableWeapon(weapon, charName) {
 	"use strict";
-	var weaponType = $("#weapon-type-" + charNum).val();
+	var weaponType = charInfo[charName].weapon_type;
 	
 	return !weapon.hasOwnProperty("char_unique") && (weapon.type === weaponType);
 }
@@ -412,7 +412,7 @@ function showSkills(singleChar, charNum, type) {
 	
 	// get inherited skills
 	for (var key in skillInfo[type]) {
-		if (isInheritable(skillInfo[type][key], charNum) && !defaultSkills.hasOwnProperty(key)) {
+		if (isInheritable(skillInfo[type][key], $("#char-" + charNum).val()) && !defaultSkills.hasOwnProperty(key)) {
 			skills += "<option class='inherit' value=\"" + key + "\">" + key + "</option>";
 		}
 	}
@@ -811,7 +811,7 @@ function displayChar(charName, charNum) {
 	
 	// get inherited specials
 	for (var specKey in specInfo) {
-		if (isInheritable(specInfo[specKey], charNum) && !defaultSpecials.hasOwnProperty(specKey)) {
+		if (isInheritable(specInfo[specKey], charName) && !defaultSpecials.hasOwnProperty(specKey)) {
 			specials += "<option class='inherit' value=\"" + specKey + "\">" + specKey + "</option>";
 		}
 	}
@@ -844,7 +844,7 @@ function displayChar(charName, charNum) {
 	
 	// get inherited assists
 	for (var assistKey in assistInfo) {
-		if (isInheritable(assistInfo[assistKey], charNum) && !defaultAssists.hasOwnProperty(assistKey)) {
+		if (isInheritable(assistInfo[assistKey], charName) && !defaultAssists.hasOwnProperty(assistKey)) {
 			assists += "<option class='inherit' value=\"" + assistKey + "\">" + assistKey + "</option>";
 		}
 	}
@@ -868,7 +868,7 @@ function displayChar(charName, charNum) {
 	
 	// get inherited weapons
 	for (var weaponKey in weaponInfo) {
-		if (isInheritableWeapon(weaponInfo[weaponKey], charNum) && !defaultWeapons.hasOwnProperty(weaponKey)) {
+		if (isInheritableWeapon(weaponInfo[weaponKey], charName) && !defaultWeapons.hasOwnProperty(weaponKey)) {
 			weapons += "<option class='inherit' value=\"" + weaponKey + "\">" + weaponKey + "</option>";
 		}
 	}
@@ -1321,64 +1321,185 @@ function getCharPanelData(charNum) {
 	return charData;
 }
 
-// gets info of a default character
+// gets info of a default character, override if possible
 // charName is the default character's name, charName must be a valid character and cannot be Custom
 function getDefaultCharData(charName) {
 	"use strict";
 	var charData = {};
 	
+	// general char info
 	charData.color = charInfo[charName].color;
 	charData.moveType = charInfo[charName].move_type;
 	charData.type = charInfo[charName].weapon_type;
 	
 	charData.name = charName;
 	
-	charData.weaponName = charInfo[charName].weapon[0];
-	charData.weaponData = weaponInfo[charData.weaponName];
+	// indexes for weapons and skills
+	var weaponIndex = 0;
+	var passiveAIndex = 0;
+	var passiveBIndex = 0;
+	var passiveCIndex = 0;
+	var assistIndex = 0;
+	var specialIndex = 0;
 	
-	if (charData.weaponData.hasOwnProperty("add_bonus")) {
-		charData.addBonusAtk = 0;
+	// get build info
+	var rarity = 5;
+	var level = parseInt($("#override-level").val());
+	var merge = parseInt($("#override-merge").val());
+	var boon = $("#override-boon").val();
+	var bane = $("#override-bane").val();
+	
+	// override rarity
+	var overrideRarity = parseInt($("#override-rarity").val());
+	if (overrideRarity < 5 && charInfo[charName].hasOwnProperty("base_stat")) {
+		if (charInfo[charName].base_stat.hasOwnProperty("star-" + overrideRarity.toString())) {
+			rarity = overrideRarity;
+		} else {
+			for (var rarityIndex = 4; rarityIndex >= overrideRarity; rarityIndex--) {
+				if (!charInfo[charName].base_stat.hasOwnProperty("star-" + rarityIndex.toString())) {
+					break;
+				}
+				rarity = rarityIndex;
+			}
+		}
+		
+		// update indexes
+		var starRating = "star-" + rarity.toString();
+		if (charInfo[charName].hasOwnProperty("rarity_restrict") && charInfo[charName].rarity_restrict.hasOwnProperty(starRating)) {
+			weaponIndex = charInfo[charName].rarity_restrict[starRating].hasOwnProperty("weapon") ? charInfo[charName].rarity_restrict[starRating].weapon : weaponIndex;
+			passiveAIndex = charInfo[charName].rarity_restrict[starRating].hasOwnProperty("passive_a") ? charInfo[charName].rarity_restrict[starRating].passive_a : passiveAIndex;
+			passiveBIndex = charInfo[charName].rarity_restrict[starRating].hasOwnProperty("passive_b") ? charInfo[charName].rarity_restrict[starRating].passive_b : passiveBIndex;
+			passiveCIndex = charInfo[charName].rarity_restrict[starRating].hasOwnProperty("passive_c") ? charInfo[charName].rarity_restrict[starRating].passive_c : passiveCIndex;
+			assistIndex = charInfo[charName].rarity_restrict[starRating].hasOwnProperty("assist") ? charInfo[charName].rarity_restrict[starRating].assist : assistIndex;
+			specialIndex = charInfo[charName].rarity_restrict[starRating].hasOwnProperty("special") ? charInfo[charName].rarity_restrict[starRating].special : specialIndex;
+		}
 	}
 	
-	charData.passiveA = charInfo[charName].hasOwnProperty("passive_a") ? charInfo[charName].passive_a[0] : "None";
-	charData.passiveB = charInfo[charName].hasOwnProperty("passive_b") ? charInfo[charName].passive_b[0] : "None";
-	charData.passiveC = charInfo[charName].hasOwnProperty("passive_c") ? charInfo[charName].passive_c[0] : "None";
-	charData.passiveAData = charInfo[charName].hasOwnProperty("passive_a") ? skillInfo.a[charData.passiveA] : {};
-	charData.passiveBData = charInfo[charName].hasOwnProperty("passive_b") ? skillInfo.b[charData.passiveB] : {};
-	charData.passiveCData = charInfo[charName].hasOwnProperty("passive_c") ? skillInfo.c[charData.passiveC] : {};
-	charData.special = charInfo[charName].hasOwnProperty("special") ? charInfo[charName].special[0] : "None";
-	charData.specCurrCooldown = charInfo[charName].hasOwnProperty("special") ? specInfo[charData.special].cooldown : 0;
-	charData.specialData = charInfo[charName].hasOwnProperty("special") ? specInfo[charData.special] : {};
-	charData.assistData = charInfo[charName].hasOwnProperty("assist") ? assistInfo[charInfo[charName].assist[0]] : {};
+	// default weapon info
+	charData.weaponName = weaponIndex >= 0 ? charInfo[charName].weapon[weaponIndex] : "None";
+	charData.weaponData = weaponIndex >= 0 ? weaponInfo[charData.weaponName] : {};
+	
+	// override weapon
+	if ($("#override-weapon").val() !== "No Override") {
+		if ($("#override-weapon").val() === "None") {
+			charData.weaponName = "None";
+			charData.weaponData = {};
+		} else if (charData.type === weaponInfo[$("#override-weapon").val()].type) {
+			charData.weaponName = $("#override-weapon").val();
+			charData.weaponData = weaponInfo[$("#override-weapon").val()];
+		}
+	}
+	
+	// total bonuses
+	if (charData.weaponData.hasOwnProperty("add_bonus")) {
+		charData.addBonusAtk = parseInt($("#override-atk-bonus").val()) + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-def-bonus").val()) + parseInt($("#override-res-bonus").val());
+	}
+	
+	// get default passives, assist and special
+	charData.passiveA = (charInfo[charName].hasOwnProperty("passive_a") && passiveAIndex >= 0) ? charInfo[charName].passive_a[passiveAIndex] : "None";
+	charData.passiveB = (charInfo[charName].hasOwnProperty("passive_b") && passiveBIndex >= 0) ? charInfo[charName].passive_b[passiveBIndex] : "None";
+	charData.passiveC = (charInfo[charName].hasOwnProperty("passive_c") && passiveCIndex >= 0) ? charInfo[charName].passive_c[passiveCIndex] : "None";
+	charData.passiveAData = (charInfo[charName].hasOwnProperty("passive_a") && passiveAIndex >= 0) ? skillInfo.a[charData.passiveA] : {};
+	charData.passiveBData = (charInfo[charName].hasOwnProperty("passive_b") && passiveBIndex >= 0) ? skillInfo.b[charData.passiveB] : {};
+	charData.passiveCData = (charInfo[charName].hasOwnProperty("passive_c") && passiveCIndex >= 0) ? skillInfo.c[charData.passiveC] : {};
+	charData.assistData = (charInfo[charName].hasOwnProperty("assist") && assistIndex >= 0) ? assistInfo[charInfo[charName].assist[assistIndex]] : {};
+	charData.special = (charInfo[charName].hasOwnProperty("special") && specialIndex >= 0) ? charInfo[charName].special[specialIndex] : "None";
+	charData.specialData = (charInfo[charName].hasOwnProperty("special") && specialIndex >= 0) ? specInfo[charData.special] : {};
+	
+	// override passives
+	if ($("#override-passive-a").val() !== "No Override") {
+		if ($("#override-passive-a").val() === "None") {
+			charData.passiveA = "None";
+			charData.passiveAData = {};
+		} else if (isInheritable(skillInfo.a[$("#override-passive-a").val()], charName)) {
+			charData.passiveA = $("#override-passive-a").val();
+			charData.passiveAData = skillInfo.a[$("#override-passive-a").val()];
+		}
+	}
+	if ($("#override-passive-b").val() !== "No Override") {
+		if ($("#override-passive-b").val() === "None") {
+			charData.passiveB = "None";
+			charData.passiveBData = {};
+		} else if (isInheritable(skillInfo.b[$("#override-passive-b").val()], charName)) {
+			charData.passiveB = $("#override-passive-b").val();
+			charData.passiveBData = skillInfo.b[$("#override-passive-b").val()];
+		}
+	}
+	if ($("#override-passive-c").val() !== "No Override") {
+		if ($("#override-passive-c").val() === "None") {
+			charData.passiveC = "None";
+			charData.passiveCData = {};
+		} else if (isInheritable(skillInfo.c[$("#override-passive-c").val()], charName)) {
+			charData.passiveC = $("#override-passive-c").val();
+			charData.passiveCData = skillInfo.c[$("#override-passive-c").val()];
+		}
+	}
+	
+	// override assist
+	if ($("#override-assist").val() !== "No Override") {
+		if ($("#override-assist").val() === "None") {
+			charData.assistData = {};
+		} else if (isInheritable(assistInfo[$("#override-assist").val()], charName)) {
+			charData.assistData = assistInfo[$("#override-assist").val()];
+		}
+	}
+	
+	// override special
+	if ($("#override-special").val() !== "No Override") {
+		if ($("#override-special").val() === "None") {
+			charData.special = "None";
+			charData.specialData = {};
+		} else if (isInheritable(specInfo[$("#override-special").val()], charName)) {
+			charData.special = $("#override-special").val();
+			charData.specialData = specInfo[$("#override-special").val()];
+		}
+	}
+	
+	// get special cooldown
+	charData.specCurrCooldown = charData.special !== "None" ? getSpecialCooldown(charData.specialData, charData.weaponData, charData.assistData) : 0;
+	
+	// override special cooldown
+	if ($("#override-spec-cooldown").val() !== "max") {
+		charData.specCurrCooldown = Math.min(charData.specCurrCooldown, parseInt($("#override-spec-cooldown").val()));
+	}
 	
 	// show stats
 	if (charInfo[charName].hasOwnProperty("base_stat")) {
-		var stats = getStatTotals(charName, charData.weaponName, charData.passiveA, 5, 40, 0, "neutral", "neutral");
+		var stats = getStatTotals(charName, charData.weaponName, charData.passiveA, rarity, level, merge, boon, bane);
 		charData.currHP = stats.hp;
 		charData.initHP = stats.hp;
 		charData.startHP = stats.hp;
 		charData.hp = stats.hp;
-		charData.atk = stats.atk;
-		charData.spd = stats.spd;
-		charData.def = stats.def;
-		charData.res = stats.res;
-		charData.atkWS = stats.atk;
-		charData.spdWS = stats.spd;
-		charData.defWS = stats.def;
-		charData.resWS = stats.res;
+		charData.atk = stats.atk + parseInt($("#override-atk-bonus").val()) + parseInt($("#override-atk-penalty").val()) + parseInt($("#override-atk-spur").val());
+		charData.spd = stats.spd + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-spd-penalty").val()) + parseInt($("#override-spd-spur").val());
+		charData.def = stats.def + parseInt($("#override-def-bonus").val()) + parseInt($("#override-def-penalty").val()) + parseInt($("#override-def-spur").val()); 
+		charData.res = stats.res + parseInt($("#override-res-bonus").val()) + parseInt($("#override-res-penalty").val()) + parseInt($("#override-res-spur").val());
+		charData.atkWS = stats.atk + parseInt($("#override-atk-bonus").val()) + parseInt($("#override-atk-penalty").val());
+		charData.spdWS = stats.spd + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-spd-penalty").val());
+		charData.defWS = stats.def + parseInt($("#override-def-bonus").val()) + parseInt($("#override-def-penalty").val());
+		charData.resWS = stats.res + parseInt($("#override-res-bonus").val()) + parseInt($("#override-res-penalty").val());
 	} else {
 		charData.currHP = charInfo[charName].hp;
 		charData.initHP = charInfo[charName].hp;
 		charData.startHP = charInfo[charName].hp;
 		charData.hp = charInfo[charName].hp;
-		charData.atk = charInfo[charName].atk;
-		charData.spd = charInfo[charName].spd;
-		charData.def = charInfo[charName].def;
-		charData.res = charInfo[charName].res;
-		charData.atkWS = charInfo[charName].atk;
-		charData.spdWS = charInfo[charName].spd;
-		charData.defWS = charInfo[charName].def;
-		charData.resWS = charInfo[charName].res;
+		charData.atk = charInfo[charName].atk + parseInt($("#override-atk-bonus").val()) + parseInt($("#override-atk-penalty").val()) + parseInt($("#override-atk-spur").val());
+		charData.spd = charInfo[charName].spd + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-spd-penalty").val()) + parseInt($("#override-spd-spur").val());
+		charData.def = charInfo[charName].def + parseInt($("#override-def-bonus").val()) + parseInt($("#override-def-penalty").val()) + parseInt($("#override-def-spur").val()); 
+		charData.res = charInfo[charName].res + parseInt($("#override-res-bonus").val()) + parseInt($("#override-res-penalty").val()) + parseInt($("#override-res-spur").val());
+		charData.atkWS = charInfo[charName].atk + parseInt($("#override-atk-bonus").val()) + parseInt($("#override-atk-penalty").val());
+		charData.spdWS = charInfo[charName].spd + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-spd-penalty").val());
+		charData.defWS = charInfo[charName].def + parseInt($("#override-def-bonus").val()) + parseInt($("#override-def-penalty").val());
+		charData.resWS = charInfo[charName].res + parseInt($("#override-res-bonus").val()) + parseInt($("#override-res-penalty").val());
+	}
+	
+	// override current hp
+	if (parseInt($("#override-curr-hp").val()) < 100) {
+		charData.currHP = roundNum(charData.currHP * (parseInt($("#override-curr-hp").val()) / 100), false);
+		charData.currHP = Math.min(charData.currHP, charData.hp);
+		charData.currHP = Math.max(charData.currHP, 1);
+		charData.initHP = charData.currHP;
+		charData.startHP = charData.currHP;
 	}
 	
 	charData.damageDealt = 0;
@@ -2641,11 +2762,11 @@ function calculateMatchups(attacker) {
 	
 	// setup events to view one vs one info
 	$(".matchup-char").on("click", function() {
-		var attacker = ($("#one-vs-all").is(":checked")) ? false : true;
+		var changeAttacker = ($("#one-vs-all").is(":checked")) ? false : true;
 		var charName = $(this).text();
 		
 		// select empty tab if possible
-		selectEmptyCharTab(attacker);
+		selectEmptyCharTab(changeAttacker);
 		
 		// check one vs one radio button
 		$("input[type=radio][name=mode]").val(["one-vs-one"]);
@@ -2659,8 +2780,8 @@ function calculateMatchups(attacker) {
 		enableCharPanel("1", true);
 		enableCharPanel("2", true);
 		
-		$("#char-" + (attacker ? "1" : "2")).val(charName);
-		displayChar(charName, (attacker ? "1" : "2"));
+		$("#char-" + (changeAttacker ? "1" : "2")).val(charName);
+		displayChar(charName, (changeAttacker ? "1" : "2"));
 		simBattle(getBattleInfo(), true);
 		keepTable = true;
 	});
@@ -3119,6 +3240,7 @@ $(document).ready( function() {
 		$("#override-boon").val("neutral");
 		$("#override-bane").val("neutral");
 		
+		$("#override-weapon-type").val("Any");
 		loadWeapons("Any", "#override-weapon", true);
 		$("#override-weapon").html("<option value='No Override'>No Override</option>" + $("#override-weapon").html());
 		$("#override-weapon").val("No Override");
