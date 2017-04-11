@@ -38,11 +38,11 @@ label {
 	width: 8.7em;
 }
 
-#matchup-filters {
+.matchup-section {
 	display: none;
 	text-align: center;
 	white-space: normal;
-	margin: 0.5em auto 1em auto;
+	margin: 1em auto 0em auto;
 }
 
 #matchup-filter-title {
@@ -61,7 +61,7 @@ label {
 }
 
 #matchup-filters button {
-	margin: 0.5em;
+	margin: 0.5em 0.5em 0 0.5em;
 }
 
 .matchup-filter-block {
@@ -82,15 +82,15 @@ label {
 	width: auto;
 }
 
-.char-info .info-section {
+.char-info .info-section, #matchup-overrides .info-section {
 	margin: 0em 0em 1em 0em;
 }
 
-.char-info .info-section-bottom {
+.char-info .info-section-bottom, #matchup-overrides .info-section-bottom {
 	margin: 0em 0em 0.2em 0em;
 }
 
-.char-info .info-section th {
+.char-info .info-section th, #matchup-overrides .info-section th {
 	padding: 0em 0.3em;
 	font-size: 0.8em;
 }
@@ -103,7 +103,7 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-.char-info select, .char-info input[type=number] {
+.char-info select, .char-info input[type=number], #matchup-overrides select {
 	width: 12.3em;
 	-webkit-box-sizing: border-box;
 	-moz-box-size: border-box;
@@ -118,7 +118,7 @@ input[type=number] {
 	width: 2.5em;
 }
 
-.stat-info select{
+.stat-info select, #override-stats select {
 	width: 2.8em;	
 }
 
@@ -340,7 +340,6 @@ h3 {
 
 #matchup-display {
 	width: 700px;
-	display: none;
 	margin: 0em auto 0.5em auto;
 }
 
@@ -471,15 +470,35 @@ h3 {
 	text-align: center;
 }
 
-#matchup-filter-button {
+#matchup-buttons {
+	text-align: center;
+}
+
+.matchup-button {
 	color: #161a1b;
+	font-weight: bold;
+	margin: 0 0.1em;
 	background-color: gold;
 	border-radius: 4px;
 	padding: 0.2em 0.5em;
 }
 
-#matchup-filter-button:hover {
+.matchup-button:hover {
 	background-color: #a8900e;
+	color: #161a1b;
+}
+
+.matchup-button-selected {
+	color: #161a1b;
+	font-weight: bold;
+	margin: 0 0.1em;
+	background-color: #a8900e;
+	border-radius: 4px;
+	padding: 0.2em 0.5em;
+}
+
+.matchup-button-selected:hover {
+	color: #161a1b;
 }
 
 #matchup-overview {
@@ -489,25 +508,55 @@ h3 {
 	font-weight: bold;
 }
 
-.character-select .rarity-select {
+.character-select .rarity-select, #matchup-overrides .rarity-select {
 	width: 12.3em;
 }
 
-
-.character-select .level-select {
+.character-select .level-select, #matchup-overrides #override-level {
 	width: 7.8em;
 	margin: 0 0.4em 0 0;
 }
 
-.character-select .merge-select {
+.character-select .merge-select, #matchup-overrides #override-merge {
 	width: 4.1em;
 }
 
-.character-select .boon-select {
+.character-select .boon-select, #matchup-overrides #override-boon {
 	width: 5.95em;
 	margin: 0 0.4em 0 0;
 }
 
-.character-select .bane-select {
+.character-select .bane-select, #matchup-overrides #override-bane {
 	width: 5.95em;
+}
+
+#matchup-overrides {
+	line-height: 150%;
+	text-align: left;
+	white-space: nowrap;
+}
+
+#matchup-overrides table {
+	margin: 0 auto;
+}
+
+#matchup-overrides table td{
+	padding: 0 1em;
+	vertical-align: top;
+}
+
+#override-stats table {
+	margin: 0;
+}
+
+#override-stats table td{
+	padding: 0;
+}
+
+#override-msg {
+	margin: 0;
+	line-height: 130%;
+	white-space: normal;
+	font-style: italic;
+	color: #5b5b5b;
 }
