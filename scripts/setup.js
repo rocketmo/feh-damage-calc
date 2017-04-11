@@ -33,6 +33,8 @@ function limit(num, minNumber) {
 	} else if (num.id === "override-curr-hp") {
 		if (num.value >= 100) {
 			num.value = 100;
+		} else if (Math.floor(num.value) !== num.value) {
+			num.value = Math.floor(num.value);
 		}
 	} else if (num.value >= HIGHESTSTAT) {
 		num.value = HIGHESTSTAT; 
