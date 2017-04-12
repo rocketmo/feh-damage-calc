@@ -3339,7 +3339,7 @@ $(document).ready( function() {
 	});
 	
 	// update table when filters are changed
-	$(".matchup-filter-input").on("change", function() {
+	$(".matchup-filter-input").on("change keyup", function() {
 		// make sure weapons and colors are correct
 		if (this.id === "matchup-filter-color" && this.value !== "Any" && $("#matchup-filter-weapon").val() !== "Any" && this.value !== weaponToColor($("#matchup-filter-weapon").val())) {
 			$("#matchup-filter-weapon").val("Any");
@@ -3355,7 +3355,11 @@ $(document).ready( function() {
 			$("#matchup-filter-weapon").val("Any");
 		}
 		
-		filterMatchupTable(true);
+		if (this.id === "matchup-filter-name") {
+			filterMatchupTable(false);
+		} else {
+			filterMatchupTable(true);
+		}
 	});
 	
 	// reset filters
