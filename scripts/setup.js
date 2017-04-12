@@ -1,9 +1,6 @@
 // stat total upper limit
 var HIGHESTSTAT = 99;
 
-// true if battle log is open, false otherwise
-var openLog = true;
-
 // index of the selected characters
 var selectedAttacker = 0;
 var selectedDefender = 0;
@@ -1852,9 +1849,7 @@ function simBattle(battleInfo, displayMsg) {
 			$("#interaction-list").stop(true, true).hide().html("<li class='battle-interaction-only'><span class='attacker'><strong>" + $("#char-1").val() + "</strong></span> cannot attack without a weapon.</li>");
 			$("#hp-remain-1").stop(true, true).hide().text($("#curr-hp-1").val().toString() + " → " + $("#curr-hp-1").val().toString());
 			$("#hp-remain-2").stop(true, true).hide().text($("#curr-hp-2").val().toString() + " → " + $("#curr-hp-2").val().toString());
-			if (openLog) {
-				$("#interaction-list").fadeIn("slow");
-			}
+			$("#interaction-list").fadeIn("slow");
 			$("#hp-remain-1").fadeIn("slow");
 			$("#hp-remain-2").fadeIn("slow");
 		}
@@ -2219,9 +2214,7 @@ function simBattle(battleInfo, displayMsg) {
 			$("#result-msg").css("color", "white");
 		}
 
-		if (openLog) {
-			$("#interaction-list").fadeIn("slow");
-		}
+		$("#interaction-list").fadeIn("slow");
 		$("#hp-remain-1").fadeIn("slow");
 		$("#hp-remain-2").fadeIn("slow");
 		$("#result-msg").fadeIn("slow");
@@ -3103,9 +3096,6 @@ $(document).ready( function() {
 	$(".collapse-button").on("click", function() {
 		// toggle a section
 		$("#" + $(this).data("section")).toggle(700);
-		if ($(this).data("section") === "interaction-list") {
-			openLog = !openLog;
-		}
 	});
 
 	// setup number input changes
