@@ -8,7 +8,9 @@
 		<link rel="icon" href="img/favicon.ico">
 		<link rel="stylesheet" href="css/calc-style.css">
 		<link rel="stylesheet" href="css/sorter.css">
+		<link rel="stylesheet" href="css/select2.css">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 	</head>
 	<body>
 		<div id="calc-header">
@@ -73,7 +75,7 @@
 											<label>
 												<span id="extra-char-info-1-btn" class="collapse-button" data-section="extra-char-info-1">Character</span>
 											</label>
-											<select id="char-1" class="char-selector" data-charnum="1"></select>
+											<select id="char-1" class="char-selector fancy-select" data-charnum="1"></select>
 										</div>
 										<div id="extra-char-info-1" class="collapsable">
 											<div>
@@ -163,7 +165,7 @@
 											<label>
 												<span id="extra-weapon-info-1-btn" class="collapse-button" data-section="extra-weapon-info-1">Weapon</span>
 											</label>
-											<select id="weapon-1" class="weapon-selector" data-charnum="1"></select>
+											<select id="weapon-1" class="weapon-selector fancy-select" data-charnum="1"></select>
 										</div>
 										<div id="extra-weapon-info-1" class="extra-info collapsable">
 											<div class="ability-desc-container">
@@ -188,7 +190,7 @@
 											<label class="passive-a-label">
 												<span class="collapse-button" data-section="extra-passive-a-info-1">Passive Skill A</span>
 											</label>
-											<select id="passive-a-1" class="passive-selector" data-charnum="1" data-skilltype="a"></select>
+											<select id="passive-a-1" class="passive-selector fancy-select" data-charnum="1" data-skilltype="a"></select>
 										</div>
 										<div id="extra-passive-a-info-1" class="collapsable extra-info">
 											<div class="ability-desc-container">
@@ -200,7 +202,7 @@
 											<label class="passive-b-label">
 												<span class="collapse-button" data-section="extra-passive-b-info-1">Passive Skill B</span>
 											</label>
-											<select id="passive-b-1" class="passive-selector" data-charnum="1" data-skilltype="b"></select>
+											<select id="passive-b-1" class="passive-selector fancy-select" data-charnum="1" data-skilltype="b"></select>
 										</div>
 										<div id="extra-passive-b-info-1" class="collapsable extra-info">
 											<div class="ability-desc-container">
@@ -212,7 +214,7 @@
 											<label class="passive-c-label">
 												<span class="collapse-button" data-section="extra-passive-c-info-1">Passive Skill C</span>
 											</label>
-											<select id="passive-c-1" class="passive-selector" data-charnum="1" data-skilltype="c"></select>
+											<select id="passive-c-1" class="passive-selector fancy-select" data-charnum="1" data-skilltype="c"></select>
 										</div>
 										<div id="extra-passive-c-info-1" class="collapsable extra-info">
 											<div class="ability-desc-container">
@@ -224,7 +226,7 @@
 											<label class="assist-label">
 												<span class="collapse-button" data-section="extra-assist-info-1">Assist Skill</span>
 											</label>
-											<select id="assist-1" class="assist-selector" data-charnum="1"></select>
+											<select id="assist-1" class="assist-selector fancy-select" data-charnum="1"></select>
 										</div>
 										<div id="extra-assist-info-1" class="collapsable extra-info">
 											<div class="ability-desc-container">
@@ -236,7 +238,7 @@
 											<label class="special-label">
 												<span class="collapse-button" data-section="extra-special-info-1">Special Skill</span>
 											</label>
-											<select id="special-1" class="special-selector" data-charnum="1"></select>
+											<select id="special-1" class="special-selector fancy-select" data-charnum="1"></select>
 										</div>
 										<div id="extra-special-info-1" class="collapsable extra-info">
 											<div class="ability-desc-container">
@@ -322,7 +324,7 @@
 											<label>
 												<span id="extra-char-info-2-btn" class="collapse-button" data-section="extra-char-info-2">Character</span>
 											</label>
-											<select id="char-2" class="char-selector" data-charnum="2"></select>
+											<select id="char-2" class="char-selector fancy-select" data-charnum="2"></select>
 										</div>
 										<div id="extra-char-info-2" class="collapsable">
 											<div>
@@ -412,7 +414,7 @@
 											<label>
 												<span id="extra-weapon-info-2-btn" class="collapse-button" data-section="extra-weapon-info-2">Weapon</span>
 											</label>
-											<select id="weapon-2" class="weapon-selector" data-charnum="2"></select>
+											<select id="weapon-2" class="weapon-selector fancy-select" data-charnum="2"></select>
 										</div>
 										<div id="extra-weapon-info-2" class="extra-info collapsable">
 											<div class="ability-desc-container">
@@ -437,7 +439,7 @@
 											<label class="passive-a-label">
 												<span class="collapse-button" data-section="extra-passive-a-info-2">Passive Skill A</span>
 											</label>
-											<select id="passive-a-2" class="passive-selector" data-charnum="2" data-skilltype="a"></select>
+											<select id="passive-a-2" class="passive-selector fancy-select" data-charnum="2" data-skilltype="a"></select>
 										</div>
 										<div id="extra-passive-a-info-2" class="collapsable extra-info">
 											<div class="ability-desc-container">
@@ -449,7 +451,7 @@
 											<label class="passive-b-label">
 												<span class="collapse-button" data-section="extra-passive-b-info-2">Passive Skill B</span>
 											</label>
-											<select id="passive-b-2" class="passive-selector" data-charnum="2" data-skilltype="b"></select>
+											<select id="passive-b-2" class="passive-selector fancy-select" data-charnum="2" data-skilltype="b"></select>
 										</div>
 										<div id="extra-passive-b-info-2" class="collapsable extra-info">
 											<div class="ability-desc-container">
@@ -461,7 +463,7 @@
 											<label class="passive-c-label">
 												<span class="collapse-button" data-section="extra-passive-c-info-2">Passive Skill C</span>
 											</label>
-											<select id="passive-c-2" class="passive-selector" data-charnum="2" data-skilltype="c"></select>
+											<select id="passive-c-2" class="passive-selector fancy-select" data-charnum="2" data-skilltype="c"></select>
 										</div>
 										<div id="extra-passive-c-info-2" class="collapsable extra-info">
 											<div class="ability-desc-container">
@@ -473,7 +475,7 @@
 											<label class="assist-label">
 												<span class="collapse-button" data-section="extra-assist-info-2">Assist Skill</span>
 											</label>
-											<select id="assist-2" class="assist-selector" data-charnum="2"></select>
+											<select id="assist-2" class="assist-selector fancy-select" data-charnum="2"></select>
 										</div>
 										<div id="extra-assist-info-2" class="collapsable extra-info">
 											<div class="ability-desc-container">
@@ -485,7 +487,7 @@
 											<label class="special-label">
 												<span class="collapse-button" data-section="extra-special-info-2">Special Skill</span>
 											</label>
-											<select id="special-2" class="special-selector" data-charnum="2"></select>
+											<select id="special-2" class="special-selector fancy-select" data-charnum="2"></select>
 										</div>
 										<div id="extra-special-info-2" class="collapsable extra-info">
 											<div class="ability-desc-container">
@@ -696,7 +698,7 @@
 																	<label>
 																		<span id="override-weapon-button" class="collapse-button" data-section="override-weapon-type-container">Weapon</span>
 																	</label>
-																	<select id="override-weapon" class="override-option"></select>
+																	<select id="override-weapon" class="override-option fancy-select"></select>
 																</div>
 																<div id="override-weapon-type-container" class="collapsable">
 																	<label>Weapon Type</label>
@@ -720,23 +722,23 @@
 															<div class="info-section-bottom">
 																<div>
 																	<label class="passive-a-label">Passive Skill A</label>
-																	<select id="override-passive-a" class="override-option" data-skilltype="a"></select>
+																	<select id="override-passive-a" class="override-option fancy-select" data-skilltype="a"></select>
 																</div>
 																<div>
 																	<label class="passive-b-label">Passive Skill B</label>
-																	<select id="override-passive-b" class="override-option" data-skilltype="b"></select>
+																	<select id="override-passive-b" class="override-option fancy-select" data-skilltype="b"></select>
 																</div>
 																<div>
 																	<label class="passive-c-label">Passive Skill C</label>
-																	<select id="override-passive-c" class="override-option" data-skilltype="c"></select>
+																	<select id="override-passive-c" class="override-option fancy-select" data-skilltype="c"></select>
 																</div>
 																<div>
 																	<label class="assist-label">Assist Skill</label>
-																	<select id="override-assist" class="override-option"></select>
+																	<select id="override-assist" class="override-option fancy-select"></select>
 																</div>
 																<div>
 																	<label class="special-label">Special Skill</label>
-																	<select id="override-special" class="override-option"></select>
+																	<select id="override-special" class="override-option fancy-select"></select>
 																</div>
 																<div>
 																	<label title="Special skills activate when cooldown reaches 0.">Special Cooldown</label>

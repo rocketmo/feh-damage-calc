@@ -3174,6 +3174,15 @@ $(document).ready( function() {
 	setupStats();
 	setupChars();
 	setupOverrides();
+	$(".fancy-select").select2({
+		templateResult: function format(state) {
+			var originalOption = state.element;
+			if ($(originalOption).hasClass("inherit")) {
+				return $("<span class='inherit'>" + state.text + "</span>");
+			}
+			return state.text;
+		}
+	});
 	
 	// setup character select
 	$(".char-selector").on("change", function() {
