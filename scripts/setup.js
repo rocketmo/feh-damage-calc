@@ -3426,7 +3426,8 @@ $(document).ready( function() {
 		$("#override-passive-c").val("No Override").trigger("change.select2");
 		$("#override-assist").val("No Override").trigger("change.select2");
 		$("#override-special").val("No Override").trigger("change.select2");
-		$("#override-spec-cooldown").val("max").trigger("change.select2");
+		$("#override-spec-cooldown").val("max");
+		$("#override-passive-s").val("No Override").trigger("change.select2");
 		
 		$(".override-stat").val(0);
 		$("#override-curr-hp").val(100);
