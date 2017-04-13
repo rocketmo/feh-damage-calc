@@ -2675,20 +2675,6 @@ function filterMatchupTable(fadeIn) {
 	}
 }
 
-// updates infomation depending on the mode selected
-function updateDisplay() {
-	"use strict";
-	var scrollTop = $(window).scrollTop();
-	if ($("#one-vs-one").is(":checked")) {
-		simBattle(getBattleInfo(), true);
-	} else if ($("#one-vs-all").is(":checked") && (!keepTable || !previousTable)) {
-		calculateMatchups(true);
-	} else if ($("#all-vs-one").is(":checked") && (!keepTable || previousTable)) {
-		calculateMatchups(false);
-	}
-	$(window).scrollTop(scrollTop);
-}
-
 // determines if the matchup table needs to be updated whenever a change in data occurs
 // charNum is the panel that the change originated from
 function keepMatchupTable(charNum) {
@@ -2890,6 +2876,12 @@ function applyOverrides(charNum) {
 		}
 	}
 	
+	// override seal
+	if ($("#override-passive-s").val() !== "No Override") {
+		$("#passive-s-" + charNum).val($("#override-passive-s").val()).trigger("change.select2");
+		getSkillData(charNum, "s", true);
+	}
+	
 	// override assist
 	if ($("#override-assist").val() !== "No Override") {
 		if ($("#override-assist").val() === "None") {
@@ -3079,6 +3071,20 @@ function calculateMatchups(attacker) {
 	});
 }
 
+// updates infomation depending on the mode selected
+function updateDisplay() {
+	"use strict";
+	var scrollTop = $(window).scrollTop();
+	if ($("#one-vs-one").is(":checked")) {
+		simBattle(getBattleInfo(), true);
+	} else if ($("#one-vs-all").is(":checked") && (!keepTable || !previousTable)) {
+		calculateMatchups(true);
+	} else if ($("#all-vs-one").is(":checked") && (!keepTable || previousTable)) {
+		calculateMatchups(false);
+	}
+	$(window).scrollTop(scrollTop);
+}
+
 // sets up matchup overrides section
 function setupOverrides() {
 	"use strict";
@@ -3177,6 +3183,8 @@ $(document).ready( function() {
 	loadPassives("s", "#passive-s-2");
 	loadPassives("s", "#override-passive-s");
 	$("#override-passive-s").html("<option value='No Override'>No Override</option>" + $("#override-passive-s").html());
+	getSkillData("1", "s", false);
+	getSkillData("2", "s", false);
 	
 	// setup initial display
 	setupStats();
