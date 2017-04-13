@@ -13,6 +13,10 @@ var defenderTeam = [{}, {}, {}, {}, {}];
 var previousTable = true; // true if one vs all, false if all vs one
 var keepTable = false;	// true if we keep the matchup table currently displayed
 
+// sorted matchup table column
+var mTableSorted = -1;
+var mSortDesc = true; // sort in descending order?
+
 // stat growth amounts from lvl 1 to lvl 40
 var statGrowths = [[4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26],
 				  [5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27],
@@ -2975,12 +2979,12 @@ function calculateMatchups(attacker) {
 	
 	// add table headers
 	if (attacker) {
-		tableHTML += "<thead><tr class='matchup-header'><th data-tsorter='img'></th><th data-tsorter='link'>Defender</th>";
+		tableHTML += "<thead><tr class='matchup-header'><th data-tsorter='img' data-column='0'></th><th data-tsorter='link' data-column='1'>Defender</th>";
 	} else {
-		tableHTML += "<thead><tr class='matchup-header'><th data-tsorter='img'></th><th data-tsorter='link'>Attacker</th>";
+		tableHTML += "<thead><tr class='matchup-header'><th data-tsorter='img' data-column='0'></th><th data-tsorter='link' data-column='1'>Attacker</th>";
 	}
 	
-	tableHTML += "<th data-tsorter='numeric'>Attacker DMG</th><th data-tsorter='numeric'>Defender DMG</th><th data-tsorter='text-span-num'>Attacker HP</th><th data-tsorter='text-span-num'>Defender HP</th><th data-tsorter='link'>Result</th></tr></thead>";
+	tableHTML += "<th data-tsorter='numeric' data-column='2'>Attacker DMG</th><th data-tsorter='numeric' data-column='3'>Defender DMG</th><th data-tsorter='text-span-num' data-column='4'>Attacker HP</th><th data-tsorter='text-span-num' data-column='5'>Defender HP</th><th data-tsorter='link' data-column='6'>Result</th></tr></thead>";
 	
 	// start tbody
 	tableHTML += "<tbody>";
@@ -3038,6 +3042,15 @@ function calculateMatchups(attacker) {
 	// make table sortable
 	tsorter.create("matchup-table");
 	
+	if (mTableSorted >= 0) {
+		$("#matchup-table thead th:eq(" + mTableSorted.toString() + ")").trigger("click");
+		
+		// sort again for ascending order
+		if (!mSortDesc) {
+			$("#matchup-table thead th:eq(" + mTableSorted.toString() + ")").trigger("click");
+		}
+	}
+	
 	// add table title
 	var mainCharName = "";
 	if (attacker) {
@@ -3080,6 +3093,17 @@ function calculateMatchups(attacker) {
 		applyOverrides(changeAttacker ? "1" : "2");
 		simBattle(getBattleInfo(), true);
 		keepTable = true;
+	});
+	
+	// keep track of sorted column
+	$("#matchup-table thead th").on("click", function() {
+		var columnNum = parseInt($(this).data("column"));
+		if (mTableSorted === columnNum) {
+			mSortDesc = !mSortDesc;
+		} else {
+			mTableSorted = columnNum;
+			mSortDesc = true;
+		}
 	});
 	
 	// recolor rows when sorting
