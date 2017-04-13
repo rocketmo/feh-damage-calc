@@ -236,19 +236,19 @@ var skillInfo =
             "move_unique" : "Cavalry"
         },
         "HP +3" : {
-            "description" : "Grants HP+3.",
+            "description" : "Grants +3 to max HP.",
             "stat_mod" : {
                 "hp" : 3
             }
         },
         "HP +4" : {
-            "description" : "Grants HP+4.",
+            "description" : "Grants +4 to max HP.",
             "stat_mod" : {
                 "hp" : 4
             }
         },
         "HP +5" : {
-            "description" : "Grants HP+5.",
+            "description" : "Grants +5 to max HP.",
             "stat_mod" : {
                 "hp" : 5
             }
@@ -1078,6 +1078,26 @@ var skillInfo =
         "Ward Fliers" : {
             "description" : "Grants flying allies within 2 spaces Def/Res+4 during combat.",
             "move_unique" : "Flying"
+        }
+    },
+    "s" : {
+        "Attack +1" : {
+            "description" : "Grants Atk+1.",
+            "stat_mod" : {
+                "atk" : 1
+            }
+        },
+        "HP +3" : {
+            "description" : "Grants +3 to max HP.",
+            "stat_mod" : {
+                "hp" : 3
+            }
+        },
+        "Speed +1" : {
+            "description" : "Grants Spd+1.",
+            "stat_mod" : {
+                "spd" : 1
+            }
         }
     }
 };

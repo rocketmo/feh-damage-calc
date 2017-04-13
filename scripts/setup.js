@@ -150,6 +150,7 @@ function weaponToColor(weaponType) {
 
 // given a weapon type, return its range
 function weaponTypeRange(weaponType) {
+	"use strict";
 	var range = 1;
 	if (weaponType === "Red Tome" || weaponType === "Green Tome" || weaponType === "Blue Tome" || weaponType === "Bow" || weaponType === "Dagger" || weaponType === "Staff") {
 		range = 2;
@@ -579,14 +580,30 @@ function getPortrait(imgID, portraitName) {
 	$(imgID).attr("src", "img/Portraits/" + portraitName + ".png");
 }
 
+// applies any stat modifiers to the given stats and returns the resulting stats
+// stats contain the character's stats, skillName is the skill to check for stat mods, dataInfo contains the info for the given skill
+function applyStatMods(stats, skillName, dataInfo) {
+	"use strict";
+	if (skillName !== "None" && dataInfo[skillName].hasOwnProperty("stat_mod")) {
+		for (var key in dataInfo[skillName].stat_mod) {
+			stats[key] += dataInfo[skillName].stat_mod[key];
+			if (stats[key] < 0) {
+				stats[key] = 0;
+			} else if (stats[key] > 99) {
+				stats[key] = 99;
+			}
+		}
+	}
+	
+	return stats;
+}
+
 // gets that stat totals given the data
 // charName is the name of the character, weaponName is the equipped weapon, passiveA is the equipped passive a skill
 // rarity is the rarity of the character, level is the level of the character, merge is the number of units merged with the given one
 // boon is the boon stat, bane is the bane stat
-function getStatTotals(charName, weaponName, passiveA, rarity, level, merge, boon, bane) {
+function getStatTotals(charName, weaponName, passiveA, seal, rarity, level, merge, boon, bane) {
 	"use strict";
-	// get info
-	
 	// base stats + boons/banes
 	var stats = {};
 	stats.hp = charInfo[charName].base_stat["star-" + rarity.toString()].hp + ((boon === "hp") ? 1 : 0) + ((bane === "hp") ? -1 : 0);
@@ -641,33 +658,13 @@ function getStatTotals(charName, weaponName, passiveA, rarity, level, merge, boo
 		stats.res += statGrowths[rarity-1][charInfo[charName].base_stat.growth.res + ((boon === "res") ? 1 : 0) + ((bane === "res") ? -1 : 0)];
 	}
 	
-	// apply weapon stats and stat mods
-	if (weaponName !== "None") {
-		stats.atk += weaponInfo[weaponName].might;
-		
-		if (weaponInfo[weaponName].hasOwnProperty("stat_mod")) {
-			for (var wKey in weaponInfo[weaponName].stat_mod) {
-				stats[wKey] += weaponInfo[weaponName].stat_mod[wKey];
-				if (stats[wKey] < 0) {
-					stats[wKey] = 0;
-				} else if (stats[wKey] > 99) {
-					stats[wKey] = 99;
-				}
-			}
-		}
-	}
+	// add weapon might
+	stats.atk += (weaponName !== "None") ? weaponInfo[weaponName].might : 0;
 	
-	// apply passive a stat mods
-	if (passiveA !== "None" && skillInfo.a[passiveA].hasOwnProperty("stat_mod")) {
-		for (var pKey in skillInfo.a[passiveA].stat_mod) {
-			stats[pKey] += skillInfo.a[passiveA].stat_mod[pKey];
-			if (stats[pKey] < 0) {
-				stats[pKey] = 0;
-			} else if (stats[pKey] > 99) {
-				stats[pKey] = 99;
-			}
-		}
-	}
+	// apply stat mods
+	stats = applyStatMods(stats, weaponName, weaponInfo);
+	stats = applyStatMods(stats, passiveA, skillInfo.a);
+	stats = applyStatMods(stats, seal, skillInfo.s);
 	
 	return stats;
 }
@@ -681,6 +678,7 @@ function displayStatTotals(charNum) {
 	var charName = $("#char-" + charNum).val();
 	var weaponName = $("#weapon-" + charNum).val();
 	var passiveA = $("#passive-a-" + charNum).val();
+	var seal = $("#passive-s-" + charNum).val();
 	var rarity = parseInt($("#rarity-" + charNum).val());
 	var level = parseInt($("#level-" + charNum).val());
 	var merge = parseInt($("#merge-" + charNum).val());
@@ -688,7 +686,7 @@ function displayStatTotals(charNum) {
 	var bane = $("#bane-" + charNum).val();
 	
 	// get stats
-	var stats = getStatTotals(charName, weaponName, passiveA, rarity, level, merge, boon, bane);
+	var stats = getStatTotals(charName, weaponName, passiveA, seal, rarity, level, merge, boon, bane);
 	
 	// display stats
 	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(stats.hp);
@@ -791,6 +789,10 @@ function displayChar(charName, charNum) {
 	showSkills(singleChar, charNum, "a");
 	showSkills(singleChar, charNum, "b");
 	showSkills(singleChar, charNum, "c");
+	
+	// reset sacred seal
+	$("#passive-s-" + charNum).val("None").trigger("change.select2");
+	$("#passive-s-" + charNum).data("info", {});
 	
 	// show special skill	
 	var specials = "";
@@ -950,6 +952,7 @@ function storeCharTabInfo(attacker) {
 	infoToStore.assist = $("#assist-" + charNum).val();
 	infoToStore.special = $("#special-" + charNum).val();
 	infoToStore.specCooldown = $("#spec-cooldown-" + charNum).val();
+	infoToStore.seal = $("#passive-s-" + charNum).val();
 	
 	// hp and current hp
 	infoToStore.hp = $("#hp-" + charNum).val();
@@ -1055,9 +1058,11 @@ function getCharTabInfo(attacker) {
 		$("#passive-a-" + charNum).val(charTabInfo.passiveA).trigger("change.select2");
 		$("#passive-b-" + charNum).val(charTabInfo.passiveB).trigger("change.select2");
 		$("#passive-c-" + charNum).val(charTabInfo.passiveC).trigger("change.select2");
+		$("#passive-s-" + charNum).val(charTabInfo.seal).trigger("change.select2");
 		getSkillData(charNum, "a", false);
 		getSkillData(charNum, "b", false);
 		getSkillData(charNum, "c", false);
+		getSkillData(charNum, "s", false);
 		
 		// change special
 		$("#special-" + charNum).val(charTabInfo.special).trigger("change.select2");
@@ -1303,6 +1308,8 @@ function getCharPanelData(charNum) {
 	charData.specCurrCooldown = parseInt($("#spec-cooldown-" + charNum).val());
 	charData.specialData = $("#special-" + charNum).data("info");
 	charData.assistData = $("#assist-" + charNum).data("info");
+	charData.seal = $("#passive-s-" + charNum).val();
+	charData.sealData = $("#passive-s-" + charNum).data("info");
 	
 	charData.currHP = parseInt($("#curr-hp-" + charNum).val());
 	charData.initHP = parseInt($("#curr-hp-" + charNum).val());
@@ -1406,6 +1413,8 @@ function getDefaultCharData(charName) {
 	charData.assistData = (charInfo[charName].hasOwnProperty("assist") && assistIndex >= 0) ? assistInfo[charInfo[charName].assist[assistIndex]] : {};
 	charData.special = (charInfo[charName].hasOwnProperty("special") && specialIndex >= 0) ? charInfo[charName].special[specialIndex] : "None";
 	charData.specialData = (charInfo[charName].hasOwnProperty("special") && specialIndex >= 0) ? specInfo[charData.special] : {};
+	charData.seal = "None";
+	charData.sealData = {};
 	
 	// override passives
 	if ($("#override-passive-a").val() !== "No Override") {
@@ -1434,6 +1443,12 @@ function getDefaultCharData(charName) {
 			charData.passiveC = $("#override-passive-c").val();
 			charData.passiveCData = skillInfo.c[$("#override-passive-c").val()];
 		}
+	}
+	
+	// override seal
+	if ($("#override-passive-s").val() !== "No Override" && $("#override-passive-s").val() !== "None") {
+		charData.seal = $("#override-passive-s").val();
+		charData.sealData = skillInfo.s[$("#override-passive-s").val()];
 	}
 	
 	// override assist
@@ -1466,7 +1481,7 @@ function getDefaultCharData(charName) {
 	
 	// show stats
 	if (charInfo[charName].hasOwnProperty("base_stat")) {
-		var stats = getStatTotals(charName, charData.weaponName, charData.passiveA, rarity, level, merge, boon, bane);
+		var stats = getStatTotals(charName, charData.weaponName, charData.passiveA, charData.seal, rarity, level, merge, boon, bane);
 		charData.currHP = stats.hp;
 		charData.initHP = stats.hp;
 		charData.startHP = stats.hp;
@@ -2335,6 +2350,9 @@ function swap() {
 	oldAtkInfo.specialDesc = $("#special-desc-1").text();
 	oldAtkInfo.specCooldown = $("#spec-cooldown-1").val();
 	oldAtkInfo.specCooldownMax = $("#spec-cooldown-max-1").text();
+	oldAtkInfo.selectedSeal = $("#passive-s-1").val();
+	oldAtkInfo.sealData = $("#passive-s-1").data("info");
+	oldAtkInfo.sealDesc = $("#passive-s-desc-1").text();
 	
 	oldAtkInfo.hp = $("#hp-1").val();
 	oldAtkInfo.atk = $("#atk-1").val();
@@ -2369,6 +2387,7 @@ function swap() {
 	oldAtkInfo.extraPassiveAInfoVisible = $("#extra-passive-a-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraPassiveBInfoVisible = $("#extra-passive-b-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraPassiveCInfoVisible = $("#extra-passive-c-info-1").stop(true, true).is(":visible");
+	oldAtkInfo.extraSealInfoVisible = $("#extra-passive-s-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraAssistInfoVisible = $("#extra-assist-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraSpecialInfoVisible = $("#extra-special-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.buildInfoVisible = $("#char-build-info-1").stop(true, true).is(":visible");
@@ -2379,6 +2398,7 @@ function swap() {
 	setVisible("#extra-passive-a-info-1", $("#extra-passive-a-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#extra-passive-b-info-1", $("#extra-passive-b-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), false);
+	setVisible("#extra-passive-s-info-1", $("#extra-passive-s-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#char-build-info-1", $("#char-build-info-2").stop(true, true).is(":visible"), false);
@@ -2418,6 +2438,9 @@ function swap() {
 	$("#special-desc-1").text($("#special-desc-2").text());
 	$("#spec-cooldown-1").val($("#spec-cooldown-2").val());
 	$("#spec-cooldown-max-1").text($("#spec-cooldown-max-2").text());
+	$("#passive-s-1").val($("#passive-s-2").val()).trigger("change.select2");
+	$("#passive-s-1").data("info", $("#passive-s-2").data("info"));
+	$("#passive-s-desc-1").text($("#passive-s-desc-2").text());
 	
 	$("#hp-1").val($("#hp-2").val());
 	$("#atk-1").val($("#atk-2").val());
@@ -2454,6 +2477,7 @@ function swap() {
 	setVisible("#extra-passive-a-info-1", $("#extra-passive-a-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-passive-b-info-1", $("#extra-passive-b-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), true);
+	setVisible("#extra-passive-s-info-1", $("#extra-passive-s-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#char-build-info-1", $("#char-build-info-2").stop(true, true).is(":visible"), true);
@@ -2464,6 +2488,7 @@ function swap() {
 	setVisible("#extra-passive-a-info-2", oldAtkInfo.extraPassiveAInfoVisible, false);
 	setVisible("#extra-passive-b-info-2", oldAtkInfo.extraPassiveBInfoVisible, false);
 	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, false);
+	setVisible("#extra-passive-s-info-2", oldAtkInfo.extraSealInfoVisible, false);
 	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, false);
 	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, false);
 	setVisible("#char-build-info-2", oldAtkInfo.buildInfoVisible, false);
@@ -2503,6 +2528,9 @@ function swap() {
 	$("#special-desc-2").text(oldAtkInfo.specialDesc);
 	$("#spec-cooldown-2").val(oldAtkInfo.specCooldown);
 	$("#spec-cooldown-max-2").text(oldAtkInfo.specCooldownMax);
+	$("#passive-s-2").val(oldAtkInfo.selectedSeal).trigger("change.select2");
+	$("#passive-s-2").data("info", oldAtkInfo.sealData);
+	$("#passive-s-desc-2").text(oldAtkInfo.sealDesc);
 	
 	$("#hp-2").val(oldAtkInfo.hp);
 	$("#atk-2").val(oldAtkInfo.atk);
@@ -2539,6 +2567,7 @@ function swap() {
 	setVisible("#extra-passive-a-info-2", oldAtkInfo.extraPassiveAInfoVisible, true);
 	setVisible("#extra-passive-b-info-2", oldAtkInfo.extraPassiveBInfoVisible, true);
 	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, true);
+	setVisible("#extra-passive-s-info-2", oldAtkInfo.extraSealInfoVisible, true);
 	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, true);
 	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, true);
 	setVisible("#char-build-info-2", oldAtkInfo.buildInfoVisible, true);
@@ -2661,20 +2690,6 @@ function filterMatchupTable(fadeIn) {
 		$("#matchup-table").hide().fadeIn("slow");
 		$("#matchup-overview").hide().fadeIn("slow");
 	}
-}
-
-// updates infomation depending on the mode selected
-function updateDisplay() {
-	"use strict";
-	var scrollTop = $(window).scrollTop();
-	if ($("#one-vs-one").is(":checked")) {
-		simBattle(getBattleInfo(), true);
-	} else if ($("#one-vs-all").is(":checked") && (!keepTable || !previousTable)) {
-		calculateMatchups(true);
-	} else if ($("#all-vs-one").is(":checked") && (!keepTable || previousTable)) {
-		calculateMatchups(false);
-	}
-	$(window).scrollTop(scrollTop);
 }
 
 // determines if the matchup table needs to be updated whenever a change in data occurs
@@ -2878,6 +2893,12 @@ function applyOverrides(charNum) {
 		}
 	}
 	
+	// override seal
+	if ($("#override-passive-s").val() !== "No Override") {
+		$("#passive-s-" + charNum).val($("#override-passive-s").val()).trigger("change.select2");
+		getSkillData(charNum, "s", true);
+	}
+	
 	// override assist
 	if ($("#override-assist").val() !== "No Override") {
 		if ($("#override-assist").val() === "None") {
@@ -3067,6 +3088,20 @@ function calculateMatchups(attacker) {
 	});
 }
 
+// updates infomation depending on the mode selected
+function updateDisplay() {
+	"use strict";
+	var scrollTop = $(window).scrollTop();
+	if ($("#one-vs-one").is(":checked")) {
+		simBattle(getBattleInfo(), true);
+	} else if ($("#one-vs-all").is(":checked") && (!keepTable || !previousTable)) {
+		calculateMatchups(true);
+	} else if ($("#all-vs-one").is(":checked") && (!keepTable || previousTable)) {
+		calculateMatchups(false);
+	}
+	$(window).scrollTop(scrollTop);
+}
+
 // sets up matchup overrides section
 function setupOverrides() {
 	"use strict";
@@ -3160,10 +3195,20 @@ $(document).ready( function() {
 		updateDisplay();
 	});
 	
+	// fill in sacred seals
+	loadPassives("s", "#passive-s-1");
+	loadPassives("s", "#passive-s-2");
+	loadPassives("s", "#override-passive-s");
+	$("#override-passive-s").html("<option value='No Override'>No Override</option>" + $("#override-passive-s").html());
+	getSkillData("1", "s", false);
+	getSkillData("2", "s", false);
+	
 	// setup initial display
 	setupStats();
 	setupChars();
 	setupOverrides();
+	
+	// setup select2
 	$(".fancy-select").select2({
 		templateResult: function format(state) {
 			var originalOption = state.element;
@@ -3406,7 +3451,8 @@ $(document).ready( function() {
 		$("#override-passive-c").val("No Override").trigger("change.select2");
 		$("#override-assist").val("No Override").trigger("change.select2");
 		$("#override-special").val("No Override").trigger("change.select2");
-		$("#override-spec-cooldown").val("max").trigger("change.select2");
+		$("#override-spec-cooldown").val("max");
+		$("#override-passive-s").val("No Override").trigger("change.select2");
 		
 		$(".override-stat").val(0);
 		$("#override-curr-hp").val(100);
