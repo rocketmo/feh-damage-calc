@@ -150,6 +150,7 @@ function weaponToColor(weaponType) {
 
 // given a weapon type, return its range
 function weaponTypeRange(weaponType) {
+	"use strict";
 	var range = 1;
 	if (weaponType === "Red Tome" || weaponType === "Green Tome" || weaponType === "Blue Tome" || weaponType === "Bow" || weaponType === "Dagger" || weaponType === "Staff") {
 		range = 2;
@@ -579,14 +580,30 @@ function getPortrait(imgID, portraitName) {
 	$(imgID).attr("src", "img/Portraits/" + portraitName + ".png");
 }
 
+// applies any stat modifiers to the given stats and returns the resulting stats
+// stats contain the character's stats, skillName is the skill to check for stat mods, dataInfo contains the info for the given skill
+function applyStatMods(stats, skillName, dataInfo) {
+	"use strict";
+	if (skillName !== "None" && dataInfo[skillName].hasOwnProperty("stat_mod")) {
+		for (var key in dataInfo[skillName].stat_mod) {
+			stats[key] += dataInfo[skillName].stat_mod[key];
+			if (stats[key] < 0) {
+				stats[key] = 0;
+			} else if (stats[key] > 99) {
+				stats[key] = 99;
+			}
+		}
+	}
+	
+	return stats;
+}
+
 // gets that stat totals given the data
 // charName is the name of the character, weaponName is the equipped weapon, passiveA is the equipped passive a skill
 // rarity is the rarity of the character, level is the level of the character, merge is the number of units merged with the given one
 // boon is the boon stat, bane is the bane stat
-function getStatTotals(charName, weaponName, passiveA, rarity, level, merge, boon, bane) {
+function getStatTotals(charName, weaponName, passiveA, seal, rarity, level, merge, boon, bane) {
 	"use strict";
-	// get info
-	
 	// base stats + boons/banes
 	var stats = {};
 	stats.hp = charInfo[charName].base_stat["star-" + rarity.toString()].hp + ((boon === "hp") ? 1 : 0) + ((bane === "hp") ? -1 : 0);
@@ -641,33 +658,13 @@ function getStatTotals(charName, weaponName, passiveA, rarity, level, merge, boo
 		stats.res += statGrowths[rarity-1][charInfo[charName].base_stat.growth.res + ((boon === "res") ? 1 : 0) + ((bane === "res") ? -1 : 0)];
 	}
 	
-	// apply weapon stats and stat mods
-	if (weaponName !== "None") {
-		stats.atk += weaponInfo[weaponName].might;
-		
-		if (weaponInfo[weaponName].hasOwnProperty("stat_mod")) {
-			for (var wKey in weaponInfo[weaponName].stat_mod) {
-				stats[wKey] += weaponInfo[weaponName].stat_mod[wKey];
-				if (stats[wKey] < 0) {
-					stats[wKey] = 0;
-				} else if (stats[wKey] > 99) {
-					stats[wKey] = 99;
-				}
-			}
-		}
-	}
+	// add weapon might
+	stats.atk += (weaponName !== "None") ? weaponInfo[weaponName].might : 0;
 	
-	// apply passive a stat mods
-	if (passiveA !== "None" && skillInfo.a[passiveA].hasOwnProperty("stat_mod")) {
-		for (var pKey in skillInfo.a[passiveA].stat_mod) {
-			stats[pKey] += skillInfo.a[passiveA].stat_mod[pKey];
-			if (stats[pKey] < 0) {
-				stats[pKey] = 0;
-			} else if (stats[pKey] > 99) {
-				stats[pKey] = 99;
-			}
-		}
-	}
+	// apply stat mods
+	stats = applyStatMods(stats, weaponName, weaponInfo);
+	stats = applyStatMods(stats, passiveA, skillInfo.a);
+	stats = applyStatMods(stats, seal, skillInfo.s);
 	
 	return stats;
 }
@@ -681,6 +678,7 @@ function displayStatTotals(charNum) {
 	var charName = $("#char-" + charNum).val();
 	var weaponName = $("#weapon-" + charNum).val();
 	var passiveA = $("#passive-a-" + charNum).val();
+	var seal = $("#passive-s-" + charNum).val();
 	var rarity = parseInt($("#rarity-" + charNum).val());
 	var level = parseInt($("#level-" + charNum).val());
 	var merge = parseInt($("#merge-" + charNum).val());
@@ -688,7 +686,7 @@ function displayStatTotals(charNum) {
 	var bane = $("#bane-" + charNum).val();
 	
 	// get stats
-	var stats = getStatTotals(charName, weaponName, passiveA, rarity, level, merge, boon, bane);
+	var stats = getStatTotals(charName, weaponName, passiveA, seal, rarity, level, merge, boon, bane);
 	
 	// display stats
 	$("#hp-" + charNum + ", #curr-hp-" + charNum).val(stats.hp);
@@ -791,6 +789,10 @@ function displayChar(charName, charNum) {
 	showSkills(singleChar, charNum, "a");
 	showSkills(singleChar, charNum, "b");
 	showSkills(singleChar, charNum, "c");
+	
+	// reset sacred seal
+	$("#passive-s-" + charNum).val("None").trigger("change.select2");
+	$("#passive-s-" + charNum).data("info", {});
 	
 	// show special skill	
 	var specials = "";
@@ -1303,6 +1305,8 @@ function getCharPanelData(charNum) {
 	charData.specCurrCooldown = parseInt($("#spec-cooldown-" + charNum).val());
 	charData.specialData = $("#special-" + charNum).data("info");
 	charData.assistData = $("#assist-" + charNum).data("info");
+	charData.seal = $("#passive-s-" + charNum).val();
+	charData.sealData = $("#passive-s-" + charNum).data("info");
 	
 	charData.currHP = parseInt($("#curr-hp-" + charNum).val());
 	charData.initHP = parseInt($("#curr-hp-" + charNum).val());
@@ -1406,6 +1410,8 @@ function getDefaultCharData(charName) {
 	charData.assistData = (charInfo[charName].hasOwnProperty("assist") && assistIndex >= 0) ? assistInfo[charInfo[charName].assist[assistIndex]] : {};
 	charData.special = (charInfo[charName].hasOwnProperty("special") && specialIndex >= 0) ? charInfo[charName].special[specialIndex] : "None";
 	charData.specialData = (charInfo[charName].hasOwnProperty("special") && specialIndex >= 0) ? specInfo[charData.special] : {};
+	charData.seal = "None";
+	charData.sealData = {};
 	
 	// override passives
 	if ($("#override-passive-a").val() !== "No Override") {
@@ -1434,6 +1440,12 @@ function getDefaultCharData(charName) {
 			charData.passiveC = $("#override-passive-c").val();
 			charData.passiveCData = skillInfo.c[$("#override-passive-c").val()];
 		}
+	}
+	
+	// override seal
+	if ($("#override-passive-s").val() !== "No Override" && $("#override-passive-s").val() !== "None") {
+		charData.seal = $("#override-passive-s").val();
+		charData.sealData = skillInfo.s[$("#override-passive-s").val()];
 	}
 	
 	// override assist
@@ -1466,7 +1478,7 @@ function getDefaultCharData(charName) {
 	
 	// show stats
 	if (charInfo[charName].hasOwnProperty("base_stat")) {
-		var stats = getStatTotals(charName, charData.weaponName, charData.passiveA, rarity, level, merge, boon, bane);
+		var stats = getStatTotals(charName, charData.weaponName, charData.passiveA, charData.seal, rarity, level, merge, boon, bane);
 		charData.currHP = stats.hp;
 		charData.initHP = stats.hp;
 		charData.startHP = stats.hp;
@@ -3160,16 +3172,16 @@ $(document).ready( function() {
 		updateDisplay();
 	});
 	
-	// setup initial display
-	setupStats();
-	setupChars();
-	setupOverrides();
-	
 	// fill in sacred seals
 	loadPassives("s", "#passive-s-1");
 	loadPassives("s", "#passive-s-2");
 	loadPassives("s", "#override-passive-s");
 	$("#override-passive-s").html("<option value='No Override'>No Override</option>" + $("#override-passive-s").html());
+	
+	// setup initial display
+	setupStats();
+	setupChars();
+	setupOverrides();
 	
 	// setup select2
 	$(".fancy-select").select2({
