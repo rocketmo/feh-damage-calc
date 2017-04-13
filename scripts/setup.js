@@ -952,6 +952,7 @@ function storeCharTabInfo(attacker) {
 	infoToStore.assist = $("#assist-" + charNum).val();
 	infoToStore.special = $("#special-" + charNum).val();
 	infoToStore.specCooldown = $("#spec-cooldown-" + charNum).val();
+	infoToStore.seal = $("#passive-s-" + charNum).val();
 	
 	// hp and current hp
 	infoToStore.hp = $("#hp-" + charNum).val();
@@ -1057,9 +1058,11 @@ function getCharTabInfo(attacker) {
 		$("#passive-a-" + charNum).val(charTabInfo.passiveA).trigger("change.select2");
 		$("#passive-b-" + charNum).val(charTabInfo.passiveB).trigger("change.select2");
 		$("#passive-c-" + charNum).val(charTabInfo.passiveC).trigger("change.select2");
+		$("#passive-s-" + charNum).val(charTabInfo.seal).trigger("change.select2");
 		getSkillData(charNum, "a", false);
 		getSkillData(charNum, "b", false);
 		getSkillData(charNum, "c", false);
+		getSkillData(charNum, "s", false);
 		
 		// change special
 		$("#special-" + charNum).val(charTabInfo.special).trigger("change.select2");
