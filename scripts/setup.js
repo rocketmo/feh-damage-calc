@@ -753,8 +753,8 @@ function displayChar(charName, charNum) {
 		getSkillData("#passive-c-" + charNum, "c", false);
 		
 		// load in assist skills
-		loadAssists("#assist-" + charNum).trigger("change.select2");
-		$("#assist-" + charNum).val(assist);
+		loadAssists("#assist-" + charNum);
+		$("#assist-" + charNum).val(assist).trigger("change.select2");
 		getAssistData(charNum);
 		
 		// load in specials
