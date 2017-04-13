@@ -3067,6 +3067,9 @@ function calculateMatchups(attacker) {
 	// display results
 	$("#matchup-title, #matchup-overview, #matchup-table-container").fadeIn("slow");
 	
+	// recolor rows
+	recolorMatchupRows();
+	
 	// setup events to view one vs one info
 	$(".matchup-char").on("click", function() {
 		var changeAttacker = ($("#one-vs-all").is(":checked")) ? false : true;
