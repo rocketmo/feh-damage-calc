@@ -1530,7 +1530,7 @@ function getBattleInfo() {
 	battleInfo.attacker = getCharPanelData("1");
 	battleInfo.defender = getCharPanelData("2");
 	battleInfo.logMsg = "";
-	battleInfo.atkRange = $("#weapon-1").data("info").range;
+	battleInfo.atkRange = battleInfo.attacker.weaponName !== "None" ? weaponInfo[battleInfo.attacker.weaponName].range : 0;
 	return battleInfo;
 }
 
@@ -1547,7 +1547,7 @@ function getBattleInfoWithDefault(attacker, charName) {
 	} else {
 		battleInfo.attacker = getDefaultCharData(charName);
 		battleInfo.defender = getCharPanelData("2");
-		battleInfo.atkRange = weaponInfo[battleInfo.attacker.weaponName].range;
+		battleInfo.atkRange = battleInfo.attacker.weaponName !== "None" ? weaponInfo[battleInfo.attacker.weaponName].range : 0;
 	}
 	
 	battleInfo.logMsg = "";
@@ -1859,7 +1859,7 @@ function simBattle(battleInfo, displayMsg) {
 	"use strict";
 	
 	// check if attacker has a weapon, if not no attack
-	if ($("#weapon-1").val() === "None") {
+	if (battleInfo.attacker.weaponName === "None") {
 		if (displayMsg) {
 			$("#interaction-list").stop(true, true).hide().html("<li class='battle-interaction-only'><span class='attacker'><strong>" + $("#char-1").val() + "</strong></span> cannot attack without a weapon.</li>");
 			$("#hp-remain-1").stop(true, true).hide().text($("#curr-hp-1").val().toString() + " → " + $("#curr-hp-1").val().toString());
