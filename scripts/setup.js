@@ -3169,6 +3169,7 @@ $(document).ready( function() {
 	loadPassives("s", "#passive-s-1");
 	loadPassives("s", "#passive-s-2");
 	loadPassives("s", "#override-passive-s");
+	$("#override-passive-s").html("<option value='No Override'>No Override</option>" + $("#override-passive-s").html());
 	
 	// setup select2
 	$(".fancy-select").select2({
