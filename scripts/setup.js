@@ -2350,6 +2350,9 @@ function swap() {
 	oldAtkInfo.specialDesc = $("#special-desc-1").text();
 	oldAtkInfo.specCooldown = $("#spec-cooldown-1").val();
 	oldAtkInfo.specCooldownMax = $("#spec-cooldown-max-1").text();
+	oldAtkInfo.selectedSeal = $("#passive-s-1").val();
+	oldAtkInfo.sealData = $("#passive-s-1").data("info");
+	oldAtkInfo.sealDesc = $("#passive-s-desc-1").text();
 	
 	oldAtkInfo.hp = $("#hp-1").val();
 	oldAtkInfo.atk = $("#atk-1").val();
@@ -2384,6 +2387,7 @@ function swap() {
 	oldAtkInfo.extraPassiveAInfoVisible = $("#extra-passive-a-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraPassiveBInfoVisible = $("#extra-passive-b-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraPassiveCInfoVisible = $("#extra-passive-c-info-1").stop(true, true).is(":visible");
+	oldAtkInfo.extraSealInfoVisible = $("#extra-passive-s-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraAssistInfoVisible = $("#extra-assist-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraSpecialInfoVisible = $("#extra-special-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.buildInfoVisible = $("#char-build-info-1").stop(true, true).is(":visible");
@@ -2394,6 +2398,7 @@ function swap() {
 	setVisible("#extra-passive-a-info-1", $("#extra-passive-a-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#extra-passive-b-info-1", $("#extra-passive-b-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), false);
+	setVisible("#extra-passive-s-info-1", $("#extra-passive-s-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#char-build-info-1", $("#char-build-info-2").stop(true, true).is(":visible"), false);
@@ -2433,6 +2438,9 @@ function swap() {
 	$("#special-desc-1").text($("#special-desc-2").text());
 	$("#spec-cooldown-1").val($("#spec-cooldown-2").val());
 	$("#spec-cooldown-max-1").text($("#spec-cooldown-max-2").text());
+	$("#passive-s-1").val($("#passive-s-2").val()).trigger("change.select2");
+	$("#passive-s-1").data("info", $("#passive-s-2").data("info"));
+	$("#passive-s-desc-1").text($("#passive-s-desc-2").text());
 	
 	$("#hp-1").val($("#hp-2").val());
 	$("#atk-1").val($("#atk-2").val());
@@ -2469,6 +2477,7 @@ function swap() {
 	setVisible("#extra-passive-a-info-1", $("#extra-passive-a-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-passive-b-info-1", $("#extra-passive-b-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), true);
+	setVisible("#extra-passive-s-info-1", $("#extra-passive-s-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), true);
 	setVisible("#char-build-info-1", $("#char-build-info-2").stop(true, true).is(":visible"), true);
@@ -2479,6 +2488,7 @@ function swap() {
 	setVisible("#extra-passive-a-info-2", oldAtkInfo.extraPassiveAInfoVisible, false);
 	setVisible("#extra-passive-b-info-2", oldAtkInfo.extraPassiveBInfoVisible, false);
 	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, false);
+	setVisible("#extra-passive-s-info-2", oldAtkInfo.extraSealInfoVisible, false);
 	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, false);
 	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, false);
 	setVisible("#char-build-info-2", oldAtkInfo.buildInfoVisible, false);
@@ -2518,6 +2528,9 @@ function swap() {
 	$("#special-desc-2").text(oldAtkInfo.specialDesc);
 	$("#spec-cooldown-2").val(oldAtkInfo.specCooldown);
 	$("#spec-cooldown-max-2").text(oldAtkInfo.specCooldownMax);
+	$("#passive-s-2").val(oldAtkInfo.selectedSeal).trigger("change.select2");
+	$("#passive-s-2").data("info", oldAtkInfo.sealData);
+	$("#passive-s-desc-2").text(oldAtkInfo.sealDesc);
 	
 	$("#hp-2").val(oldAtkInfo.hp);
 	$("#atk-2").val(oldAtkInfo.atk);
@@ -2554,6 +2567,7 @@ function swap() {
 	setVisible("#extra-passive-a-info-2", oldAtkInfo.extraPassiveAInfoVisible, true);
 	setVisible("#extra-passive-b-info-2", oldAtkInfo.extraPassiveBInfoVisible, true);
 	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, true);
+	setVisible("#extra-passive-s-info-2", oldAtkInfo.extraSealInfoVisible, true);
 	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, true);
 	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, true);
 	setVisible("#char-build-info-2", oldAtkInfo.buildInfoVisible, true);
