@@ -418,7 +418,7 @@ function showSkills(singleChar, charNum, type) {
 	
 	// set value
 	$("#passive-" + type + "-" + charNum).html(skills);
-	$("#passive-" + type + "-" + charNum).val(selectedSkill);
+	$("#passive-" + type + "-" + charNum).val(selectedSkill).trigger("change.select2");
 	
 	// store skill data
 	getSkillData(charNum, type, false);
@@ -732,7 +732,7 @@ function displayChar(charName, charNum) {
 		
 		// load in all weapons of the current weapon type
 		loadWeapons(weaponType, "#weapon-" + charNum, false);
-		$("#weapon-" + charNum).val(weapon);
+		$("#weapon-" + charNum).val(weapon).trigger("change.select2");
 		if (weapon === "None") {
 			$("#weapon-" + charNum).data("info", {});
 		} else {
@@ -741,25 +741,25 @@ function displayChar(charName, charNum) {
 		
 		// load in passive skills
 		loadPassives("a", "#passive-a-" + charNum);
-		$("#passive-a-" + charNum).val(passiveA);
+		$("#passive-a-" + charNum).val(passiveA).trigger("change.select2");
 		getSkillData("#passive-a-" + charNum, "a", false);
 		
 		loadPassives("b", "#passive-b-" + charNum);
-		$("#passive-b-" + charNum).val(passiveB);
+		$("#passive-b-" + charNum).val(passiveB).trigger("change.select2");
 		getSkillData("#passive-b-" + charNum, "b", false);
 		
 		loadPassives("c", "#passive-c-" + charNum);
-		$("#passive-c-" + charNum).val(passiveC);
+		$("#passive-c-" + charNum).val(passiveC).trigger("change.select2");
 		getSkillData("#passive-c-" + charNum, "c", false);
 		
 		// load in assist skills
-		loadAssists("#assist-" + charNum);
+		loadAssists("#assist-" + charNum).trigger("change.select2");
 		$("#assist-" + charNum).val(assist);
 		getAssistData(charNum);
 		
 		// load in specials
 		loadSpecials("#special-" + charNum);
-		$("#special-" + charNum).val(special);
+		$("#special-" + charNum).val(special).trigger("change.select2");
 		getSpecialData(charNum);
 		
 		return;
@@ -822,7 +822,7 @@ function displayChar(charName, charNum) {
 	
 	// set values
 	$("#special-" + charNum).html(specials);
-	$("#special-" + charNum).val(selectedSpecial);
+	$("#special-" + charNum).val(selectedSpecial).trigger("change.select2");
 	getSpecialData(charNum);
 	
 	// show assist skill
@@ -852,7 +852,7 @@ function displayChar(charName, charNum) {
 	
 	// set values
 	$("#assist-" + charNum).html(assists);
-	$("#assist-" + charNum).val(selectedAssist);
+	$("#assist-" + charNum).val(selectedAssist).trigger("change.select2");
 	getAssistData(charNum);
 	
 	// show weapon
@@ -875,7 +875,7 @@ function displayChar(charName, charNum) {
 	}
 	
 	$("#weapon-" + charNum).html(weapons);
-	$("#weapon-" + charNum).val(selectedWeapon);
+	$("#weapon-" + charNum).val(selectedWeapon).trigger("change.select2");
 	
 	// show extra weapon info
 	showWeapon(selectedWeapon, charNum, false);
@@ -996,15 +996,15 @@ function getCharTabInfo(attacker) {
 	
 	if (!charTabInfo.hasOwnProperty("character")) { // no character stored, display default
 		if (attacker) {
-			$("#char-1").val($("#char-1 option:eq(0)").val());
+			$("#char-1").val($("#char-1 option:eq(0)").val()).trigger("change.select2");
 			displayChar($("#char-1").val(), "1");
 		} else {
-			$("#char-2").val($("#char-2 option:eq(1)").val());
+			$("#char-2").val($("#char-2 option:eq(1)").val()).trigger("change.select2");
 			displayChar($("#char-2").val(), "2");
 		}
 	} else {  // display stored info
 		// get and show default character info
-		$("#char-" + charNum).val(charTabInfo.character);
+		$("#char-" + charNum).val(charTabInfo.character).trigger("change.select2");
 		displayChar(charTabInfo.character, charNum);
 		
 		// change extra character info if Custom unit was selected
@@ -1052,20 +1052,20 @@ function getCharTabInfo(attacker) {
 		$("#res-spur-" + charNum).val(charTabInfo.resSpur);
 		
 		// change passives
-		$("#passive-a-" + charNum).val(charTabInfo.passiveA);
-		$("#passive-b-" + charNum).val(charTabInfo.passiveB);
-		$("#passive-c-" + charNum).val(charTabInfo.passiveC);
+		$("#passive-a-" + charNum).val(charTabInfo.passiveA).trigger("change.select2");
+		$("#passive-b-" + charNum).val(charTabInfo.passiveB).trigger("change.select2");
+		$("#passive-c-" + charNum).val(charTabInfo.passiveC).trigger("change.select2");
 		getSkillData(charNum, "a", false);
 		getSkillData(charNum, "b", false);
 		getSkillData(charNum, "c", false);
 		
 		// change special
-		$("#special-" + charNum).val(charTabInfo.special);
+		$("#special-" + charNum).val(charTabInfo.special).trigger("change.select2");
 		showSpecCooldown(charTabInfo.special, charNum, true);
 		getSpecialData(charNum);
 		
 		// change assist
-		$("#assist-" + charNum).val(charTabInfo.assist);
+		$("#assist-" + charNum).val(charTabInfo.assist).trigger("change.select2");
 		getAssistData(charNum);
 		
 		// change weapon
@@ -1073,7 +1073,7 @@ function getCharTabInfo(attacker) {
 			loadWeapons(charTabInfo.weaponType, "#weapon-" + charNum, false);
 		} 
 		
-		$("#weapon-" + charNum).val(charTabInfo.weapon);
+		$("#weapon-" + charNum).val(charTabInfo.weapon).trigger("change.select2");
 		showWeapon(charTabInfo.weapon, charNum, false);
 		
 		// change special cooldown
@@ -2245,9 +2245,9 @@ function setupChars() {
 	selectCharTab(false, 0);
 	
 	// set default characters
-	$("#char-1 option:eq(0)").attr("selected", "selected");
+	$("#char-1 option:eq(0)").attr("selected", "selected").trigger("change.select2");
 	displayChar($("#char-1").val(), "1");
-	$("#char-2 option:eq(1)").attr("selected", "selected");
+	$("#char-2 option:eq(1)").attr("selected", "selected").trigger("change.select2");
 	displayChar($("#char-2").val(), "2");
 
 	// simulate initial battle
@@ -2383,13 +2383,13 @@ function swap() {
 	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), false);
 	setVisible("#char-build-info-1", $("#char-build-info-2").stop(true, true).is(":visible"), false);
 	
-	$("#char-1").val($("#char-2").val());
+	$("#char-1").val($("#char-2").val()).trigger("change.select2");
 	$("#color-1").val($("#color-2").val());
 	$("#weapon-type-1").val($("#weapon-type-2").val());
 	$("#move-type-1").val($("#move-type-2").val());
 	
 	$("#weapon-1").html($("#weapon-2").html());
-	$("#weapon-1").val($("#weapon-2").val());
+	$("#weapon-1").val($("#weapon-2").val()).trigger("change.select2");
 	$("#weapon-1").data("info", $("#weapon-2").data("info"));
 	$("#weapon-might-1").text($("#weapon-might-2").text());
 	$("#weapon-range-1").text($("#weapon-range-2").text());
@@ -2397,23 +2397,23 @@ function swap() {
 	$("#weapon-desc-1").text($("#weapon-desc-2").text());
 	
 	$("#passive-a-1").html($("#passive-a-2").html());
-	$("#passive-a-1").val($("#passive-a-2").val());
+	$("#passive-a-1").val($("#passive-a-2").val()).trigger("change.select2");
 	$("#passive-a-1").data("info", $("#passive-a-2").data("info"));
 	$("#passive-a-desc-1").text($("#passive-a-desc-2").text());
 	$("#passive-b-1").html($("#passive-b-2").html());
-	$("#passive-b-1").val($("#passive-b-2").val());
+	$("#passive-b-1").val($("#passive-b-2").val()).trigger("change.select2");
 	$("#passive-b-1").data("info", $("#passive-b-2").data("info"));
 	$("#passive-b-desc-1").text($("#passive-b-desc-2").text());
 	$("#passive-c-1").html($("#passive-c-2").html());
-	$("#passive-c-1").val($("#passive-c-2").val());
+	$("#passive-c-1").val($("#passive-c-2").val()).trigger("change.select2");
 	$("#passive-c-1").data("info", $("#passive-c-2").data("info"));
 	$("#passive-c-desc-1").text($("#passive-c-desc-2").text());
 	$("#assist-1").html($("#assist-2").html());
-	$("#assist-1").val($("#assist-2").val());
+	$("#assist-1").val($("#assist-2").val()).trigger("change.select2");
 	$("#assist-1").data("info", $("#assist-2").data("info"));
 	$("#assist-desc-1").text($("#assist-desc-2").text());
 	$("#special-1").html($("#special-2").html());
-	$("#special-1").val($("#special-2").val());
+	$("#special-1").val($("#special-2").val()).trigger("change.select2");
 	$("#special-1").data("info", $("#special-2").data("info"));
 	$("#special-desc-1").text($("#special-desc-2").text());
 	$("#spec-cooldown-1").val($("#spec-cooldown-2").val());
@@ -2468,13 +2468,13 @@ function swap() {
 	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, false);
 	setVisible("#char-build-info-2", oldAtkInfo.buildInfoVisible, false);
 	
-	$("#char-2").val(oldAtkInfo.name);
+	$("#char-2").val(oldAtkInfo.name).trigger("change.select2");
 	$("#color-2").val(oldAtkInfo.color);
 	$("#weapon-type-2").val(oldAtkInfo.weaponType);
 	$("#move-type-2").val(oldAtkInfo.moveType);
 	
 	$("#weapon-2").html(oldAtkInfo.weapon);
-	$("#weapon-2").val(oldAtkInfo.selectedWeapon);
+	$("#weapon-2").val(oldAtkInfo.selectedWeapon).trigger("change.select2");
 	$("#weapon-2").data("info", oldAtkInfo.weaponData);
 	$("#weapon-might-2").text(oldAtkInfo.weaponMight);
 	$("#weapon-range-2").text(oldAtkInfo.weaponRange);
@@ -2482,23 +2482,23 @@ function swap() {
 	$("#weapon-desc-2").text(oldAtkInfo.weaponDesc);
 	
 	$("#passive-a-2").html(oldAtkInfo.passiveA);
-	$("#passive-a-2").val(oldAtkInfo.selectedPassiveA);
+	$("#passive-a-2").val(oldAtkInfo.selectedPassiveA).trigger("change.select2");
 	$("#passive-a-2").data("info", oldAtkInfo.passiveAData);
 	$("#passive-a-desc-2").text(oldAtkInfo.passiveADesc);
 	$("#passive-b-2").html(oldAtkInfo.passiveB);
-	$("#passive-b-2").val(oldAtkInfo.selectedPassiveB);
+	$("#passive-b-2").val(oldAtkInfo.selectedPassiveB).trigger("change.select2");
 	$("#passive-b-2").data("info", oldAtkInfo.passiveBData);
 	$("#passive-b-desc-2").text(oldAtkInfo.passiveBDesc);
 	$("#passive-c-2").html(oldAtkInfo.passiveC);
-	$("#passive-c-2").val(oldAtkInfo.selectedPassiveC);
+	$("#passive-c-2").val(oldAtkInfo.selectedPassiveC).trigger("change.select2");
 	$("#passive-c-2").data("info", oldAtkInfo.passiveCData);
 	$("#passive-c-desc-2").text(oldAtkInfo.passiveCDesc);
 	$("#assist-2").html(oldAtkInfo.assist);
-	$("#assist-2").val(oldAtkInfo.selectedAssist);
+	$("#assist-2").val(oldAtkInfo.selectedAssist).trigger("change.select2");
 	$("#assist-2").data("info", oldAtkInfo.assistData);
 	$("#assist-desc-2").text(oldAtkInfo.assistDesc);
 	$("#special-2").html(oldAtkInfo.special);
-	$("#special-2").val(oldAtkInfo.selectedSpecial);
+	$("#special-2").val(oldAtkInfo.selectedSpecial).trigger("change.select2");
 	$("#special-2").data("info", oldAtkInfo.specialData);
 	$("#special-desc-2").text(oldAtkInfo.specialDesc);
 	$("#spec-cooldown-2").val(oldAtkInfo.specCooldown);
@@ -2699,13 +2699,13 @@ function rarityUpdateWeapon(charNum, rarity) {
 		// change weapon
 		if (rarityRestrict.hasOwnProperty("weapon") && $("#weapon-" + charNum).val() !== "None" && $("#weapon-" + charNum + " option:selected").index() <= charInfo[charName].weapon.length) {
 			selectedWeapon = charInfo[charName].weapon[rarityRestrict.weapon];
-			$("#weapon-" + charNum).val(selectedWeapon);
+			$("#weapon-" + charNum).val(selectedWeapon).trigger("change.select2");
 			showWeapon(selectedWeapon, charNum, true);
 		}
 	} else if (rarity === 5) {
 		if ($("#weapon-" + charNum).val() !== "None" && $("#weapon-" + charNum + " option:selected").index() <= charInfo[charName].weapon.length) {
 			selectedWeapon = charInfo[charName].weapon[0];
-			$("#weapon-" + charNum).val(selectedWeapon);
+			$("#weapon-" + charNum).val(selectedWeapon).trigger("change.select2");
 			showWeapon(selectedWeapon, charNum, true);
 		}
 	}
@@ -2723,14 +2723,14 @@ function rarityUpdatePassive(charNum, rarity, type) {
 		
 		if (rarityRestrict.hasOwnProperty("passive_" + type) && charInfo[charName].hasOwnProperty("passive_" + type) && $("#passive-" + type + "-" + charNum + " option:selected").index() <= charInfo[charName]["passive_" + type].length) {
 			selectedPassive = rarityRestrict["passive_" + type] < 0 ? "None" : charInfo[charName]["passive_" + type][rarityRestrict["passive_" + type]];
-			$("#passive-" + type + "-" + charNum).val(selectedPassive);
+			$("#passive-" + type + "-" + charNum).val(selectedPassive).trigger("change.select2");
 			getSkillData(charNum, type, true);
 		}
 		
 	} else if (rarity === 5) {
 		if (charInfo[charName].hasOwnProperty("passive_" + type) && $("#passive-" + type + "-" + charNum + " option:selected").index() <= charInfo[charName]["passive_" + type].length) {
 			selectedPassive = charInfo[charName]["passive_" + type][0];
-			$("#passive-" + type + "-" + charNum).val(selectedPassive);
+			$("#passive-" + type + "-" + charNum).val(selectedPassive).trigger("change.select2");
 			getSkillData(charNum, type, true);
 		}
 	}
@@ -2748,14 +2748,14 @@ function rarityUpdateSpecial(charNum, rarity) {
 		
 		if (rarityRestrict.hasOwnProperty("special") && $("#special-" + charNum + " option:selected").index() <= charInfo[charName].special.length) {
 			selectedSpecial = rarityRestrict.special < 0 ? "None" : charInfo[charName].special[rarityRestrict.special];
-			$("#special-" + charNum).val(selectedSpecial);
+			$("#special-" + charNum).val(selectedSpecial).trigger("change.select2");
 			showSpecCooldown(selectedSpecial, charNum, false);
 			getSpecialData(charNum);
 		}
 	} else if (rarity === 5) {
 		if (charInfo[charName].hasOwnProperty("special") && $("#special-" + charNum + " option:selected").index() <= charInfo[charName].special.length) {
 			selectedSpecial = charInfo[charName].special[0];
-			$("#special-" + charNum).val(selectedSpecial);
+			$("#special-" + charNum).val(selectedSpecial).trigger("change.select2");
 			showSpecCooldown(selectedSpecial, charNum, false);
 			getSpecialData(charNum);
 		}
@@ -2774,14 +2774,14 @@ function rarityUpdateAssist(charNum, rarity) {
 		
 		if (rarityRestrict.hasOwnProperty("assist") && $("#assist-" + charNum + " option:selected").index() <= charInfo[charName].assist.length) {
 			selectedAssist = rarityRestrict.assist < 0 ? "None" : charInfo[charName].assist[rarityRestrict.assist];
-			$("#assist-" + charNum).val(selectedAssist);
+			$("#assist-" + charNum).val(selectedAssist).trigger("change.select2");
 			getAssistData(charNum);
 			updateSpecCooldown(charNum);
 		}
 	} else if (rarity === 5) {
 		if (charInfo[charName].hasOwnProperty("assist") && $("#assist-" + charNum + " option:selected").index() <= charInfo[charName].assist.length) {
 			selectedAssist = charInfo[charName].assist[0];
-			$("#assist-" + charNum).val(selectedAssist);
+			$("#assist-" + charNum).val(selectedAssist).trigger("change.select2");
 			getAssistData(charNum);
 			updateSpecCooldown(charNum);
 		}
@@ -2841,10 +2841,10 @@ function applyOverrides(charNum) {
 	// override weapon
 	if ($("#override-weapon").val() !== "No Override") {
 		if ($("#override-weapon").val() === "None") {
-			$("#weapon-" + charNum).val("None");
+			$("#weapon-" + charNum).val("None").trigger("change.select2");
 			showWeapon("None", charNum, true);
 		} else if (charInfo[charName].weapon_type === weaponInfo[$("#override-weapon").val()].type) {
-			$("#weapon-" + charNum).val($("#override-weapon").val());
+			$("#weapon-" + charNum).val($("#override-weapon").val()).trigger("change.select2");
 			showWeapon($("#override-weapon").val(), charNum, true);
 		}
 	}
@@ -2852,28 +2852,28 @@ function applyOverrides(charNum) {
 	// override passives
 	if ($("#override-passive-a").val() !== "No Override") {
 		if ($("#override-passive-a").val() === "None") {
-			$("#passive-a-" + charNum).val("None");
+			$("#passive-a-" + charNum).val("None").trigger("change.select2");
 			getSkillData(charNum, "a", true);
 		} else if (isInheritable(skillInfo.a[$("#override-passive-a").val()], charName)) {
-			$("#passive-a-" + charNum).val($("#override-passive-a").val());
+			$("#passive-a-" + charNum).val($("#override-passive-a").val()).trigger("change.select2");
 			getSkillData(charNum, "a", true);
 		}
 	}
 	if ($("#override-passive-b").val() !== "No Override") {
 		if ($("#override-passive-b").val() === "None") {
-			$("#passive-b-" + charNum).val("None");
+			$("#passive-b-" + charNum).val("None").trigger("change.select2");
 			getSkillData(charNum, "b", true);
 		} else if (isInheritable(skillInfo.b[$("#override-passive-b").val()], charName)) {
-			$("#passive-b-" + charNum).val($("#override-passive-b").val());
+			$("#passive-b-" + charNum).val($("#override-passive-b").val()).trigger("change.select2");
 			getSkillData(charNum, "b", true);
 		}
 	}
 	if ($("#override-passive-c").val() !== "No Override") {
 		if ($("#override-passive-c").val() === "None") {
-			$("#passive-c-" + charNum).val("None");
+			$("#passive-c-" + charNum).val("None").trigger("change.select2");
 			getSkillData(charNum, "c", true);
 		} else if (isInheritable(skillInfo.c[$("#override-passive-c").val()], charName)) {
-			$("#passive-c-" + charNum).val($("#override-passive-c").val());
+			$("#passive-c-" + charNum).val($("#override-passive-c").val()).trigger("change.select2");
 			getSkillData(charNum, "c", true);
 		}
 	}
@@ -2881,11 +2881,11 @@ function applyOverrides(charNum) {
 	// override assist
 	if ($("#override-assist").val() !== "No Override") {
 		if ($("#override-assist").val() === "None") {
-			$("#assist-" + charNum).val("None");
+			$("#assist-" + charNum).val("None").trigger("change.select2");
 			getAssistData(charNum);
 			updateSpecCooldown(charNum);
 		} else if (isInheritable(assistInfo[$("#override-assist").val()], charName)) {
-			$("#assist-" + charNum).val($("#override-assist").val());
+			$("#assist-" + charNum).val($("#override-assist").val()).trigger("change.select2");
 			getAssistData(charNum);
 			updateSpecCooldown(charNum);
 		}
@@ -2894,12 +2894,12 @@ function applyOverrides(charNum) {
 	// override special
 	if ($("#override-special").val() !== "No Override") {
 		if ($("#override-special").val() === "None") {
-			$("#special-" + charNum).val("None");
+			$("#special-" + charNum).val("None").trigger("change.select2");
 			getSpecialData(charNum);
 			showSpecCooldown("None", charNum, false);
 			updateSpecCooldown(charNum);
 		} else if (isInheritable(specInfo[$("#override-special").val()], charName)) {
-			$("#special-" + charNum).val($("#override-special").val());
+			$("#special-" + charNum).val($("#override-special").val()).trigger("change.select2");
 			getSpecialData(charNum);
 			showSpecCooldown($("#override-special").val(), charNum, false);
 			updateSpecCooldown(charNum);
@@ -3054,7 +3054,7 @@ function calculateMatchups(attacker) {
 		enableCharPanel("2", true);
 		
 		// input data
-		$("#char-" + (changeAttacker ? "1" : "2")).val(charName);
+		$("#char-" + (changeAttacker ? "1" : "2")).val(charName).trigger("change.select2");
 		displayChar(charName, (changeAttacker ? "1" : "2"));
 		applyOverrides(changeAttacker ? "1" : "2");
 		simBattle(getBattleInfo(), true);
@@ -3223,7 +3223,7 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		loadWeapons(this.value, "#weapon-" + charNum, false);
 		setColor(this.value, charNum);
-		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
+		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected").trigger("change.select2");
 		showWeapon($("#weapon-" + charNum).val(), charNum, true);
 		keepMatchupTable(charNum);
 		updateDisplay();
@@ -3237,9 +3237,9 @@ $(document).ready( function() {
 		keepTable = false;
 		
 		if (selectedWeapon === "No Override" || selectedWeapon === "None" || this.value === "Any" || weaponInfo[selectedWeapon].type === this.value) {
-			$("#override-weapon").val(selectedWeapon);
+			$("#override-weapon").val(selectedWeapon).trigger("change.select2");
 		} else {
-			$("#override-weapon option:eq(0)").attr("selected", "selected");
+			$("#override-weapon option:eq(0)").attr("selected", "selected").trigger("change.select2");
 		}
 		
 		updateDisplay();
@@ -3262,7 +3262,7 @@ $(document).ready( function() {
 			loadWeapons("Bow", "#weapon-" + charNum, false);
 			$("#weapon-type-" + charNum).val("Bow");
 		}
-		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected");
+		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected").trigger("change.select2");
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
 		keepMatchupTable(charNum);
 		updateDisplay();
@@ -3339,7 +3339,7 @@ $(document).ready( function() {
 	});
 	
 	// update table when filters are changed
-	$(".matchup-filter-input").on("change", function() {
+	$(".matchup-filter-input").on("change keyup", function() {
 		// make sure weapons and colors are correct
 		if (this.id === "matchup-filter-color" && this.value !== "Any" && $("#matchup-filter-weapon").val() !== "Any" && this.value !== weaponToColor($("#matchup-filter-weapon").val())) {
 			$("#matchup-filter-weapon").val("Any");
@@ -3355,7 +3355,11 @@ $(document).ready( function() {
 			$("#matchup-filter-weapon").val("Any");
 		}
 		
-		filterMatchupTable(true);
+		if (this.id === "matchup-filter-name") {
+			filterMatchupTable(false);
+		} else {
+			filterMatchupTable(true);
+		}
 	});
 	
 	// reset filters
@@ -3395,14 +3399,14 @@ $(document).ready( function() {
 		$("#override-weapon-type").val("Any");
 		loadWeapons("Any", "#override-weapon", true);
 		$("#override-weapon").html("<option value='No Override'>No Override</option>" + $("#override-weapon").html());
-		$("#override-weapon").val("No Override");
+		$("#override-weapon").val("No Override").trigger("change.select2");
 		
-		$("#override-passive-a").val("No Override");
-		$("#override-passive-b").val("No Override");
-		$("#override-passive-c").val("No Override");
-		$("#override-assist").val("No Override");
-		$("#override-special").val("No Override");
-		$("#override-spec-cooldown").val("max");
+		$("#override-passive-a").val("No Override").trigger("change.select2");
+		$("#override-passive-b").val("No Override").trigger("change.select2");
+		$("#override-passive-c").val("No Override").trigger("change.select2");
+		$("#override-assist").val("No Override").trigger("change.select2");
+		$("#override-special").val("No Override").trigger("change.select2");
+		$("#override-spec-cooldown").val("max").trigger("change.select2");
 		
 		$(".override-stat").val(0);
 		$("#override-curr-hp").val(100);
