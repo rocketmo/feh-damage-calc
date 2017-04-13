@@ -3164,6 +3164,13 @@ $(document).ready( function() {
 	setupStats();
 	setupChars();
 	setupOverrides();
+	
+	// fill in sacred seals
+	loadPassives("s", "#passive-s-1");
+	loadPassives("s", "#passive-s-2");
+	loadPassives("s", "#override-passive-s");
+	
+	// setup select2
 	$(".fancy-select").select2({
 		templateResult: function format(state) {
 			var originalOption = state.element;
