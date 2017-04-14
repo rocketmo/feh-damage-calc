@@ -35,14 +35,22 @@
 						<td>
 							<div class="combat-char">
 								<h3 class="attacker">Attacker</h3>
-								<img id="attacker-portrait" class="combat-portrait">
+								<div class="combat-char-container">
+									<img id="attacker-portrait" class="combat-portrait">
+									<img id="attacker-weapon" class="weapon-icon">
+									<img id="attacker-move" class="move-icon">
+								</div><br>
 								<span id="hp-remain-1" class="hp-remain"></span>
 							</div>	
 						</td>
 						<td>
 							<div class="combat-char">
 								<h3 class="defender">Defender</h3>
-								<img id="defender-portrait" class="combat-portrait">
+								<div class="combat-char-container">
+									<img id="defender-portrait" class="combat-portrait">
+									<img id="defender-weapon" class="weapon-icon">
+									<img id="defender-move" class="move-icon">
+								</div><br>
 								<span id="hp-remain-2" class="hp-remain"></span>
 							</div>
 						</td>
@@ -106,7 +114,7 @@
 											</div>
 											<div>
 												<label>Move Type</label>
-												<select id="move-type-1" class="battle-val" data-charnum="1">
+												<select id="move-type-1" class="move-type-selector" data-charnum="1">
 													<option value="Infantry">Infantry</option>
 													<option value="Cavalry">Cavalry</option>
 													<option value="Flying">Flying</option>
@@ -367,7 +375,7 @@
 											</div>
 											<div>
 												<label>Move Type</label>
-												<select id="move-type-2" class="battle-val" data-charnum="2">
+												<select id="move-type-2" class="move-type-selector" data-charnum="2">
 													<option value="Infantry">Infantry</option>
 													<option value="Cavalry">Cavalry</option>
 													<option value="Flying">Flying</option>

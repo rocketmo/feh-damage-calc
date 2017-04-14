@@ -584,6 +584,18 @@ function getPortrait(imgID, portraitName) {
 	$(imgID).attr("src", "img/Portraits/" + portraitName + ".png");
 }
 
+// loads the given weapon type image into the given img
+function getWeaponIcon(imgID, weaponType) {
+	"use strict";
+	$(imgID).attr("src", "img/WeaponType/" + weaponType + ".png").attr("alt", weaponType);
+}
+
+// loads the given move type image into the given img
+function getMoveIcon(imgID, moveType) {
+	"use strict";
+	$(imgID).attr("src", "img/MoveType/" + moveType + ".png").attr("alt", moveType);
+}
+
 // applies any stat modifiers to the given stats and returns the resulting stats
 // stats contain the character's stats, skillName is the skill to check for stat mods, dataInfo contains the info for the given skill
 function applyStatMods(stats, skillName, dataInfo) {
@@ -710,6 +722,8 @@ function displayChar(charName, charNum) {
 		// display portrait
 		getPortrait((charNum === "1" ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString()), "Other");
 		getPortrait((charNum === "1" ? "#attacker-portrait" : "#defender-portrait"), "Other");
+		getWeaponIcon((charNum === "1" ? "#attacker-weapon" : "#defender-weapon"), $("#weapon-type-" + charNum).val());
+		getMoveIcon((charNum === "1" ? "#attacker-move" : "#defender-move"), $("#move-type-" + charNum).val());
 		
 		// enable inputs
 		if ($("#one-vs-one").is(":checked") || ($("#one-vs-all").is(":checked") && charNum === "1") || ($("#all-vs-one").is(":checked") && charNum === "2")) {
@@ -770,7 +784,9 @@ function displayChar(charName, charNum) {
 	// display portrait
 	getPortrait((charNum === "1" ? "#atk-tab-" + selectedAttacker.toString() : "#def-tab-" + selectedDefender.toString()), charName);
 	getPortrait((charNum === "1" ? "#attacker-portrait" : "#defender-portrait"), charName);
-
+	getWeaponIcon((charNum === "1" ? "#attacker-weapon" : "#defender-weapon"), singleChar.weapon_type);
+	getMoveIcon((charNum === "1" ? "#attacker-move" : "#defender-move"), singleChar.move_type);
+	
 	// show stat variants
 	$("#char-build-info-" + charNum).show(700);
 	
@@ -1077,9 +1093,11 @@ function getCharTabInfo(attacker) {
 		$("#assist-" + charNum).val(charTabInfo.assist).trigger("change.select2");
 		getAssistData(charNum);
 		
-		// change weapon
+		// if customer character, change weapon and fix combat icons
 		if (charTabInfo.character === "Custom") {
 			loadWeapons(charTabInfo.weaponType, "#weapon-" + charNum, false);
+			getWeaponIcon((charNum === "1" ? "#attacker-weapon" : "#defender-weapon"), $("#weapon-type-" + charNum).val());
+			getMoveIcon((charNum === "1" ? "#attacker-move" : "#defender-move"), $("#move-type-" + charNum).val());
 		} 
 		
 		$("#weapon-" + charNum).val(charTabInfo.weapon).trigger("change.select2");
@@ -2597,8 +2615,16 @@ function swap() {
 	
 	// swap results portraits
 	var atkPortrait = $("#attacker-portrait").attr("src");
+	var atkWeaponIcon = $("#attacker-weapon").attr("src");
+	var atkWeaponAlt = $("#attacker-weapon").attr("alt");
+	var atkMoveIcon = $("#attacker-move").attr("src");
+	var atkMoveAlt = $("#attacker-move").attr("alt");
 	$("#attacker-portrait").attr("src", $("#defender-portrait").attr("src"));
+	$("#attacker-weapon").attr("src", $("#defender-weapon").attr("src")).attr("alt", $("#defender-weapon").attr("alt"));
+	$("#attacker-move").attr("src", $("#defender-move").attr("src")).attr("alt", $("#defender-move").attr("alt"));
 	$("#defender-portrait").attr("src", atkPortrait);
+	$("#defender-weapon").attr("src", atkWeaponIcon).attr("alt", atkWeaponAlt);
+	$("#defender-move").attr("src", atkMoveIcon).attr("alt", atkMoveAlt);
 }
 
 // enables or disables a character panel
@@ -2997,7 +3023,7 @@ function calculateMatchups(attacker) {
 			
 			// add to table
 			tableHTML += (charCount % 2 === 1) ? "<tr class='matchup-row-offset'>" : "<tr>";
-			tableHTML += "<td><img src=\"img/Portraits/" + key + ".png\"></td>";
+			tableHTML += "<td><img class='matchup-portrait' src=\"img/Portraits/" + key + ".png\"></div></td>";
 			tableHTML += "<td><span class='matchup-char " + foeClass + "'>" + key + "</span></td>";
 			tableHTML += "<td class='attacker'>" + battleInfo.attacker.damageDealt.toString() + "</td>";
 			tableHTML += "<td class='defender'>" + battleInfo.defender.damageDealt.toString() + "</td>";
@@ -3290,12 +3316,21 @@ $(document).ready( function() {
 		updateDisplay();
 	});
 	
+	// set up move type changes
+	$(".move-type-selector").on("change", function() {
+		var charNum = $(this).data("charnum").toString();
+		getMoveIcon((charNum === "1" ? "#attacker-move" : "#defender-move"), this.value);
+		keepMatchupTable(charNum);
+		updateDisplay();
+	});
+	
 	// set up weapon type changes
 	$(".weapon-type-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		loadWeapons(this.value, "#weapon-" + charNum, false);
 		setColor(this.value, charNum);
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected").trigger("change.select2");
+		getWeaponIcon((charNum === "1" ? "#attacker-weapon" : "#defender-weapon"), this.value);
 		showWeapon($("#weapon-" + charNum).val(), charNum, true);
 		keepMatchupTable(charNum);
 		updateDisplay();
@@ -3335,6 +3370,7 @@ $(document).ready( function() {
 			$("#weapon-type-" + charNum).val("Bow");
 		}
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected").trigger("change.select2");
+		getWeaponIcon((charNum === "1" ? "#attacker-weapon" : "#defender-weapon"), $("#weapon-type-" + charNum).val());
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
 		keepMatchupTable(charNum);
 		updateDisplay();

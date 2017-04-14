@@ -354,7 +354,7 @@ h3 {
 	border-collapse: collapse;
 }
 
-#matchup-table img {
+#matchup-table .matchup-portrait {
 	width: 40px;
 	height: 40px;
 	vertical-align: middle;
@@ -440,9 +440,13 @@ h3 {
 	display:none;
 }
 
+.combat-char-container {
+	position: relative;
+	display: inline-block;
+}
+
 .combat-portrait {
 	margin: 0 auto 0.2em auto;
-	display: block;
 	width: 75px;
 	height: 75px;
 }
@@ -559,4 +563,32 @@ h3 {
 	white-space: normal;
 	font-style: italic;
 	color: #5b5b5b;
+}
+
+.weapon-icon {
+	position: absolute;
+	width: 25%;
+	max-width: 20px;
+	top: 2%;
+	left: 2%;
+}
+
+.move-icon {
+	position: absolute;
+	width: 25%;
+	max-width: 20px;
+	top: 30%;
+	left: 2%;
+}
+
+.combat-char-container .weapon-icon {
+	left: 2px;
+	top: 2px;
+	width: 15px;
+}
+
+.combat-char-container .move-icon {
+	left: 2px;
+	top: 19px;
+	width: 15px;
 }
