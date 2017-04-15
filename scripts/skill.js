@@ -876,7 +876,7 @@ var skillInfo =
                 "weapon_type" : {"Sword": true, "Lance": true, "Axe": true, "Bow": true, "Dagger": true},
                 "spd_adv": 5
             },
-            "no-follow" : true,
+            "no_follow" : true,
             "weapon_restrict" : "Staff"
         },
         "Windsweep 2" : {
@@ -885,7 +885,7 @@ var skillInfo =
                 "weapon_type" : {"Sword": true, "Lance": true, "Axe": true, "Bow": true, "Dagger": true},
                 "spd_adv": 3
             },
-            "no-follow" : true,
+            "no_follow" : true,
             "weapon_restrict" : "Staff"
         },
         "Windsweep 3" : {
@@ -894,7 +894,7 @@ var skillInfo =
                 "weapon_type" : {"Sword": true, "Lance": true, "Axe": true, "Bow": true, "Dagger": true},
                 "spd_adv": 1
             },
-            "no-follow" : true,
+            "no_follow" : true,
             "weapon_restrict" : "Staff"
         },
         "Wings of Mercy 1" : {
