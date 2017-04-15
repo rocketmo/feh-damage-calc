@@ -197,6 +197,30 @@ var skillInfo =
             "counter" : true,
             "range_unique" : 1
         },
+        "Fortress Def 1" : {
+            "description" : "Grants Def+3. Inflicts Atk-3.",
+            "stat_mod" : {
+                "atk" : -3,
+                "def" : 3
+            },
+            "weapon_restrict" : "Staff"
+        },
+        "Fortress Def 2" : {
+            "description" : "Grants Def+4. Inflicts Atk-3.",
+            "stat_mod" : {
+                "atk" : -3,
+                "def" : 4
+            },
+            "weapon_restrict" : "Staff"
+        },
+        "Fortress Def 3" : {
+            "description" : "Grants Def+5. Inflicts Atk-3.",
+            "stat_mod" : {
+                "atk" : -3,
+                "def" : 5
+            },
+            "weapon_restrict" : "Staff"
+        },
         "Fury 1" : {
             "description" : "Grants Atk/Spd/Def/Res+1. Unit takes 2 damage after combat.",
             "stat_mod" : {
@@ -549,6 +573,10 @@ var skillInfo =
             },
             "color_restrict" : "Blue"
         },
+        "Hit and Run" : {
+            "description" : "If unit initiates attack, unit advances 1 space after battle.",
+            "range_unique" : 1
+        },
         "Knock Back" : {
             "description" : "If unit initiates attack, foe is moved 1 space away after combat.",
             "range_unique" : 1
@@ -842,6 +870,33 @@ var skillInfo =
             },
             "move_unique" : "Armored"
         },
+        "Windsweep 1" : {
+            "description" : "If unit initiates attack, no follow-up occurs. Against foe with sword, lance, axe, bow, or dagger, if unit’s Spd - foe’s Spd ≥ 5, foe can’t counterattack.",
+            "sweep" : {
+                "weapon_type" : {"Sword": true, "Lance": true, "Axe": true, "Bow": true, "Dagger": true},
+                "spd_adv": 5
+            },
+            "no_follow" : true,
+            "weapon_restrict" : "Staff"
+        },
+        "Windsweep 2" : {
+            "description" : "If unit initiates attack, no follow-up occurs. Against foe with sword, lance, axe, bow, or dagger, if unit’s Spd - foe’s Spd ≥ 3, foe can’t counterattack.",
+            "sweep" : {
+                "weapon_type" : {"Sword": true, "Lance": true, "Axe": true, "Bow": true, "Dagger": true},
+                "spd_adv": 3
+            },
+            "no_follow" : true,
+            "weapon_restrict" : "Staff"
+        },
+        "Windsweep 3" : {
+            "description" : "If unit initiates attack, no follow-up occurs. Against foe with sword, lance, axe, bow, or dagger, if unit’s Spd - foe’s Spd ≥ 1, foe can’t counterattack.",
+            "sweep" : {
+                "weapon_type" : {"Sword": true, "Lance": true, "Axe": true, "Bow": true, "Dagger": true},
+                "spd_adv": 1
+            },
+            "no_follow" : true,
+            "weapon_restrict" : "Staff"
+        },
         "Wings of Mercy 1" : {
             "description" : "Enables unit to warp adjacent to any ally with HP ≤ 30%."
         },
@@ -864,6 +919,18 @@ var skillInfo =
         "Axe Experience 3" : {
             "description" : "If unit survives, all axe users on team get 2x EXP.",
             "weapon_unique" : "Axe"
+        },
+        "Bow Experience 1" : {
+            "description" : "If unit survives, unit gets 1.5x EXP.",
+            "weapon_unique" : "Bow"
+        },
+        "Bow Experience 2" : {
+            "description" : "If unit survives, all bow users on team get 1.5x EXP.",
+            "weapon_unique" : "Bow"
+        },
+        "Bow Experience 3" : {
+            "description" : "If unit survives, all bow users on team get 2x EXP.",
+            "weapon_unique" : "Bow"
         },
         "Breath of Life 1" : {
             "description" : "If unit initiates attack, adjacent allies recover 3 HP after combat."

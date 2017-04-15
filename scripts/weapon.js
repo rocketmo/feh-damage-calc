@@ -586,6 +586,26 @@ var weaponInfo =
 		"range"   : 1,
 		"magical" : true
 	},
+	"Firesweep Bow" : {
+		"color"   : "Colorless",
+		"type"    : "Bow",
+		"might"   : 7,
+		"range"   : 2,
+		"magical" : false,
+		"move_effective" : "Flying",
+		"description" : "Effective against flying units. Unit and enemies cannot use counterattacks.",
+		"prevent_counter" : true
+	},
+	"Firesweep Bow+" : {
+		"color"   : "Colorless",
+		"type"    : "Bow",
+		"might"   : 11,
+		"range"   : 2,
+		"magical" : false,
+		"move_effective" : "Flying",
+		"description" : "Effective against flying units. Unit and enemies cannot use counterattacks.",
+		"prevent_counter" : true
+	},
 	"Flametongue (Blue)" : {
 		"color"   : "Blue",
 		"type"    : "Blue Breath",

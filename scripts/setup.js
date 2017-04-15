@@ -1281,11 +1281,17 @@ function bladeTomeBonus(battleInfo, bonusAtk, charToUse) {
 	return battleInfo;
 }
 
+// checks if the attack can activate windsweep
+function canActivateSweep(container, atkSpd, defSpd, defWeapon) {
+	"use strict";
+	return container.hasOwnProperty("sweep") && (atkSpd - defSpd >= container.sweep.spd_adv) && container.sweep.weapon_type.hasOwnProperty(defWeapon);
+}
+
 // checks if the defender can counter
 // battleInfo contains all battle information
 function defCanCounter(battleInfo) {
 	"use strict";
-	return battleInfo.defender.weaponName !== "None" && (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range || battleInfo.defender.weaponData.hasOwnProperty("counter") || battleInfo.defender.passiveAData.hasOwnProperty("counter"));
+	return battleInfo.defender.weaponName !== "None" && (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range || battleInfo.defender.weaponData.hasOwnProperty("counter") || battleInfo.defender.passiveAData.hasOwnProperty("counter")) && !battleInfo.attacker.weaponData.hasOwnProperty("prevent_counter") && !battleInfo.defender.weaponData.hasOwnProperty("prevent_counter") && !canActivateSweep(battleInfo.attacker.passiveBData, battleInfo.attacker.spd, battleInfo.defender.spd, battleInfo.defender.weaponData.type);
 }
 
 // heals by damage dealt
@@ -1894,10 +1900,6 @@ function simBattle(battleInfo, displayMsg) {
 		return battleInfo;
 	}
 	
-	// can defender counter
-	var defCC = defCanCounter(battleInfo);
-	var defAttacks = false;
-	
 	// AOE damage before combat
 	if (battleInfo.attacker.specialData.hasOwnProperty("before_combat_aoe") && battleInfo.attacker.specCurrCooldown <= 0) {
 		// reset cooldown
@@ -1927,36 +1929,6 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo.defender.initHP = battleInfo.defender.currHP;
 		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> deals AOE damage before combat [" + battleInfo.attacker.special + "]. <span class='dmg'><strong>" + aoeDmg.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
 	}
-	
-	// breaker info
-	var atkBreakerPassive = hasBreakerPassive(battleInfo.attacker.passiveBData, battleInfo.defender.type, battleInfo.attacker.initHP, battleInfo.attacker.hp);
-	var atkBreakerWeapon = hasBreakerWeapon(battleInfo.attacker.weaponData, battleInfo.defender.type);
-	var defBreakerPassive = hasBreakerPassive(battleInfo.defender.passiveBData, battleInfo.attacker.type, battleInfo.defender.initHP, battleInfo.defender.hp);
-	var defBreakerWeapon = hasBreakerWeapon(battleInfo.defender.weaponData, battleInfo.attacker.type);
-	var atkBreakerSource = atkBreakerPassive ? battleInfo.attacker.passiveB : battleInfo.attacker.weaponName;
-	var defBreakerSource = defBreakerPassive ? battleInfo.defender.passiveB : battleInfo.defender.weaponName;
-	
-	// quick riposte info
-	var defRipostePassive = canActivateRiposte(battleInfo.defender.passiveBData, battleInfo.defender.initHP, battleInfo.defender.hp, defCC);
-	var defRiposteWeapon = canActivateRiposte(battleInfo.defender.weaponData, battleInfo.defender.initHP, battleInfo.defender.hp, defCC);
-	var defRiposteSource = defRipostePassive ? battleInfo.defender.passiveB : battleInfo.defender.weaponName;
-	
-	// other follow-up info
-	var atkWary = canActivateWary(battleInfo.attacker.passiveBData, battleInfo.attacker.initHP, battleInfo.attacker.hp);
-	var defWary = canActivateWary(battleInfo.defender.passiveBData, battleInfo.defender.initHP, battleInfo.defender.hp);
-	var atkBrash = canActivateBrash(battleInfo.attacker.passiveBData, battleInfo.attacker.initHP, battleInfo.attacker.hp, defCC);
-	
-	// vantage info
-	var vantage = false;
-	var vantagePassive = canActivateVantage(battleInfo.defender.passiveBData, battleInfo.defender.initHP, battleInfo.defender.hp);
-	var vantageWeapon = canActivateVantage(battleInfo.defender.weaponData, battleInfo.defender.initHP, battleInfo.defender.hp);
-	var vantageSource = vantagePassive ? battleInfo.defender.passiveB : battleInfo.defender.weaponName;
-	
-	// desperation info
-	var desperation = false;
-	var desperationPassive = canActivateDesperation(battleInfo.attacker.passiveBData, battleInfo.attacker.initHP, battleInfo.attacker.hp);
-	var desperationWeapon = canActivateDesperation(battleInfo.attacker.weaponData, battleInfo.attacker.initHP, battleInfo.attacker.hp);
-	var desperationSource = desperationPassive ? battleInfo.attacker.passiveB : battleInfo.attacker.weaponName;
 	
 	// attacker initiate bonus
 	if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_mod")) {
@@ -1991,12 +1963,49 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo = bladeTomeBonus(battleInfo, battleInfo.defender.addBonusAtk, "defender");
 	}
 	
+	// can defender counter
+	var defCC = defCanCounter(battleInfo);
+	var defAttacks = false;
+	
+	// can units make a follow-up
+	var atkCF = !battleInfo.attacker.passiveBData.hasOwnProperty("no_follow");
+	
+	// breaker info
+	var atkBreakerPassive = hasBreakerPassive(battleInfo.attacker.passiveBData, battleInfo.defender.type, battleInfo.attacker.initHP, battleInfo.attacker.hp);
+	var atkBreakerWeapon = hasBreakerWeapon(battleInfo.attacker.weaponData, battleInfo.defender.type);
+	var defBreakerPassive = hasBreakerPassive(battleInfo.defender.passiveBData, battleInfo.attacker.type, battleInfo.defender.initHP, battleInfo.defender.hp);
+	var defBreakerWeapon = hasBreakerWeapon(battleInfo.defender.weaponData, battleInfo.attacker.type);
+	var atkBreakerSource = atkBreakerPassive ? battleInfo.attacker.passiveB : battleInfo.attacker.weaponName;
+	var defBreakerSource = defBreakerPassive ? battleInfo.defender.passiveB : battleInfo.defender.weaponName;
+	
+	// quick riposte info
+	var defRipostePassive = canActivateRiposte(battleInfo.defender.passiveBData, battleInfo.defender.initHP, battleInfo.defender.hp, defCC);
+	var defRiposteWeapon = canActivateRiposte(battleInfo.defender.weaponData, battleInfo.defender.initHP, battleInfo.defender.hp, defCC);
+	var defRiposteSource = defRipostePassive ? battleInfo.defender.passiveB : battleInfo.defender.weaponName;
+	
+	// other follow-up info
+	var atkWary = canActivateWary(battleInfo.attacker.passiveBData, battleInfo.attacker.initHP, battleInfo.attacker.hp);
+	var defWary = canActivateWary(battleInfo.defender.passiveBData, battleInfo.defender.initHP, battleInfo.defender.hp);
+	var atkBrash = canActivateBrash(battleInfo.attacker.passiveBData, battleInfo.attacker.initHP, battleInfo.attacker.hp, defCC);
+	
+	// vantage info
+	var vantage = false;
+	var vantagePassive = canActivateVantage(battleInfo.defender.passiveBData, battleInfo.defender.initHP, battleInfo.defender.hp);
+	var vantageWeapon = canActivateVantage(battleInfo.defender.weaponData, battleInfo.defender.initHP, battleInfo.defender.hp);
+	var vantageSource = vantagePassive ? battleInfo.defender.passiveB : battleInfo.defender.weaponName;
+	
+	// desperation info
+	var desperation = false;
+	var desperationPassive = canActivateDesperation(battleInfo.attacker.passiveBData, battleInfo.attacker.initHP, battleInfo.attacker.hp);
+	var desperationWeapon = canActivateDesperation(battleInfo.attacker.weaponData, battleInfo.attacker.initHP, battleInfo.attacker.hp);
+	var desperationSource = desperationPassive ? battleInfo.attacker.passiveB : battleInfo.attacker.weaponName;
+	
 	// outspeed info
 	var atkOutspeed = battleInfo.attacker.spd >= battleInfo.defender.spd + 5;
 	var defOutspeed = battleInfo.defender.spd >= battleInfo.attacker.spd + 5;
 	
 	// vantage
-	if ((battleInfo.defender.weaponName !== "None" && vantagePassive) || vantageWeapon) {
+	if (((battleInfo.defender.weaponName !== "None" && vantagePassive) || vantageWeapon) && defCC) {
 		if (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range) {
 			battleInfo = singleCombat(battleInfo, false, "counter-attacks first [" + vantageSource + "]", false);
 			defAttacks = true;
@@ -2018,10 +2027,11 @@ function simBattle(battleInfo, displayMsg) {
 	}
 		
 	// desperation follow up
-	if ((desperationPassive || desperationWeapon) && battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) {
+	if ((desperationPassive || desperationWeapon) && battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0 && atkCF) {
 		if (!defBreakerPassive && !defBreakerWeapon && !atkWary && !defWary) { // regular conditions
 			if (atkBreakerPassive || atkBreakerWeapon) { // follow with breaker
 				desperation = true;
+				atkCF = false;
 				if ((defRiposteWeapon || defRipostePassive) && defOutspeed) { // foe can follow-up
 					battleInfo = singleCombat(battleInfo, true, "makes an immediate, automatic follow-up attack [" + desperationSource + ", " + atkBreakerSource + "]", false);
 				} else {
@@ -2029,17 +2039,21 @@ function simBattle(battleInfo, displayMsg) {
 				}
 			} else if (atkOutspeed) { // follow with speed
 				desperation = true;
+				atkCF = false;
 				battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack [" + desperationSource + "]", false);
 			} else if (atkBrash) { // follow with brash assault
 				desperation = true;
+				atkCF = false;
 				battleInfo = singleCombat(battleInfo, true, "makes an immediate, automatic follow-up attack [" + desperationSource + ", " + battleInfo.attacker.passiveB + "]", false);
 			}
 		} else if ((defWary || defBreakerPassive || defBreakerWeapon) && !atkWary && atkOutspeed) { // defender cancels follow-up
 			if (atkBreakerPassive || atkBreakerWeapon) {
 				desperation = true;
+				atkCF = false;
 				battleInfo = singleCombat(battleInfo, true, "makes an immediate follow-up attack, while canceling any follow-up attack from the opponent [" + desperationSource + ", " + atkBreakerSource + "]", false);
 			} else if (atkBrash) {
 				desperation = true;
+				atkCF = false;
 				battleInfo = singleCombat(battleInfo, true, "makes an immediate, automatic follow-up attack [" + desperationSource + ", " + battleInfo.attacker.passiveB + "]", false);
 			}
 		}	
@@ -2049,18 +2063,29 @@ function simBattle(battleInfo, displayMsg) {
 	if (battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) {
 		// defender must be in range to counter-attack or have a counter ability
 		if (!vantage) {
-			if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range) {
+			if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range && defCC) {
 				battleInfo = singleCombat(battleInfo, false, "counter-attacks", false);
 				defAttacks = true;
-			} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.hasOwnProperty("counter")) {	
+			} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.hasOwnProperty("counter") && defCC) {	
 				battleInfo = singleCombat(battleInfo, false, "counter-attacks, ignoring distance [" + battleInfo.defender.weaponName + "]", false);
 				defAttacks = true;
-			} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.passiveAData.hasOwnProperty("counter")) {	
+			} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.passiveAData.hasOwnProperty("counter") && defCC) {	
 				battleInfo = singleCombat(battleInfo, false, "counter-attacks, ignoring distance [" + battleInfo.defender.passiveA + "]", false);
 				defAttacks = true;
+			} else if (battleInfo.defender.weaponName !== "None" && battleInfo.attacker.weaponData.hasOwnProperty("prevent_counter")) {
+				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is prevented from counter-attacking [" + battleInfo.attacker.weaponName + "].</li>";
+			} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.hasOwnProperty("prevent_counter")) {
+				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is prevented from counter-attacking [" + battleInfo.defender.weaponName + "].</li>";
+			} else if (battleInfo.defender.weaponName !== "None" && canActivateSweep(battleInfo.attacker.passiveBData, battleInfo.attacker.spd, battleInfo.defender.spd, battleInfo.defender.weaponData.type)) {
+				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is prevented from counter-attacking [" + battleInfo.attacker.passiveB + "].</li>";
 			} else {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is unable to counter-attack.</li>";
 			}
+		}
+		
+		// print message if attacker cannot make a follow-up
+		if (battleInfo.attacker.passiveBData.hasOwnProperty("no_follow")) {
+			battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> " + " is prevented from making follow-up attacks [" + battleInfo.attacker.passiveB + "].</li>";
 		}
 		
 		// if attacker hasn't been ko'd, check for follow ups
@@ -2084,50 +2109,50 @@ function simBattle(battleInfo, displayMsg) {
 				}
 			} else if (defWary) { // defender wary fighter
 				// check if attacker can follow up with breaker
-				if ((atkBreakerPassive || atkBreakerWeapon) && atkOutspeed && !desperation) {
+				if ((atkBreakerPassive || atkBreakerWeapon) && atkOutspeed && atkCF) {
 					battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + atkBreakerSource + "]", false);
 				}
 				
 				// check if attacker can follow up with brash assault
-				else if (atkBrash && atkOutspeed && !desperation) {
+				else if (atkBrash && atkOutspeed && atkCF) {
 					battleInfo = singleCombat(battleInfo, true, "makes an automatic follow-up attack [" + battleInfo.attacker.passiveB + "]", false);
 				} 
 				
 				// no follow ups
-				else if (!desperation || defRiposteWeapon) {
+				else if (atkCF || defRiposteWeapon) {
 					battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> prevents any further follow-up attacks [" + battleInfo.defender.passiveB + "].</li>";	
 				}
 			}
 			
 			// breaker skills
 			else if ((atkBreakerPassive || atkBreakerWeapon) && (defBreakerPassive || defBreakerWeapon)) {	// double breakers
-				if (atkOutspeed && !desperation) { // regular attacker follow
+				if (atkOutspeed && atkCF) { // regular attacker follow
 					battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + atkBreakerSource + "]", false);
 				} else if (defOutspeed) { // regular defender follow
-					if (defCC) { // defender cannot attack
+					if (defCC) { // defender attacks
 						battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + defBreakerSource + "]", false);
-					} else { // defender attacks
+					} else if (atkCF) { // defender cannot attack
 						battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> cancels any follow-up attacks from the opponent [" + defBreakerSource + "].</li>";
 					}
-				} else if (!desperation) { // cancel all
+				} else if (atkCF) { // cancel all
 					battleInfo.logMsg += "<li class='battle-interaction'>Breaker skills cancel follow-up attacks from either character [" + atkBreakerSource + ", " + defBreakerSource + "].</li>";
 				}
 			} else if ((atkBreakerPassive || atkBreakerWeapon)) {  // attacker has breaker
 				// check if defender can activate quick riposte ability
 				if ((defRiposteWeapon || defRipostePassive) && defOutspeed) {
-					if (!desperation) {
+					if (atkCF) {
 						battleInfo = singleCombat(battleInfo, true, "makes an automatic follow-up attack [" + atkBreakerSource + "]", false);	
 					}
 					if (battleInfo.defender.currHP > 0) {
 						battleInfo = singleCombat(battleInfo, false, "makes an automatic follow-up attack [" + defRiposteSource + "]", false);
 					}
-				} else if (!desperation) {
+				} else if (atkCF) {
 					battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + atkBreakerSource + "]", false);
 				}
 			} else if (defBreakerPassive || defBreakerWeapon) {  // defender breaker passive
 				// check if attacker can follow up with brash assault
 				var brashAct = false;
-				if (atkBrash && atkOutspeed && !desperation) {
+				if (atkBrash && atkOutspeed && atkCF) {
 					battleInfo = singleCombat(battleInfo, true, "makes an automatic follow-up attack [" + battleInfo.attacker.passiveB + "]", false);
 					brashAct = true;
 				} 
@@ -2138,7 +2163,7 @@ function simBattle(battleInfo, displayMsg) {
 					} else {
 						battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack, while canceling any follow-up attack from the opponent [" + defBreakerSource + "]", false);
 					}
-				} else if (!brashAct && !desperation && battleInfo.defender.currHP > 0) {
+				} else if (atkCF && battleInfo.defender.currHP > 0) {
 					battleInfo.logMsg +=  "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> cancels any follow-up attacks from the opponent [" + defBreakerSource + "].</li>";
 				}
 			} 
@@ -2146,7 +2171,6 @@ function simBattle(battleInfo, displayMsg) {
 			// regular follow ups
 			else {
 				var defendFollow = false;		// true if defender makes a follow up attack
-				var attackFollow = desperation;	// true if attacker makes a follow up attack
 				
 				// check if defender activated vantage and can follow up
 				if (vantage && (defOutspeed)) {
@@ -2155,15 +2179,15 @@ function simBattle(battleInfo, displayMsg) {
 				}
 				
 				// check for brash assault
-				if (atkBrash && !attackFollow && battleInfo.attacker.currHP > 0) {
+				if (atkBrash && atkCF && battleInfo.attacker.currHP > 0) {
 					battleInfo = singleCombat(battleInfo, true, "makes an automatic follow-up attack [" + battleInfo.attacker.passiveB + "]", false);
-					attackFollow = true;
+					atkCF = false;
 				}
 				
 				// regular follow up attack
-				if (!attackFollow && atkOutspeed && battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) { // attacker
+				if (atkCF && atkOutspeed && battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) { // attacker
 					battleInfo = singleCombat(battleInfo, true, "makes a follow-up attack", false);
-					attackFollow = true;
+					atkCF = false;
 				} else if (!defendFollow && defOutspeed && defCC && battleInfo.attacker.currHP > 0 && battleInfo.defender.currHP > 0) { // defender
 					battleInfo = singleCombat(battleInfo, false, "makes a follow-up attack", false);
 					defendFollow = true;

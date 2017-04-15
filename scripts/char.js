@@ -39,6 +39,19 @@ var charInfo =
 			"star-2" : {"weapon" : 2, "special" : 1, "passive_a" : 1, "passive_c" : -1}
 		}
 	},
+	"Alm": {
+		"color" : "Red",
+		"weapon_type" : "Sword",
+		"move_type": "Infantry",
+		"weapon": ["Falchion", "Silver Sword", "Steel Sword", "Iron Sword"],
+		"special": ["Draconic Aura", "Dragon Gaze"],
+		"passive_a": ["Attack +3", "Attack +2", "Attack +1"],
+		"passive_b": ["Windsweep 3", "Windsweep 2", "Windsweep 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 21, "atk" : 9, "spd" : 6, "def" : 6, "res" : 5},
+			"growth" : {"hp" : 7, "atk" : 7, "spd" : 7, "def" : 6, "res" : 4}
+		}
+	},
 	"Anna": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
@@ -335,6 +348,19 @@ var charInfo =
 			"growth" : {"hp" : 7, "atk" : 8, "spd" : 7, "def" : 6, "res" : 3}
 		}
 	},
+	"Clair": {
+		"color" : "Blue",
+		"weapon_type" : "Lance",
+		"move_type": "Flying",
+		"weapon": ["Silver Lance+", "Silver Lance", "Steel Lance", "Iron Lance"],
+		"passive_b": ["Hit and Run"],
+		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
+		"assist" : ["Harsh Command"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 5, "res" : 9},
+			"growth" : {"hp" : 5, "atk" : 5, "spd" : 9, "def" : 5, "res" : 7}
+		}
+	},
 	"Clarine": {
 		"color" : "Colorless",
 		"weapon_type" : "Staff",
@@ -579,6 +605,19 @@ var charInfo =
 		},
 		"rarity_restrict" : {
 			"star-4" : {"weapon" : 1, "passive_c" : 1}
+		}
+	},
+	"Faye": {
+		"color" : "Colorless",
+		"weapon_type" : "Bow",
+		"move_type": "Infantry",
+		"weapon": ["Firesweep Bow+", "Firesweep Bow", "Steel Bow", "Iron Bow"],
+		"special": ["Noontime", "Daylight"],
+		"passive_b": ["Wings of Mercy 3", "Wings of Mercy 2", "Wings of Mercy 1"],
+		"passive_c": ["Bow Experience 3", "Bow Experience 2", "Bow Experience 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 16, "atk" : 6, "spd" : 3, "def" : 4, "res" : 7},
+			"growth" : {"hp" : 8, "atk" : 7, "spd" : 6, "def" : 6, "res" : 7}
 		}
 	},
 	"Felicia": {
@@ -1133,6 +1172,19 @@ var charInfo =
 		},
 		"rarity_restrict" : {
 			"star-4" : {"passive_a" : 1}
+		}
+	},
+	"Lukas": {
+		"color" : "Blue",
+		"weapon_type" : "Lance",
+		"move_type": "Infantry",
+		"weapon": ["Killer Lance+", "Killer Lance", "Steel Lance", "Iron Lance"],
+		"special": ["Sacred Cowl", "Holy Vestments"],
+		"passive_a": ["Fortress Def 3", "Fortress Def 2", "Fortress Def 1"],
+		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 19, "atk" : 9, "spd" : 5, "def" : 10, "res" : 4},
+			"growth" : {"hp" : 8, "atk" : 8, "spd" : 4, "def" : 9, "res" : 2}
 		}
 	},
 	"Lyn": {
@@ -1785,7 +1837,7 @@ var charInfo =
 		},
 		"rarity_restrict" : {
 			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 0, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 1, "passive_c" : 2},
+			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 1, "passive_c" : 2}
 		}
 	},
 	"Sharena": {
