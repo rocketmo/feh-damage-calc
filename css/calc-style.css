@@ -5,9 +5,9 @@ html {
 body {
 	margin: 0 auto;
 	padding-bottom: 20px;
-	font-family: Cambria, Hoefler Text, Liberation Serif, Times, Times New Roman, serif;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
 	color: white;
-	font-size: 1em;
+	font-size: 14px;
 }
 
 #wrapper {
@@ -35,7 +35,7 @@ label {
 	display: inline-block;
 	float: left;
 	text-align: left;
-	width: 8.7em;
+	width: 9.8em;
 }
 
 .matchup-section {
@@ -52,7 +52,7 @@ label {
 }
 
 #matchup-filters label {
-	width: 6.9em;
+	width: 8em;
 }
 
 #matchup-filters select, #matchup-filters input[type=text] {
@@ -66,12 +66,12 @@ label {
 
 .matchup-filter-block {
 	display: inline-block;
-	width: 15em;
+	width: 17em;
 	margin: 0.1em 1em;
 }
 
 .curr-hp-label {
-	width: 5.7em;
+	width: 6.5em;
 }
 
 .stat {
@@ -91,8 +91,8 @@ label {
 }
 
 .char-info .info-section th, #matchup-overrides .info-section th {
-	padding: 0em 0.3em;
-	font-size: 0.8em;
+	padding: 0em 0.2em;
+	font-size: 0.75em;
 }
 
 input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
@@ -131,7 +131,7 @@ input[type=number] {
 }
 
 h1, h2, h3 {
-	font-family: Constantia, Lucida Bright, DejaVu Serif, Georgia, serif;
+	font-family: Corbel, "Droid Sans", Geneva, Verdana, sans-serif;
 	padding: 0em;
 	margin: 0em 0.2em;
 }
@@ -179,24 +179,24 @@ body::after {
 #calc-header h1 {
 	display: inline-block;
 	padding: 0.3em;
-	font-size: 1.1em;
+	font-size: 1.2em;
 	color: #0b0b0b;
 	white-space: normal;
 }
 
 #calc-header a {
 	padding: 0.3em;
-	margin: 0 0.2em;
+	margin: 0.1em 0.2em 0 0.2em;
 	float: right;
 }
 
 h2 {
-	font-size: 1.5em;
+	font-size: 1.8em;
 	color: gold;
 }
 
 h3 {
-	font-size: 1.4em;
+	font-size: 1.6em;
 	margin-bottom: 0.1em;
 }
 
@@ -209,7 +209,7 @@ h3 {
 }
 
 .character-select, .weapon-select, .skill-select {
-	line-height: 150%;
+	line-height: 170%;
 }
 
 .denominator, .numerator {
@@ -276,12 +276,11 @@ h3 {
 	white-space: normal;
 }
 
-
 #result-msg {
 	margin: 0em;
 	padding: 0.1em 0;
 	font-weight: bold;
-	font-size: 1.4em;
+	font-size: 1.2em;
 }
 
 .inherit {
@@ -291,7 +290,12 @@ h3 {
 .char-slots {
 	display: inline-block;
 	text-align: center;
-	width: 18.7em;
+	width: 21.5em;
+}
+
+.char-slots-container {
+	margin: 0 auto;
+	text-align: center;
 }
 
 .char-tab {
@@ -398,7 +402,6 @@ h3 {
 }
 
 .mode-button-label {
-	font-family: Constantia, Lucida Bright, DejaVu Serif, Georgia, serif;
 	font-size: 1.05em;
 	font-weight: bold;
 	padding: 0.3em;
