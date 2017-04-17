@@ -202,24 +202,21 @@ var skillInfo =
             "stat_mod" : {
                 "atk" : -3,
                 "def" : 3
-            },
-            "weapon_restrict" : "Staff"
+            }
         },
         "Fortress Def 2" : {
             "description" : "Grants Def+4. Inflicts Atk-3.",
             "stat_mod" : {
                 "atk" : -3,
                 "def" : 4
-            },
-            "weapon_restrict" : "Staff"
+            }
         },
         "Fortress Def 3" : {
             "description" : "Grants Def+5. Inflicts Atk-3.",
             "stat_mod" : {
                 "atk" : -3,
                 "def" : 5
-            },
-            "weapon_restrict" : "Staff"
+            }
         },
         "Fury 1" : {
             "description" : "Grants Atk/Spd/Def/Res+1. Unit takes 2 damage after combat.",
