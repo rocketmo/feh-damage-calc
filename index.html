@@ -593,8 +593,26 @@
 						<td colspan="3">
 							<div id="battle-log">
 								<fieldset>
-									<legend><h2><span id="interaction-list-btn">Battle Log</span></h2></legend>
+									<legend>
+										<h2 class="legend-tab"><span id="interaction-list-btn">Battle Log</span></h2>
+										<h2 class="legend-tab legend-tab-unselected"><span id="import-btn">Import/Export</span></h2>
+									</legend>
 									<ul id="interaction-list"></ul>
+									<table id="import-export">
+										<tr>
+											<td>
+												<button id="import-attacker" class="import-btn">Import Attacker</button>
+												<button id="export-attacker" class="import-btn">Export Attacker</button>
+											</td>
+											<td>
+												<textarea id="import-area"></textarea>
+											</td>
+											<td>
+												<button id="import-defender" class="import-btn">Import Defender</button>
+												<button id="export-defender" class="import-btn">Export Defender</button>
+											</td>
+										</tr>
+									</table>
 								</fieldset>
 							</div>	
 						</td>

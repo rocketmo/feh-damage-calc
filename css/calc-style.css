@@ -595,3 +595,38 @@ h3 {
 	top: 19px;
 	width: 15px;
 }
+
+.legend-tab {
+	display: inline-block;
+}
+
+.legend-tab-unselected {
+	color: #5b5b5b;
+}
+
+.legend-tab-unselected:hover {
+	color: gold;
+	cursor: pointer;
+}
+
+.import-btn {
+	display: block;
+	width: 130px;
+	margin: 3px;
+}
+
+#import-export {
+	margin: 0 auto;
+	display: none;
+}
+
+#import-export td {
+	vertical-align: top;
+}
+
+#import-area {
+	width: 400px;
+	max-width: 400px;
+	height: 100px;
+	white-space: nowrap;
+}
