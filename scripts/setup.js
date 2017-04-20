@@ -17,6 +17,9 @@ var keepTable = false;	// true if we keep the matchup table currently displayed
 var mTableSorted = -1;
 var mSortDesc = true; // sort in descending order?
 
+// true if battle log is open, false otherwise
+var openLog = true;
+
 // stat growth amounts from lvl 1 to lvl 40
 var statGrowths = [[4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26],
 				  [5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27],
@@ -1892,9 +1895,12 @@ function simBattle(battleInfo, displayMsg) {
 			$("#interaction-list").stop(true, true).hide().html("<li class='battle-interaction-only'><span class='attacker'><strong>" + $("#char-1").val() + "</strong></span> cannot attack without a weapon.</li>");
 			$("#hp-remain-1").stop(true, true).hide().text($("#curr-hp-1").val().toString() + " → " + $("#curr-hp-1").val().toString());
 			$("#hp-remain-2").stop(true, true).hide().text($("#curr-hp-2").val().toString() + " → " + $("#curr-hp-2").val().toString());
-			$("#interaction-list").fadeIn("slow");
 			$("#hp-remain-1").fadeIn("slow");
 			$("#hp-remain-2").fadeIn("slow");
+			
+			if (openLog) {
+				$("#interaction-list").fadeIn("slow");
+			}
 		}
 		
 		return battleInfo;
@@ -2262,7 +2268,7 @@ function simBattle(battleInfo, displayMsg) {
 		$("#hp-remain-2").stop(true, true).hide().text(battleInfo.defender.startHP.toString() + " → " + battleInfo.defender.currHP.toString());
 		$("#interaction-list").children().first().removeClass("battle-interaction").addClass("battle-interaction-first");
 		$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
-
+		
 		// victory message
 		if (battleInfo.attacker.currHP === 0) {
 			$("#result-msg").text("Defender is victorious!");
@@ -2275,7 +2281,11 @@ function simBattle(battleInfo, displayMsg) {
 			$("#result-msg").css("color", "white");
 		}
 
-		$("#interaction-list").fadeIn("slow");
+		// display battle log
+		if (openLog) {
+			$("#interaction-list").fadeIn("slow");
+		}
+		
 		$("#hp-remain-1").fadeIn("slow");
 		$("#hp-remain-2").fadeIn("slow");
 		$("#result-msg").fadeIn("slow");
@@ -3210,6 +3220,28 @@ $(document).ready( function() {
 		$("#" + $(this).data("section")).toggle(700);
 	});
 
+	// battle log header
+	$("#interaction-list-header").on("click", function() {
+		if ($(this).hasClass("legend-tab-unselected")) {
+			openLog = true;
+			$("#interaction-list").stop(true, true).show(700);
+			$(this).removeClass("legend-tab-unselected");
+			$("#import-export-header").addClass("legend-tab-unselected");
+			$("#import-export").stop(true, true).hide(700);
+		}
+	});
+	
+	// import export header
+	$("#import-export-header").on("click", function() {
+		if ($(this).hasClass("legend-tab-unselected")) {
+			openLog = false;
+			$("#interaction-list").stop(true, true).hide(700);
+			$("#interaction-list-header").addClass("legend-tab-unselected");
+			$(this).removeClass("legend-tab-unselected");
+			$("#import-export").stop(true, true).show(700);
+		}
+	});
+	
 	// setup number input changes
 	$(".more-than-zero").on("change", function() {
 		limit(this, 1);	
