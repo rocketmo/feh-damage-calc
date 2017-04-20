@@ -2123,15 +2123,20 @@ var charInfo =
 	"Zephiel": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 55,
-		"atk": 53,
-		"spd": 21,
-		"def": 36,
-		"res": 19,
 		"move_type": "Armored",
 		"weapon": ["Eckesachs", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"special": ["Reprisal", "Retribution"],
 		"passive_a": ["Life and Death 3", "Life and Death 2", "Life and Death 1"],
-		"passive_b": ["Wary Fighter 3", "Wary Fighter 2", "Wary Fighter 1"]
+		"passive_b": ["Wary Fighter 3", "Wary Fighter 2", "Wary Fighter 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 25, "atk" : 9, "spd" : 3, "def" : 12, "res" : 5},
+			"star-4" : {"hp" : 24, "atk" : 9, "spd" : 2, "def" : 12, "res" : 4},
+			"star-3" : {"hp" : 24, "atk" : 8, "spd" : 2, "def" : 11, "res" : 4},
+			"growth" : {"hp" : 10, "atk" : 8, "spd" : 2, "def" : 8, "res" : 5}
+		},
+		"rarity_restrict" : {
+			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_b" : 0},
+			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_b" : 1}
+		}
 	}
 };
