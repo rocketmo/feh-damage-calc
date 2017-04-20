@@ -3224,10 +3224,10 @@ $(document).ready( function() {
 	$("#interaction-list-header").on("click", function() {
 		if ($(this).hasClass("legend-tab-unselected")) {
 			openLog = true;
-			$("#interaction-list").stop(true, true).show(700);
-			$(this).removeClass("legend-tab-unselected");
 			$("#import-export-header").addClass("legend-tab-unselected");
-			$("#import-export").stop(true, true).hide(700);
+			$("#import-export").stop(true, true).hide();
+			$("#interaction-list").stop(true, true).fadeIn("slow");
+			$(this).removeClass("legend-tab-unselected");
 		}
 	});
 	
@@ -3235,10 +3235,10 @@ $(document).ready( function() {
 	$("#import-export-header").on("click", function() {
 		if ($(this).hasClass("legend-tab-unselected")) {
 			openLog = false;
-			$("#interaction-list").stop(true, true).hide(700);
+			$("#interaction-list").stop(true, true).hide();
 			$("#interaction-list-header").addClass("legend-tab-unselected");
 			$(this).removeClass("legend-tab-unselected");
-			$("#import-export").stop(true, true).show(700);
+			$("#import-export").stop(true, true).fadeIn("slow");
 		}
 	});
 	
