@@ -3210,6 +3210,109 @@ function setupOverrides() {
 	$("#override-special").html("<option value='No Override'>No Override</option>" + $("#override-special").html());
 }
 
+
+// returns character info from a character panel as a string to be exported
+// charNum determines the panel to take data from
+function exportCharPanel(charNum) {
+	"use strict";
+	
+	// first line - general info
+	var exportText = $("#char-" + charNum).val();
+	
+	if ($("#boon-" + charNum).val() !== "neutral" || $("#bane-" + charNum).val() !== "neutral") {
+		var boon = $("#boon-" + charNum).val();
+		var bane = $("#bane-" + charNum).val();
+		
+		exportText += " [";
+		exportText += (boon === "neutral") ? "Neutral/" : "+" + boon.toUpperCase() + "/";
+		exportText += (bane === "neutral") ? "Neutral]" : "-" + bane.toUpperCase() + "]";
+	} else {
+		exportText += " [Neutral]";
+	}
+	
+	exportText += parseInt($("#rarity-" + charNum).val()) !== 5 ? " -- " + $("#rarity-" + charNum).val().toString() + " Star(s)" : "";
+	exportText += parseInt($("#merge-" + charNum).val()) > 0 ? " -- Lvl. " + $("#level-" + charNum).val().toString() + "+" + $("#merge-" + charNum).val().toString(): "";
+	
+	exportText += "\r\n";
+	
+	// second line - stats
+	exportText += $("#hp-" + charNum).val().toString() + " HP / " + $("#atk-" + charNum).val().toString() + " ATK / " + $("#spd-" + charNum).val().toString() + " SPD / " + $("#def-" + charNum).val().toString() + " DEF / " + $("#res-" + charNum).val().toString() + " RES" + "\r\n";
+	
+	// all other lines - equipped weapons and skills
+	exportText += $("#weapon-" + charNum).val() !== "None" ? "Weapon: " + $("#weapon-" + charNum).val() + "\r\n" : "";
+	exportText += $("#assist-" + charNum).val() !== "None" ? "Assist: " + $("#assist-" + charNum).val() + "\r\n" : "";
+	exportText += $("#special-" + charNum).val() !== "None" ? "Special: " + $("#special-" + charNum).val() + "\r\n" : "";
+	exportText += $("#passive-a-" + charNum).val() !== "None" ? "Passive A: " + $("#passive-a-" + charNum).val() + "\r\n" : "";
+	exportText += $("#passive-b-" + charNum).val() !== "None" ? "Passive B: " + $("#passive-b-" + charNum).val() + "\r\n" : "";
+	exportText += $("#passive-c-" + charNum).val() !== "None" ? "Passive C: " + $("#passive-c-" + charNum).val() + "\r\n" : "";
+	exportText += $("#passive-s-" + charNum).val() !== "None" ? "Sacred Seal: " + $("#passive-s-" + charNum).val() + "\r\n" : "";
+	exportText += "\r\n";
+	
+	return exportText;
+}
+
+// returns character info from a character tab as a string to be exported
+// container contains the data from the tab
+function exportCharTab(container) {
+	"use strict";
+	
+	// first line - general info
+	var exportText = container.character;
+	
+	if (container.boon !== "neutral" || container.bane !== "neutral") {
+		exportText += " [";
+		exportText += (container.boon === "neutral") ? "Neutral/" : "+" + container.boon.toUpperCase() + "/";
+		exportText += (container.bane === "neutral") ? "Neutral]" : "-" + container.bane.toUpperCase() + "]";
+	} else {
+		exportText += " [Neutral]";
+	}
+	
+	exportText += parseInt(container.rarity) !== 5 ? " -- " + container.rarity.toString() + " Star(s)" : "";
+	exportText += (parseInt(container.merge) > 0 || parseInt(container.level) !== 40) ? " -- Lvl. " + container.level.toString() + "+" + container.merge.toString(): "";
+	
+	if (container.boon !== "neutral" || container.bane !== "neutral") {
+		exportText += " -- ";
+		exportText += (container.boon === "neutral") ? "Neutral/" : "+" + container.boon.toUpperCase() + "/";
+		exportText += (container.bane === "neutral") ? "Neutral" : "-" + container.bane.toUpperCase();
+	}
+	
+	exportText += "\r\n";
+	
+	// second line - stats
+	exportText += container.hp.toString() + " HP / " + container.atk.toString() + " ATK / " + container.spd.toString() + " SPD / " + container.def.toString() + " DEF / " + container.res.toString() + " RES" + "\r\n";
+	
+	// all other lines - equipped weapons and skills
+	exportText += container.weapon !== "None" ? "Weapon: " + container.weapon + "\r\n" : "";
+	exportText += container.assist !== "None" ? "Assist: " + container.assist + "\r\n" : "";
+	exportText += container.special !== "None" ? "Special: " + container.special + "\r\n" : "";
+	exportText += container.passiveA !== "None" ? "Passive A: " + container.passiveA + "\r\n" : "";
+	exportText += container.passiveB !== "None" ? "Passive B: " + container.passiveB + "\r\n" : "";
+	exportText += container.passiveC !== "None" ? "Passive C: " + container.passiveC + "\r\n" : "";
+	exportText += container.seal !== "None" ? "Sacred Seal: " + container.seal + "\r\n" : "";
+	exportText += "\r\n";
+	
+	return exportText;
+}
+
+// exports the given team
+// attacker is true if we export the attackers
+function exportTeam(attacker) {
+	"use strict";
+	var team = attacker ? attackerTeam : defenderTeam;
+	var selected = attacker ? selectedAttacker : selectedDefender;
+	var exportText = "";
+	
+	for (var index = 0; index < 5; index++) {
+		if (index === selected) {
+			exportText += exportCharPanel(attacker ? "1" : "2");
+		} else if (team[index].hasOwnProperty("character")) {
+			exportText += exportCharTab(team[index]);
+		}
+	}
+	
+	$("#import-area").val(exportText);
+}
+
 // setup inital page
 $(document).ready( function() {
 	"use strict";	
@@ -3602,5 +3705,14 @@ $(document).ready( function() {
 		}
 		keepMatchupTable(charNum);
 		updateDisplay();
+	});
+	
+	// export teams
+	$(".export-btn").on("click", function() {
+		if (this.id === "export-attacker") {
+			exportTeam(true);
+		} else {
+			exportTeam(false);
+		}
 	});
 });
