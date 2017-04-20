@@ -612,7 +612,7 @@ h3 {
 .import-btn {
 	display: block;
 	width: 130px;
-	margin: 3px;
+	margin: 0px 3px 3px 3px;
 }
 
 #import-export {
