@@ -3232,7 +3232,6 @@ function exportCharPanel(charNum) {
 	
 	exportText += parseInt($("#rarity-" + charNum).val()) !== 5 ? " -- " + $("#rarity-" + charNum).val().toString() + " Star(s)" : "";
 	exportText += parseInt($("#merge-" + charNum).val()) > 0 ? " -- Lvl. " + $("#level-" + charNum).val().toString() + "+" + $("#merge-" + charNum).val().toString(): "";
-	
 	exportText += "\r\n";
 	
 	// second line - stats
@@ -3269,13 +3268,6 @@ function exportCharTab(container) {
 	
 	exportText += parseInt(container.rarity) !== 5 ? " -- " + container.rarity.toString() + " Star(s)" : "";
 	exportText += (parseInt(container.merge) > 0 || parseInt(container.level) !== 40) ? " -- Lvl. " + container.level.toString() + "+" + container.merge.toString(): "";
-	
-	if (container.boon !== "neutral" || container.bane !== "neutral") {
-		exportText += " -- ";
-		exportText += (container.boon === "neutral") ? "Neutral/" : "+" + container.boon.toUpperCase() + "/";
-		exportText += (container.bane === "neutral") ? "Neutral" : "-" + container.bane.toUpperCase();
-	}
-	
 	exportText += "\r\n";
 	
 	// second line - stats
