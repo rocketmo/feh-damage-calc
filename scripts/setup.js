@@ -3217,7 +3217,12 @@ function exportCharPanel(charNum) {
 	"use strict";
 	
 	// first line - general info
-	var exportText = $("#char-" + charNum).val();
+	var exportText = "";
+	if ($("#char-" + charNum).val() === "Custom") {
+		exportText = customName($("#weapon-type-" + charNum).val(), $("#move-type-" + charNum).val());
+	} else {
+		exportText = $("#char-" + charNum).val();
+	}
 	
 	if ($("#boon-" + charNum).val() !== "neutral" || $("#bane-" + charNum).val() !== "neutral") {
 		var boon = $("#boon-" + charNum).val();
@@ -3256,7 +3261,12 @@ function exportCharTab(container) {
 	"use strict";
 	
 	// first line - general info
-	var exportText = container.character;
+	var exportText = "";
+	if (container.character === "Customer") {
+		exportText = customName(container.weaponType, container.moveType);
+	} else {
+		exportText = container.character;
+	}
 	
 	if (container.boon !== "neutral" || container.bane !== "neutral") {
 		exportText += " [";
@@ -3313,6 +3323,32 @@ function exportSingle(attacker) {
 		$("#import-area").val(exportCharPanel("1"));
 	} else {
 		$("#import-area").val(exportCharPanel("2"));
+	}
+}
+
+// clears the selected team
+// attacker is true if we export the attacker team
+function clearTeam(attacker) {
+	"use strict";
+	for (var index = 0; index < 5; index++) {
+		$("#" + (attacker ? "atk" : "def") + "-tab-" + index.toString()).removeClass("char-tab char-tab-selected").addClass("char-tab-unselected").attr("src", "img/Portraits/Unselected.png");
+		if (attacker) {
+			attackerTeam[index] = {};
+		} else {
+			defenderTeam[index] = {};
+		}
+	}
+	
+	if (attacker) {
+		selectedAttacker = 0;
+		selectCharTab(true, 0);
+		$("#char-1").val($("#char-1 option:eq(0)").val()).trigger("change.select2");
+		displayChar($("#char-1").val(), "1");
+	} else {
+		selectedDefender = 0;
+		selectCharTab(false, 0);
+		$("#char-2").val($("#char-2 option:eq(1)").val()).trigger("change.select2");
+		displayChar($("#char-2").val(), "2");
 	}
 }
 
@@ -3712,19 +3748,19 @@ $(document).ready( function() {
 	
 	// export teams
 	$(".export-btn").on("click", function() {
-		if (this.id === "export-attacker") {
-			exportTeam(true);
-		} else {
-			exportTeam(false);
-		}
+		exportTeam(this.id === "export-attacker");
 	});
 	
 	// export single character
 	$(".export-single-btn").on("click", function() {
-		if (this.id === "export-attacker-single") {
-			exportSingle(true);
-		} else {
-			exportSingle(false);
-		}
+		exportSingle(this.id === "export-attacker-single");
+	});
+	
+	// clear team
+	$(".clear-team-btn").on("click", function() {
+		var attacker = this.id === "clear-attacker";
+		clearTeam(attacker);
+		keepMatchupTable(attacker ? "1" : "2");
+		updateDisplay();
 	});
 });
