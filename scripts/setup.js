@@ -3305,6 +3305,17 @@ function exportTeam(attacker) {
 	$("#import-area").val(exportText);
 }
 
+// exports the selected character on a team
+// attacker is true if we export the attacker
+function exportSingle(attacker) {
+	"use strict";
+	if (attacker) {
+		$("#import-area").val(exportCharPanel("1"));
+	} else {
+		$("#import-area").val(exportCharPanel("2"));
+	}
+}
+
 // setup inital page
 $(document).ready( function() {
 	"use strict";	
@@ -3705,6 +3716,15 @@ $(document).ready( function() {
 			exportTeam(true);
 		} else {
 			exportTeam(false);
+		}
+	});
+	
+	// export single character
+	$(".export-single-btn").on("click", function() {
+		if (this.id === "export-attacker-single") {
+			exportSingle(true);
+		} else {
+			exportSingle(false);
 		}
 	});
 });

@@ -609,7 +609,7 @@ h3 {
 	cursor: pointer;
 }
 
-.import-btn, .export-btn {
+.import-btn, .export-btn, .export-single-btn {
 	display: block;
 	width: 130px;
 	margin: 0px 3px 3px 3px;
