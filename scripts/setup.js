@@ -1772,12 +1772,6 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		atkSpec = true;
 	}
 	
-	// check for bonus damage on special proc
-	if (attacker.weaponData.hasOwnProperty("spec_damage_bonus") && (atkSpec || ((attacker.specialData.hasOwnProperty("dmg_mod") || attacker.specialData.hasOwnProperty("heal_dmg")) && attacker.specCurrCooldown <= 0))) {
-		dmg += attacker.weaponData.spec_damage_bonus;
-		battleInfo.logMsg += "Damage boosted by " + attacker.weaponData.spec_damage_bonus.toString() + " on Special trigger [" + attacker.weaponName + "]. ";
-	}
-	
 	// cap damage at 0 if negative
 	dmg = Math.max(dmg, 0);
 	
@@ -1791,6 +1785,12 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		dmg += roundNum(dmg * attacker.specialData.dmg_mod, false);
 		battleInfo.logMsg += "Damage boosted by " + (attacker.specialData.dmg_mod * 100).toString() + "% [" + attacker.special + "]. ";
 		atkSpec = true;
+	}
+	
+	// check for bonus damage on special proc
+	if (attacker.weaponData.hasOwnProperty("spec_damage_bonus") && (atkSpec || (attacker.specialData.hasOwnProperty("heal_dmg") && attacker.specCurrCooldown <= 0))) {
+		dmg += attacker.weaponData.spec_damage_bonus;
+		battleInfo.logMsg += "Damage boosted by " + attacker.weaponData.spec_damage_bonus.toString() + " on Special trigger [" + attacker.weaponName + "]. ";
 	}
 	
 	// damage reduction from defender
