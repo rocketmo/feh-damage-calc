@@ -630,3 +630,9 @@ h3 {
 	height: 100px;
 	white-space: nowrap;
 }
+
+#import-error-msg-container {
+	text-align: center;
+	white-space: normal;
+	max-width: 700px;
+}
