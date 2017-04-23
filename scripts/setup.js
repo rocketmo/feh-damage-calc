@@ -3584,7 +3584,7 @@ function importTeam(attacker) {
 					if (equipIndex === 0) { // weapon
 						var weaponWithColor = line[1] + " (" + importedChars[charCount].color + ")";
 						var weaponName = weaponInfo.hasOwnProperty(weaponWithColor) ? weaponWithColor : line[1];
-						if (weaponInfo.hasOwnProperty(weaponName) && (charInfo[importedChars[charCount].character].weapon[0] === weaponName || isInheritableWeapon(weaponInfo[weaponName], importedChars[charCount].character))) {
+						if (weaponInfo.hasOwnProperty(weaponName) && ((importedChars[charCount].character === "Custom" && weaponInfo[weaponName].type === importedChars[charCount].weaponType) || (importedChars[charCount].character !== "Custom" && charInfo[importedChars[charCount].character].weapon[0] === weaponName || isInheritableWeapon(weaponInfo[weaponName], importedChars[charCount].character)))) {
 							importedChars[charCount].weapon = weaponName;
 						} else {
 							$("#import-error-msg").text("Import error: Invalid weapon (line " + (textLine + 1).toString() + ")").show();
@@ -3592,7 +3592,7 @@ function importTeam(attacker) {
 							break;
 						}
 					} else if (equipIndex === 1) { // assist
-						if (assistInfo.hasOwnProperty(line[1]) && (isInheritable(assistInfo[line[1]], importedChars[charCount].character) || (charInfo[importedChars[charCount].character].hasOwnProperty("assist") && charInfo[importedChars[charCount].character].assist[0] === line[1]))) {
+						if (assistInfo.hasOwnProperty(line[1]) && ((importedChars[charCount].character === "Custom") || (isInheritable(assistInfo[line[1]], importedChars[charCount].character) || (charInfo[importedChars[charCount].character].hasOwnProperty("assist") && charInfo[importedChars[charCount].character].assist[0] === line[1])))) {
 							importedChars[charCount].assist = line[1];
 						} else {
 							$("#import-error-msg").text("Import error: Invalid assist (line " + (textLine + 1).toString() + ")").show();
@@ -3600,7 +3600,7 @@ function importTeam(attacker) {
 							break;
 						}
 					} else if (equipIndex === 2) { // special
-						if (specInfo.hasOwnProperty(line[1]) && isInheritable(specInfo[line[1]], importedChars[charCount].character)) {
+						if (specInfo.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(specInfo[line[1]], importedChars[charCount].character))) {
 							importedChars[charCount].special = line[1];
 							var weaponData = importedChars[charCount].weapon === "None" ? {} : weaponInfo[importedChars[charCount].weapon];
 							var assistData = importedChars[charCount].assist === "None" ? {} : assistInfo[importedChars[charCount].assist];
@@ -3611,7 +3611,7 @@ function importTeam(attacker) {
 							break;
 						}
 					} else if (equipIndex === 3) { // passive a
-						if (skillInfo.a.hasOwnProperty(line[1]) && isInheritable(skillInfo.a[line[1]], importedChars[charCount].character)) {
+						if (skillInfo.a.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(skillInfo.a[line[1]], importedChars[charCount].character))) {
 							importedChars[charCount].passiveA = line[1];
 						} else {
 							$("#import-error-msg").text("Import error: Invalid passive A (line " + (textLine + 1).toString() + ")").show();
@@ -3619,7 +3619,7 @@ function importTeam(attacker) {
 							break;
 						}
 					} else if (equipIndex === 4) { // passive b
-						if (skillInfo.b.hasOwnProperty(line[1]) && isInheritable(skillInfo.b[line[1]], importedChars[charCount].character)) {
+						if (skillInfo.b.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(skillInfo.b[line[1]], importedChars[charCount].character))) {
 							importedChars[charCount].passiveB = line[1];
 						} else {
 							$("#import-error-msg").text("Import error: Invalid passive B (line " + (textLine + 1).toString() + ")").show();
@@ -3627,7 +3627,7 @@ function importTeam(attacker) {
 							break;
 						}
 					} else if (equipIndex === 5) { // passive c
-						if (skillInfo.c.hasOwnProperty(line[1]) && isInheritable(skillInfo.c[line[1]], importedChars[charCount].character)) {
+						if (skillInfo.c.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(skillInfo.c[line[1]], importedChars[charCount].character))) {
 							importedChars[charCount].passiveC = line[1];
 						} else {
 							$("#import-error-msg").text("Import error: Invalid passive C (line " + (textLine + 1).toString() + ")").show();
@@ -3671,6 +3671,11 @@ function importTeam(attacker) {
 		}
 	}
 	
+	if (importedChars.length === 0) {
+		$("#import-error-msg").text("Import error: No units to import").show();
+		error = true;
+	}
+	
 	if (!error) { // put imported characters into place
 		$("#import-error-msg").text("Import successful!").show();
 		var openSlots = 0;
@@ -3691,7 +3696,7 @@ function importTeam(attacker) {
 		
 		// insert characters
 		for (slotIndex = 0; slotIndex < 5; slotIndex++) {
-			if (slotsOverload < 0 || !team[slotIndex].hasOwnProperty("character") || defaultTeam) {
+			if ((slotsOverload < 0 || !team[slotIndex].hasOwnProperty("character") || defaultTeam) && numImported < importedChars.length) {
 				team[slotIndex] = importedChars[numImported];
 				getPortrait(tabName + slotIndex.toString(), importedChars[numImported].character);
 				
