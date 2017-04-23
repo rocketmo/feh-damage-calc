@@ -17,12 +17,19 @@ var keepTable = false;	// true if we keep the matchup table currently displayed
 var mTableSorted = -1;
 var mSortDesc = true; // sort in descending order?
 
+// true if battle log is open, false otherwise
+var openLog = true;
+
 // stat growth amounts from lvl 1 to lvl 40
 var statGrowths = [[4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26],
 				  [5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27],
 				  [7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29],
 				  [8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30],
 				  [8, 10, 13, 15, 17, 19, 22, 24, 26, 28, 30, 33]];
+
+// default states
+var defaultAttacker = true;
+var defaultDefender = true;
 
 // limits number inputs
 // num is a number input, minNumber is the lower limit
@@ -1892,9 +1899,13 @@ function simBattle(battleInfo, displayMsg) {
 			$("#interaction-list").stop(true, true).hide().html("<li class='battle-interaction-only'><span class='attacker'><strong>" + $("#char-1").val() + "</strong></span> cannot attack without a weapon.</li>");
 			$("#hp-remain-1").stop(true, true).hide().text($("#curr-hp-1").val().toString() + " → " + $("#curr-hp-1").val().toString());
 			$("#hp-remain-2").stop(true, true).hide().text($("#curr-hp-2").val().toString() + " → " + $("#curr-hp-2").val().toString());
-			$("#interaction-list").fadeIn("slow");
 			$("#hp-remain-1").fadeIn("slow");
 			$("#hp-remain-2").fadeIn("slow");
+			$("#result-msg").text("Draw!").css("color", "white").fadeIn("slow");
+			
+			if (openLog) {
+				$("#interaction-list").fadeIn("slow");
+			}
 		}
 		
 		return battleInfo;
@@ -2262,7 +2273,7 @@ function simBattle(battleInfo, displayMsg) {
 		$("#hp-remain-2").stop(true, true).hide().text(battleInfo.defender.startHP.toString() + " → " + battleInfo.defender.currHP.toString());
 		$("#interaction-list").children().first().removeClass("battle-interaction").addClass("battle-interaction-first");
 		$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
-
+		
 		// victory message
 		if (battleInfo.attacker.currHP === 0) {
 			$("#result-msg").text("Defender is victorious!");
@@ -2275,7 +2286,11 @@ function simBattle(battleInfo, displayMsg) {
 			$("#result-msg").css("color", "white");
 		}
 
-		$("#interaction-list").fadeIn("slow");
+		// display battle log
+		if (openLog) {
+			$("#interaction-list").fadeIn("slow");
+		}
+		
 		$("#hp-remain-1").fadeIn("slow");
 		$("#hp-remain-2").fadeIn("slow");
 		$("#result-msg").fadeIn("slow");
@@ -2746,13 +2761,19 @@ function filterMatchupTable(fadeIn) {
 	}
 }
 
-// determines if the matchup table needs to be updated whenever a change in data occurs
+// handles a change in displayed data
 // charNum is the panel that the change originated from
-function keepMatchupTable(charNum) {
+function charChange(charNum) {
 	"use strict";
 	if (!($("#one-vs-one").is(":checked")) || (previousTable && charNum === "1") || (!previousTable && charNum === "2")) {
 		keepTable = false;
-	} 
+	}
+	
+	if (charNum === "1") {
+		defaultAttacker = false;
+	} else {
+		defaultDefender = false;
+	}
 }
 
 // updates weapon on rarity change
@@ -3200,6 +3221,673 @@ function setupOverrides() {
 	$("#override-special").html("<option value='No Override'>No Override</option>" + $("#override-special").html());
 }
 
+// checks if the given unit is a custom unit
+function isCustomName(name) {
+	"use strict";
+	var nameList = {"Sword Fighter": true, "Axe Fighter": true, "Lance Fighter": true,
+				    "Red Mage": true, "Green Mage": true, "Blue Mage": true,
+				    "Red Dragon": true, "Green Dragon": true, "Blue Dragon": true,
+				    "Bow Fighter": true, "Thief": true, "Cleric": true,
+				    "Sword Cavalier": true, "Axe Cavalier": true, "Lance Cavalier": true,
+				    "Red Cavalier": true, "Green Cavalier": true, "Blue Cavalier": true,
+				    "Red Dragon Cavalier": true, "Green Dragon Cavalier": true, "Blue Dragon Cavalier": true,
+				    "Bow Cavalier": true, "Dagger Cavalier": true, "Troubadour": true,
+				    "Sword Flier": true, "Axe Flier": true, "Lance Flier": true,
+				    "Red Flier": true, "Green Flier": true, "Blue Flier": true,
+				    "Red Dragon Flier": true, "Green Dragon Flier": true, "Blue Dragon Flier": true,
+				    "Bow Flier": true, "Dagger Flier": true, "Staff Flier": true,
+				    "Sword Knight": true, "Axe Knight": true, "Lance Knight": true,
+				    "Red Knight": true, "Green Knight": true, "Blue Knight": true,
+				    "Red Dragon Knight": true, "Green Dragon Knight": true, "Blue Dragon Knight": true,
+				    "Bow Knight": true, "Dagger Knight": true, "Staff Knight": true};
+	
+	return nameList.hasOwnProperty(name);
+}
+
+// returns color, weapon type and move type given a valid custom unit name
+function getCustomNameInfo(name) {
+	"use strict";
+	var nameMap = {
+		"Sword Fighter": {color: "Red", weaponType: "Sword", moveType: "Infantry"},
+		"Axe Fighter": {color: "Green", weaponType: "Axe", moveType: "Infantry"},
+		"Lance Fighter": {color: "Blue", weaponType: "Lance", moveType: "Infantry"},
+		"Red Mage": {color: "Red", weaponType: "Red Tome", moveType: "Infantry"},
+		"Green Mage": {color: "Green", weaponType: "Green Tome", moveType: "Infantry"},
+		"Blue Mage": {color: "Blue", weaponType: "Blue Tome", moveType: "Infantry"},
+		"Red Dragon": {color: "Red", weaponType: "Red Breath", moveType: "Infantry"},
+		"Green Dragon": {color: "Green", weaponType: "Green Breath", moveType: "Infantry"},
+		"Blue Dragon": {color: "Blue", weaponType: "Blue Breath", moveType: "Infantry"},
+		"Bow Fighter": {color: "Colorless", weaponType: "Bow", moveType: "Infantry"},
+		"Thief": {color: "Colorless", weaponType: "Dagger", moveType: "Infantry"},
+		"Cleric": {color: "Colorless", weaponType: "Staff", moveType: "Infantry"},
+		"Sword Cavalier": {color: "Red", weaponType: "Sword", moveType: "Cavalry"},
+		"Axe Cavalier": {color: "Green", weaponType: "Axe", moveType: "Cavalry"},
+		"Lance Cavalier": {color: "Blue", weaponType: "Lance", moveType: "Cavalry"},
+		"Red Cavalier": {color: "Red", weaponType: "Red Tome", moveType: "Cavalry"},
+		"Green Cavalier": {color: "Green", weaponType: "Green Tome", moveType: "Cavalry"},
+		"Blue Cavalier": {color: "Blue", weaponType: "Blue Tome", moveType: "Cavalry"},
+		"Red Dragon Cavalier": {color: "Red", weaponType: "Red Breath", moveType: "Cavalry"},
+		"Green Dragon Cavalier": {color: "Green", weaponType: "Green Breath", moveType: "Cavalry"},
+		"Blue Dragon Cavalier": {color: "Blue", weaponType: "Blue Breath", moveType: "Cavalry"},
+		"Bow Cavalier": {color: "Colorless", weaponType: "Bow", moveType: "Cavalry"},
+		"Dagger Cavalier": {color: "Colorless", weaponType: "Dagger", moveType: "Cavalry"},
+		"Troubadour": {color: "Colorless", weaponType: "Staff", moveType: "Cavalry"},
+		"Sword Flier": {color: "Red", weaponType: "Sword", moveType: "Flying"},
+		"Axe Flier": {color: "Green", weaponType: "Axe", moveType: "Flying"},
+		"Lance Flier": {color: "Blue", weaponType: "Lance", moveType: "Flying"},
+		"Red Flier": {color: "Red", weaponType: "Red Tome", moveType: "Flying"},
+		"Green Flier": {color: "Green", weaponType: "Green Tome", moveType: "Flying"},
+		"Blue Flier": {color: "Blue", weaponType: "Blue Tome", moveType: "Flying"},
+		"Red Dragon Flier": {color: "Red", weaponType: "Red Breath", moveType: "Flying"},
+		"Green Dragon Flier": {color: "Green", weaponType: "Green Breath", moveType: "Flying"},
+		"Blue Dragon Flier": {color: "Blue", weaponType: "Blue Breath", moveType: "Flying"},
+		"Bow Flier": {color: "Colorless", weaponType: "Bow", moveType: "Flying"},
+		"Dagger Flier": {color: "Colorless", weaponType: "Dagger", moveType: "Flying"},
+		"Staff Flier": {color: "Colorless", weaponType: "Staff", moveType: "Flying"},
+		"Sword Knight": {color: "Red", weaponType: "Sword", moveType: "Armored"},
+		"Axe Knight": {color: "Green", weaponType: "Axe", moveType: "Armored"},
+		"Lance Knight": {color: "Blue", weaponType: "Lance", moveType: "Armored"},
+		"Red Knight": {color: "Red", weaponType: "Red Tome", moveType: "Armored"},
+		"Green Knight": {color: "Green", weaponType: "Green Tome", moveType: "Armored"},
+		"Blue Knight": {color: "Blue", weaponType: "Blue Tome", moveType: "Armored"},
+		"Red Dragon Knight": {color: "Red", weaponType: "Red Breath", moveType: "Armored"},
+		"Green Dragon Knight": {color: "Green", weaponType: "Green Breath", moveType: "Armored"},
+		"Blue Dragon Knight": {color: "Blue", weaponType: "Blue Breath", moveType: "Armored"},
+		"Bow Knight": {color: "Colorless", weaponType: "Bow", moveType: "Armored"},
+		"Dagger Knight": {color: "Colorless", weaponType: "Dagger", moveType: "Armored"},
+		"Staff Knight": {color: "Colorless", weaponType: "Staff", moveType: "Armored"}
+	};
+	
+	return nameMap[name];
+}
+
+// determines if the given string is a valid rarity
+function isValidRarity(str) {
+	"use strict";
+	var substr = str.split(" ");
+	return (substr.length === 2 && $.isNumeric(parseInt(substr[0])) && substr[1] === "Star(s)" && parseInt(substr[0]) >= 1 && parseInt(substr[0]) <= 5);
+}
+
+// determines if the given string is a valid level
+function isValidLevel(str) {
+	"use strict";
+	var substr = str.split(" ");
+	
+	if (substr.length === 2) {
+		var lvlSubstr = substr[1].split("+");
+		return (substr[0] === "Lvl." && lvlSubstr.length === 2 && $.isNumeric(parseInt(lvlSubstr[0])) && $.isNumeric(parseInt(lvlSubstr[1])));
+	}
+	
+	return false;
+}
+
+// given a number, represented as a string, return a valid level
+function getValidLvl(str) {
+	"use strict";
+	if (parseInt(str) < 1) {
+		return "1";
+	} else if (str !== "1" && str !== "40") {
+		return "40";
+	}
+	
+	return str;
+}
+
+// given a number, represented as a string, return a valid merge level
+function getValidMerge(str) {
+	"use strict";
+	if (parseInt(str) < 0) {
+		return "0";
+	} else if (parseInt(str) > 10) {
+		return "10";
+	}
+	
+	return parseInt(str).toString();
+}
+
+// imports team into a panel
+// attacker is true if we import into the attacker panel
+function importTeam(attacker) {
+	"use strict";
+	var importText = $("#import-area").val().split("\n");
+	var importedChars = [];
+	var error = false;
+	
+	for(var textLine = 0; textLine < importText.length; textLine++) {
+		if (importText[textLine].length === 0) { // empty line
+			continue;
+		}
+		
+		var charCount = importedChars.length;   // index of next character
+		var statsIncluded = false;              // true if stats are imported
+		var customUnit = false;                 // true if unit is custom
+		
+		// get character name
+		var line = importText[textLine].split(/ +\[/);
+		
+		if (line.length < 2) { // missing nature
+			if (isCustomName(line[0])) { // check for custom unit
+				var customCharInfo = getCustomNameInfo(line[0]);
+				importedChars[charCount] = {};
+				importedChars[charCount].character = "Custom";
+				importedChars[charCount].color = customCharInfo.color;
+				importedChars[charCount].weaponType = customCharInfo.weaponType;
+				importedChars[charCount].moveType = customCharInfo.moveType;
+				customUnit = true;
+			} else { // error
+				$("#import-error-msg").text("Import error: Missing nature (line " + (textLine + 1).toString() + ")").show();
+				error = true;
+				break;
+			}
+		} else if (charInfo.hasOwnProperty(line[0])) { // check for valid character name
+			importedChars[charCount] = {};
+			importedChars[charCount].character = line[0];
+			importedChars[charCount].color = charInfo[line[0]].color;
+			importedChars[charCount].weaponType = charInfo[line[0]].weapon_type;
+			importedChars[charCount].moveType = charInfo[line[0]].move_type;
+		} else { // invalid name
+			$("#import-error-msg").text("Import error: Invalid name (line " + (textLine + 1).toString() + ")").show();
+			error = true;
+			break;
+		}
+		
+		// set default values
+		importedChars[charCount].level = "40";
+		importedChars[charCount].merge = "0";
+		importedChars[charCount].rarity = "5";
+		importedChars[charCount].rarityHTML = "<option value='5'>5 Stars</option>";
+		
+		importedChars[charCount].weapon = "None";
+		importedChars[charCount].passiveA = "None";
+		importedChars[charCount].passiveB = "None";
+		importedChars[charCount].passiveC = "None";
+		importedChars[charCount].assist = "None";
+		importedChars[charCount].special = "None";
+		importedChars[charCount].specCooldown = "0";
+		importedChars[charCount].seal = "None";
+		
+		importedChars[charCount].hp = "1";
+		importedChars[charCount].currentHP = "1";
+		
+		importedChars[charCount].atk = "1";
+		importedChars[charCount].atkBonus = "0";
+		importedChars[charCount].atkPenalty = "0";
+		importedChars[charCount].atkSpur = "0";
+
+		importedChars[charCount].spd = "1";
+		importedChars[charCount].spdBonus = "0";
+		importedChars[charCount].spdPenalty = "0";
+		importedChars[charCount].spdSpur = "0";
+
+		importedChars[charCount].def = "1";
+		importedChars[charCount].defBonus = "0";
+		importedChars[charCount].defPenalty = "0";
+		importedChars[charCount].defSpur = "0";
+
+		importedChars[charCount].def = "1";
+		importedChars[charCount].defBonus = "0";
+		importedChars[charCount].defPenalty = "0";
+		importedChars[charCount].defSpur = "0";
+
+		importedChars[charCount].res = "1";
+		importedChars[charCount].resBonus = "0";
+		importedChars[charCount].resPenalty = "0";
+		importedChars[charCount].resSpur = "0";
+		
+		// get other general info
+		if (!customUnit) {
+			// get nature
+			line = line[1].split("]");
+
+			if (line[0].toLowerCase() === "neutral") { // neutral nature
+				importedChars[charCount].boon = "neutral";
+				importedChars[charCount].bane = "neutral";
+			} else { // check for bane and boon
+				var statAbbr = {"hp": true, "atk": true, "spd": true, "def": true, "res": true, neutral: true};
+				var nature = line[0].split("/");
+
+				if (nature.length < 2 || (!statAbbr.hasOwnProperty(nature[0].toLowerCase()) && !statAbbr.hasOwnProperty(nature[0].toLowerCase().substr(1))) || (!statAbbr.hasOwnProperty(nature[1].toLowerCase()) && !statAbbr.hasOwnProperty(nature[1].toLowerCase().substr(1)))) {
+					$("#import-error-msg").text("Import error: Invalid nature (line " + (textLine + 1).toString() + ")").show();
+					error = true;
+					break;
+				} else {
+					importedChars[charCount].boon = statAbbr.hasOwnProperty(nature[0].toLowerCase()) ? nature[0].toLowerCase() : nature[0].toLowerCase().substr(1);
+					importedChars[charCount].bane = statAbbr.hasOwnProperty(nature[1].toLowerCase()) ? nature[1].toLowerCase() : nature[1].toLowerCase().substr(1);
+					
+					if (importedChars[charCount].boon === importedChars[charCount].bane && importedChars[charCount].boon !== "neutral") {
+						$("#import-error-msg").text("Import error: Invalid nature (line " + (textLine + 1).toString() + ")").show();
+						error = true;
+						break;
+					}
+				}
+			}
+			
+			// get rarity options
+			if (charInfo[importedChars[charCount].character].hasOwnProperty("base_stat")) {
+				for (var rarities = 4; rarities >= 1; rarities--) {
+					if (!charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star-" + rarities.toString())) {
+						break;
+					}
+					importedChars[charCount].rarityHTML += rarities !== 1 ? "<option value='" + rarities.toString() + "'>" + rarities.toString() + " Stars</option>" : "<option value='1'>1 Star</option>";
+				}
+			}
+			
+			// get rarity and level
+			if (line.length > 1) {
+				line = line[1].split(/ +-- +/);
+				
+				if (line.length === 3) { // get rarity and level
+					if (isValidRarity(line[1])) {
+						var rarityStr = line[1].split(" ");
+						importedChars[charCount].rarity = rarityStr[0];
+					} else {
+						$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
+						error = true;
+						break;
+					}
+					
+					if (isValidLevel(line[2])) {
+						var levelStr = line[2].split(" ");
+						var levelParts = levelStr[1].split("+");
+						importedChars[charCount].level = getValidLvl(levelParts[0]);
+						importedChars[charCount].merge = getValidMerge(levelParts[1]);
+					} else {
+						$("#import-error-msg").text("Import error: Invalid level (line " + (textLine + 1).toString() + ")").show();
+						error = true;
+						break;
+					}
+				} else if (line.length === 2) { // get rarity or level
+					if (isValidRarity(line[1])) {
+						var rarStr = line[1].split(" ");
+						importedChars[charCount].rarity = rarStr[0];
+					} else if (isValidLevel(line[1])) {
+						var lvlStr = line[1].split(" ");
+						var lvlParts = lvlStr[1].split("+");
+						importedChars[charCount].level = getValidLvl(lvlParts[0]);
+						importedChars[charCount].merge = getValidMerge(lvlParts[1]);
+					} else {
+						$("#import-error-msg").text("Import error: Invalid rarity or level (line " + (textLine + 1).toString() + ")").show();
+						error = true;
+						break;
+					}
+				}
+			}
+			
+		} else {
+			importedChars[charCount].boon = "neutral";
+			importedChars[charCount].bane = "neutral";
+		}
+		
+		// check stat line
+		textLine += 1;
+		
+		if (textLine >= importText.length) { // no more lines to read
+			if (customUnit) { // error - missing stats for custom unit
+				$("#import-error-msg").text("Import error: Missing stats for custom unit (line " + (textLine + 1).toString() + ")").show();
+				error = true;
+			} else if (!charInfo[importedChars[charCount].character].hasOwnProperty("base_stat")) { // data mined character
+				$("#import-error-msg").text("Import error: Missing stats for data-mined unit (line " + (textLine + 1).toString() + ")").show();
+				error = true;
+			} else { // get base stats for character
+				var defaultStats = getStatTotals(importedChars[charCount].character, importedChars[charCount].weapon, importedChars[charCount].passiveA, importedChars[charCount].seal, parseInt(importedChars[charCount].rarity), parseInt(importedChars[charCount].level), parseInt(importedChars[charCount].merge), importedChars[charCount].boon, importedChars[charCount].bane);
+				
+				importedChars[charCount].hp = defaultStats.hp;
+				importedChars[charCount].currentHP = defaultStats.hp;
+				importedChars[charCount].atk = defaultStats.atk;
+				importedChars[charCount].spd = defaultStats.spd;
+				importedChars[charCount].def = defaultStats.def;
+				importedChars[charCount].res = defaultStats.res;
+			}
+			console.log(importedChars[charCount]);
+			break;
+		} else {
+			line = importText[textLine].split(/ +\/ +/);
+			
+			if (line.length === 5) {
+				statsIncluded = true;
+				
+				var statNames = ["hp", "atk", "spd", "def", "res"];
+				for (var statIndex = 0; statIndex < 5; statIndex++) {
+					var singleStat = line[statIndex].split(" ");
+					if (singleStat.length === 2 && singleStat[1].toLowerCase() === statNames[statIndex] && $.isNumeric(parseInt(singleStat[0]))) {
+						var statVal = parseInt(singleStat[0]);
+						statVal = (statIndex === 0) ? ((statVal < 1) ? 1 : ((statVal > 99) ? 99 : statVal)) : ((statVal < 0) ? 0 : ((statVal > 99) ? 99 : statVal));
+						importedChars[charCount][statNames[statIndex]] = statVal.toString();
+						
+						if (statIndex === 0) {
+							importedChars[charCount].currentHP = statVal.toString();
+						}
+					} else {
+						$("#import-error-msg").text("Import error: Invalid stats (line " + (textLine + 1).toString() + ")").show();
+						error = true;
+						break;
+					}
+				}
+				
+				if (error) {
+					break;
+				}
+			} else if (customUnit) {
+				$("#import-error-msg").text("Import error: Missing stats on custom unit (line " + (textLine + 1).toString() + ")").show();
+				error = true;
+				break;
+			} else if (!charInfo[importedChars[charCount].character].hasOwnProperty("base_stat")) {
+				$("#import-error-msg").text("Import error: Missing stats on data-mined unit (line " + (textLine + 1).toString() + ")").show();
+				error = true;
+				break;
+			}
+		}
+		
+		// get equipped weapon and skills
+		textLine += statsIncluded ? 1 : 0;
+		var equips = ["weapon", "assist", "special", "passive a", "passive b", "passive c", "sacred seal"];
+		
+		for (var equipIndex = 0; equipIndex < 7; equipIndex++) {
+			if (textLine >= importText.length) {
+				break;
+			} else {
+				line = importText[textLine].split(/: +/);
+				if (line.length === 2 && line[0].toLowerCase() === equips[equipIndex]) {
+					if (equipIndex === 0) { // weapon
+						var weaponWithColor = line[1] + " (" + importedChars[charCount].color + ")";
+						var weaponName = weaponInfo.hasOwnProperty(weaponWithColor) ? weaponWithColor : line[1];
+						if (weaponInfo.hasOwnProperty(weaponName) && ((importedChars[charCount].character === "Custom" && weaponInfo[weaponName].type === importedChars[charCount].weaponType) || (importedChars[charCount].character !== "Custom" && charInfo[importedChars[charCount].character].weapon[0] === weaponName || isInheritableWeapon(weaponInfo[weaponName], importedChars[charCount].character)))) {
+							importedChars[charCount].weapon = weaponName;
+						} else {
+							$("#import-error-msg").text("Import error: Invalid weapon (line " + (textLine + 1).toString() + ")").show();
+							error = true;
+							break;
+						}
+					} else if (equipIndex === 1) { // assist
+						if (assistInfo.hasOwnProperty(line[1]) && ((importedChars[charCount].character === "Custom") || (isInheritable(assistInfo[line[1]], importedChars[charCount].character) || (charInfo[importedChars[charCount].character].hasOwnProperty("assist") && charInfo[importedChars[charCount].character].assist[0] === line[1])))) {
+							importedChars[charCount].assist = line[1];
+						} else {
+							$("#import-error-msg").text("Import error: Invalid assist (line " + (textLine + 1).toString() + ")").show();
+							error = true;
+							break;
+						}
+					} else if (equipIndex === 2) { // special
+						if (specInfo.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(specInfo[line[1]], importedChars[charCount].character))) {
+							importedChars[charCount].special = line[1];
+							var weaponData = importedChars[charCount].weapon === "None" ? {} : weaponInfo[importedChars[charCount].weapon];
+							var assistData = importedChars[charCount].assist === "None" ? {} : assistInfo[importedChars[charCount].assist];
+							importedChars[charCount].specCooldown = getSpecialCooldown(specInfo[line[1]], weaponData, assistData).toString();
+						} else {
+							$("#import-error-msg").text("Import error: Invalid special (line " + (textLine + 1).toString() + ")").show();
+							error = true;
+							break;
+						}
+					} else if (equipIndex === 3) { // passive a
+						if (skillInfo.a.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(skillInfo.a[line[1]], importedChars[charCount].character))) {
+							importedChars[charCount].passiveA = line[1];
+						} else {
+							$("#import-error-msg").text("Import error: Invalid passive A (line " + (textLine + 1).toString() + ")").show();
+							error = true;
+							break;
+						}
+					} else if (equipIndex === 4) { // passive b
+						if (skillInfo.b.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(skillInfo.b[line[1]], importedChars[charCount].character))) {
+							importedChars[charCount].passiveB = line[1];
+						} else {
+							$("#import-error-msg").text("Import error: Invalid passive B (line " + (textLine + 1).toString() + ")").show();
+							error = true;
+							break;
+						}
+					} else if (equipIndex === 5) { // passive c
+						if (skillInfo.c.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(skillInfo.c[line[1]], importedChars[charCount].character))) {
+							importedChars[charCount].passiveC = line[1];
+						} else {
+							$("#import-error-msg").text("Import error: Invalid passive C (line " + (textLine + 1).toString() + ")").show();
+							error = true;
+							break;
+						}
+					} else { // seal
+						if (skillInfo.s.hasOwnProperty(line[1])) {
+							importedChars[charCount].seal = line[1];
+						} else {
+							$("#import-error-msg").text("Import error: Invalid sacred seal (line " + (textLine + 1).toString() + ")").show();
+							error = true;
+							break;
+						}
+					}
+					
+					textLine += 1;
+				} else if (line.length === 2 && equipIndex === 6) {
+					$("#import-error-msg").text("Import error: Invalid equip (line " + (textLine + 1).toString() + ")").show();
+					error = true;
+					break;
+				}
+			}
+		}
+		
+		if (error) {
+			break;
+		}
+		
+		// get stats if they were not included in the import
+		if (!statsIncluded) {
+			var stats = getStatTotals(importedChars[charCount].character, importedChars[charCount].weapon, importedChars[charCount].passiveA, importedChars[charCount].seal, parseInt(importedChars[charCount].rarity), parseInt(importedChars[charCount].level), parseInt(importedChars[charCount].merge), importedChars[charCount].boon, importedChars[charCount].bane);
+			
+			importedChars[charCount].hp = stats.hp;
+			importedChars[charCount].currentHP = stats.hp;
+			importedChars[charCount].atk = stats.atk;
+			importedChars[charCount].spd = stats.spd;
+			importedChars[charCount].def = stats.def;
+			importedChars[charCount].res = stats.res;
+		}
+		
+		// check if 5 units have been imported
+		if (importedChars.length >= 5) {
+			break;
+		}
+		
+		// go back a line before looping again
+		textLine -= 1;
+	}
+	
+	// no units imported
+	if (importedChars.length === 0 && !error) {
+		$("#import-error-msg").text("Import error: No units to import").show();
+		error = true;
+	}
+	
+	if (!error) { // put imported characters into place
+		$("#import-error-msg").text("Import successful!").show();
+		var openSlots = 0;
+		var slotIndex = 0;
+		var team = attacker ? attackerTeam : defenderTeam;
+		var selected = attacker ? selectedAttacker : selectedDefender;
+		var tabName = attacker ? "#atk-tab-" : "#def-tab-";
+		var defaultTeam = attacker ? defaultAttacker : defaultDefender;
+		
+		for (slotIndex = 0; slotIndex < 5; slotIndex++) {
+			if (!team[slotIndex].hasOwnProperty("character") && slotIndex !== selected) {
+				openSlots += 1;
+			}
+		}
+		
+		var slotsOverload = openSlots - importedChars.length;
+		var numImported = 0;
+		
+		// insert characters
+		for (slotIndex = 0; slotIndex < 5; slotIndex++) {
+			if ((slotsOverload < 0 || (!team[slotIndex].hasOwnProperty("character") && slotIndex !== selected) || defaultTeam) && numImported < importedChars.length) {
+				team[slotIndex] = importedChars[numImported];
+				getPortrait(tabName + slotIndex.toString(), (importedChars[numImported].character === "Custom" ? "Other" : importedChars[numImported].character));
+				
+				if (slotIndex === selected) {
+					if (attacker) {
+						attackerTeam[slotIndex] = importedChars[numImported];
+					} else {
+						defenderTeam[slotIndex] = importedChars[numImported];
+					}
+					getCharTabInfo(attacker);
+				} else {
+					$(tabName + slotIndex.toString()).removeClass("char-tab-unselected").addClass("char-tab");
+				}
+				
+				numImported += 1;
+				slotsOverload += 1;
+			}
+			
+			if (numImported >= importedChars.length) {
+				break;
+			}
+		}
+		
+		// store team
+		if (attacker) {
+			attackerTeam = team;
+		} else {
+			defenderTeam = team;
+		}
+	}
+	
+	return !error;
+}
+
+// returns character info from a character panel as a string to be exported
+// charNum determines the panel to take data from
+function exportCharPanel(charNum) {
+	"use strict";
+	
+	// first line - general info
+	var exportText = "";
+	if ($("#char-" + charNum).val() === "Custom") {
+		exportText = customName($("#weapon-type-" + charNum).val(), $("#move-type-" + charNum).val());
+	} else {
+		exportText = $("#char-" + charNum).val();
+		if ($("#boon-" + charNum).val() !== "neutral" || $("#bane-" + charNum).val() !== "neutral") {
+			var boon = $("#boon-" + charNum).val();
+			var bane = $("#bane-" + charNum).val();
+
+			exportText += " [";
+			exportText += (boon === "neutral") ? "Neutral/" : "+" + boon.toUpperCase() + "/";
+			exportText += (bane === "neutral") ? "Neutral]" : "-" + bane.toUpperCase() + "]";
+		} else {
+			exportText += " [Neutral]";
+		}
+
+		exportText += parseInt($("#rarity-" + charNum).val()) !== 5 ? " -- " + $("#rarity-" + charNum).val().toString() + " Star(s)" : "";
+		exportText += parseInt($("#merge-" + charNum).val()) > 0 ? " -- Lvl. " + $("#level-" + charNum).val().toString() + "+" + $("#merge-" + charNum).val().toString(): "";
+	}
+	
+	exportText += "\r\n";
+	
+	// second line - stats
+	exportText += $("#hp-" + charNum).val().toString() + " HP / " + $("#atk-" + charNum).val().toString() + " ATK / " + $("#spd-" + charNum).val().toString() + " SPD / " + $("#def-" + charNum).val().toString() + " DEF / " + $("#res-" + charNum).val().toString() + " RES" + "\r\n";
+	
+	// all other lines - equipped weapons and skills
+	exportText += $("#weapon-" + charNum).val() !== "None" ? "Weapon: " + $("#weapon-" + charNum).val() + "\r\n" : "";
+	exportText += $("#assist-" + charNum).val() !== "None" ? "Assist: " + $("#assist-" + charNum).val() + "\r\n" : "";
+	exportText += $("#special-" + charNum).val() !== "None" ? "Special: " + $("#special-" + charNum).val() + "\r\n" : "";
+	exportText += $("#passive-a-" + charNum).val() !== "None" ? "Passive A: " + $("#passive-a-" + charNum).val() + "\r\n" : "";
+	exportText += $("#passive-b-" + charNum).val() !== "None" ? "Passive B: " + $("#passive-b-" + charNum).val() + "\r\n" : "";
+	exportText += $("#passive-c-" + charNum).val() !== "None" ? "Passive C: " + $("#passive-c-" + charNum).val() + "\r\n" : "";
+	exportText += $("#passive-s-" + charNum).val() !== "None" ? "Sacred Seal: " + $("#passive-s-" + charNum).val() + "\r\n" : "";
+	exportText += "\r\n";
+	
+	return exportText;
+}
+
+// returns character info from a character tab as a string to be exported
+// container contains the data from the tab
+function exportCharTab(container) {
+	"use strict";
+	
+	// first line - general info
+	var exportText = "";
+	if (container.character === "Custom") {
+		exportText = customName(container.weaponType, container.moveType);
+	} else {
+		exportText = container.character;
+		
+		if (container.boon !== "neutral" || container.bane !== "neutral") {
+			exportText += " [";
+			exportText += (container.boon === "neutral") ? "Neutral/" : "+" + container.boon.toUpperCase() + "/";
+			exportText += (container.bane === "neutral") ? "Neutral]" : "-" + container.bane.toUpperCase() + "]";
+		} else {
+			exportText += " [Neutral]";
+		}
+
+		exportText += parseInt(container.rarity) !== 5 ? " -- " + container.rarity.toString() + " Star(s)" : "";
+		exportText += (parseInt(container.merge) > 0 || parseInt(container.level) !== 40) ? " -- Lvl. " + container.level.toString() + "+" + container.merge.toString(): "";
+	}
+	
+	exportText += "\r\n";
+	
+	// second line - stats
+	exportText += container.hp.toString() + " HP / " + container.atk.toString() + " ATK / " + container.spd.toString() + " SPD / " + container.def.toString() + " DEF / " + container.res.toString() + " RES" + "\r\n";
+	
+	// all other lines - equipped weapons and skills
+	exportText += container.weapon !== "None" ? "Weapon: " + container.weapon + "\r\n" : "";
+	exportText += container.assist !== "None" ? "Assist: " + container.assist + "\r\n" : "";
+	exportText += container.special !== "None" ? "Special: " + container.special + "\r\n" : "";
+	exportText += container.passiveA !== "None" ? "Passive A: " + container.passiveA + "\r\n" : "";
+	exportText += container.passiveB !== "None" ? "Passive B: " + container.passiveB + "\r\n" : "";
+	exportText += container.passiveC !== "None" ? "Passive C: " + container.passiveC + "\r\n" : "";
+	exportText += container.seal !== "None" ? "Sacred Seal: " + container.seal + "\r\n" : "";
+	exportText += "\r\n";
+	
+	return exportText;
+}
+
+// exports the given team
+// attacker is true if we export the attackers
+function exportTeam(attacker) {
+	"use strict";
+	var team = attacker ? attackerTeam : defenderTeam;
+	var selected = attacker ? selectedAttacker : selectedDefender;
+	var exportText = "";
+	
+	for (var index = 0; index < 5; index++) {
+		if (index === selected) {
+			exportText += exportCharPanel(attacker ? "1" : "2");
+		} else if (team[index].hasOwnProperty("character")) {
+			exportText += exportCharTab(team[index]);
+		}
+	}
+	
+	$("#import-area").val(exportText);
+}
+
+// exports the selected character on a team
+// attacker is true if we export the attacker
+function exportSingle(attacker) {
+	"use strict";
+	if (attacker) {
+		$("#import-area").val(exportCharPanel("1"));
+	} else {
+		$("#import-area").val(exportCharPanel("2"));
+	}
+}
+
+// clears the selected team
+// attacker is true if we export the attacker team
+function clearTeam(attacker) {
+	"use strict";
+	for (var index = 0; index < 5; index++) {
+		$("#" + (attacker ? "atk" : "def") + "-tab-" + index.toString()).removeClass("char-tab char-tab-selected").addClass("char-tab-unselected").attr("src", "img/Portraits/Unselected.png");
+		if (attacker) {
+			attackerTeam[index] = {};
+		} else {
+			defenderTeam[index] = {};
+		}
+	}
+	
+	if (attacker) {
+		selectedAttacker = 0;
+		selectCharTab(true, 0);
+		$("#char-1").val($("#char-1 option:eq(0)").val()).trigger("change.select2");
+		displayChar($("#char-1").val(), "1");
+	} else {
+		selectedDefender = 0;
+		selectCharTab(false, 0);
+		$("#char-2").val($("#char-2 option:eq(1)").val()).trigger("change.select2");
+		displayChar($("#char-2").val(), "2");
+	}
+}
+
 // setup inital page
 $(document).ready( function() {
 	"use strict";	
@@ -3210,6 +3898,29 @@ $(document).ready( function() {
 		$("#" + $(this).data("section")).toggle(700);
 	});
 
+	// battle log header
+	$("#interaction-list-header").on("click", function() {
+		if ($(this).hasClass("legend-tab-unselected")) {
+			openLog = true;
+			$("#import-export-header").addClass("legend-tab-unselected");
+			$("#import-export").stop(true, true).hide();
+			$("#interaction-list").stop(true, true).fadeIn("slow");
+			$(this).removeClass("legend-tab-unselected");
+		}
+	});
+	
+	// import export header
+	$("#import-export-header").on("click", function() {
+		if ($(this).hasClass("legend-tab-unselected")) {
+			openLog = false;
+			$("#import-error-msg").text("");
+			$("#interaction-list").stop(true, true).hide();
+			$("#interaction-list-header").addClass("legend-tab-unselected");
+			$(this).removeClass("legend-tab-unselected");
+			$("#import-export").stop(true, true).fadeIn("slow");
+		}
+	});
+	
 	// setup number input changes
 	$(".more-than-zero").on("change", function() {
 		limit(this, 1);	
@@ -3231,7 +3942,7 @@ $(document).ready( function() {
 			$("#curr-" + this.id).val(this.value);
 		}
 		
-		keepMatchupTable($(this).data("charnum").toString());
+		charChange($(this).data("charnum").toString());
 		updateDisplay();
 	});
 	$(".curr-hp-val").on("change", function() {
@@ -3243,7 +3954,7 @@ $(document).ready( function() {
 			this.value = baseHP;
 		}
 		
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3256,7 +3967,7 @@ $(document).ready( function() {
 			this.value = maxCooldown;
 		}
 		
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3268,7 +3979,7 @@ $(document).ready( function() {
 	// setup character tab changes
 	$(".char-tab, .char-tab-unselected").on("click", function() {
 		selectCharTab($(this).data("charnum") === 1, $(this).data("index"));
-		keepMatchupTable($(this).data("charnum").toString());
+		charChange($(this).data("charnum").toString());
 		updateDisplay();
 	});
 	
@@ -3300,7 +4011,7 @@ $(document).ready( function() {
 	$(".char-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
 		displayChar(this.value, charNum);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3308,7 +4019,7 @@ $(document).ready( function() {
 	$(".weapon-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		showWeapon(this.value, charNum, true);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3318,7 +4029,7 @@ $(document).ready( function() {
 		getSpecialData(charNum);
 		showSpecCooldown(this.value, charNum, false);
 		updateSpecCooldown(charNum);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3327,7 +4038,7 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		getAssistData(charNum);
 		updateSpecCooldown(charNum);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3336,7 +4047,7 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		var skillType = $(this).data("skilltype");
 		getSkillData(charNum, skillType, true);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3344,7 +4055,7 @@ $(document).ready( function() {
 	$(".move-type-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
 		getMoveIcon((charNum === "1" ? "#attacker-move" : "#defender-move"), this.value);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3356,7 +4067,7 @@ $(document).ready( function() {
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected").trigger("change.select2");
 		getWeaponIcon((charNum === "1" ? "#attacker-weapon" : "#defender-weapon"), this.value);
 		showWeapon($("#weapon-" + charNum).val(), charNum, true);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3396,13 +4107,13 @@ $(document).ready( function() {
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected").trigger("change.select2");
 		getWeaponIcon((charNum === "1" ? "#attacker-weapon" : "#defender-weapon"), $("#weapon-type-" + charNum).val());
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
 	// setup other battle value changes
 	$(".battle-val").on("change", function() {
-		keepMatchupTable($(this).data("charnum").toString());
+		charChange($(this).data("charnum").toString());
 		updateDisplay();
 	});
 	
@@ -3568,7 +4279,45 @@ $(document).ready( function() {
 		if (charInfo[$("#char-" + charNum).val()].hasOwnProperty("base_stat")) {
 			displayStatTotals(charNum);
 		}
-		keepMatchupTable(charNum);
+		charChange(charNum);
+		updateDisplay();
+	});
+	
+	// import team
+	$(".import-btn").on("click", function() {
+		var attacker = (this.id === "import-attacker");
+		
+		if (importTeam(attacker)) {
+			charChange(attacker ? "1" : "2");
+			updateDisplay();
+		}
+	});
+	
+	// export teams
+	$(".export-btn").on("click", function() {
+		exportTeam(this.id === "export-attacker");
+		$("#import-error-msg").hide();
+	});
+	
+	// export single character
+	$(".export-single-btn").on("click", function() {
+		exportSingle(this.id === "export-attacker-single");
+		$("#import-error-msg").hide();
+	});
+	
+	// clear team
+	$(".clear-team-btn").on("click", function() {
+		var attacker = (this.id === "clear-attacker");
+		clearTeam(attacker);
+		$("#import-error-msg").hide();
+		charChange(attacker ? "1" : "2");
+		
+		if (attacker) {
+			defaultAttacker = true;
+		} else {
+			defaultDefender = true;
+		}
+		
 		updateDisplay();
 	});
 });

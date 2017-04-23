@@ -1209,8 +1209,7 @@ var weaponInfo =
 		"type"    : "Green Tome",
 		"might"   : 13,
 		"range"   : 2,
-		"magical" : true,
-		"char_unique" : true
+		"magical" : true
 	},
 	"Rogue Dagger" : {
 		"color"   : "Colorless",
@@ -1492,8 +1491,7 @@ var weaponInfo =
 		"type"    : "Blue Tome",
 		"might"   : 13,
 		"range"   : 2,
-		"magical" : true,
-		"char_unique" : true
+		"magical" : true
 	},
 	"Thunder" : {
 		"color"   : "Blue",
