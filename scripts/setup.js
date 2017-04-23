@@ -3685,7 +3685,7 @@ function importTeam(attacker) {
 	}
 	
 	// no units imported
-	if (importedChars.length === 0) {
+	if (importedChars.length === 0 && !error) {
 		$("#import-error-msg").text("Import error: No units to import").show();
 		error = true;
 	}
