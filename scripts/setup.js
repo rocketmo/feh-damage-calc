@@ -1901,6 +1901,7 @@ function simBattle(battleInfo, displayMsg) {
 			$("#hp-remain-2").stop(true, true).hide().text($("#curr-hp-2").val().toString() + " → " + $("#curr-hp-2").val().toString());
 			$("#hp-remain-1").fadeIn("slow");
 			$("#hp-remain-2").fadeIn("slow");
+			$("#result-msg").text("Draw!").css("color", "white").fadeIn("slow");
 			
 			if (openLog) {
 				$("#interaction-list").fadeIn("slow");
