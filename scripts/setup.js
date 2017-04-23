@@ -3780,7 +3780,7 @@ function exportCharTab(container) {
 	
 	// first line - general info
 	var exportText = "";
-	if (container.character === "Customer") {
+	if (container.character === "Custom") {
 		exportText = customName(container.weaponType, container.moveType);
 	} else {
 		exportText = container.character;
