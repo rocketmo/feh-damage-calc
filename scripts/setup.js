@@ -3582,8 +3582,10 @@ function importTeam(attacker) {
 				line = importText[textLine].split(/: +/);
 				if (line.length === 2 && line[0].toLowerCase() === equips[equipIndex]) {
 					if (equipIndex === 0) { // weapon
-						if (weaponInfo.hasOwnProperty(line[1]) && (charInfo[importedChars[charCount].character].weapon[0] === line[1] || isInheritableWeapon(weaponInfo[line[1]], importedChars[charCount].character))) {
-							importedChars[charCount].weapon = line[1];
+						var weaponWithColor = line[1] + " (" + importedChars[charCount].color + ")";
+						var weaponName = weaponInfo.hasOwnProperty(weaponWithColor) ? weaponWithColor : line[1];
+						if (weaponInfo.hasOwnProperty(weaponName) && (charInfo[importedChars[charCount].character].weapon[0] === weaponName || isInheritableWeapon(weaponInfo[weaponName], importedChars[charCount].character))) {
+							importedChars[charCount].weapon = weaponName;
 						} else {
 							$("#import-error-msg").text("Import error: Invalid weapon (line " + (textLine + 1).toString() + ")").show();
 							error = true;
