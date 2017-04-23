@@ -3640,11 +3640,69 @@ function importTeam(attacker) {
 		if (error) {
 			break;
 		}
+		
+		// get stats if they were not included in the import
+		if (!statsIncluded) {
+			var stats = getStatTotals(importedChars[charCount].character, importedChars[charCount].weapon, importedChars[charCount].passiveA, importedChars[charCount].seal, parseInt(importedChars[charCount].rarity), parseInt(importedChars[charCount].level), parseInt(importedChars[charCount].merge), importedChars[charCount].boon, importedChars[charCount].bane);
+			
+			importedChars[charCount].hp = stats.hp;
+			importedChars[charCount].currentHP = stats.hp;
+			importedChars[charCount].atk = stats.atk;
+			importedChars[charCount].spd = stats.spd;
+			importedChars[charCount].def = stats.def;
+			importedChars[charCount].res = stats.res;
+		}
 	}
 	
 	if (!error) { // put imported characters into place
 		$("#import-error-msg").text("Import successful!").show();
-		return;
+		var openSlots = 5;
+		var slotIndex = 0;
+		var team = attacker ? attackerTeam : defenderTeam;
+		var selected = attacker ? selectedAttacker : selectedDefender;
+		var tabName = attacker ? "#atk-tab-" : "#def-tab-";
+		
+		for (slotIndex = 0; slotIndex < 5; slotIndex++) {
+			if (team[slotIndex].hasOwnProperty("character")) {
+				openSlots -= 1;
+			}
+		}
+		
+		var slotsOverload = openSlots - importedChars.length;
+		var numImported = 0;
+		
+		// insert characters
+		for (slotIndex = 0; slotIndex < 5; slotIndex++) {
+			if (slotsOverload < 0 || !team[slotIndex].hasOwnProperty("character")) {
+				team[slotIndex] = importedChars[numImported];
+				getPortrait(tabName + slotIndex.toString(), importedChars[numImported].character);
+				
+				if (slotIndex === selected) {
+					if (attacker) {
+						attackerTeam[slotIndex] = importedChars[numImported];
+					} else {
+						defenderTeam[slotIndex] = importedChars[numImported];
+					}
+					getCharTabInfo(attacker);
+				} else {
+					$(tabName + slotIndex.toString()).removeClass("char-tab-unselected").addClass("char-tab");
+				}
+				
+				numImported += 1;
+				slotsOverload += 1;
+			}
+			
+			if (numImported >= importedChars.length) {
+				break;
+			}
+		}
+		
+		// store team
+		if (attacker) {
+			attackerTeam = team;
+		} else {
+			defenderTeam = team;
+		}
 	}
 }
 
