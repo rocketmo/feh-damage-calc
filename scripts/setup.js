@@ -3684,6 +3684,7 @@ function importTeam(attacker) {
 		textLine -= 1;
 	}
 	
+	// no units imported
 	if (importedChars.length === 0) {
 		$("#import-error-msg").text("Import error: No units to import").show();
 		error = true;
@@ -3740,6 +3741,8 @@ function importTeam(attacker) {
 			defenderTeam = team;
 		}
 	}
+	
+	return !error;
 }
 
 // returns character info from a character panel as a string to be exported
@@ -4282,9 +4285,11 @@ $(document).ready( function() {
 	// import team
 	$(".import-btn").on("click", function() {
 		var attacker = (this.id === "import-attacker");
-		importTeam(attacker);
-		charChange(attacker ? "1" : "2");
-		updateDisplay();
+		
+		if (importTeam(attacker)) {
+			charChange(attacker ? "1" : "2");
+			updateDisplay();
+		}
 	});
 	
 	// export teams
