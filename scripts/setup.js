@@ -3580,15 +3580,19 @@ function importTeam(attacker) {
 		
 		// get equipped weapon and skills
 		textLine += statsIncluded ? 1 : 0;
-		var equips = ["weapon", "assist", "special", "passive a", "passive b", "passive c", "sacred seal"];
+		var equips = {"weapon": false, "assist": false, "special": false, "passive a": false, "passive b": false, "passive c": false, "sacred seal": false};
 		
-		for (var equipIndex = 0; equipIndex < 7; equipIndex++) {
+		while (true) {
 			if (textLine >= importText.length) {
 				break;
 			} else {
 				line = importText[textLine].split(/: +/);
-				if (line.length === 2 && line[0].toLowerCase() === equips[equipIndex]) {
-					if (equipIndex === 0) { // weapon
+				var equipItem = line[0].toLowerCase();
+				
+				if (line.length === 2 && equips.hasOwnProperty(equipItem) && !equips[equipItem]) {
+					equips[equipItem] = true;
+					
+					if (equipItem === "weapon") { // weapon
 						var weaponWithColor = line[1] + " (" + importedChars[charCount].color + ")";
 						var weaponName = weaponInfo.hasOwnProperty(weaponWithColor) ? weaponWithColor : line[1];
 						if (weaponInfo.hasOwnProperty(weaponName) && ((importedChars[charCount].character === "Custom" && weaponInfo[weaponName].type === importedChars[charCount].weaponType) || (importedChars[charCount].character !== "Custom" && charInfo[importedChars[charCount].character].weapon[0] === weaponName || isInheritableWeapon(weaponInfo[weaponName], importedChars[charCount].character)))) {
@@ -3598,7 +3602,7 @@ function importTeam(attacker) {
 							error = true;
 							break;
 						}
-					} else if (equipIndex === 1) { // assist
+					} else if (equipItem === "assist") { // assist
 						if (assistInfo.hasOwnProperty(line[1]) && ((importedChars[charCount].character === "Custom") || (isInheritable(assistInfo[line[1]], importedChars[charCount].character) || (charInfo[importedChars[charCount].character].hasOwnProperty("assist") && charInfo[importedChars[charCount].character].assist[0] === line[1])))) {
 							importedChars[charCount].assist = line[1];
 						} else {
@@ -3606,7 +3610,7 @@ function importTeam(attacker) {
 							error = true;
 							break;
 						}
-					} else if (equipIndex === 2) { // special
+					} else if (equipItem === "special") { // special
 						if (specInfo.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(specInfo[line[1]], importedChars[charCount].character))) {
 							importedChars[charCount].special = line[1];
 							var weaponData = importedChars[charCount].weapon === "None" ? {} : weaponInfo[importedChars[charCount].weapon];
@@ -3617,7 +3621,7 @@ function importTeam(attacker) {
 							error = true;
 							break;
 						}
-					} else if (equipIndex === 3) { // passive a
+					} else if (equipItem === "passive a") { // passive a
 						if (skillInfo.a.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(skillInfo.a[line[1]], importedChars[charCount].character))) {
 							importedChars[charCount].passiveA = line[1];
 						} else {
@@ -3625,7 +3629,7 @@ function importTeam(attacker) {
 							error = true;
 							break;
 						}
-					} else if (equipIndex === 4) { // passive b
+					} else if (equipItem === "passive b") { // passive b
 						if (skillInfo.b.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(skillInfo.b[line[1]], importedChars[charCount].character))) {
 							importedChars[charCount].passiveB = line[1];
 						} else {
@@ -3633,7 +3637,7 @@ function importTeam(attacker) {
 							error = true;
 							break;
 						}
-					} else if (equipIndex === 5) { // passive c
+					} else if (equipItem === "passive c") { // passive c
 						if (skillInfo.c.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(skillInfo.c[line[1]], importedChars[charCount].character))) {
 							importedChars[charCount].passiveC = line[1];
 						} else {
@@ -3652,9 +3656,15 @@ function importTeam(attacker) {
 					}
 					
 					textLine += 1;
-				} else if (line.length === 2 && equipIndex === 6) {
+				} else if (equips.hasOwnProperty(equipItem) && equips[equipItem]) {
+					$("#import-error-msg").text("Import error: Double equip (line " + (textLine + 1).toString() + ")").show();
+					error = true;
+					break;
+				} else if (line.length === 2) {
 					$("#import-error-msg").text("Import error: Invalid equip (line " + (textLine + 1).toString() + ")").show();
 					error = true;
+					break;
+				} else {
 					break;
 				}
 			}
