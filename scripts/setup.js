@@ -3651,6 +3651,10 @@ function importTeam(attacker) {
 					}
 					
 					textLine += 1;
+				} else if (line.length === 2 && equipIndex === 6) {
+					$("#import-error-msg").text("Import error: Invalid equip (line " + (textLine + 1).toString() + ")").show();
+					error = true;
+					break;
 				}
 			}
 		}
@@ -3675,6 +3679,9 @@ function importTeam(attacker) {
 		if (importedChars.length >= 5) {
 			break;
 		}
+		
+		// go back a line before looping again
+		textLine -= 1;
 	}
 	
 	if (importedChars.length === 0) {
