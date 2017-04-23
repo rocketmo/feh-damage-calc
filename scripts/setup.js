@@ -3686,7 +3686,7 @@ function importTeam(attacker) {
 		var defaultTeam = attacker ? defaultAttacker : defaultDefender;
 		
 		for (slotIndex = 0; slotIndex < 5; slotIndex++) {
-			if (!team[slotIndex].hasOwnProperty("character")) {
+			if (!team[slotIndex].hasOwnProperty("character") && slotIndex !== selected) {
 				openSlots += 1;
 			}
 		}
@@ -3696,9 +3696,9 @@ function importTeam(attacker) {
 		
 		// insert characters
 		for (slotIndex = 0; slotIndex < 5; slotIndex++) {
-			if ((slotsOverload < 0 || !team[slotIndex].hasOwnProperty("character") || defaultTeam) && numImported < importedChars.length) {
+			if ((slotsOverload < 0 || (!team[slotIndex].hasOwnProperty("character") && slotIndex !== selected) || defaultTeam) && numImported < importedChars.length) {
 				team[slotIndex] = importedChars[numImported];
-				getPortrait(tabName + slotIndex.toString(), importedChars[numImported].character);
+				getPortrait(tabName + slotIndex.toString(), (importedChars[numImported].character === "Custom" ? "Other" : importedChars[numImported].character));
 				
 				if (slotIndex === selected) {
 					if (attacker) {
