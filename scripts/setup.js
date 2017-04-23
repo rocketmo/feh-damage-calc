@@ -27,6 +27,10 @@ var statGrowths = [[4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26],
 				  [8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30],
 				  [8, 10, 13, 15, 17, 19, 22, 24, 26, 28, 30, 33]];
 
+// default states
+var defaultAttacker = true;
+var defaultDefender = true;
+
 // limits number inputs
 // num is a number input, minNumber is the lower limit
 function limit(num, minNumber) {
@@ -2756,13 +2760,19 @@ function filterMatchupTable(fadeIn) {
 	}
 }
 
-// determines if the matchup table needs to be updated whenever a change in data occurs
+// handles a change in displayed data
 // charNum is the panel that the change originated from
-function keepMatchupTable(charNum) {
+function charChange(charNum) {
 	"use strict";
 	if (!($("#one-vs-one").is(":checked")) || (previousTable && charNum === "1") || (!previousTable && charNum === "2")) {
 		keepTable = false;
-	} 
+	}
+	
+	if (charNum === "1") {
+		defaultAttacker = false;
+	} else {
+		defaultDefender = false;
+	}
 }
 
 // updates weapon on rarity change
@@ -3652,19 +3662,25 @@ function importTeam(attacker) {
 			importedChars[charCount].def = stats.def;
 			importedChars[charCount].res = stats.res;
 		}
+		
+		// check if 5 units have been imported
+		if (importedChars.length >= 5) {
+			break;
+		}
 	}
 	
 	if (!error) { // put imported characters into place
 		$("#import-error-msg").text("Import successful!").show();
-		var openSlots = 5;
+		var openSlots = 0;
 		var slotIndex = 0;
 		var team = attacker ? attackerTeam : defenderTeam;
 		var selected = attacker ? selectedAttacker : selectedDefender;
 		var tabName = attacker ? "#atk-tab-" : "#def-tab-";
+		var defaultTeam = attacker ? defaultAttacker : defaultDefender;
 		
 		for (slotIndex = 0; slotIndex < 5; slotIndex++) {
-			if (team[slotIndex].hasOwnProperty("character")) {
-				openSlots -= 1;
+			if (!team[slotIndex].hasOwnProperty("character")) {
+				openSlots += 1;
 			}
 		}
 		
@@ -3673,7 +3689,7 @@ function importTeam(attacker) {
 		
 		// insert characters
 		for (slotIndex = 0; slotIndex < 5; slotIndex++) {
-			if (slotsOverload < 0 || !team[slotIndex].hasOwnProperty("character")) {
+			if (slotsOverload < 0 || !team[slotIndex].hasOwnProperty("character") || defaultTeam) {
 				team[slotIndex] = importedChars[numImported];
 				getPortrait(tabName + slotIndex.toString(), importedChars[numImported].character);
 				
@@ -3902,7 +3918,7 @@ $(document).ready( function() {
 			$("#curr-" + this.id).val(this.value);
 		}
 		
-		keepMatchupTable($(this).data("charnum").toString());
+		charChange($(this).data("charnum").toString());
 		updateDisplay();
 	});
 	$(".curr-hp-val").on("change", function() {
@@ -3914,7 +3930,7 @@ $(document).ready( function() {
 			this.value = baseHP;
 		}
 		
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3927,7 +3943,7 @@ $(document).ready( function() {
 			this.value = maxCooldown;
 		}
 		
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3939,7 +3955,7 @@ $(document).ready( function() {
 	// setup character tab changes
 	$(".char-tab, .char-tab-unselected").on("click", function() {
 		selectCharTab($(this).data("charnum") === 1, $(this).data("index"));
-		keepMatchupTable($(this).data("charnum").toString());
+		charChange($(this).data("charnum").toString());
 		updateDisplay();
 	});
 	
@@ -3971,7 +3987,7 @@ $(document).ready( function() {
 	$(".char-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
 		displayChar(this.value, charNum);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3979,7 +3995,7 @@ $(document).ready( function() {
 	$(".weapon-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
 		showWeapon(this.value, charNum, true);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3989,7 +4005,7 @@ $(document).ready( function() {
 		getSpecialData(charNum);
 		showSpecCooldown(this.value, charNum, false);
 		updateSpecCooldown(charNum);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -3998,7 +4014,7 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		getAssistData(charNum);
 		updateSpecCooldown(charNum);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -4007,7 +4023,7 @@ $(document).ready( function() {
 		var charNum = $(this).data("charnum").toString();
 		var skillType = $(this).data("skilltype");
 		getSkillData(charNum, skillType, true);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -4015,7 +4031,7 @@ $(document).ready( function() {
 	$(".move-type-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
 		getMoveIcon((charNum === "1" ? "#attacker-move" : "#defender-move"), this.value);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -4027,7 +4043,7 @@ $(document).ready( function() {
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected").trigger("change.select2");
 		getWeaponIcon((charNum === "1" ? "#attacker-weapon" : "#defender-weapon"), this.value);
 		showWeapon($("#weapon-" + charNum).val(), charNum, true);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -4067,13 +4083,13 @@ $(document).ready( function() {
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected").trigger("change.select2");
 		getWeaponIcon((charNum === "1" ? "#attacker-weapon" : "#defender-weapon"), $("#weapon-type-" + charNum).val());
 		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
 	// setup other battle value changes
 	$(".battle-val").on("change", function() {
-		keepMatchupTable($(this).data("charnum").toString());
+		charChange($(this).data("charnum").toString());
 		updateDisplay();
 	});
 	
@@ -4239,7 +4255,7 @@ $(document).ready( function() {
 		if (charInfo[$("#char-" + charNum).val()].hasOwnProperty("base_stat")) {
 			displayStatTotals(charNum);
 		}
-		keepMatchupTable(charNum);
+		charChange(charNum);
 		updateDisplay();
 	});
 	
@@ -4247,7 +4263,7 @@ $(document).ready( function() {
 	$(".import-btn").on("click", function() {
 		var attacker = (this.id === "import-attacker");
 		importTeam(attacker);
-		keepMatchupTable(attacker ? "1" : "2");
+		charChange(attacker ? "1" : "2");
 		updateDisplay();
 	});
 	
@@ -4268,7 +4284,14 @@ $(document).ready( function() {
 		var attacker = (this.id === "clear-attacker");
 		clearTeam(attacker);
 		$("#import-error-msg").hide();
-		keepMatchupTable(attacker ? "1" : "2");
+		charChange(attacker ? "1" : "2");
+		
+		if (attacker) {
+			defaultAttacker = true;
+		} else {
+			defaultDefender = true;
+		}
+		
 		updateDisplay();
 	});
 });
