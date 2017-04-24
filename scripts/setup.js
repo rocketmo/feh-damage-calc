@@ -2702,6 +2702,18 @@ function recolorMatchupRows() {
 	});
 }
 
+// returns true if the given name contains one of the strings of the given list
+function matchCharList(list, name) {
+	"use strict";
+	for (var i = 0; i < list.length; i++) {
+		if (list[i].length > 0 && name.indexOf(list[i]) > -1) {
+			return true;
+		}
+	}
+	
+	return false;
+}
+
 // filters the matchup table depending on the current filters
 // set fadeIn to true to fade in results
 function filterMatchupTable(fadeIn) {
@@ -2718,6 +2730,8 @@ function filterMatchupTable(fadeIn) {
 	var drawCount = 0;
 	var attacker = $("#one-vs-all").is(":checked");
 	
+	var filterCharNames = name.split(/ *[,;] */);
+	
 	$("#matchup-table tbody tr").each(function() {
 		var rowName = this.childNodes[1].firstChild.firstChild.nodeValue;
 		var rowMove = charInfo[rowName].move_type;
@@ -2727,7 +2741,7 @@ function filterMatchupTable(fadeIn) {
 		var rowResult = this.childNodes[6].firstChild.firstChild.nodeValue;
 		rowName = rowName.toLowerCase();
 		
-		if ((name === "" || rowName.indexOf(name) > -1) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon) && (range === "Any" || parseInt(range) === rowRange) && (results === "Any" || results === rowResult)) {
+		if ((name === "" || matchCharList(filterCharNames, rowName)) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon) && (range === "Any" || parseInt(range) === rowRange) && (results === "Any" || results === rowResult)) {
 			$(this).show();
 			
 			// update counters
