@@ -329,7 +329,7 @@ function updateSpecCooldown(charNum) {
 // charNum determines the panel the special is in
 function enableSpecCooldown(charNum) {
 	"use strict";
-	if ($("special-" + charNum).val() !== "None") {
+	if ($("#special-" + charNum).val() !== "None") {
 		if ($("#one-vs-one").is(":checked") || ($("#one-vs-all").is(":checked") && charNum === "1") || ($("#all-vs-one").is(":checked") && charNum === "2")) {
 			$("#spec-cooldown-line-" + charNum).css("color", "white");
 			$("#spec-cooldown-" + charNum).removeAttr("disabled");
