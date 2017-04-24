@@ -3555,15 +3555,15 @@ function importTeam(attacker) {
 			console.log(importedChars[charCount]);
 			break;
 		} else {
-			line = importText[textLine].split(/ +\/ +/);
+			line = importText[textLine].split(/ *\/ */);
 			
 			if (line.length === 5) {
 				statsIncluded = true;
 				
 				var statNames = ["hp", "atk", "spd", "def", "res"];
 				for (var statIndex = 0; statIndex < 5; statIndex++) {
-					var singleStat = line[statIndex].split(" ");
-					if (singleStat.length === 2 && singleStat[1].toLowerCase() === statNames[statIndex] && $.isNumeric(parseInt(singleStat[0]))) {
+					var singleStat = line[statIndex].split(/ +/);
+					if (((singleStat.length === 2 && singleStat[1].toLowerCase() === statNames[statIndex]) || singleStat.length === 1) && $.isNumeric(parseInt(singleStat[0]))) {
 						var statVal = parseInt(singleStat[0]);
 						statVal = (statIndex === 0) ? ((statVal < 1) ? 1 : ((statVal > 99) ? 99 : statVal)) : ((statVal < 0) ? 0 : ((statVal > 99) ? 99 : statVal));
 						importedChars[charCount][statNames[statIndex]] = statVal.toString();
