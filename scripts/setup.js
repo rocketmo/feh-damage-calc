@@ -1655,7 +1655,7 @@ function canActivateGuard(battleInfo, attacker) {
 	var mainUnit = attacker ? battleInfo.attacker : battleInfo.defender;
 	var otherUnit = attacker ? battleInfo.defender : battleInfo.attacker;
 	
-	return (mainUnit.passiveBData.hasOwnProperty("guard") && mainUnit.currHP >= mainUnit.hp * mainUnit.passiveBData.guard && otherUnit.special !== "None" && otherUnit.specCurrCooldown < getSpecialCooldown(otherUnit.specialData, otherUnit.weaponData, otherUnit.assistData));
+	return (mainUnit.passiveBData.hasOwnProperty("guard") && mainUnit.initHP >= mainUnit.hp * mainUnit.passiveBData.guard && otherUnit.special !== "None");
 }
 
 // calculates how much damage the attacker will do to the defender in just one attack phase
@@ -1878,9 +1878,13 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	if (atkSpec) {
 		attacker.specCurrCooldown = getSpecialCooldown(attacker.specialData, attacker.weaponData, attacker.assistData);
 	} else if (attacker.specCurrCooldown > 0) {
-		if (hasSpecAccel(battleInfo, initiator)) {
+		if (hasSpecAccel(battleInfo, initiator)) { // heavy blade
 			attacker.specCurrCooldown -= 1;
 			battleInfo.logMsg += "Gained an additional special cooldown charge [" + attacker.passiveA + "]. ";
+		}
+		if (canActivateGuard(battleInfo, !initiator)) { // guard effect
+			attacker.specCurrCooldown += 1;
+			battleInfo.logMsg += "Lost a special cooldown charge [" + defender.passiveB + "]. ";
 		}
 		attacker.specCurrCooldown -= 1;
 	}
@@ -1888,6 +1892,10 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	if (defSpec) {
 		defender.specCurrCooldown = getSpecialCooldown(defender.specialData, defender.weaponData, defender.assistData);
 	} else if (defender.specCurrCooldown > 0) {
+		if (canActivateGuard(battleInfo, initiator)) { // guard effect
+			defender.specCurrCooldown += 1;
+			battleInfo.logMsg += "Foe loses a special cooldown charge [" + attacker.passiveB + "]. ";
+		}
 		defender.specCurrCooldown -= 1;
 	}
 	
@@ -1997,17 +2005,6 @@ function simBattle(battleInfo, displayMsg) {
 	if (battleInfo.defender.hasOwnProperty("addBonusAtk") && battleInfo.defender.addBonusAtk > 0) {
 		battleInfo = bladeTomeBonus(battleInfo, battleInfo.defender.addBonusAtk, "defender");
 	}
-	
-	// guard effect
-	if (canActivateGuard(battleInfo, true)) {
-		battleInfo.defender.specCurrCooldown += 1;
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> loses a special cooldown charge [" + battleInfo.attacker.passiveB + "].</li>";
-	}
-	if (canActivateGuard(battleInfo, false)) {
-		battleInfo.attacker.specCurrCooldown += 1;
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> loses a special cooldown charge [" + battleInfo.defender.passiveB + "].</li>";
-	}
-	
 	
 	// can defender counter
 	var defCC = defCanCounter(battleInfo);

@@ -261,21 +261,24 @@ var skillInfo =
             "spec_accel" : {
                 "stat" : "atk",
 				"adv" : 5
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "Heavy Blade 2" : {
             "description" : "If unit's Atk - foe's Atk ≥ 3, unit gains Special cooldown charge +1 per attack.",
             "spec_accel" : {
                 "stat" : "atk",
 				"adv" : 3
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "Heavy Blade 3" : {
             "description" : "If unit's Atk - foe's Atk ≥ 1, unit gains Special cooldown charge +1 per attack.",
             "spec_accel" : {
                 "stat" : "atk",
 				"adv" : 1
-            }
+            },
+            "weapon_restrict" : "Staff"
         },
         "HP +3" : {
             "description" : "Grants +3 to max HP.",
