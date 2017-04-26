@@ -1638,6 +1638,26 @@ function canActivateDesperation(container, initHP, maxHP) {
 	return container.hasOwnProperty("desperation") && initHP <= checkRoundError(container.desperation.threshold * maxHP);
 }
 
+// checks if a unit can accelerate special cooldown
+// battleInfo contains the needed info for battle, attacker is true if we are accelerating the attacker's special
+function hasSpecAccel(battleInfo, attacker) {
+	"use strict";
+	var mainUnit = attacker ? battleInfo.attacker : battleInfo.defender;
+	var otherUnit = attacker ? battleInfo.defender : battleInfo.attacker;
+	
+	return (mainUnit.passiveAData.hasOwnProperty("spec_accel") && (mainUnit[mainUnit.passiveAData.spec_accel.stat] - otherUnit[mainUnit.passiveAData.spec_accel.stat] >= mainUnit.passiveAData.spec_accel.adv));
+}
+
+// checks if a unit can activate guard ability
+// battleInfo contains the needed info for battle, attacker is true if we look for the ability on the attacker
+function canActivateGuard(battleInfo, attacker) {
+	"use strict";
+	var mainUnit = attacker ? battleInfo.attacker : battleInfo.defender;
+	var otherUnit = attacker ? battleInfo.defender : battleInfo.attacker;
+	
+	return (mainUnit.passiveBData.hasOwnProperty("guard") && mainUnit.currHP >= mainUnit.hp * mainUnit.passiveBData.guard && otherUnit.special !== "None" && otherUnit.specCurrCooldown < getSpecialCooldown(otherUnit.specialData, otherUnit.weaponData, otherUnit.assistData));
+}
+
 // calculates how much damage the attacker will do to the defender in just one attack phase
 // battleInfo contains all necessary info for calculation, initiator determines if the battle initiator is attacking or not
 // logIntro describes the attack, brave is true if the attack is the second in a brave attack
@@ -1854,13 +1874,14 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		healMsg = " <span class='heal-seperator'>|</span> <span class='" + atkClass + "'><strong>" + attacker.name + " HP:</strong> " + atkOldHP.toString() + " → " + attacker.currHP.toString() + "</span>";
 	}
 	
-	// print hp before and after
-	battleInfo.logMsg += "<br><span class='" + defClass + "'><strong>" + defender.name + " HP:</strong> " + defOldHP.toString() + " → " + defender.currHP.toString() + "</span>" + healMsg + "</li>";
-	
 	// update cooldowns
 	if (atkSpec) {
 		attacker.specCurrCooldown = getSpecialCooldown(attacker.specialData, attacker.weaponData, attacker.assistData);
 	} else if (attacker.specCurrCooldown > 0) {
+		if (hasSpecAccel(battleInfo, initiator)) {
+			attacker.specCurrCooldown -= 1;
+			battleInfo.logMsg += "Gained an additional special cooldown charge [" + attacker.passiveA + "]. ";
+		}
 		attacker.specCurrCooldown -= 1;
 	}
 	
@@ -1869,6 +1890,9 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	} else if (defender.specCurrCooldown > 0) {
 		defender.specCurrCooldown -= 1;
 	}
+	
+	// print hp before and after
+	battleInfo.logMsg += "<br><span class='" + defClass + "'><strong>" + defender.name + " HP:</strong> " + defOldHP.toString() + " → " + defender.currHP.toString() + "</span>" + healMsg + "</li>";
 	
 	// store info
 	if (initiator) {
@@ -1973,6 +1997,17 @@ function simBattle(battleInfo, displayMsg) {
 	if (battleInfo.defender.hasOwnProperty("addBonusAtk") && battleInfo.defender.addBonusAtk > 0) {
 		battleInfo = bladeTomeBonus(battleInfo, battleInfo.defender.addBonusAtk, "defender");
 	}
+	
+	// guard effect
+	if (canActivateGuard(battleInfo, true)) {
+		battleInfo.defender.specCurrCooldown += 1;
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> loses a special cooldown charge [" + battleInfo.attacker.passiveB + "].</li>";
+	}
+	if (canActivateGuard(battleInfo, false)) {
+		battleInfo.attacker.specCurrCooldown += 1;
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> loses a special cooldown charge [" + battleInfo.defender.passiveB + "].</li>";
+	}
+	
 	
 	// can defender counter
 	var defCC = defCanCounter(battleInfo);

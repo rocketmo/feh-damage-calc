@@ -593,21 +593,15 @@ var skillInfo =
         },
         "Guard 1" : {
             "description" : "If unit's HP is full at start of combat, enemy is inflicted with Special cooldown charge -1.",
-            "guard" : {
-                "threshold" : 1
-            }
+            "guard" : 1
         },
         "Guard 2" : {
             "description" : "If unit's HP ≥ 90% at start of combat, enemy is inflicted with Special cooldown charge -1.",
-            "guard" : {
-                "threshold" : 0.9
-            }
+            "guard" : 0.9
         },
         "Guard 3" : {
             "description" : "If unit's HP ≥ 80% at start of combat, enemy is inflicted with Special cooldown charge -1.",
-            "guard" : {
-                "threshold" : 0.8
-            }
+            "guard" : 0.8
         },
         "Hit and Run" : {
             "description" : "If unit initiates attack, unit advances 1 space after battle.",
