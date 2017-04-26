@@ -592,7 +592,7 @@ var skillInfo =
             "color_restrict" : "Blue"
         },
         "Guard 1" : {
-            "description" : "If unit's HP is full at start of combat, enemy is inflicted with Special cooldown charge -1.",
+            "description" : "If unit's HP is 100% at start of combat, enemy is inflicted with Special cooldown charge -1.",
             "guard" : 1
         },
         "Guard 2" : {
