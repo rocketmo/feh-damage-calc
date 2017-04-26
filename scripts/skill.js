@@ -256,6 +256,30 @@ var skillInfo =
             "cancel_effective" : true,
             "move_unique" : "Cavalry"
         },
+        "Heavy Blade 1" : {
+            "description" : "If unit's Atk - foe's Atk ≥ 5, unit gains Special cooldown charge +1 per attack.",
+            "spec_accel" : {
+                "stat" : "atk",
+				"adv" : 5
+            },
+            "weapon_restrict" : "Staff"
+        },
+        "Heavy Blade 2" : {
+            "description" : "If unit's Atk - foe's Atk ≥ 3, unit gains Special cooldown charge +1 per attack.",
+            "spec_accel" : {
+                "stat" : "atk",
+				"adv" : 3
+            },
+            "weapon_restrict" : "Staff"
+        },
+        "Heavy Blade 3" : {
+            "description" : "If unit's Atk - foe's Atk ≥ 1, unit gains Special cooldown charge +1 per attack.",
+            "spec_accel" : {
+                "stat" : "atk",
+				"adv" : 1
+            },
+            "weapon_restrict" : "Staff"
+        },
         "HP +3" : {
             "description" : "Grants +3 to max HP.",
             "stat_mod" : {
@@ -570,6 +594,18 @@ var skillInfo =
             },
             "color_restrict" : "Blue"
         },
+        "Guard 1" : {
+            "description" : "If unit's HP is 100% at start of combat, enemy is inflicted with Special cooldown charge -1.",
+            "guard" : 1
+        },
+        "Guard 2" : {
+            "description" : "If unit's HP ≥ 90% at start of combat, enemy is inflicted with Special cooldown charge -1.",
+            "guard" : 0.9
+        },
+        "Guard 3" : {
+            "description" : "If unit's HP ≥ 80% at start of combat, enemy is inflicted with Special cooldown charge -1.",
+            "guard" : 0.8
+        },
         "Hit and Run" : {
             "description" : "If unit initiates attack, unit advances 1 space after battle.",
             "range_unique" : 1
@@ -867,6 +903,33 @@ var skillInfo =
             },
             "move_unique" : "Armored"
         },
+        "Watersweep 1" : {
+            "description" : "If unit initiates attack, no follow-up occurs. Against foe with magic, staff, or dragonstone, if unit’s Spd - foe’s Spd ≥ 5, foe can’t counterattack.",
+            "sweep" : {
+                "weapon_type" : {"Red Tome": true, "Red Breath": true, "Green Tome": true, "Green Breath": true, "Blue Tome": true, "Blue Breath": true, "Staff": true},
+                "spd_adv": 5
+            },
+            "no_follow" : true,
+            "weapon_restrict" : "Staff"
+        },
+        "Watersweep 2" : {
+            "description" : "If unit initiates attack, no follow-up occurs. Against foe with magic, staff, or dragonstone, if unit’s Spd - foe’s Spd ≥ 3, foe can’t counterattack.",
+            "sweep" : {
+                "weapon_type" : {"Red Tome": true, "Red Breath": true, "Green Tome": true, "Green Breath": true, "Blue Tome": true, "Blue Breath": true, "Staff": true},
+                "spd_adv": 3
+            },
+            "no_follow" : true,
+            "weapon_restrict" : "Staff"
+        },
+        "Watersweep 3" : {
+            "description" : "If unit initiates attack, no follow-up occurs. Against foe with magic, staff, or dragonstone, if unit’s Spd - foe’s Spd ≥ 1, foe can’t counterattack.",
+            "sweep" : {
+                "weapon_type" : {"Red Tome": true, "Red Breath": true, "Green Tome": true, "Green Breath": true, "Blue Tome": true, "Blue Breath": true, "Staff": true},
+                "spd_adv": 1
+            },
+            "no_follow" : true,
+            "weapon_restrict" : "Staff"
+        },
         "Windsweep 1" : {
             "description" : "If unit initiates attack, no follow-up occurs. Against foe with sword, lance, axe, bow, or dagger, if unit’s Spd - foe’s Spd ≥ 5, foe can’t counterattack.",
             "sweep" : {
@@ -1040,6 +1103,12 @@ var skillInfo =
         },
         "Spur Def 3" : {
             "description" : "Grants adjacent allies Def+4 during combat."
+        },
+        "Spur Def/Res 1" : {
+            "description" : "Grants adjacent allies Def/Res+2 during combat."
+        },
+        "Spur Def/Res 2" : {
+            "description" : "Grants adjacent allies Def/Res+3 during combat."
         },
         "Spur Res 1" : {
             "description" : "Grants adjacent allies Res+2 during combat."

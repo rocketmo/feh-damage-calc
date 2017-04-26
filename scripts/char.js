@@ -358,7 +358,11 @@ var charInfo =
 		"assist" : ["Harsh Command"],
 		"base_stat" : {
 			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 5, "res" : 9},
+			"star-4" : {"hp" : 17, "atk" : 6, "spd" : 8, "def" : 4, "res" : 9},
 			"growth" : {"hp" : 5, "atk" : 5, "spd" : 9, "def" : 5, "res" : 7}
+		},
+		"rarity_restrict" : {
+			"star-4" : {"weapon" : 1, "passive_c" : 1}
 		}
 	},
 	"Clarine": {
@@ -884,6 +888,19 @@ var charInfo =
 			"growth" : {"hp" : 6, "atk" : 9, "spd" : 7, "def" : 5, "res" : 4}
 		}
 	},
+	"Ike": {
+		"color" : "Red",
+		"weapon_type" : "Sword",
+		"move_type": "Infantry",
+		"weapon": ["Ragnell", "Silver Sword", "Steel Sword", "Iron Sword"],
+		"special": ["Aether", "Luna", "New Moon"],
+		"passive_a": ["Heavy Blade 3", "Heavy Blade 2", "Heavy Blade 1"],
+		"passive_b": ["Swordbreaker 3", "Swordbreaker 2", "Swordbreaker 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 9, "spd" : 7, "def" : 8, "res" : 5},
+			"growth" : {"hp" : 7, "atk" : 8, "spd" : 7, "def" : 7, "res" : 2}
+		}
+	},
 	"Jaffar": {
 		"color" : "Colorless",
 		"weapon_type" : "Dagger",
@@ -1184,7 +1201,11 @@ var charInfo =
 		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"],
 		"base_stat" : {
 			"star-5" : {"hp" : 19, "atk" : 9, "spd" : 5, "def" : 10, "res" : 4},
+			"star-4" : {"hp" : 18, "atk" : 9, "spd" : 4, "def" : 10, "res" : 3},
 			"growth" : {"hp" : 8, "atk" : 8, "spd" : 4, "def" : 9, "res" : 2}
+		},
+		"rarity_restrict" : {
+			"star-4" : {"weapon" : 1, "passive_a" : 1}
 		}
 	},
 	"Lyn": {
@@ -1302,6 +1323,19 @@ var charInfo =
 		"base_stat" : {
 			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 9, "def" : 8, "res" : 5},
 			"growth" : {"hp" : 6, "atk" : 7, "spd" : 7, "def" : 7, "res" : 4}
+		}
+	},
+	"Mist": {
+		"color" : "Colorless",
+		"weapon_type" : "Staff",
+		"move_type": "Infantry",
+		"weapon": ["Slow", "Assault"],
+		"special": ["Miracle", "Imbue"],
+		"passive_c": ["Spur Def/Res 2", "Spur Def/Res 1", "Spur Res 1"],
+		"assist" : ["Recover", "Mend", "Heal"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 8, "spd" : 6, "def" : 5, "res" : 8},
+			"growth" : {"hp" : 6, "atk" : 5, "spd" : 6, "def" : 3, "res" : 8}
 		}
 	},
 	"Narcian": {
@@ -1901,6 +1935,19 @@ var charInfo =
 			"star-1" : {"weapon" : 3, "special" : -1, "passive_a" : -1, "passive_c" : 2}
 		}
 	},
+	"Soren": {
+		"color" : "Green",
+		"weapon_type" : "Green Tome",
+		"move_type": "Infantry",
+		"weapon": ["Rexcalibur+", "Rexcalibur", "Elwind", "Wind"],
+		"special": ["Growing Wind", "Rising Wind"],
+		"passive_b": ["Watersweep 3", "Watersweep 2", "Watersweep 1"],
+		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 4, "res" : 7},
+			"growth" : {"hp" : 5, "atk" : 8, "spd" : 7, "def" : 2, "res" : 6}
+		}
+	},
 	"Stahl": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
@@ -2026,6 +2073,19 @@ var charInfo =
 		"base_stat" : {
 			"star-5" : {"hp" : 15, "atk" : 5, "spd" : 4, "def" : 8, "res" : 7},
 			"growth" : {"hp" : 8, "atk" : 8, "spd" : 8, "def" : 7, "res" : 6}
+		}
+	},
+	"Titania": {
+		"color" : "Green",
+		"weapon_type" : "Axe",
+		"move_type": "Cavalry",
+		"weapon": ["Emerald Axe+", "Emerald Axe", "Steel Axe", "Iron Axe"],
+		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
+		"passive_b": ["Guard 3", "Guard 2", "Guard 1"],
+		"assist" : ["Reciprocal Aid"],
+		"base_stat" : {
+			"star-5" : {"hp" : 18, "atk" : 6, "spd" : 8, "def" : 6, "res" : 8},
+			"growth" : {"hp" : 5, "atk" : 6, "spd" : 8, "def" : 5, "res" : 6}
 		}
 	},
 	"Ursula": {

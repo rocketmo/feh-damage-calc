@@ -1131,6 +1131,16 @@ var weaponInfo =
 			"res" : -6
 		}
 	},
+	"Ragnell" : {
+		"color"   : "Red",
+		"type"    : "Sword",
+		"might"   : 16,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Enables wielder to counter-attack regardless of attacker's range.",
+		"counter" : true,
+		"char_unique" : true
+	},
 	"Raijinto" : {
 		"color"   : "Red",
 		"type"    : "Sword",
