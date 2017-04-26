@@ -2095,7 +2095,7 @@ function simBattle(battleInfo, displayMsg) {
 		}
 		
 		// print message if attacker cannot make a follow-up
-		if (battleInfo.attacker.passiveBData.hasOwnProperty("no_follow")) {
+		if (battleInfo.attacker.passiveBData.hasOwnProperty("no_follow") && battleInfo.attacker.currHP > 0) {
 			battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> " + " is prevented from making follow-up attacks [" + battleInfo.attacker.passiveB + "].</li>";
 		}
 		
