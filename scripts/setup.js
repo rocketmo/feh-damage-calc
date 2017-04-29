@@ -3686,7 +3686,7 @@ function importTeam(attacker) {
 					if (equipItem === "weapon") { // weapon
 						var weaponWithColor = line[1] + " (" + importedChars[charCount].color + ")";
 						var weaponName = weaponInfo.hasOwnProperty(weaponWithColor) ? weaponWithColor : line[1];
-						if (weaponInfo.hasOwnProperty(weaponName) && ((importedChars[charCount].character === "Custom" && weaponInfo[weaponName].type === importedChars[charCount].weaponType) || (importedChars[charCount].character !== "Custom" && charInfo[importedChars[charCount].character].weapon[0] === weaponName || isInheritableWeapon(weaponInfo[weaponName], importedChars[charCount].character)))) {
+						if (weaponInfo.hasOwnProperty(weaponName) && ((importedChars[charCount].character === "Custom" && weaponInfo[weaponName].type === importedChars[charCount].weaponType) || (importedChars[charCount].character !== "Custom" && (charInfo[importedChars[charCount].character].weapon[0] === weaponName || isInheritableWeapon(weaponInfo[weaponName], importedChars[charCount].character))))) {
 							importedChars[charCount].weapon = weaponName;
 						} else {
 							$("#import-error-msg").text("Import error: Invalid weapon (line " + (textLine + 1).toString() + ")").show();
@@ -3737,7 +3737,7 @@ function importTeam(attacker) {
 							break;
 						}
 					} else { // seal
-						if (skillInfo.s.hasOwnProperty(line[1])) {
+						if (skillInfo.s.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(skillInfo.s[line[1]], importedChars[charCount].character))) {
 							importedChars[charCount].seal = line[1];
 						} else {
 							$("#import-error-msg").text("Import error: Invalid sacred seal (line " + (textLine + 1).toString() + ")").show();
