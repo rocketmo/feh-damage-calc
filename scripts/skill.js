@@ -1220,6 +1220,11 @@ var skillInfo =
                 "atk" : 1
             }
         },
+        "Embla's Ward" : {
+            "description" : "Unit receives 0 damage.",
+            "null_dmg" : true,
+            "char_unique" : true
+        },
         "HP +3" : {
             "description" : "Grants +3 to max HP.",
             "stat_mod" : {

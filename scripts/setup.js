@@ -424,7 +424,7 @@ function showSkills(singleChar, charNum, type) {
 	// get inherited skills
 	for (var key in skillInfo[type]) {
 		if (isInheritable(skillInfo[type][key], $("#char-" + charNum).val()) && !defaultSkills.hasOwnProperty(key)) {
-			skills += "<option class='inherit' value=\"" + key + "\">" + key + "</option>";
+			skills += (type !== "s") ? "<option class='inherit' value=\"" + key + "\">" + key + "</option>" : "<option value=\"" + key + "\">" + key + "</option>";
 		}
 	}
 	
@@ -538,23 +538,27 @@ function loadWeapons(weaponType, selectID, inheritOnly) {
 }
 
 // load all passive skills of the given letter
-// letter is the passive skill letter, selectID determines which select to load in
-function loadPassives(letter, selectID) {
+// letter is the passive skill letter, selectID determines which select to load in, unique is true if we load in unique passives
+function loadPassives(letter, selectID, unique) {
 	"use strict";
 	var options = "<option value='None'>None</option>";
 	for (var key in skillInfo[letter]) {
-		options += "<option value=\"" + key + "\">" + key + "</option>";
+		if (unique || !skillInfo[letter][key].hasOwnProperty("char_unique")) {
+			options += "<option value=\"" + key + "\">" + key + "</option>";
+		}
 	}
 	$(selectID).html(options);
 }
 
 // load all assist skills
-// selectID determines which select to load in
-function loadAssists(selectID) {
+// selectID determines which select to load in, unique is true if we include unique assists
+function loadAssists(selectID, unique) {
 	"use strict";
 	var assistOptions = "<option value='None'>None</option>";
 	for (var assistName in assistInfo) {
-		assistOptions += "<option value=\"" + assistName + "\">" + assistName + "</option>";
+		if (unique || !assistInfo[assistName].hasOwnProperty("char_unique")) {
+			assistOptions += "<option value=\"" + assistName + "\">" + assistName + "</option>";
+		}
 	}
 	$(selectID).html(assistOptions);
 }
@@ -750,6 +754,7 @@ function displayChar(charName, charNum) {
 		var passiveA = $("#passive-a-" + charNum).val();
 		var passiveB = $("#passive-b-" + charNum).val();
 		var passiveC = $("#passive-c-" + charNum).val();
+		var seal = $("#passive-s-" + charNum).val();
 		var assist = $("#assist-" + charNum).val();
 		var special = $("#special-" + charNum).val();
 		
@@ -763,20 +768,24 @@ function displayChar(charName, charNum) {
 		}
 		
 		// load in passive skills
-		loadPassives("a", "#passive-a-" + charNum);
+		loadPassives("a", "#passive-a-" + charNum, true);
 		$("#passive-a-" + charNum).val(passiveA).trigger("change.select2");
-		getSkillData("#passive-a-" + charNum, "a", false);
+		getSkillData(charNum, "a", false);
 		
-		loadPassives("b", "#passive-b-" + charNum);
+		loadPassives("b", "#passive-b-" + charNum, true);
 		$("#passive-b-" + charNum).val(passiveB).trigger("change.select2");
-		getSkillData("#passive-b-" + charNum, "b", false);
+		getSkillData(charNum, "b", false);
 		
-		loadPassives("c", "#passive-c-" + charNum);
+		loadPassives("c", "#passive-c-" + charNum, true);
 		$("#passive-c-" + charNum).val(passiveC).trigger("change.select2");
-		getSkillData("#passive-c-" + charNum, "c", false);
+		getSkillData(charNum, "c", false);
+		
+		loadPassives("s", "#passive-s-" + charNum, true);
+		$("#passive-s-" + charNum).val(seal).trigger("change.select2");
+		getSkillData(charNum, "s", false);
 		
 		// load in assist skills
-		loadAssists("#assist-" + charNum);
+		loadAssists("#assist-" + charNum, true);
 		$("#assist-" + charNum).val(assist).trigger("change.select2");
 		getAssistData(charNum);
 		
@@ -816,6 +825,7 @@ function displayChar(charName, charNum) {
 	showSkills(singleChar, charNum, "a");
 	showSkills(singleChar, charNum, "b");
 	showSkills(singleChar, charNum, "c");
+	showSkills(singleChar, charNum, "s");
 	
 	// reset sacred seal
 	$("#passive-s-" + charNum).val("None").trigger("change.select2");
@@ -1201,27 +1211,49 @@ function weaponColorAdvantage(attackColor, defendColor, attackWeapon, defendWeap
 // heal is the amount of health restored, healSource is the source of the healing
 function afterCombatEffects(battleInfo, charClass, poison, poisonSource, recoil, recoilSource, heal, healSource) {
 	"use strict";
-	var oldHP = battleInfo[charClass].currHP;
-	var opponentClass = (charClass === "attacker") ? "defender" : "attacker";
 	
-	if (poison > 0 && (poison + recoil > heal)) {
-		battleInfo[charClass].currHP = Math.max(oldHP - poison - recoil + heal, 1);
-		battleInfo[opponentClass].damageDealt += poison - heal;
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='" + opponentClass + "'><strong>" + battleInfo[opponentClass].name + "</strong></span> inflicts after-combat damage [" + poisonSource + "]. ";
-		battleInfo.logMsg += (recoil > 0) ? "Oppenent takes additional after-combat damage [" + recoilSource + "]. " : "";
-		battleInfo.logMsg += (heal > 0) ? "Oppenent reduces damage taken due to healing effect [" + healSource + "]. " : "";
-		battleInfo.logMsg += "<span class='dmg'><strong>" + (poison + recoil - heal).toString() + " damage dealt.</strong></span><br><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</span></li>";
-	} else if (recoil > 0 && recoil > heal) {
-		battleInfo[charClass].currHP = Math.max(oldHP - recoil + heal, 1);
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> takes damage after combat [" + recoilSource + "]. ";
-		battleInfo.logMsg += (heal > 0) ? "Damage taken is reduced due to healing effect [" + healSource + "]. " : "";
-		battleInfo.logMsg += "<span class='dmg'><strong>" + (recoil - heal).toString() + " damage dealt.</strong></span><br><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</span></li>";
-	} else if (heal > 0) {
-		battleInfo[charClass].currHP = Math.min(oldHP + heal - poison - recoil, battleInfo[charClass].hp);
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> recovers HP after combat [" + healSource + "]. ";
-		battleInfo.logMsg += (poison > 0) ? "Opponent reduces health gained by inflicting after combat damage [" + poisonSource + "]. " : "";
-		battleInfo.logMsg += (recoil > 0) ? "Health recovery reduced due to self-inflicted damage [" + recoilSource + "]. " : "";
-		battleInfo.logMsg += "<span class='dmg'><strong>" + (heal - poison - recoil).toString() + " health restored.</strong></span><br><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</span></li>";
+	var oldHP = battleInfo[charClass].currHP;
+	if (battleInfo[charClass].sealData.hasOwnProperty("null_dmg")) {
+		battleInfo[charClass].currHP = Math.min(oldHP + heal, battleInfo[charClass].hp);
+		
+		if (poison > 0) {
+			battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> nullifies after-combat damage [" + poisonSource + ", " + battleInfo[charClass].seal + "]. ";
+			battleInfo.logMsg += recoil > 0 ? "Self-inflicted damage is nullified [" + recoilSource + ", " + battleInfo[charClass].seal + "]. " : "";
+			battleInfo.logMsg += heal > 0 ? "Health is restored [" + healSource + "]. " : "";
+		} else if (recoil > 0) {
+			battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> nullifies self-inflicted damage [" + recoilSource + ", " + battleInfo[charClass].seal + "]. ";
+			battleInfo.logMsg += heal > 0 ? "Health is restored [" + healSource + "]. " : "";
+		} else if (heal > 0) {
+			battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> recovers HP after combat [" + healSource + "]. ";
+		}
+		
+		if (heal > 0) {
+			battleInfo.logMsg += "<span class='dmg'><strong>" + heal.toString() + " health restored.</strong></span><br><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</span></li>";
+		} else if (poison + recoil > 0) {
+			battleInfo.logMsg += "<span class='dmg'><strong>0 damage dealt.</strong></span><br><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</span></li>";
+		}
+	} else {
+		var opponentClass = (charClass === "attacker") ? "defender" : "attacker";
+
+		if (poison > 0 && (poison + recoil > heal)) {
+			battleInfo[charClass].currHP = Math.max(oldHP - poison - recoil + heal, 1);
+			battleInfo[opponentClass].damageDealt += poison - heal;
+			battleInfo.logMsg += "<li class='battle-interaction'><span class='" + opponentClass + "'><strong>" + battleInfo[opponentClass].name + "</strong></span> inflicts after-combat damage [" + poisonSource + "]. ";
+			battleInfo.logMsg += (recoil > 0) ? "Oppenent takes additional after-combat damage [" + recoilSource + "]. " : "";
+			battleInfo.logMsg += (heal > 0) ? "Oppenent reduces damage taken due to healing effect [" + healSource + "]. " : "";
+			battleInfo.logMsg += "<span class='dmg'><strong>" + (poison + recoil - heal).toString() + " damage dealt.</strong></span><br><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</span></li>";
+		} else if (recoil > 0 && recoil > heal) {
+			battleInfo[charClass].currHP = Math.max(oldHP - recoil + heal, 1);
+			battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> takes damage after combat [" + recoilSource + "]. ";
+			battleInfo.logMsg += (heal > 0) ? "Damage taken is reduced due to healing effect [" + healSource + "]. " : "";
+			battleInfo.logMsg += "<span class='dmg'><strong>" + (recoil - heal).toString() + " damage dealt.</strong></span><br><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</span></li>";
+		} else if (heal > 0) {
+			battleInfo[charClass].currHP = Math.min(oldHP + heal - poison - recoil, battleInfo[charClass].hp);
+			battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> recovers HP after combat [" + healSource + "]. ";
+			battleInfo.logMsg += (poison > 0) ? "Opponent reduces health gained by inflicting after combat damage [" + poisonSource + "]. " : "";
+			battleInfo.logMsg += (recoil > 0) ? "Health recovery reduced due to self-inflicted damage [" + recoilSource + "]. " : "";
+			battleInfo.logMsg += "<span class='dmg'><strong>" + (heal - poison - recoil).toString() + " health restored.</strong></span><br><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</span></li>";
+		}
 	}
 	
 	return battleInfo;
@@ -1833,6 +1865,12 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		defSpec = true;
 	}
 	
+	// damage nullifier
+	if (defender.sealData.hasOwnProperty("null_dmg")) {
+		dmg = 0;
+		battleInfo.logMsg += "Opponent nullifies damage [" + defender.seal + "]. ";
+	}
+	
 	// double check dmg
 	dmg = Math.max(dmg, 0);
 	
@@ -1894,7 +1932,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	} else if (defender.specCurrCooldown > 0) {
 		if (canActivateGuard(battleInfo, initiator)) { // guard effect
 			defender.specCurrCooldown += 1;
-			battleInfo.logMsg += "Foe loses a special cooldown charge [" + attacker.passiveB + "]. ";
+			battleInfo.logMsg += "Opponent loses a special cooldown charge [" + attacker.passiveB + "]. ";
 		}
 		defender.specCurrCooldown -= 1;
 	}
@@ -1947,18 +1985,20 @@ function simBattle(battleInfo, displayMsg) {
 	if (battleInfo.attacker.specialData.hasOwnProperty("before_combat_aoe") && battleInfo.attacker.specCurrCooldown <= 0) {
 		// reset cooldown
 		battleInfo.attacker.specCurrCooldown = getSpecialCooldown(battleInfo.attacker.specialData, battleInfo.attacker.weaponData, battleInfo.attacker.assistData);
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> deals AOE damage before combat [" + battleInfo.attacker.special + "]. ";
 		
 		// calculate damage
-		var aoeDmg = battleInfo.attacker.atkWS ;
-		if (battleInfo.attacker.weaponData.magical) {
-			aoeDmg -= battleInfo.defender.resWS;
-		} else {
-			aoeDmg -= battleInfo.defender.defWS;
-		}
+		var aoeDmg = battleInfo.attacker.atkWS - (battleInfo.attacker.weaponData.magical ? battleInfo.defender.resWS : battleInfo.defender.defWS);
 		
 		// check for damage multiplier
 		if (battleInfo.attacker.specialData.hasOwnProperty("aoe_dmg_mod")) {
 			aoeDmg = roundNum(aoeDmg * battleInfo.attacker.specialData.aoe_dmg_mod, false);
+		}
+		
+		// check for damage nullifier
+		if (battleInfo.defender.sealData.hasOwnProperty("null_dmg")) {
+			aoeDmg = 0;
+			battleInfo.logMsg += "Damage is nullified [" + battleInfo.defender.seal + "]. ";
 		}
 		
 		// cap dmg at 0
@@ -1970,7 +2010,7 @@ function simBattle(battleInfo, displayMsg) {
 		var oldHP = battleInfo.defender.currHP;
 		battleInfo.defender.currHP = Math.max(battleInfo.defender.currHP - aoeDmg, 1);
 		battleInfo.defender.initHP = battleInfo.defender.currHP;
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> deals AOE damage before combat [" + battleInfo.attacker.special + "]. <span class='dmg'><strong>" + aoeDmg.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
+		battleInfo.logMsg += "<span class='dmg'><strong>" + aoeDmg.toString() + " damage dealt.</strong></span><br><span class='defender'><strong>" + battleInfo.defender.name + " HP:</strong> " + oldHP.toString() + " → " + battleInfo.defender.currHP.toString() + "</span></li>";
 	}
 	
 	// attacker initiate bonus
@@ -2443,6 +2483,7 @@ function swap() {
 	oldAtkInfo.specialDesc = $("#special-desc-1").text();
 	oldAtkInfo.specCooldown = $("#spec-cooldown-1").val();
 	oldAtkInfo.specCooldownMax = $("#spec-cooldown-max-1").text();
+	oldAtkInfo.seal = $("#passive-s-1").html();
 	oldAtkInfo.selectedSeal = $("#passive-s-1").val();
 	oldAtkInfo.sealData = $("#passive-s-1").data("info");
 	oldAtkInfo.sealDesc = $("#passive-s-desc-1").text();
@@ -2531,6 +2572,7 @@ function swap() {
 	$("#special-desc-1").text($("#special-desc-2").text());
 	$("#spec-cooldown-1").val($("#spec-cooldown-2").val());
 	$("#spec-cooldown-max-1").text($("#spec-cooldown-max-2").text());
+	$("#passive-s-1").html($("#passive-s-2").html());
 	$("#passive-s-1").val($("#passive-s-2").val()).trigger("change.select2");
 	$("#passive-s-1").data("info", $("#passive-s-2").data("info"));
 	$("#passive-s-desc-1").text($("#passive-s-desc-2").text());
@@ -2621,6 +2663,7 @@ function swap() {
 	$("#special-desc-2").text(oldAtkInfo.specialDesc);
 	$("#spec-cooldown-2").val(oldAtkInfo.specCooldown);
 	$("#spec-cooldown-max-2").text(oldAtkInfo.specCooldownMax);
+	$("#passive-s-2").html(oldAtkInfo.seal);
 	$("#passive-s-2").val(oldAtkInfo.selectedSeal).trigger("change.select2");
 	$("#passive-s-2").data("info", oldAtkInfo.sealData);
 	$("#passive-s-desc-2").text(oldAtkInfo.sealDesc);
@@ -3252,10 +3295,11 @@ function setupOverrides() {
 	
 	// load in options
 	loadWeapons("Any", "#override-weapon", true);
-	loadPassives("a", "#override-passive-a");
-	loadPassives("b", "#override-passive-b");
-	loadPassives("c", "#override-passive-c");
-	loadAssists("#override-assist");
+	loadPassives("a", "#override-passive-a", false);
+	loadPassives("b", "#override-passive-b", false);
+	loadPassives("c", "#override-passive-c", false);
+	loadPassives("s", "#override-passive-s", false);
+	loadAssists("#override-assist", false);
 	loadSpecials("#override-special");
 	
 	// add No override option
@@ -3263,6 +3307,7 @@ function setupOverrides() {
 	$("#override-passive-a").html("<option value='No Override'>No Override</option>" + $("#override-passive-a").html());
 	$("#override-passive-b").html("<option value='No Override'>No Override</option>" + $("#override-passive-b").html());
 	$("#override-passive-c").html("<option value='No Override'>No Override</option>" + $("#override-passive-c").html());
+	$("#override-passive-s").html("<option value='No Override'>No Override</option>" + $("#override-passive-s").html());
 	$("#override-assist").html("<option value='No Override'>No Override</option>" + $("#override-assist").html());
 	$("#override-special").html("<option value='No Override'>No Override</option>" + $("#override-special").html());
 }
@@ -4038,14 +4083,6 @@ $(document).ready( function() {
 		charChange($(this).data("charnum").toString());
 		updateDisplay();
 	});
-	
-	// fill in sacred seals
-	loadPassives("s", "#passive-s-1");
-	loadPassives("s", "#passive-s-2");
-	loadPassives("s", "#override-passive-s");
-	$("#override-passive-s").html("<option value='No Override'>No Override</option>" + $("#override-passive-s").html());
-	getSkillData("1", "s", false);
-	getSkillData("2", "s", false);
 	
 	// setup initial display
 	setupStats();
