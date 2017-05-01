@@ -3213,18 +3213,30 @@ function calculateMatchups(attacker) {
 			} else if (battleInfo.defender.currHP <= 0) { // attacker wins
 				tableHTML += "<td class='attacker'><strong>Attacker Wins</strong></td>";
 			} else { // draw
+				var strongAtkHit = battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.5, true);
+				var strongDefHit = battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.startHP * 0.5, true);
+				var decentAtkHit = battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.25, true);
+				var decentDefHit = battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.startHP * 0.25, true);
+				var weakAtkHit = battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.35, false);
+				var weakDefHit = battleInfo.defender.damageDealt <= roundNum(battleInfo.attacker.startHP * 0.35, false);
+				var atkOverDef = battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.damageDealt * 1.6, true);
+				var defOverAtk = battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.damageDealt * 1.6, true);
+				var atkOnDefNC = battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.4, true);
+				var defWithNC = battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.2, false);
+				var defCC = defCanCounter(battleInfo);
+				
 				if (attacker) {
-					if ((battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.5, true) && battleInfo.defender.damageDealt <= roundNum(battleInfo.attacker.startHP * 0.35, false)) || (battleInfo.attacker.damageDealt / battleInfo.defender.startHP >= 0.25 && battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.damageDealt * 1.75, false))) {
+					if ((strongAtkHit && weakDefHit) || ((atkOnDefNC || (defCC && decentAtkHit)) && atkOverDef)) {
 						tableHTML += "<td class='attacker'><strong>Draw (A)</strong></td>";
-					} else if ((battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.35, false) && battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.startHP * 0.5, true))  || (battleInfo.defender.damageDealt / battleInfo.attacker.startHP >= 0.25 && battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.damageDealt * 1.75, false))) {
+					} else if ((weakAtkHit && strongDefHit)  || (decentDefHit && defOverAtk)) {
 						tableHTML += "<td class='defender'><strong>Draw (D)</strong></td>";
 					} else {
 						tableHTML += "<td><strong>Draw</strong></td>";
 					}
 				} else {
-					if ((!defCanCounter(battleInfo) && battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.2, false)) || (battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.35, false) && battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.startHP * 0.5, true)) || (battleInfo.defender.damageDealt / battleInfo.attacker.startHP >= 0.25 && battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.damageDealt * 1.75, false))) {
+					if ((!defCC && defWithNC) || (weakAtkHit && strongDefHit) || (decentDefHit && defOverAtk)) {
 						tableHTML += "<td class='defender'><strong>Draw (D)</strong></td>";
-					} else if ((battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.5, true) && battleInfo.defender.damageDealt <= roundNum(battleInfo.attacker.startHP * 0.35, false)) || (battleInfo.attacker.damageDealt / battleInfo.defender.startHP >= 0.25 && battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.damageDealt * 1.75, false))) {
+					} else if ((strongAtkHit && weakDefHit) || ((atkOnDefNC || (defCC && decentAtkHit)) && atkOverDef)) {
 						tableHTML += "<td class='attacker'><strong>Draw (A)</strong></td>";
 					} else {
 						tableHTML += "<td><strong>Draw</strong></td>";
