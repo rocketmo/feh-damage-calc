@@ -2789,6 +2789,29 @@ function matchCharList(list, name) {
 	return false;
 }
 
+// checks if the matchup matches the given favorability, if any
+// result is the wanted result, rowResult is the result of the matchup, attacker is true if the attacker is our base character
+function matchFavorability(result, rowResult, attacker) {
+	"use strict";
+	if (result === "Favorable") {
+		if (attacker) {
+			return (rowResult === "Attacker Wins" || rowResult === "Draw (A)");
+		} else {
+			return (rowResult === "Defender Wins" || rowResult === "Draw (D)");
+		}
+	} else if (result === "Unfavorable") {
+		if (attacker) {
+			return (rowResult === "Defender Wins" || rowResult === "Draw (D)");
+		} else {
+			return (rowResult === "Attacker Wins" || rowResult === "Draw (A)");
+		}
+	} else if (result === "Other") {
+		return (rowResult === "Draw");
+	}
+	
+	return false;
+}
+
 // filters the matchup table depending on the current filters
 // set fadeIn to true to fade in results
 function filterMatchupTable(fadeIn) {
@@ -2819,7 +2842,7 @@ function filterMatchupTable(fadeIn) {
 		var rowResult = this.childNodes[6].firstChild.firstChild.nodeValue;
 		rowName = rowName.toLowerCase();
 		
-		if ((name === "" || matchCharList(filterCharNames, rowName)) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon) && (range === "Any" || parseInt(range) === rowRange) && (results === "Any" || results === rowResult)) {
+		if ((name === "" || matchCharList(filterCharNames, rowName)) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon) && (range === "Any" || parseInt(range) === rowRange) && (results === "Any" || results === rowResult || matchFavorability(results, rowResult, attacker))) {
 			$(this).show();
 			
 			// update counters
@@ -2866,7 +2889,7 @@ function filterMatchupTable(fadeIn) {
 	});
 	
 	recolorMatchupRows();
-	$("#matchup-overview").html(winCount.toString() + " wins · " + lossCount.toString() + " losses · " + drawCount.toString() + " draws<br>" + favoredCount.toString() + " favored · " + unfavoredCount.toString() + " unfavored · " + otherCount.toString() + " other");
+	$("#matchup-overview").html(winCount.toString() + " wins · " + lossCount.toString() + " losses · " + drawCount.toString() + " draws<br>" + favoredCount.toString() + " favorable · " + unfavoredCount.toString() + " unfavorable · " + otherCount.toString() + " other");
 	
 	if (fadeIn) {
 		$("#matchup-table").hide().fadeIn("slow");
