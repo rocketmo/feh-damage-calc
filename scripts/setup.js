@@ -3215,8 +3215,8 @@ function calculateMatchups(attacker) {
 			} else { // draw
 				var strongAtkHit = battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.5, true);
 				var strongDefHit = battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.startHP * 0.5, true);
-				var decentAtkHit = battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.25, true);
-				var decentDefHit = battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.startHP * 0.25, true);
+				var decentAtkHit = battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.35, true);
+				var decentDefHit = battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.startHP * 0.35, true);
 				var weakAtkHit = battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.35, false);
 				var weakDefHit = battleInfo.defender.damageDealt <= roundNum(battleInfo.attacker.startHP * 0.35, false);
 				var atkOverDef = battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.damageDealt * 1.6, true);
