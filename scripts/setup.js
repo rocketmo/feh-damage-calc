@@ -2821,20 +2821,20 @@ function filterMatchupTable(fadeIn) {
 			
 			// update counters
 			var result = this.childNodes[6].firstChild.firstChild.nodeValue;
-			if (result === "Draw") {
-				drawCount += 1;
-			} else if (result === "Attacker Wins") {
+			if (result === "Attacker Wins") {
 				if (attacker) {
 					winCount += 1;
 				} else {
 					lossCount += 1;
+				}
+			} else if (result === "Defender Wins") {
+				if (attacker) {
+					lossCount += 1;
+				} else {
+					winCount += 1;
 				}
 			} else {
-				if (attacker) {
-					lossCount += 1;
-				} else {
-					winCount += 1;
-				}
+				drawCount += 1;
 			}
 		} else {
 			$(this).hide();
@@ -3129,9 +3129,6 @@ function applyOverrides(charNum) {
 function calculateMatchups(attacker) {
 	"use strict";
 	var battleInfo = {};
-	var winCount = 0;
-	var lossCount = 0;
-	var drawCount = 0;
 	var tableHTML = "";
 	var charCount = 0;
 	var foeClass = attacker ? "defender" : "attacker";
@@ -3164,25 +3161,28 @@ function calculateMatchups(attacker) {
 			tableHTML += "<td class='attacker'>" + battleInfo.attacker.startHP.toString() + " → <span>" + battleInfo.attacker.currHP.toString() + "</span></td>";
 			tableHTML += "<td class='defender'>" + battleInfo.defender.startHP.toString() + " → <span>" + battleInfo.defender.currHP.toString() + "</span></td>";
 			
-			if (battleInfo.attacker.currHP <= 0) {
+			if (battleInfo.attacker.currHP <= 0) { // defender wins
 				tableHTML += "<td class='defender'><strong>Defender Wins</strong></td>";
-				
-				if (attacker) {
-					lossCount += 1;
-				} else {
-					winCount += 1;
-				}
-			} else if (battleInfo.defender.currHP <= 0) {
+			} else if (battleInfo.defender.currHP <= 0) { // attacker wins
 				tableHTML += "<td class='attacker'><strong>Attacker Wins</strong></td>";
-				
+			} else { // draw
 				if (attacker) {
-					winCount += 1;
+					if (battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.5, true) && battleInfo.defender.damageDealt <= roundNum(battleInfo.attacker.startHP * 0.35, false)) {
+						tableHTML += "<td class='attacker'><strong>Draw (A)</strong></td>";
+					} else if (battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.35, false) && battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.startHP * 0.5, true)) {
+						tableHTML += "<td class='defender'><strong>Draw (D)</strong></td>";
+					} else {
+						tableHTML += "<td><strong>Draw</strong></td>";
+					}
 				} else {
-					lossCount += 1;
+					if ((!defCanCounter(battleInfo) && battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.2, false)) || (battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.35, false) && battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.startHP * 0.5, true))) {
+						tableHTML += "<td class='defender'><strong>Draw (D)</strong></td>";
+					} else if (battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.5, true) && battleInfo.defender.damageDealt <= roundNum(battleInfo.attacker.startHP * 0.35, false)) {
+						tableHTML += "<td class='attacker'><strong>Draw (A)</strong></td>";
+					} else {
+						tableHTML += "<td><strong>Draw</strong></td>";
+					}
 				}
-			} else {
-				tableHTML += "<td><strong>Draw</strong></td>";
-				drawCount += 1;
 			}
 			
 			tableHTML += "</tr>";
