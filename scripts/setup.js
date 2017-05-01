@@ -3214,17 +3214,17 @@ function calculateMatchups(attacker) {
 				tableHTML += "<td class='attacker'><strong>Attacker Wins</strong></td>";
 			} else { // draw
 				if (attacker) {
-					if (battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.5, true) && battleInfo.defender.damageDealt <= roundNum(battleInfo.attacker.startHP * 0.35, false)) {
+					if ((battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.5, true) && battleInfo.defender.damageDealt <= roundNum(battleInfo.attacker.startHP * 0.35, false)) || (battleInfo.attacker.damageDealt / battleInfo.defender.startHP >= 0.25 && battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.damageDealt * 1.75, false))) {
 						tableHTML += "<td class='attacker'><strong>Draw (A)</strong></td>";
-					} else if (battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.35, false) && battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.startHP * 0.5, true)) {
+					} else if ((battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.35, false) && battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.startHP * 0.5, true))  || (battleInfo.defender.damageDealt / battleInfo.attacker.startHP >= 0.25 && battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.damageDealt * 1.75, false))) {
 						tableHTML += "<td class='defender'><strong>Draw (D)</strong></td>";
 					} else {
 						tableHTML += "<td><strong>Draw</strong></td>";
 					}
 				} else {
-					if ((!defCanCounter(battleInfo) && battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.2, false)) || (battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.35, false) && battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.startHP * 0.5, true))) {
+					if ((!defCanCounter(battleInfo) && battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.2, false)) || (battleInfo.attacker.damageDealt <= roundNum(battleInfo.defender.startHP * 0.35, false) && battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.startHP * 0.5, true)) || (battleInfo.defender.damageDealt / battleInfo.attacker.startHP >= 0.25 && battleInfo.defender.damageDealt >= roundNum(battleInfo.attacker.damageDealt * 1.75, false))) {
 						tableHTML += "<td class='defender'><strong>Draw (D)</strong></td>";
-					} else if (battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.5, true) && battleInfo.defender.damageDealt <= roundNum(battleInfo.attacker.startHP * 0.35, false)) {
+					} else if ((battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.startHP * 0.5, true) && battleInfo.defender.damageDealt <= roundNum(battleInfo.attacker.startHP * 0.35, false)) || (battleInfo.attacker.damageDealt / battleInfo.defender.startHP >= 0.25 && battleInfo.attacker.damageDealt >= roundNum(battleInfo.defender.damageDealt * 1.75, false))) {
 						tableHTML += "<td class='attacker'><strong>Draw (A)</strong></td>";
 					} else {
 						tableHTML += "<td><strong>Draw</strong></td>";
