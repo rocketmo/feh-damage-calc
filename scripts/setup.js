@@ -2803,6 +2803,9 @@ function filterMatchupTable(fadeIn) {
 	var winCount = 0;
 	var lossCount = 0;
 	var drawCount = 0;
+	var favoredCount = 0;
+	var unfavoredCount = 0;
+	var otherCount = 0;
 	var attacker = $("#one-vs-all").is(":checked");
 	
 	var filterCharNames = name.split(/ *[,;] */);
@@ -2824,16 +2827,37 @@ function filterMatchupTable(fadeIn) {
 			if (result === "Attacker Wins") {
 				if (attacker) {
 					winCount += 1;
+					favoredCount += 1;
 				} else {
 					lossCount += 1;
+					unfavoredCount += 1;
 				}
 			} else if (result === "Defender Wins") {
 				if (attacker) {
 					lossCount += 1;
+					unfavoredCount += 1;
 				} else {
 					winCount += 1;
+					favoredCount += 1;
 				}
 			} else {
+				if (attacker) {
+					if (result === "Draw (A)") {
+						favoredCount += 1;
+					} else if (result === "Draw (D)") {
+						unfavoredCount += 1;
+					} else {
+						otherCount += 1;
+					}
+				} else {
+					if (result === "Draw (A)") {
+						unfavoredCount += 1;
+					} else if (result === "Draw (D)") {
+						favoredCount += 1;
+					} else {
+						otherCount += 1;
+					}
+				}
 				drawCount += 1;
 			}
 		} else {
@@ -2842,7 +2866,7 @@ function filterMatchupTable(fadeIn) {
 	});
 	
 	recolorMatchupRows();
-	$("#matchup-overview").html(winCount.toString() + " wins · " + lossCount.toString() + " losses · " + drawCount.toString() + " draws");
+	$("#matchup-overview").html(winCount.toString() + " wins · " + lossCount.toString() + " losses · " + drawCount.toString() + " draws<br>" + favoredCount.toString() + " favored · " + unfavoredCount.toString() + " unfavored · " + otherCount.toString() + " other");
 	
 	if (fadeIn) {
 		$("#matchup-table").hide().fadeIn("slow");
