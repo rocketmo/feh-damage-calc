@@ -2156,16 +2156,21 @@ var charInfo =
 	"Xander": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
-		"hp": 44,
-		"atk": 48,
-		"spd": 24,
-		"def": 37,
-		"res": 17,
 		"move_type": "Cavalry",
 		"weapon": ["Siegfried", "Silver Sword", "Steel Sword", "Iron Sword"],
 		"special": ["Blazing Light", "Rising Light"],
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
-		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"]
+		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"],
+		"base_stat" : {
+			"star-5" : {"hp" : 20, "atk" : 8, "spd" : 5, "def" : 9, "res" : 4},
+			"star-4" : {"hp" : 19, "atk" : 8, "spd" : 4, "def" : 9, "res" : 3},
+			"star-3" : {"hp" : 19, "atk" : 7, "spd" : 4, "def" : 8, "res" : 3},
+			"growth" : {"hp" : 7, "atk" : 7, "spd" : 5, "def" : 9, "res" : 2}
+		},
+		"rarity_restrict" : {
+			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 0},
+			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1}
+		}
 	},
 	"Xander (Spring)": {
 		"color" : "Blue",
