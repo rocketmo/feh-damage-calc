@@ -4298,6 +4298,7 @@ $(document).ready( function() {
 			
 			// update info
 			previousTable = true;
+			recolorMatchupRows();
 		} else {
 			$("#battle-result").stop(true, true).hide(700);
 			$("#battle-log").stop(true, true).hide(700);
@@ -4309,6 +4310,7 @@ $(document).ready( function() {
 			
 			// update info
 			previousTable = false;
+			recolorMatchupRows();
 		}
 	});
 	
