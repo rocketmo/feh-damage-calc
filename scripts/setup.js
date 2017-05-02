@@ -3226,7 +3226,7 @@ function calculateMatchups(attacker) {
 				var defCC = defCanCounter(battleInfo);
 				
 				if (attacker) {
-					if ((strongAtkHit && weakDefHit) || ((atkOnDefNC || (defCC && decentAtkHit)) && atkOverDef)) {
+					if ((strongAtkHit && weakDefHit) || (defCC && decentAtkHit && atkOverDef)) {
 						tableHTML += "<td class='attacker'><strong>Draw (A)</strong></td>";
 					} else if ((weakAtkHit && strongDefHit)  || (decentDefHit && defOverAtk)) {
 						tableHTML += "<td class='defender'><strong>Draw (D)</strong></td>";
@@ -3236,7 +3236,7 @@ function calculateMatchups(attacker) {
 				} else {
 					if ((!defCC && defWithNC) || (weakAtkHit && strongDefHit) || (decentDefHit && defOverAtk)) {
 						tableHTML += "<td class='defender'><strong>Draw (D)</strong></td>";
-					} else if ((strongAtkHit && weakDefHit) || ((atkOnDefNC || (defCC && decentAtkHit)) && atkOverDef)) {
+					} else if ((strongAtkHit && weakDefHit) || (defCC && decentAtkHit && atkOverDef)) {
 						tableHTML += "<td class='attacker'><strong>Draw (A)</strong></td>";
 					} else {
 						tableHTML += "<td><strong>Draw</strong></td>";
