@@ -2789,6 +2789,29 @@ function matchCharList(list, name) {
 	return false;
 }
 
+// checks if the matchup matches the given favorability, if any
+// result is the wanted result, rowResult is the result of the matchup, attacker is true if the attacker is our base character
+function matchFavorability(result, rowResult, attacker) {
+	"use strict";
+	if (result === "Favorable") {
+		if (attacker) {
+			return (rowResult === "Attacker Wins" || rowResult === "Draw (A)");
+		} else {
+			return (rowResult === "Defender Wins" || rowResult === "Draw (D)");
+		}
+	} else if (result === "Unfavorable") {
+		if (attacker) {
+			return (rowResult === "Defender Wins" || rowResult === "Draw (D)");
+		} else {
+			return (rowResult === "Attacker Wins" || rowResult === "Draw (A)");
+		}
+	} else if (result === "Other") {
+		return (rowResult === "Draw");
+	}
+	
+	return false;
+}
+
 // filters the matchup table depending on the current filters
 // set fadeIn to true to fade in results
 function filterMatchupTable(fadeIn) {
@@ -2803,6 +2826,9 @@ function filterMatchupTable(fadeIn) {
 	var winCount = 0;
 	var lossCount = 0;
 	var drawCount = 0;
+	var favoredCount = 0;
+	var unfavoredCount = 0;
+	var otherCount = 0;
 	var attacker = $("#one-vs-all").is(":checked");
 	
 	var filterCharNames = name.split(/ *[,;] */);
@@ -2816,25 +2842,46 @@ function filterMatchupTable(fadeIn) {
 		var rowResult = this.childNodes[6].firstChild.firstChild.nodeValue;
 		rowName = rowName.toLowerCase();
 		
-		if ((name === "" || matchCharList(filterCharNames, rowName)) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon) && (range === "Any" || parseInt(range) === rowRange) && (results === "Any" || results === rowResult)) {
+		if ((name === "" || matchCharList(filterCharNames, rowName)) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon) && (range === "Any" || parseInt(range) === rowRange) && (results === "Any" || results === rowResult || matchFavorability(results, rowResult, attacker))) {
 			$(this).show();
 			
 			// update counters
 			var result = this.childNodes[6].firstChild.firstChild.nodeValue;
-			if (result === "Draw") {
-				drawCount += 1;
-			} else if (result === "Attacker Wins") {
+			if (result === "Attacker Wins") {
 				if (attacker) {
 					winCount += 1;
+					favoredCount += 1;
 				} else {
 					lossCount += 1;
+					unfavoredCount += 1;
+				}
+			} else if (result === "Defender Wins") {
+				if (attacker) {
+					lossCount += 1;
+					unfavoredCount += 1;
+				} else {
+					winCount += 1;
+					favoredCount += 1;
 				}
 			} else {
 				if (attacker) {
-					lossCount += 1;
+					if (result === "Draw (A)") {
+						favoredCount += 1;
+					} else if (result === "Draw (D)") {
+						unfavoredCount += 1;
+					} else {
+						otherCount += 1;
+					}
 				} else {
-					winCount += 1;
+					if (result === "Draw (A)") {
+						unfavoredCount += 1;
+					} else if (result === "Draw (D)") {
+						favoredCount += 1;
+					} else {
+						otherCount += 1;
+					}
 				}
+				drawCount += 1;
 			}
 		} else {
 			$(this).hide();
@@ -2842,7 +2889,7 @@ function filterMatchupTable(fadeIn) {
 	});
 	
 	recolorMatchupRows();
-	$("#matchup-overview").html(winCount.toString() + " wins · " + lossCount.toString() + " losses · " + drawCount.toString() + " draws");
+	$("#matchup-overview").html(winCount.toString() + " wins · " + lossCount.toString() + " losses · " + drawCount.toString() + " draws<br>" + favoredCount.toString() + " favorable · " + unfavoredCount.toString() + " unfavorable · " + otherCount.toString() + " other");
 	
 	if (fadeIn) {
 		$("#matchup-table").hide().fadeIn("slow");
@@ -3129,9 +3176,6 @@ function applyOverrides(charNum) {
 function calculateMatchups(attacker) {
 	"use strict";
 	var battleInfo = {};
-	var winCount = 0;
-	var lossCount = 0;
-	var drawCount = 0;
 	var tableHTML = "";
 	var charCount = 0;
 	var foeClass = attacker ? "defender" : "attacker";
@@ -3164,25 +3208,39 @@ function calculateMatchups(attacker) {
 			tableHTML += "<td class='attacker'>" + battleInfo.attacker.startHP.toString() + " → <span>" + battleInfo.attacker.currHP.toString() + "</span></td>";
 			tableHTML += "<td class='defender'>" + battleInfo.defender.startHP.toString() + " → <span>" + battleInfo.defender.currHP.toString() + "</span></td>";
 			
-			if (battleInfo.attacker.currHP <= 0) {
+			if (battleInfo.attacker.currHP <= 0) { // defender wins
 				tableHTML += "<td class='defender'><strong>Defender Wins</strong></td>";
-				
-				if (attacker) {
-					lossCount += 1;
-				} else {
-					winCount += 1;
-				}
-			} else if (battleInfo.defender.currHP <= 0) {
+			} else if (battleInfo.defender.currHP <= 0) { // attacker wins
 				tableHTML += "<td class='attacker'><strong>Attacker Wins</strong></td>";
+			} else { // draw
+				var strongAtkHit = battleInfo.defender.startHP - battleInfo.defender.currHP >= roundNum(battleInfo.defender.startHP * 0.5, true);
+				var strongDefHit = battleInfo.attacker.startHP - battleInfo.attacker.currHP >= roundNum(battleInfo.attacker.startHP * 0.5, true);
+				var decentAtkHit = battleInfo.defender.startHP - battleInfo.defender.currHP >= roundNum(battleInfo.defender.startHP * 0.35, true);
+				var decentDefHit = battleInfo.attacker.startHP - battleInfo.attacker.currHP >= roundNum(battleInfo.attacker.startHP * 0.35, true);
+				var weakAtkHit = battleInfo.defender.startHP - battleInfo.defender.currHP <= roundNum(battleInfo.defender.startHP * 0.35, false);
+				var weakDefHit = battleInfo.attacker.startHP - battleInfo.attacker.currHP <= roundNum(battleInfo.attacker.startHP * 0.35, false);
+				var atkOverDef = battleInfo.defender.startHP - battleInfo.defender.currHP >= roundNum((battleInfo.attacker.startHP - battleInfo.attacker.currHP) * 1.6, true);
+				var defOverAtk = battleInfo.attacker.startHP - battleInfo.attacker.currHP >= roundNum((battleInfo.defender.startHP - battleInfo.defender.currHP) * 1.6, true);
+				var defWithNC = battleInfo.defender.startHP - battleInfo.defender.currHP <= roundNum(battleInfo.defender.startHP * 0.2, false);
+				var defCC = defCanCounter(battleInfo);
 				
 				if (attacker) {
-					winCount += 1;
+					if ((strongAtkHit && weakDefHit) || (defCC && decentAtkHit && atkOverDef)) {
+						tableHTML += "<td class='attacker'><strong>Draw (A)</strong></td>";
+					} else if ((weakAtkHit && strongDefHit)  || (decentDefHit && defOverAtk)) {
+						tableHTML += "<td class='defender'><strong>Draw (D)</strong></td>";
+					} else {
+						tableHTML += "<td><strong>Draw</strong></td>";
+					}
 				} else {
-					lossCount += 1;
+					if ((!defCC && defWithNC) || (weakAtkHit && strongDefHit) || (decentDefHit && defOverAtk)) {
+						tableHTML += "<td class='defender'><strong>Draw (D)</strong></td>";
+					} else if ((strongAtkHit && weakDefHit) || (defCC && decentAtkHit && atkOverDef)) {
+						tableHTML += "<td class='attacker'><strong>Draw (A)</strong></td>";
+					} else {
+						tableHTML += "<td><strong>Draw</strong></td>";
+					}
 				}
-			} else {
-				tableHTML += "<td><strong>Draw</strong></td>";
-				drawCount += 1;
 			}
 			
 			tableHTML += "</tr>";
@@ -4239,6 +4297,7 @@ $(document).ready( function() {
 			
 			// update info
 			previousTable = true;
+			recolorMatchupRows();
 		} else {
 			$("#battle-result").stop(true, true).hide(700);
 			$("#battle-log").stop(true, true).hide(700);
@@ -4250,6 +4309,7 @@ $(document).ready( function() {
 			
 			// update info
 			previousTable = false;
+			recolorMatchupRows();
 		}
 	});
 	
