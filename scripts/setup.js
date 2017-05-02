@@ -4158,6 +4158,10 @@ $(document).ready( function() {
 		}
 	});
 	
+	// setup multiple select
+	$("select.multi-select").multipleSelect();
+	$("select.multi-select").multipleSelect("checkAll");
+	
 	// setup character select
 	$(".char-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
