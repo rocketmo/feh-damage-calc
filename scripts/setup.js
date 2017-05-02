@@ -4365,12 +4365,7 @@ $(document).ready( function() {
 	// reset filters
 	$("#matchup-filter-reset").on("click", function() {
 		$("#matchup-filter-name").val("");
-		$("#matchup-filter-move").val("Any");
-		$("#matchup-filter-color").val("Any");
-		$("#matchup-filter-weapon").val("Any");
-		$("#matchup-filter-range").val("Any");
-		$("#matchup-filter-result").val("Any");
-		
+		$("select.multi-select").multipleSelect("checkAll");
 		filterMatchupTable(true);
 	});
 	
