@@ -2168,7 +2168,7 @@ var charInfo =
 			"growth" : {"hp" : 7, "atk" : 7, "spd" : 5, "def" : 9, "res" : 2}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 0},
+			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 1},
 			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1}
 		}
 	},
