@@ -51,12 +51,12 @@ label {
 	margin: 1em 0;
 }
 
-#matchup-filters label {
+#matchup-filters .filter-label {
 	width: 8em;
 }
 
 #matchup-filters select, #matchup-filters input[type=text] {
-	width: 10.5em;
+	width: 10.7em;
 	box-sizing: border-box; 
 }
 
@@ -66,7 +66,7 @@ label {
 
 .matchup-filter-block {
 	display: inline-block;
-	width: 18.8em;
+	width: 19em;
 	margin: 0.1em 1em;
 }
 

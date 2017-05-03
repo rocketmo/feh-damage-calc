@@ -210,11 +210,11 @@
                 $ul.append([
                     '<li class="ms-select-all">',
                     '<label>',
-                    sprintf('<input type="checkbox" %s /> ', this.selectAllName),
+                    sprintf('<input type="checkbox" %s /><strong>', this.selectAllName),
                     this.options.selectAllDelimiter[0],
                     this.options.selectAllText,
                     this.options.selectAllDelimiter[1],
-                    '</label>',
+                    '</strong></label>',
                     '</li>'
                 ].join(''));
             }
@@ -715,7 +715,7 @@
         isOpen: false,
         placeholder: '',
         selectAll: true,
-        selectAllDelimiter: ['[', ']'],
+        selectAllDelimiter: ['', ''],
         minimumCountSelected: 3,
         ellipsis: false,
         multiple: false,

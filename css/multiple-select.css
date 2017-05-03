@@ -172,6 +172,12 @@
     font-weight: normal;
     display: block;
     white-space: nowrap;
+	width: 100%;
+}
+
+.ms-drop ul > li label:hover {
+    background-color: #5897fb;
+	color: white;
 }
 
 .ms-drop ul > li label.optgroup {

@@ -4177,7 +4177,7 @@ $(document).ready( function() {
 	});
 	
 	// setup multiple select
-	$("select.multi-select").multipleSelect();
+	$("select.multi-select").multipleSelect({"placeholder" : "None selected"});
 	$("select.multi-select").multipleSelect("checkAll");
 	
 	// setup character select
