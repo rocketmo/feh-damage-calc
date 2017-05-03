@@ -31,6 +31,9 @@ var statGrowths = [[4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26],
 var defaultAttacker = true;
 var defaultDefender = true;
 
+// prevent filterMatchups function from being called multiple times when resetting filters
+var resetFilterLock = false;
+
 // converts an array of strings to an object with the strings as fields
 function arrayToObject(array) {
 	"use strict";
@@ -4357,18 +4360,22 @@ $(document).ready( function() {
 	});
 	
 	// update table when filters are changed
-	$(".matchup-filter-input").on("change keyup", function() {
-		if (this.id === "matchup-filter-name") {
-			filterMatchupTable(false);
-		} else {
-			filterMatchupTable(true);
+	$("select.matchup-filter-input, input.matchup-filter-input[type='text']").on("change keyup", function() {
+		if (!resetFilterLock) {
+			if (this.id === "matchup-filter-name") {
+				filterMatchupTable(false);
+			} else {
+				filterMatchupTable(true);
+			}
 		}
 	});
 	
 	// reset filters
 	$("#matchup-filter-reset").on("click", function() {
+		resetFilterLock = true;
 		$("#matchup-filter-name").val("");
 		$("select.multi-select").multipleSelect("checkAll");
+		resetFilterLock = false;
 		filterMatchupTable(true);
 	});
 	
