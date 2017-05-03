@@ -51,22 +51,22 @@ label {
 	margin: 1em 0;
 }
 
-#matchup-filters label {
+#matchup-filters .filter-label {
 	width: 8em;
 }
 
 #matchup-filters select, #matchup-filters input[type=text] {
-	width: 8.7em;
-	box-sizing: content-box; 
+	width: 10.9em;
+	box-sizing: border-box; 
 }
 
-#matchup-filters button {
+#matchup-filter-reset {
 	margin: 0.5em 0.5em 0 0.5em;
 }
 
 .matchup-filter-block {
 	display: inline-block;
-	width: 17em;
+	width: 19.2em;
 	margin: 0.1em 1em;
 }
 

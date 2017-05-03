@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="css/calc-style.css">
 		<link rel="stylesheet" href="css/sorter.css">
 		<link rel="stylesheet" href="css/select2.css">
+		<link rel="stylesheet" href="css/multiple-select.css">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 	</head>
@@ -637,13 +638,12 @@
 											</div>
 											<div id="matchup-filters" class="matchup-section">
 												<div class="matchup-filter-block">
-													<label>Character(s)</label>
+													<label class="filter-label">Character(s)</label>
 													<input id="matchup-filter-name" type="text" class="matchup-filter-input">
 												</div>
 												<div class="matchup-filter-block">
-													<label>Color</label>
-													<select id="matchup-filter-color" class="matchup-filter-input">
-														<option value="Any">Any</option>
+													<label class="filter-label">Color</label>
+													<select id="matchup-filter-color" class="matchup-filter-input multi-select" multiple="multiple">
 														<option value="Red">Red</option>
 														<option value="Green">Green</option>
 														<option value="Blue">Blue</option>
@@ -651,9 +651,8 @@
 													</select>
 												</div><br>
 												<div class="matchup-filter-block">
-													<label>Move Type</label>
-													<select id="matchup-filter-move" class="matchup-filter-input">
-														<option value="Any">Any</option>
+													<label class="filter-label">Move Type</label>
+													<select id="matchup-filter-move" class="matchup-filter-input multi-select" multiple="multiple">
 														<option value="Infantry">Infantry</option>
 														<option value="Cavalry">Cavalry</option>
 														<option value="Flying">Flying</option>
@@ -661,9 +660,8 @@
 													</select>
 												</div>
 												<div class="matchup-filter-block">
-													<label>Weapon Type</label>
-													<select id="matchup-filter-weapon" class="matchup-filter-input">
-														<option value="Any">Any</option>
+													<label class="filter-label">Weapon Type</label>
+													<select id="matchup-filter-weapon" class="matchup-filter-input multi-select" multiple="multiple">
 														<option value="Sword">Sword</option>
 														<option value="Red Tome">Red Tome</option>
 														<option value="Red Breath">Red Breath</option>
@@ -679,9 +677,8 @@
 													</select>
 												</div><br>
 												<div class="matchup-filter-block">
-													<label>Result</label>
-													<select id="matchup-filter-result" class="matchup-filter-input">
-														<option value="Any">Any</option>
+													<label class="filter-label">Result</label>
+													<select id="matchup-filter-result" class="matchup-filter-input multi-select" multiple="multiple">
 														<option value="Attacker Wins">Attacker Wins</option>
 														<option value="Defender Wins">Defender Wins</option>
 														<option value="Draw">Draw</option>
@@ -691,9 +688,8 @@
 													</select>
 												</div>
 												<div class="matchup-filter-block">
-													<label>Range</label>
-													<select id="matchup-filter-range" class="matchup-filter-input">
-														<option value="Any">Any</option>
+													<label class="filter-label">Range</label>
+													<select id="matchup-filter-range" class="matchup-filter-input multi-select" multiple="multiple">
 														<option value="1">1</option>
 														<option value="2">2</option>													
 													</select>
@@ -887,6 +883,7 @@
 		<script type="text/javascript" src="scripts/special.js"></script>
 		<script type="text/javascript" src="scripts/assist.js"></script>
 		<script type="text/javascript" src="scripts/tsorter.js"></script>
+		<script type="text/javascript" src="scripts/multiple-select.js"></script>
 		<script type="text/javascript" src="scripts/setup.js"></script>
 	</body>
 </html>

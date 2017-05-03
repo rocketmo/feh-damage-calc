@@ -31,6 +31,18 @@ var statGrowths = [[4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26],
 var defaultAttacker = true;
 var defaultDefender = true;
 
+// converts an array of strings to an object with the strings as fields
+function arrayToObject(array) {
+	"use strict";
+	var obj = {};
+	
+	for (var i = 0; i < array.length; i++) {
+		obj[array[i]] = true;
+	}
+	
+	return obj;
+}
+
 // limits number inputs
 // num is a number input, minNumber is the lower limit
 function limit(num, minNumber) {
@@ -2790,26 +2802,32 @@ function matchCharList(list, name) {
 }
 
 // checks if the matchup matches the given favorability, if any
-// result is the wanted result, rowResult is the result of the matchup, attacker is true if the attacker is our base character
-function matchFavorability(result, rowResult, attacker) {
+// results are the selected results, rowResult is the result of the matchup, attacker is true if the attacker is our base character
+function matchFavorability(results, rowResult, attacker) {
 	"use strict";
-	if (result === "Favorable") {
+	var contain = false;
+	
+	if (results.hasOwnProperty("Favorable")) {
 		if (attacker) {
-			return (rowResult === "Attacker Wins" || rowResult === "Draw (A)");
+			contain = contain || rowResult === "Attacker Wins" || rowResult === "Draw (A)";
 		} else {
-			return (rowResult === "Defender Wins" || rowResult === "Draw (D)");
+			contain = contain || rowResult === "Defender Wins" || rowResult === "Draw (D)";
 		}
-	} else if (result === "Unfavorable") {
+	} 
+	
+	if (results.hasOwnProperty("Unfavorable")) {
 		if (attacker) {
-			return (rowResult === "Defender Wins" || rowResult === "Draw (D)");
+			contain = contain || rowResult === "Defender Wins" || rowResult === "Draw (D)";
 		} else {
-			return (rowResult === "Attacker Wins" || rowResult === "Draw (A)");
+			contain = contain || rowResult === "Attacker Wins" || rowResult === "Draw (A)";
 		}
-	} else if (result === "Other") {
-		return (rowResult === "Draw");
+	} 
+	
+	if (results.hasOwnProperty("Other")) {
+		contain = contain || rowResult === "Draw";
 	}
 	
-	return false;
+	return contain;
 }
 
 // filters the matchup table depending on the current filters
@@ -2817,11 +2835,11 @@ function matchFavorability(result, rowResult, attacker) {
 function filterMatchupTable(fadeIn) {
 	"use strict";
 	var name = $("#matchup-filter-name").val().toLowerCase();
-	var move = $("#matchup-filter-move").val();
-	var color = $("#matchup-filter-color").val();
-	var weapon = $("#matchup-filter-weapon").val();
-	var range = $("#matchup-filter-range").val();
-	var results = $("#matchup-filter-result").val();
+	var move = arrayToObject($("#matchup-filter-move").val());
+	var color = arrayToObject($("#matchup-filter-color").val());
+	var weapon = arrayToObject($("#matchup-filter-weapon").val());
+	var range = arrayToObject($("#matchup-filter-range").val());
+	var results = arrayToObject($("#matchup-filter-result").val());
 	
 	var winCount = 0;
 	var lossCount = 0;
@@ -2842,7 +2860,7 @@ function filterMatchupTable(fadeIn) {
 		var rowResult = this.childNodes[6].firstChild.firstChild.nodeValue;
 		rowName = rowName.toLowerCase();
 		
-		if ((name === "" || matchCharList(filterCharNames, rowName)) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon) && (range === "Any" || parseInt(range) === rowRange) && (results === "Any" || results === rowResult || (results === "Draw" && (rowResult === "Draw (A)" || rowResult === "Draw (D)")) || matchFavorability(results, rowResult, attacker))) {
+		if ((name === "" || matchCharList(filterCharNames, rowName)) && move.hasOwnProperty(rowMove) && color.hasOwnProperty(rowColor) && weapon.hasOwnProperty(rowWeapon) && range.hasOwnProperty(rowRange) && (results.hasOwnProperty(rowResult) || (results.hasOwnProperty("Draw") && (rowResult === "Draw (A)" || rowResult === "Draw (D)")) || matchFavorability(results, rowResult, attacker))) {
 			$(this).show();
 			
 			// update counters
@@ -2892,8 +2910,8 @@ function filterMatchupTable(fadeIn) {
 	$("#matchup-overview").html(winCount.toString() + " wins · " + lossCount.toString() + " losses · " + drawCount.toString() + " draws<br>" + favoredCount.toString() + " favorable · " + unfavoredCount.toString() + " unfavorable · " + otherCount.toString() + " other");
 	
 	if (fadeIn) {
-		$("#matchup-table").hide().fadeIn("slow");
-		$("#matchup-overview").hide().fadeIn("slow");
+		$("#matchup-table").stop(true, true).hide().fadeIn("slow");
+		$("#matchup-overview").stop(true, true).hide().fadeIn("slow");
 	}
 }
 
@@ -4158,6 +4176,10 @@ $(document).ready( function() {
 		}
 	});
 	
+	// setup multiple select
+	$("select.multi-select").multipleSelect({"placeholder" : "None selected"});
+	$("select.multi-select").multipleSelect("checkAll");
+	
 	// setup character select
 	$(".char-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
@@ -4336,21 +4358,6 @@ $(document).ready( function() {
 	
 	// update table when filters are changed
 	$(".matchup-filter-input").on("change keyup", function() {
-		// make sure weapons and colors are correct
-		if (this.id === "matchup-filter-color" && this.value !== "Any" && $("#matchup-filter-weapon").val() !== "Any" && this.value !== weaponToColor($("#matchup-filter-weapon").val())) {
-			$("#matchup-filter-weapon").val("Any");
-		} else if (this.id === "matchup-filter-weapon" && this.value !== "Any") {
-			if ($("#matchup-filter-color").val() !== "Any" && weaponToColor(this.value) !== $("#matchup-filter-color").val()) {
-				$("#matchup-filter-color").val(weaponToColor(this.value));
-			}
-			
-			if ($("#matchup-filter-range").val() !== "Any" && weaponTypeRange(this.value) !== parseInt($("#matchup-filter-range").val())) {
-				$("#matchup-filter-range").val(weaponTypeRange(this.value));
-			}
-		} else if (this.id === "matchup-filter-range" && this.value !== "Any" && $("#matchup-filter-weapon").val() !== "Any" && parseInt(this.value) !== weaponTypeRange($("#matchup-filter-weapon").val())) {
-			$("#matchup-filter-weapon").val("Any");
-		}
-		
 		if (this.id === "matchup-filter-name") {
 			filterMatchupTable(false);
 		} else {
@@ -4361,12 +4368,7 @@ $(document).ready( function() {
 	// reset filters
 	$("#matchup-filter-reset").on("click", function() {
 		$("#matchup-filter-name").val("");
-		$("#matchup-filter-move").val("Any");
-		$("#matchup-filter-color").val("Any");
-		$("#matchup-filter-weapon").val("Any");
-		$("#matchup-filter-range").val("Any");
-		$("#matchup-filter-result").val("Any");
-		
+		$("select.multi-select").multipleSelect("checkAll");
 		filterMatchupTable(true);
 	});
 	
