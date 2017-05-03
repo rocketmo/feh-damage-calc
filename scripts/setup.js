@@ -2842,7 +2842,7 @@ function filterMatchupTable(fadeIn) {
 		var rowResult = this.childNodes[6].firstChild.firstChild.nodeValue;
 		rowName = rowName.toLowerCase();
 		
-		if ((name === "" || matchCharList(filterCharNames, rowName)) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon) && (range === "Any" || parseInt(range) === rowRange) && (results === "Any" || results === rowResult || matchFavorability(results, rowResult, attacker))) {
+		if ((name === "" || matchCharList(filterCharNames, rowName)) && (move === "Any" || rowMove === move) && (color === "Any" || rowColor === color) && (weapon === "Any" || rowWeapon === weapon) && (range === "Any" || parseInt(range) === rowRange) && (results === "Any" || results === rowResult || (results === "Draw" && (rowResult === "Draw (A)" || rowResult === "Draw (D)")) || matchFavorability(results, rowResult, attacker))) {
 			$(this).show();
 			
 			// update counters
