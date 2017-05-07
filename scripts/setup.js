@@ -1405,6 +1405,10 @@ function getCharPanelData(charNum) {
 	charData.spdWS = Math.max(0, parseInt($("#spd-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#spd-penalty-"+charNum).val()));
 	charData.defWS = Math.max(0, parseInt($("#def-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#def-penalty-"+charNum).val()));
 	charData.resWS = Math.max(0, parseInt($("#res-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val()) + parseInt($("#res-penalty-"+charNum).val()));
+	charData.atkPenalty = parseInt($("#atk-penalty-"+charNum).val());
+	charData.spdPenalty = parseInt($("#spd-penalty-"+charNum).val());
+	charData.defPenalty = parseInt($("#def-penalty-"+charNum).val());
+	charData.resPenalty = parseInt($("#res-penalty-"+charNum).val());
 	
 	charData.damageDealt = 0;
 	
@@ -2350,6 +2354,15 @@ function simBattle(battleInfo, displayMsg) {
 	// print after combat effects
 	battleInfo = afterCombatEffects(battleInfo, "attacker", defPoison, defPoisonSource, atkRecoil, atkRecoilSource, atkAfterHeal, atkAfterHealSource);
 	battleInfo = afterCombatEffects(battleInfo, "defender", atkPoison, atkPoisonSource, defRecoil, defRecoilSource, 0, "");
+	
+	// remove penalties on attacker
+	if (battleInfo.attacker.atkPenalty < 0 || battleInfo.attacker.spdPenalty < 0 || battleInfo.attacker.defPenalty < 0 || battleInfo.attacker.resPenalty < 0) {
+		battleInfo.attacker.atkPenalty = 0;
+		battleInfo.attacker.spdPenalty = 0;
+		battleInfo.attacker.defPenalty = 0;
+		battleInfo.attacker.resPenalty = 0;
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> " + " dispels all penalties.</li>";
+	}
 	
 	
 	// display results
