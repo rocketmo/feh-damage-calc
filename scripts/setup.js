@@ -2433,8 +2433,30 @@ function simBattle(battleInfo, displayMsg) {
 			$("#result-msg").text("Attacker is victorious!");
 			$("#result-msg").css("color", "deepskyblue");
 		} else {
-			$("#result-msg").text("Draw!");
+			$("#result-msg").html("Draw! <span class='draw-update'>Press to update units.</span>");
 			$("#result-msg").css("color", "white");
+			$(".draw-update").on("click", function() {
+				var oldBA = simBattle(getBattleInfo(), false);
+				
+				// update attacker
+				$("#curr-hp-1").val(Math.max(oldBA.attacker.currHP, 1));
+				$("#spec-cooldown-1").val(Math.max(oldBA.attacker.specCurrCooldown, 0));
+				$("#atk-penalty-1").val(oldBA.attacker.atkPenalty);
+				$("#spd-penalty-1").val(oldBA.attacker.spdPenalty);
+				$("#def-penalty-1").val(oldBA.attacker.defPenalty);
+				$("#res-penalty-1").val(oldBA.attacker.resPenalty);
+				
+				// update defender
+				$("#curr-hp-2").val(Math.max(oldBA.defender.currHP, 1));
+				$("#spec-cooldown-2").val(Math.max(oldBA.defender.specCurrCooldown, 0));
+				$("#atk-penalty-2").val(oldBA.defender.atkPenalty);
+				$("#spd-penalty-2").val(oldBA.defender.spdPenalty);
+				$("#def-penalty-2").val(oldBA.defender.defPenalty);
+				$("#res-penalty-2").val(oldBA.defender.resPenalty);
+				
+				// sim battle again
+				simBattle(getBattleInfo(), true);
+			});
 		}
 
 		// display battle log
