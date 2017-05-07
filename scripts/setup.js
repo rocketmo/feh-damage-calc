@@ -1341,6 +1341,26 @@ function canActivateSweep(container, atkSpd, defSpd, defWeapon) {
 	return container.hasOwnProperty("sweep") && (atkSpd - defSpd >= container.sweep.spd_adv) && container.sweep.weapon_type.hasOwnProperty(defWeapon);
 }
 
+// applies a seal effect
+// battleInfo contains all battle information, container contains the seal effect data, source is the name of the seal source, attacker is true if we apply the effect on the attacker
+function applySeal(battleInfo, container, source, attacker) {
+	"use strict";
+	
+	// get character
+	var charClass = attacker ? "attacker" : "defender";
+	
+	// stats
+	var statAbbr = ["atk", "spd", "def", "res"];
+	
+	// apply penalties
+	for (var i = 0; i < statAbbr.length; i++) {
+		if (container.hasOwnProperty(statAbbr[i]) && battleInfo[charClass][statAbbr[i] + "Penalty"] >= container[statAbbr[i]]) {
+			battleInfo[charClass][statAbbr[i] + "Penalty"] = container[statAbbr[i]];
+			battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> suffers " + container[statAbbr[i]].toString() + " " + statWord(statAbbr[i]) + " [" + source + "].</li>";
+		}
+	}
+}
+
 // checks if the defender can counter
 // battleInfo contains all battle information
 function defCanCounter(battleInfo) {
@@ -2124,8 +2144,10 @@ function simBattle(battleInfo, displayMsg) {
 	}
 	
 	// attacker initiates
+	var atkAttacks = false;
 	if (battleInfo.attacker.currHP > 0) {
 		battleInfo = singleCombat(battleInfo, true, "attacks", false);
+		atkAttacks = true;
 	}
 		
 	// desperation follow up
@@ -2365,7 +2387,28 @@ function simBattle(battleInfo, displayMsg) {
 	}
 	
 	// apply penalties
-	
+	if (battleInfo.attacker.currHP > 0) {
+		if (battleInfo.defender.weaponData.hasOwnProperty("seal") && defAttacks) {
+			applySeal(battleInfo, battleInfo.defender.weaponData.seal, battleInfo.defender.weaponName, true);
+		}
+		if (battleInfo.defender.weaponData.hasOwnProperty("target_seal") && battleInfo.defender.weaponData.target_seal.target === battleInfo.attacker.moveType && defAttacks) {
+			applySeal(battleInfo, battleInfo.defender.weaponData.target_seal, battleInfo.defender.weaponName, true);
+		}
+		if (battleInfo.defender.passiveBData.hasOwnProperty("seal") && battleInfo.defender.currHP > 0) {
+			applySeal(battleInfo, battleInfo.defender.passiveBData.seal, battleInfo.defender.passiveB, true);
+		}
+	}
+	if (battleInfo.defender.currHP > 0) {
+		if (battleInfo.attacker.weaponData.hasOwnProperty("seal") && atkAttacks) {
+			applySeal(battleInfo, battleInfo.attacker.weaponData.seal, battleInfo.attacker.weaponName, false);
+		}
+		if (battleInfo.attacker.weaponData.hasOwnProperty("target_seal") && battleInfo.attacker.weaponData.target_seal.target === battleInfo.defender.moveType && atkAttacks) {
+			applySeal(battleInfo, battleInfo.attacker.weaponData.target_seal, battleInfo.attacker.weaponName, false);
+		}
+		if (battleInfo.attacker.passiveBData.hasOwnProperty("seal") && battleInfo.attacker.currHP > 0) {
+			applySeal(battleInfo, battleInfo.attacker.passiveBData.seal, battleInfo.attacker.passiveB, false);
+		}
+	}
 	
 	// display results
 	if (displayMsg) {
