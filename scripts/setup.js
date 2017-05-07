@@ -2356,13 +2356,15 @@ function simBattle(battleInfo, displayMsg) {
 	battleInfo = afterCombatEffects(battleInfo, "defender", atkPoison, atkPoisonSource, defRecoil, defRecoilSource, 0, "");
 	
 	// remove penalties on attacker
-	if (battleInfo.attacker.atkPenalty < 0 || battleInfo.attacker.spdPenalty < 0 || battleInfo.attacker.defPenalty < 0 || battleInfo.attacker.resPenalty < 0) {
+	if ((battleInfo.attacker.atkPenalty < 0 || battleInfo.attacker.spdPenalty < 0 || battleInfo.attacker.defPenalty < 0 || battleInfo.attacker.resPenalty < 0) && battleInfo.attacker.currHP > 0) {
 		battleInfo.attacker.atkPenalty = 0;
 		battleInfo.attacker.spdPenalty = 0;
 		battleInfo.attacker.defPenalty = 0;
 		battleInfo.attacker.resPenalty = 0;
 		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> " + " dispels all penalties.</li>";
 	}
+	
+	// apply penalties
 	
 	
 	// display results
