@@ -123,6 +123,7 @@ var specInfo =
     "Galeforce" : {
         "description" : "If this unit initiates an attack, it can take another action after combat.",
         "cooldown" : 5,
+        "extra_action" : true,
         "weapon_restrict" : "Staff"
     },
     "Glacies" : {

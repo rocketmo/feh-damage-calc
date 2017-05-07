@@ -2410,6 +2410,12 @@ function simBattle(battleInfo, displayMsg) {
 		}
 	}
 	
+	// extra action
+	if (battleInfo.attacker.specialData.hasOwnProperty("extra_action") && battleInfo.attacker.specCurrCooldown <= 0 && battleInfo.attacker.currHP > 0) {
+		battleInfo.attacker.specCurrCooldown = getSpecialCooldown(battleInfo.attacker.specialData, battleInfo.attacker.weaponData, battleInfo.attacker.assistData);
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> is granted another action [" + battleInfo.attacker.special + "]. ";
+	}
+	
 	// display results
 	if (displayMsg) {
 		$("#interaction-list").stop(true, true).hide().html(battleInfo.logMsg);
