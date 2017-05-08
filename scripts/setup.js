@@ -1359,6 +1359,34 @@ function applySeal(battleInfo, container, source, attacker) {
 			battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> suffers " + container[statAbbr[i]].toString() + " " + statWord(statAbbr[i]) + " [" + source + "].</li>";
 		}
 	}
+	
+	return battleInfo;
+}
+
+// converts bonuses to penalties
+// battleInfo contains all battle information, source is the source of the effect, attacker is true if we apply the effect on the attacker
+function convertPenalties(battleInfo, source, attacker) {
+	"use strict";
+	
+	// get character
+	var charClass = attacker ? "attacker" : "defender";
+	
+	// stats
+	var statBonus = ["atkBonus", "spdBonus", "defBonus", "resBonus"];
+	var statPenalty = ["atkPenalty", "spdPenalty", "defPenalty", "resPenalty"];
+	
+	// apply penalties
+	for (var i = 0; i < statBonus.length; i++) {
+		if (battleInfo[charClass][statPenalty[i]] > -battleInfo[charClass][statBonus[i]]) {
+			battleInfo[charClass][statPenalty[i]] = -battleInfo[charClass][statBonus[i]];
+		}
+		battleInfo[charClass][statBonus[i]] = 0;
+	}
+	
+	// message
+	battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> has their bonuses converted to penalties [" + source + "].</li>";
+	
+	return battleInfo;
 }
 
 // checks if the defender can counter
@@ -1425,6 +1453,10 @@ function getCharPanelData(charNum) {
 	charData.spdWS = Math.max(0, parseInt($("#spd-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#spd-penalty-"+charNum).val()));
 	charData.defWS = Math.max(0, parseInt($("#def-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#def-penalty-"+charNum).val()));
 	charData.resWS = Math.max(0, parseInt($("#res-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val()) + parseInt($("#res-penalty-"+charNum).val()));
+	charData.atkBonus = parseInt($("#atk-bonus-"+charNum).val());
+	charData.spdBonus = parseInt($("#spd-bonus-"+charNum).val());
+	charData.defBonus = parseInt($("#def-bonus-"+charNum).val());
+	charData.resBonus = parseInt($("#res-bonus-"+charNum).val());
 	charData.atkPenalty = parseInt($("#atk-penalty-"+charNum).val());
 	charData.spdPenalty = parseInt($("#spd-penalty-"+charNum).val());
 	charData.defPenalty = parseInt($("#def-penalty-"+charNum).val());
@@ -2389,25 +2421,33 @@ function simBattle(battleInfo, displayMsg) {
 	// apply penalties
 	if (battleInfo.attacker.currHP > 0) {
 		if (battleInfo.defender.weaponData.hasOwnProperty("seal") && defAttacks) {
-			applySeal(battleInfo, battleInfo.defender.weaponData.seal, battleInfo.defender.weaponName, true);
+			battleInfo = applySeal(battleInfo, battleInfo.defender.weaponData.seal, battleInfo.defender.weaponName, true);
 		}
 		if (battleInfo.defender.weaponData.hasOwnProperty("target_seal") && battleInfo.defender.weaponData.target_seal.target === battleInfo.attacker.moveType && defAttacks) {
-			applySeal(battleInfo, battleInfo.defender.weaponData.target_seal, battleInfo.defender.weaponName, true);
+			battleInfo = applySeal(battleInfo, battleInfo.defender.weaponData.target_seal, battleInfo.defender.weaponName, true);
 		}
 		if (battleInfo.defender.passiveBData.hasOwnProperty("seal") && battleInfo.defender.currHP > 0) {
-			applySeal(battleInfo, battleInfo.defender.passiveBData.seal, battleInfo.defender.passiveB, true);
+			battleInfo = applySeal(battleInfo, battleInfo.defender.passiveBData.seal, battleInfo.defender.passiveB, true);
 		}
 	}
 	if (battleInfo.defender.currHP > 0) {
 		if (battleInfo.attacker.weaponData.hasOwnProperty("seal") && atkAttacks) {
-			applySeal(battleInfo, battleInfo.attacker.weaponData.seal, battleInfo.attacker.weaponName, false);
+			battleInfo = applySeal(battleInfo, battleInfo.attacker.weaponData.seal, battleInfo.attacker.weaponName, false);
 		}
 		if (battleInfo.attacker.weaponData.hasOwnProperty("target_seal") && battleInfo.attacker.weaponData.target_seal.target === battleInfo.defender.moveType && atkAttacks) {
-			applySeal(battleInfo, battleInfo.attacker.weaponData.target_seal, battleInfo.attacker.weaponName, false);
+			battleInfo = applySeal(battleInfo, battleInfo.attacker.weaponData.target_seal, battleInfo.attacker.weaponName, false);
 		}
 		if (battleInfo.attacker.passiveBData.hasOwnProperty("seal") && battleInfo.attacker.currHP > 0) {
-			applySeal(battleInfo, battleInfo.attacker.passiveBData.seal, battleInfo.attacker.passiveB, false);
+			battleInfo = applySeal(battleInfo, battleInfo.attacker.passiveBData.seal, battleInfo.attacker.passiveB, false);
 		}
+	}
+	
+	// convert bonuses into penalties
+	if (battleInfo.defender.weaponData.hasOwnProperty("convert_penalties") && defAttacks && battleInfo.attacker.currHP > 0) {
+		battleInfo = convertPenalties(battleInfo, battleInfo.defender.weaponName, true);
+	}
+	if (battleInfo.attacker.weaponData.hasOwnProperty("convert_penalties") && atkAttacks && battleInfo.defender.currHP > 0) {
+		battleInfo = convertPenalties(battleInfo, battleInfo.attacker.weaponName, false);
 	}
 	
 	// extra action
@@ -2445,6 +2485,10 @@ function simBattle(battleInfo, displayMsg) {
 				$("#spd-penalty-1").val(oldBA.attacker.spdPenalty);
 				$("#def-penalty-1").val(oldBA.attacker.defPenalty);
 				$("#res-penalty-1").val(oldBA.attacker.resPenalty);
+				$("#atk-bonus-1").val(oldBA.attacker.atkBonus);
+				$("#spd-bonus-1").val(oldBA.attacker.spdBonus);
+				$("#def-bonus-1").val(oldBA.attacker.defBonus);
+				$("#res-bonus-1").val(oldBA.attacker.resBonus);
 				
 				// update defender
 				$("#curr-hp-2").val(Math.max(oldBA.defender.currHP, 1));
@@ -2453,6 +2497,10 @@ function simBattle(battleInfo, displayMsg) {
 				$("#spd-penalty-2").val(oldBA.defender.spdPenalty);
 				$("#def-penalty-2").val(oldBA.defender.defPenalty);
 				$("#res-penalty-2").val(oldBA.defender.resPenalty);
+				$("#atk-bonus-2").val(oldBA.defender.atkBonus);
+				$("#spd-bonus-2").val(oldBA.defender.spdBonus);
+				$("#def-bonus-2").val(oldBA.defender.defBonus);
+				$("#res-bonus-2").val(oldBA.defender.resBonus);
 				
 				// sim battle again
 				simBattle(getBattleInfo(), true);
