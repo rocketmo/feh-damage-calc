@@ -1243,7 +1243,7 @@ var weaponInfo =
 		"might"   : 7,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "After combat, inflict Def/Res-3 on foe through their next actions. Grants unit Def/Res+5 for 1 turn.",
+		"description" : "After combat, inflict Def/Res-5 on foe through their next actions. Grants unit Def/Res+5 for 1 turn.",
 		"seal" : {
 			"def" : -5,
 			"res" : -5

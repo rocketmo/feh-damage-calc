@@ -1363,6 +1363,28 @@ function applySeal(battleInfo, container, source, attacker) {
 	return battleInfo;
 }
 
+// applies bonuses
+// battleInfo contains all battle information, container contains the bonus effect data, source is the name of the bonus source, attacker is true if we apply the effect on the attacker
+function applyBonus(battleInfo, container, source, attacker) {
+	"use strict";
+	
+	// get character
+	var charClass = attacker ? "attacker" : "defender";
+	
+	// stats
+	var statAbbr = ["atk", "spd", "def", "res"];
+	
+	// apply penalties
+	for (var i = 0; i < statAbbr.length; i++) {
+		if (container.hasOwnProperty(statAbbr[i]) && battleInfo[charClass][statAbbr[i] + "Bonus"] <= container[statAbbr[i]]) {
+			battleInfo[charClass][statAbbr[i] + "Bonus"] = container[statAbbr[i]];
+			battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> is granted " + container[statAbbr[i]].toString() + " " + statWord(statAbbr[i]) + " [" + source + "].</li>";
+		}
+	}
+	
+	return battleInfo;
+}
+
 // converts bonuses to penalties
 // battleInfo contains all battle information, source is the source of the effect, attacker is true if we apply the effect on the attacker
 function convertPenalties(battleInfo, source, attacker) {
@@ -2416,6 +2438,14 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo.attacker.defPenalty = 0;
 		battleInfo.attacker.resPenalty = 0;
 		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> " + " dispels all penalties.</li>";
+	}
+	
+	// apply bonuses
+	if (battleInfo.attacker.currHP > 0 && battleInfo.attacker.weaponData.hasOwnProperty("after_mod") && atkAttacks) {
+		applyBonus(battleInfo, battleInfo.attacker.weaponData.after_mod, battleInfo.attacker.weaponName, true);
+	}
+	if (battleInfo.defender.currHP > 0 && battleInfo.defender.weaponData.hasOwnProperty("after_mod") && defAttacks) {
+		applyBonus(battleInfo, battleInfo.defender.weaponData.after_mod, battleInfo.defender.weaponName, false);
 	}
 	
 	// apply penalties
