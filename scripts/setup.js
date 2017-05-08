@@ -3248,7 +3248,7 @@ function calculateMatchups(attacker) {
 				if (attacker) {
 					if ((strongAtkHit && weakDefHit) || (defCC && decentAtkHit && atkOverDef)) {
 						tableHTML += "<td class='attacker'><strong>Draw (A)</strong></td>";
-					} else if ((weakAtkHit && strongDefHit)  || (decentDefHit && defOverAtk)) {
+					} else if ((!defCC && defWithNC) || (weakAtkHit && strongDefHit)  || (decentDefHit && defOverAtk)) {
 						tableHTML += "<td class='defender'><strong>Draw (D)</strong></td>";
 					} else {
 						tableHTML += "<td><strong>Draw</strong></td>";
