@@ -70,7 +70,7 @@ label {
 	margin: 0.1em 1em;
 }
 
-.curr-hp-label {
+.curr-hp-label, .status-label {
 	width: 6.5em;
 }
 
@@ -108,6 +108,10 @@ input[type=number] {
 	-webkit-box-sizing: border-box;
 	-moz-box-size: border-box;
 	box-sizing: border-box;
+}
+
+.state-section select {
+	width: 5.5em;
 }
 
 .char-info-panel {
@@ -208,7 +212,7 @@ h3 {
 	color: #e34262;
 }
 
-.character-select, .weapon-select, .skill-select {
+.character-select, .weapon-select, .skill-select, .state-section {
 	line-height: 170%;
 }
 
