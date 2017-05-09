@@ -973,6 +973,9 @@ function displayChar(charName, charNum) {
 		$("#char-build-info-" + charNum + " label").css("color", "#5b5b5b");
 		$("#char-build-info-" + charNum + " select").attr("disabled", "disabled");
 	}
+	
+	// default status
+	$("#status-" + charNum).val("Default");
 }
 
 // stores the currently selected character for later
@@ -1005,6 +1008,9 @@ function storeCharTabInfo(attacker) {
 	infoToStore.special = $("#special-" + charNum).val();
 	infoToStore.specCooldown = $("#spec-cooldown-" + charNum).val();
 	infoToStore.seal = $("#passive-s-" + charNum).val();
+	
+	// status
+	infoToStore.status = $("#status-" + charNum).val();
 	
 	// hp and current hp
 	infoToStore.hp = $("#hp-" + charNum).val();
@@ -1137,6 +1143,9 @@ function getCharTabInfo(attacker) {
 		
 		// change special cooldown
 		$("#spec-cooldown-" + charNum).val(charTabInfo.specCooldown);
+		
+		// change status
+		$("#status-" + charNum).val(charTabInfo.status);
 	}
 }
 
@@ -2685,6 +2694,7 @@ function swap() {
 	oldAtkInfo.resPenalty = $("#res-penalty-1").val();
 	oldAtkInfo.resSpur = $("#res-spur-1").val();
 	oldAtkInfo.currHP = $("#curr-hp-1").val();
+	oldAtkInfo.status = $("#status-1").val();
 	
 	oldAtkInfo.rarityHTML = $("#rarity-1").html();
 	oldAtkInfo.rarity = $("#rarity-1").val();
@@ -2775,6 +2785,7 @@ function swap() {
 	$("#res-spur-1").val($("#res-spur-2").val());
 	$("#curr-hp-1").val($("#curr-hp-2").val());
 	$(".hp-1-read").text($("#hp-2").val().toString());
+	$("#status-1").val($("#status-2").val());
 	
 	$("#rarity-1").html($("#rarity-2").html());
 	$("#rarity-1").val($("#rarity-2").val());
@@ -2866,6 +2877,7 @@ function swap() {
 	$("#res-spur-2").val(oldAtkInfo.resSpur);
 	$("#curr-hp-2").val(oldAtkInfo.currHP);
 	$(".hp-2-read").text(oldAtkInfo.hp);
+	$("#status-2").val(oldAtkInfo.status);
 	
 	$("#rarity-2").html(oldAtkInfo.rarityHTML);
 	$("#rarity-2").val(oldAtkInfo.rarity);
@@ -3739,6 +3751,7 @@ function importTeam(attacker) {
 		importedChars[charCount].special = "None";
 		importedChars[charCount].specCooldown = "0";
 		importedChars[charCount].seal = "None";
+		importedChars[charCount].status = "Default";
 		
 		importedChars[charCount].hp = "1";
 		importedChars[charCount].currentHP = "1";
@@ -4207,7 +4220,7 @@ function exportSingle(attacker) {
 }
 
 // clears the selected team
-// attacker is true if we export the attacker team
+// attacker is true if we clear the attacker team
 function clearTeam(attacker) {
 	"use strict";
 	for (var index = 0; index < 5; index++) {
