@@ -849,6 +849,22 @@
 															</div>
 														</td>
 														<td>
+															<div class="override-state info-section">
+																<div>
+																	<label class="status-label">Status</label>
+																	<select id="override-status" class="override-option status-select">
+																		<option value="Default">Default</option>
+																		<option value="Panic">Panic</option>
+																	</select>
+																</div>
+																<div>
+																	<label class="terrain-label">Terrain</label>
+																	<select id="override-terrain" class="override-option terrain-select">
+																		<option value="Default">Default</option>
+																		<option value="Defensive">Defensive</option>
+																	</select>
+																</div>
+															</div>
 															<div id="override-stats" class="info-section">
 																<table>
 																	<tr>
@@ -890,12 +906,12 @@
 															<div class="info-section">
 																<button id="override-reset">Reset</button>
 															</div>
-															<div class="info-section-bottom">
-																<p id="override-msg">* Overrides are applied only<br>if it is possible to do so</p>
-															</div>
 														</td>
 													</tr>
 												</table>
+												<div>
+													<p id="override-msg">* Overrides are applied only if it is possible to do so</p>
+												</div>
 											</div>
 										</div>
 										<div id="matchup-table-container">
