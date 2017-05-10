@@ -1905,22 +1905,25 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	}
 	
 	// determine if magical or not
-	var defReduct = 0;
-	if (attacker.weaponData.magical) {
-		defReduct = defender.res;
-	} else {
-		defReduct = defender.def;
-	}
+	var defBase = attacker.weaponData.magical ? defender.res : defender.def;
+	var defReduct = defBase;
+	var defStat = attacker.weaponData.magical ? "resistance" : "defense";
 	
 	// defense and resistance lowering special
 	if (attacker.specialData.hasOwnProperty("enemy_def_res_mod") && attacker.specCurrCooldown <= 0) {
 		defReduct -= roundNum(defReduct * attacker.specialData.enemy_def_res_mod, false);
-		battleInfo.logMsg += "Opponent's defense and resistance lowered by " + (attacker.specialData.enemy_def_res_mod * 100).toString() + "% [" + attacker.special + "]. ";
+		battleInfo.logMsg += "Resolve combat as if opponent suffered " + (attacker.specialData.enemy_def_res_mod * 100).toString() + "% defense/resistance decrease [" + attacker.special + "]. ";
 		atkSpec = true;
 	}
 	
 	// calculate base damage
 	var dmg = atkPower - defReduct;
+	
+	// defensive tile
+	if (defender.terrain === "Defensive") {
+		dmg -= roundNum(defBase * 0.3, false);
+		battleInfo.logMsg += "Opponent reduces damage by 30% of their " + defStat + " by standing on defensive terrain. ";
+	}
 	
 	// damage buffs by stat
 	if (attacker.specialData.hasOwnProperty("dmg_buff_by_stat") && attacker.specCurrCooldown <= 0) {
@@ -2094,18 +2097,6 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> has their bonuses converted to penalties. ";
 	}
 	
-	// apply defensive tile bonus to stats (no combat buffs)
-	if (battleInfo.attacker.terrain === "Defensive") {
-		battleInfo.attacker.defWS = roundNum(battleInfo.attacker.defWS * 1.3, false);
-		battleInfo.attacker.resWS = roundNum(battleInfo.attacker.resWS * 1.3, false);
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> increases their defense/resistance by 20% for being on defensive terrain. ";
-	}
-	if (battleInfo.defender.terrain === "Defensive") {
-		battleInfo.defender.defWS = roundNum(battleInfo.defender.defWS * 1.3, false);
-		battleInfo.defender.resWS = roundNum(battleInfo.defender.resWS * 1.3, false);
-		battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> increases their defense/resistance by 20% for being on defensive terrain. ";
-	}
-	
 	// AOE damage before combat
 	if (battleInfo.attacker.specialData.hasOwnProperty("before_combat_aoe") && battleInfo.attacker.specCurrCooldown <= 0) {
 		// reset cooldown
@@ -2113,7 +2104,15 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> deals AOE damage before combat [" + battleInfo.attacker.special + "]. ";
 		
 		// calculate damage
-		var aoeDmg = battleInfo.attacker.atkWS - (battleInfo.attacker.weaponData.magical ? battleInfo.defender.resWS : battleInfo.defender.defWS);
+		var mitWS = battleInfo.attacker.weaponData.magical ? battleInfo.defender.resWS : battleInfo.defender.defWS;
+		var mitStat = battleInfo.attacker.weaponData.magical ? "resistance" : "defense";
+		var aoeDmg = battleInfo.attacker.atkWS - mitWS;
+		
+		// defensive tile
+		if (battleInfo.defender.terrain === "Defensive") {
+			aoeDmg -= roundNum(mitWS * 0.3, false);
+			battleInfo.logMsg += "Opponent reduces damage by 30% of their " + mitStat + " by standing on defensive terrain. ";
+		}
 		
 		// check for damage multiplier
 		if (battleInfo.attacker.specialData.hasOwnProperty("aoe_dmg_mod")) {
@@ -2169,16 +2168,6 @@ function simBattle(battleInfo, displayMsg) {
 	// defender blade tome bonuses
 	if (battleInfo.defender.hasOwnProperty("addBonusAtk") && battleInfo.defender.addBonusAtk > 0) {
 		battleInfo = bladeTomeBonus(battleInfo, battleInfo.defender.addBonusAtk, "defender");
-	}
-	
-	// apply defensive tile bonus to stats (with combat buffs)
-	if (battleInfo.attacker.terrain === "Defensive") {
-		battleInfo.attacker.def = roundNum(battleInfo.attacker.def * 1.3, false);
-		battleInfo.attacker.res = roundNum(battleInfo.attacker.res * 1.3, false);
-	}
-	if (battleInfo.defender.terrain === "Defensive") {
-		battleInfo.defender.def = roundNum(battleInfo.defender.def * 1.3, false);
-		battleInfo.defender.res = roundNum(battleInfo.defender.res * 1.3, false);
 	}
 	
 	// can defender counter
@@ -2517,7 +2506,7 @@ function simBattle(battleInfo, displayMsg) {
 	// status effect
 	if (battleInfo.defender.weaponData.hasOwnProperty("convert_penalties") && defAttacks && battleInfo.attacker.currHP > 0) {
 		battleInfo = convertPenalties(battleInfo, battleInfo.defender.weaponName, true);
-	} else if (battleInfo.attacker.status !== "Default") {
+	} else if (battleInfo.attacker.status !== "Default" && battleInfo.attacker.currHP > 0) {
 		battleInfo.attacker.status = "Default";
 		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> " + " returns to default status.</li>";
 	}
