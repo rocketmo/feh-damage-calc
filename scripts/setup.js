@@ -1405,20 +1405,11 @@ function convertPenalties(battleInfo, source, attacker) {
 	// get character
 	var charClass = attacker ? "attacker" : "defender";
 	
-	// stats
-	var statBonus = ["atkBonus", "spdBonus", "defBonus", "resBonus"];
-	var statPenalty = ["atkPenalty", "spdPenalty", "defPenalty", "resPenalty"];
-	
-	// apply penalties
-	for (var i = 0; i < statBonus.length; i++) {
-		if (battleInfo[charClass][statPenalty[i]] > -battleInfo[charClass][statBonus[i]]) {
-			battleInfo[charClass][statPenalty[i]] = -battleInfo[charClass][statBonus[i]];
-		}
-		battleInfo[charClass][statBonus[i]] = 0;
-	}
+	// set status
+	battleInfo[charClass].status = "Panic";
 	
 	// message
-	battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> has their bonuses converted to penalties [" + source + "].</li>";
+	battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> is inflicted with a status effect [" + source + "].</li>";
 	
 	return battleInfo;
 }
@@ -2095,6 +2086,26 @@ function simBattle(battleInfo, displayMsg) {
 		return battleInfo;
 	}
 	
+	// print panic message
+	if (battleInfo.attacker.status === "Panic" && (battleInfo.attacker.atkBonus > 0 || battleInfo.attacker.spdBonus > 0 || battleInfo.attacker.defBonus > 0 || battleInfo.attacker.resBonus > 0)) {
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> has their bonuses converted to penalties. ";
+	}
+	if (battleInfo.defender.status === "Panic" && (battleInfo.defender.atkBonus > 0 || battleInfo.defender.spdBonus > 0 || battleInfo.defender.defBonus > 0 || battleInfo.defender.resBonus > 0)) {
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> has their bonuses converted to penalties. ";
+	}
+	
+	// apply defensive tile bonus to stats (no combat buffs)
+	if (battleInfo.attacker.terrain === "Defensive") {
+		battleInfo.attacker.defWS = roundNum(battleInfo.attacker.defWS * 1.3, false);
+		battleInfo.attacker.resWS = roundNum(battleInfo.attacker.resWS * 1.3, false);
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> increases their defense/resistance by 20% for being on defensive terrain. ";
+	}
+	if (battleInfo.defender.terrain === "Defensive") {
+		battleInfo.defender.defWS = roundNum(battleInfo.defender.defWS * 1.3, false);
+		battleInfo.defender.resWS = roundNum(battleInfo.defender.resWS * 1.3, false);
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> increases their defense/resistance by 20% for being on defensive terrain. ";
+	}
+	
 	// AOE damage before combat
 	if (battleInfo.attacker.specialData.hasOwnProperty("before_combat_aoe") && battleInfo.attacker.specCurrCooldown <= 0) {
 		// reset cooldown
@@ -2158,6 +2169,16 @@ function simBattle(battleInfo, displayMsg) {
 	// defender blade tome bonuses
 	if (battleInfo.defender.hasOwnProperty("addBonusAtk") && battleInfo.defender.addBonusAtk > 0) {
 		battleInfo = bladeTomeBonus(battleInfo, battleInfo.defender.addBonusAtk, "defender");
+	}
+	
+	// apply defensive tile bonus to stats (with combat buffs)
+	if (battleInfo.attacker.terrain === "Defensive") {
+		battleInfo.attacker.def = roundNum(battleInfo.attacker.def * 1.3, false);
+		battleInfo.attacker.res = roundNum(battleInfo.attacker.res * 1.3, false);
+	}
+	if (battleInfo.defender.terrain === "Defensive") {
+		battleInfo.defender.def = roundNum(battleInfo.defender.def * 1.3, false);
+		battleInfo.defender.res = roundNum(battleInfo.defender.res * 1.3, false);
 	}
 	
 	// can defender counter
@@ -2493,10 +2514,14 @@ function simBattle(battleInfo, displayMsg) {
 		}
 	}
 	
-	// convert bonuses into penalties
+	// status effect
 	if (battleInfo.defender.weaponData.hasOwnProperty("convert_penalties") && defAttacks && battleInfo.attacker.currHP > 0) {
 		battleInfo = convertPenalties(battleInfo, battleInfo.defender.weaponName, true);
+	} else if (battleInfo.attacker.status !== "Default") {
+		battleInfo.attacker.status = "Default";
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> " + " returns to default status.</li>";
 	}
+	
 	if (battleInfo.attacker.weaponData.hasOwnProperty("convert_penalties") && atkAttacks && battleInfo.defender.currHP > 0) {
 		battleInfo = convertPenalties(battleInfo, battleInfo.attacker.weaponName, false);
 	}
@@ -2540,6 +2565,7 @@ function simBattle(battleInfo, displayMsg) {
 				$("#spd-bonus-1").val(oldBA.attacker.spdBonus);
 				$("#def-bonus-1").val(oldBA.attacker.defBonus);
 				$("#res-bonus-1").val(oldBA.attacker.resBonus);
+				$("#status-1").val(oldBA.attacker.status);
 				
 				// update defender
 				$("#curr-hp-2").val(Math.max(oldBA.defender.currHP, 1));
@@ -2552,6 +2578,7 @@ function simBattle(battleInfo, displayMsg) {
 				$("#spd-bonus-2").val(oldBA.defender.spdBonus);
 				$("#def-bonus-2").val(oldBA.defender.defBonus);
 				$("#res-bonus-2").val(oldBA.defender.resBonus);
+				$("#status-2").val(oldBA.defender.status);
 				
 				// sim battle again
 				simBattle(getBattleInfo(), true);
