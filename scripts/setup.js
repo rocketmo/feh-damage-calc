@@ -974,8 +974,9 @@ function displayChar(charName, charNum) {
 		$("#char-build-info-" + charNum + " select").attr("disabled", "disabled");
 	}
 	
-	// default status
+	// default state
 	$("#status-" + charNum).val("Default");
+	$("#terrain-" + charNum).val("Default");
 }
 
 // stores the currently selected character for later
@@ -1009,8 +1010,9 @@ function storeCharTabInfo(attacker) {
 	infoToStore.specCooldown = $("#spec-cooldown-" + charNum).val();
 	infoToStore.seal = $("#passive-s-" + charNum).val();
 	
-	// status
+	// state
 	infoToStore.status = $("#status-" + charNum).val();
+	infoToStore.terrain = $("#terrain-" + charNum).val();
 	
 	// hp and current hp
 	infoToStore.hp = $("#hp-" + charNum).val();
@@ -1144,8 +1146,9 @@ function getCharTabInfo(attacker) {
 		// change special cooldown
 		$("#spec-cooldown-" + charNum).val(charTabInfo.specCooldown);
 		
-		// change status
+		// change state
 		$("#status-" + charNum).val(charTabInfo.status);
+		$("#terrain-" + charNum).val(charTabInfo.terrain);
 	}
 }
 
@@ -1455,7 +1458,10 @@ function getCharPanelData(charNum) {
 	charData.weaponName = $("#weapon-" + charNum).val();
 	charData.weaponData = $("#weapon-" + charNum).data("info");
 	
-	if (charData.weaponData.hasOwnProperty("add_bonus")) {
+	charData.status = $("#status-" + charNum).val();
+	charData.terrain = $("#terrain-" + charNum).val();
+	
+	if (charData.weaponData.hasOwnProperty("add_bonus") && charData.status !== "Panic") {
 		charData.addBonusAtk=parseInt($("#atk-bonus-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val());
 	}
 	
@@ -1476,22 +1482,25 @@ function getCharPanelData(charNum) {
 	charData.initHP = parseInt($("#curr-hp-" + charNum).val());
 	charData.startHP = parseInt($("#curr-hp-" + charNum).val());
 	charData.hp = parseInt($("#hp-" + charNum).val());
-	charData.atk = Math.max(0, parseInt($("#atk-"+charNum).val()) + parseInt($("#atk-bonus-"+charNum).val()) + parseInt($("#atk-penalty-"+charNum).val()) + parseInt($("#atk-spur-"+charNum).val()));
-	charData.spd = Math.max(0, parseInt($("#spd-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#spd-penalty-"+charNum).val()) + parseInt($("#spd-spur-"+charNum).val()));
-	charData.def = Math.max(0, parseInt($("#def-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#def-penalty-"+charNum).val()) + parseInt($("#def-spur-"+charNum).val()));
-	charData.res = Math.max(0, parseInt($("#res-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val()) + parseInt($("#res-penalty-"+charNum).val()) + parseInt($("#res-spur-"+charNum).val()));
-	charData.atkWS = Math.max(0, parseInt($("#atk-"+charNum).val()) + parseInt($("#atk-bonus-"+charNum).val()) + parseInt($("#atk-penalty-"+charNum).val()));
-	charData.spdWS = Math.max(0, parseInt($("#spd-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#spd-penalty-"+charNum).val()));
-	charData.defWS = Math.max(0, parseInt($("#def-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#def-penalty-"+charNum).val()));
-	charData.resWS = Math.max(0, parseInt($("#res-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val()) + parseInt($("#res-penalty-"+charNum).val()));
-	charData.atkBonus = parseInt($("#atk-bonus-"+charNum).val());
-	charData.spdBonus = parseInt($("#spd-bonus-"+charNum).val());
-	charData.defBonus = parseInt($("#def-bonus-"+charNum).val());
-	charData.resBonus = parseInt($("#res-bonus-"+charNum).val());
-	charData.atkPenalty = parseInt($("#atk-penalty-"+charNum).val());
-	charData.spdPenalty = parseInt($("#spd-penalty-"+charNum).val());
-	charData.defPenalty = parseInt($("#def-penalty-"+charNum).val());
-	charData.resPenalty = parseInt($("#res-penalty-"+charNum).val());
+	
+	var panicMod = charData.status === "Panic" ? -1 : 1;
+	charData.atkWS = Math.max(0, parseInt($("#atk-" + charNum).val()) + (panicMod * parseInt($("#atk-bonus-" + charNum).val())) + parseInt($("#atk-penalty-" + charNum).val()));
+	charData.spdWS = Math.max(0, parseInt($("#spd-" + charNum).val()) + (panicMod * parseInt($("#spd-bonus-" + charNum).val())) + parseInt($("#spd-penalty-" + charNum).val()));
+	charData.defWS = Math.max(0, parseInt($("#def-" + charNum).val()) + (panicMod * parseInt($("#def-bonus-" + charNum).val())) + parseInt($("#def-penalty-" + charNum).val()));
+	charData.resWS = Math.max(0, parseInt($("#res-" + charNum).val()) + (panicMod * parseInt($("#res-bonus-" + charNum).val())) + parseInt($("#res-penalty-" + charNum).val()));
+	charData.atk = Math.max(0, charData.atkWS + parseInt($("#atk-spur-" + charNum).val()));
+	charData.spd = Math.max(0, charData.spdWS + parseInt($("#spd-spur-" + charNum).val()));
+	charData.def = Math.max(0, charData.defWS + parseInt($("#def-spur-" + charNum).val()));
+	charData.res = Math.max(0, charData.resWS + parseInt($("#res-spur-" + charNum).val()));
+	
+	charData.atkBonus = parseInt($("#atk-bonus-" + charNum).val());
+	charData.spdBonus = parseInt($("#spd-bonus-" + charNum).val());
+	charData.defBonus = parseInt($("#def-bonus-" + charNum).val());
+	charData.resBonus = parseInt($("#res-bonus-" + charNum).val());
+	charData.atkPenalty = parseInt($("#atk-penalty-" + charNum).val());
+	charData.spdPenalty = parseInt($("#spd-penalty-" + charNum).val());
+	charData.defPenalty = parseInt($("#def-penalty-" + charNum).val());
+	charData.resPenalty = parseInt($("#res-penalty-" + charNum).val());
 	
 	charData.damageDealt = 0;
 	
@@ -1552,6 +1561,10 @@ function getDefaultCharData(charName) {
 		}
 	}
 	
+	// override state
+	charData.status = $("#override-status").val();
+	charData.terrain = $("#override-terrain").val();
+	
 	// default weapon info
 	charData.weaponName = weaponIndex >= 0 ? charInfo[charName].weapon[weaponIndex] : "None";
 	charData.weaponData = weaponIndex >= 0 ? weaponInfo[charData.weaponName] : {};
@@ -1568,7 +1581,7 @@ function getDefaultCharData(charName) {
 	}
 	
 	// total bonuses
-	if (charData.weaponData.hasOwnProperty("add_bonus")) {
+	if (charData.weaponData.hasOwnProperty("add_bonus") && charData.status !== "Panic") {
 		charData.addBonusAtk = parseInt($("#override-atk-bonus").val()) + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-def-bonus").val()) + parseInt($("#override-res-bonus").val());
 	}
 	
@@ -1712,13 +1725,12 @@ function getBattleInfoWithDefault(attacker, charName) {
 	if (attacker) {
 		battleInfo.attacker = getCharPanelData("1");
 		battleInfo.defender = getDefaultCharData(charName);
-		battleInfo.atkRange = $("#weapon-1").data("info").range;
 	} else {
 		battleInfo.attacker = getDefaultCharData(charName);
 		battleInfo.defender = getCharPanelData("2");
-		battleInfo.atkRange = battleInfo.attacker.weaponName !== "None" ? weaponInfo[battleInfo.attacker.weaponName].range : 0;
 	}
 	
+	battleInfo.atkRange = battleInfo.attacker.weaponName !== "None" ? weaponInfo[battleInfo.attacker.weaponName].range : 0;
 	battleInfo.logMsg = "";
 	return battleInfo;
 }
@@ -1823,7 +1835,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	}
 	
 	var defOldHP = defender.currHP;
-	battleInfo.logMsg += "<span class='" + atkClass + "'><strong>" + attacker.name + "</strong></span> " + logIntro +". ";
+	battleInfo.logMsg += "<span class='" + atkClass + "'><strong>" + attacker.name + "</strong></span> " + logIntro + ". ";
 	
 	// determine base attack
 	var atkPower = attacker.atk;
@@ -2695,6 +2707,7 @@ function swap() {
 	oldAtkInfo.resSpur = $("#res-spur-1").val();
 	oldAtkInfo.currHP = $("#curr-hp-1").val();
 	oldAtkInfo.status = $("#status-1").val();
+	oldAtkInfo.terrain = $("#terrain-1").val();
 	
 	oldAtkInfo.rarityHTML = $("#rarity-1").html();
 	oldAtkInfo.rarity = $("#rarity-1").val();
@@ -2786,6 +2799,7 @@ function swap() {
 	$("#curr-hp-1").val($("#curr-hp-2").val());
 	$(".hp-1-read").text($("#hp-2").val().toString());
 	$("#status-1").val($("#status-2").val());
+	$("#terrain-1").val($("#terrain-2").val());
 	
 	$("#rarity-1").html($("#rarity-2").html());
 	$("#rarity-1").val($("#rarity-2").val());
@@ -2878,6 +2892,7 @@ function swap() {
 	$("#curr-hp-2").val(oldAtkInfo.currHP);
 	$(".hp-2-read").text(oldAtkInfo.hp);
 	$("#status-2").val(oldAtkInfo.status);
+	$("#terrain-2").val(oldAtkInfo.terrain);
 	
 	$("#rarity-2").html(oldAtkInfo.rarityHTML);
 	$("#rarity-2").val(oldAtkInfo.rarity);
@@ -3366,6 +3381,10 @@ function applyOverrides(charNum) {
 		overrideHP = Math.max(overrideHP, 1);
 		$("#curr-hp-" + charNum).val(overrideHP);
 	}
+	
+	// override state
+	$("#status-" + charNum).val($("#override-status").val());
+	$("#terrain-" + charNum).val($("#override-terrain").val());
 }
 
 // calculates and prints info of every battle matchup for one character
@@ -3752,6 +3771,7 @@ function importTeam(attacker) {
 		importedChars[charCount].specCooldown = "0";
 		importedChars[charCount].seal = "None";
 		importedChars[charCount].status = "Default";
+		importedChars[charCount].terrain = "Default";
 		
 		importedChars[charCount].hp = "1";
 		importedChars[charCount].currentHP = "1";
@@ -4593,6 +4613,9 @@ $(document).ready( function() {
 		
 		$(".override-stat").val(0);
 		$("#override-curr-hp").val(100);
+		
+		$("#override-status").val("Default")
+		$("#override-terrain").val("Default")
 		
 		keepTable = false;
 		updateDisplay();
