@@ -253,7 +253,7 @@ h3 {
 	border-bottom: none;
 }
 
-.collapse-button:hover {
+.collapse-button:hover, .curr-hp-label:hover, .spec-cooldown-label:hover, .bonus-label:hover, .penalty-label:hover, .spur-label:hover {
 	cursor: pointer;
 	color: gold;
 }

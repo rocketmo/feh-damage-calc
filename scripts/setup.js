@@ -4529,6 +4529,46 @@ $(document).ready( function() {
 		updateDisplay();
 	});
 	
+	// hp reset
+	$(".curr-hp-label").on("click", function() {
+		var charNum = $(this).data("charnum").toString();
+		$("#curr-hp-" + charNum).val($("#hp-" + charNum).val());
+		charChange(charNum);
+		updateDisplay();
+	});
+	
+	// special cooldown reset
+	$(".spec-cooldown-label").on("click", function() {
+		var charNum = $(this).data("charnum").toString();
+		$("#spec-cooldown-" + charNum).val(getSpecialCooldown($("#special-" + charNum).data("info"), $("#weapon-" + charNum).data("info"), $("#assist-" + charNum).data("info")));
+		charChange(charNum);
+		updateDisplay();
+	});
+	
+	// stat bonus reset
+	$(".bonus-label").on("click", function() {
+		var charNum = $(this).data("charnum").toString();
+		$((charNum === "1" ? "#attack-panel" : "#defend-panel") + " .stat-bonus").val(0);
+		charChange(charNum);
+		updateDisplay();
+	});
+	
+	// stat penalty reset
+	$(".penalty-label").on("click", function() {
+		var charNum = $(this).data("charnum").toString();
+		$((charNum === "1" ? "#attack-panel" : "#defend-panel") + " .stat-penalty").val(0);
+		charChange(charNum);
+		updateDisplay();
+	});
+	
+	// stat bonus reset
+	$(".spur-label").on("click", function() {
+		var charNum = $(this).data("charnum").toString();
+		$((charNum === "1" ? "#attack-panel" : "#defend-panel") + " .stat-spur").val(0);
+		charChange(charNum);
+		updateDisplay();
+	});
+	
 	// setup other battle value changes
 	$(".battle-val").on("change", function() {
 		charChange($(this).data("charnum").toString());
