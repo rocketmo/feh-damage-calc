@@ -1479,10 +1479,10 @@ function getCharPanelData(charNum) {
 	charData.spdWS = Math.max(0, parseInt($("#spd-" + charNum).val()) + (panicMod * parseInt($("#spd-bonus-" + charNum).val())) + parseInt($("#spd-penalty-" + charNum).val()));
 	charData.defWS = Math.max(0, parseInt($("#def-" + charNum).val()) + (panicMod * parseInt($("#def-bonus-" + charNum).val())) + parseInt($("#def-penalty-" + charNum).val()));
 	charData.resWS = Math.max(0, parseInt($("#res-" + charNum).val()) + (panicMod * parseInt($("#res-bonus-" + charNum).val())) + parseInt($("#res-penalty-" + charNum).val()));
-	charData.atk = Math.max(0, charData.atkWS + parseInt($("#atk-spur-" + charNum).val()));
-	charData.spd = Math.max(0, charData.spdWS + parseInt($("#spd-spur-" + charNum).val()));
-	charData.def = Math.max(0, charData.defWS + parseInt($("#def-spur-" + charNum).val()));
-	charData.res = Math.max(0, charData.resWS + parseInt($("#res-spur-" + charNum).val()));
+	charData.atk = charData.atkWS + parseInt($("#atk-spur-" + charNum).val());
+	charData.spd = charData.spdWS + parseInt($("#spd-spur-" + charNum).val());
+	charData.def = charData.defWS + parseInt($("#def-spur-" + charNum).val());
+	charData.res = charData.resWS + parseInt($("#res-spur-" + charNum).val());
 	
 	charData.atkBonus = parseInt($("#atk-bonus-" + charNum).val());
 	charData.spdBonus = parseInt($("#spd-bonus-" + charNum).val());
@@ -1653,34 +1653,45 @@ function getDefaultCharData(charName) {
 	}
 	
 	// show stats
+	var panicMod = charData.status === "Panic" ? -1 : 1;
 	if (charInfo[charName].hasOwnProperty("base_stat")) {
 		var stats = getStatTotals(charName, charData.weaponName, charData.passiveA, charData.seal, rarity, level, merge, boon, bane);
 		charData.currHP = stats.hp;
 		charData.initHP = stats.hp;
 		charData.startHP = stats.hp;
 		charData.hp = stats.hp;
-		charData.atk = stats.atk + parseInt($("#override-atk-bonus").val()) + parseInt($("#override-atk-penalty").val()) + parseInt($("#override-atk-spur").val());
-		charData.spd = stats.spd + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-spd-penalty").val()) + parseInt($("#override-spd-spur").val());
-		charData.def = stats.def + parseInt($("#override-def-bonus").val()) + parseInt($("#override-def-penalty").val()) + parseInt($("#override-def-spur").val()); 
-		charData.res = stats.res + parseInt($("#override-res-bonus").val()) + parseInt($("#override-res-penalty").val()) + parseInt($("#override-res-spur").val());
-		charData.atkWS = stats.atk + parseInt($("#override-atk-bonus").val()) + parseInt($("#override-atk-penalty").val());
-		charData.spdWS = stats.spd + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-spd-penalty").val());
-		charData.defWS = stats.def + parseInt($("#override-def-bonus").val()) + parseInt($("#override-def-penalty").val());
-		charData.resWS = stats.res + parseInt($("#override-res-bonus").val()) + parseInt($("#override-res-penalty").val());
+		charData.atkWS = Math.max(0, stats.atk + (panicMod * parseInt($("#override-atk-bonus").val())) + parseInt($("#override-atk-penalty").val()));
+		charData.spdWS = Math.max(0, stats.spd + (panicMod * parseInt($("#override-spd-bonus").val())) + parseInt($("#override-spd-penalty").val()));
+		charData.defWS = Math.max(0, stats.def + (panicMod * parseInt($("#override-def-bonus").val())) + parseInt($("#override-def-penalty").val()));
+		charData.resWS = Math.max(0, stats.res + (panicMod * parseInt($("#override-res-bonus").val())) + parseInt($("#override-res-penalty").val()));
+		charData.atk = charData.atkWS + parseInt($("#override-atk-spur").val());
+		charData.spd = charData.spdWS + parseInt($("#override-spd-spur").val());
+		charData.def = charData.defWS + parseInt($("#override-def-spur").val());
+		charData.res = charData.resWS + parseInt($("#override-res-spur").val());
 	} else {
 		charData.currHP = charInfo[charName].hp;
 		charData.initHP = charInfo[charName].hp;
 		charData.startHP = charInfo[charName].hp;
 		charData.hp = charInfo[charName].hp;
-		charData.atk = charInfo[charName].atk + parseInt($("#override-atk-bonus").val()) + parseInt($("#override-atk-penalty").val()) + parseInt($("#override-atk-spur").val());
-		charData.spd = charInfo[charName].spd + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-spd-penalty").val()) + parseInt($("#override-spd-spur").val());
-		charData.def = charInfo[charName].def + parseInt($("#override-def-bonus").val()) + parseInt($("#override-def-penalty").val()) + parseInt($("#override-def-spur").val()); 
-		charData.res = charInfo[charName].res + parseInt($("#override-res-bonus").val()) + parseInt($("#override-res-penalty").val()) + parseInt($("#override-res-spur").val());
-		charData.atkWS = charInfo[charName].atk + parseInt($("#override-atk-bonus").val()) + parseInt($("#override-atk-penalty").val());
-		charData.spdWS = charInfo[charName].spd + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-spd-penalty").val());
-		charData.defWS = charInfo[charName].def + parseInt($("#override-def-bonus").val()) + parseInt($("#override-def-penalty").val());
-		charData.resWS = charInfo[charName].res + parseInt($("#override-res-bonus").val()) + parseInt($("#override-res-penalty").val());
+		charData.atkWS = Math.max(0, charInfo[charName].atk+(panicMod*parseInt($("#override-atk-bonus").val()))+parseInt($("#override-atk-penalty").val())+parseInt($("#override-atk-spur").val()));
+		charData.spdWS = Math.max(0, charInfo[charName].spd+(panicMod*parseInt($("#override-spd-bonus").val()))+parseInt($("#override-spd-penalty").val())+parseInt($("#override-spd-spur").val()));
+		charData.defWS = Math.max(0, charInfo[charName].def+(panicMod*parseInt($("#override-def-bonus").val()))+parseInt($("#override-def-penalty").val())+parseInt($("#override-def-spur").val()));
+		charData.resWS = Math.max(0, charInfo[charName].res+(panicMod*parseInt($("#override-res-bonus").val()))+parseInt($("#override-res-penalty").val())+parseInt($("#override-res-spur").val()));
+		charData.atk = charData.atkWS + parseInt($("#override-atk-spur").val());
+		charData.spd = charData.spdWS + parseInt($("#override-spd-spur").val());
+		charData.def = charData.defWS + parseInt($("#override-def-spur").val());
+		charData.res = charData.resWS + parseInt($("#override-res-spur").val());
 	}
+	
+	// bonuses and penalties
+	charData.atkBonus = parseInt($("#override-atk-bonus").val());
+	charData.spdBonus = parseInt($("#override-spd-bonus").val());
+	charData.defBonus = parseInt($("#override-def-bonus").val());
+	charData.resBonus = parseInt($("#override-res-bonus").val());
+	charData.atkPenalty = parseInt($("#override-atk-penalty").val());
+	charData.spdPenalty = parseInt($("#override-spd-penalty").val());
+	charData.defPenalty = parseInt($("#override-def-penalty").val());
+	charData.resPenalty = parseInt($("#override-res-penalty").val());
 	
 	// override current hp
 	if (parseInt($("#override-curr-hp").val()) < 100) {
@@ -2552,6 +2563,7 @@ function simBattle(battleInfo, displayMsg) {
 				$("#spec-cooldown-1").val(getSpecialCooldown(oldBA.attacker.specialData, oldBA.attacker.weaponData, oldBA.attacker.assistData));
 				$("#attack-panel .stat-bonus, #attack-panel .stat-penalty, #attack-panel .stat-spur").val(0);
 				$("#status-1").val("Default");
+				$("#terrain-1").val("Default");
 			} else {
 				$("#curr-hp-1").val(Math.max(oldBA.attacker.currHP, 1));
 				$("#spec-cooldown-1").val(Math.max(oldBA.attacker.specCurrCooldown, 0));
@@ -2572,6 +2584,7 @@ function simBattle(battleInfo, displayMsg) {
 				$("#spec-cooldown-2").val(getSpecialCooldown(oldBA.defender.specialData, oldBA.defender.weaponData, oldBA.defender.assistData));
 				$("#defend-panel .stat-bonus, #defend-panel .stat-penalty, #defend-panel .stat-spur").val(0);
 				$("#status-2").val("Default");
+				$("#terrain-2").val("Default");
 			} else {
 				$("#curr-hp-2").val(Math.max(oldBA.defender.currHP, 1));
 				$("#spec-cooldown-2").val(Math.max(oldBA.defender.specCurrCooldown, 0));
