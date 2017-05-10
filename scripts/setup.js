@@ -3950,7 +3950,6 @@ function importTeam(attacker) {
 				importedChars[charCount].def = defaultStats.def;
 				importedChars[charCount].res = defaultStats.res;
 			}
-			console.log(importedChars[charCount]);
 			break;
 		} else {
 			line = importText[textLine].split(/ *\/ */);
