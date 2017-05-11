@@ -973,6 +973,10 @@ function displayChar(charName, charNum) {
 		$("#char-build-info-" + charNum + " label").css("color", "#5b5b5b");
 		$("#char-build-info-" + charNum + " select").attr("disabled", "disabled");
 	}
+	
+	// default state
+	$("#status-" + charNum).val("Default");
+	$("#terrain-" + charNum).val("Default");
 }
 
 // stores the currently selected character for later
@@ -1005,6 +1009,10 @@ function storeCharTabInfo(attacker) {
 	infoToStore.special = $("#special-" + charNum).val();
 	infoToStore.specCooldown = $("#spec-cooldown-" + charNum).val();
 	infoToStore.seal = $("#passive-s-" + charNum).val();
+	
+	// state
+	infoToStore.status = $("#status-" + charNum).val();
+	infoToStore.terrain = $("#terrain-" + charNum).val();
 	
 	// hp and current hp
 	infoToStore.hp = $("#hp-" + charNum).val();
@@ -1137,6 +1145,10 @@ function getCharTabInfo(attacker) {
 		
 		// change special cooldown
 		$("#spec-cooldown-" + charNum).val(charTabInfo.specCooldown);
+		
+		// change state
+		$("#status-" + charNum).val(charTabInfo.status);
+		$("#terrain-" + charNum).val(charTabInfo.terrain);
 	}
 }
 
@@ -1341,6 +1353,67 @@ function canActivateSweep(container, atkSpd, defSpd, defWeapon) {
 	return container.hasOwnProperty("sweep") && (atkSpd - defSpd >= container.sweep.spd_adv) && container.sweep.weapon_type.hasOwnProperty(defWeapon);
 }
 
+// applies a seal effect
+// battleInfo contains all battle information, container contains the seal effect data, source is the name of the seal source, attacker is true if we apply the effect on the attacker
+function applySeal(battleInfo, container, source, attacker) {
+	"use strict";
+	
+	// get character
+	var charClass = attacker ? "attacker" : "defender";
+	
+	// stats
+	var statAbbr = ["atk", "spd", "def", "res"];
+	
+	// apply penalties
+	for (var i = 0; i < statAbbr.length; i++) {
+		if (container.hasOwnProperty(statAbbr[i]) && battleInfo[charClass][statAbbr[i] + "Penalty"] >= container[statAbbr[i]]) {
+			battleInfo[charClass][statAbbr[i] + "Penalty"] = container[statAbbr[i]];
+			battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> suffers " + container[statAbbr[i]].toString() + " " + statWord(statAbbr[i]) + " [" + source + "].</li>";
+		}
+	}
+	
+	return battleInfo;
+}
+
+// applies bonuses
+// battleInfo contains all battle information, container contains the bonus effect data, source is the name of the bonus source, attacker is true if we apply the effect on the attacker
+function applyBonus(battleInfo, container, source, attacker) {
+	"use strict";
+	
+	// get character
+	var charClass = attacker ? "attacker" : "defender";
+	
+	// stats
+	var statAbbr = ["atk", "spd", "def", "res"];
+	
+	// apply penalties
+	for (var i = 0; i < statAbbr.length; i++) {
+		if (container.hasOwnProperty(statAbbr[i]) && battleInfo[charClass][statAbbr[i] + "Bonus"] <= container[statAbbr[i]]) {
+			battleInfo[charClass][statAbbr[i] + "Bonus"] = container[statAbbr[i]];
+			battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> is granted " + container[statAbbr[i]].toString() + " " + statWord(statAbbr[i]) + " [" + source + "].</li>";
+		}
+	}
+	
+	return battleInfo;
+}
+
+// converts bonuses to penalties
+// battleInfo contains all battle information, source is the source of the effect, attacker is true if we apply the effect on the attacker
+function convertPenalties(battleInfo, source, attacker) {
+	"use strict";
+	
+	// get character
+	var charClass = attacker ? "attacker" : "defender";
+	
+	// set status
+	battleInfo[charClass].status = "Panic";
+	
+	// message
+	battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> is inflicted with a status effect [" + source + "].</li>";
+	
+	return battleInfo;
+}
+
 // checks if the defender can counter
 // battleInfo contains all battle information
 function defCanCounter(battleInfo) {
@@ -1376,7 +1449,10 @@ function getCharPanelData(charNum) {
 	charData.weaponName = $("#weapon-" + charNum).val();
 	charData.weaponData = $("#weapon-" + charNum).data("info");
 	
-	if (charData.weaponData.hasOwnProperty("add_bonus")) {
+	charData.status = $("#status-" + charNum).val();
+	charData.terrain = $("#terrain-" + charNum).val();
+	
+	if (charData.weaponData.hasOwnProperty("add_bonus") && charData.status !== "Panic") {
 		charData.addBonusAtk=parseInt($("#atk-bonus-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val());
 	}
 	
@@ -1397,14 +1473,25 @@ function getCharPanelData(charNum) {
 	charData.initHP = parseInt($("#curr-hp-" + charNum).val());
 	charData.startHP = parseInt($("#curr-hp-" + charNum).val());
 	charData.hp = parseInt($("#hp-" + charNum).val());
-	charData.atk = Math.max(0, parseInt($("#atk-"+charNum).val()) + parseInt($("#atk-bonus-"+charNum).val()) + parseInt($("#atk-penalty-"+charNum).val()) + parseInt($("#atk-spur-"+charNum).val()));
-	charData.spd = Math.max(0, parseInt($("#spd-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#spd-penalty-"+charNum).val()) + parseInt($("#spd-spur-"+charNum).val()));
-	charData.def = Math.max(0, parseInt($("#def-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#def-penalty-"+charNum).val()) + parseInt($("#def-spur-"+charNum).val()));
-	charData.res = Math.max(0, parseInt($("#res-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val()) + parseInt($("#res-penalty-"+charNum).val()) + parseInt($("#res-spur-"+charNum).val()));
-	charData.atkWS = Math.max(0, parseInt($("#atk-"+charNum).val()) + parseInt($("#atk-bonus-"+charNum).val()) + parseInt($("#atk-penalty-"+charNum).val()));
-	charData.spdWS = Math.max(0, parseInt($("#spd-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#spd-penalty-"+charNum).val()));
-	charData.defWS = Math.max(0, parseInt($("#def-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#def-penalty-"+charNum).val()));
-	charData.resWS = Math.max(0, parseInt($("#res-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val()) + parseInt($("#res-penalty-"+charNum).val()));
+	
+	var panicMod = charData.status === "Panic" ? -1 : 1;
+	charData.atkWS = Math.max(0, parseInt($("#atk-" + charNum).val()) + (panicMod * parseInt($("#atk-bonus-" + charNum).val())) + parseInt($("#atk-penalty-" + charNum).val()));
+	charData.spdWS = Math.max(0, parseInt($("#spd-" + charNum).val()) + (panicMod * parseInt($("#spd-bonus-" + charNum).val())) + parseInt($("#spd-penalty-" + charNum).val()));
+	charData.defWS = Math.max(0, parseInt($("#def-" + charNum).val()) + (panicMod * parseInt($("#def-bonus-" + charNum).val())) + parseInt($("#def-penalty-" + charNum).val()));
+	charData.resWS = Math.max(0, parseInt($("#res-" + charNum).val()) + (panicMod * parseInt($("#res-bonus-" + charNum).val())) + parseInt($("#res-penalty-" + charNum).val()));
+	charData.atk = charData.atkWS + parseInt($("#atk-spur-" + charNum).val());
+	charData.spd = charData.spdWS + parseInt($("#spd-spur-" + charNum).val());
+	charData.def = charData.defWS + parseInt($("#def-spur-" + charNum).val());
+	charData.res = charData.resWS + parseInt($("#res-spur-" + charNum).val());
+	
+	charData.atkBonus = parseInt($("#atk-bonus-" + charNum).val());
+	charData.spdBonus = parseInt($("#spd-bonus-" + charNum).val());
+	charData.defBonus = parseInt($("#def-bonus-" + charNum).val());
+	charData.resBonus = parseInt($("#res-bonus-" + charNum).val());
+	charData.atkPenalty = parseInt($("#atk-penalty-" + charNum).val());
+	charData.spdPenalty = parseInt($("#spd-penalty-" + charNum).val());
+	charData.defPenalty = parseInt($("#def-penalty-" + charNum).val());
+	charData.resPenalty = parseInt($("#res-penalty-" + charNum).val());
 	
 	charData.damageDealt = 0;
 	
@@ -1465,6 +1552,10 @@ function getDefaultCharData(charName) {
 		}
 	}
 	
+	// override state
+	charData.status = $("#override-status").val();
+	charData.terrain = $("#override-terrain").val();
+	
 	// default weapon info
 	charData.weaponName = weaponIndex >= 0 ? charInfo[charName].weapon[weaponIndex] : "None";
 	charData.weaponData = weaponIndex >= 0 ? weaponInfo[charData.weaponName] : {};
@@ -1481,7 +1572,7 @@ function getDefaultCharData(charName) {
 	}
 	
 	// total bonuses
-	if (charData.weaponData.hasOwnProperty("add_bonus")) {
+	if (charData.weaponData.hasOwnProperty("add_bonus") && charData.status !== "Panic") {
 		charData.addBonusAtk = parseInt($("#override-atk-bonus").val()) + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-def-bonus").val()) + parseInt($("#override-res-bonus").val());
 	}
 	
@@ -1562,34 +1653,45 @@ function getDefaultCharData(charName) {
 	}
 	
 	// show stats
+	var panicMod = charData.status === "Panic" ? -1 : 1;
 	if (charInfo[charName].hasOwnProperty("base_stat")) {
 		var stats = getStatTotals(charName, charData.weaponName, charData.passiveA, charData.seal, rarity, level, merge, boon, bane);
 		charData.currHP = stats.hp;
 		charData.initHP = stats.hp;
 		charData.startHP = stats.hp;
 		charData.hp = stats.hp;
-		charData.atk = stats.atk + parseInt($("#override-atk-bonus").val()) + parseInt($("#override-atk-penalty").val()) + parseInt($("#override-atk-spur").val());
-		charData.spd = stats.spd + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-spd-penalty").val()) + parseInt($("#override-spd-spur").val());
-		charData.def = stats.def + parseInt($("#override-def-bonus").val()) + parseInt($("#override-def-penalty").val()) + parseInt($("#override-def-spur").val()); 
-		charData.res = stats.res + parseInt($("#override-res-bonus").val()) + parseInt($("#override-res-penalty").val()) + parseInt($("#override-res-spur").val());
-		charData.atkWS = stats.atk + parseInt($("#override-atk-bonus").val()) + parseInt($("#override-atk-penalty").val());
-		charData.spdWS = stats.spd + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-spd-penalty").val());
-		charData.defWS = stats.def + parseInt($("#override-def-bonus").val()) + parseInt($("#override-def-penalty").val());
-		charData.resWS = stats.res + parseInt($("#override-res-bonus").val()) + parseInt($("#override-res-penalty").val());
+		charData.atkWS = Math.max(0, stats.atk + (panicMod * parseInt($("#override-atk-bonus").val())) + parseInt($("#override-atk-penalty").val()));
+		charData.spdWS = Math.max(0, stats.spd + (panicMod * parseInt($("#override-spd-bonus").val())) + parseInt($("#override-spd-penalty").val()));
+		charData.defWS = Math.max(0, stats.def + (panicMod * parseInt($("#override-def-bonus").val())) + parseInt($("#override-def-penalty").val()));
+		charData.resWS = Math.max(0, stats.res + (panicMod * parseInt($("#override-res-bonus").val())) + parseInt($("#override-res-penalty").val()));
+		charData.atk = charData.atkWS + parseInt($("#override-atk-spur").val());
+		charData.spd = charData.spdWS + parseInt($("#override-spd-spur").val());
+		charData.def = charData.defWS + parseInt($("#override-def-spur").val());
+		charData.res = charData.resWS + parseInt($("#override-res-spur").val());
 	} else {
 		charData.currHP = charInfo[charName].hp;
 		charData.initHP = charInfo[charName].hp;
 		charData.startHP = charInfo[charName].hp;
 		charData.hp = charInfo[charName].hp;
-		charData.atk = charInfo[charName].atk + parseInt($("#override-atk-bonus").val()) + parseInt($("#override-atk-penalty").val()) + parseInt($("#override-atk-spur").val());
-		charData.spd = charInfo[charName].spd + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-spd-penalty").val()) + parseInt($("#override-spd-spur").val());
-		charData.def = charInfo[charName].def + parseInt($("#override-def-bonus").val()) + parseInt($("#override-def-penalty").val()) + parseInt($("#override-def-spur").val()); 
-		charData.res = charInfo[charName].res + parseInt($("#override-res-bonus").val()) + parseInt($("#override-res-penalty").val()) + parseInt($("#override-res-spur").val());
-		charData.atkWS = charInfo[charName].atk + parseInt($("#override-atk-bonus").val()) + parseInt($("#override-atk-penalty").val());
-		charData.spdWS = charInfo[charName].spd + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-spd-penalty").val());
-		charData.defWS = charInfo[charName].def + parseInt($("#override-def-bonus").val()) + parseInt($("#override-def-penalty").val());
-		charData.resWS = charInfo[charName].res + parseInt($("#override-res-bonus").val()) + parseInt($("#override-res-penalty").val());
+		charData.atkWS = Math.max(0, charInfo[charName].atk+(panicMod*parseInt($("#override-atk-bonus").val()))+parseInt($("#override-atk-penalty").val())+parseInt($("#override-atk-spur").val()));
+		charData.spdWS = Math.max(0, charInfo[charName].spd+(panicMod*parseInt($("#override-spd-bonus").val()))+parseInt($("#override-spd-penalty").val())+parseInt($("#override-spd-spur").val()));
+		charData.defWS = Math.max(0, charInfo[charName].def+(panicMod*parseInt($("#override-def-bonus").val()))+parseInt($("#override-def-penalty").val())+parseInt($("#override-def-spur").val()));
+		charData.resWS = Math.max(0, charInfo[charName].res+(panicMod*parseInt($("#override-res-bonus").val()))+parseInt($("#override-res-penalty").val())+parseInt($("#override-res-spur").val()));
+		charData.atk = charData.atkWS + parseInt($("#override-atk-spur").val());
+		charData.spd = charData.spdWS + parseInt($("#override-spd-spur").val());
+		charData.def = charData.defWS + parseInt($("#override-def-spur").val());
+		charData.res = charData.resWS + parseInt($("#override-res-spur").val());
 	}
+	
+	// bonuses and penalties
+	charData.atkBonus = parseInt($("#override-atk-bonus").val());
+	charData.spdBonus = parseInt($("#override-spd-bonus").val());
+	charData.defBonus = parseInt($("#override-def-bonus").val());
+	charData.resBonus = parseInt($("#override-res-bonus").val());
+	charData.atkPenalty = parseInt($("#override-atk-penalty").val());
+	charData.spdPenalty = parseInt($("#override-spd-penalty").val());
+	charData.defPenalty = parseInt($("#override-def-penalty").val());
+	charData.resPenalty = parseInt($("#override-res-penalty").val());
 	
 	// override current hp
 	if (parseInt($("#override-curr-hp").val()) < 100) {
@@ -1625,13 +1727,12 @@ function getBattleInfoWithDefault(attacker, charName) {
 	if (attacker) {
 		battleInfo.attacker = getCharPanelData("1");
 		battleInfo.defender = getDefaultCharData(charName);
-		battleInfo.atkRange = $("#weapon-1").data("info").range;
 	} else {
 		battleInfo.attacker = getDefaultCharData(charName);
 		battleInfo.defender = getCharPanelData("2");
-		battleInfo.atkRange = battleInfo.attacker.weaponName !== "None" ? weaponInfo[battleInfo.attacker.weaponName].range : 0;
 	}
 	
+	battleInfo.atkRange = battleInfo.attacker.weaponName !== "None" ? weaponInfo[battleInfo.attacker.weaponName].range : 0;
 	battleInfo.logMsg = "";
 	return battleInfo;
 }
@@ -1736,7 +1837,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	}
 	
 	var defOldHP = defender.currHP;
-	battleInfo.logMsg += "<span class='" + atkClass + "'><strong>" + attacker.name + "</strong></span> " + logIntro +". ";
+	battleInfo.logMsg += "<span class='" + atkClass + "'><strong>" + attacker.name + "</strong></span> " + logIntro + ". ";
 	
 	// determine base attack
 	var atkPower = attacker.atk;
@@ -1815,22 +1916,25 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	}
 	
 	// determine if magical or not
-	var defReduct = 0;
-	if (attacker.weaponData.magical) {
-		defReduct = defender.res;
-	} else {
-		defReduct = defender.def;
-	}
+	var defBase = attacker.weaponData.magical ? defender.res : defender.def;
+	var defReduct = defBase;
+	var defStat = attacker.weaponData.magical ? "resistance" : "defense";
 	
 	// defense and resistance lowering special
 	if (attacker.specialData.hasOwnProperty("enemy_def_res_mod") && attacker.specCurrCooldown <= 0) {
 		defReduct -= roundNum(defReduct * attacker.specialData.enemy_def_res_mod, false);
-		battleInfo.logMsg += "Opponent's defense and resistance lowered by " + (attacker.specialData.enemy_def_res_mod * 100).toString() + "% [" + attacker.special + "]. ";
+		battleInfo.logMsg += "Resolve combat as if opponent suffered a " + (attacker.specialData.enemy_def_res_mod * 100).toString() + "% defense/resistance reduction [" + attacker.special + "]. ";
 		atkSpec = true;
 	}
 	
 	// calculate base damage
 	var dmg = atkPower - defReduct;
+	
+	// defensive tile
+	if (defender.terrain === "Defensive") {
+		dmg -= roundNum(defBase * 0.3, false);
+		battleInfo.logMsg += "Opponent reduces damage by 30% of their " + defStat + " by standing on defensive terrain. ";
+	}
 	
 	// damage buffs by stat
 	if (attacker.specialData.hasOwnProperty("dmg_buff_by_stat") && attacker.specCurrCooldown <= 0) {
@@ -1996,6 +2100,14 @@ function simBattle(battleInfo, displayMsg) {
 		return battleInfo;
 	}
 	
+	// print panic message
+	if (battleInfo.attacker.status === "Panic" && (battleInfo.attacker.atkBonus > 0 || battleInfo.attacker.spdBonus > 0 || battleInfo.attacker.defBonus > 0 || battleInfo.attacker.resBonus > 0)) {
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> has their bonuses converted to penalties. ";
+	}
+	if (battleInfo.defender.status === "Panic" && (battleInfo.defender.atkBonus > 0 || battleInfo.defender.spdBonus > 0 || battleInfo.defender.defBonus > 0 || battleInfo.defender.resBonus > 0)) {
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> has their bonuses converted to penalties. ";
+	}
+	
 	// AOE damage before combat
 	if (battleInfo.attacker.specialData.hasOwnProperty("before_combat_aoe") && battleInfo.attacker.specCurrCooldown <= 0) {
 		// reset cooldown
@@ -2003,7 +2115,15 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> deals AOE damage before combat [" + battleInfo.attacker.special + "]. ";
 		
 		// calculate damage
-		var aoeDmg = battleInfo.attacker.atkWS - (battleInfo.attacker.weaponData.magical ? battleInfo.defender.resWS : battleInfo.defender.defWS);
+		var mitWS = battleInfo.attacker.weaponData.magical ? battleInfo.defender.resWS : battleInfo.defender.defWS;
+		var mitStat = battleInfo.attacker.weaponData.magical ? "resistance" : "defense";
+		var aoeDmg = battleInfo.attacker.atkWS - mitWS;
+		
+		// defensive tile
+		if (battleInfo.defender.terrain === "Defensive") {
+			aoeDmg -= roundNum(mitWS * 0.3, false);
+			battleInfo.logMsg += "Opponent reduces damage by 30% of their " + mitStat + " by standing on defensive terrain. ";
+		}
 		
 		// check for damage multiplier
 		if (battleInfo.attacker.specialData.hasOwnProperty("aoe_dmg_mod")) {
@@ -2120,8 +2240,10 @@ function simBattle(battleInfo, displayMsg) {
 	}
 	
 	// attacker initiates
+	var atkAttacks = false;
 	if (battleInfo.attacker.currHP > 0) {
 		battleInfo = singleCombat(battleInfo, true, "attacks", false);
+		atkAttacks = true;
 	}
 		
 	// desperation follow up
@@ -2351,6 +2473,64 @@ function simBattle(battleInfo, displayMsg) {
 	battleInfo = afterCombatEffects(battleInfo, "attacker", defPoison, defPoisonSource, atkRecoil, atkRecoilSource, atkAfterHeal, atkAfterHealSource);
 	battleInfo = afterCombatEffects(battleInfo, "defender", atkPoison, atkPoisonSource, defRecoil, defRecoilSource, 0, "");
 	
+	// remove penalties on attacker
+	if ((battleInfo.attacker.atkPenalty < 0 || battleInfo.attacker.spdPenalty < 0 || battleInfo.attacker.defPenalty < 0 || battleInfo.attacker.resPenalty < 0) && battleInfo.attacker.currHP > 0) {
+		battleInfo.attacker.atkPenalty = 0;
+		battleInfo.attacker.spdPenalty = 0;
+		battleInfo.attacker.defPenalty = 0;
+		battleInfo.attacker.resPenalty = 0;
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> " + " dispels all penalties.</li>";
+	}
+	
+	// apply bonuses
+	if (battleInfo.attacker.currHP > 0 && battleInfo.attacker.weaponData.hasOwnProperty("after_mod") && atkAttacks) {
+		applyBonus(battleInfo, battleInfo.attacker.weaponData.after_mod, battleInfo.attacker.weaponName, true);
+	}
+	if (battleInfo.defender.currHP > 0 && battleInfo.defender.weaponData.hasOwnProperty("after_mod") && defAttacks) {
+		applyBonus(battleInfo, battleInfo.defender.weaponData.after_mod, battleInfo.defender.weaponName, false);
+	}
+	
+	// apply penalties
+	if (battleInfo.attacker.currHP > 0) {
+		if (battleInfo.defender.weaponData.hasOwnProperty("seal") && defAttacks) {
+			battleInfo = applySeal(battleInfo, battleInfo.defender.weaponData.seal, battleInfo.defender.weaponName, true);
+		}
+		if (battleInfo.defender.weaponData.hasOwnProperty("target_seal") && battleInfo.defender.weaponData.target_seal.target === battleInfo.attacker.moveType && defAttacks) {
+			battleInfo = applySeal(battleInfo, battleInfo.defender.weaponData.target_seal, battleInfo.defender.weaponName, true);
+		}
+		if (battleInfo.defender.passiveBData.hasOwnProperty("seal") && battleInfo.defender.currHP > 0) {
+			battleInfo = applySeal(battleInfo, battleInfo.defender.passiveBData.seal, battleInfo.defender.passiveB, true);
+		}
+	}
+	if (battleInfo.defender.currHP > 0) {
+		if (battleInfo.attacker.weaponData.hasOwnProperty("seal") && atkAttacks) {
+			battleInfo = applySeal(battleInfo, battleInfo.attacker.weaponData.seal, battleInfo.attacker.weaponName, false);
+		}
+		if (battleInfo.attacker.weaponData.hasOwnProperty("target_seal") && battleInfo.attacker.weaponData.target_seal.target === battleInfo.defender.moveType && atkAttacks) {
+			battleInfo = applySeal(battleInfo, battleInfo.attacker.weaponData.target_seal, battleInfo.attacker.weaponName, false);
+		}
+		if (battleInfo.attacker.passiveBData.hasOwnProperty("seal") && battleInfo.attacker.currHP > 0) {
+			battleInfo = applySeal(battleInfo, battleInfo.attacker.passiveBData.seal, battleInfo.attacker.passiveB, false);
+		}
+	}
+	
+	// status effect
+	if (battleInfo.defender.weaponData.hasOwnProperty("convert_penalties") && defAttacks && battleInfo.attacker.currHP > 0) {
+		battleInfo = convertPenalties(battleInfo, battleInfo.defender.weaponName, true);
+	} else if (battleInfo.attacker.status !== "Default" && battleInfo.attacker.currHP > 0) {
+		battleInfo.attacker.status = "Default";
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> " + " returns to default status.</li>";
+	}
+	
+	if (battleInfo.attacker.weaponData.hasOwnProperty("convert_penalties") && atkAttacks && battleInfo.defender.currHP > 0) {
+		battleInfo = convertPenalties(battleInfo, battleInfo.attacker.weaponName, false);
+	}
+	
+	// extra action
+	if (battleInfo.attacker.specialData.hasOwnProperty("extra_action") && battleInfo.attacker.specCurrCooldown <= 0 && battleInfo.attacker.currHP > 0) {
+		battleInfo.attacker.specCurrCooldown = getSpecialCooldown(battleInfo.attacker.specialData, battleInfo.attacker.weaponData, battleInfo.attacker.assistData);
+		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> is granted another action [" + battleInfo.attacker.special + "]. ";
+	}
 	
 	// display results
 	if (displayMsg) {
@@ -2362,16 +2542,66 @@ function simBattle(battleInfo, displayMsg) {
 		$("#interaction-list").children().last().removeClass("battle-interaction").addClass("battle-interaction-final");
 		
 		// victory message
-		if (battleInfo.attacker.currHP === 0) {
-			$("#result-msg").text("Defender is victorious!");
+		if (battleInfo.attacker.currHP <= 0) {
+			$("#result-msg").html("Defender is victorious! <span class='draw-update'>Press to update units.</span>");
 			$("#result-msg").css("color", "#e34262");
-		} else if (battleInfo.defender.currHP === 0) {
-			$("#result-msg").text("Attacker is victorious!");
+		} else if (battleInfo.defender.currHP <= 0) {
+			$("#result-msg").html("Attacker is victorious! <span class='draw-update'>Press to update units.</span>");
 			$("#result-msg").css("color", "deepskyblue");
 		} else {
-			$("#result-msg").text("Draw!");
+			$("#result-msg").html("Draw! <span class='draw-update'>Press to update units.</span>");
 			$("#result-msg").css("color", "white");
 		}
+		
+		// update button
+		$(".draw-update").on("click", function() {
+			var oldBA = simBattle(getBattleInfo(), false);
+
+			// update attacker
+			if (oldBA.attacker.currHP <= 0) {
+				$("#curr-hp-1").val(1);
+				$("#spec-cooldown-1").val(getSpecialCooldown(oldBA.attacker.specialData, oldBA.attacker.weaponData, oldBA.attacker.assistData));
+				$("#attack-panel .stat-bonus, #attack-panel .stat-penalty, #attack-panel .stat-spur").val(0);
+				$("#status-1").val("Default");
+				$("#terrain-1").val("Default");
+			} else {
+				$("#curr-hp-1").val(Math.max(oldBA.attacker.currHP, 1));
+				$("#spec-cooldown-1").val(Math.max(oldBA.attacker.specCurrCooldown, 0));
+				$("#atk-penalty-1").val(oldBA.attacker.atkPenalty);
+				$("#spd-penalty-1").val(oldBA.attacker.spdPenalty);
+				$("#def-penalty-1").val(oldBA.attacker.defPenalty);
+				$("#res-penalty-1").val(oldBA.attacker.resPenalty);
+				$("#atk-bonus-1").val(oldBA.attacker.atkBonus);
+				$("#spd-bonus-1").val(oldBA.attacker.spdBonus);
+				$("#def-bonus-1").val(oldBA.attacker.defBonus);
+				$("#res-bonus-1").val(oldBA.attacker.resBonus);
+				$("#status-1").val(oldBA.attacker.status);
+			}
+
+			// update defender
+			if (oldBA.defender.currHP <= 0) {
+				$("#curr-hp-2").val(1);
+				$("#spec-cooldown-2").val(getSpecialCooldown(oldBA.defender.specialData, oldBA.defender.weaponData, oldBA.defender.assistData));
+				$("#defend-panel .stat-bonus, #defend-panel .stat-penalty, #defend-panel .stat-spur").val(0);
+				$("#status-2").val("Default");
+				$("#terrain-2").val("Default");
+			} else {
+				$("#curr-hp-2").val(Math.max(oldBA.defender.currHP, 1));
+				$("#spec-cooldown-2").val(Math.max(oldBA.defender.specCurrCooldown, 0));
+				$("#atk-penalty-2").val(oldBA.defender.atkPenalty);
+				$("#spd-penalty-2").val(oldBA.defender.spdPenalty);
+				$("#def-penalty-2").val(oldBA.defender.defPenalty);
+				$("#res-penalty-2").val(oldBA.defender.resPenalty);
+				$("#atk-bonus-2").val(oldBA.defender.atkBonus);
+				$("#spd-bonus-2").val(oldBA.defender.spdBonus);
+				$("#def-bonus-2").val(oldBA.defender.defBonus);
+				$("#res-bonus-2").val(oldBA.defender.resBonus);
+				$("#status-2").val(oldBA.defender.status);
+			}
+
+			// sim battle again
+			simBattle(getBattleInfo(), true);
+		});
 
 		// display battle log
 		if (openLog) {
@@ -2521,6 +2751,8 @@ function swap() {
 	oldAtkInfo.resPenalty = $("#res-penalty-1").val();
 	oldAtkInfo.resSpur = $("#res-spur-1").val();
 	oldAtkInfo.currHP = $("#curr-hp-1").val();
+	oldAtkInfo.status = $("#status-1").val();
+	oldAtkInfo.terrain = $("#terrain-1").val();
 	
 	oldAtkInfo.rarityHTML = $("#rarity-1").html();
 	oldAtkInfo.rarity = $("#rarity-1").val();
@@ -2611,6 +2843,8 @@ function swap() {
 	$("#res-spur-1").val($("#res-spur-2").val());
 	$("#curr-hp-1").val($("#curr-hp-2").val());
 	$(".hp-1-read").text($("#hp-2").val().toString());
+	$("#status-1").val($("#status-2").val());
+	$("#terrain-1").val($("#terrain-2").val());
 	
 	$("#rarity-1").html($("#rarity-2").html());
 	$("#rarity-1").val($("#rarity-2").val());
@@ -2702,6 +2936,8 @@ function swap() {
 	$("#res-spur-2").val(oldAtkInfo.resSpur);
 	$("#curr-hp-2").val(oldAtkInfo.currHP);
 	$(".hp-2-read").text(oldAtkInfo.hp);
+	$("#status-2").val(oldAtkInfo.status);
+	$("#terrain-2").val(oldAtkInfo.terrain);
 	
 	$("#rarity-2").html(oldAtkInfo.rarityHTML);
 	$("#rarity-2").val(oldAtkInfo.rarity);
@@ -3190,6 +3426,10 @@ function applyOverrides(charNum) {
 		overrideHP = Math.max(overrideHP, 1);
 		$("#curr-hp-" + charNum).val(overrideHP);
 	}
+	
+	// override state
+	$("#status-" + charNum).val($("#override-status").val());
+	$("#terrain-" + charNum).val($("#override-terrain").val());
 }
 
 // calculates and prints info of every battle matchup for one character
@@ -3575,6 +3815,8 @@ function importTeam(attacker) {
 		importedChars[charCount].special = "None";
 		importedChars[charCount].specCooldown = "0";
 		importedChars[charCount].seal = "None";
+		importedChars[charCount].status = "Default";
+		importedChars[charCount].terrain = "Default";
 		
 		importedChars[charCount].hp = "1";
 		importedChars[charCount].currentHP = "1";
@@ -3708,7 +3950,6 @@ function importTeam(attacker) {
 				importedChars[charCount].def = defaultStats.def;
 				importedChars[charCount].res = defaultStats.res;
 			}
-			console.log(importedChars[charCount]);
 			break;
 		} else {
 			line = importText[textLine].split(/ *\/ */);
@@ -4043,7 +4284,7 @@ function exportSingle(attacker) {
 }
 
 // clears the selected team
-// attacker is true if we export the attacker team
+// attacker is true if we clear the attacker team
 function clearTeam(attacker) {
 	"use strict";
 	for (var index = 0; index < 5; index++) {
@@ -4287,6 +4528,46 @@ $(document).ready( function() {
 		updateDisplay();
 	});
 	
+	// hp reset
+	$(".curr-hp-label").on("click", function() {
+		var charNum = $(this).data("charnum").toString();
+		$("#curr-hp-" + charNum).val($("#hp-" + charNum).val());
+		charChange(charNum);
+		updateDisplay();
+	});
+	
+	// special cooldown reset
+	$(".spec-cooldown-label").on("click", function() {
+		var charNum = $(this).data("charnum").toString();
+		$("#spec-cooldown-" + charNum).val(getSpecialCooldown($("#special-" + charNum).data("info"), $("#weapon-" + charNum).data("info"), $("#assist-" + charNum).data("info")));
+		charChange(charNum);
+		updateDisplay();
+	});
+	
+	// stat bonus reset
+	$(".bonus-label").on("click", function() {
+		var charNum = $(this).data("charnum").toString();
+		$((charNum === "1" ? "#attack-panel" : "#defend-panel") + " .stat-bonus").val(0);
+		charChange(charNum);
+		updateDisplay();
+	});
+	
+	// stat penalty reset
+	$(".penalty-label").on("click", function() {
+		var charNum = $(this).data("charnum").toString();
+		$((charNum === "1" ? "#attack-panel" : "#defend-panel") + " .stat-penalty").val(0);
+		charChange(charNum);
+		updateDisplay();
+	});
+	
+	// stat bonus reset
+	$(".spur-label").on("click", function() {
+		var charNum = $(this).data("charnum").toString();
+		$((charNum === "1" ? "#attack-panel" : "#defend-panel") + " .stat-spur").val(0);
+		charChange(charNum);
+		updateDisplay();
+	});
+	
 	// setup other battle value changes
 	$(".battle-val").on("change", function() {
 		charChange($(this).data("charnum").toString());
@@ -4416,6 +4697,9 @@ $(document).ready( function() {
 		
 		$(".override-stat").val(0);
 		$("#override-curr-hp").val(100);
+		
+		$("#override-status").val("Default")
+		$("#override-terrain").val("Default")
 		
 		keepTable = false;
 		updateDisplay();

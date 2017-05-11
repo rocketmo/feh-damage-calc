@@ -74,6 +74,14 @@ label {
 	width: 6.5em;
 }
 
+.override-state label {
+	width: 5em;
+}
+
+#matchup-overrides .override-state select {
+	width: 7em;
+}
+
 .stat {
 	width: 3em;
 }
@@ -208,7 +216,7 @@ h3 {
 	color: #e34262;
 }
 
-.character-select, .weapon-select, .skill-select {
+.character-select, .weapon-select, .skill-select, .state-section {
 	line-height: 170%;
 }
 
@@ -245,7 +253,7 @@ h3 {
 	border-bottom: none;
 }
 
-.collapse-button:hover {
+.collapse-button:hover, .curr-hp-label:hover, .spec-cooldown-label:hover, .bonus-label:hover, .penalty-label:hover, .spur-label:hover {
 	cursor: pointer;
 	color: gold;
 }
@@ -281,6 +289,7 @@ h3 {
 	padding: 0.1em 0;
 	font-weight: bold;
 	font-size: 1.2em;
+	text-align: center;
 }
 
 .inherit {
@@ -566,6 +575,8 @@ h3 {
 	white-space: normal;
 	font-style: italic;
 	color: #5b5b5b;
+	text-align: center;
+	padding-top: 0.5em;
 }
 
 .weapon-icon {
@@ -635,4 +646,9 @@ h3 {
 	text-align: center;
 	white-space: normal;
 	max-width: 700px;
+}
+
+.draw-update:hover {
+	cursor: pointer;
+	color: gold;
 }
