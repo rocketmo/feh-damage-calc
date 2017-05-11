@@ -1923,7 +1923,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	// defense and resistance lowering special
 	if (attacker.specialData.hasOwnProperty("enemy_def_res_mod") && attacker.specCurrCooldown <= 0) {
 		defReduct -= roundNum(defReduct * attacker.specialData.enemy_def_res_mod, false);
-		battleInfo.logMsg += "Resolve combat as if opponent suffered " + (attacker.specialData.enemy_def_res_mod * 100).toString() + "% defense/resistance decrease [" + attacker.special + "]. ";
+		battleInfo.logMsg += "Resolve combat as if opponent suffered a " + (attacker.specialData.enemy_def_res_mod * 100).toString() + "% defense/resistance reduction [" + attacker.special + "]. ";
 		atkSpec = true;
 	}
 	
