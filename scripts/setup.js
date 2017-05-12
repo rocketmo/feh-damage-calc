@@ -3731,6 +3731,13 @@ function isValidLevel(str) {
 	return false;
 }
 
+// determines if the given string is a valid level, with no merge bonus
+function isValidLevelNoMerge(str) {
+	"use strict";
+	var substr = str.split(" ");
+	return (substr.length === 2 && substr[0] === "Lvl." && $.isNumeric(parseInt(substr[1])));
+}
+
 // given a number, represented as a string, return a valid level
 function getValidLvl(str) {
 	"use strict";
@@ -3909,6 +3916,9 @@ function importTeam(attacker) {
 						var levelParts = levelStr[1].split("+");
 						importedChars[charCount].level = getValidLvl(levelParts[0]);
 						importedChars[charCount].merge = getValidMerge(levelParts[1]);
+					} else if (isValidLevelNoMerge(line[2])) {
+						var levelOnlyStr = line[2].split(" ");
+						importedChars[charCount].level = getValidLvl(levelOnlyStr[1]);
 					} else {
 						$("#import-error-msg").text("Import error: Invalid level (line " + (textLine + 1).toString() + ")").show();
 						error = true;
@@ -3929,6 +3939,9 @@ function importTeam(attacker) {
 						var lvlParts = lvlStr[1].split("+");
 						importedChars[charCount].level = getValidLvl(lvlParts[0]);
 						importedChars[charCount].merge = getValidMerge(lvlParts[1]);
+					} else if (isValidLevelNoMerge(line[1])) {
+						var lvlOnlyStr = line[1].split(" ");
+						importedChars[charCount].level = getValidLvl(lvlOnlyStr[1]);
 					} else {
 						$("#import-error-msg").text("Import error: Invalid rarity or level (line " + (textLine + 1).toString() + ")").show();
 						error = true;
