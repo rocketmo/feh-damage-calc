@@ -4127,40 +4127,51 @@ function importTeam(attacker) {
 			}
 		}
 		
-		var slotsOverload = openSlots - importedChars.length;
-		var numImported = 0;
-		
-		// insert characters
-		for (slotIndex = 0; slotIndex < 5; slotIndex++) {
-			if ((slotsOverload < 0 || (!team[slotIndex].hasOwnProperty("character") && slotIndex !== selected) || defaultTeam) && numImported < importedChars.length) {
-				team[slotIndex] = importedChars[numImported];
-				getPortrait(tabName + slotIndex.toString(), (importedChars[numImported].character === "Custom" ? "Other" : importedChars[numImported].character));
-				
-				if (slotIndex === selected) {
-					if (attacker) {
-						attackerTeam[slotIndex] = importedChars[numImported];
-					} else {
-						defenderTeam[slotIndex] = importedChars[numImported];
-					}
-					getCharTabInfo(attacker);
-				} else {
-					$(tabName + slotIndex.toString()).removeClass("char-tab-unselected").addClass("char-tab");
-				}
-				
-				numImported += 1;
-				slotsOverload += 1;
+		if (openSlots === 0 && importedChars.length === 1) { // slots full, import single char into selected slot
+			if (attacker) {
+				attackerTeam[selected] = importedChars[0];
+			} else {
+				defenderTeam[selected] = importedChars[0];
 			}
 			
-			if (numImported >= importedChars.length) {
-				break;
-			}
-		}
-		
-		// store team
-		if (attacker) {
-			attackerTeam = team;
+			getPortrait(tabName + selected.toString(), (importedChars[0].character === "Custom" ? "Other" : importedChars[0].character));
+			getCharTabInfo(attacker);
 		} else {
-			defenderTeam = team;
+			var slotsOverload = openSlots - importedChars.length;
+			var numImported = 0;
+
+			// insert characters
+			for (slotIndex = 0; slotIndex < 5; slotIndex++) {
+				if ((slotsOverload < 0 || (!team[slotIndex].hasOwnProperty("character") && slotIndex !== selected) || defaultTeam) && numImported < importedChars.length) {
+					team[slotIndex] = importedChars[numImported];
+					getPortrait(tabName + slotIndex.toString(), (importedChars[numImported].character === "Custom" ? "Other" : importedChars[numImported].character));
+
+					if (slotIndex === selected) {
+						if (attacker) {
+							attackerTeam[slotIndex] = importedChars[numImported];
+						} else {
+							defenderTeam[slotIndex] = importedChars[numImported];
+						}
+						getCharTabInfo(attacker);
+					} else {
+						$(tabName + slotIndex.toString()).removeClass("char-tab-unselected").addClass("char-tab");
+					}
+
+					numImported += 1;
+					slotsOverload += 1;
+				}
+
+				if (numImported >= importedChars.length) {
+					break;
+				}
+			}
+			
+			// store team
+			if (attacker) {
+				attackerTeam = team;
+			} else {
+				defenderTeam = team;
+			}
 		}
 	}
 	
