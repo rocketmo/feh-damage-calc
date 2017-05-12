@@ -3847,7 +3847,7 @@ function importTeam(attacker) {
 		importedChars[charCount].resSpur = "0";
 		
 		// get other general info
-		if (!customUnit) {
+		if (!customUnit && charInfo[importedChars[charCount].character].hasOwnProperty("base_stat")) {
 			// get nature
 			line = line[1].split("]");
 
