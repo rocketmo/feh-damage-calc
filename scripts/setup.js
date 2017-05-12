@@ -4077,9 +4077,15 @@ function importTeam(attacker) {
 						if (skillInfo.c.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(skillInfo.c[line[1]], importedChars[charCount].character))) {
 							importedChars[charCount].passiveC = line[1];
 						} else {
-							$("#import-error-msg").text("Import error: Invalid passive C (line " + (textLine + 1).toString() + ")").show();
-							error = true;
-							break;
+							var expSkill = line[1].replace("Exp.", "Experience");
+							
+							if (skillInfo.c.hasOwnProperty(expSkill) && (importedChars[charCount].character === "Custom" || isInheritable(skillInfo.c[expSkill], importedChars[charCount].character))){
+								importedChars[charCount].passiveC = expSkill;
+							} else {
+								$("#import-error-msg").text("Import error: Invalid passive C (line " + (textLine + 1).toString() + ")").show();
+								error = true;
+								break;
+							}
 						}
 					} else { // seal
 						if (skillInfo.s.hasOwnProperty(line[1]) && (importedChars[charCount].character === "Custom" || isInheritable(skillInfo.s[line[1]], importedChars[charCount].character))) {
