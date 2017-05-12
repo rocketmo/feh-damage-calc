@@ -4213,7 +4213,7 @@ function exportCharPanel(charNum) {
 		}
 
 		exportText += parseInt($("#rarity-" + charNum).val()) !== 5 ? " -- " + $("#rarity-" + charNum).val().toString() + " Star(s)" : "";
-		exportText += parseInt($("#merge-" + charNum).val()) > 0 ? " -- Lvl. " + $("#level-" + charNum).val().toString() + "+" + $("#merge-" + charNum).val().toString(): "";
+		exportText += parseInt($("#merge-" + charNum).val()) > 0 || parseInt($("#level-" + charNum).val()) !== 40 ? " -- Lvl. " + $("#level-" + charNum).val().toString() + "+" + $("#merge-" + charNum).val().toString(): "";
 	}
 	
 	exportText += "\r\n";
