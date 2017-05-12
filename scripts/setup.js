@@ -3891,7 +3891,13 @@ function importTeam(attacker) {
 				if (line.length === 3) { // get rarity and level
 					if (isValidRarity(line[1])) {
 						var rarityStr = line[1].split(" ");
-						importedChars[charCount].rarity = rarityStr[0];
+						if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star-" + rarityStr[0])) {
+							importedChars[charCount].rarity = rarityStr[0];
+						} else {
+							$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
+							error = true;
+							break;
+						}
 					} else {
 						$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
 						error = true;
@@ -3911,7 +3917,13 @@ function importTeam(attacker) {
 				} else if (line.length === 2) { // get rarity or level
 					if (isValidRarity(line[1])) {
 						var rarStr = line[1].split(" ");
-						importedChars[charCount].rarity = rarStr[0];
+						if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star-" + rarStr[0])) {
+							importedChars[charCount].rarity = rarStr[0];
+						} else {
+							$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
+							error = true;
+							break;
+						}
 					} else if (isValidLevel(line[1])) {
 						var lvlStr = line[1].split(" ");
 						var lvlParts = lvlStr[1].split("+");
