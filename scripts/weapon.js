@@ -1564,8 +1564,8 @@ var weaponInfo =
 		"magical" : true,
 		"description" : "Unit counter-attacks first when attacked at HP ≤ 50%.",
 		"vantage" : {
-            "threshold" : 0.5
-        },
+		    "threshold" : 0.5
+		},
 		"char_unique" : true
 	},
 	"Wind" : {

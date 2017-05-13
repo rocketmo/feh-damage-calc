@@ -45,14 +45,14 @@ var skillInfo =
             "description" : "Grants Atk/Def+1.",
             "stat_mod" : {
                 "atk" : 1,
-				"def" : 1
+                "def" : 1
             }
         },
         "Attack/Def +2" : {
             "description" : "Grants Atk/Def+2.",
             "stat_mod" : {
                 "atk" : 2,
-				"def" : 2
+                "def" : 2
             }
         },
         "Close Counter" : {
@@ -279,7 +279,7 @@ var skillInfo =
             "description" : "If unit's Atk - foe's Atk ≥ 5, unit gains Special cooldown charge +1 per attack.",
             "spec_accel" : {
                 "stat" : "atk",
-				"adv" : 5
+                "adv" : 5
             },
             "weapon_restrict" : "Staff"
         },
@@ -287,7 +287,7 @@ var skillInfo =
             "description" : "If unit's Atk - foe's Atk ≥ 3, unit gains Special cooldown charge +1 per attack.",
             "spec_accel" : {
                 "stat" : "atk",
-				"adv" : 3
+                "adv" : 3
             },
             "weapon_restrict" : "Staff"
         },
@@ -295,7 +295,7 @@ var skillInfo =
             "description" : "If unit's Atk - foe's Atk ≥ 1, unit gains Special cooldown charge +1 per attack.",
             "spec_accel" : {
                 "stat" : "atk",
-				"adv" : 1
+                "adv" : 1
             },
             "weapon_restrict" : "Staff"
         },
@@ -578,7 +578,7 @@ var skillInfo =
         },
         "Drag Back" : {
             "description" : "If unit initiates attack, unit moves 1 space away after combat. Foe moves into unit's previous space.",
-			"range_unique" : 1
+            "range_unique" : 1
         },
         "Escape Route 1" : {
             "description" : "Enables unit with HP ≤ 30% to warp adjacent to any ally."
