@@ -197,6 +197,25 @@ var skillInfo =
             "counter" : true,
             "range_unique" : 1
         },
+        "Distant Def 3" : {
+            "description" : "If unit is attacked by foe using bow, dagger, magic or staff, unit receives Def/Res+6 during combat.",
+            "type_defend_mod" : {
+                "weapon_type" : {"Bow": true, "Dagger": true, "Staff": true, "Blue Tome": true, "Green Tome": true, "Red Tome": true},
+                "mod" : {
+                    "def" : 6,
+                    "res" : 6
+                }
+            }
+        },
+        "Earth Boost 3" : {
+            "description" : "If unit has at least 3 more HP than enemy at start of combat, unit receives Def+6 during combat.",
+            "hp_adv_mod" : {
+                "mod" : {
+                    "def": 6
+                },
+                "hp_adv": 3
+            }
+        },
         "Fortress Def 1" : {
             "description" : "Grants Def+3. Inflicts Atk-3.",
             "stat_mod" : {
@@ -965,6 +984,11 @@ var skillInfo =
         },
         "Wings of Mercy 3" : {
             "description" : "Enables unit to warp adjacent to any ally with HP ≤ 50%."
+        },
+        "Wrathful Staff 3" : {
+            "description" : "Damage from unit's staff will be calculated the same as other weapons.",
+            "reg_weapon_dmg" : true,
+            "weapon_unique" : "Staff"
         }
     },
     "c" : {
@@ -979,6 +1003,18 @@ var skillInfo =
         "Axe Experience 3" : {
             "description" : "If unit survives, all axe users on team get 2x EXP.",
             "weapon_unique" : "Axe"
+        },
+        "B Tome Experience 1" : {
+            "description" : "If unit survives, unit gets 1.5x EXP.",
+            "weapon_unique" : "Blue Tome"
+        },
+        "B Tome Experience 2" : {
+            "description" : "If unit survives, all blue tome users on team get 1.5x EXP.",
+            "weapon_unique" : "Blue Tome"
+        },
+        "B Tome Experience 3" : {
+            "description" : "If unit survives, all blue tome users on team get 2x EXP.",
+            "weapon_unique" : "Blue Tome"
         },
         "Bow Experience 1" : {
             "description" : "If unit survives, unit gets 1.5x EXP.",

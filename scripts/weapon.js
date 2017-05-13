@@ -113,6 +113,15 @@ var weaponInfo =
 		"spec_cooldown_mod" : 1,
 		"add_bonus" : true
 	},
+	"Blárowl+" : {
+		"color"   : "Blue",
+		"type"    : "Blue Tome",
+		"might"   : 10,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "During combat, unit's Atk/Spd/Def/Res boosted by number of adjacent allies × 2.",
+		"adjacent_ally_bonus" : true
+	},
 	"Blárraven" : {
 		"color"   : "Blue",
 		"type"    : "Blue Tome",
@@ -733,6 +742,15 @@ var weaponInfo =
 		"spec_cooldown_mod" : 1,
 		"add_bonus" : true
 	},
+	"Gronnowl+" : {
+		"color"   : "Green",
+		"type"    : "Green Tome",
+		"might"   : 10,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "During combat, unit's Atk/Spd/Def/Res boosted by number of adjacent allies × 2.",
+		"adjacent_ally_bonus" : true
+	},
 	"Gronnraven" : {
 		"color"   : "Green",
 		"type"    : "Green Tome",
@@ -1130,6 +1148,19 @@ var weaponInfo =
 			"def" : -6,
 			"res" : -6
 		}
+	},
+	"Ragnarok" : {
+		"color"   : "Red",
+		"type"    : "Red Tome",
+		"might"   : 14,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "If unit has 100% HP at the start of combat, unit receives Atk/Spd+5. If attacking, unit will receive 5 damage after combat.",
+		"full_hp_mod" : {
+			"atk" : 5,
+			"spd" : 5
+		},
+		"attack_recoil_dmg" : 5
 	},
 	"Ragnell" : {
 		"color"   : "Red",
