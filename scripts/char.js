@@ -198,6 +198,20 @@ var charInfo =
 			"star-4" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 1}
 		}
 	},
+	"Boey": {
+		"color" : "Green",
+		"weapon_type" : "Green Tome",
+		"hp": 1,
+		"atk": 0,
+		"spd": 0,
+		"def": 0,
+		"res": 0,
+		"move_type": "Infantry",
+		"weapon": ["Gronnowl+"],
+		"special": ["Ignis", "Glowing Ember"],
+		"passive_a": ["Earth Boost 3"],
+		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"]
+	},
 	"Cain": {
 		"color" : "Red",
 		"weapon_type" : "Sword",
@@ -298,6 +312,20 @@ var charInfo =
 			"star-2" : {"weapon" : 2, "assist" : -1, "passive_a" : -1, "passive_b" : 1},
 			"star-1" : {"weapon" : 3, "assist" : -1, "passive_a" : -1, "passive_b" : 2}
 		}
+	},
+	"Celica": {
+		"color" : "Red",
+		"weapon_type" : "Red Tome",
+		"hp": 1,
+		"atk": 0,
+		"spd": 0,
+		"def": 0,
+		"res": 0,
+		"move_type": "Infantry",
+		"weapon": ["Ragnarok"],
+		"special": ["Blazing Light", "Rising Light"],
+		"passive_a": ["Distant Def 3"],
+		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"]
 	},
 	"Cherche": {
 		"color" : "Green",
@@ -722,6 +750,20 @@ var charInfo =
 			"star-4" : {"weapon" : 1, "passive_a" : 1, "passive_b" : 0},
 			"star-3" : {"weapon" : 1, "passive_a" : 2, "passive_b" : 1}
 		}
+	},
+	"Genny": {
+		"color" : "Colorless",
+		"weapon_type" : "Staff",
+		"hp": 1,
+		"atk": 0,
+		"spd": 0,
+		"def": 0,
+		"res": 0,
+		"move_type": "Infantry",
+		"weapon": ["Gravity", "Assault"],
+		"special": ["Heavenly Light", "Imbue"],
+		"passive_b": ["Wrathful Staff 3"],
+		"assist" : ["Physic", "Mend", "Heal"]
 	},
 	"Gordin": {
 		"color" : "Colorless",
@@ -1220,6 +1262,20 @@ var charInfo =
 			"star-5" : {"hp" : 18, "atk" : 6, "spd" : 11, "def" : 7, "res" : 5},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 8, "def" : 5, "res" : 7}
 		}
+	},
+	"Mae": {
+		"color" : "Blue",
+		"weapon_type" : "Blue Tome",
+		"hp": 1,
+		"atk": 0,
+		"spd": 0,
+		"def": 0,
+		"res": 0,
+		"move_type": "Infantry",
+		"weapon": ["Blárowl+"],
+		"passive_b": ["Desperation 3", "Desperation 2", "Desperation 1"],
+		"passive_c": ["B Tome Experience 3", "B Tome Experience 2", "B Tome Experience 1"],
+		"assist" : ["Draw Back"]
 	},
 	"Maria": {
 		"color" : "Colorless",
