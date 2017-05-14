@@ -10,12 +10,12 @@ var charInfo =
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
 		"passive_b": ["Swordbreaker 3", "Swordbreaker 2", "Swordbreaker 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 8, "res" : 6},
-			"star-4" : {"hp" : 16, "atk" : 6, "spd" : 8, "def" : 8, "res" : 5},
+			"star_5" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 8, "res" : 6},
+			"star_4" : {"hp" : 16, "atk" : 6, "spd" : 8, "def" : 8, "res" : 5},
 			"growth" : {"hp" : 6, "atk" : 8, "spd" : 7, "def" : 4, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1}
 		}
 	},
 	"Alfonse": {
@@ -27,16 +27,16 @@ var charInfo =
 		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 9, "spd" : 6, "def" : 8, "res" : 5},
-			"star-4" : {"hp" : 18, "atk" : 9, "spd" : 5, "def" : 8, "res" : 4},
-			"star-3" : {"hp" : 18, "atk" : 8, "spd" : 5, "def" : 7, "res" : 4},
-			"star-2" : {"hp" : 17, "atk" : 8, "spd" : 4, "def" : 7, "res" : 3},
+			"star_5" : {"hp" : 19, "atk" : 9, "spd" : 6, "def" : 8, "res" : 5},
+			"star_4" : {"hp" : 18, "atk" : 9, "spd" : 5, "def" : 8, "res" : 4},
+			"star_3" : {"hp" : 18, "atk" : 8, "spd" : 5, "def" : 7, "res" : 4},
+			"star_2" : {"hp" : 17, "atk" : 8, "spd" : 4, "def" : 7, "res" : 3},
 			"growth" : {"hp" : 7, "atk" : 8, "spd" : 5, "def" : 7, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 0, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 1, "passive_c" : 2},
-			"star-2" : {"weapon" : 2, "special" : 1, "passive_a" : 1, "passive_c" : -1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 0, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 1, "passive_c" : 2},
+			"star_2" : {"weapon" : 2, "special" : 1, "passive_a" : 1, "passive_c" : -1}
 		}
 	},
 	"Alm": {
@@ -48,7 +48,7 @@ var charInfo =
 		"passive_a": ["Attack +3", "Attack +2", "Attack +1"],
 		"passive_b": ["Windsweep 3", "Windsweep 2", "Windsweep 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 21, "atk" : 9, "spd" : 6, "def" : 6, "res" : 5},
+			"star_5" : {"hp" : 21, "atk" : 9, "spd" : 6, "def" : 6, "res" : 5},
 			"growth" : {"hp" : 7, "atk" : 7, "spd" : 7, "def" : 6, "res" : 4}
 		}
 	},
@@ -61,16 +61,16 @@ var charInfo =
 		"passive_b": ["Vantage 3", "Vantage 2", "Vantage 1"],
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 7, "spd" : 10, "def" : 5, "res" : 6},
-			"star-4" : {"hp" : 18, "atk" : 7, "spd" : 10, "def" : 4, "res" : 5},
-			"star-3" : {"hp" : 18, "atk" : 6, "spd" : 9, "def" : 4, "res" : 5},
-			"star-2" : {"hp" : 17, "atk" : 6, "spd" : 9, "def" : 3, "res" : 4},
+			"star_5" : {"hp" : 19, "atk" : 7, "spd" : 10, "def" : 5, "res" : 6},
+			"star_4" : {"hp" : 18, "atk" : 7, "spd" : 10, "def" : 4, "res" : 5},
+			"star_3" : {"hp" : 18, "atk" : 6, "spd" : 9, "def" : 4, "res" : 5},
+			"star_2" : {"hp" : 17, "atk" : 6, "spd" : 9, "def" : 3, "res" : 4},
 			"growth" : {"hp" : 6, "atk" : 6, "spd" : 9, "def" : 4, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 2, "passive_c" : 1},
-			"star-2" : {"weapon" : 2, "special" : 1, "passive_b" : -1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_b" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_b" : 2, "passive_c" : 1},
+			"star_2" : {"weapon" : 2, "special" : 1, "passive_b" : -1, "passive_c" : 1}
 		}
 	},
 	"Arthur": {
@@ -82,14 +82,14 @@ var charInfo =
 		"passive_b": ["Lancebreaker 3", "Lancebreaker 2", "Lancebreaker 1"],
 		"assist" : ["Swap"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 7, "def" : 8, "res" : 5},
-			"star-4" : {"hp" : 18, "atk" : 8, "spd" : 6, "def" : 8, "res" : 4},
-			"star-3" : {"hp" : 18, "atk" : 7, "spd" : 6, "def" : 7, "res" : 4},
+			"star_5" : {"hp" : 19, "atk" : 8, "spd" : 7, "def" : 8, "res" : 5},
+			"star_4" : {"hp" : 18, "atk" : 8, "spd" : 6, "def" : 8, "res" : 4},
+			"star_3" : {"hp" : 18, "atk" : 7, "spd" : 6, "def" : 7, "res" : 4},
 			"growth" : {"hp" : 7, "atk" : 7, "spd" : 6, "def" : 6, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "assist" : 0, "passive_a" : 0, "passive_b" : 1},
-			"star-3" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 2}
+			"star_4" : {"weapon" : 1, "assist" : 0, "passive_a" : 0, "passive_b" : 1},
+			"star_3" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 2}
 		}
 	},
 	"Azama": {
@@ -101,14 +101,14 @@ var charInfo =
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
 		"assist" : ["Martyr", "Reconcile", "Heal"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 4, "spd" : 7, "def" : 8, "res" : 6},
-			"star-4" : {"hp" : 18, "atk" : 3, "spd" : 7, "def" : 8, "res" : 5},
-			"star-3" : {"hp" : 18, "atk" : 3, "spd" : 6, "def" : 7, "res" : 5},
+			"star_5" : {"hp" : 19, "atk" : 4, "spd" : 7, "def" : 8, "res" : 6},
+			"star_4" : {"hp" : 18, "atk" : 3, "spd" : 7, "def" : 8, "res" : 5},
+			"star_3" : {"hp" : 18, "atk" : 3, "spd" : 6, "def" : 7, "res" : 5},
 			"growth" : {"hp" : 7, "atk" : 4, "spd" : 5, "def" : 7, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"assist" : 0, "passive_c" : 1},
-			"star-3" : {"assist" : 1, "passive_c" : 2}
+			"star_4" : {"assist" : 0, "passive_c" : 1},
+			"star_3" : {"assist" : 1, "passive_c" : 2}
 		}
 	},
 	"Azura": {
@@ -120,7 +120,7 @@ var charInfo =
 		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
 		"assist" : ["Sing"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 5, "spd" : 7, "def" : 4, "res" : 6},
+			"star_5" : {"hp" : 17, "atk" : 5, "spd" : 7, "def" : 4, "res" : 6},
 			"growth" : {"hp" : 5, "atk" : 8, "spd" : 8, "def" : 4, "res" : 6}
 		}
 	},
@@ -133,14 +133,14 @@ var charInfo =
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"],
 		"assist" : ["Reposition"],
 		"base_stat" : {
-			"star-5" : {"hp" : 20, "atk" : 9, "spd" : 8, "def" : 6, "res" : 4},
-			"star-4" : {"hp" : 19, "atk" : 9, "spd" : 8, "def" : 5, "res" : 3},
-			"star-3" : {"hp" : 19, "atk" : 8, "spd" : 7, "def" : 5, "res" : 3},
+			"star_5" : {"hp" : 20, "atk" : 9, "spd" : 8, "def" : 6, "res" : 4},
+			"star_4" : {"hp" : 19, "atk" : 9, "spd" : 8, "def" : 5, "res" : 3},
+			"star_3" : {"hp" : 19, "atk" : 8, "spd" : 7, "def" : 5, "res" : 3},
 			"growth" : {"hp" : 8, "atk" : 7, "spd" : 7, "def" : 7, "res" : 2}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "passive_c" : 1}
 		}
 	},
 	"Bartre": {
@@ -152,14 +152,14 @@ var charInfo =
 		"passive_b": ["Brash Assault 3", "Brash Assault 2", "Brash Assault 1"],
 		"assist" : ["Smite"],
 		"base_stat" : {
-			"star-5" : {"hp" : 21, "atk" : 10, "spd" : 6, "def" : 7, "res" : 3},
-			"star-4" : {"hp" : 20, "atk" : 10, "spd" : 5, "def" : 7, "res" : 2},
-			"star-3" : {"hp" : 20, "atk" : 9, "spd" : 5, "def" : 6, "res" : 2},
+			"star_5" : {"hp" : 21, "atk" : 10, "spd" : 6, "def" : 7, "res" : 3},
+			"star_4" : {"hp" : 20, "atk" : 10, "spd" : 5, "def" : 7, "res" : 2},
+			"star_3" : {"hp" : 20, "atk" : 9, "spd" : 5, "def" : 6, "res" : 2},
 			"growth" : {"hp" : 9, "atk" : 8, "spd" : 5, "def" : 8, "res" : 1}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1, "passive_b" : 0},
-			"star-3" : {"weapon" : 1, "passive_a" : 2, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1, "passive_b" : 0},
+			"star_3" : {"weapon" : 1, "passive_a" : 2, "passive_b" : 1}
 		}
 	},
 	"Beruka": {
@@ -171,14 +171,14 @@ var charInfo =
 		"passive_a": ["Defiant Def 3", "Defiant Def 2", "Defiant Def 1"],
 		"passive_b": ["Lunge"],
 		"base_stat" : {
-			"star-5" : {"hp" : 20, "atk" : 7, "spd" : 6, "def" : 9, "res" : 5},
-			"star-4" : {"hp" : 19, "atk" : 7, "spd" : 5, "def" : 9, "res" : 4},
-			"star-3" : {"hp" : 19, "atk" : 6, "spd" : 5, "def" : 8, "res" : 4},
+			"star_5" : {"hp" : 20, "atk" : 7, "spd" : 6, "def" : 9, "res" : 5},
+			"star_4" : {"hp" : 19, "atk" : 7, "spd" : 5, "def" : 9, "res" : 4},
+			"star_3" : {"hp" : 19, "atk" : 6, "spd" : 5, "def" : 8, "res" : 4},
 			"growth" : {"hp" : 8, "atk" : 6, "spd" : 4, "def" : 9, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 1}
 		}
 	},
 	"Caeda": {
@@ -190,12 +190,12 @@ var charInfo =
 		"passive_c": ["Fortify Fliers", "Fortify Res 2", "Fortify Res 1"],
 		"assist" : ["Rally Speed"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 6, "spd" : 9, "def" : 5, "res" : 10},
-			"star-4" : {"hp" : 16, "atk" : 5, "spd" : 9, "def" : 4, "res" : 10},
+			"star_5" : {"hp" : 17, "atk" : 6, "spd" : 9, "def" : 5, "res" : 10},
+			"star_4" : {"hp" : 16, "atk" : 5, "spd" : 9, "def" : 4, "res" : 10},
 			"growth" : {"hp" : 5, "atk" : 5, "spd" : 9, "def" : 5, "res" : 7}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 1}
 		}
 	},
 	"Boey": {
@@ -221,12 +221,12 @@ var charInfo =
 		"passive_b": ["Wings of Mercy 3", "Wings of Mercy 2", "Wings of Mercy 1"],
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 8, "spd" : 6, "def" : 8, "res" : 6},
-			"star-4" : {"hp" : 17, "atk" : 8, "spd" : 5, "def" : 8, "res" : 5},
+			"star_5" : {"hp" : 18, "atk" : 8, "spd" : 6, "def" : 8, "res" : 6},
+			"star_4" : {"hp" : 17, "atk" : 8, "spd" : 5, "def" : 8, "res" : 5},
 			"growth" : {"hp" : 7, "atk" : 7, "spd" : 8, "def" : 5, "res" : 3}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "passive_c" : 1}
 		}
 	},
 	"Camilla": {
@@ -238,12 +238,12 @@ var charInfo =
 		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
 		"passive_c": ["Savage Blow 3", "Savage Blow 2", "Savage Blow 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 8, "spd" : 8, "def" : 6, "res" : 7},
-			"star-4" : {"hp" : 17, "atk" : 8, "spd" : 8, "def" : 5, "res" : 6},
+			"star_5" : {"hp" : 18, "atk" : 8, "spd" : 8, "def" : 6, "res" : 7},
+			"star_4" : {"hp" : 17, "atk" : 8, "spd" : 8, "def" : 5, "res" : 6},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 7, "def" : 6, "res" : 7}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1}
 		}
 	},
 	"Camilla (Spring)": {
@@ -255,7 +255,7 @@ var charInfo =
 		"passive_b": ["Live for Bounty"],
 		"assist" : ["Rally Attack"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 9, "spd" : 6, "def" : 8, "res" : 4},
+			"star_5" : {"hp" : 17, "atk" : 9, "spd" : 6, "def" : 8, "res" : 4},
 			"growth" : {"hp" : 6, "atk" : 8, "spd" : 5, "def" : 6, "res" : 3}
 		}
 	},
@@ -282,12 +282,12 @@ var charInfo =
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
 		"passive_b": ["Seal Atk 3", "Seal Atk 2", "Seal Atk 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 10, "def" : 7, "res" : 6},
-			"star-4" : {"hp" : 16, "atk" : 7, "spd" : 10, "def" : 6, "res" : 5},
+			"star_5" : {"hp" : 17, "atk" : 7, "spd" : 10, "def" : 7, "res" : 6},
+			"star_4" : {"hp" : 16, "atk" : 7, "spd" : 10, "def" : 6, "res" : 5},
 			"growth" : {"hp" : 6, "atk" : 7, "spd" : 7, "def" : 6, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "passive_b" : 1}
 		}
 	},
 	"Cecilia": {
@@ -299,18 +299,18 @@ var charInfo =
 		"passive_b": ["Escape Route 3", "Escape Route 2", "Escape Route 1"],
 		"assist" : ["Rally Resistance"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 8, "spd" : 6, "def" : 5, "res" : 7},
-			"star-4" : {"hp" : 16, "atk" : 8, "spd" : 5, "def" : 4, "res" : 7},
-			"star-3" : {"hp" : 16, "atk" : 7, "spd" : 5, "def" : 4, "res" : 6},
-			"star-2" : {"hp" : 15, "atk" : 7, "spd" : 4, "def" : 3, "res" : 6},
-			"star-1" : {"hp" : 15, "atk" : 6, "spd" : 4, "def" : 3, "res" : 5},
+			"star_5" : {"hp" : 17, "atk" : 8, "spd" : 6, "def" : 5, "res" : 7},
+			"star_4" : {"hp" : 16, "atk" : 8, "spd" : 5, "def" : 4, "res" : 7},
+			"star_3" : {"hp" : 16, "atk" : 7, "spd" : 5, "def" : 4, "res" : 6},
+			"star_2" : {"hp" : 15, "atk" : 7, "spd" : 4, "def" : 3, "res" : 6},
+			"star_1" : {"hp" : 15, "atk" : 6, "spd" : 4, "def" : 3, "res" : 5},
 			"growth" : {"hp" : 5, "atk" : 7, "spd" : 5, "def" : 4, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 0},
-			"star-3" : {"weapon" : 1, "assist" : 0, "passive_a" : 2, "passive_b" : 1},
-			"star-2" : {"weapon" : 2, "assist" : -1, "passive_a" : -1, "passive_b" : 1},
-			"star-1" : {"weapon" : 3, "assist" : -1, "passive_a" : -1, "passive_b" : 2}
+			"star_4" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 0},
+			"star_3" : {"weapon" : 1, "assist" : 0, "passive_a" : 2, "passive_b" : 1},
+			"star_2" : {"weapon" : 2, "assist" : -1, "passive_a" : -1, "passive_b" : 1},
+			"star_1" : {"weapon" : 3, "assist" : -1, "passive_a" : -1, "passive_b" : 2}
 		}
 	},
 	"Celica": {
@@ -336,14 +336,14 @@ var charInfo =
 		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
 		"assist" : ["Pivot"],
 		"base_stat" : {
-			"star-5" : {"hp" : 20, "atk" : 10, "spd" : 6, "def" : 8, "res" : 3},
-			"star-4" : {"hp" : 19, "atk" : 10, "spd" : 5, "def" : 8, "res" : 2},
-			"star-3" : {"hp" : 19, "atk" : 9, "spd" : 5, "def" : 7, "res" : 2},
+			"star_5" : {"hp" : 20, "atk" : 10, "spd" : 6, "def" : 8, "res" : 3},
+			"star_4" : {"hp" : 19, "atk" : 10, "spd" : 5, "def" : 8, "res" : 2},
+			"star_3" : {"hp" : 19, "atk" : 9, "spd" : 5, "def" : 7, "res" : 2},
 			"growth" : {"hp" : 8, "atk" : 9, "spd" : 5, "def" : 7, "res" : 2}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 0, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "passive_a" : 0, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 2}
 		}
 	},
 	"Chrom": {
@@ -355,12 +355,12 @@ var charInfo =
 		"passive_a": ["Defiant Def 3", "Defiant Def 2", "Defiant Def 1"],
 		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 21, "atk" : 9, "spd" : 6, "def" : 7, "res" : 4},
-			"star-4" : {"hp" : 20, "atk" : 9, "spd" : 5, "def" : 7, "res" : 3},
+			"star_5" : {"hp" : 21, "atk" : 9, "spd" : 6, "def" : 7, "res" : 4},
+			"star_4" : {"hp" : 20, "atk" : 9, "spd" : 5, "def" : 7, "res" : 3},
 			"growth" : {"hp" : 8, "atk" : 9, "spd" : 5, "def" : 7, "res" : 2}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 1, "passive_c" : 1}
 		}
 	},
 	"Chrom (Spring)": {
@@ -372,7 +372,7 @@ var charInfo =
 		"passive_c": ["Axe Experience 3", "Axe Experience 2", "Axe Experience 1"],
 		"assist" : ["Shove"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 9, "spd" : 8, "def" : 6, "res" : 5},
+			"star_5" : {"hp" : 19, "atk" : 9, "spd" : 8, "def" : 6, "res" : 5},
 			"growth" : {"hp" : 7, "atk" : 8, "spd" : 7, "def" : 6, "res" : 3}
 		}
 	},
@@ -385,12 +385,12 @@ var charInfo =
 		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
 		"assist" : ["Harsh Command"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 5, "res" : 9},
-			"star-4" : {"hp" : 17, "atk" : 6, "spd" : 8, "def" : 4, "res" : 9},
+			"star_5" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 5, "res" : 9},
+			"star_4" : {"hp" : 17, "atk" : 6, "spd" : 8, "def" : 4, "res" : 9},
 			"growth" : {"hp" : 5, "atk" : 5, "spd" : 9, "def" : 5, "res" : 7}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "passive_c" : 1}
 		}
 	},
 	"Clarine": {
@@ -402,14 +402,14 @@ var charInfo =
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
 		"assist" : ["Martyr", "Reconcile", "Heal"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 6, "spd" : 9, "def" : 5, "res" : 7},
-			"star-4" : {"hp" : 15, "atk" : 5, "spd" : 9, "def" : 4, "res" : 7},
-			"star-3" : {"hp" : 15, "atk" : 5, "spd" : 8, "def" : 4, "res" : 6},
+			"star_5" : {"hp" : 16, "atk" : 6, "spd" : 9, "def" : 5, "res" : 7},
+			"star_4" : {"hp" : 15, "atk" : 5, "spd" : 9, "def" : 4, "res" : 7},
+			"star_3" : {"hp" : 15, "atk" : 5, "spd" : 8, "def" : 4, "res" : 6},
 			"growth" : {"hp" : 5, "atk" : 5, "spd" : 7, "def" : 4, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"assist" : 0, "passive_a" : 1},
-			"star-3" : {"assist" : 1, "passive_a" : 2}
+			"star_4" : {"assist" : 0, "passive_a" : 1},
+			"star_3" : {"assist" : 1, "passive_a" : 2}
 		}
 	},
 	"Cordelia": {
@@ -421,12 +421,12 @@ var charInfo =
 		"passive_a": ["Triangle Adept 3", "Triangle Adept 2", "Triangle Adept 1"],
 		"passive_b": ["Pass 3", "Pass 2", "Pass 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 9, "spd" : 9, "def" : 5, "res" : 6},
-			"star-4" : {"hp" : 17, "atk" : 9, "spd" : 9, "def" : 4, "res" : 5},
+			"star_5" : {"hp" : 18, "atk" : 9, "spd" : 9, "def" : 5, "res" : 6},
+			"star_4" : {"hp" : 17, "atk" : 9, "spd" : 9, "def" : 4, "res" : 5},
 			"growth" : {"hp" : 6, "atk" : 8, "spd" : 8, "def" : 4, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 1, "passive_a" : 1}
+			"star_4" : {"weapon" : 1, "special" : 1, "passive_a" : 1}
 		}
 	},
 	"Corrin (F)": {
@@ -438,14 +438,14 @@ var charInfo =
 		"passive_b": ["Seal Res 3", "Seal Res 2", "Seal Res 1"],
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 6, "def" : 8, "res" : 6},
-			"star-4" : {"hp" : 18, "atk" : 8, "spd" : 5, "def" : 8, "res" : 5},
-			"star-3" : {"hp" : 18, "atk" : 7, "spd" : 5, "def" : 7, "res" : 5},
+			"star_5" : {"hp" : 19, "atk" : 8, "spd" : 6, "def" : 8, "res" : 6},
+			"star_4" : {"hp" : 18, "atk" : 8, "spd" : 5, "def" : 8, "res" : 5},
+			"star_3" : {"hp" : 18, "atk" : 7, "spd" : 5, "def" : 7, "res" : 5},
 			"growth" : {"hp" : 6, "atk" : 5, "spd" : 9, "def" : 8, "res" : 3}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 2, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_b" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_b" : 2, "passive_c" : 1}
 		}
 	},
 	"Corrin (M)": {
@@ -457,12 +457,12 @@ var charInfo =
 		"passive_a": ["Defense +3", "Defense +2", "Defense +1"],
 		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 20, "atk" : 8, "spd" : 8, "def" : 6, "res" : 5},
-			"star-4" : {"hp" : 19, "atk" : 8, "spd" : 8, "def" : 5, "res" : 4},
+			"star_5" : {"hp" : 20, "atk" : 8, "spd" : 8, "def" : 6, "res" : 5},
+			"star_4" : {"hp" : 19, "atk" : 8, "spd" : 8, "def" : 5, "res" : 4},
 			"growth" : {"hp" : 6, "atk" : 7, "spd" : 7, "def" : 6, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "passive_b" : 1}
 		}
 	},
 	"Custom": {	
@@ -476,18 +476,18 @@ var charInfo =
 		"passive_b": ["Drag Back"],
 		"assist" : ["Reciprocal Aid"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 5, "def" : 6, "res" : 4},
-			"star-4" : {"hp" : 16, "atk" : 7, "spd" : 4, "def" : 6, "res" : 3},
-			"star-3" : {"hp" : 16, "atk" : 6, "spd" : 4, "def" : 5, "res" : 3},
-			"star-2" : {"hp" : 15, "atk" : 6, "spd" : 3, "def" : 5, "res" : 2},
-			"star-1" : {"hp" : 15, "atk" : 5, "spd" : 3, "def" : 4, "res" : 2},
+			"star_5" : {"hp" : 17, "atk" : 7, "spd" : 5, "def" : 6, "res" : 4},
+			"star_4" : {"hp" : 16, "atk" : 7, "spd" : 4, "def" : 6, "res" : 3},
+			"star_3" : {"hp" : 16, "atk" : 6, "spd" : 4, "def" : 5, "res" : 3},
+			"star_2" : {"hp" : 15, "atk" : 6, "spd" : 3, "def" : 5, "res" : 2},
+			"star_1" : {"hp" : 15, "atk" : 5, "spd" : 3, "def" : 4, "res" : 2},
 			"growth" : {"hp" : 8, "atk" : 9, "spd" : 7, "def" : 8, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "assist" : 0, "passive_a" : 0, "passive_b" : 0},
-			"star-3" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 0},
-			"star-2" : {"weapon" : 2, "assist" : -1, "passive_a" : 1, "passive_b" : -1},
-			"star-1" : {"weapon" : 3, "assist" : -1, "passive_a" : 2, "passive_b" : -1}
+			"star_4" : {"weapon" : 1, "assist" : 0, "passive_a" : 0, "passive_b" : 0},
+			"star_3" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 0},
+			"star_2" : {"weapon" : 2, "assist" : -1, "passive_a" : 1, "passive_b" : -1},
+			"star_1" : {"weapon" : 3, "assist" : -1, "passive_a" : 2, "passive_b" : -1}
 		}
 	},
 	"Draug": {
@@ -499,16 +499,16 @@ var charInfo =
 		"passive_b": ["Lunge"],
 		"passive_c": ["Ward Armor", "Spur Def 2", "Spur Def 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 24, "atk" : 8, "spd" : 6, "def" : 13, "res" : 3},
-			"star-4" : {"hp" : 23, "atk" : 8, "spd" : 5, "def" : 13, "res" : 2},
-			"star-3" : {"hp" : 23, "atk" : 7, "spd" : 5, "def" : 12, "res" : 2},
-			"star-2" : {"hp" : 22, "atk" : 7, "spd" : 4, "def" : 12, "res" : 1},
+			"star_5" : {"hp" : 24, "atk" : 8, "spd" : 6, "def" : 13, "res" : 3},
+			"star_4" : {"hp" : 23, "atk" : 8, "spd" : 5, "def" : 13, "res" : 2},
+			"star_3" : {"hp" : 23, "atk" : 7, "spd" : 5, "def" : 12, "res" : 2},
+			"star_2" : {"hp" : 22, "atk" : 7, "spd" : 4, "def" : 12, "res" : 1},
 			"growth" : {"hp" : 8, "atk" : 6, "spd" : 8, "def" : 8, "res" : 3}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 0, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 0, "passive_c" : 1},
-			"star-2" : {"weapon" : 2, "special" : -1, "passive_b" : -1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_b" : 0, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_b" : 0, "passive_c" : 1},
+			"star_2" : {"weapon" : 2, "special" : -1, "passive_b" : -1, "passive_c" : 2}
 		}
 	},
 	"Effie": {
@@ -520,12 +520,12 @@ var charInfo =
 		"passive_b": ["Wary Fighter 3", "Wary Fighter 2", "Wary Fighter 1"],
 		"assist" : ["Smite"],
 		"base_stat" : {
-			"star-5" : {"hp" : 22, "atk" : 12, "spd" : 5, "def" : 11, "res" : 4},
-			"star-4" : {"hp" : 21, "atk" : 12, "spd" : 4, "def" : 11, "res" : 3},
+			"star_5" : {"hp" : 22, "atk" : 12, "spd" : 5, "def" : 11, "res" : 4},
+			"star_4" : {"hp" : 21, "atk" : 12, "spd" : 4, "def" : 11, "res" : 3},
 			"growth" : {"hp" : 9, "atk" : 9, "spd" : 4, "def" : 6, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1}
 		}
 	},
 	"Eirika": {
@@ -537,12 +537,12 @@ var charInfo =
 		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"],
 		"assist" : ["Pivot"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 9, "def" : 7, "res" : 6},
-			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 6, "res" : 5},
+			"star_5" : {"hp" : 18, "atk" : 7, "spd" : 9, "def" : 7, "res" : 6},
+			"star_4" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 6, "res" : 5},
 			"growth" : {"hp" : 7, "atk" : 5, "spd" : 8, "def" : 5, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1}
+			"star_4" : {"weapon" : 1}
 		}
 	},
 	"Eldigan" : {
@@ -554,7 +554,7 @@ var charInfo =
 		"passive_a": ["Fury 3", "Fury 2", "Fury 1"],
 		"passive_b": ["Lunge"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 5, "def" : 8, "res" : 6},
+			"star_5" : {"hp" : 19, "atk" : 8, "spd" : 5, "def" : 8, "res" : 6},
 			"growth" : {"hp" : 8, "atk" : 7, "spd" : 5, "def" : 8, "res" : 2}
 		}
 	},
@@ -567,7 +567,7 @@ var charInfo =
 		"passive_b": ["Live to Serve 3", "Live to Serve 2", "Live to Serve 1"],
 		"assist" : ["Recover", "Mend", "Heal"],
 		"base_stat" : {
-			"star-5" : {"hp" : 15, "atk" : 8, "spd" : 8, "def" : 4, "res" : 8},
+			"star_5" : {"hp" : 15, "atk" : 8, "spd" : 8, "def" : 4, "res" : 8},
 			"growth" : {"hp" : 3, "atk" : 7, "spd" : 7, "def" : 3, "res" : 7}
 		}
 	},
@@ -580,14 +580,14 @@ var charInfo =
 		"passive_b": ["Axebreaker 3", "Axebreaker 2", "Axebreaker 1"],
 		"passive_c": ["Ward Cavalry", "Spur Res 2", "Spur Res 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 6, "res" : 8},
-			"star-4" : {"hp" : 16, "atk" : 6, "spd" : 8, "def" : 5, "res" : 8},
-			"star-3" : {"hp" : 16, "atk" : 6, "spd" : 7, "def" : 5, "res" : 7},
+			"star_5" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 6, "res" : 8},
+			"star_4" : {"hp" : 16, "atk" : 6, "spd" : 8, "def" : 5, "res" : 8},
+			"star_3" : {"hp" : 16, "atk" : 6, "spd" : 7, "def" : 5, "res" : 7},
 			"growth" : {"hp" : 6, "atk" : 7, "spd" : 6, "def" : 4, "res" : 7}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 2, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_b" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_b" : 2, "passive_c" : 1}
 		}
 	},
 	"Ephraim": {
@@ -599,7 +599,7 @@ var charInfo =
 		"passive_b": ["Seal Def 3", "Seal Def 2", "Seal Def 1"],
 		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 9, "spd" : 6, "def" : 8, "res" : 5},
+			"star_5" : {"hp" : 19, "atk" : 9, "spd" : 6, "def" : 8, "res" : 5},
 			"growth" : {"hp" : 8, "atk" : 8, "spd" : 5, "def" : 7, "res" : 3}
 		}
 	},
@@ -612,14 +612,14 @@ var charInfo =
 		"passive_b": ["Seal Spd 3", "Seal Spd 2", "Seal Spd 1"],
 		"assist" : ["Shove"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 9, "spd" : 8, "def" : 5, "res" : 8},
-			"star-4" : {"hp" : 16, "atk" : 9, "spd" : 8, "def" : 4, "res" : 7},
-			"star-3" : {"hp" : 16, "atk" : 8, "spd" : 7, "def" : 4, "res" : 7},
+			"star_5" : {"hp" : 17, "atk" : 9, "spd" : 8, "def" : 5, "res" : 8},
+			"star_4" : {"hp" : 16, "atk" : 9, "spd" : 8, "def" : 4, "res" : 7},
+			"star_3" : {"hp" : 16, "atk" : 8, "spd" : 7, "def" : 4, "res" : 7},
 			"growth" : {"hp" : 5, "atk" : 8, "spd" : 6, "def" : 5, "res" : 7}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 0, "passive_b" : 1},
-			"star-3" : {"weapon" : 1, "passive_a" : 1, "passive_b" : 2}
+			"star_4" : {"weapon" : 1, "passive_a" : 0, "passive_b" : 1},
+			"star_3" : {"weapon" : 1, "passive_a" : 1, "passive_b" : 2}
 		}
 	},
 	"Fae": {
@@ -631,12 +631,12 @@ var charInfo =
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
 		"assist" : ["Draw Back"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 5, "spd" : 4, "def" : 6, "res" : 8},
-			"star-4" : {"hp" : 15, "atk" : 4, "spd" : 3, "def" : 6, "res" : 8},
+			"star_5" : {"hp" : 16, "atk" : 5, "spd" : 4, "def" : 6, "res" : 8},
+			"star_4" : {"hp" : 15, "atk" : 4, "spd" : 3, "def" : 6, "res" : 8},
 			"growth" : {"hp" : 10, "atk" : 9, "spd" : 7, "def" : 5, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "passive_c" : 1}
 		}
 	},
 	"Faye": {
@@ -648,7 +648,7 @@ var charInfo =
 		"passive_b": ["Wings of Mercy 3", "Wings of Mercy 2", "Wings of Mercy 1"],
 		"passive_c": ["Bow Experience 3", "Bow Experience 2", "Bow Experience 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 6, "spd" : 3, "def" : 4, "res" : 7},
+			"star_5" : {"hp" : 16, "atk" : 6, "spd" : 3, "def" : 4, "res" : 7},
 			"growth" : {"hp" : 8, "atk" : 7, "spd" : 6, "def" : 6, "res" : 7}
 		}
 	},
@@ -661,18 +661,18 @@ var charInfo =
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
 		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 15, "atk" : 6, "spd" : 11, "def" : 3, "res" : 9},
-			"star-4" : {"hp" : 14, "atk" : 5, "spd" : 11, "def" : 2, "res" : 9},
-			"star-3" : {"hp" : 14, "atk" : 5, "spd" : 10, "def" : 2, "res" : 8},
-			"star-2" : {"hp" : 13, "atk" : 4, "spd" : 10, "def" : 1, "res" : 8},
-			"star-1" : {"hp" : 13, "atk" : 4, "spd" : 9, "def" : 1, "res" : 7},
+			"star_5" : {"hp" : 15, "atk" : 6, "spd" : 11, "def" : 3, "res" : 9},
+			"star_4" : {"hp" : 14, "atk" : 5, "spd" : 11, "def" : 2, "res" : 9},
+			"star_3" : {"hp" : 14, "atk" : 5, "spd" : 10, "def" : 2, "res" : 8},
+			"star_2" : {"hp" : 13, "atk" : 4, "spd" : 10, "def" : 1, "res" : 8},
+			"star_1" : {"hp" : 13, "atk" : 4, "spd" : 9, "def" : 1, "res" : 7},
 			"growth" : {"hp" : 5, "atk" : 4, "spd" : 8, "def" : 3, "res" : 8}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1},
-			"star-2" : {"weapon" : 2, "special" : -1, "passive_a" : -1, "passive_c" : 1},
-			"star-1" : {"weapon" : 3, "special" : -1, "passive_a" : -1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1},
+			"star_2" : {"weapon" : 2, "special" : -1, "passive_a" : -1, "passive_c" : 1},
+			"star_1" : {"weapon" : 3, "special" : -1, "passive_a" : -1, "passive_c" : 2}
 		}
 	},
 	"Fir": {
@@ -684,14 +684,14 @@ var charInfo =
 		"passive_a": ["Speed +3", "Speed +2", "Speed +1"],
 		"passive_b": ["Pass 3", "Pass 2", "Pass 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 6, "spd" : 10, "def" : 5, "res" : 7},
-			"star-4" : {"hp" : 18, "atk" : 5, "spd" : 10, "def" : 4, "res" : 7},
-			"star-3" : {"hp" : 18, "atk" : 5, "spd" : 9, "def" : 4, "res" : 6},
+			"star_5" : {"hp" : 19, "atk" : 6, "spd" : 10, "def" : 5, "res" : 7},
+			"star_4" : {"hp" : 18, "atk" : 5, "spd" : 10, "def" : 4, "res" : 7},
+			"star_3" : {"hp" : 18, "atk" : 5, "spd" : 9, "def" : 4, "res" : 6},
 			"growth" : {"hp" : 6, "atk" : 5, "spd" : 8, "def" : 5, "res" : 7}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 0, "passive_b" : 1},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 1, "passive_b" : 2}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 0, "passive_b" : 1},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 1, "passive_b" : 2}
 		}
 	},
 	"Florina": {
@@ -703,14 +703,14 @@ var charInfo =
 		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"],
 		"assist" : ["Ardent Sacrifice"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 6, "res" : 8},
-			"star-4" : {"hp" : 17, "atk" : 6, "spd" : 8, "def" : 5, "res" : 8},
-			"star-3" : {"hp" : 17, "atk" : 6, "spd" : 7, "def" : 5, "res" : 7},
+			"star_5" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 6, "res" : 8},
+			"star_4" : {"hp" : 17, "atk" : 6, "spd" : 8, "def" : 5, "res" : 8},
+			"star_3" : {"hp" : 17, "atk" : 6, "spd" : 7, "def" : 5, "res" : 7},
 			"growth" : {"hp" : 7, "atk" : 6, "spd" : 5, "def" : 5, "res" : 8}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 0, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "passive_a" : 0, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 2}
 		}
 	},
 	"Frederick": {
@@ -722,14 +722,14 @@ var charInfo =
 		"passive_b": ["Wings of Mercy 3", "Wings of Mercy 2", "Wings of Mercy 1"],
 		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 9, "spd" : 6, "def" : 8, "res" : 4},
-			"star-4" : {"hp" : 18, "atk" : 9, "spd" : 5, "def" : 8, "res" : 3},
-			"star-3" : {"hp" : 18, "atk" : 8, "spd" : 5, "def" : 7, "res" : 3},
+			"star_5" : {"hp" : 19, "atk" : 9, "spd" : 6, "def" : 8, "res" : 4},
+			"star_4" : {"hp" : 18, "atk" : 9, "spd" : 5, "def" : 8, "res" : 3},
+			"star_3" : {"hp" : 18, "atk" : 8, "spd" : 5, "def" : 7, "res" : 3},
 			"growth" : {"hp" : 7, "atk" : 8, "spd" : 5, "def" : 9, "res" : 1}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 2, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_b" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_b" : 2, "passive_c" : 1}
 		}
 	},
 	"Gaius": {
@@ -741,14 +741,14 @@ var charInfo =
 		"passive_b": ["Pass 3", "Pass 2", "Pass 1"],
 		"assist" : ["Rally Speed"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 10, "def" : 5, "res" : 4},
-			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 10, "def" : 4, "res" : 3},
-			"star-3" : {"hp" : 17, "atk" : 6, "spd" : 9, "def" : 4, "res" : 3},
+			"star_5" : {"hp" : 18, "atk" : 7, "spd" : 10, "def" : 5, "res" : 4},
+			"star_4" : {"hp" : 17, "atk" : 7, "spd" : 10, "def" : 4, "res" : 3},
+			"star_3" : {"hp" : 17, "atk" : 6, "spd" : 9, "def" : 4, "res" : 3},
 			"growth" : {"hp" : 7, "atk" : 6, "spd" : 8, "def" : 4, "res" : 3}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1, "passive_b" : 0},
-			"star-3" : {"weapon" : 1, "passive_a" : 2, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1, "passive_b" : 0},
+			"star_3" : {"weapon" : 1, "passive_a" : 2, "passive_b" : 1}
 		}
 	},
 	"Genny": {
@@ -774,14 +774,14 @@ var charInfo =
 		"passive_b": ["Vantage 3", "Vantage 2", "Vantage 1"],
 		"assist" : ["Shove"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 7, "spd" : 6, "def" : 8, "res" : 4},
-			"star-4" : {"hp" : 18, "atk" : 7, "spd" : 5, "def" : 8, "res" : 3},
-			"star-3" : {"hp" : 18, "atk" : 6, "spd" : 5, "def" : 7, "res" : 3},
+			"star_5" : {"hp" : 19, "atk" : 7, "spd" : 6, "def" : 8, "res" : 4},
+			"star_4" : {"hp" : 18, "atk" : 7, "spd" : 5, "def" : 8, "res" : 3},
+			"star_3" : {"hp" : 18, "atk" : 6, "spd" : 5, "def" : 7, "res" : 3},
 			"growth" : {"hp" : 7, "atk" : 7, "spd" : 5, "def" : 7, "res" : 2}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 0, "passive_b" : 1},
-			"star-3" : {"weapon" : 1, "passive_a" : 1, "passive_b" : 2}
+			"star_4" : {"weapon" : 1, "passive_a" : 0, "passive_b" : 1},
+			"star_3" : {"weapon" : 1, "passive_a" : 1, "passive_b" : 2}
 		}
 	},
 	"Gunter": {
@@ -793,18 +793,18 @@ var charInfo =
 		"passive_c": ["Hone Cavalry", "Hone Atk 2", "Hone Atk 1"],
 		"assist" : ["Harsh Command"],
 		"base_stat" : {
-			"star-5" : {"hp" : 21, "atk" : 10, "spd" : 7, "def" : 11, "res" : 5},
-			"star-4" : {"hp" : 20, "atk" : 10, "spd" : 6, "def" : 11, "res" : 4},
-			"star-3" : {"hp" : 20, "atk" : 9, "spd" : 6, "def" : 10, "res" : 4},
-			"star-2" : {"hp" : 19, "atk" : 9, "spd" : 5, "def" : 10, "res" : 3},
-			"star-1" : {"hp" : 19, "atk" : 8, "spd" : 5, "def" : 9, "res" : 3},
+			"star_5" : {"hp" : 21, "atk" : 10, "spd" : 7, "def" : 11, "res" : 5},
+			"star_4" : {"hp" : 20, "atk" : 10, "spd" : 6, "def" : 11, "res" : 4},
+			"star_3" : {"hp" : 20, "atk" : 9, "spd" : 6, "def" : 10, "res" : 4},
+			"star_2" : {"hp" : 19, "atk" : 9, "spd" : 5, "def" : 10, "res" : 3},
+			"star_1" : {"hp" : 19, "atk" : 8, "spd" : 5, "def" : 9, "res" : 3},
 			"growth" : {"hp" : 6, "atk" : 6, "spd" : 4, "def" : 6, "res" : 2}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "assist" : 0, "passive_a" : 2, "passive_c" : 1},
-			"star-2" : {"weapon" : 2, "assist" : -1, "passive_a" : -1, "passive_c" : 1},
-			"star-1" : {"weapon" : 3, "assist" : -1, "passive_a" : -1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "assist" : 0, "passive_a" : 2, "passive_c" : 1},
+			"star_2" : {"weapon" : 2, "assist" : -1, "passive_a" : -1, "passive_c" : 1},
+			"star_1" : {"weapon" : 3, "assist" : -1, "passive_a" : -1, "passive_c" : 2}
 		}
 	},
 	"Gwendolyn": {
@@ -816,14 +816,14 @@ var charInfo =
 		"passive_b": ["Drag Back"],
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 23, "atk" : 8, "spd" : 5, "def" : 12, "res" : 6},
-			"star-4" : {"hp" : 22, "atk" : 8, "spd" : 4, "def" : 12, "res" : 5},
-			"star-3" : {"hp" : 22, "atk" : 7, "spd" : 4, "def" : 11, "res" : 5},
+			"star_5" : {"hp" : 23, "atk" : 8, "spd" : 5, "def" : 12, "res" : 6},
+			"star_4" : {"hp" : 22, "atk" : 8, "spd" : 4, "def" : 12, "res" : 5},
+			"star_3" : {"hp" : 22, "atk" : 7, "spd" : 4, "def" : 11, "res" : 5},
 			"growth" : {"hp" : 8, "atk" : 6, "spd" : 5, "def" : 8, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 0, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 0, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_b" : 0, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_b" : 0, "passive_c" : 1}
 		}
 	},
 	"Hana": {
@@ -835,18 +835,18 @@ var charInfo =
 		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"],
 		"assist" : ["Rally Attack"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 9, "spd" : 10, "def" : 6, "res" : 4},
-			"star-4" : {"hp" : 17, "atk" : 9, "spd" : 10, "def" : 5, "res" : 3},
-			"star-3" : {"hp" : 17, "atk" : 8, "spd" : 9, "def" : 5, "res" : 3},
-			"star-2" : {"hp" : 16, "atk" : 8, "spd" : 9, "def" : 4, "res" : 2},
-			"star-1" : {"hp" : 16, "atk" : 7, "spd" : 8, "def" : 4, "res" : 2},
+			"star_5" : {"hp" : 18, "atk" : 9, "spd" : 10, "def" : 6, "res" : 4},
+			"star_4" : {"hp" : 17, "atk" : 9, "spd" : 10, "def" : 5, "res" : 3},
+			"star_3" : {"hp" : 17, "atk" : 8, "spd" : 9, "def" : 5, "res" : 3},
+			"star_2" : {"hp" : 16, "atk" : 8, "spd" : 9, "def" : 4, "res" : 2},
+			"star_1" : {"hp" : 16, "atk" : 7, "spd" : 8, "def" : 4, "res" : 2},
 			"growth" : {"hp" : 5, "atk" : 8, "spd" : 8, "def" : 4, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 0},
-			"star-3" : {"weapon" : 1, "assist" : 0, "passive_a" : 2, "passive_b" : 1},
-			"star-2" : {"weapon" : 2, "assist" : -1, "passive_a" : -1, "passive_b" : 1},
-			"star-1" : {"weapon" : 3, "assist" : -1, "passive_a" : -1, "passive_b" : 2}
+			"star_4" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 0},
+			"star_3" : {"weapon" : 1, "assist" : 0, "passive_a" : 2, "passive_b" : 1},
+			"star_2" : {"weapon" : 2, "assist" : -1, "passive_a" : -1, "passive_b" : 1},
+			"star_1" : {"weapon" : 3, "assist" : -1, "passive_a" : -1, "passive_b" : 2}
 		}
 	},
 	"Hawkeye": {
@@ -858,12 +858,12 @@ var charInfo =
 		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
 		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 21, "atk" : 9, "spd" : 5, "def" : 6, "res" : 6},
-			"star-4" : {"hp" : 20, "atk" : 9, "spd" : 4, "def" : 6, "res" : 5},
+			"star_5" : {"hp" : 21, "atk" : 9, "spd" : 5, "def" : 6, "res" : 6},
+			"star_4" : {"hp" : 20, "atk" : 9, "spd" : 4, "def" : 6, "res" : 5},
 			"growth" : {"hp" : 7, "atk" : 7, "spd" : 4, "def" : 6, "res" : 7}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1}
 		}
 	},
 	"Hector": {
@@ -875,7 +875,7 @@ var charInfo =
 		"passive_a": ["Distant Counter"],
 		"passive_c": ["Goad Armor", "Spur Attack 2", "Spur Attack 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 24, "atk" : 10, "spd" : 5, "def" : 11, "res" : 4},
+			"star_5" : {"hp" : 24, "atk" : 10, "spd" : 5, "def" : 11, "res" : 4},
 			"growth" : {"hp" : 9, "atk" : 8, "spd" : 5, "def" : 8, "res" : 3}
 		}
 	},
@@ -888,14 +888,14 @@ var charInfo =
 		"passive_a": ["Defiant Def 3", "Defiant Def 2", "Defiant Def 1"],
 		"passive_b": ["G Tomebreaker 3", "G Tomebreaker 2", "G Tomebreaker 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 6, "spd" : 5, "def" : 8, "res" : 6},
-			"star-4" : {"hp" : 18, "atk" : 6, "spd" : 4, "def" : 8, "res" : 5},
-			"star-3" : {"hp" : 18, "atk" : 5, "spd" : 4, "def" : 7, "res" : 5},
+			"star_5" : {"hp" : 19, "atk" : 6, "spd" : 5, "def" : 8, "res" : 6},
+			"star_4" : {"hp" : 18, "atk" : 6, "spd" : 4, "def" : 8, "res" : 5},
+			"star_3" : {"hp" : 18, "atk" : 5, "spd" : 4, "def" : 7, "res" : 5},
 			"growth" : {"hp" : 8, "atk" : 4, "spd" : 4, "def" : 7, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_b" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_b" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_b" : 1}
 		}
 	},
 	"Hinata": {
@@ -907,14 +907,14 @@ var charInfo =
 		"passive_a": ["Fury 3", "Fury 2", "Fury 1"],
 		"passive_b": ["Brash Assault 3", "Brash Assault 2", "Brash Assault 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 21, "atk" : 8, "spd" : 5, "def" : 10, "res" : 3},
-			"star-4" : {"hp" : 20, "atk" : 8, "spd" : 4, "def" : 10, "res" : 2},
-			"star-3" : {"hp" : 20, "atk" : 7, "spd" : 4, "def" : 9, "res" : 2},
+			"star_5" : {"hp" : 21, "atk" : 8, "spd" : 5, "def" : 10, "res" : 3},
+			"star_4" : {"hp" : 20, "atk" : 8, "spd" : 4, "def" : 10, "res" : 2},
+			"star_3" : {"hp" : 20, "atk" : 7, "spd" : 4, "def" : 9, "res" : 2},
 			"growth" : {"hp" : 8, "atk" : 7, "spd" : 5, "def" : 8, "res" : 3}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 0, "passive_b" : 1},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 1, "passive_b" : 2}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 0, "passive_b" : 1},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 1, "passive_b" : 2}
 		}
 	},
 	"Hinoka": {
@@ -926,7 +926,7 @@ var charInfo =
 		"passive_a": ["Defiant Def 3", "Defiant Def 2", "Defiant Def 1"],
 		"passive_c": ["Hone Fliers", "Hone Spd 2", "Hone Spd 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 7, "spd" : 8, "def" : 6, "res" : 7},
+			"star_5" : {"hp" : 19, "atk" : 7, "spd" : 8, "def" : 6, "res" : 7},
 			"growth" : {"hp" : 6, "atk" : 9, "spd" : 7, "def" : 5, "res" : 4}
 		}
 	},
@@ -939,7 +939,7 @@ var charInfo =
 		"passive_a": ["Heavy Blade 3", "Heavy Blade 2", "Heavy Blade 1"],
 		"passive_b": ["Swordbreaker 3", "Swordbreaker 2", "Swordbreaker 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 9, "spd" : 7, "def" : 8, "res" : 5},
+			"star_5" : {"hp" : 18, "atk" : 9, "spd" : 7, "def" : 8, "res" : 5},
 			"growth" : {"hp" : 7, "atk" : 8, "spd" : 7, "def" : 7, "res" : 2}
 		}
 	},
@@ -952,7 +952,7 @@ var charInfo =
 		"passive_a": ["Life and Death 3", "Life and Death 2", "Life and Death 1"],
 		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 6, "res" : 5},
+			"star_5" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 6, "res" : 5},
 			"growth" : {"hp" : 7, "atk" : 5, "spd" : 7, "def" : 5, "res" : 4}
 		}
 	},
@@ -965,14 +965,14 @@ var charInfo =
 		"passive_a": ["Fury 3", "Fury 2", "Fury 1"],
 		"passive_c": ["Fortify Cavalry", "Fortify Res 2", "Fortify Res 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 20, "atk" : 8, "spd" : 7, "def" : 8, "res" : 11},
-			"star-4" : {"hp" : 19, "atk" : 8, "spd" : 6, "def" : 7, "res" : 11},
-			"star-3" : {"hp" : 19, "atk" : 7, "spd" : 6, "def" : 7, "res" : 10},
+			"star_5" : {"hp" : 20, "atk" : 8, "spd" : 7, "def" : 8, "res" : 11},
+			"star_4" : {"hp" : 19, "atk" : 8, "spd" : 6, "def" : 7, "res" : 11},
+			"star_3" : {"hp" : 19, "atk" : 7, "spd" : 6, "def" : 7, "res" : 10},
 			"growth" : {"hp" : 4, "atk" : 5, "spd" : 4, "def" : 4, "res" : 7}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1}
 		}
 	},
 	"Jakob": {
@@ -984,12 +984,12 @@ var charInfo =
 		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
 		"assist" : ["Rally Resistance"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 6, "res" : 5},
-			"star-4" : {"hp" : 16, "atk" : 7, "spd" : 9, "def" : 5, "res" : 4},
+			"star_5" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 6, "res" : 5},
+			"star_4" : {"hp" : 16, "atk" : 7, "spd" : 9, "def" : 5, "res" : 4},
 			"growth" : {"hp" : 6, "atk" : 6, "spd" : 6, "def" : 5, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "passive_b" : 1}
 		}
 	},
 	"Jeorge": {
@@ -1001,12 +1001,12 @@ var charInfo =
 		"passive_b": ["Seal Atk 3", "Seal Atk 2", "Seal Atk 1"],
 		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 8, "spd" : 8, "def" : 5, "res" : 5},
-			"star-4" : {"hp" : 17, "atk" : 8, "spd" : 8, "def" : 4, "res" : 4},
+			"star_5" : {"hp" : 18, "atk" : 8, "spd" : 8, "def" : 5, "res" : 5},
+			"star_4" : {"hp" : 17, "atk" : 8, "spd" : 8, "def" : 4, "res" : 4},
 			"growth" : {"hp" : 5, "atk" : 7, "spd" : 7, "def" : 5, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "passive_c" : 1}
 		}
 	},
 	"Julia": {
@@ -1018,7 +1018,7 @@ var charInfo =
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
 		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 9, "spd" : 7, "def" : 4, "res" : 8},
+			"star_5" : {"hp" : 16, "atk" : 9, "spd" : 7, "def" : 4, "res" : 8},
 			"growth" : {"hp" : 6, "atk" : 8, "spd" : 5, "def" : 2, "res" : 7}
 		}
 	},
@@ -1031,12 +1031,12 @@ var charInfo =
 		"passive_a": ["Warding Blow 3", "Warding Blow 2", "Warding Blow 1"],
 		"passive_b": ["Daggerbreaker 3", "Daggerbreaker 2", "Daggerbreaker 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 9, "spd" : 8, "def" : 5, "res" : 6},
-			"star-4" : {"hp" : 15, "atk" : 9, "spd" : 8, "def" : 4, "res" : 5},
+			"star_5" : {"hp" : 16, "atk" : 9, "spd" : 8, "def" : 5, "res" : 6},
+			"star_4" : {"hp" : 15, "atk" : 9, "spd" : 8, "def" : 4, "res" : 5},
 			"growth" : {"hp" : 3, "atk" : 8, "spd" : 7, "def" : 4, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1}
 		}
 	},
 	"Karel": {
@@ -1048,7 +1048,7 @@ var charInfo =
 		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
 		"passive_b": ["Desperation 3", "Desperation 2", "Desperation 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 9, "def" : 6, "res" : 5},
+			"star_5" : {"hp" : 19, "atk" : 8, "spd" : 9, "def" : 6, "res" : 5},
 			"growth" : {"hp" : 9, "atk" : 6, "spd" : 8, "def" : 5, "res" : 3}
 		}
 	},
@@ -1061,12 +1061,12 @@ var charInfo =
 		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
 		"passive_b": ["Quick Riposte 3", "Quick Riposte 2", "Quick Riposte 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 9, "spd" : 7, "def" : 5, "res" : 5},
-			"star-4" : {"hp" : 17, "atk" : 9, "spd" : 7, "def" : 4, "res" : 4},
+			"star_5" : {"hp" : 18, "atk" : 9, "spd" : 7, "def" : 5, "res" : 5},
+			"star_4" : {"hp" : 17, "atk" : 9, "spd" : 7, "def" : 4, "res" : 4},
 			"growth" : {"hp" : 6, "atk" : 6, "spd" : 8, "def" : 3, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "passive_b" : 1}
 		}
 	},
 	"Lachesis" : {
@@ -1078,12 +1078,12 @@ var charInfo =
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"],
 		"assist" : ["Physic", "Mend", "Heal"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 6, "spd" : 8, "def" : 5, "res" : 8},
-			"star-4" : {"hp" : 16, "atk" : 5, "spd" : 8, "def" : 4, "res" : 8},
+			"star_5" : {"hp" : 17, "atk" : 6, "spd" : 8, "def" : 5, "res" : 8},
+			"star_4" : {"hp" : 16, "atk" : 5, "spd" : 8, "def" : 4, "res" : 8},
 			"growth" : {"hp" : 6, "atk" : 8, "spd" : 4, "def" : 4, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"passive_c" : 1}
+			"star_4" : {"passive_c" : 1}
 		}
 	},
 	"Laslow": {
@@ -1095,14 +1095,14 @@ var charInfo =
 		"passive_b": ["Axebreaker 3", "Axebreaker 2", "Axebreaker 1"],
 		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 20, "atk" : 9, "spd" : 7, "def" : 6, "res" : 5},
-			"star-4" : {"hp" : 19, "atk" : 9, "spd" : 7, "def" : 5, "res" : 4},
-			"star-3" : {"hp" : 19, "atk" : 8, "spd" : 6, "def" : 5, "res" : 4},
+			"star_5" : {"hp" : 20, "atk" : 9, "spd" : 7, "def" : 6, "res" : 5},
+			"star_4" : {"hp" : 19, "atk" : 9, "spd" : 7, "def" : 5, "res" : 4},
+			"star_3" : {"hp" : 19, "atk" : 8, "spd" : 6, "def" : 5, "res" : 4},
 			"growth" : {"hp" : 7, "atk" : 8, "spd" : 5, "def" : 7, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 0, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_b" : 0, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_b" : 1, "passive_c" : 2}
 		}
 	},
 	"Leo": {
@@ -1114,7 +1114,7 @@ var charInfo =
 		"passive_b": ["Quick Riposte 3", "Quick Riposte 2", "Quick Riposte 1"],
 		"passive_c": ["Savage Blow 3", "Savage Blow 2", "Savage Blow 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 5, "def" : 6, "res" : 8},
+			"star_5" : {"hp" : 17, "atk" : 7, "spd" : 5, "def" : 6, "res" : 8},
 			"growth" : {"hp" : 6, "atk" : 6, "spd" : 4, "def" : 5, "res" : 6}
 		}
 	},
@@ -1127,12 +1127,12 @@ var charInfo =
 		"passive_a": ["Attack +3", "Attack +2", "Attack +1"],
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 9, "spd" : 6, "def" : 4, "res" : 9},
-			"star-4" : {"hp" : 15, "atk" : 9, "spd" : 5, "def" : 3, "res" : 9},
+			"star_5" : {"hp" : 16, "atk" : 9, "spd" : 6, "def" : 4, "res" : 9},
+			"star_4" : {"hp" : 15, "atk" : 9, "spd" : 5, "def" : 3, "res" : 9},
 			"growth" : {"hp" : 5, "atk" : 9, "spd" : 5, "def" : 3, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1}
 		}
 	},
 	"Linde": {
@@ -1144,7 +1144,7 @@ var charInfo =
 		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
 		"assist" : ["Ardent Sacrifice"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 9, "spd" : 10, "def" : 4, "res" : 5},
+			"star_5" : {"hp" : 16, "atk" : 9, "spd" : 10, "def" : 4, "res" : 5},
 			"growth" : {"hp" : 5, "atk" : 8, "spd" : 8, "def" : 1, "res" : 6}
 		}
 	},
@@ -1157,18 +1157,18 @@ var charInfo =
 		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
 		"assist" : ["Rehabilitate", "Reconcile", "Heal"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 6, "def" : 6, "res" : 8},
-			"star-4" : {"hp" : 16, "atk" : 7, "spd" : 5, "def" : 5, "res" : 8},
-			"star-3" : {"hp" : 16, "atk" : 6, "spd" : 5, "def" : 5, "res" : 7},
-			"star-2" : {"hp" : 15, "atk" : 6, "spd" : 4, "def" : 4, "res" : 7},
-			"star-1" : {"hp" : 15, "atk" : 5, "spd" : 4, "def" : 4, "res" : 6},
+			"star_5" : {"hp" : 17, "atk" : 7, "spd" : 6, "def" : 6, "res" : 8},
+			"star_4" : {"hp" : 16, "atk" : 7, "spd" : 5, "def" : 5, "res" : 8},
+			"star_3" : {"hp" : 16, "atk" : 6, "spd" : 5, "def" : 5, "res" : 7},
+			"star_2" : {"hp" : 15, "atk" : 6, "spd" : 4, "def" : 4, "res" : 7},
+			"star_1" : {"hp" : 15, "atk" : 5, "spd" : 4, "def" : 4, "res" : 6},
 			"growth" : {"hp" : 6, "atk" : 5, "spd" : 5, "def" : 6, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"special" : 0, "assist" : 0, "passive_b" : 1},
-			"star-3" : {"special" : 0, "assist" : 1, "passive_b" : 2},
-			"star-2" : {"special" : 1, "assist" : 1, "passive_b" : -1},
-			"star-1" : {"special" : -1, "assist" : 2, "passive_b" : -1}
+			"star_4" : {"special" : 0, "assist" : 0, "passive_b" : 1},
+			"star_3" : {"special" : 0, "assist" : 1, "passive_b" : 2},
+			"star_2" : {"special" : 1, "assist" : 1, "passive_b" : -1},
+			"star_1" : {"special" : -1, "assist" : 2, "passive_b" : -1}
 		}
 	},
 	"Lon'qu": {
@@ -1180,14 +1180,14 @@ var charInfo =
 		"passive_a": ["Speed +3", "Speed +2", "Speed +1"],
 		"passive_b": ["Vantage 3", "Vantage 2", "Vantage 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 7, "spd" : 11, "def" : 5, "res" : 5},
-			"star-4" : {"hp" : 18, "atk" : 7, "spd" : 11, "def" : 4, "res" : 4},
-			"star-3" : {"hp" : 18, "atk" : 6, "spd" : 10, "def" : 4, "res" : 4},
+			"star_5" : {"hp" : 19, "atk" : 7, "spd" : 11, "def" : 5, "res" : 5},
+			"star_4" : {"hp" : 18, "atk" : 7, "spd" : 11, "def" : 4, "res" : 4},
+			"star_3" : {"hp" : 18, "atk" : 6, "spd" : 10, "def" : 4, "res" : 4},
 			"growth" : {"hp" : 8, "atk" : 6, "spd" : 9, "def" : 4, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_b" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_b" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_b" : 1}
 		}
 	},
 	"Lucina": {
@@ -1199,7 +1199,7 @@ var charInfo =
 		"passive_a": ["Defiant Spd 3", "Defiant Spd 2", "Defiant Spd 1"],
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 10, "def" : 6, "res" : 4},
+			"star_5" : {"hp" : 19, "atk" : 8, "spd" : 10, "def" : 6, "res" : 4},
 			"growth" : {"hp" : 7, "atk" : 8, "spd" : 8, "def" : 5, "res" : 3}
 		}
 	},
@@ -1212,7 +1212,7 @@ var charInfo =
 		"passive_b": ["Seal Res 3", "Seal Res 2", "Seal Res 1"],
 		"assist" : ["Rally Speed"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 7, "spd" : 10, "def" : 5, "res" : 6},
+			"star_5" : {"hp" : 16, "atk" : 7, "spd" : 10, "def" : 5, "res" : 6},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 8, "def" : 4, "res" : 5}
 		}
 	},
@@ -1225,12 +1225,12 @@ var charInfo =
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
 		"assist" : ["Martyr", "Reconcile", "Heal"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 6, "spd" : 8, "def" : 3, "res" : 9},
-			"star-4" : {"hp" : 17, "atk" : 5, "spd" : 8, "def" : 2, "res" : 9},
+			"star_5" : {"hp" : 18, "atk" : 6, "spd" : 8, "def" : 3, "res" : 9},
+			"star_4" : {"hp" : 17, "atk" : 5, "spd" : 8, "def" : 2, "res" : 9},
 			"growth" : {"hp" : 5, "atk" : 8, "spd" : 6, "def" : 1, "res" : 8}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"passive_a" : 1}
+			"star_4" : {"passive_a" : 1}
 		}
 	},
 	"Lukas": {
@@ -1242,12 +1242,12 @@ var charInfo =
 		"passive_a": ["Fortress Def 3", "Fortress Def 2", "Fortress Def 1"],
 		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 9, "spd" : 5, "def" : 10, "res" : 4},
-			"star-4" : {"hp" : 18, "atk" : 9, "spd" : 4, "def" : 10, "res" : 3},
+			"star_5" : {"hp" : 19, "atk" : 9, "spd" : 5, "def" : 10, "res" : 4},
+			"star_4" : {"hp" : 18, "atk" : 9, "spd" : 4, "def" : 10, "res" : 3},
 			"growth" : {"hp" : 8, "atk" : 8, "spd" : 4, "def" : 9, "res" : 2}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1}
 		}
 	},
 	"Lyn": {
@@ -1259,7 +1259,7 @@ var charInfo =
 		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
 		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 6, "spd" : 11, "def" : 7, "res" : 5},
+			"star_5" : {"hp" : 18, "atk" : 6, "spd" : 11, "def" : 7, "res" : 5},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 8, "def" : 5, "res" : 7}
 		}
 	},
@@ -1286,12 +1286,12 @@ var charInfo =
 		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
 		"assist" : ["Physic", "Mend", "Heal"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 5, "spd" : 8, "def" : 4, "res" : 10},
-			"star-4" : {"hp" : 16, "atk" : 4, "spd" : 8, "def" : 3, "res" : 10},
+			"star_5" : {"hp" : 17, "atk" : 5, "spd" : 8, "def" : 4, "res" : 10},
+			"star_4" : {"hp" : 16, "atk" : 4, "spd" : 8, "def" : 3, "res" : 10},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 8, "def" : 3, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"passive_c" : 1}
+			"star_4" : {"passive_c" : 1}
 		}
 	},
 	"Marth": {
@@ -1303,12 +1303,12 @@ var charInfo =
 		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
 		"assist" : ["Pivot"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 7, "spd" : 8, "def" : 7, "res" : 6},
-			"star-4" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 6, "res" : 5},
+			"star_5" : {"hp" : 19, "atk" : 7, "spd" : 8, "def" : 7, "res" : 6},
+			"star_4" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 6, "res" : 5},
 			"growth" : {"hp" : 6, "atk" : 7, "spd" : 8, "def" : 6, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "passive_b" : 1}
 		}
 	},
 	"Matthew": {
@@ -1320,16 +1320,16 @@ var charInfo =
 		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"],
 		"assist" : ["Reciprocal Aid"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 6, "spd" : 10, "def" : 6, "res" : 5},
-			"star-4" : {"hp" : 16, "atk" : 6, "spd" : 10, "def" : 5, "res" : 4},
-			"star-3" : {"hp" : 16, "atk" : 5, "spd" : 9, "def" : 5, "res" : 4},
-			"star-2" : {"hp" : 15, "atk" : 5, "spd" : 9, "def" : 4, "res" : 3},
+			"star_5" : {"hp" : 17, "atk" : 6, "spd" : 10, "def" : 6, "res" : 5},
+			"star_4" : {"hp" : 16, "atk" : 6, "spd" : 10, "def" : 5, "res" : 4},
+			"star_3" : {"hp" : 16, "atk" : 5, "spd" : 9, "def" : 5, "res" : 4},
+			"star_2" : {"hp" : 15, "atk" : 5, "spd" : 9, "def" : 4, "res" : 3},
 			"growth" : {"hp" : 7, "atk" : 5, "spd" : 7, "def" : 7, "res" : 2}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "assist" : 0, "passive_b" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "assist" : 0, "passive_b" : 2, "passive_c" : 1},
-			"star-2" : {"weapon" : 2, "assist" : -1, "passive_b" : -1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "assist" : 0, "passive_b" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "assist" : 0, "passive_b" : 2, "passive_c" : 1},
+			"star_2" : {"weapon" : 2, "assist" : -1, "passive_b" : -1, "passive_c" : 1}
 		}
 	},
 	"Merric": {
@@ -1341,12 +1341,12 @@ var charInfo =
 		"passive_a": ["HP +5", "HP +4", "HP +3"],
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 7, "spd" : 8, "def" : 6, "res" : 4},
-			"star-4" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 5, "res" : 3},
+			"star_5" : {"hp" : 19, "atk" : 7, "spd" : 8, "def" : 6, "res" : 4},
+			"star_4" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 5, "res" : 3},
 			"growth" : {"hp" : 7, "atk" : 5, "spd" : 7, "def" : 6, "res" : 3}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1}
 		}
 	},
 	"Michalis": {
@@ -1358,14 +1358,14 @@ var charInfo =
 		"passive_a": ["Iote's Shield"],
 		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 7, "def" : 9, "res" : 4},
-			"star-4" : {"hp" : 18, "atk" : 8, "spd" : 6, "def" : 9, "res" : 3},
-			"star-3" : {"hp" : 18, "atk" : 7, "spd" : 6, "def" : 8, "res" : 3},
+			"star_5" : {"hp" : 19, "atk" : 8, "spd" : 7, "def" : 9, "res" : 4},
+			"star_4" : {"hp" : 18, "atk" : 8, "spd" : 6, "def" : 9, "res" : 3},
+			"star_3" : {"hp" : 18, "atk" : 7, "spd" : 6, "def" : 8, "res" : 3},
 			"growth" : {"hp" : 7, "atk" : 8, "spd" : 5, "def" : 8, "res" : 3}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 0, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : -1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 0, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : -1, "passive_c" : 1}
 		}
 	},
 	"Minerva": {
@@ -1377,7 +1377,7 @@ var charInfo =
 		"passive_a": ["Life and Death 3", "Life and Death 2", "Life and Death 1"],
 		"passive_c": ["Ward Fliers", "Spur Def 2", "Spur Def 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 9, "def" : 8, "res" : 5},
+			"star_5" : {"hp" : 18, "atk" : 7, "spd" : 9, "def" : 8, "res" : 5},
 			"growth" : {"hp" : 6, "atk" : 7, "spd" : 7, "def" : 7, "res" : 4}
 		}
 	},
@@ -1390,7 +1390,7 @@ var charInfo =
 		"passive_c": ["Spur Def/Res 2", "Spur Def/Res 1", "Spur Res 1"],
 		"assist" : ["Recover", "Mend", "Heal"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 8, "spd" : 6, "def" : 5, "res" : 8},
+			"star_5" : {"hp" : 17, "atk" : 8, "spd" : 6, "def" : 5, "res" : 8},
 			"growth" : {"hp" : 6, "atk" : 5, "spd" : 6, "def" : 3, "res" : 8}
 		}
 	},
@@ -1403,16 +1403,16 @@ var charInfo =
 		"passive_b": ["Lancebreaker 3", "Lancebreaker 2", "Lancebreaker 1"],
 		"passive_c": ["Savage Blow 3", "Savage Blow 2", "Savage Blow 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 7, "def" : 8, "res" : 7},
-			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 6, "def" : 8, "res" : 6},
-			"star-3" : {"hp" : 17, "atk" : 6, "spd" : 6, "def" : 7, "res" : 6},
-			"star-2" : {"hp" : 16, "atk" : 6, "spd" : 5, "def" : 7, "res" : 5},
+			"star_5" : {"hp" : 18, "atk" : 7, "spd" : 7, "def" : 8, "res" : 7},
+			"star_4" : {"hp" : 17, "atk" : 7, "spd" : 6, "def" : 8, "res" : 6},
+			"star_3" : {"hp" : 17, "atk" : 6, "spd" : 6, "def" : 7, "res" : 6},
+			"star_2" : {"hp" : 16, "atk" : 6, "spd" : 5, "def" : 7, "res" : 5},
 			"growth" : {"hp" : 7, "atk" : 6, "spd" : 6, "def" : 7, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 0, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 1, "passive_c" : 2},
-			"star-2" : {"weapon" : 2, "special" : -1, "passive_b" : 2, "passive_c" : -1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_b" : 0, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_b" : 1, "passive_c" : 2},
+			"star_2" : {"weapon" : 2, "special" : -1, "passive_b" : 2, "passive_c" : -1}
 		}
 	},
 	"Navarre": {
@@ -1424,14 +1424,14 @@ var charInfo =
 		"passive_b": ["Desperation 3", "Desperation 2", "Desperation 1"],
 		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 11, "def" : 6, "res" : 5},
-			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 11, "def" : 5, "res" : 4},
-			"star-3" : {"hp" : 17, "atk" : 6, "spd" : 10, "def" : 5, "res" : 4},
+			"star_5" : {"hp" : 18, "atk" : 7, "spd" : 11, "def" : 6, "res" : 5},
+			"star_4" : {"hp" : 17, "atk" : 7, "spd" : 11, "def" : 5, "res" : 4},
+			"star_3" : {"hp" : 17, "atk" : 6, "spd" : 10, "def" : 5, "res" : 4},
 			"growth" : {"hp" : 7, "atk" : 7, "spd" : 8, "def" : 4, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 2, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_b" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_b" : 2, "passive_c" : 1}
 		}
 	},
 	"Niles": {
@@ -1443,14 +1443,14 @@ var charInfo =
 		"passive_a": ["Warding Blow 3", "Warding Blow 2", "Warding Blow 1"],
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 6, "spd" : 8, "def" : 4, "res" : 8},
-			"star-4" : {"hp" : 17, "atk" : 5, "spd" : 8, "def" : 3, "res" : 8},
-			"star-3" : {"hp" : 17, "atk" : 5, "spd" : 7, "def" : 3, "res" : 7},
+			"star_5" : {"hp" : 18, "atk" : 6, "spd" : 8, "def" : 4, "res" : 8},
+			"star_4" : {"hp" : 17, "atk" : 5, "spd" : 8, "def" : 3, "res" : 8},
+			"star_3" : {"hp" : 17, "atk" : 5, "spd" : 7, "def" : 3, "res" : 7},
 			"growth" : {"hp" : 5, "atk" : 5, "spd" : 8, "def" : 2, "res" : 8}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 0, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 0, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 1, "passive_c" : 2}
 		}
 	},
 	"Ninian": {
@@ -1462,7 +1462,7 @@ var charInfo =
 		"passive_c": ["Fortify Dragons", "Fortify Def 2", "Fortify Def 1"],
 		"assist" : ["Dance"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 5, "spd" : 7, "def" : 6, "res" : 5},
+			"star_5" : {"hp" : 16, "atk" : 5, "spd" : 7, "def" : 6, "res" : 5},
 			"growth" : {"hp" : 8, "atk" : 5, "spd" : 8, "def" : 4, "res" : 6}
 		}
 	},
@@ -1475,14 +1475,14 @@ var charInfo =
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
 		"assist" : ["Draw Back"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 7, "spd" : 10, "def" : 4, "res" : 7},
-			"star-4" : {"hp" : 15, "atk" : 7, "spd" : 10, "def" : 3, "res" : 6},
-			"star-3" : {"hp" : 15, "atk" : 6, "spd" : 9, "def" : 3, "res" : 6},
+			"star_5" : {"hp" : 16, "atk" : 7, "spd" : 10, "def" : 4, "res" : 7},
+			"star_4" : {"hp" : 15, "atk" : 7, "spd" : 10, "def" : 3, "res" : 6},
+			"star_3" : {"hp" : 15, "atk" : 6, "spd" : 9, "def" : 3, "res" : 6},
 			"growth" : {"hp" : 4, "atk" : 8, "spd" : 8, "def" : 3, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 0, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "passive_a" : 0, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 2}
 		}
 	},
 	"Nowi": {
@@ -1494,12 +1494,12 @@ var charInfo =
 		"passive_c": ["Threaten Res 3", "Threaten Res 2", "Threaten Res 1"],
 		"assist" : ["Rally Defense"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 6, "spd" : 5, "def" : 6, "res" : 5},
-			"star-4" : {"hp" : 16, "atk" : 6, "spd" : 4, "def" : 6, "res" : 4},
+			"star_5" : {"hp" : 17, "atk" : 6, "spd" : 5, "def" : 6, "res" : 5},
+			"star_4" : {"hp" : 16, "atk" : 6, "spd" : 4, "def" : 6, "res" : 4},
 			"growth" : {"hp" : 9, "atk" : 9, "spd" : 6, "def" : 7, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1}
 		}
 	},
 	"Oboro": {
@@ -1511,14 +1511,14 @@ var charInfo =
 		"passive_c": ["Threaten Res 3", "Threaten Res 2", "Threaten Res 1"],
 		"assist" : ["Rally Defense"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 8, "spd" : 7, "def" : 9, "res" : 5},
-			"star-4" : {"hp" : 17, "atk" : 8, "spd" : 6, "def" : 9, "res" : 4},
-			"star-3" : {"hp" : 17, "atk" : 7, "spd" : 6, "def" : 8, "res" : 4},
+			"star_5" : {"hp" : 18, "atk" : 8, "spd" : 7, "def" : 9, "res" : 5},
+			"star_4" : {"hp" : 17, "atk" : 8, "spd" : 6, "def" : 9, "res" : 4},
+			"star_3" : {"hp" : 17, "atk" : 7, "spd" : 6, "def" : 8, "res" : 4},
 			"growth" : {"hp" : 6, "atk" : 7, "spd" : 5, "def" : 8, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_b" : 0, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "passive_b" : 1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "passive_b" : 0, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "passive_b" : 1, "passive_c" : 2}
 		}
 	},
 	"Odin": {
@@ -1530,14 +1530,14 @@ var charInfo =
 		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
 		"passive_b": ["R Tomebreaker 3", "R Tomebreaker 2", "R Tomebreaker 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 5, "spd" : 8, "def" : 6, "res" : 6},
-			"star-4" : {"hp" : 18, "atk" : 4, "spd" : 8, "def" : 6, "res" : 5},
-			"star-3" : {"hp" : 18, "atk" : 4, "spd" : 7, "def" : 5, "res" : 5},
+			"star_5" : {"hp" : 19, "atk" : 5, "spd" : 8, "def" : 6, "res" : 6},
+			"star_4" : {"hp" : 18, "atk" : 4, "spd" : 8, "def" : 6, "res" : 5},
+			"star_3" : {"hp" : 18, "atk" : 4, "spd" : 7, "def" : 5, "res" : 5},
 			"growth" : {"hp" : 7, "atk" : 4, "spd" : 7, "def" : 5, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_b" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_b" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_b" : 1}
 		}
 	},
 	"Ogma": {
@@ -1549,12 +1549,12 @@ var charInfo =
 		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
 		"passive_c": ["Spur Atk 3", "Spur Atk 2", "Spur Atk 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 21, "atk" : 7, "spd" : 10, "def" : 6, "res" : 3},
-			"star-4" : {"hp" : 20, "atk" : 7, "spd" : 10, "def" : 5, "res" : 2},
+			"star_5" : {"hp" : 21, "atk" : 7, "spd" : 10, "def" : 6, "res" : 3},
+			"star_4" : {"hp" : 20, "atk" : 7, "spd" : 10, "def" : 5, "res" : 2},
 			"growth" : {"hp" : 8, "atk" : 9, "spd" : 7, "def" : 6, "res" : 1}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 1, "passive_c" : 1}
 		}
 	},
 	"Olivia": {
@@ -1566,18 +1566,18 @@ var charInfo =
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
 		"assist" : ["Dance"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 6, "spd" : 7, "def" : 5, "res" : 4},
-			"star-4" : {"hp" : 16, "atk" : 6, "spd" : 7, "def" : 4, "res" : 3},
-			"star-3" : {"hp" : 16, "atk" : 5, "spd" : 6, "def" : 4, "res" : 3},
-			"star-2" : {"hp" : 15, "atk" : 5, "spd" : 6, "def" : 3, "res" : 2},
-			"star-1" : {"hp" : 15, "atk" : 4, "spd" : 5, "def" : 3, "res" : 2},
+			"star_5" : {"hp" : 17, "atk" : 6, "spd" : 7, "def" : 5, "res" : 4},
+			"star_4" : {"hp" : 16, "atk" : 6, "spd" : 7, "def" : 4, "res" : 3},
+			"star_3" : {"hp" : 16, "atk" : 5, "spd" : 6, "def" : 4, "res" : 3},
+			"star_2" : {"hp" : 15, "atk" : 5, "spd" : 6, "def" : 3, "res" : 2},
+			"star_1" : {"hp" : 15, "atk" : 4, "spd" : 5, "def" : 3, "res" : 2},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 8, "def" : 6, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "assist" : 0, "passive_b" : 0, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "assist" : 0, "passive_b" : 0, "passive_c" : 1},
-			"star-2" : {"weapon" : 2, "assist" : -1, "passive_b" : -1, "passive_c" : 1},
-			"star-1" : {"weapon" : 3, "assist" : -1, "passive_b" : -1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "assist" : 0, "passive_b" : 0, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "assist" : 0, "passive_b" : 0, "passive_c" : 1},
+			"star_2" : {"weapon" : 2, "assist" : -1, "passive_b" : -1, "passive_c" : 1},
+			"star_1" : {"weapon" : 3, "assist" : -1, "passive_b" : -1, "passive_c" : 2}
 		}
 	},
 	"Olwen": {
@@ -1589,7 +1589,7 @@ var charInfo =
 		"passive_c": ["Ward Cavalry", "Spur Res 2", "Spur Res 1"],
 		"assist" : ["Reposition"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 5, "res" : 6},
+			"star_5" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 5, "res" : 6},
 			"growth" : {"hp" : 4, "atk" : 5, "spd" : 8, "def" : 3, "res" : 7}
 		}
 	},
@@ -1602,14 +1602,14 @@ var charInfo =
 		"passive_b": ["Wings of Mercy 3", "Wings of Mercy 2", "Wings of Mercy 1"],
 		"passive_c": ["Goad Fliers", "Spur Spd 2", "Spur Spd 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 9, "def" : 6, "res" : 7},
-			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 5, "res" : 6},
-			"star-3" : {"hp" : 17, "atk" : 6, "spd" : 8, "def" : 5, "res" : 6},
+			"star_5" : {"hp" : 18, "atk" : 7, "spd" : 9, "def" : 6, "res" : 7},
+			"star_4" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 5, "res" : 6},
+			"star_3" : {"hp" : 17, "atk" : 6, "spd" : 8, "def" : 5, "res" : 6},
 			"growth" : {"hp" : 7, "atk" : 7, "spd" : 6, "def" : 6, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 2, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_b" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_b" : 2, "passive_c" : 1}
 		}
 	},
 	"Peri": {
@@ -1621,12 +1621,12 @@ var charInfo =
 		"passive_a": ["Resistance +3", "Resistance +2", "Resistance +1"],
 		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 9, "spd" : 9, "def" : 6, "res" : 6},
-			"star-4" : {"hp" : 15, "atk" : 9, "spd" : 9, "def" : 5, "res" : 5},
+			"star_5" : {"hp" : 16, "atk" : 9, "spd" : 9, "def" : 6, "res" : 6},
+			"star_4" : {"hp" : 15, "atk" : 9, "spd" : 9, "def" : 5, "res" : 5},
 			"growth" : {"hp" : 5, "atk" : 7, "spd" : 7, "def" : 4, "res" : 7}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1}
 		}
 	},
 	"Priscilla": {
@@ -1638,12 +1638,12 @@ var charInfo =
 		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"],
 		"assist" : ["Rehabilitate", "Reconcile", "Heal"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 7, "def" : 4, "res" : 8},
-			"star-4" : {"hp" : 16, "atk" : 7, "spd" : 6, "def" : 3, "res" : 8},
+			"star_5" : {"hp" : 17, "atk" : 7, "spd" : 7, "def" : 4, "res" : 8},
+			"star_4" : {"hp" : 16, "atk" : 7, "spd" : 6, "def" : 3, "res" : 8},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 6, "def" : 3, "res" : 7}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"passive_c" : 1}
+			"star_4" : {"passive_c" : 1}
 		}
 	},
 	"Raigh": {
@@ -1655,16 +1655,16 @@ var charInfo =
 		"passive_b": ["Seal Res 3", "Seal Res 2", "Seal Res 1"],
 		"assist" : ["Rally Attack"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 8, "spd" : 7, "def" : 5, "res" : 7},
-			"star-4" : {"hp" : 16, "atk" : 8, "spd" : 7, "def" : 4, "res" : 6},
-			"star-3" : {"hp" : 16, "atk" : 7, "spd" : 6, "def" : 4, "res" : 6},
-			"star-2" : {"hp" : 15, "atk" : 7, "spd" : 6, "def" : 3, "res" : 5},
+			"star_5" : {"hp" : 17, "atk" : 8, "spd" : 7, "def" : 5, "res" : 7},
+			"star_4" : {"hp" : 16, "atk" : 8, "spd" : 7, "def" : 4, "res" : 6},
+			"star_3" : {"hp" : 16, "atk" : 7, "spd" : 6, "def" : 4, "res" : 6},
+			"star_2" : {"hp" : 15, "atk" : 7, "spd" : 6, "def" : 3, "res" : 5},
 			"growth" : {"hp" : 5, "atk" : 7, "spd" : 6, "def" : 4, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 0},
-			"star-3" : {"weapon" : 1, "assist" : 0, "passive_a" : 2, "passive_b" : 1},
-			"star-2" : {"weapon" : 2, "assist" : -1, "passive_a" : -1, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 0},
+			"star_3" : {"weapon" : 1, "assist" : 0, "passive_a" : 2, "passive_b" : 1},
+			"star_2" : {"weapon" : 2, "assist" : -1, "passive_a" : -1, "passive_b" : 1}
 		}
 	},
 	"Raven": {
@@ -1676,12 +1676,12 @@ var charInfo =
 		"passive_a": ["Defiant Spd 3", "Defiant Spd 2", "Defiant Spd 1"],
 		"passive_c": ["Threaten Def 3", "Threaten Def 2", "Threaten Def 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 9, "def" : 6, "res" : 5},
-			"star-4" : {"hp" : 18, "atk" : 8, "spd" : 9, "def" : 5, "res" : 4},
+			"star_5" : {"hp" : 19, "atk" : 8, "spd" : 9, "def" : 6, "res" : 5},
+			"star_4" : {"hp" : 18, "atk" : 8, "spd" : 9, "def" : 5, "res" : 4},
 			"growth" : {"hp" : 6, "atk" : 8, "spd" : 8, "def" : 5, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "passive_c" : 1}
 		}
 	},
 	"Rebecca": {
@@ -1693,12 +1693,12 @@ var charInfo =
 		"passive_b": ["Seal Atk 3", "Seal Atk 2", "Seal Atk 1"],
 		"assist" : ["Ardent Sacrifice"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 6, "res" : 5},
-			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 5, "res" : 4},
+			"star_5" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 6, "res" : 5},
+			"star_4" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 5, "res" : 4},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 8, "def" : 3, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "passive_b" : 1}
 		}
 	},
 	"Reinhardt": {
@@ -1710,12 +1710,12 @@ var charInfo =
 		"passive_b": ["Vantage 3", "Vantage 2", "Vantage 1"],
 		"passive_c": ["Goad Cavalry", "Spur Atk 2", "Spur Atk 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 8, "spd" : 6, "def" : 5, "res" : 8},
-			"star-4" : {"hp" : 15, "atk" : 8, "spd" : 5, "def" : 4, "res" : 8},
+			"star_5" : {"hp" : 16, "atk" : 8, "spd" : 6, "def" : 5, "res" : 8},
+			"star_4" : {"hp" : 15, "atk" : 8, "spd" : 5, "def" : 4, "res" : 8},
 			"growth" : {"hp" : 6, "atk" : 7, "spd" : 4, "def" : 6, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "passive_c" : 1}
 		}
 	},
 	"Robin (F)": {
@@ -1727,16 +1727,16 @@ var charInfo =
 		"passive_a": ["Defiant Res 3", "Defiant Res 2", "Defiant Res 1"],
 		"passive_b": ["B Tomebreaker 3", "B Tomebreaker 2", "B Tomebreaker 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 7, "def" : 7, "res" : 5},
-			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 7, "def" : 6, "res" : 4},
-			"star-3" : {"hp" : 17, "atk" : 6, "spd" : 6, "def" : 6, "res" : 4},
-			"star-2" : {"hp" : 16, "atk" : 6, "spd" : 6, "def" : 5, "res" : 3},
+			"star_5" : {"hp" : 18, "atk" : 7, "spd" : 7, "def" : 7, "res" : 5},
+			"star_4" : {"hp" : 17, "atk" : 7, "spd" : 7, "def" : 6, "res" : 4},
+			"star_3" : {"hp" : 17, "atk" : 6, "spd" : 6, "def" : 6, "res" : 4},
+			"star_2" : {"hp" : 16, "atk" : 6, "spd" : 6, "def" : 5, "res" : 3},
 			"growth" : {"hp" : 6, "atk" : 6, "spd" : 6, "def" : 6, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_b" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_b" : 1},
-			"star-2" : {"weapon" : 2, "special" : -1, "passive_a" : -1, "passive_b" : 2}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_b" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_b" : 1},
+			"star_2" : {"weapon" : 2, "special" : -1, "passive_a" : -1, "passive_b" : 2}
 		}
 	},
 	"Robin (M)": {
@@ -1748,14 +1748,14 @@ var charInfo =
 		"passive_a": ["Defiant Spd 3", "Defiant Spd 2", "Defiant Spd 1"],
 		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 7, "def" : 7, "res" : 5},
-			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 7, "def" : 6, "res" : 4},
-			"star-3" : {"hp" : 17, "atk" : 6, "spd" : 6, "def" : 6, "res" : 4},
+			"star_5" : {"hp" : 18, "atk" : 7, "spd" : 7, "def" : 7, "res" : 5},
+			"star_4" : {"hp" : 17, "atk" : 7, "spd" : 7, "def" : 6, "res" : 4},
+			"star_3" : {"hp" : 17, "atk" : 6, "spd" : 6, "def" : 6, "res" : 4},
 			"growth" : {"hp" : 6, "atk" : 6, "spd" : 6, "def" : 6, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1}
 		}
 	},
 	"Roy": {
@@ -1767,12 +1767,12 @@ var charInfo =
 		"passive_b": ["Seal Def 3", "Seal Def 2", "Seal Def 1"],
 		"assist" : ["Shove"],
 		"base_stat" : {
-			"star-5" : {"hp" : 20, "atk" : 8, "spd" : 9, "def" : 6, "res" : 4},
-			"star-4" : {"hp" : 19, "atk" : 8, "spd" : 9, "def" : 5, "res" : 3},
+			"star_5" : {"hp" : 20, "atk" : 8, "spd" : 9, "def" : 6, "res" : 4},
+			"star_4" : {"hp" : 19, "atk" : 8, "spd" : 9, "def" : 5, "res" : 3},
 			"growth" : {"hp" : 7, "atk" : 6, "spd" : 6, "def" : 5, "res" : 7}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "passive_b" : 1}
 		}
 	},
 	"Ryoma": {
@@ -1784,7 +1784,7 @@ var charInfo =
 		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
 		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 11, "def" : 5, "res" : 4},
+			"star_5" : {"hp" : 19, "atk" : 8, "spd" : 11, "def" : 5, "res" : 4},
 			"growth" : {"hp" : 6, "atk" : 8, "spd" : 7, "def" : 6, "res" : 4}
 		}
 	},
@@ -1797,14 +1797,14 @@ var charInfo =
 		"passive_c": ["Spur Spd 3", "Spur Spd 2", "Spur Spd 1"],
 		"assist" : ["Harsh Command"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 9, "res" : 3},
-			"star-4" : {"hp" : 16, "atk" : 6, "spd" : 8, "def" : 9, "res" : 2},
-			"star-3" : {"hp" : 16, "atk" : 6, "spd" : 7, "def" : 8, "res" : 2},
+			"star_5" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 9, "res" : 3},
+			"star_4" : {"hp" : 16, "atk" : 6, "spd" : 8, "def" : 9, "res" : 2},
+			"star_3" : {"hp" : 16, "atk" : 6, "spd" : 7, "def" : 8, "res" : 2},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 8, "def" : 7, "res" : 2}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_b" : 0, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "passive_b" : 1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "passive_b" : 0, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "passive_b" : 1, "passive_c" : 2}
 		}
 	},
 	"Sakura": {
@@ -1816,12 +1816,12 @@ var charInfo =
 		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
 		"assist" : ["Physic", "Mend", "Heal"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 6, "spd" : 8, "def" : 5, "res" : 8},
-			"star-4" : {"hp" : 16, "atk" : 5, "spd" : 8, "def" : 4, "res" : 8},
+			"star_5" : {"hp" : 17, "atk" : 6, "spd" : 8, "def" : 5, "res" : 8},
+			"star_4" : {"hp" : 16, "atk" : 5, "spd" : 8, "def" : 4, "res" : 8},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 6, "def" : 5, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"passive_c" : 1}
+			"star_4" : {"passive_c" : 1}
 		}
 	}, 
 	"Sanaki" : {
@@ -1833,7 +1833,7 @@ var charInfo =
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
 		"assist" : ["Harsh Command"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 9, "spd" : 7, "def" : 4, "res" : 8},
+			"star_5" : {"hp" : 16, "atk" : 9, "spd" : 7, "def" : 4, "res" : 8},
 			"growth" : {"hp" : 4, "atk" : 9, "spd" : 5, "def" : 2, "res" : 8}
 		}
 	},
@@ -1846,14 +1846,14 @@ var charInfo =
 		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"],
 		"assist" : ["Reposition"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 6, "spd" : 9, "def" : 8, "res" : 6},
-			"star-4" : {"hp" : 17, "atk" : 5, "spd" : 9, "def" : 8, "res" : 5},
-			"star-3" : {"hp" : 17, "atk" : 5, "spd" : 8, "def" : 7, "res" : 5},
+			"star_5" : {"hp" : 18, "atk" : 6, "spd" : 9, "def" : 8, "res" : 6},
+			"star_4" : {"hp" : 17, "atk" : 5, "spd" : 9, "def" : 8, "res" : 5},
+			"star_3" : {"hp" : 17, "atk" : 5, "spd" : 8, "def" : 7, "res" : 5},
 			"growth" : {"hp" : 5, "atk" : 5, "spd" : 8, "def" : 7, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "passive_a" : 2, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "passive_a" : 2, "passive_c" : 1}
 		}
 	},
 	"Seliph": {
@@ -1865,12 +1865,12 @@ var charInfo =
 		"passive_b": ["Brash Assault 3", "Brash Assault 2", "Brash Assault 1"],
 		"assist" : ["Rally Speed"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 7, "def" : 8, "res" : 5},
-			"star-4" : {"hp" : 18, "atk" : 8, "spd" : 6, "def" : 8, "res" : 4},
+			"star_5" : {"hp" : 19, "atk" : 8, "spd" : 7, "def" : 8, "res" : 5},
+			"star_4" : {"hp" : 18, "atk" : 8, "spd" : 6, "def" : 8, "res" : 4},
 			"growth" : {"hp" : 9, "atk" : 8, "spd" : 4, "def" : 6, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "passive_b" : 1}
 		}
 	},
 	"Serra": {
@@ -1882,14 +1882,14 @@ var charInfo =
 		"passive_c": ["Hone Atk 3", "Hone Atk 2", "Hone Atk 1"],
 		"assist" : ["Recover", "Mend", "Heal"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 6, "spd" : 9, "def" : 4, "res" : 9},
-			"star-4" : {"hp" : 15, "atk" : 5, "spd" : 9, "def" : 3, "res" : 9},
-			"star-3" : {"hp" : 15, "atk" : 5, "spd" : 8, "def" : 3, "res" : 8},
+			"star_5" : {"hp" : 16, "atk" : 6, "spd" : 9, "def" : 4, "res" : 9},
+			"star_4" : {"hp" : 15, "atk" : 5, "spd" : 9, "def" : 3, "res" : 9},
+			"star_3" : {"hp" : 15, "atk" : 5, "spd" : 8, "def" : 3, "res" : 8},
 			"growth" : {"hp" : 4, "atk" : 7, "spd" : 6, "def" : 4, "res" : 7}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"passive_c" : 1},
-			"star-3" : {"passive_c" : 2}
+			"star_4" : {"passive_c" : 1},
+			"star_3" : {"passive_c" : 2}
 		}
 	},
 	"Setsuna": {
@@ -1901,14 +1901,14 @@ var charInfo =
 		"passive_b": ["Bowbreaker 3", "Bowbreaker 2", "Bowbreaker 1"],
 		"assist" : ["Reciprocal Aid"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 6, "spd" : 9, "def" : 5, "res" : 6},
-			"star-4" : {"hp" : 17, "atk" : 6, "spd" : 9, "def" : 4, "res" : 5},
-			"star-3" : {"hp" : 17, "atk" : 5, "spd" : 8, "def" : 4, "res" : 5},
+			"star_5" : {"hp" : 18, "atk" : 6, "spd" : 9, "def" : 5, "res" : 6},
+			"star_4" : {"hp" : 17, "atk" : 6, "spd" : 9, "def" : 4, "res" : 5},
+			"star_3" : {"hp" : 17, "atk" : 5, "spd" : 8, "def" : 4, "res" : 5},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 9, "def" : 4, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 1, "passive_b" : 0},
-			"star-3" : {"weapon" : 1, "passive_a" : 2, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "passive_a" : 1, "passive_b" : 0},
+			"star_3" : {"weapon" : 1, "passive_a" : 2, "passive_b" : 1}
 		}
 	},
 	"Shanna": {
@@ -1920,14 +1920,14 @@ var charInfo =
 		"passive_b": ["Desperation 3", "Desperation 2", "Desperation 1"],
 		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 8, "spd" : 9, "def" : 6, "res" : 7},
-			"star-4" : {"hp" : 16, "atk" : 8, "spd" : 9, "def" : 5, "res" : 6},
-			"star-3" : {"hp" : 16, "atk" : 7, "spd" : 8, "def" : 5, "res" : 6},
+			"star_5" : {"hp" : 17, "atk" : 8, "spd" : 9, "def" : 6, "res" : 7},
+			"star_4" : {"hp" : 16, "atk" : 8, "spd" : 9, "def" : 5, "res" : 6},
+			"star_3" : {"hp" : 16, "atk" : 7, "spd" : 8, "def" : 5, "res" : 6},
 			"growth" : {"hp" : 6, "atk" : 6, "spd" : 8, "def" : 5, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_b" : 0, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_b" : 1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_b" : 0, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_b" : 1, "passive_c" : 2}
 		}
 	},
 	"Sharena": {
@@ -1939,16 +1939,16 @@ var charInfo =
 		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
 		"assist" : ["Rally Attack"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 8, "spd" : 8, "def" : 7, "res" : 5},
-			"star-4" : {"hp" : 18, "atk" : 8, "spd" : 8, "def" : 6, "res" : 4},
-			"star-3" : {"hp" : 18, "atk" : 7, "spd" : 7, "def" : 6, "res" : 4},
-			"star-2" : {"hp" : 17, "atk" : 7, "spd" : 7, "def" : 5, "res" : 3},
+			"star_5" : {"hp" : 19, "atk" : 8, "spd" : 8, "def" : 7, "res" : 5},
+			"star_4" : {"hp" : 18, "atk" : 8, "spd" : 8, "def" : 6, "res" : 4},
+			"star_3" : {"hp" : 18, "atk" : 7, "spd" : 7, "def" : 6, "res" : 4},
+			"star_2" : {"hp" : 17, "atk" : 7, "spd" : 7, "def" : 5, "res" : 3},
 			"growth" : {"hp" : 7, "atk" : 7, "spd" : 7, "def" : 6, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_a" : 0, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 2},
-			"star-2" : {"weapon" : 2, "passive_a" : 1, "passive_c" : -1}
+			"star_4" : {"weapon" : 1, "passive_a" : 0, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 2},
+			"star_2" : {"weapon" : 2, "passive_a" : 1, "passive_c" : -1}
 		}
 	},
 	"Sheena": {
@@ -1960,12 +1960,12 @@ var charInfo =
 		"passive_a": ["Svalinn Shield"],
 		"passive_c": ["Fortify Armor", "Fortify Def 2", "Fortify Def 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 21, "atk" : 8, "spd" : 6, "def" : 12, "res" : 7},
-			"star-4" : {"hp" : 20, "atk" : 8, "spd" : 5, "def" : 12, "res" : 6},
+			"star_5" : {"hp" : 21, "atk" : 8, "spd" : 6, "def" : 12, "res" : 7},
+			"star_4" : {"hp" : 20, "atk" : 8, "spd" : 5, "def" : 12, "res" : 6},
 			"growth" : {"hp" : 7, "atk" : 6, "spd" : 5, "def" : 7, "res" : 8}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1}
+			"star_4" : {"weapon" : 1}
 		}
 	},
 	"Sophia": {
@@ -1977,18 +1977,18 @@ var charInfo =
 		"passive_a": ["Warding Blow 3", "Warding Blow 2", "Warding Blow 1"],
 		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 9, "spd" : 4, "def" : 6, "res" : 7},
-			"star-4" : {"hp" : 17, "atk" : 9, "spd" : 3, "def" : 5, "res" : 7},
-			"star-3" : {"hp" : 17, "atk" : 8, "spd" : 3, "def" : 5, "res" : 6},
-			"star-2" : {"hp" : 16, "atk" : 8, "spd" : 2, "def" : 4, "res" : 6},
-			"star-1" : {"hp" : 16, "atk" : 7, "spd" : 2, "def" : 4, "res" : 5},
+			"star_5" : {"hp" : 18, "atk" : 9, "spd" : 4, "def" : 6, "res" : 7},
+			"star_4" : {"hp" : 17, "atk" : 9, "spd" : 3, "def" : 5, "res" : 7},
+			"star_3" : {"hp" : 17, "atk" : 8, "spd" : 3, "def" : 5, "res" : 6},
+			"star_2" : {"hp" : 16, "atk" : 8, "spd" : 2, "def" : 4, "res" : 6},
+			"star_1" : {"hp" : 16, "atk" : 7, "spd" : 2, "def" : 4, "res" : 5},
 			"growth" : {"hp" : 6, "atk" : 7, "spd" : 3, "def" : 6, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1},
-			"star-2" : {"weapon" : 2, "special" : -1, "passive_a" : -1, "passive_c" : 1},
-			"star-1" : {"weapon" : 3, "special" : -1, "passive_a" : -1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1},
+			"star_2" : {"weapon" : 2, "special" : -1, "passive_a" : -1, "passive_c" : 1},
+			"star_1" : {"weapon" : 3, "special" : -1, "passive_a" : -1, "passive_c" : 2}
 		}
 	},
 	"Soren": {
@@ -2000,7 +2000,7 @@ var charInfo =
 		"passive_b": ["Watersweep 3", "Watersweep 2", "Watersweep 1"],
 		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 4, "res" : 7},
+			"star_5" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 4, "res" : 7},
 			"growth" : {"hp" : 5, "atk" : 8, "spd" : 7, "def" : 2, "res" : 6}
 		}
 	},
@@ -2013,18 +2013,18 @@ var charInfo =
 		"passive_b": ["Obstruct 3", "Obstruct 2", "Obstruct 1"],
 		"assist" : ["Swap"],
 		"base_stat" : {
-			"star-5" : {"hp" : 19, "atk" : 7, "spd" : 7, "def" : 8, "res" : 5},
-			"star-4" : {"hp" : 18, "atk" : 7, "spd" : 6, "def" : 8, "res" : 4},
-			"star-3" : {"hp" : 18, "atk" : 6, "spd" : 6, "def" : 7, "res" : 4},
-			"star-2" : {"hp" : 17, "atk" : 6, "spd" : 5, "def" : 7, "res" : 3},
-			"star-1" : {"hp" : 17, "atk" : 5, "spd" : 5, "def" : 6, "res" : 3},
+			"star_5" : {"hp" : 19, "atk" : 7, "spd" : 7, "def" : 8, "res" : 5},
+			"star_4" : {"hp" : 18, "atk" : 7, "spd" : 6, "def" : 8, "res" : 4},
+			"star_3" : {"hp" : 18, "atk" : 6, "spd" : 6, "def" : 7, "res" : 4},
+			"star_2" : {"hp" : 17, "atk" : 6, "spd" : 5, "def" : 7, "res" : 3},
+			"star_1" : {"hp" : 17, "atk" : 5, "spd" : 5, "def" : 6, "res" : 3},
 			"growth" : {"hp" : 8, "atk" : 7, "spd" : 5, "def" : 6, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "assist" : 0, "passive_a" : 0, "passive_b" : 1},
-			"star-3" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 2},
-			"star-2" : {"weapon" : 2, "assist" : -1, "passive_a" : 1, "passive_b" : -1},
-			"star-1" : {"weapon" : 3, "assist" : -1, "passive_a" : 2, "passive_b" : -1}
+			"star_4" : {"weapon" : 1, "assist" : 0, "passive_a" : 0, "passive_b" : 1},
+			"star_3" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 2},
+			"star_2" : {"weapon" : 2, "assist" : -1, "passive_a" : 1, "passive_b" : -1},
+			"star_1" : {"weapon" : 3, "assist" : -1, "passive_a" : 2, "passive_b" : -1}
 		}
 	},
 	"Subaki": {
@@ -2036,18 +2036,18 @@ var charInfo =
 		"passive_b": ["Quick Riposte 3", "Quick Riposte 2", "Quick Riposte 1"],
 		"assist" : ["Swap"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 6, "spd" : 9, "def" : 9, "res" : 5},
-			"star-4" : {"hp" : 17, "atk" : 5, "spd" : 9, "def" : 9, "res" : 4},
-			"star-3" : {"hp" : 17, "atk" : 5, "spd" : 8, "def" : 8, "res" : 4},
-			"star-2" : {"hp" : 16, "atk" : 4, "spd" : 8, "def" : 8, "res" : 3},
-			"star-1" : {"hp" : 16, "atk" : 4, "spd" : 7, "def" : 7, "res" : 3},
+			"star_5" : {"hp" : 18, "atk" : 6, "spd" : 9, "def" : 9, "res" : 5},
+			"star_4" : {"hp" : 17, "atk" : 5, "spd" : 9, "def" : 9, "res" : 4},
+			"star_3" : {"hp" : 17, "atk" : 5, "spd" : 8, "def" : 8, "res" : 4},
+			"star_2" : {"hp" : 16, "atk" : 4, "spd" : 8, "def" : 8, "res" : 3},
+			"star_1" : {"hp" : 16, "atk" : 4, "spd" : 7, "def" : 7, "res" : 3},
 			"growth" : {"hp" : 6, "atk" : 5, "spd" : 8, "def" : 8, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "assist" : 0, "passive_a" : 0, "passive_b" : 1},
-			"star-3" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 2},
-			"star-2" : {"weapon" : 2, "assist" : -1, "passive_a" : 1, "passive_b" : -1},
-			"star-1" : {"weapon" : 3, "assist" : -1, "passive_a" : 2, "passive_b" : -1}
+			"star_4" : {"weapon" : 1, "assist" : 0, "passive_a" : 0, "passive_b" : 1},
+			"star_3" : {"weapon" : 1, "assist" : 0, "passive_a" : 1, "passive_b" : 2},
+			"star_2" : {"weapon" : 2, "assist" : -1, "passive_a" : 1, "passive_b" : -1},
+			"star_1" : {"weapon" : 3, "assist" : -1, "passive_a" : 2, "passive_b" : -1}
 		}
 	},
 	"Sully": {
@@ -2059,14 +2059,14 @@ var charInfo =
 		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"],
 		"assist" : ["Draw Back"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 7, "res" : 6},
-			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 6, "res" : 5},
-			"star-3" : {"hp" : 17, "atk" : 6, "spd" : 7, "def" : 6, "res" : 5},
+			"star_5" : {"hp" : 18, "atk" : 7, "spd" : 8, "def" : 7, "res" : 6},
+			"star_4" : {"hp" : 17, "atk" : 7, "spd" : 8, "def" : 6, "res" : 5},
+			"star_3" : {"hp" : 17, "atk" : 6, "spd" : 7, "def" : 6, "res" : 5},
 			"growth" : {"hp" : 7, "atk" : 5, "spd" : 8, "def" : 4, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_b" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "passive_b" : 2, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "passive_b" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "passive_b" : 2, "passive_c" : 1}
 		}
 	},
 	"Takumi": {
@@ -2078,7 +2078,7 @@ var charInfo =
 		"passive_a": ["Close Counter"],
 		"passive_c": ["Threaten Spd 3", "Threaten Spd 2", "Threaten Spd 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 8, "spd" : 7, "def" : 6, "res" : 5},
+			"star_5" : {"hp" : 18, "atk" : 8, "spd" : 7, "def" : 6, "res" : 5},
 			"growth" : {"hp" : 6, "atk" : 7, "spd" : 8, "def" : 5, "res" : 2}
 		}
 	},
@@ -2091,12 +2091,12 @@ var charInfo =
 		"passive_a": ["Darting Blow 3", "Darting Blow 2", "Darting Blow 1"],
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 17, "atk" : 8, "spd" : 8, "def" : 6, "res" : 5},
-			"star-4" : {"hp" : 16, "atk" : 8, "spd" : 8, "def" : 5, "res" : 4},
+			"star_5" : {"hp" : 17, "atk" : 8, "spd" : 8, "def" : 6, "res" : 5},
+			"star_4" : {"hp" : 16, "atk" : 8, "spd" : 8, "def" : 5, "res" : 4},
 			"growth" : {"hp" : 6, "atk" : 7, "spd" : 8, "def" : 4, "res" : 3}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "passive_c" : 1}
 		}
 	},
 	"Tiki (Adult)": {
@@ -2108,14 +2108,14 @@ var charInfo =
 		"passive_a": ["Defiant Atk 3", "Defiant Atk 2", "Defiant Atk 1"],
 		"passive_c": ["Spur Res 3", "Spur Res 2", "Spur Res 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 7, "spd" : 6, "def" : 9, "res" : 7},
-			"star-4" : {"hp" : 17, "atk" : 7, "spd" : 5, "def" : 9, "res" : 6},
-			"star-3" : {"hp" : 17, "atk" : 6, "spd" : 5, "def" : 8, "res" : 6},
+			"star_5" : {"hp" : 18, "atk" : 7, "spd" : 6, "def" : 9, "res" : 7},
+			"star_4" : {"hp" : 17, "atk" : 7, "spd" : 5, "def" : 9, "res" : 6},
+			"star_3" : {"hp" : 17, "atk" : 6, "spd" : 5, "def" : 8, "res" : 6},
 			"growth" : {"hp" : 6, "atk" : 9, "spd" : 4, "def" : 8, "res" : 4}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 0, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 1, "passive_c" : 2}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 0, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 1, "passive_c" : 2}
 		}
 	},
 	"Tiki (Young)": {
@@ -2127,7 +2127,7 @@ var charInfo =
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
 		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 15, "atk" : 5, "spd" : 4, "def" : 8, "res" : 7},
+			"star_5" : {"hp" : 15, "atk" : 5, "spd" : 4, "def" : 8, "res" : 7},
 			"growth" : {"hp" : 8, "atk" : 8, "spd" : 8, "def" : 7, "res" : 6}
 		}
 	},
@@ -2140,7 +2140,7 @@ var charInfo =
 		"passive_b": ["Guard 3", "Guard 2", "Guard 1"],
 		"assist" : ["Reciprocal Aid"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 6, "spd" : 8, "def" : 6, "res" : 8},
+			"star_5" : {"hp" : 18, "atk" : 6, "spd" : 8, "def" : 6, "res" : 8},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 8, "def" : 5, "res" : 6}
 		}
 	},
@@ -2153,14 +2153,14 @@ var charInfo =
 		"passive_a": ["Death Blow 3", "Death Blow 2", "Death Blow 1"],
 		"passive_c": ["Threaten Res 3", "Threaten Res 2", "Threaten Res 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 16, "atk" : 7, "spd" : 8, "def" : 4, "res" : 8},
-			"star-4" : {"hp" : 15, "atk" : 6, "spd" : 8, "def" : 3, "res" : 8},
-			"star-3" : {"hp" : 15, "atk" : 6, "spd" : 7, "def" : 3, "res" : 7},
+			"star_5" : {"hp" : 16, "atk" : 7, "spd" : 8, "def" : 4, "res" : 8},
+			"star_4" : {"hp" : 15, "atk" : 6, "spd" : 8, "def" : 3, "res" : 8},
+			"star_3" : {"hp" : 15, "atk" : 6, "spd" : 7, "def" : 3, "res" : 7},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 7, "def" : 3, "res" : 6}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1}
 		}
 	},
 	"Virion": {
@@ -2172,18 +2172,18 @@ var charInfo =
 		"passive_a": ["Defiant Res 3", "Defiant Res 2", "Defiant Res 1"],
 		"passive_b": ["Seal Spd 3", "Seal Spd 2", "Seal Spd 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 20, "atk" : 7, "spd" : 7, "def" : 7, "res" : 3},
-			"star-4" : {"hp" : 19, "atk" : 7, "spd" : 7, "def" : 6, "res" : 2},
-			"star-3" : {"hp" : 19, "atk" : 6, "spd" : 6, "def" : 6, "res" : 2},
-			"star-2" : {"hp" : 18, "atk" : 6, "spd" : 6, "def" : 5, "res" : 1},
-			"star-1" : {"hp" : 18, "atk" : 5, "spd" : 5, "def" : 5, "res" : 1},
+			"star_5" : {"hp" : 20, "atk" : 7, "spd" : 7, "def" : 7, "res" : 3},
+			"star_4" : {"hp" : 19, "atk" : 7, "spd" : 7, "def" : 6, "res" : 2},
+			"star_3" : {"hp" : 19, "atk" : 6, "spd" : 6, "def" : 6, "res" : 2},
+			"star_2" : {"hp" : 18, "atk" : 6, "spd" : 6, "def" : 5, "res" : 1},
+			"star_1" : {"hp" : 18, "atk" : 5, "spd" : 5, "def" : 5, "res" : 1},
 			"growth" : {"hp" : 8, "atk" : 7, "spd" : 7, "def" : 5, "res" : 1}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_b" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_b" : 1},
-			"star-2" : {"weapon" : 2, "special" : -1, "passive_a" : -1, "passive_b" : 1},
-			"star-1" : {"weapon" : 3, "special" : -1, "passive_a" : -1, "passive_b" : 2}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_b" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_b" : 1},
+			"star_2" : {"weapon" : 2, "special" : -1, "passive_a" : -1, "passive_b" : 1},
+			"star_1" : {"weapon" : 3, "special" : -1, "passive_a" : -1, "passive_b" : 2}
 		}
 	},
 	"Wrys": {
@@ -2195,18 +2195,18 @@ var charInfo =
 		"passive_b": ["Live to Serve 3", "Live to Serve 2", "Live to Serve 1"],
 		"assist" : ["Rehabilitate", "Reconcile", "Heal"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 5, "spd" : 6, "def" : 5, "res" : 10},
-			"star-4" : {"hp" : 17, "atk" : 4, "spd" : 6, "def" : 4, "res" : 10},
-			"star-3" : {"hp" : 17, "atk" : 4, "spd" : 5, "def" : 4, "res" : 9},
-			"star-2" : {"hp" : 16, "atk" : 3, "spd" : 5, "def" : 3, "res" : 9},
-			"star-1" : {"hp" : 16, "atk" : 3, "spd" : 4, "def" : 3, "res" : 8},
+			"star_5" : {"hp" : 18, "atk" : 5, "spd" : 6, "def" : 5, "res" : 10},
+			"star_4" : {"hp" : 17, "atk" : 4, "spd" : 6, "def" : 4, "res" : 10},
+			"star_3" : {"hp" : 17, "atk" : 4, "spd" : 5, "def" : 4, "res" : 9},
+			"star_2" : {"hp" : 16, "atk" : 3, "spd" : 5, "def" : 3, "res" : 9},
+			"star_1" : {"hp" : 16, "atk" : 3, "spd" : 4, "def" : 3, "res" : 8},
 			"growth" : {"hp" : 7, "atk" : 5, "spd" : 4, "def" : 4, "res" : 8}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"special" : 0, "assist" : 0, "passive_b" : 1},
-			"star-3" : {"special" : 0, "assist" : 1, "passive_b" : 2},
-			"star-2" : {"special" : 1, "assist" : 1, "passive_b" : -1},
-			"star-1" : {"special" : -1, "assist" : 2, "passive_b" : -1}
+			"star_4" : {"special" : 0, "assist" : 0, "passive_b" : 1},
+			"star_3" : {"special" : 0, "assist" : 1, "passive_b" : 2},
+			"star_2" : {"special" : 1, "assist" : 1, "passive_b" : -1},
+			"star_1" : {"special" : -1, "assist" : 2, "passive_b" : -1}
 		}
 	},
 	"Xander": {
@@ -2218,14 +2218,14 @@ var charInfo =
 		"passive_a": ["Armored Blow 3", "Armored Blow 2", "Armored Blow 1"],
 		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 20, "atk" : 8, "spd" : 5, "def" : 9, "res" : 4},
-			"star-4" : {"hp" : 19, "atk" : 8, "spd" : 4, "def" : 9, "res" : 3},
-			"star-3" : {"hp" : 19, "atk" : 7, "spd" : 4, "def" : 8, "res" : 3},
+			"star_5" : {"hp" : 20, "atk" : 8, "spd" : 5, "def" : 9, "res" : 4},
+			"star_4" : {"hp" : 19, "atk" : 8, "spd" : 4, "def" : 9, "res" : 3},
+			"star_3" : {"hp" : 19, "atk" : 7, "spd" : 4, "def" : 8, "res" : 3},
 			"growth" : {"hp" : 7, "atk" : 7, "spd" : 5, "def" : 9, "res" : 2}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 1},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_c" : 1}
 		}
 	},
 	"Xander (Spring)": {
@@ -2237,7 +2237,7 @@ var charInfo =
 		"passive_c": ["Fortify Def 3", "Fortify Def 2", "Fortify Def 1"],
 		"assist" : ["Swap"],
 		"base_stat" : {
-			"star-5" : {"hp" : 18, "atk" : 6, "spd" : 6, "def" : 9, "res" : 7},
+			"star_5" : {"hp" : 18, "atk" : 6, "spd" : 6, "def" : 9, "res" : 7},
 			"growth" : {"hp" : 6, "atk" : 5, "spd" : 6, "def" : 8, "res" : 5}
 		}
 	},
@@ -2250,14 +2250,14 @@ var charInfo =
 		"passive_a": ["Life and Death 3", "Life and Death 2", "Life and Death 1"],
 		"passive_b": ["Wary Fighter 3", "Wary Fighter 2", "Wary Fighter 1"],
 		"base_stat" : {
-			"star-5" : {"hp" : 25, "atk" : 9, "spd" : 3, "def" : 12, "res" : 5},
-			"star-4" : {"hp" : 24, "atk" : 9, "spd" : 2, "def" : 12, "res" : 4},
-			"star-3" : {"hp" : 24, "atk" : 8, "spd" : 2, "def" : 11, "res" : 4},
+			"star_5" : {"hp" : 25, "atk" : 9, "spd" : 3, "def" : 12, "res" : 5},
+			"star_4" : {"hp" : 24, "atk" : 9, "spd" : 2, "def" : 12, "res" : 4},
+			"star_3" : {"hp" : 24, "atk" : 8, "spd" : 2, "def" : 11, "res" : 4},
 			"growth" : {"hp" : 10, "atk" : 8, "spd" : 2, "def" : 8, "res" : 5}
 		},
 		"rarity_restrict" : {
-			"star-4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_b" : 0},
-			"star-3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_b" : 1}
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_a" : 1, "passive_b" : 0},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_a" : 2, "passive_b" : 1}
 		}
 	}
 };

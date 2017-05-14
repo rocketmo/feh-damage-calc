@@ -648,11 +648,11 @@ function getStatTotals(charName, weaponName, passiveA, seal, rarity, level, merg
 	"use strict";
 	// base stats + boons/banes
 	var stats = {};
-	stats.hp = charInfo[charName].base_stat["star-" + rarity.toString()].hp + ((boon === "hp") ? 1 : 0) + ((bane === "hp") ? -1 : 0);
-	stats.atk = charInfo[charName].base_stat["star-" + rarity.toString()].atk + ((boon === "atk") ? 1 : 0) + ((bane === "atk") ? -1 : 0);
-	stats.spd = charInfo[charName].base_stat["star-" + rarity.toString()].spd + ((boon === "spd") ? 1 : 0) + ((bane === "spd") ? -1 : 0);
-	stats.def = charInfo[charName].base_stat["star-" + rarity.toString()].def + ((boon === "def") ? 1 : 0) + ((bane === "def") ? -1 : 0);
-	stats.res = charInfo[charName].base_stat["star-" + rarity.toString()].res + ((boon === "res") ? 1 : 0) + ((bane === "res") ? -1 : 0);
+	stats.hp = charInfo[charName].base_stat["star_" + rarity.toString()].hp + ((boon === "hp") ? 1 : 0) + ((bane === "hp") ? -1 : 0);
+	stats.atk = charInfo[charName].base_stat["star_" + rarity.toString()].atk + ((boon === "atk") ? 1 : 0) + ((bane === "atk") ? -1 : 0);
+	stats.spd = charInfo[charName].base_stat["star_" + rarity.toString()].spd + ((boon === "spd") ? 1 : 0) + ((bane === "spd") ? -1 : 0);
+	stats.def = charInfo[charName].base_stat["star_" + rarity.toString()].def + ((boon === "def") ? 1 : 0) + ((bane === "def") ? -1 : 0);
+	stats.res = charInfo[charName].base_stat["star_" + rarity.toString()].res + ((boon === "res") ? 1 : 0) + ((bane === "res") ? -1 : 0);
 	
 	// merged units
 	if (merge > 0) {
@@ -944,7 +944,7 @@ function displayChar(charName, charNum) {
 	var rarities = "<option value='5'>5 Stars</option>";
 	if (singleChar.hasOwnProperty("base_stat")) {
 		for (var starIndex = 4; starIndex >= 1; starIndex--) {
-			if (singleChar.base_stat.hasOwnProperty("star-" + starIndex.toString())) {
+			if (singleChar.base_stat.hasOwnProperty("star_" + starIndex.toString())) {
 				if (starIndex === 1) {
 					rarities += "<option value='1'>1 Star</option>";
 				} else {
@@ -1529,11 +1529,11 @@ function getDefaultCharData(charName) {
 	// override rarity
 	var overrideRarity = parseInt($("#override-rarity").val());
 	if (overrideRarity < 5 && charInfo[charName].hasOwnProperty("base_stat")) {
-		if (charInfo[charName].base_stat.hasOwnProperty("star-" + overrideRarity.toString())) {
+		if (charInfo[charName].base_stat.hasOwnProperty("star_" + overrideRarity.toString())) {
 			rarity = overrideRarity;
 		} else {
 			for (var rarityIndex = 4; rarityIndex >= overrideRarity; rarityIndex--) {
-				if (!charInfo[charName].base_stat.hasOwnProperty("star-" + rarityIndex.toString())) {
+				if (!charInfo[charName].base_stat.hasOwnProperty("star_" + rarityIndex.toString())) {
 					break;
 				}
 				rarity = rarityIndex;
@@ -1541,7 +1541,7 @@ function getDefaultCharData(charName) {
 		}
 		
 		// update indexes
-		var starRating = "star-" + rarity.toString();
+		var starRating = "star_" + rarity.toString();
 		if (charInfo[charName].hasOwnProperty("rarity_restrict") && charInfo[charName].rarity_restrict.hasOwnProperty(starRating)) {
 			weaponIndex = charInfo[charName].rarity_restrict[starRating].hasOwnProperty("weapon") ? charInfo[charName].rarity_restrict[starRating].weapon : weaponIndex;
 			passiveAIndex = charInfo[charName].rarity_restrict[starRating].hasOwnProperty("passive_a") ? charInfo[charName].rarity_restrict[starRating].passive_a : passiveAIndex;
@@ -3177,7 +3177,7 @@ function rarityUpdateWeapon(charNum, rarity) {
 	var selectedWeapon = "";
 	
 	if (charInfo[charName].hasOwnProperty("rarity_restrict") && rarity < 5) {
-		var rarityRestrict = charInfo[charName].rarity_restrict["star-" + rarity.toString()];
+		var rarityRestrict = charInfo[charName].rarity_restrict["star_" + rarity.toString()];
 		
 		// change weapon
 		if (rarityRestrict.hasOwnProperty("weapon") && $("#weapon-" + charNum).val() !== "None" && $("#weapon-" + charNum + " option:selected").index() <= charInfo[charName].weapon.length) {
@@ -3202,7 +3202,7 @@ function rarityUpdatePassive(charNum, rarity, type) {
 	var selectedPassive = "";
 	
 	if (charInfo[charName].hasOwnProperty("rarity_restrict") && rarity < 5) {
-		var rarityRestrict = charInfo[charName].rarity_restrict["star-" + rarity.toString()];
+		var rarityRestrict = charInfo[charName].rarity_restrict["star_" + rarity.toString()];
 		
 		if (rarityRestrict.hasOwnProperty("passive_" + type) && charInfo[charName].hasOwnProperty("passive_" + type) && $("#passive-" + type + "-" + charNum + " option:selected").index() <= charInfo[charName]["passive_" + type].length) {
 			selectedPassive = rarityRestrict["passive_" + type] < 0 ? "None" : charInfo[charName]["passive_" + type][rarityRestrict["passive_" + type]];
@@ -3227,7 +3227,7 @@ function rarityUpdateSpecial(charNum, rarity) {
 	var selectedSpecial = "";
 	
 	if (charInfo[charName].hasOwnProperty("rarity_restrict") && rarity < 5) {
-		var rarityRestrict = charInfo[charName].rarity_restrict["star-" + rarity.toString()];
+		var rarityRestrict = charInfo[charName].rarity_restrict["star_" + rarity.toString()];
 		
 		if (rarityRestrict.hasOwnProperty("special") && $("#special-" + charNum + " option:selected").index() <= charInfo[charName].special.length) {
 			selectedSpecial = rarityRestrict.special < 0 ? "None" : charInfo[charName].special[rarityRestrict.special];
@@ -3253,7 +3253,7 @@ function rarityUpdateAssist(charNum, rarity) {
 	var selectedAssist = "";
 	
 	if (charInfo[charName].hasOwnProperty("rarity_restrict") && rarity < 5) {
-		var rarityRestrict = charInfo[charName].rarity_restrict["star-" + rarity.toString()];
+		var rarityRestrict = charInfo[charName].rarity_restrict["star_" + rarity.toString()];
 		
 		if (rarityRestrict.hasOwnProperty("assist") && $("#assist-" + charNum + " option:selected").index() <= charInfo[charName].assist.length) {
 			selectedAssist = rarityRestrict.assist < 0 ? "None" : charInfo[charName].assist[rarityRestrict.assist];
@@ -3305,11 +3305,11 @@ function applyOverrides(charNum) {
 	// override rarity
 	var overrideRarity = parseInt($("#override-rarity").val());
 	if (overrideRarity < 5 && charInfo[charName].hasOwnProperty("base_stat")) {
-		if (charInfo[charName].base_stat.hasOwnProperty("star-" + overrideRarity.toString())) {
+		if (charInfo[charName].base_stat.hasOwnProperty("star_" + overrideRarity.toString())) {
 			rarity = overrideRarity;
 		} else {
 			for (var rarityIndex = 4; rarityIndex >= overrideRarity; rarityIndex--) {
-				if (!charInfo[charName].base_stat.hasOwnProperty("star-" + rarityIndex.toString())) {
+				if (!charInfo[charName].base_stat.hasOwnProperty("star_" + rarityIndex.toString())) {
 					break;
 				}
 				rarity = rarityIndex;
@@ -3884,7 +3884,7 @@ function importTeam(attacker) {
 			// get rarity options
 			if (charInfo[importedChars[charCount].character].hasOwnProperty("base_stat")) {
 				for (var rarities = 4; rarities >= 1; rarities--) {
-					if (!charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star-" + rarities.toString())) {
+					if (!charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star_" + rarities.toString())) {
 						break;
 					}
 					importedChars[charCount].rarityHTML += rarities !== 1 ? "<option value='" + rarities.toString() + "'>" + rarities.toString() + " Stars</option>" : "<option value='1'>1 Star</option>";
@@ -3898,7 +3898,7 @@ function importTeam(attacker) {
 				if (line.length === 3) { // get rarity and level
 					if (isValidRarity(line[1])) {
 						var rarityStr = line[1].split(" ");
-						if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star-" + rarityStr[0])) {
+						if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star_" + rarityStr[0])) {
 							importedChars[charCount].rarity = rarityStr[0];
 						} else {
 							$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
@@ -3927,7 +3927,7 @@ function importTeam(attacker) {
 				} else if (line.length === 2) { // get rarity or level
 					if (isValidRarity(line[1])) {
 						var rarStr = line[1].split(" ");
-						if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star-" + rarStr[0])) {
+						if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star_" + rarStr[0])) {
 							importedChars[charCount].rarity = rarStr[0];
 						} else {
 							$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
