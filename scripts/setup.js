@@ -4740,8 +4740,8 @@ $(document).ready( function() {
 		$(".override-stat").val(0);
 		$("#override-curr-hp").val(100);
 		
-		$("#override-status").val("Default")
-		$("#override-terrain").val("Default")
+		$("#override-status").val("Default");
+		$("#override-terrain").val("Default");
 		
 		keepTable = false;
 		updateDisplay();
