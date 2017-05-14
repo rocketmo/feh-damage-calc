@@ -488,7 +488,7 @@ function showWeapon(selectedWeapon, charNum, update) {
 			$("#weapon-" + charNum).data("info", weaponInfo[selectedWeapon]);
 		}
 		updateSpecCooldown(charNum);
-	} else {	// weapon not found
+	} else { // weapon not found
 		$("#weapon-might-" + charNum).text("n/a");
 		$("#weapon-range-" + charNum).text("n/a");
 		$("#weapon-magical-" + charNum).text("n/a");
@@ -505,6 +505,14 @@ function showWeapon(selectedWeapon, charNum, update) {
 		atk = Math.max(atk, 0);
 		$("#atk-" + charNum).val(atk);
 	}
+
+	// show adjacent allies if needed
+	if ($("#weapon-" + charNum).data("info").hasOwnProperty("adjacent_ally_bonus")) {
+		$("#adjacent-block-" + charNum).show(500);
+	} else {
+		$("#adjacent-block-" + charNum).hide(500);
+	}
+
 	$("#weapon-might-" + charNum).data("oldmt", mt);
 }
 
@@ -932,6 +940,7 @@ function displayChar(charName, charNum) {
 
 	// show extra weapon info
 	showWeapon(selectedWeapon, charNum, false);
+	$("#adjacent-" + charNum).val("0");
 
 	// set default stat variant
 	$("#level-" + charNum).val(40);
@@ -2689,13 +2698,13 @@ function setDisabled(inSel, inLabel, disabled) {
 }
 
 // shows or hides the given div (used with the swap function)
-// divID is the id of the div to show/hide, visible is the visibility of the div, hasSwapped is true if the data has been swapped
-function setVisible(divID, visible, hasSwapped) {
+// divID is the id of the div to show/hide, visible is the visibility of the div, hasSwapped is true if the data has been swapped, changeTime is the transition time
+function setVisible(divID, visible, hasSwapped, changeTime) {
 	"use strict";
 	if (visible && hasSwapped) {
-		$(divID).stop(true, true).show(700);
+		$(divID).stop(true, true).show(changeTime);
 	} else if (!visible && !hasSwapped) {
-		$(divID).stop(true, true).hide(700);
+		$(divID).stop(true, true).hide(changeTime);
 	}
 }
 
@@ -2716,6 +2725,7 @@ function swap() {
 	oldAtkInfo.weaponRange = $("#weapon-range-1").text();
 	oldAtkInfo.weaponMagical = $("#weapon-magical-1").text();
 	oldAtkInfo.weaponDesc = $("#weapon-desc-1").text();
+	oldAtkInfo.adjacent = $("#adjacent-1").val();
 
 	oldAtkInfo.passiveA = $("#passive-a-1").html();
 	oldAtkInfo.selectedPassiveA = $("#passive-a-1").val();
@@ -2783,17 +2793,19 @@ function swap() {
 	oldAtkInfo.extraAssistInfoVisible = $("#extra-assist-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.extraSpecialInfoVisible = $("#extra-special-info-1").stop(true, true).is(":visible");
 	oldAtkInfo.buildInfoVisible = $("#char-build-info-1").stop(true, true).is(":visible");
+	oldAtkInfo.adjacentVisible = $("#adjacent-block-1").stop(true, true).is(":visible");
 
 	// place defender info in attacker panel
-	setVisible("#extra-char-info-1", $("#extra-char-info-2").stop(true, true).is(":visible"), false);
-	setVisible("#extra-weapon-info-1", $("#extra-weapon-info-2").stop(true, true).is(":visible"), false);
-	setVisible("#extra-passive-a-info-1", $("#extra-passive-a-info-2").stop(true, true).is(":visible"), false);
-	setVisible("#extra-passive-b-info-1", $("#extra-passive-b-info-2").stop(true, true).is(":visible"), false);
-	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), false);
-	setVisible("#extra-passive-s-info-1", $("#extra-passive-s-info-2").stop(true, true).is(":visible"), false);
-	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), false);
-	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), false);
-	setVisible("#char-build-info-1", $("#char-build-info-2").stop(true, true).is(":visible"), false);
+	setVisible("#extra-char-info-1", $("#extra-char-info-2").stop(true, true).is(":visible"), false, 700);
+	setVisible("#extra-weapon-info-1", $("#extra-weapon-info-2").stop(true, true).is(":visible"), false, 700);
+	setVisible("#extra-passive-a-info-1", $("#extra-passive-a-info-2").stop(true, true).is(":visible"), false, 700);
+	setVisible("#extra-passive-b-info-1", $("#extra-passive-b-info-2").stop(true, true).is(":visible"), false, 700);
+	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), false, 700);
+	setVisible("#extra-passive-s-info-1", $("#extra-passive-s-info-2").stop(true, true).is(":visible"), false, 700);
+	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), false, 700);
+	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), false, 700);
+	setVisible("#char-build-info-1", $("#char-build-info-2").stop(true, true).is(":visible"), false, 700);
+	setVisible("#adjacent-block-1", $("#adjacent-block-2").stop(true, true).is(":visible"), false, 500);
 
 	$("#char-1").val($("#char-2").val()).trigger("change.select2");
 	$("#color-1").val($("#color-2").val());
@@ -2807,6 +2819,7 @@ function swap() {
 	$("#weapon-range-1").text($("#weapon-range-2").text());
 	$("#weapon-magical-1").text($("#weapon-magical-2").text());
 	$("#weapon-desc-1").text($("#weapon-desc-2").text());
+	$("#adjacent-1").val($("#adjacent-2").val());
 
 	$("#passive-a-1").html($("#passive-a-2").html());
 	$("#passive-a-1").val($("#passive-a-2").val()).trigger("change.select2");
@@ -2867,26 +2880,28 @@ function swap() {
 	setDisabled("#extra-char-info-1 select", "#extra-char-info-1", ($("#color-2").attr("disabled") === "disabled"));
 	enableSpecCooldown("1");
 
-	setVisible("#extra-char-info-1", $("#extra-char-info-2").stop(true, true).is(":visible"), true);
-	setVisible("#extra-weapon-info-1", $("#extra-weapon-info-2").stop(true, true).is(":visible"), true);
-	setVisible("#extra-passive-a-info-1", $("#extra-passive-a-info-2").stop(true, true).is(":visible"), true);
-	setVisible("#extra-passive-b-info-1", $("#extra-passive-b-info-2").stop(true, true).is(":visible"), true);
-	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), true);
-	setVisible("#extra-passive-s-info-1", $("#extra-passive-s-info-2").stop(true, true).is(":visible"), true);
-	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), true);
-	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), true);
-	setVisible("#char-build-info-1", $("#char-build-info-2").stop(true, true).is(":visible"), true);
+	setVisible("#extra-char-info-1", $("#extra-char-info-2").stop(true, true).is(":visible"), true, 700);
+	setVisible("#extra-weapon-info-1", $("#extra-weapon-info-2").stop(true, true).is(":visible"), true, 700);
+	setVisible("#extra-passive-a-info-1", $("#extra-passive-a-info-2").stop(true, true).is(":visible"), true, 700);
+	setVisible("#extra-passive-b-info-1", $("#extra-passive-b-info-2").stop(true, true).is(":visible"), true, 700);
+	setVisible("#extra-passive-c-info-1", $("#extra-passive-c-info-2").stop(true, true).is(":visible"), true, 700);
+	setVisible("#extra-passive-s-info-1", $("#extra-passive-s-info-2").stop(true, true).is(":visible"), true, 700);
+	setVisible("#extra-assist-info-1", $("#extra-assist-info-2").stop(true, true).is(":visible"), true, 700);
+	setVisible("#extra-special-info-1", $("#extra-special-info-2").stop(true, true).is(":visible"), true, 700);
+	setVisible("#char-build-info-1", $("#char-build-info-2").stop(true, true).is(":visible"), true, 700);
+	setVisible("#adjacent-block-1", $("#adjacent-block-2").stop(true, true).is(":visible"), true, 500);
 
 	// place attacker info in defender panel
-	setVisible("#extra-char-info-2", oldAtkInfo.extraCharInfoVisible, false);
-	setVisible("#extra-weapon-info-2", oldAtkInfo.extraWeaponInfoVisible, false);
-	setVisible("#extra-passive-a-info-2", oldAtkInfo.extraPassiveAInfoVisible, false);
-	setVisible("#extra-passive-b-info-2", oldAtkInfo.extraPassiveBInfoVisible, false);
-	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, false);
-	setVisible("#extra-passive-s-info-2", oldAtkInfo.extraSealInfoVisible, false);
-	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, false);
-	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, false);
-	setVisible("#char-build-info-2", oldAtkInfo.buildInfoVisible, false);
+	setVisible("#extra-char-info-2", oldAtkInfo.extraCharInfoVisible, false, 700);
+	setVisible("#extra-weapon-info-2", oldAtkInfo.extraWeaponInfoVisible, false, 700);
+	setVisible("#extra-passive-a-info-2", oldAtkInfo.extraPassiveAInfoVisible, false, 700);
+	setVisible("#extra-passive-b-info-2", oldAtkInfo.extraPassiveBInfoVisible, false, 700);
+	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, false, 700);
+	setVisible("#extra-passive-s-info-2", oldAtkInfo.extraSealInfoVisible, false, 700);
+	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, false, 700);
+	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, false, 700);
+	setVisible("#char-build-info-2", oldAtkInfo.buildInfoVisible, false, 700);
+	setVisible("#adjacent-block-2", oldAtkInfo.adjacentVisible, false, 500);
 
 	$("#char-2").val(oldAtkInfo.name).trigger("change.select2");
 	$("#color-2").val(oldAtkInfo.color);
@@ -2900,6 +2915,7 @@ function swap() {
 	$("#weapon-range-2").text(oldAtkInfo.weaponRange);
 	$("#weapon-magical-2").text(oldAtkInfo.weaponMagical);
 	$("#weapon-desc-2").text(oldAtkInfo.weaponDesc);
+	$("#adjacent-2").val(oldAtkInfo.adjacent);
 
 	$("#passive-a-2").html(oldAtkInfo.passiveA);
 	$("#passive-a-2").val(oldAtkInfo.selectedPassiveA).trigger("change.select2");
@@ -2960,15 +2976,16 @@ function swap() {
 	setDisabled("#extra-char-info-2 select", "#extra-char-info-2", oldAtkInfo.extraCharInfoDisabled);
 	enableSpecCooldown("2");
 
-	setVisible("#extra-char-info-2", oldAtkInfo.extraCharInfoVisible, true);
-	setVisible("#extra-weapon-info-2", oldAtkInfo.extraWeaponInfoVisible, true);
-	setVisible("#extra-passive-a-info-2", oldAtkInfo.extraPassiveAInfoVisible, true);
-	setVisible("#extra-passive-b-info-2", oldAtkInfo.extraPassiveBInfoVisible, true);
-	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, true);
-	setVisible("#extra-passive-s-info-2", oldAtkInfo.extraSealInfoVisible, true);
-	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, true);
-	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, true);
-	setVisible("#char-build-info-2", oldAtkInfo.buildInfoVisible, true);
+	setVisible("#extra-char-info-2", oldAtkInfo.extraCharInfoVisible, true, 700);
+	setVisible("#extra-weapon-info-2", oldAtkInfo.extraWeaponInfoVisible, true, 700);
+	setVisible("#extra-passive-a-info-2", oldAtkInfo.extraPassiveAInfoVisible, true, 700);
+	setVisible("#extra-passive-b-info-2", oldAtkInfo.extraPassiveBInfoVisible, true, 700);
+	setVisible("#extra-passive-c-info-2", oldAtkInfo.extraPassiveCInfoVisible, true, 700);
+	setVisible("#extra-passive-s-info-2", oldAtkInfo.extraSealInfoVisible, true, 700);
+	setVisible("#extra-assist-info-2", oldAtkInfo.extraAssistInfoVisible, true, 700);
+	setVisible("#extra-special-info-2", oldAtkInfo.extraSpecialInfoVisible, true, 700);
+	setVisible("#char-build-info-2", oldAtkInfo.buildInfoVisible, true, 700);
+	setVisible("#adjacent-block-2", oldAtkInfo.adjacentVisible, true, 500);
 
 	// swap teams
 	var tempTeam = attackerTeam;
@@ -4552,6 +4569,8 @@ $(document).ready( function() {
 			$("#override-weapon").val(selectedWeapon).trigger("change.select2");
 		} else {
 			$("#override-weapon option:eq(0)").attr("selected", "selected").trigger("change.select2");
+			$("#override-adjacent-block").hide(500);
+			$("#override-adjacent").val("0");
 		}
 		
 		updateDisplay();
@@ -4576,7 +4595,7 @@ $(document).ready( function() {
 		}
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected").trigger("change.select2");
 		getWeaponIcon((charNum === "1" ? "#attacker-weapon" : "#defender-weapon"), $("#weapon-type-" + charNum).val());
-		showWeapon( $("#weapon-" + charNum).val(), charNum, true);
+		showWeapon($("#weapon-" + charNum).val(), charNum, true);
 		charChange(charNum);
 		updateDisplay();
 	});
@@ -4723,6 +4742,16 @@ $(document).ready( function() {
 			$("#override-boon").val("neutral");
 		}
 
+		// adjacent allies option
+		if (this.id === "override-weapon") {
+			if (weaponInfo.hasOwnProperty($("#override-weapon").val()) && weaponInfo[$("#override-weapon").val()].hasOwnProperty("adjacent_ally_bonus")) {
+				$("#override-adjacent-block").show(500);
+			} else {
+				$("#override-adjacent-block").hide(500);
+				$("#override-adjacent").val("0");
+			}
+		}
+
 		keepTable = false;
 		updateDisplay();
 	});
@@ -4751,8 +4780,11 @@ $(document).ready( function() {
 		$(".override-stat").val(0);
 		$("#override-curr-hp").val(100);
 
-		$("#override-status").val("Default")
-		$("#override-terrain").val("Default")
+		$("#override-status").val("Default");
+		$("#override-terrain").val("Default");
+		
+		$("#override-adjacent-block").hide(500);
+		$("#override-adjacent").val("0");
 
 		keepTable = false;
 		updateDisplay();

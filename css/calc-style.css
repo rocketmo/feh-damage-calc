@@ -126,7 +126,7 @@ input[type=number] {
 	width: 2.5em;
 }
 
-.stat-info select, #override-stats select {
+.stat-info select, #override-stats select, .weapon-select .adjacent-select {
 	width: 2.8em;	
 }
 
@@ -448,7 +448,7 @@ h3 {
 	margin-left: -1px;
 }
 
-.mode-button {
+.mode-button, .adjacent-block {
 	display:none;
 }
 
