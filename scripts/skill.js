@@ -201,7 +201,7 @@ var skillInfo =
             "description" : "If unit is attacked by foe using bow, dagger, magic or staff, unit receives Def/Res+6 during combat.",
             "type_defend_mod" : {
                 "weapon_type" : {"Bow": true, "Dagger": true, "Staff": true, "Blue Tome": true, "Green Tome": true, "Red Tome": true},
-                "mod" : {
+                "stat_mod" : {
                     "def" : 6,
                     "res" : 6
                 }
@@ -210,7 +210,7 @@ var skillInfo =
         "Earth Boost 3" : {
             "description" : "If unit has at least 3 more HP than enemy at start of combat, unit receives Def+6 during combat.",
             "hp_adv_mod" : {
-                "mod" : {
+                "stat_mod" : {
                     "def": 6
                 },
                 "hp_adv": 3
