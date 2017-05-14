@@ -2142,6 +2142,11 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo = combatBonus(battleInfo, battleInfo.attacker.passiveAData.hp_adv_mod.stat_mod, battleInfo.attacker.passiveA, "attacker", "for having at least " + battleInfo.attacker.passiveAData.hp_adv_mod.hp_adv.toString() + " more HP than the opponent");
 	}
 
+	// full hp bonus
+	if (battleInfo.attacker.weaponData.hasOwnProperty("full_hp_mod") && battleInfo.attacker.currHP >= battleInfo.attacker.hp) {
+		battleInfo = combatBonus(battleInfo, battleInfo.attacker.weaponData.full_hp_mod, battleInfo.attacker.weaponName, "attacker", "for having full HP");
+	}
+
 	// attacker blade tome bonuses
 	if (battleInfo.attacker.hasOwnProperty("addBonusAtk") && battleInfo.attacker.addBonusAtk > 0) {
 		battleInfo = bladeTomeBonus(battleInfo, battleInfo.attacker.addBonusAtk, "attacker");
@@ -2166,6 +2171,11 @@ function simBattle(battleInfo, displayMsg) {
 	// hp advantage boost
 	if (battleInfo.defender.passiveAData.hasOwnProperty("hp_adv_mod") && battleInfo.defender.currHP - battleInfo.attacker.currHP >= battleInfo.defender.passiveAData.hp_adv_mod.hp_adv) {
 		battleInfo = combatBonus(battleInfo, battleInfo.defender.passiveAData.hp_adv_mod.stat_mod, battleInfo.defender.passiveA, "defender", "for having at least " + battleInfo.defender.passiveAData.hp_adv_mod.hp_adv.toString() + " more HP than the opponent");
+	}
+
+	// full hp bonus
+	if (battleInfo.defender.weaponData.hasOwnProperty("full_hp_mod") && battleInfo.defender.currHP >= battleInfo.defender.hp) {
+		battleInfo = combatBonus(battleInfo, battleInfo.defender.weaponData.full_hp_mod, battleInfo.defender.weaponName, "defender", "for having full HP");
 	}
 
 	// defender blade tome bonuses
@@ -2456,6 +2466,11 @@ function simBattle(battleInfo, displayMsg) {
 		atkRecoil = battleInfo.attacker.passiveAData.recoil_dmg;
 		atkRecoilSource = battleInfo.attacker.passiveA;
 	}
+	if (battleInfo.attacker.currHP > 0 && battleInfo.attacker.weaponData.hasOwnProperty("attack_recoil_dmg")) {
+		atkRecoil += battleInfo.attacker.weaponData.attack_recoil_dmg;
+		atkRecoilSource += (atkRecoilSource.length > 0) ? ", " + battleInfo.attacker.weaponName : battleInfo.attacker.weaponName;
+	}
+
 	if (battleInfo.defender.currHP > 0 && battleInfo.defender.passiveAData.hasOwnProperty("recoil_dmg")) {
 		defRecoil = battleInfo.defender.passiveAData.recoil_dmg;
 		defRecoilSource = battleInfo.defender.passiveA;
