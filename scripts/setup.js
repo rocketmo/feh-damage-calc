@@ -4782,7 +4782,7 @@ $(document).ready( function() {
 
 		$("#override-status").val("Default");
 		$("#override-terrain").val("Default");
-		
+
 		$("#override-adjacent-block").hide(500);
 		$("#override-adjacent").val("0");
 
