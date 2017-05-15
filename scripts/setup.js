@@ -451,9 +451,9 @@ function showSkills(singleChar, charNum, type) {
 }
 
 // shows extra weapon info
-// selectedWeapon is the weapon to display, charNum determines the panel
+// selectedWeapon is the weapon to display, charNum determines the panel, showHidden is true if we need to show or hide anything
 // set update to true to update the character's atk value
-function showWeapon(selectedWeapon, charNum, update) {
+function showWeapon(selectedWeapon, charNum, update, showHidden) {
 	"use strict";
 
 	var mt = 0;
@@ -493,7 +493,10 @@ function showWeapon(selectedWeapon, charNum, update) {
 		$("#weapon-range-" + charNum).text("n/a");
 		$("#weapon-magical-" + charNum).text("n/a");
 		$("#weapon-desc-" + charNum).text("No additional effects.");
-		updateStatTotal("#weapon-" + charNum, charNum, false);
+
+		if (update) {
+			updateStatTotal("#weapon-" + charNum, charNum, false);
+		}
 		$("#weapon-" + charNum).data("info", {});
 		updateSpecCooldown(charNum);
 	}
@@ -507,10 +510,12 @@ function showWeapon(selectedWeapon, charNum, update) {
 	}
 
 	// show adjacent allies if needed
-	if ($("#weapon-" + charNum).data("info").hasOwnProperty("adjacent_ally_bonus")) {
-		$("#adjacent-block-" + charNum).show(500);
-	} else {
-		$("#adjacent-block-" + charNum).hide(500);
+	if (showHidden) {
+		if ($("#weapon-" + charNum).data("info").hasOwnProperty("adjacent_ally_bonus")) {
+			$("#adjacent-block-" + charNum).stop(true, true).show(500);
+		} else {
+			$("#adjacent-block-" + charNum).stop(true, true).hide(500);
+		}
 	}
 
 	$("#weapon-might-" + charNum).data("oldmt", mt);
@@ -747,8 +752,8 @@ function displayStatTotals(charNum) {
 }
 
 // displays character information in the character panels
-// singleChar contains only the character info to display, charNum determines which panel to display on
-function displayChar(charName, charNum) {
+// singleChar contains only the character info to display, charNum determines which panel to display on, showHidden is true if we need to show or hide anything
+function displayChar(charName, charNum, showHidden) {
 	"use strict";
 	var singleChar = charInfo[charName];
 	if (!singleChar.hasOwnProperty("move_type")) { // no info -> custom option
@@ -939,7 +944,7 @@ function displayChar(charName, charNum) {
 	$("#weapon-" + charNum).val(selectedWeapon).trigger("change.select2");
 
 	// show extra weapon info
-	showWeapon(selectedWeapon, charNum, false);
+	showWeapon(selectedWeapon, charNum, false, showHidden);
 	$("#adjacent-" + charNum).val("0");
 
 	// set default stat variant
@@ -1069,15 +1074,15 @@ function getCharTabInfo(attacker) {
 	if (!charTabInfo.hasOwnProperty("character")) { // no character stored, display default
 		if (attacker) {
 			$("#char-1").val($("#char-1 option:eq(0)").val()).trigger("change.select2");
-			displayChar($("#char-1").val(), "1");
+			displayChar($("#char-1").val(), "1", true);
 		} else {
 			$("#char-2").val($("#char-2 option:eq(1)").val()).trigger("change.select2");
-			displayChar($("#char-2").val(), "2");
+			displayChar($("#char-2").val(), "2", true);
 		}
 	} else {  // display stored info
 		// get and show default character info
 		$("#char-" + charNum).val(charTabInfo.character).trigger("change.select2");
-		displayChar(charTabInfo.character, charNum);
+		displayChar(charTabInfo.character, charNum, false);
 		
 		// change extra character info if Custom unit was selected
 		if (charTabInfo.character === "Custom") {
@@ -1150,7 +1155,7 @@ function getCharTabInfo(attacker) {
 		} 
 
 		$("#weapon-" + charNum).val(charTabInfo.weapon).trigger("change.select2");
-		showWeapon(charTabInfo.weapon, charNum, false);
+		showWeapon(charTabInfo.weapon, charNum, false, true);
 
 		// change special cooldown
 		$("#spec-cooldown-" + charNum).val(charTabInfo.specCooldown);
@@ -2685,9 +2690,9 @@ function setupChars() {
 
 	// set default characters
 	$("#char-1 option:eq(0)").attr("selected", "selected").trigger("change.select2");
-	displayChar($("#char-1").val(), "1");
+	displayChar($("#char-1").val(), "1", true);
 	$("#char-2 option:eq(1)").attr("selected", "selected").trigger("change.select2");
-	displayChar($("#char-2").val(), "2");
+	displayChar($("#char-2").val(), "2", true);
 
 	// simulate initial battle
 	simBattle(getBattleInfo(), true);
@@ -3237,13 +3242,13 @@ function rarityUpdateWeapon(charNum, rarity) {
 		if (rarityRestrict.hasOwnProperty("weapon") && $("#weapon-" + charNum).val() !== "None" && $("#weapon-" + charNum + " option:selected").index() <= charInfo[charName].weapon.length) {
 			selectedWeapon = charInfo[charName].weapon[rarityRestrict.weapon];
 			$("#weapon-" + charNum).val(selectedWeapon).trigger("change.select2");
-			showWeapon(selectedWeapon, charNum, true);
+			showWeapon(selectedWeapon, charNum, true, true);
 		}
 	} else if (rarity === 5) {
 		if ($("#weapon-" + charNum).val() !== "None" && $("#weapon-" + charNum + " option:selected").index() <= charInfo[charName].weapon.length) {
 			selectedWeapon = charInfo[charName].weapon[0];
 			$("#weapon-" + charNum).val(selectedWeapon).trigger("change.select2");
-			showWeapon(selectedWeapon, charNum, true);
+			showWeapon(selectedWeapon, charNum, true, true);
 		}
 	}
 }
@@ -3379,10 +3384,10 @@ function applyOverrides(charNum) {
 	if ($("#override-weapon").val() !== "No Override") {
 		if ($("#override-weapon").val() === "None") {
 			$("#weapon-" + charNum).val("None").trigger("change.select2");
-			showWeapon("None", charNum, true);
+			showWeapon("None", charNum, true, true);
 		} else if (charInfo[charName].weapon_type === weaponInfo[$("#override-weapon").val()].type) {
 			$("#weapon-" + charNum).val($("#override-weapon").val()).trigger("change.select2");
-			showWeapon($("#override-weapon").val(), charNum, true);
+			showWeapon($("#override-weapon").val(), charNum, true, true);
 		}
 	}
 
@@ -3626,7 +3631,7 @@ function calculateMatchups(attacker) {
 
 		// input data
 		$("#char-" + (changeAttacker ? "1" : "2")).val(charName).trigger("change.select2");
-		displayChar(charName, (changeAttacker ? "1" : "2"));
+		displayChar(charName, (changeAttacker ? "1" : "2"), false);
 		applyOverrides(changeAttacker ? "1" : "2");
 		simBattle(getBattleInfo(), true);
 		keepTable = true;
@@ -3833,6 +3838,7 @@ function importTeam(attacker) {
 		var charCount = importedChars.length;   // index of next character
 		var statsIncluded = false;              // true if stats are imported
 		var customUnit = false;                 // true if unit is custom
+		var noNature = false;					// true if imported unit did not include nature
 
 		// get character name
 		var line = importText[textLine].split(/ +\[/);
@@ -3847,9 +3853,19 @@ function importTeam(attacker) {
 				importedChars[charCount].moveType = customCharInfo.moveType;
 				customUnit = true;
 			} else { // error
-				$("#import-error-msg").text("Import error: Missing nature (line " + (textLine + 1).toString() + ")").show();
-				error = true;
-				break;
+				var noNatureName = line[0].split(/ +-- +/);
+				if (charInfo.hasOwnProperty(noNatureName[0])) { // valid char name
+					importedChars[charCount] = {};
+					importedChars[charCount].character = noNatureName[0];
+					importedChars[charCount].color = charInfo[noNatureName[0]].color;
+					importedChars[charCount].weaponType = charInfo[noNatureName[0]].weapon_type;
+					importedChars[charCount].moveType = charInfo[noNatureName[0]].move_type;
+					noNature = true;
+				} else {
+					$("#import-error-msg").text("Import error: Invalid name (line " + (textLine + 1).toString() + ")").show();
+					error = true;
+					break;
+				}
 			}
 		} else if (charInfo.hasOwnProperty(line[0])) { // check for valid character name
 			importedChars[charCount] = {};
@@ -3864,6 +3880,8 @@ function importTeam(attacker) {
 		}
 
 		// set default values
+		importedChars[charCount].boon = "neutral";
+		importedChars[charCount].bane = "neutral";
 		importedChars[charCount].level = "40";
 		importedChars[charCount].merge = "0";
 		importedChars[charCount].rarity = "5";
@@ -3911,28 +3929,26 @@ function importTeam(attacker) {
 
 		// get other general info
 		if (!customUnit && charInfo[importedChars[charCount].character].hasOwnProperty("base_stat")) {
-			// get nature
-			line = line[1].split("]");
+			if (!noNature) { // get nature
+				line = line[1].split("]");
 
-			if (line[0].toLowerCase() === "neutral") { // neutral nature
-				importedChars[charCount].boon = "neutral";
-				importedChars[charCount].bane = "neutral";
-			} else { // check for bane and boon
-				var statAbbr = {"hp": true, "atk": true, "spd": true, "def": true, "res": true, neutral: true};
-				var nature = line[0].split("/");
+				if (line[0].toLowerCase() !== "neutral") { // check for bane and boon
+					var statAbbr = {"hp": true, "atk": true, "spd": true, "def": true, "res": true, neutral: true};
+					var nature = line[0].split("/");
 
-				if (nature.length < 2 || (!statAbbr.hasOwnProperty(nature[0].toLowerCase()) && !statAbbr.hasOwnProperty(nature[0].toLowerCase().substr(1))) || (!statAbbr.hasOwnProperty(nature[1].toLowerCase()) && !statAbbr.hasOwnProperty(nature[1].toLowerCase().substr(1)))) {
-					$("#import-error-msg").text("Import error: Invalid nature (line " + (textLine + 1).toString() + ")").show();
-					error = true;
-					break;
-				} else {
-					importedChars[charCount].boon = statAbbr.hasOwnProperty(nature[0].toLowerCase()) ? nature[0].toLowerCase() : nature[0].toLowerCase().substr(1);
-					importedChars[charCount].bane = statAbbr.hasOwnProperty(nature[1].toLowerCase()) ? nature[1].toLowerCase() : nature[1].toLowerCase().substr(1);
-
-					if (importedChars[charCount].boon === importedChars[charCount].bane && importedChars[charCount].boon !== "neutral") {
+					if (nature.length < 2 || (!statAbbr.hasOwnProperty(nature[0].toLowerCase()) && !statAbbr.hasOwnProperty(nature[0].toLowerCase().substr(1))) || (!statAbbr.hasOwnProperty(nature[1].toLowerCase()) && !statAbbr.hasOwnProperty(nature[1].toLowerCase().substr(1)))) {
 						$("#import-error-msg").text("Import error: Invalid nature (line " + (textLine + 1).toString() + ")").show();
 						error = true;
 						break;
+					} else {
+						importedChars[charCount].boon = statAbbr.hasOwnProperty(nature[0].toLowerCase()) ? nature[0].toLowerCase() : nature[0].toLowerCase().substr(1);
+						importedChars[charCount].bane = statAbbr.hasOwnProperty(nature[1].toLowerCase()) ? nature[1].toLowerCase() : nature[1].toLowerCase().substr(1);
+
+						if (importedChars[charCount].boon === importedChars[charCount].bane && importedChars[charCount].boon !== "neutral") {
+							$("#import-error-msg").text("Import error: Invalid nature (line " + (textLine + 1).toString() + ")").show();
+							error = true;
+							break;
+						}
 					}
 				}
 			}
@@ -3948,67 +3964,61 @@ function importTeam(attacker) {
 			}
 
 			// get rarity and level
-			if (line.length > 1) {
-				line = line[1].split(/ +-- +/);
+			line = noNature ? line[0].split(/ +-- +/) : (line.length > 1 ? line[1].split(/ +-- +/) : line);
 
-				if (line.length === 3) { // get rarity and level
-					if (isValidRarity(line[1])) {
-						var rarityStr = line[1].split(" ");
-						if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star_" + rarityStr[0])) {
-							importedChars[charCount].rarity = rarityStr[0];
-						} else {
-							$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
-							error = true;
-							break;
-						}
+			if (line.length === 3) { // get rarity and level
+				if (isValidRarity(line[1])) {
+					var rarityStr = line[1].split(" ");
+					if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star_" + rarityStr[0])) {
+						importedChars[charCount].rarity = rarityStr[0];
 					} else {
 						$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
 						error = true;
 						break;
 					}
+				} else {
+					$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
+					error = true;
+					break;
+				}
 
-					if (isValidLevel(line[2])) {
-						var levelStr = line[2].split(" ");
-						var levelParts = levelStr[1].split("+");
-						importedChars[charCount].level = getValidLvl(levelParts[0]);
-						importedChars[charCount].merge = getValidMerge(levelParts[1]);
-					} else if (isValidLevelNoMerge(line[2])) {
-						var levelOnlyStr = line[2].split(" ");
-						importedChars[charCount].level = getValidLvl(levelOnlyStr[1]);
+				if (isValidLevel(line[2])) {
+					var levelStr = line[2].split(" ");
+					var levelParts = levelStr[1].split("+");
+					importedChars[charCount].level = getValidLvl(levelParts[0]);
+					importedChars[charCount].merge = getValidMerge(levelParts[1]);
+				} else if (isValidLevelNoMerge(line[2])) {
+					var levelOnlyStr = line[2].split(" ");
+					importedChars[charCount].level = getValidLvl(levelOnlyStr[1]);
+				} else {
+					$("#import-error-msg").text("Import error: Invalid level (line " + (textLine + 1).toString() + ")").show();
+					error = true;
+					break;
+				}
+			} else if (line.length === 2) { // get rarity or level
+				if (isValidRarity(line[1])) {
+					var rarStr = line[1].split(" ");
+					if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star_" + rarStr[0])) {
+						importedChars[charCount].rarity = rarStr[0];
 					} else {
-						$("#import-error-msg").text("Import error: Invalid level (line " + (textLine + 1).toString() + ")").show();
+						$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
 						error = true;
 						break;
 					}
-				} else if (line.length === 2) { // get rarity or level
-					if (isValidRarity(line[1])) {
-						var rarStr = line[1].split(" ");
-						if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star_" + rarStr[0])) {
-							importedChars[charCount].rarity = rarStr[0];
-						} else {
-							$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
-							error = true;
-							break;
-						}
-					} else if (isValidLevel(line[1])) {
-						var lvlStr = line[1].split(" ");
-						var lvlParts = lvlStr[1].split("+");
-						importedChars[charCount].level = getValidLvl(lvlParts[0]);
-						importedChars[charCount].merge = getValidMerge(lvlParts[1]);
-					} else if (isValidLevelNoMerge(line[1])) {
-						var lvlOnlyStr = line[1].split(" ");
-						importedChars[charCount].level = getValidLvl(lvlOnlyStr[1]);
-					} else {
-						$("#import-error-msg").text("Import error: Invalid rarity or level (line " + (textLine + 1).toString() + ")").show();
-						error = true;
-						break;
-					}
+				} else if (isValidLevel(line[1])) {
+					var lvlStr = line[1].split(" ");
+					var lvlParts = lvlStr[1].split("+");
+					importedChars[charCount].level = getValidLvl(lvlParts[0]);
+					importedChars[charCount].merge = getValidMerge(lvlParts[1]);
+				} else if (isValidLevelNoMerge(line[1])) {
+					var lvlOnlyStr = line[1].split(" ");
+					importedChars[charCount].level = getValidLvl(lvlOnlyStr[1]);
+				} else {
+					$("#import-error-msg").text("Import error: Invalid rarity or level (line " + (textLine + 1).toString() + ")").show();
+					error = true;
+					break;
 				}
 			}
-
-		} else {
-			importedChars[charCount].boon = "neutral";
-			importedChars[charCount].bane = "neutral";
 		}
 
 		// check stat line
@@ -4398,12 +4408,12 @@ function clearTeam(attacker) {
 		selectedAttacker = 0;
 		selectCharTab(true, 0);
 		$("#char-1").val($("#char-1 option:eq(0)").val()).trigger("change.select2");
-		displayChar($("#char-1").val(), "1");
+		displayChar($("#char-1").val(), "1", true);
 	} else {
 		selectedDefender = 0;
 		selectCharTab(false, 0);
 		$("#char-2").val($("#char-2 option:eq(1)").val()).trigger("change.select2");
-		displayChar($("#char-2").val(), "2");
+		displayChar($("#char-2").val(), "2", true);
 	}
 }
 
@@ -4525,7 +4535,7 @@ $(document).ready( function() {
 	// setup character select
 	$(".char-selector").on("change", function() {
 		var charNum = $(this).data("charnum").toString();
-		displayChar(this.value, charNum);
+		displayChar(this.value, charNum, true);
 		charChange(charNum);
 		updateDisplay();
 	});
@@ -4533,7 +4543,7 @@ $(document).ready( function() {
 	// setup weapon select
 	$(".weapon-selector").on("change", function (){
 		var charNum = $(this).data("charnum").toString();
-		showWeapon(this.value, charNum, true);
+		showWeapon(this.value, charNum, true, true);
 		charChange(charNum);
 		updateDisplay();
 	});
@@ -4581,7 +4591,7 @@ $(document).ready( function() {
 		setColor(this.value, charNum);
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected").trigger("change.select2");
 		getWeaponIcon((charNum === "1" ? "#attacker-weapon" : "#defender-weapon"), this.value);
-		showWeapon($("#weapon-" + charNum).val(), charNum, true);
+		showWeapon($("#weapon-" + charNum).val(), charNum, true, true);
 		charChange(charNum);
 		updateDisplay();
 	});
@@ -4623,7 +4633,7 @@ $(document).ready( function() {
 		}
 		$("#weapon-" + charNum + " option:eq(1)").attr("selected", "selected").trigger("change.select2");
 		getWeaponIcon((charNum === "1" ? "#attacker-weapon" : "#defender-weapon"), $("#weapon-type-" + charNum).val());
-		showWeapon($("#weapon-" + charNum).val(), charNum, true);
+		showWeapon($("#weapon-" + charNum).val(), charNum, true, true);
 		charChange(charNum);
 		updateDisplay();
 	});
