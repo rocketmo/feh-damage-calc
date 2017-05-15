@@ -45,14 +45,14 @@ var skillInfo =
             "description" : "Grants Atk/Def+1.",
             "stat_mod" : {
                 "atk" : 1,
-				"def" : 1
+                "def" : 1
             }
         },
         "Attack/Def +2" : {
             "description" : "Grants Atk/Def+2.",
             "stat_mod" : {
                 "atk" : 2,
-				"def" : 2
+                "def" : 2
             }
         },
         "Close Counter" : {
@@ -197,6 +197,63 @@ var skillInfo =
             "counter" : true,
             "range_unique" : 1
         },
+        "Distant Def 1" : {
+            "description" : "If unit is attacked by foe using bow, dagger, magic or staff, unit receives Def/Res+2 during combat.",
+            "type_defend_mod" : {
+                "weapon_type" : {"Bow": true, "Dagger": true, "Staff": true, "Blue Tome": true, "Green Tome": true, "Red Tome": true},
+                "stat_mod" : {
+                    "def" : 2,
+                    "res" : 2
+                }
+            }
+        },
+        "Distant Def 2" : {
+            "description" : "If unit is attacked by foe using bow, dagger, magic or staff, unit receives Def/Res+4 during combat.",
+            "type_defend_mod" : {
+                "weapon_type" : {"Bow": true, "Dagger": true, "Staff": true, "Blue Tome": true, "Green Tome": true, "Red Tome": true},
+                "stat_mod" : {
+                    "def" : 4,
+                    "res" : 4
+                }
+            }
+        },
+        "Distant Def 3" : {
+            "description" : "If unit is attacked by foe using bow, dagger, magic or staff, unit receives Def/Res+6 during combat.",
+            "type_defend_mod" : {
+                "weapon_type" : {"Bow": true, "Dagger": true, "Staff": true, "Blue Tome": true, "Green Tome": true, "Red Tome": true},
+                "stat_mod" : {
+                    "def" : 6,
+                    "res" : 6
+                }
+            }
+        },
+        "Earth Boost 1" : {
+            "description" : "If unit has at least 3 more HP than enemy at start of combat, unit receives Def+2 during combat.",
+            "hp_adv_mod" : {
+                "stat_mod" : {
+                    "def": 2
+                },
+                "hp_adv": 3
+            }
+        },
+        "Earth Boost 2" : {
+            "description" : "If unit has at least 3 more HP than enemy at start of combat, unit receives Def+4 during combat.",
+            "hp_adv_mod" : {
+                "stat_mod" : {
+                    "def": 4
+                },
+                "hp_adv": 3
+            }
+        },
+        "Earth Boost 3" : {
+            "description" : "If unit has at least 3 more HP than enemy at start of combat, unit receives Def+6 during combat.",
+            "hp_adv_mod" : {
+                "stat_mod" : {
+                    "def": 6
+                },
+                "hp_adv": 3
+            }
+        },
         "Fortress Def 1" : {
             "description" : "Grants Def+3. Inflicts Atk-3.",
             "stat_mod" : {
@@ -260,7 +317,7 @@ var skillInfo =
             "description" : "If unit's Atk - foe's Atk ≥ 5, unit gains Special cooldown charge +1 per attack.",
             "spec_accel" : {
                 "stat" : "atk",
-				"adv" : 5
+                "adv" : 5
             },
             "weapon_restrict" : "Staff"
         },
@@ -268,7 +325,7 @@ var skillInfo =
             "description" : "If unit's Atk - foe's Atk ≥ 3, unit gains Special cooldown charge +1 per attack.",
             "spec_accel" : {
                 "stat" : "atk",
-				"adv" : 3
+                "adv" : 3
             },
             "weapon_restrict" : "Staff"
         },
@@ -276,7 +333,7 @@ var skillInfo =
             "description" : "If unit's Atk - foe's Atk ≥ 1, unit gains Special cooldown charge +1 per attack.",
             "spec_accel" : {
                 "stat" : "atk",
-				"adv" : 1
+                "adv" : 1
             },
             "weapon_restrict" : "Staff"
         },
@@ -559,7 +616,7 @@ var skillInfo =
         },
         "Drag Back" : {
             "description" : "If unit initiates attack, unit moves 1 space away after combat. Foe moves into unit's previous space.",
-			"range_unique" : 1
+            "range_unique" : 1
         },
         "Escape Route 1" : {
             "description" : "Enables unit with HP ≤ 30% to warp adjacent to any ally."
@@ -965,6 +1022,21 @@ var skillInfo =
         },
         "Wings of Mercy 3" : {
             "description" : "Enables unit to warp adjacent to any ally with HP ≤ 50%."
+        },
+        "Wrathful Staff 1" : {
+            "description" : "If unit has 100% HP at the start of combat, damage from their staff will be calculated the same as other weapons.",
+            "reg_weapon_dmg" : 1,
+            "weapon_unique" : "Staff"
+        },
+        "Wrathful Staff 2" : {
+            "description" : "If unit has HP ≥ 50% at the start of combat, damage from their staff will be calculated the same as other weapons.",
+            "reg_weapon_dmg" : 0.5,
+            "weapon_unique" : "Staff"
+        },
+        "Wrathful Staff 3" : {
+            "description" : "Damage from unit's staff will be calculated the same as other weapons.",
+            "reg_weapon_dmg" : 0,
+            "weapon_unique" : "Staff"
         }
     },
     "c" : {
@@ -979,6 +1051,18 @@ var skillInfo =
         "Axe Experience 3" : {
             "description" : "If unit survives, all axe users on team get 2x EXP.",
             "weapon_unique" : "Axe"
+        },
+        "B Tome Experience 1" : {
+            "description" : "If unit survives, unit gets 1.5x EXP.",
+            "weapon_unique" : "Blue Tome"
+        },
+        "B Tome Experience 2" : {
+            "description" : "If unit survives, all blue tome users on team get 1.5x EXP.",
+            "weapon_unique" : "Blue Tome"
+        },
+        "B Tome Experience 3" : {
+            "description" : "If unit survives, all blue tome users on team get 2x EXP.",
+            "weapon_unique" : "Blue Tome"
         },
         "Bow Experience 1" : {
             "description" : "If unit survives, unit gets 1.5x EXP.",
