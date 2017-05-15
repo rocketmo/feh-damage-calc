@@ -1997,7 +1997,11 @@ var charInfo =
 		"passive_c": ["Fortify Res 3", "Fortify Res 2", "Fortify Res 1"],
 		"base_stat" : {
 			"star_5" : {"hp" : 17, "atk" : 7, "spd" : 9, "def" : 4, "res" : 7},
+			"star_4" : {"hp" : 16, "atk" : 7, "spd" : 9, "def" : 3, "res" : 6},
 			"growth" : {"hp" : 5, "atk" : 8, "spd" : 7, "def" : 2, "res" : 6}
+		},
+		"rarity_restrict" : {
+			"star_4" : {"weapon" : 1, "passive_b" : 1}
 		}
 	},
 	"Stahl": {
@@ -2137,7 +2141,11 @@ var charInfo =
 		"assist" : ["Reciprocal Aid"],
 		"base_stat" : {
 			"star_5" : {"hp" : 18, "atk" : 6, "spd" : 8, "def" : 6, "res" : 8},
+			"star_4" : {"hp" : 17, "atk" : 5, "spd" : 8, "def" : 5, "res" : 8},
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 8, "def" : 5, "res" : 6}
+		},
+		"rarity_restrict" : {
+			"star_4" : {"weapon" : 1, "passive_b" : 1}
 		}
 	},
 	"Ursula": {
