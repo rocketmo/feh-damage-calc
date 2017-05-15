@@ -987,7 +987,7 @@ var skillInfo =
         },
         "Wrathful Staff 3" : {
             "description" : "Damage from unit's staff will be calculated the same as other weapons.",
-            "reg_weapon_dmg" : true,
+            "reg_weapon_dmg" : 0,
             "weapon_unique" : "Staff"
         }
     },

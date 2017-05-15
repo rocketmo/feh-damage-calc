@@ -1960,8 +1960,8 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 
 	// halve staff damage
 	if (attacker.type === "Staff") {
-		if (attacker.passiveBData.hasOwnProperty("reg_weapon_dmg")) {
-			battleInfo.logMsg += "Damage is calculated the same as other weapons [" + attacker.passiveB + "]. ";
+		if (attacker.passiveBData.hasOwnProperty("reg_weapon_dmg") && attacker.initHP >= roundNum(attacker.hp * attacker.passiveBData.reg_weapon_dmg, true)) {
+			battleInfo.logMsg += "Staff damage is not halved [" + attacker.passiveB + "]. ";
 		} else {
 			dmg = roundNum(dmg / 2, false);
 		}
