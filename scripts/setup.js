@@ -3778,6 +3778,7 @@ function importTeam(attacker) {
 		var charCount = importedChars.length;   // index of next character
 		var statsIncluded = false;              // true if stats are imported
 		var customUnit = false;                 // true if unit is custom
+		var noNature = false;					// true if imported unit did not include nature
 		
 		// get character name
 		var line = importText[textLine].split(/ +\[/);
@@ -3792,9 +3793,19 @@ function importTeam(attacker) {
 				importedChars[charCount].moveType = customCharInfo.moveType;
 				customUnit = true;
 			} else { // error
-				$("#import-error-msg").text("Import error: Missing nature (line " + (textLine + 1).toString() + ")").show();
-				error = true;
-				break;
+				var noNatureName = line[0].split(/ +-- +/);
+				if (charInfo.hasOwnProperty(noNatureName[0])) { // valid char name
+					importedChars[charCount] = {};
+					importedChars[charCount].character = noNatureName[0];
+					importedChars[charCount].color = charInfo[noNatureName[0]].color;
+					importedChars[charCount].weaponType = charInfo[noNatureName[0]].weapon_type;
+					importedChars[charCount].moveType = charInfo[noNatureName[0]].move_type;
+					noNature = true;
+				} else {
+					$("#import-error-msg").text("Import error: Invalid name (line " + (textLine + 1).toString() + ")").show();
+					error = true;
+					break;
+				}
 			}
 		} else if (charInfo.hasOwnProperty(line[0])) { // check for valid character name
 			importedChars[charCount] = {};
@@ -3809,6 +3820,8 @@ function importTeam(attacker) {
 		}
 		
 		// set default values
+		importedChars[charCount].boon = "neutral";
+		importedChars[charCount].bane = "neutral";
 		importedChars[charCount].level = "40";
 		importedChars[charCount].merge = "0";
 		importedChars[charCount].rarity = "5";
@@ -3855,28 +3868,26 @@ function importTeam(attacker) {
 		
 		// get other general info
 		if (!customUnit && charInfo[importedChars[charCount].character].hasOwnProperty("base_stat")) {
-			// get nature
-			line = line[1].split("]");
+			if (!noNature) { // get nature
+				line = line[1].split("]");
 
-			if (line[0].toLowerCase() === "neutral") { // neutral nature
-				importedChars[charCount].boon = "neutral";
-				importedChars[charCount].bane = "neutral";
-			} else { // check for bane and boon
-				var statAbbr = {"hp": true, "atk": true, "spd": true, "def": true, "res": true, neutral: true};
-				var nature = line[0].split("/");
+				if (line[0].toLowerCase() !== "neutral") { // check for bane and boon
+					var statAbbr = {"hp": true, "atk": true, "spd": true, "def": true, "res": true, neutral: true};
+					var nature = line[0].split("/");
 
-				if (nature.length < 2 || (!statAbbr.hasOwnProperty(nature[0].toLowerCase()) && !statAbbr.hasOwnProperty(nature[0].toLowerCase().substr(1))) || (!statAbbr.hasOwnProperty(nature[1].toLowerCase()) && !statAbbr.hasOwnProperty(nature[1].toLowerCase().substr(1)))) {
-					$("#import-error-msg").text("Import error: Invalid nature (line " + (textLine + 1).toString() + ")").show();
-					error = true;
-					break;
-				} else {
-					importedChars[charCount].boon = statAbbr.hasOwnProperty(nature[0].toLowerCase()) ? nature[0].toLowerCase() : nature[0].toLowerCase().substr(1);
-					importedChars[charCount].bane = statAbbr.hasOwnProperty(nature[1].toLowerCase()) ? nature[1].toLowerCase() : nature[1].toLowerCase().substr(1);
-					
-					if (importedChars[charCount].boon === importedChars[charCount].bane && importedChars[charCount].boon !== "neutral") {
+					if (nature.length < 2 || (!statAbbr.hasOwnProperty(nature[0].toLowerCase()) && !statAbbr.hasOwnProperty(nature[0].toLowerCase().substr(1))) || (!statAbbr.hasOwnProperty(nature[1].toLowerCase()) && !statAbbr.hasOwnProperty(nature[1].toLowerCase().substr(1)))) {
 						$("#import-error-msg").text("Import error: Invalid nature (line " + (textLine + 1).toString() + ")").show();
 						error = true;
 						break;
+					} else {
+						importedChars[charCount].boon = statAbbr.hasOwnProperty(nature[0].toLowerCase()) ? nature[0].toLowerCase() : nature[0].toLowerCase().substr(1);
+						importedChars[charCount].bane = statAbbr.hasOwnProperty(nature[1].toLowerCase()) ? nature[1].toLowerCase() : nature[1].toLowerCase().substr(1);
+
+						if (importedChars[charCount].boon === importedChars[charCount].bane && importedChars[charCount].boon !== "neutral") {
+							$("#import-error-msg").text("Import error: Invalid nature (line " + (textLine + 1).toString() + ")").show();
+							error = true;
+							break;
+						}
 					}
 				}
 			}
@@ -3892,72 +3903,67 @@ function importTeam(attacker) {
 			}
 			
 			// get rarity and level
-			if (line.length > 1) {
-				line = line[1].split(/ +-- +/);
-				
-				if (line.length === 3) { // get rarity and level
-					if (isValidRarity(line[1])) {
-						var rarityStr = line[1].split(" ");
-						if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star-" + rarityStr[0])) {
-							importedChars[charCount].rarity = rarityStr[0];
-						} else {
-							$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
-							error = true;
-							break;
-						}
+			line = noNature ? line[0].split(/ +-- +/) : (line.length > 1 ? line[1].split(/ +-- +/) : line);
+
+			if (line.length === 3) { // get rarity and level
+				if (isValidRarity(line[1])) {
+					var rarityStr = line[1].split(" ");
+					if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star-" + rarityStr[0])) {
+						importedChars[charCount].rarity = rarityStr[0];
 					} else {
 						$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
 						error = true;
 						break;
 					}
-					
-					if (isValidLevel(line[2])) {
-						var levelStr = line[2].split(" ");
-						var levelParts = levelStr[1].split("+");
-						importedChars[charCount].level = getValidLvl(levelParts[0]);
-						importedChars[charCount].merge = getValidMerge(levelParts[1]);
-					} else if (isValidLevelNoMerge(line[2])) {
-						var levelOnlyStr = line[2].split(" ");
-						importedChars[charCount].level = getValidLvl(levelOnlyStr[1]);
+				} else {
+					$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
+					error = true;
+					break;
+				}
+
+				if (isValidLevel(line[2])) {
+					var levelStr = line[2].split(" ");
+					var levelParts = levelStr[1].split("+");
+					importedChars[charCount].level = getValidLvl(levelParts[0]);
+					importedChars[charCount].merge = getValidMerge(levelParts[1]);
+				} else if (isValidLevelNoMerge(line[2])) {
+					var levelOnlyStr = line[2].split(" ");
+					importedChars[charCount].level = getValidLvl(levelOnlyStr[1]);
+				} else {
+					$("#import-error-msg").text("Import error: Invalid level (line " + (textLine + 1).toString() + ")").show();
+					error = true;
+					break;
+				}
+			} else if (line.length === 2) { // get rarity or level
+				if (isValidRarity(line[1])) {
+					var rarStr = line[1].split(" ");
+					if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star-" + rarStr[0])) {
+						importedChars[charCount].rarity = rarStr[0];
 					} else {
-						$("#import-error-msg").text("Import error: Invalid level (line " + (textLine + 1).toString() + ")").show();
+						$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
 						error = true;
 						break;
 					}
-				} else if (line.length === 2) { // get rarity or level
-					if (isValidRarity(line[1])) {
-						var rarStr = line[1].split(" ");
-						if (charInfo[importedChars[charCount].character].base_stat.hasOwnProperty("star-" + rarStr[0])) {
-							importedChars[charCount].rarity = rarStr[0];
-						} else {
-							$("#import-error-msg").text("Import error: Invalid rarity (line " + (textLine + 1).toString() + ")").show();
-							error = true;
-							break;
-						}
-					} else if (isValidLevel(line[1])) {
-						var lvlStr = line[1].split(" ");
-						var lvlParts = lvlStr[1].split("+");
-						importedChars[charCount].level = getValidLvl(lvlParts[0]);
-						importedChars[charCount].merge = getValidMerge(lvlParts[1]);
-					} else if (isValidLevelNoMerge(line[1])) {
-						var lvlOnlyStr = line[1].split(" ");
-						importedChars[charCount].level = getValidLvl(lvlOnlyStr[1]);
-					} else {
-						$("#import-error-msg").text("Import error: Invalid rarity or level (line " + (textLine + 1).toString() + ")").show();
-						error = true;
-						break;
-					}
+				} else if (isValidLevel(line[1])) {
+					var lvlStr = line[1].split(" ");
+					var lvlParts = lvlStr[1].split("+");
+					importedChars[charCount].level = getValidLvl(lvlParts[0]);
+					importedChars[charCount].merge = getValidMerge(lvlParts[1]);
+				} else if (isValidLevelNoMerge(line[1])) {
+					var lvlOnlyStr = line[1].split(" ");
+					importedChars[charCount].level = getValidLvl(lvlOnlyStr[1]);
+				} else {
+					$("#import-error-msg").text("Import error: Invalid rarity or level (line " + (textLine + 1).toString() + ")").show();
+					error = true;
+					break;
 				}
 			}
-			
-		} else {
-			importedChars[charCount].boon = "neutral";
-			importedChars[charCount].bane = "neutral";
+
 		}
-		
+
 		// check stat line
 		textLine += 1;
-		
+
 		if (textLine >= importText.length) { // no more lines to read
 			if (customUnit) { // error - missing stats for custom unit
 				$("#import-error-msg").text("Import error: Missing stats for custom unit (line " + (textLine + 1).toString() + ")").show();
