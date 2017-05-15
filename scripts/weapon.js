@@ -113,6 +113,15 @@ var weaponInfo =
 		"spec_cooldown_mod" : 1,
 		"add_bonus" : true
 	},
+	"Blárowl" : {
+		"color"   : "Blue",
+		"type"    : "Blue Tome",
+		"might"   : 6,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "During combat, unit's Atk/Spd/Def/Res boosted by number of adjacent allies × 2.",
+		"adjacent_ally_bonus" : true
+	},
 	"Blárowl+" : {
 		"color"   : "Blue",
 		"type"    : "Blue Tome",
@@ -742,6 +751,15 @@ var weaponInfo =
 		"spec_cooldown_mod" : 1,
 		"add_bonus" : true
 	},
+	"Gronnowl" : {
+		"color"   : "Green",
+		"type"    : "Green Tome",
+		"might"   : 6,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "During combat, unit's Atk/Spd/Def/Res boosted by number of adjacent allies × 2.",
+		"adjacent_ally_bonus" : true
+	},
 	"Gronnowl+" : {
 		"color"   : "Green",
 		"type"    : "Green Tome",
@@ -1160,7 +1178,8 @@ var weaponInfo =
 			"atk" : 5,
 			"spd" : 5
 		},
-		"full_hp_atk_recoil_dmg" : 5
+		"full_hp_atk_recoil_dmg" : 5,
+		"char_unique" : true
 	},
 	"Ragnell" : {
 		"color"   : "Red",

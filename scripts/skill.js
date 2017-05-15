@@ -197,6 +197,26 @@ var skillInfo =
             "counter" : true,
             "range_unique" : 1
         },
+        "Distant Def 1" : {
+            "description" : "If unit is attacked by foe using bow, dagger, magic or staff, unit receives Def/Res+2 during combat.",
+            "type_defend_mod" : {
+                "weapon_type" : {"Bow": true, "Dagger": true, "Staff": true, "Blue Tome": true, "Green Tome": true, "Red Tome": true},
+                "stat_mod" : {
+                    "def" : 2,
+                    "res" : 2
+                }
+            }
+        },
+        "Distant Def 2" : {
+            "description" : "If unit is attacked by foe using bow, dagger, magic or staff, unit receives Def/Res+4 during combat.",
+            "type_defend_mod" : {
+                "weapon_type" : {"Bow": true, "Dagger": true, "Staff": true, "Blue Tome": true, "Green Tome": true, "Red Tome": true},
+                "stat_mod" : {
+                    "def" : 4,
+                    "res" : 4
+                }
+            }
+        },
         "Distant Def 3" : {
             "description" : "If unit is attacked by foe using bow, dagger, magic or staff, unit receives Def/Res+6 during combat.",
             "type_defend_mod" : {
@@ -205,6 +225,24 @@ var skillInfo =
                     "def" : 6,
                     "res" : 6
                 }
+            }
+        },
+        "Earth Boost 1" : {
+            "description" : "If unit has at least 3 more HP than enemy at start of combat, unit receives Def+2 during combat.",
+            "hp_adv_mod" : {
+                "stat_mod" : {
+                    "def": 2
+                },
+                "hp_adv": 3
+            }
+        },
+        "Earth Boost 2" : {
+            "description" : "If unit has at least 3 more HP than enemy at start of combat, unit receives Def+4 during combat.",
+            "hp_adv_mod" : {
+                "stat_mod" : {
+                    "def": 4
+                },
+                "hp_adv": 3
             }
         },
         "Earth Boost 3" : {
@@ -984,6 +1022,16 @@ var skillInfo =
         },
         "Wings of Mercy 3" : {
             "description" : "Enables unit to warp adjacent to any ally with HP ≤ 50%."
+        },
+        "Wrathful Staff 1" : {
+            "description" : "If unit has 100% HP at the start of combat, damage from their staff will be calculated the same as other weapons.",
+            "reg_weapon_dmg" : 1,
+            "weapon_unique" : "Staff"
+        },
+        "Wrathful Staff 2" : {
+            "description" : "If unit has HP ≥ 50% at the start of combat, damage from their staff will be calculated the same as other weapons.",
+            "reg_weapon_dmg" : 0.5,
+            "weapon_unique" : "Staff"
         },
         "Wrathful Staff 3" : {
             "description" : "Damage from unit's staff will be calculated the same as other weapons.",
