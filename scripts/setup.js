@@ -2202,11 +2202,6 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo = combatBonus(battleInfo, battleInfo.defender.weaponData.below_threshold_mod.stat_mod, battleInfo.defender.weaponName, "defender", "for having HP ≤ " + (battleInfo.defender.weaponData.below_threshold_mod.threshold * 100).toString() + "%");
 	}
 
-	// defend against specific weapon bonus
-	if (battleInfo.defender.passiveAData.hasOwnProperty("type_defend_mod") && battleInfo.defender.passiveAData.type_defend_mod.weapon_type.hasOwnProperty(battleInfo.attacker.weaponData.type)) {
-		battleInfo = combatBonus(battleInfo, battleInfo.defender.passiveAData.type_defend_mod.stat_mod, battleInfo.defender.passiveA, "defender", "for getting attacked by " + (battleInfo.attacker.weaponData.type === "Axe" ? "an " : "a ") + battleInfo.attacker.weaponData.type.toLowerCase() + " user");
-	}
-
 	// hp advantage boost
 	if (battleInfo.defender.passiveAData.hasOwnProperty("hp_adv_mod") && battleInfo.defender.currHP - battleInfo.attacker.currHP >= battleInfo.defender.passiveAData.hp_adv_mod.hp_adv) {
 		battleInfo = combatBonus(battleInfo, battleInfo.defender.passiveAData.hp_adv_mod.stat_mod, battleInfo.defender.passiveA, "defender", "for having at least " + battleInfo.defender.passiveAData.hp_adv_mod.hp_adv.toString() + " more HP than the opponent");
@@ -2215,6 +2210,11 @@ function simBattle(battleInfo, displayMsg) {
 	// full hp bonus
 	if (battleInfo.defender.weaponData.hasOwnProperty("full_hp_mod") && battleInfo.defender.currHP >= battleInfo.defender.hp) {
 		battleInfo = combatBonus(battleInfo, battleInfo.defender.weaponData.full_hp_mod, battleInfo.defender.weaponName, "defender", "for having full HP");
+	}
+
+	// defend against specific weapon bonus
+	if (battleInfo.defender.passiveAData.hasOwnProperty("type_defend_mod") && battleInfo.defender.passiveAData.type_defend_mod.weapon_type.hasOwnProperty(battleInfo.attacker.weaponData.type)) {
+		battleInfo = combatBonus(battleInfo, battleInfo.defender.passiveAData.type_defend_mod.stat_mod, battleInfo.defender.passiveA, "defender", "for getting attacked by " + (battleInfo.attacker.weaponData.type === "Axe" ? "an " : "a ") + battleInfo.attacker.weaponData.type.toLowerCase() + " user");
 	}
 
 	// blade tome bonuses
