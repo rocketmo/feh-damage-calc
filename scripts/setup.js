@@ -2510,8 +2510,8 @@ function simBattle(battleInfo, displayMsg) {
 		atkRecoil = battleInfo.attacker.passiveAData.recoil_dmg;
 		atkRecoilSource = battleInfo.attacker.passiveA;
 	}
-	if (battleInfo.attacker.currHP > 0 && battleInfo.attacker.weaponData.hasOwnProperty("attack_recoil_dmg")) {
-		atkRecoil += battleInfo.attacker.weaponData.attack_recoil_dmg;
+	if (battleInfo.attacker.currHP > 0 && battleInfo.attacker.weaponData.hasOwnProperty("full_hp_atk_recoil_dmg") && battleInfo.attacker.initHP >= battleInfo.attacker.hp) {
+		atkRecoil += battleInfo.attacker.weaponData.full_hp_atk_recoil_dmg;
 		atkRecoilSource += (atkRecoilSource.length > 0) ? ", " + battleInfo.attacker.weaponName : battleInfo.attacker.weaponName;
 	}
 

@@ -1160,7 +1160,7 @@ var weaponInfo =
 			"atk" : 5,
 			"spd" : 5
 		},
-		"attack_recoil_dmg" : 5
+		"full_hp_atk_recoil_dmg" : 5
 	},
 	"Ragnell" : {
 		"color"   : "Red",
