@@ -201,16 +201,15 @@ var charInfo =
 	"Boey": {
 		"color" : "Green",
 		"weapon_type" : "Green Tome",
-		"hp": 1,
-		"atk": 0,
-		"spd": 0,
-		"def": 0,
-		"res": 0,
 		"move_type": "Infantry",
-		"weapon": ["Gronnowl+"],
+		"weapon": ["Gronnowl+", "Gronnowl", "Elwind", "Wind"],
 		"special": ["Ignis", "Glowing Ember"],
-		"passive_a": ["Earth Boost 3"],
-		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"]
+		"passive_a": ["Earth Boost 3", "Earth Boost 2", "Earth Boost 1"],
+		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
+		"base_stat" : {
+			"star_5" : {"hp" : 19, "atk" : 7, "spd" : 5, "def" : 8, "res" : 5},
+			"growth" : {"hp" : 7, "atk" : 6, "spd" : 6, "def" : 7, "res" : 2}
+		}
 	},
 	"Cain": {
 		"color" : "Red",
@@ -316,16 +315,15 @@ var charInfo =
 	"Celica": {
 		"color" : "Red",
 		"weapon_type" : "Red Tome",
-		"hp": 1,
-		"atk": 0,
-		"spd": 0,
-		"def": 0,
-		"res": 0,
 		"move_type": "Infantry",
-		"weapon": ["Ragnarok"],
+		"weapon": ["Ragnarok", "Bolganone", "Elfire", "Fire"],
 		"special": ["Blazing Light", "Rising Light"],
-		"passive_a": ["Distant Def 3"],
-		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"]
+		"passive_a": ["Distant Def 3", "Distant Def 2", "Distant Def 1"],
+		"passive_c": ["Spur Def 3", "Spur Def 2", "Spur Def 1"],
+		"base_stat" : {
+			"star_5" : {"hp" : 17, "atk" : 8, "spd" : 7, "def" : 5, "res" : 7},
+			"growth" : {"hp" : 6, "atk" : 7, "spd" : 8, "def" : 4, "res" : 3}
+		}
 	},
 	"Cherche": {
 		"color" : "Green",
@@ -754,16 +752,15 @@ var charInfo =
 	"Genny": {
 		"color" : "Colorless",
 		"weapon_type" : "Staff",
-		"hp": 1,
-		"atk": 0,
-		"spd": 0,
-		"def": 0,
-		"res": 0,
 		"move_type": "Infantry",
 		"weapon": ["Gravity", "Assault"],
 		"special": ["Heavenly Light", "Imbue"],
-		"passive_b": ["Wrathful Staff 3"],
-		"assist" : ["Physic", "Mend", "Heal"]
+		"passive_b": ["Wrathful Staff 3", "Wrathful Staff 2", "Wrathful Staff 1"],
+		"assist" : ["Physic", "Mend", "Heal"],
+		"base_stat" : {
+			"star_5" : {"hp" : 17, "atk" : 9, "spd" : 6, "def" : 4, "res" : 8},
+			"growth" : {"hp" : 3, "atk" : 8, "spd" : 5, "def" : 4, "res" : 8}
+		}
 	},
 	"Gordin": {
 		"color" : "Colorless",
@@ -1266,16 +1263,15 @@ var charInfo =
 	"Mae": {
 		"color" : "Blue",
 		"weapon_type" : "Blue Tome",
-		"hp": 1,
-		"atk": 0,
-		"spd": 0,
-		"def": 0,
-		"res": 0,
 		"move_type": "Infantry",
-		"weapon": ["Blárowl+"],
+		"weapon": ["Blárowl+", "Blárowl", "Elthunder", "Thunder"],
 		"passive_b": ["Desperation 3", "Desperation 2", "Desperation 1"],
 		"passive_c": ["B Tome Experience 3", "B Tome Experience 2", "B Tome Experience 1"],
-		"assist" : ["Draw Back"]
+		"assist" : ["Draw Back"],
+		"base_stat" : {
+			"star_5" : {"hp" : 16, "atk" : 10, "spd" : 7, "def" : 3, "res" : 8},
+			"growth" : {"hp" : 5, "atk" : 8, "spd" : 7, "def" : 2, "res" : 6}
+		}
 	},
 	"Maria": {
 		"color" : "Colorless",
