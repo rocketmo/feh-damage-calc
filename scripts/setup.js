@@ -1021,6 +1021,7 @@ function storeCharTabInfo(attacker) {
 	// state
 	infoToStore.status = $("#status-" + charNum).val();
 	infoToStore.terrain = $("#terrain-" + charNum).val();
+	infoToStore.adjacent = $("#adjacent-" + charNum).val();
 
 	// hp and current hp
 	infoToStore.hp = $("#hp-" + charNum).val();
@@ -1157,6 +1158,7 @@ function getCharTabInfo(attacker) {
 		// change state
 		$("#status-" + charNum).val(charTabInfo.status);
 		$("#terrain-" + charNum).val(charTabInfo.terrain);
+		$("#adjacent-" + charNum).val(charTabInfo.adjacent);
 	}
 }
 
@@ -1331,6 +1333,18 @@ function bladeTomeBonus(battleInfo, bonusAtk, charToUse) {
 	return battleInfo;
 }
 
+// handles bonus from -owl tomes
+// battleInfo contains all battle information, adjacent is the number of adjacent allies, charToUse is either "attacker" or "defender"
+function owlTomeBonus(battleInfo, adjacent, charToUse) {
+	"use strict";
+	battleInfo[charToUse].atk += adjacent * 2;
+	battleInfo[charToUse].spd += adjacent * 2;
+	battleInfo[charToUse].def += adjacent * 2;
+	battleInfo[charToUse].res += adjacent * 2;
+	battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charToUse + "'><strong>" + battleInfo[charToUse].name + "</strong></span> raises attack, speed, defense and resistance by " + (adjacent * 2).toString() + " [" + battleInfo[charToUse].weaponName + "].</li>";
+	return battleInfo;
+}
+
 // checks if the attack can activate windsweep
 function canActivateSweep(container, atkSpd, defSpd, defWeapon) {
 	"use strict";
@@ -1432,6 +1446,7 @@ function getCharPanelData(charNum) {
 
 	charData.weaponName = $("#weapon-" + charNum).val();
 	charData.weaponData = $("#weapon-" + charNum).data("info");
+	charData.adjacent = parseInt($("#adjacent-" + charNum).val());
 
 	charData.status = $("#status-" + charNum).val();
 	charData.terrain = $("#terrain-" + charNum).val();
@@ -1543,6 +1558,7 @@ function getDefaultCharData(charName) {
 	// default weapon info
 	charData.weaponName = weaponIndex >= 0 ? charInfo[charName].weapon[weaponIndex] : "None";
 	charData.weaponData = weaponIndex >= 0 ? weaponInfo[charData.weaponName] : {};
+	charData.adjacent = parseInt($("#override-adjacent").val());
 
 	// override weapon
 	if ($("#override-weapon").val() !== "No Override") {
@@ -2137,7 +2153,7 @@ function simBattle(battleInfo, displayMsg) {
 	}
 	
 	// ATTACKER BONUSES
-	// attacker initiate bonus
+	// initiate bonus
 	if (battleInfo.attacker.weaponData.hasOwnProperty("initiate_mod")) {
 		battleInfo = combatBonus(battleInfo, battleInfo.attacker.weaponData.initiate_mod, battleInfo.attacker.weaponName, "attacker", "by initiating combat");
 	}
@@ -2145,7 +2161,7 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo = combatBonus(battleInfo, battleInfo.attacker.passiveAData.initiate_mod, battleInfo.attacker.passiveA, "attacker", "by initiating combat");
 	}
 
-	// attacker below hp threshold bonus
+	// below hp threshold bonus
 	if (battleInfo.attacker.weaponData.hasOwnProperty("below_threshold_mod") && battleInfo.attacker.initHP <= checkRoundError(battleInfo.attacker.weaponData.below_threshold_mod.threshold * battleInfo.attacker.hp)) {
 		battleInfo = combatBonus(battleInfo, battleInfo.attacker.weaponData.below_threshold_mod.stat_mod, battleInfo.attacker.weaponName, "attacker", "for having HP ≤ " + (battleInfo.attacker.weaponData.below_threshold_mod.threshold * 100).toString() + "%");
 	}
@@ -2160,9 +2176,14 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo = combatBonus(battleInfo, battleInfo.attacker.weaponData.full_hp_mod, battleInfo.attacker.weaponName, "attacker", "for having full HP");
 	}
 
-	// attacker blade tome bonuses
+	// blade tome bonuses
 	if (battleInfo.attacker.hasOwnProperty("addBonusAtk") && battleInfo.attacker.addBonusAtk > 0) {
 		battleInfo = bladeTomeBonus(battleInfo, battleInfo.attacker.addBonusAtk, "attacker");
+	}
+
+	// owl tome bonuses
+	if (battleInfo.attacker.weaponData.hasOwnProperty("adjacent_ally_bonus") && battleInfo.attacker.adjacent > 0) {
+		battleInfo = owlTomeBonus(battleInfo, battleInfo.attacker.adjacent, "attacker");
 	}
 
 	// DEFENDER BONUSES
@@ -2171,7 +2192,7 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo = combatBonus(battleInfo, battleInfo.defender.weaponData.defend_mod, battleInfo.defender.weaponName, "defender", "by getting attacked");
 	}
 
-	// defender below hp threshold bonus
+	// below hp threshold bonus
 	if (battleInfo.defender.weaponData.hasOwnProperty("below_threshold_mod") && battleInfo.defender.initHP <= checkRoundError(battleInfo.defender.weaponData.below_threshold_mod.threshold * battleInfo.defender.hp)) {
 		battleInfo = combatBonus(battleInfo, battleInfo.defender.weaponData.below_threshold_mod.stat_mod, battleInfo.defender.weaponName, "defender", "for having HP ≤ " + (battleInfo.defender.weaponData.below_threshold_mod.threshold * 100).toString() + "%");
 	}
@@ -2191,9 +2212,14 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo = combatBonus(battleInfo, battleInfo.defender.weaponData.full_hp_mod, battleInfo.defender.weaponName, "defender", "for having full HP");
 	}
 
-	// defender blade tome bonuses
+	// blade tome bonuses
 	if (battleInfo.defender.hasOwnProperty("addBonusAtk") && battleInfo.defender.addBonusAtk > 0) {
 		battleInfo = bladeTomeBonus(battleInfo, battleInfo.defender.addBonusAtk, "defender");
+	}
+
+	// owl tome bonuses
+	if (battleInfo.defender.weaponData.hasOwnProperty("adjacent_ally_bonus") && battleInfo.defender.adjacent > 0) {
+		battleInfo = owlTomeBonus(battleInfo, battleInfo.defender.adjacent, "defender");
 	}
 
 	// can defender counter
@@ -3458,6 +3484,7 @@ function applyOverrides(charNum) {
 	// override state
 	$("#status-" + charNum).val($("#override-status").val());
 	$("#terrain-" + charNum).val($("#override-terrain").val());
+	$("#adjacent-" + charNum).val($("#override-adjacent").val());
 }
 
 // calculates and prints info of every battle matchup for one character
@@ -3852,6 +3879,7 @@ function importTeam(attacker) {
 		importedChars[charCount].seal = "None";
 		importedChars[charCount].status = "Default";
 		importedChars[charCount].terrain = "Default";
+		importedChars[charCount].adjacent = "0";
 
 		importedChars[charCount].hp = "1";
 		importedChars[charCount].currentHP = "1";
