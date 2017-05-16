@@ -34,6 +34,9 @@ var defaultDefender = true;
 // prevent filterMatchups function from being called multiple times when resetting filters
 var resetFilterLock = false;
 
+// use to fix filters bug
+var initFilters = true;
+
 // converts an array of strings to an object with the strings as fields
 function arrayToObject(array) {
 	"use strict";
@@ -4702,6 +4705,12 @@ $(document).ready( function() {
 
 	// change mode
 	$("input[type=radio][name=mode]").on("change", function() {
+		if (initFilters) {
+			$("#matchup-filter-name").val("");
+			$("select.multi-select").multipleSelect("checkAll");
+			initFilters = false;
+		}
+		
 		updateDisplay();
 		if (this.id === "one-vs-one") {
 			$("#battle-result").stop(true, true).show(700);
