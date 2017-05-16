@@ -45,6 +45,18 @@ label {
 	margin: 1em auto 0em auto;
 }
 
+.filter-toprow {
+	margin-bottom: 0.3em;
+}
+
+.filter-col2 {
+	margin-right: 1em;
+}
+
+.filter-col3 {
+	margin-left: 1em;
+}
+
 #matchup-filter-title {
 	text-align: center;
 	font-size: 1em;
@@ -55,19 +67,24 @@ label {
 	width: 8em;
 }
 
-#matchup-filters select, #matchup-filters input[type=text] {
+#matchup-filters select {
 	width: 10.9em;
 	box-sizing: border-box; 
-}
-
-#matchup-filter-reset {
-	margin: 0.5em 0.5em 0 0.5em;
 }
 
 .matchup-filter-block {
 	display: inline-block;
 	width: 19.2em;
 	margin: 0.1em 1em;
+}
+
+#matchup-filter-name {
+	width: 100%;
+	box-sizing: border-box; 
+}
+
+#matchup-filter-reset {
+	margin: 0.5em 0.5em 0 0.5em;
 }
 
 .curr-hp-label {
@@ -552,7 +569,7 @@ h3 {
 	white-space: nowrap;
 }
 
-#matchup-overrides table {
+#matchup-overrides table, #matchup-filters table {
 	margin: 0 auto;
 }
 

@@ -685,63 +685,78 @@
 												<span id="matchup-override-button" class="collapse-button matchup-button" data-section="matchup-overrides">Overrides</span>
 											</div>
 											<div id="matchup-filters" class="matchup-section">
-												<div class="matchup-filter-block">
-													<label class="filter-label">Character(s)</label>
-													<input id="matchup-filter-name" type="text" class="matchup-filter-input">
-												</div>
-												<div class="matchup-filter-block">
-													<label class="filter-label">Color</label>
-													<select id="matchup-filter-color" class="matchup-filter-input multi-select" multiple="multiple">
-														<option value="Red">Red</option>
-														<option value="Green">Green</option>
-														<option value="Blue">Blue</option>
-														<option value="Colorless">Colorless</option>
-													</select>
-												</div><br>
-												<div class="matchup-filter-block">
-													<label class="filter-label">Move Type</label>
-													<select id="matchup-filter-move" class="matchup-filter-input multi-select" multiple="multiple">
-														<option value="Infantry">Infantry</option>
-														<option value="Cavalry">Cavalry</option>
-														<option value="Flying">Flying</option>
-														<option value="Armored">Armored</option>
-													</select>
-												</div>
-												<div class="matchup-filter-block">
-													<label class="filter-label">Weapon Type</label>
-													<select id="matchup-filter-weapon" class="matchup-filter-input multi-select" multiple="multiple">
-														<option value="Sword">Sword</option>
-														<option value="Red Tome">Red Tome</option>
-														<option value="Red Breath">Red Breath</option>
-														<option value="Axe">Axe</option>
-														<option value="Green Tome">Green Tome</option>
-														<option value="Green Breath">Green Breath</option>
-														<option value="Lance">Lance</option>
-														<option value="Blue Tome">Blue Tome</option>
-														<option value="Blue Breath">Blue Breath</option>
-														<option value="Bow">Bow</option>
-														<option value="Dagger">Dagger</option>
-														<option value="Staff">Staff</option>														
-													</select>
-												</div><br>
-												<div class="matchup-filter-block">
-													<label class="filter-label">Result</label>
-													<select id="matchup-filter-result" class="matchup-filter-input multi-select" multiple="multiple">
-														<option value="Attacker Wins">Attacker Wins</option>
-														<option value="Defender Wins">Defender Wins</option>
-														<option value="Draw">Draw</option>
-														<option value="Favorable">Favorable</option>
-														<option value="Unfavorable">Unfavorable</option>
-														<option value="Other">Other</option>
-													</select>
-												</div>
-												<div class="matchup-filter-block">
-													<label class="filter-label">Range</label>
-													<select id="matchup-filter-range" class="matchup-filter-input multi-select" multiple="multiple">
-														<option value="1">1</option>
-														<option value="2">2</option>													
-													</select>
-												</div>
+												<table>
+													<tr>
+														<td><label class="filter-label filter-toprow">Character(s)</label></td>
+														<td colspan="3"><input id="matchup-filter-name" type="text" class="matchup-filter-input filter-toprow" placeholder="Separate names with a comma"></td>
+													</tr>
+													<tr>
+														<td><label class="filter-label">Color</label></td>
+														<td>
+															<select id="matchup-filter-color" class="matchup-filter-input multi-select filter-col2" multiple="multiple">
+																<option value="Red">Red</option>
+																<option value="Green">Green</option>
+																<option value="Blue">Blue</option>
+																<option value="Colorless">Colorless</option>
+															</select>
+														</td>
+														<td><label class="filter-label filter-col3">Weapon Type</label></td>
+														<td>
+															<select id="matchup-filter-weapon" class="matchup-filter-input multi-select" multiple="multiple">
+																<option value="Sword">Sword</option>
+																<option value="Red Tome">Red Tome</option>
+																<option value="Red Breath">Red Breath</option>
+																<option value="Axe">Axe</option>
+																<option value="Green Tome">Green Tome</option>
+																<option value="Green Breath">Green Breath</option>
+																<option value="Lance">Lance</option>
+																<option value="Blue Tome">Blue Tome</option>
+																<option value="Blue Breath">Blue Breath</option>
+																<option value="Bow">Bow</option>
+																<option value="Dagger">Dagger</option>
+																<option value="Staff">Staff</option>														
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td><label class="filter-label">Range</label></td>
+														<td>
+															<select id="matchup-filter-range" class="matchup-filter-input multi-select filter-col2" multiple="multiple">
+																<option value="1">Melee</option>
+																<option value="2">Ranged</option>
+															</select>
+														</td>
+														<td><label class="filter-label filter-col3">Damage Type</label></td>
+														<td>
+															<select id="matchup-filter-magical" class="matchup-filter-input multi-select" multiple="multiple">
+																<option value="Physical">Physical</option>
+																<option value="Magical">Magical</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td><label class="filter-label">Move Type</label></td>
+														<td>
+															<select id="matchup-filter-move" class="matchup-filter-input multi-select filter-col2" multiple="multiple">
+																<option value="Infantry">Infantry</option>
+																<option value="Cavalry">Cavalry</option>
+																<option value="Flying">Flying</option>
+																<option value="Armored">Armored</option>
+															</select>
+														</td>
+														<td><label class="filter-label filter-col3">Result</label></td>
+														<td>
+															<select id="matchup-filter-result" class="matchup-filter-input multi-select" multiple="multiple">
+																<option value="Attacker Wins">Attacker Wins</option>
+																<option value="Defender Wins">Defender Wins</option>
+																<option value="Draw">Draw</option>
+																<option value="Favorable">Favorable</option>
+																<option value="Unfavorable">Unfavorable</option>
+																<option value="Other">Other</option>
+															</select>
+														</td>
+													</tr>
+												</table>
 												<div class="matchup-filter-block">
 													<button id="matchup-filter-reset">Reset</button>
 												</div>

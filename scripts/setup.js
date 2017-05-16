@@ -185,6 +185,13 @@ function weaponTypeRange(weaponType) {
 	return range;
 }
 
+// given a weapon type, return its damage type
+function weaponTypeMagical(weaponType) {
+	"use strict";
+	var physicalWeapons = {"Sword":true, "Axe":true, "Lance":true, "Bow":true, "Dagger":true};
+	return physicalWeapons.hasOwnProperty(weaponType) ? "Physical" : "Magical";
+}
+
 // determines if the given skill is inheritable by the given character
 function isInheritable(skill, charName) {
 	"use strict";
@@ -3137,6 +3144,7 @@ function filterMatchupTable(fadeIn) {
 	var color = arrayToObject($("#matchup-filter-color").val());
 	var weapon = arrayToObject($("#matchup-filter-weapon").val());
 	var range = arrayToObject($("#matchup-filter-range").val());
+	var magical = arrayToObject($("#matchup-filter-magical").val());
 	var results = arrayToObject($("#matchup-filter-result").val());
 
 	var winCount = 0;
@@ -3155,10 +3163,11 @@ function filterMatchupTable(fadeIn) {
 		var rowColor = charInfo[rowName].color;
 		var rowWeapon = charInfo[rowName].weapon_type;
 		var rowRange = weaponTypeRange(rowWeapon);
+		var rowMagical = weaponTypeMagical(rowWeapon);
 		var rowResult = this.childNodes[6].firstChild.firstChild.nodeValue;
 		rowName = rowName.toLowerCase();
 
-		if ((name === "" || matchCharList(filterCharNames, rowName)) && move.hasOwnProperty(rowMove) && color.hasOwnProperty(rowColor) && weapon.hasOwnProperty(rowWeapon) && range.hasOwnProperty(rowRange) && (results.hasOwnProperty(rowResult) || (results.hasOwnProperty("Draw") && (rowResult === "Draw (A)" || rowResult === "Draw (D)")) || matchFavorability(results, rowResult, attacker))) {
+		if ((name === "" || matchCharList(filterCharNames, rowName)) && move.hasOwnProperty(rowMove) && color.hasOwnProperty(rowColor) && weapon.hasOwnProperty(rowWeapon) && range.hasOwnProperty(rowRange) && magical.hasOwnProperty(rowMagical) && (results.hasOwnProperty(rowResult) || (results.hasOwnProperty("Draw") && (rowResult === "Draw (A)" || rowResult === "Draw (D)")) || matchFavorability(results, rowResult, attacker))) {
 			$(this).show();
 
 			// update counters
