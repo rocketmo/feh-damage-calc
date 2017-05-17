@@ -1309,6 +1309,9 @@ var skillInfo =
             "null_dmg" : true,
             "char_unique" : true
         },
+        "Fortify Res 1" : {
+            "description" : "Grants adjacent allies Res+2 through their next actions at the start of each turn."
+        },
         "HP +3" : {
             "description" : "Grants +3 to max HP.",
             "stat_mod" : {
@@ -1320,6 +1323,9 @@ var skillInfo =
             "stat_mod" : {
                 "spd" : 1
             }
+        },
+        "Spur Def 1" : {
+            "description" : "Grants adjacent allies Def+2 during combat."
         }
     }
 };
