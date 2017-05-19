@@ -2191,6 +2191,11 @@ function simBattle(battleInfo, displayMsg) {
 		battleInfo = combatBonus(battleInfo, battleInfo.attacker.weaponData.full_hp_mod, battleInfo.attacker.weaponName, "attacker", "for having full HP");
 	}
 
+	// opponent full hp bonus
+	if (battleInfo.attacker.weaponData.hasOwnProperty("foe_full_hp_mod") && battleInfo.defender.currHP >= battleInfo.defender.hp) {
+		battleInfo = combatBonus(battleInfo, battleInfo.attacker.weaponData.foe_full_hp_mod, battleInfo.attacker.weaponName, "attacker", "for battling an opponent with full HP");
+	}
+
 	// blade tome bonuses
 	if (battleInfo.attacker.hasOwnProperty("addBonusAtk") && battleInfo.attacker.addBonusAtk > 0) {
 		battleInfo = bladeTomeBonus(battleInfo, battleInfo.attacker.addBonusAtk, "attacker");
@@ -2220,6 +2225,11 @@ function simBattle(battleInfo, displayMsg) {
 	// full hp bonus
 	if (battleInfo.defender.weaponData.hasOwnProperty("full_hp_mod") && battleInfo.defender.currHP >= battleInfo.defender.hp) {
 		battleInfo = combatBonus(battleInfo, battleInfo.defender.weaponData.full_hp_mod, battleInfo.defender.weaponName, "defender", "for having full HP");
+	}
+
+	// opponent full hp bonus
+	if (battleInfo.defender.weaponData.hasOwnProperty("foe_full_hp_mod") && battleInfo.attacker.currHP >= battleInfo.attacker.hp) {
+		battleInfo = combatBonus(battleInfo, battleInfo.defender.weaponData.foe_full_hp_mod, battleInfo.defender.weaponName, "defender", "for battling an opponent with full HP");
 	}
 
 	// defend against specific weapon bonus
@@ -3059,6 +3069,10 @@ function swap() {
 	$("#defender-portrait").attr("src", atkPortrait);
 	$("#defender-weapon").attr("src", atkWeaponIcon).attr("alt", atkWeaponAlt);
 	$("#defender-move").attr("src", atkMoveIcon).attr("alt", atkMoveAlt);
+	
+	// no longer defaults
+	defaultAttacker = false;
+	defaultDefender = false;
 }
 
 // enables or disables a character panel

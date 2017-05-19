@@ -1168,6 +1168,25 @@ var charInfo =
 			"star_1" : {"special" : -1, "assist" : 2, "passive_b" : -1}
 		}
 	},
+	"Lloyd": {
+		"color" : "Red",
+		"weapon_type" : "Sword",
+		"move_type": "Infantry",
+		"weapon": ["Regal Blade", "Silver Sword", "Steel Sword", "Iron Sword"],
+		"special": ["Iceberg", "Chilling Wind"],
+		"passive_b": ["Pass 3", "Pass 2", "Pass 1"],
+		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
+		"base_stat" : {
+			"star_5" : {"hp" : 17, "atk" : 8, "spd" : 9, "def" : 5, "res" : 8},
+			"star_4" : {"hp" : 16, "atk" : 8, "spd" : 9, "def" : 4, "res" : 7},
+			"star_3" : {"hp" : 16, "atk" : 7, "spd" : 8, "def" : 4, "res" : 7},
+			"growth" : {"hp" : 7, "atk" : 7, "spd" : 8, "def" : 3, "res" : 6}
+		},
+		"rarity_restrict" : {
+			"star_4" : {"weapon" : 1, "special" : 0, "passive_b" : 0, "passive_c" : 1},
+			"star_3" : {"weapon" : 1, "special" : 1, "passive_b" : 1, "passive_c" : 2}
+		}
+	},
 	"Lon'qu": {
 		"color" : "Red",
 		"weapon_type" : "Sword",

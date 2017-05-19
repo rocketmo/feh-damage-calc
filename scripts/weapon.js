@@ -1257,6 +1257,19 @@ var weaponInfo =
 		"description" : "Effective against cavalry units.",
 		"move_effective" : "Cavalry"
 	},
+	"Regal Blade" : {
+		"color"   : "Red",
+		"type"    : "Sword",
+		"might"   : 16,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "If foe's HP is 100% when combat starts, unit receives Atk/Spd+2 during combat.",
+		"foe_full_hp_mod" : {
+			"atk" : 2,
+			"spd" : 2
+		},
+		"char_unique" : true
+	},
 	"Rexcalibur" : {
 		"color"   : "Green",
 		"type"    : "Green Tome",
