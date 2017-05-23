@@ -248,7 +248,7 @@ var charInfo =
 	"Camilla (Spring)": {
 		"color" : "Green",
 		"weapon_type" : "Green Tome",
-		"move_type": "Flying", 
+		"move_type": "Flying",
 		"weapon": ["Green Egg+", "Green Egg", "Elwind", "Wind"],
 		"passive_a": ["Defiant Spd 3", "Defiant Spd 2", "Defiant Spd 1"],
 		"passive_b": ["Live for Bounty"],
@@ -463,7 +463,7 @@ var charInfo =
 			"star_4" : {"weapon" : 1, "passive_b" : 1}
 		}
 	},
-	"Custom": {	
+	"Custom": {
 	},
 	"Donnel": {
 		"color" : "Blue",
@@ -870,7 +870,7 @@ var charInfo =
 		"weapon": ["Armads", "Silver Axe", "Steel Axe", "Iron Axe"],
 		"special": ["Pavise", "Buckler"],
 		"passive_a": ["Distant Counter"],
-		"passive_c": ["Goad Armor", "Spur Attack 2", "Spur Attack 1"],
+		"passive_c": ["Goad Armor", "Spur Atk 2", "Spur Atk 1"],
 		"base_stat" : {
 			"star_5" : {"hp" : 24, "atk" : 10, "spd" : 5, "def" : 11, "res" : 4},
 			"growth" : {"hp" : 9, "atk" : 8, "spd" : 5, "def" : 8, "res" : 3}
@@ -1838,7 +1838,7 @@ var charInfo =
 		"rarity_restrict" : {
 			"star_4" : {"passive_c" : 1}
 		}
-	}, 
+	},
 	"Sanaki" : {
 		"color" : "Red",
 		"weapon_type" : "Red Tome",
