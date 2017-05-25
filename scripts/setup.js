@@ -4922,8 +4922,11 @@ $(document).ready( function() {
 		updateDisplay();
 	});
 	
-	// resize window
+	// resize window event
 	$(window).on("resize", function() {
-		resizeHeader();
+		resizeAll();
 	});
+
+	// resize current window
+	resizeAll();
 });
