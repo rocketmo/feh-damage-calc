@@ -213,7 +213,7 @@ body::after {
 
 #calc-header a {
 	padding: 0.3em;
-	margin: 0.1em 0.2em 0 0.2em;
+	margin: 0.2em 0.2em 0 0.2em;
 	float: right;
 }
 
@@ -319,6 +319,7 @@ h3 {
 	font-weight: bold;
 	font-size: 1.2em;
 	text-align: center;
+	white-space: normal;
 }
 
 .inherit {
@@ -508,8 +509,12 @@ h3 {
 	font-size: 1.1em;
 }
 
-.combat-char {
-	padding: 0 1.5em;
+.combat-char-left {
+	padding-right: 1.5em;
+}
+
+.combat-char-right {
+	padding-left: 1.5em;
 }
 
 #matchup-title {
@@ -676,6 +681,10 @@ h3 {
 	text-align: center;
 	white-space: normal;
 	max-width: 700px;
+}
+
+.draw-update {
+	white-space: normal;
 }
 
 .draw-update:hover {

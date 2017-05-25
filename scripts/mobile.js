@@ -1,3 +1,4 @@
+// resize stuff
 var headerLogos = false;
 
 // handles resizing the header
@@ -49,9 +50,28 @@ function resizeModes() {
 	}
 }
 
+// resize results
+function resizeResults() {
+	"use strict";
+	$(".combat-portrait").css("width", "75px").css("height", "75px");
+	$("#result-table").css("font-size", "1em");
+	$("#result-msg").css("font-size", "1.2em");
+	$(".combat-char-left").css("padding-right", "1.5em");
+	$(".combat-char-right").css("padding-left", "1.5em");
+
+	if ($("#result-table").width() > $(window).width()) {
+		$(".combat-portrait").css("width", "60px").css("height", "60px");
+		$("#result-table").css("font-size", "0.9em");
+		$("#result-msg").css("font-size", "1em");
+		$(".combat-char-left").css("padding-right", "1em");
+		$(".combat-char-right").css("padding-left", "1em");
+	}
+}
+
 // handles window resize
 function resizeAll() {
 	"use strict";
 	resizeHeader();
 	resizeModes();
+	resizeResults();
 }
