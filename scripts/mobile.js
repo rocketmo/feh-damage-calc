@@ -36,17 +36,26 @@ function resizeHeader() {
 // handles resizing modes
 function resizeModes() {
 	"use strict";
+	var shortenNames = false;
 	$(".mode-button-label").css("width", "140px");
 
 	if (($(".mode-button-label").width() * 3) + 50 > $("#modes-container").width()) {
-		$(".mode-button-label").css("width", "60px");
-		$("#one-vs-one-label").text("1v1");
-		$("#one-vs-all-label").text("1vA");
-		$("#all-vs-one-label").text("Av1");
-	} else {
+		$(".mode-button-label").css("width", "115px");
+
+		if (($(".mode-button-label").width() * 3) + 50 > $("#modes-container").width()) {
+			$(".mode-button-label").css("width", "60px");
+			shortenNames = true;
+		}
+	}
+	
+	if (!shortenNames) {
 		$("#one-vs-one-label").text("One vs. One");
 		$("#one-vs-all-label").text("One vs. All");
 		$("#all-vs-one-label").text("All vs. One");
+	} else {
+		$("#one-vs-one-label").text("1v1");
+		$("#one-vs-all-label").text("1vA");
+		$("#all-vs-one-label").text("Av1");
 	}
 }
 
