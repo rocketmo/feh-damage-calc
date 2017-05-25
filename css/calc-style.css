@@ -12,7 +12,6 @@ body {
 
 #wrapper {
 	white-space: nowrap;
-	width: 840px;
 	margin: 0px auto;
 }
 
@@ -195,7 +194,7 @@ body::after {
 
 #calc-header {
 	width: 100%;
-	min-width: 840px;
+	min-width: 200px;
 	background-color: gold;
 	margin-bottom: 1em;
 	vertical-align: middle;
@@ -206,13 +205,25 @@ body::after {
 	padding: 0.3em;
 	font-size: 1.2em;
 	color: #0b0b0b;
-	white-space: normal;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 #calc-header a {
 	padding: 0.3em;
 	margin: 0.1em 0.2em 0 0.2em;
 	float: right;
+}
+
+#calc-header img {
+	width: 20px;
+	height: 20px;
+	opacity: 0.5;
+}
+
+#calc-header img:hover {
+	opacity: 0.8;
 }
 
 h2 {
@@ -418,6 +429,7 @@ h3 {
 }
 
 #modes-container {
+	width: 100%;
 	text-align: center;
 	vertical-align: middle;
 	margin: 0;

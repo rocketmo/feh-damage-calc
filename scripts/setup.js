@@ -4921,4 +4921,9 @@ $(document).ready( function() {
 
 		updateDisplay();
 	});
+	
+	// resize window
+	$(window).on("resize", function() {
+		resizeHeader();
+	});
 });
