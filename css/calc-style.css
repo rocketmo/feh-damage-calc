@@ -12,8 +12,12 @@ body {
 
 #wrapper {
 	min-width: 240px;
-	white-space: nowrap;
+	white-space: normal;
 	margin: 0px auto;
+}
+
+.char-panel-split {
+	white-space: nowrap;
 }
 
 #calc {
@@ -29,6 +33,15 @@ fieldset {
 
 #char-panel {
 	vertical-align: top;
+}
+
+.char-panel-split {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.split-left {
+	margin-right: 1.5em;
 }
 
 label {
@@ -91,11 +104,11 @@ label {
 	width: 6.5em;
 }
 
-.override-state label {
+.override-state label, .state-section label {
 	width: 5em;
 }
 
-#matchup-overrides .override-state select {
+#matchup-overrides .override-state select, .char-info .state-section select {
 	width: 7em;
 }
 

@@ -37,6 +37,9 @@ var resetFilterLock = false;
 // use to fix filters bug
 var initFilters = true;
 
+// resize timer
+var resizeTO;
+
 // converts an array of strings to an object with the strings as fields
 function arrayToObject(array) {
 	"use strict";
@@ -4924,7 +4927,8 @@ $(document).ready( function() {
 	
 	// resize window event
 	$(window).on("resize", function() {
-		resizeAll();
+		clearTimeout(resizeTO);
+		resizeTO = setTimeout(resizeAll, 75);
 	});
 
 	// resize current window

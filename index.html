@@ -77,273 +77,277 @@
 											<img id="atk-tab-4" class="char-tab-unselected" alt="A5" src="img/Portraits/Unselected.png" data-index="4" data-charnum="1">
 										</div>
 									</div>
-									<div class="info-section character-select">
-										<div>
-											<label>
-												<span id="extra-char-info-1-btn" class="collapse-button" data-section="extra-char-info-1">Character</span>
-											</label>
-											<select id="char-1" class="char-selector fancy-select" data-charnum="1"></select>
+									<div id="left-1" class="char-panel-split split-left">
+										<div class="info-section character-select">
+											<div>
+												<label>
+													<span id="extra-char-info-1-btn" class="collapse-button" data-section="extra-char-info-1">Character</span>
+												</label>
+												<select id="char-1" class="char-selector fancy-select" data-charnum="1"></select>
+											</div>
+											<div id="extra-char-info-1" class="collapsable">
+												<div>
+													<label>Color</label>
+													<select id="color-1" class="color-selector" data-charnum="1">
+														<option value="Red">Red</option>
+														<option value="Green">Green</option>
+														<option value="Blue">Blue</option>
+														<option value="Colorless">Colorless</option>
+													</select>
+												</div>
+												<div>
+													<label>Weapon Type</label>
+													<select id="weapon-type-1" class="weapon-type-selector" data-charnum="1">
+														<option value="Sword">Sword</option>
+														<option value="Red Tome">Red Tome</option>
+														<option value="Red Breath">Red Breath</option>
+														<option value="Axe">Axe</option>
+														<option value="Green Tome">Green Tome</option>
+														<option value="Green Breath">Green Breath</option>
+														<option value="Lance">Lance</option>
+														<option value="Blue Tome">Blue Tome</option>
+														<option value="Blue Breath">Blue Breath</option>
+														<option value="Bow">Bow</option>
+														<option value="Dagger">Dagger</option>
+														<option value="Staff">Staff</option>
+													</select>
+												</div>
+												<div>
+													<label>Move Type</label>
+													<select id="move-type-1" class="move-type-selector" data-charnum="1">
+														<option value="Infantry">Infantry</option>
+														<option value="Cavalry">Cavalry</option>
+														<option value="Flying">Flying</option>
+														<option value="Armored">Armored</option>
+													</select>
+												</div>
+											</div>
+											<div id="char-build-info-1">
+												<div>
+													<label>Rarity</label>
+													<select id="rarity-1" class="rarity-select build-select" data-charnum="1">
+														<option value="5">5 Stars</option>
+													</select>
+												</div>
+												<div>
+													<label>Level</label>
+													<select id="level-1" class="level-select build-select" data-charnum="1">
+														<option value="40">Lvl. 40</option>
+														<option value="1">Lvl. 1</option>
+													</select><select id="merge-1" class="merge-select build-select" data-charnum="1" title="Merged units">
+														<option value="0">+0</option>
+														<option value="1">+1</option>
+														<option value="2">+2</option>
+														<option value="3">+3</option>
+														<option value="4">+4</option>
+														<option value="5">+5</option>
+														<option value="6">+6</option>
+														<option value="7">+7</option>
+														<option value="8">+8</option>
+														<option value="9">+9</option>
+														<option value="10">+10</option>
+													</select>
+												</div>
+												<div>
+													<label>Boon/Bane</label>
+													<select id="boon-1" class="boon-select build-select" data-charnum="1" title="Boon">
+														<option value="neutral">Neutral</option>
+														<option value="hp">+HP</option>
+														<option value="atk">+ATK</option>
+														<option value="spd">+SPD</option>
+														<option value="def">+DEF</option>
+														<option value="res">+RES</option>
+													</select><select id="bane-1" class="bane-select build-select" data-charnum="1" title="Bane">
+														<option value="neutral">Neutral</option>
+														<option value="hp">-HP</option>
+														<option value="atk">-ATK</option>
+														<option value="spd">-SPD</option>
+														<option value="def">-DEF</option>
+														<option value="res">-RES</option>
+													</select>
+												</div>
+											</div>
 										</div>
-										<div id="extra-char-info-1" class="collapsable">
+										<div class="info-section weapon-select">
 											<div>
-												<label>Color</label>
-												<select id="color-1" class="color-selector" data-charnum="1">
-													<option value="Red">Red</option>
-													<option value="Green">Green</option>
-													<option value="Blue">Blue</option>
-													<option value="Colorless">Colorless</option>
-												</select>
+												<label>
+													<span id="extra-weapon-info-1-btn" class="collapse-button" data-section="extra-weapon-info-1">Weapon</span>
+												</label>
+												<select id="weapon-1" class="weapon-selector fancy-select" data-charnum="1"></select>
 											</div>
-											<div>
-												<label>Weapon Type</label>
-												<select id="weapon-type-1" class="weapon-type-selector" data-charnum="1">
-													<option value="Sword">Sword</option>
-													<option value="Red Tome">Red Tome</option>
-													<option value="Red Breath">Red Breath</option>
-													<option value="Axe">Axe</option>
-													<option value="Green Tome">Green Tome</option>
-													<option value="Green Breath">Green Breath</option>
-													<option value="Lance">Lance</option>
-													<option value="Blue Tome">Blue Tome</option>
-													<option value="Blue Breath">Blue Breath</option>
-													<option value="Bow">Bow</option>
-													<option value="Dagger">Dagger</option>
-													<option value="Staff">Staff</option>
-												</select>
+											<div id="extra-weapon-info-1" class="extra-info collapsable">
+												<div class="ability-desc-container">
+													<p id="weapon-desc-1" class="ability-desc"></p>
+												</div>
+												<div>
+													<label>Might</label>
+													<span id="weapon-might-1" data-oldmt="0"></span>
+												</div>
+												<div>
+													<label>Range</label>
+													<span id="weapon-range-1"></span>
+												</div>
+												<div>
+													<label>Magical</label>
+													<span id="weapon-magical-1"></span>
+												</div>
 											</div>
-											<div>
-												<label>Move Type</label>
-												<select id="move-type-1" class="move-type-selector" data-charnum="1">
-													<option value="Infantry">Infantry</option>
-													<option value="Cavalry">Cavalry</option>
-													<option value="Flying">Flying</option>
-													<option value="Armored">Armored</option>
+											<div id="adjacent-block-1" class="adjacent-block">
+												<label>Adjacent Allies</label>
+												<select id="adjacent-1" class="adjacent-select battle-val" data-charnum="1">
+													<option value="0">0</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
 												</select>
 											</div>
 										</div>
-										<div id="char-build-info-1">
+										<div id="skills-1" class="info-section-bottom skill-select">
 											<div>
-												<label>Rarity</label>
-												<select id="rarity-1" class="rarity-select build-select" data-charnum="1">
-													<option value="5">5 Stars</option>
-												</select>
+												<label class="passive-a-label">
+													<span class="collapse-button" data-section="extra-passive-a-info-1">Passive Skill A</span>
+												</label>
+												<select id="passive-a-1" class="passive-selector fancy-select" data-charnum="1" data-skilltype="a"></select>
 											</div>
-											<div>
-												<label>Level</label>
-												<select id="level-1" class="level-select build-select" data-charnum="1">
-													<option value="40">Lvl. 40</option>
-													<option value="1">Lvl. 1</option>
-												</select><select id="merge-1" class="merge-select build-select" data-charnum="1" title="Merged units">
-													<option value="0">+0</option>
-													<option value="1">+1</option>
-													<option value="2">+2</option>
-													<option value="3">+3</option>
-													<option value="4">+4</option>
-													<option value="5">+5</option>
-													<option value="6">+6</option>
-													<option value="7">+7</option>
-													<option value="8">+8</option>
-													<option value="9">+9</option>
-													<option value="10">+10</option>
-												</select>
+											<div id="extra-passive-a-info-1" class="collapsable extra-info">
+												<div class="ability-desc-container">
+													<p id="passive-a-desc-1" class="ability-desc"></p>
+												</div>
 											</div>
+
 											<div>
-												<label>Boon/Bane</label>
-												<select id="boon-1" class="boon-select build-select" data-charnum="1" title="Boon">
-													<option value="neutral">Neutral</option>
-													<option value="hp">+HP</option>
-													<option value="atk">+ATK</option>
-													<option value="spd">+SPD</option>
-													<option value="def">+DEF</option>
-													<option value="res">+RES</option>
-												</select><select id="bane-1" class="bane-select build-select" data-charnum="1" title="Bane">
-													<option value="neutral">Neutral</option>
-													<option value="hp">-HP</option>
-													<option value="atk">-ATK</option>
-													<option value="spd">-SPD</option>
-													<option value="def">-DEF</option>
-													<option value="res">-RES</option>
-												</select>
+												<label class="passive-b-label">
+													<span class="collapse-button" data-section="extra-passive-b-info-1">Passive Skill B</span>
+												</label>
+												<select id="passive-b-1" class="passive-selector fancy-select" data-charnum="1" data-skilltype="b"></select>
+											</div>
+											<div id="extra-passive-b-info-1" class="collapsable extra-info">
+												<div class="ability-desc-container">
+													<p id="passive-b-desc-1" class="ability-desc"></p>
+												</div>
+											</div>
+
+											<div>
+												<label class="passive-c-label">
+													<span class="collapse-button" data-section="extra-passive-c-info-1">Passive Skill C</span>
+												</label>
+												<select id="passive-c-1" class="passive-selector fancy-select" data-charnum="1" data-skilltype="c"></select>
+											</div>
+											<div id="extra-passive-c-info-1" class="collapsable extra-info">
+												<div class="ability-desc-container">
+													<p id="passive-c-desc-1" class="ability-desc"></p>
+												</div>
+											</div>
+
+											<div>
+												<label class="passive-s-label">
+													<span class="collapse-button" data-section="extra-passive-s-info-1">Sacred Seal</span>
+												</label>
+												<select id="passive-s-1" class="passive-selector fancy-select" data-charnum="1" data-skilltype="s"></select>
+											</div>
+											<div id="extra-passive-s-info-1" class="collapsable extra-info">
+												<div class="ability-desc-container">
+													<p id="passive-s-desc-1" class="ability-desc"></p>
+												</div>
+											</div>
+
+											<div>
+												<label class="assist-label">
+													<span class="collapse-button" data-section="extra-assist-info-1">Assist Skill</span>
+												</label>
+												<select id="assist-1" class="assist-selector fancy-select" data-charnum="1"></select>
+											</div>
+											<div id="extra-assist-info-1" class="collapsable extra-info">
+												<div class="ability-desc-container">
+													<p id="assist-desc-1" class="ability-desc"></p>
+												</div>
+											</div>
+
+											<div>
+												<label class="special-label">
+													<span class="collapse-button" data-section="extra-special-info-1">Special Skill</span>
+												</label>
+												<select id="special-1" class="special-selector fancy-select" data-charnum="1"></select>
+											</div>
+											<div id="extra-special-info-1" class="collapsable extra-info">
+												<div class="ability-desc-container">
+													<p id="special-desc-1" class="ability-desc"></p>
+												</div>
+											</div>
+											<div id="spec-cooldown-line-1">
+												<label class="spec-cooldown-label" title="Special skills activate when cooldown reaches 0." data-charnum="1">Special Cooldown</label>
+												<input type="number" id="spec-cooldown-1" class="zero-or-more spec-cool" data-charnum="1" value="0">/<span id="spec-cooldown-max-1" class="denominator" autocomplete="off">x</span>
 											</div>
 										</div>
 									</div>
-									<div class="info-section weapon-select">
-										<div>
-											<label>
-												<span id="extra-weapon-info-1-btn" class="collapse-button" data-section="extra-weapon-info-1">Weapon</span>
-											</label>
-											<select id="weapon-1" class="weapon-selector fancy-select" data-charnum="1"></select>
-										</div>
-										<div id="extra-weapon-info-1" class="extra-info collapsable">
-											<div class="ability-desc-container">
-												<p id="weapon-desc-1" class="ability-desc"></p>
+									<div id="right-1" class="char-panel-split">
+										<div class="info-section state-section">
+											<div>
+												<label class="status-label">Status</label>
+												<select id="status-1" class="battle-val status-select" data-charnum="1">
+													<option value="Default">Default</option>
+													<option value="Panic">Panic</option>
+												</select>
 											</div>
 											<div>
-												<label>Might</label>
-												<span id="weapon-might-1" data-oldmt="0"></span>
-											</div>
-											<div>
-												<label>Range</label>
-												<span id="weapon-range-1"></span>
-											</div>
-											<div>
-												<label>Magical</label>
-												<span id="weapon-magical-1"></span>
+												<label class="terrain-label">Terrain</label>
+												<select id="terrain-1" class="battle-val terrain-select" data-charnum="1">
+													<option value="Default">Default</option>
+													<option value="Defensive">Defensive</option>
+												</select>
 											</div>
 										</div>
-										<div id="adjacent-block-1" class="adjacent-block">
-											<label>Adjacent Allies</label>
-											<select id="adjacent-1" class="adjacent-select battle-val" data-charnum="1">
-												<option value="0">0</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-											</select>
+										<div id="stats-1" class="info-section stat-info">
+											<table>
+												<tr>
+													<th></th>
+													<th class="center-cell"><label class="stat-header" title="Default stat total">Base</label></th>
+													<th class="center-cell"><label class="stat-header bonus-label" title="Displayed stat buff" data-charnum="1">Bonus</label></th>
+													<th class="center-cell"><label class="stat-header penalty-label" title="Displayed stat debuff" data-charnum="1">Penalty</label></th>
+													<th class="center-cell"><label class="stat-header spur-label" title="Combat-only stat buff granted by allies" data-charnum="1">Spur</label></th>
+												</tr>
+												<tr>
+													<td><label class="stat" title="A unit is defeated if their Hit Points reach 0.">HP</label></td>
+													<td class="center-cell"><input type="number" id="hp-1" class="more-than-zero hp-stat" value="1" data-charnum="1" autocomplete="off"></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><label class="stat" title="The higher a unit's Attack, the more damage it will inflict on foes.">ATK</label></td>
+													<td class="center-cell"><input type="number" id="atk-1" class="zero-or-more battle-val" value="1" data-charnum="1" autocomplete="off"></td>
+													<td class="center-cell"><select id="atk-bonus-1" class="stat-bonus battle-val" data-charnum="1"></select></td>
+													<td class="center-cell"><select id="atk-penalty-1" class="stat-penalty battle-val" data-charnum="1"></select></td>
+													<td class="center-cell"><select id="atk-spur-1" class="stat-spur battle-val" data-charnum="1"></select></td>
+												</tr>
+												<tr>
+													<td><label class="stat" title="A unit will attack twice if their Speed is at least 5 more than their foe's Speed.">SPD</label></td>
+													<td class="center-cell"><input type="number" id="spd-1" class="zero-or-more battle-val" value="1" data-charnum="1" autocomplete="off"></td>
+													<td class="center-cell"><select id="spd-bonus-1" class="stat-bonus battle-val" data-charnum="1"></select></td>
+													<td class="center-cell"><select id="spd-penalty-1" class="stat-penalty battle-val" data-charnum="1"></select></td>
+													<td class="center-cell"><select id="spd-spur-1" class="stat-spur battle-val" data-charnum="1"></select></td>
+												</tr>
+												<tr>
+													<td><label class="stat" title="The higher a unit's Defense is, the less damage they take from physical attacks.">DEF</label></td>
+													<td class="center-cell"><input type="number" id="def-1" class="zero-or-more battle-val" value="1" data-charnum="1" autocomplete="off"></td>
+													<td class="center-cell"><select id="def-bonus-1" class="stat-bonus battle-val" data-charnum="1"></select></td>
+													<td class="center-cell"><select id="def-penalty-1" class="stat-penalty battle-val" data-charnum="1"></select></td>
+													<td class="center-cell"><select id="def-spur-1" class="stat-spur battle-val" data-charnum="1"></select></td>
+												</tr>
+												<tr>
+													<td><label class="stat" title="The higher a unit's Resistance is, the less damage they take from magical attacks.">RES</label></td>
+													<td class="center-cell"><input type="number" id="res-1" class="zero-or-more battle-val" value="1" data-charnum="1" autocomplete="off"></td>
+													<td class="center-cell"><select id="res-bonus-1" class="stat-bonus battle-val" data-charnum="1"></select></td>
+													<td class="center-cell"><select id="res-penalty-1" class="stat-penalty battle-val" data-charnum="1"></select></td>
+													<td class="center-cell"><select id="res-spur-1" class="stat-spur battle-val" data-charnum="1"></select></td>
+												</tr>
+											</table>
 										</div>
-									</div>
-									<div id="skills-1" class="info-section skill-select">
-										<div>
-											<label class="passive-a-label">
-												<span class="collapse-button" data-section="extra-passive-a-info-1">Passive Skill A</span>
-											</label>
-											<select id="passive-a-1" class="passive-selector fancy-select" data-charnum="1" data-skilltype="a"></select>
+										<div class="info-section-bottom current-hp">
+											<label class="curr-hp-label" data-charnum="1">Current HP</label>
+											<input type="number" id="curr-hp-1" class="more-than-zero curr-hp-val" data-charnum="1" value="1" autocomplete="off">/<span id="hp-1-denom" class="denominator hp-1-read">1</span>
 										</div>
-										<div id="extra-passive-a-info-1" class="collapsable extra-info">
-											<div class="ability-desc-container">
-												<p id="passive-a-desc-1" class="ability-desc"></p>
-											</div>
-										</div>
-
-										<div>
-											<label class="passive-b-label">
-												<span class="collapse-button" data-section="extra-passive-b-info-1">Passive Skill B</span>
-											</label>
-											<select id="passive-b-1" class="passive-selector fancy-select" data-charnum="1" data-skilltype="b"></select>
-										</div>
-										<div id="extra-passive-b-info-1" class="collapsable extra-info">
-											<div class="ability-desc-container">
-												<p id="passive-b-desc-1" class="ability-desc"></p>
-											</div>
-										</div>
-
-										<div>
-											<label class="passive-c-label">
-												<span class="collapse-button" data-section="extra-passive-c-info-1">Passive Skill C</span>
-											</label>
-											<select id="passive-c-1" class="passive-selector fancy-select" data-charnum="1" data-skilltype="c"></select>
-										</div>
-										<div id="extra-passive-c-info-1" class="collapsable extra-info">
-											<div class="ability-desc-container">
-												<p id="passive-c-desc-1" class="ability-desc"></p>
-											</div>
-										</div>
-
-										<div>
-											<label class="passive-s-label">
-												<span class="collapse-button" data-section="extra-passive-s-info-1">Sacred Seal</span>
-											</label>
-											<select id="passive-s-1" class="passive-selector fancy-select" data-charnum="1" data-skilltype="s"></select>
-										</div>
-										<div id="extra-passive-s-info-1" class="collapsable extra-info">
-											<div class="ability-desc-container">
-												<p id="passive-s-desc-1" class="ability-desc"></p>
-											</div>
-										</div>
-
-										<div>
-											<label class="assist-label">
-												<span class="collapse-button" data-section="extra-assist-info-1">Assist Skill</span>
-											</label>
-											<select id="assist-1" class="assist-selector fancy-select" data-charnum="1"></select>
-										</div>
-										<div id="extra-assist-info-1" class="collapsable extra-info">
-											<div class="ability-desc-container">
-												<p id="assist-desc-1" class="ability-desc"></p>
-											</div>
-										</div>
-
-										<div>
-											<label class="special-label">
-												<span class="collapse-button" data-section="extra-special-info-1">Special Skill</span>
-											</label>
-											<select id="special-1" class="special-selector fancy-select" data-charnum="1"></select>
-										</div>
-										<div id="extra-special-info-1" class="collapsable extra-info">
-											<div class="ability-desc-container">
-												<p id="special-desc-1" class="ability-desc"></p>
-											</div>
-										</div>
-										<div id="spec-cooldown-line-1">
-											<label class="spec-cooldown-label" title="Special skills activate when cooldown reaches 0." data-charnum="1">Special Cooldown</label>
-											<input type="number" id="spec-cooldown-1" class="zero-or-more spec-cool" data-charnum="1" value="0">/<span id="spec-cooldown-max-1" class="denominator" autocomplete="off">x</span>
-										</div>
-									</div>
-									<div class="info-section state-section">
-										<div>
-											<label class="status-label">Status</label>
-											<select id="status-1" class="battle-val status-select" data-charnum="1">
-												<option value="Default">Default</option>
-												<option value="Panic">Panic</option>
-											</select>
-										</div>
-										<div>
-											<label class="terrain-label">Terrain</label>
-											<select id="terrain-1" class="battle-val terrain-select" data-charnum="1">
-												<option value="Default">Default</option>
-												<option value="Defensive">Defensive</option>
-											</select>
-										</div>
-									</div>
-									<div id="stats-1" class="info-section stat-info">
-										<table>
-											<tr>
-												<th></th>
-												<th class="center-cell"><label class="stat-header" title="Default stat total">Base</label></th>
-												<th class="center-cell"><label class="stat-header bonus-label" title="Displayed stat buff" data-charnum="1">Bonus</label></th>
-												<th class="center-cell"><label class="stat-header penalty-label" title="Displayed stat debuff" data-charnum="1">Penalty</label></th>
-												<th class="center-cell"><label class="stat-header spur-label" title="Combat-only stat buff granted by allies" data-charnum="1">Spur</label></th>
-											</tr>
-											<tr>
-												<td><label class="stat" title="A unit is defeated if their Hit Points reach 0.">HP</label></td>
-												<td class="center-cell"><input type="number" id="hp-1" class="more-than-zero hp-stat" value="1" data-charnum="1" autocomplete="off"></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td><label class="stat" title="The higher a unit's Attack, the more damage it will inflict on foes.">ATK</label></td>
-												<td class="center-cell"><input type="number" id="atk-1" class="zero-or-more battle-val" value="1" data-charnum="1" autocomplete="off"></td>
-												<td class="center-cell"><select id="atk-bonus-1" class="stat-bonus battle-val" data-charnum="1"></select></td>
-												<td class="center-cell"><select id="atk-penalty-1" class="stat-penalty battle-val" data-charnum="1"></select></td>
-												<td class="center-cell"><select id="atk-spur-1" class="stat-spur battle-val" data-charnum="1"></select></td>
-											</tr>
-											<tr>
-												<td><label class="stat" title="A unit will attack twice if their Speed is at least 5 more than their foe's Speed.">SPD</label></td>
-												<td class="center-cell"><input type="number" id="spd-1" class="zero-or-more battle-val" value="1" data-charnum="1" autocomplete="off"></td>
-												<td class="center-cell"><select id="spd-bonus-1" class="stat-bonus battle-val" data-charnum="1"></select></td>
-												<td class="center-cell"><select id="spd-penalty-1" class="stat-penalty battle-val" data-charnum="1"></select></td>
-												<td class="center-cell"><select id="spd-spur-1" class="stat-spur battle-val" data-charnum="1"></select></td>
-											</tr>
-											<tr>
-												<td><label class="stat" title="The higher a unit's Defense is, the less damage they take from physical attacks.">DEF</label></td>
-												<td class="center-cell"><input type="number" id="def-1" class="zero-or-more battle-val" value="1" data-charnum="1" autocomplete="off"></td>
-												<td class="center-cell"><select id="def-bonus-1" class="stat-bonus battle-val" data-charnum="1"></select></td>
-												<td class="center-cell"><select id="def-penalty-1" class="stat-penalty battle-val" data-charnum="1"></select></td>
-												<td class="center-cell"><select id="def-spur-1" class="stat-spur battle-val" data-charnum="1"></select></td>
-											</tr>
-											<tr>
-												<td><label class="stat" title="The higher a unit's Resistance is, the less damage they take from magical attacks.">RES</label></td>
-												<td class="center-cell"><input type="number" id="res-1" class="zero-or-more battle-val" value="1" data-charnum="1" autocomplete="off"></td>
-												<td class="center-cell"><select id="res-bonus-1" class="stat-bonus battle-val" data-charnum="1"></select></td>
-												<td class="center-cell"><select id="res-penalty-1" class="stat-penalty battle-val" data-charnum="1"></select></td>
-												<td class="center-cell"><select id="res-spur-1" class="stat-spur battle-val" data-charnum="1"></select></td>
-											</tr>
-										</table>
-									</div>
-									<div class="info-section-bottom current-hp">
-										<label class="curr-hp-label" data-charnum="1">Current HP</label>
-										<input type="number" id="curr-hp-1" class="more-than-zero curr-hp-val" data-charnum="1" value="1" autocomplete="off">/<span id="hp-1-denom" class="denominator hp-1-read">1</span>
 									</div>
 								</fieldset>
 							</div>
@@ -366,273 +370,277 @@
 											<img id="def-tab-4" class="char-tab-unselected" alt="D5" src="img/Portraits/Unselected.png" data-index="4" data-charnum="2">
 										</div>
 									</div>
-									<div  class="info-section character-select">
-										<div>
-											<label>
-												<span id="extra-char-info-2-btn" class="collapse-button" data-section="extra-char-info-2">Character</span>
-											</label>
-											<select id="char-2" class="char-selector fancy-select" data-charnum="2"></select>
+									<div id="left-2" class="char-panel-split split-left">
+										<div  class="info-section character-select">
+											<div>
+												<label>
+													<span id="extra-char-info-2-btn" class="collapse-button" data-section="extra-char-info-2">Character</span>
+												</label>
+												<select id="char-2" class="char-selector fancy-select" data-charnum="2"></select>
+											</div>
+											<div id="extra-char-info-2" class="collapsable">
+												<div>
+													<label>Color</label>
+													<select id="color-2" class="color-selector" data-charnum="2">
+														<option value="Red">Red</option>
+														<option value="Green">Green</option>
+														<option value="Blue">Blue</option>
+														<option value="Colorless">Colorless</option>
+													</select>
+												</div>
+												<div>
+													<label>Weapon Type</label>
+													<select id="weapon-type-2" class="weapon-type-selector" data-charnum="2">
+														<option value="Sword">Sword</option>
+														<option value="Red Tome">Red Tome</option>
+														<option value="Red Breath">Red Breath</option>
+														<option value="Axe">Axe</option>
+														<option value="Green Tome">Green Tome</option>
+														<option value="Green Breath">Green Breath</option>
+														<option value="Lance">Lance</option>
+														<option value="Blue Tome">Blue Tome</option>
+														<option value="Blue Breath">Blue Breath</option>
+														<option value="Bow">Bow</option>
+														<option value="Dagger">Dagger</option>
+														<option value="Staff">Staff</option>
+													</select>
+												</div>
+												<div>
+													<label>Move Type</label>
+													<select id="move-type-2" class="move-type-selector" data-charnum="2">
+														<option value="Infantry">Infantry</option>
+														<option value="Cavalry">Cavalry</option>
+														<option value="Flying">Flying</option>
+														<option value="Armored">Armored</option>
+													</select>
+												</div>
+											</div>
+											<div id="char-build-info-2">
+												<div>
+													<label>Rarity</label>
+													<select id="rarity-2" class="rarity-select build-select" data-charnum="2">
+														<option value="5">5 Stars</option>
+													</select>
+												</div>
+												<div>
+													<label>Level</label>
+													<select id="level-2" class="level-select build-select" data-charnum="2">
+														<option value="40">Lvl. 40</option>
+														<option value="1">Lvl. 1</option>
+													</select><select id="merge-2" class="merge-select build-select" data-charnum="2" title="Merged units">
+														<option value="0">+0</option>
+														<option value="1">+1</option>
+														<option value="2">+2</option>
+														<option value="3">+3</option>
+														<option value="4">+4</option>
+														<option value="5">+5</option>
+														<option value="6">+6</option>
+														<option value="7">+7</option>
+														<option value="8">+8</option>
+														<option value="9">+9</option>
+														<option value="10">+10</option>
+													</select>
+												</div>
+												<div>
+													<label>Boon/Bane</label>
+													<select id="boon-2" class="boon-select build-select" data-charnum="2" title="Boon">
+														<option value="neutral">Neutral</option>
+														<option value="hp">+HP</option>
+														<option value="atk">+ATK</option>
+														<option value="spd">+SPD</option>
+														<option value="def">+DEF</option>
+														<option value="res">+RES</option>
+													</select><select id="bane-2" class="bane-select build-select" data-charnum="2" title="Bane">
+														<option value="neutral">Neutral</option>
+														<option value="hp">-HP</option>
+														<option value="atk">-ATK</option>
+														<option value="spd">-SPD</option>
+														<option value="def">-DEF</option>
+														<option value="res">-RES</option>
+													</select>
+												</div>
+											</div>
 										</div>
-										<div id="extra-char-info-2" class="collapsable">
+										<div class="info-section weapon-select">
 											<div>
-												<label>Color</label>
-												<select id="color-2" class="color-selector" data-charnum="2">
-													<option value="Red">Red</option>
-													<option value="Green">Green</option>
-													<option value="Blue">Blue</option>
-													<option value="Colorless">Colorless</option>
-												</select>
+												<label>
+													<span id="extra-weapon-info-2-btn" class="collapse-button" data-section="extra-weapon-info-2">Weapon</span>
+												</label>
+												<select id="weapon-2" class="weapon-selector fancy-select" data-charnum="2"></select>
 											</div>
-											<div>
-												<label>Weapon Type</label>
-												<select id="weapon-type-2" class="weapon-type-selector" data-charnum="2">
-													<option value="Sword">Sword</option>
-													<option value="Red Tome">Red Tome</option>
-													<option value="Red Breath">Red Breath</option>
-													<option value="Axe">Axe</option>
-													<option value="Green Tome">Green Tome</option>
-													<option value="Green Breath">Green Breath</option>
-													<option value="Lance">Lance</option>
-													<option value="Blue Tome">Blue Tome</option>
-													<option value="Blue Breath">Blue Breath</option>
-													<option value="Bow">Bow</option>
-													<option value="Dagger">Dagger</option>
-													<option value="Staff">Staff</option>
-												</select>
+											<div id="extra-weapon-info-2" class="extra-info collapsable">
+												<div class="ability-desc-container">
+													<p id="weapon-desc-2" class="ability-desc"></p>
+												</div>
+												<div>
+													<label>Might</label>
+													<span id="weapon-might-2" data-oldmt="0"></span>
+												</div>
+												<div>
+													<label>Range</label>
+													<span id="weapon-range-2"></span>
+												</div>
+												<div>
+													<label>Magical</label>
+													<span id="weapon-magical-2"></span>
+												</div>
 											</div>
-											<div>
-												<label>Move Type</label>
-												<select id="move-type-2" class="move-type-selector" data-charnum="2">
-													<option value="Infantry">Infantry</option>
-													<option value="Cavalry">Cavalry</option>
-													<option value="Flying">Flying</option>
-													<option value="Armored">Armored</option>
+											<div id="adjacent-block-2" class="adjacent-block">
+												<label>Adjacent Allies</label>
+												<select id="adjacent-2" class="adjacent-select battle-val" data-charnum="2">
+													<option value="0">0</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
 												</select>
 											</div>
 										</div>
-										<div id="char-build-info-2">
+										<div id="skills-2" class="info-section-bottom skill-select">
 											<div>
-												<label>Rarity</label>
-												<select id="rarity-2" class="rarity-select build-select" data-charnum="2">
-													<option value="5">5 Stars</option>
-												</select>
+												<label class="passive-a-label">
+													<span class="collapse-button" data-section="extra-passive-a-info-2">Passive Skill A</span>
+												</label>
+												<select id="passive-a-2" class="passive-selector fancy-select" data-charnum="2" data-skilltype="a"></select>
 											</div>
-											<div>
-												<label>Level</label>
-												<select id="level-2" class="level-select build-select" data-charnum="2">
-													<option value="40">Lvl. 40</option>
-													<option value="1">Lvl. 1</option>
-												</select><select id="merge-2" class="merge-select build-select" data-charnum="2" title="Merged units">
-													<option value="0">+0</option>
-													<option value="1">+1</option>
-													<option value="2">+2</option>
-													<option value="3">+3</option>
-													<option value="4">+4</option>
-													<option value="5">+5</option>
-													<option value="6">+6</option>
-													<option value="7">+7</option>
-													<option value="8">+8</option>
-													<option value="9">+9</option>
-													<option value="10">+10</option>
-												</select>
+											<div id="extra-passive-a-info-2" class="collapsable extra-info">
+												<div class="ability-desc-container">
+													<p id="passive-a-desc-2" class="ability-desc"></p>
+												</div>
 											</div>
+
 											<div>
-												<label>Boon/Bane</label>
-												<select id="boon-2" class="boon-select build-select" data-charnum="2" title="Boon">
-													<option value="neutral">Neutral</option>
-													<option value="hp">+HP</option>
-													<option value="atk">+ATK</option>
-													<option value="spd">+SPD</option>
-													<option value="def">+DEF</option>
-													<option value="res">+RES</option>
-												</select><select id="bane-2" class="bane-select build-select" data-charnum="2" title="Bane">
-													<option value="neutral">Neutral</option>
-													<option value="hp">-HP</option>
-													<option value="atk">-ATK</option>
-													<option value="spd">-SPD</option>
-													<option value="def">-DEF</option>
-													<option value="res">-RES</option>
-												</select>
+												<label class="passive-b-label">
+													<span class="collapse-button" data-section="extra-passive-b-info-2">Passive Skill B</span>
+												</label>
+												<select id="passive-b-2" class="passive-selector fancy-select" data-charnum="2" data-skilltype="b"></select>
+											</div>
+											<div id="extra-passive-b-info-2" class="collapsable extra-info">
+												<div class="ability-desc-container">
+													<p id="passive-b-desc-2" class="ability-desc"></p>
+												</div>
+											</div>
+
+											<div>
+												<label class="passive-c-label">
+													<span class="collapse-button" data-section="extra-passive-c-info-2">Passive Skill C</span>
+												</label>
+												<select id="passive-c-2" class="passive-selector fancy-select" data-charnum="2" data-skilltype="c"></select>
+											</div>
+											<div id="extra-passive-c-info-2" class="collapsable extra-info">
+												<div class="ability-desc-container">
+													<p id="passive-c-desc-2" class="ability-desc"></p>
+												</div>
+											</div>
+
+											<div>
+												<label class="passive-s-label">
+													<span class="collapse-button" data-section="extra-passive-s-info-2">Sacred Seal</span>
+												</label>
+												<select id="passive-s-2" class="passive-selector fancy-select" data-charnum="2" data-skilltype="s"></select>
+											</div>
+											<div id="extra-passive-s-info-2" class="collapsable extra-info">
+												<div class="ability-desc-container">
+													<p id="passive-s-desc-2" class="ability-desc"></p>
+												</div>
+											</div>
+
+											<div>
+												<label class="assist-label">
+													<span class="collapse-button" data-section="extra-assist-info-2">Assist Skill</span>
+												</label>
+												<select id="assist-2" class="assist-selector fancy-select" data-charnum="2"></select>
+											</div>
+											<div id="extra-assist-info-2" class="collapsable extra-info">
+												<div class="ability-desc-container">
+													<p id="assist-desc-2" class="ability-desc"></p>
+												</div>
+											</div>
+
+											<div>
+												<label class="special-label">
+													<span class="collapse-button" data-section="extra-special-info-2">Special Skill</span>
+												</label>
+												<select id="special-2" class="special-selector fancy-select" data-charnum="2"></select>
+											</div>
+											<div id="extra-special-info-2" class="collapsable extra-info">
+												<div class="ability-desc-container">
+													<p id="special-desc-2" class="ability-desc"></p>
+												</div>
+											</div>
+											<div id="spec-cooldown-line-2">
+												<label class="spec-cooldown-label" title="Special skills activate when cooldown reaches 0." data-charnum="2">Special Cooldown</label>
+												<input type="number" id="spec-cooldown-2" class="zero-or-more spec-cool" data-charnum="2" value="0" autocomplete="off">/<span id="spec-cooldown-max-2" class="denominator">x</span>
 											</div>
 										</div>
 									</div>
-									<div class="info-section weapon-select">
-										<div>
-											<label>
-												<span id="extra-weapon-info-2-btn" class="collapse-button" data-section="extra-weapon-info-2">Weapon</span>
-											</label>
-											<select id="weapon-2" class="weapon-selector fancy-select" data-charnum="2"></select>
-										</div>
-										<div id="extra-weapon-info-2" class="extra-info collapsable">
-											<div class="ability-desc-container">
-												<p id="weapon-desc-2" class="ability-desc"></p>
+									<div id="right-2" class="char-panel-split">
+										<div class="info-section state-section">
+											<div>
+												<label class="status-label">Status</label>
+												<select id="status-2" class="battle-val status-select" data-charnum="2">
+													<option value="Default">Default</option>
+													<option value="Panic">Panic</option>
+												</select>
 											</div>
 											<div>
-												<label>Might</label>
-												<span id="weapon-might-2" data-oldmt="0"></span>
-											</div>
-											<div>
-												<label>Range</label>
-												<span id="weapon-range-2"></span>
-											</div>
-											<div>
-												<label>Magical</label>
-												<span id="weapon-magical-2"></span>
+												<label class="terrain-label">Terrain</label>
+												<select id="terrain-2" class="battle-val terrain-select" data-charnum="2">
+													<option value="Default">Default</option>
+													<option value="Defensive">Defensive</option>
+												</select>
 											</div>
 										</div>
-										<div id="adjacent-block-2" class="adjacent-block">
-											<label>Adjacent Allies</label>
-											<select id="adjacent-2" class="adjacent-select battle-val" data-charnum="2">
-												<option value="0">0</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-											</select>
+										<div id="stats-2" class="info-section stat-info">
+											<table>
+												<tr>
+													<th></th>
+													<th class="center-cell"><label class="stat-header" title="Default stat total">Base</label></th>
+													<th class="center-cell"><label class="stat-header bonus-label" title="Displayed stat buff" data-charnum="2">Bonus</label></th>
+													<th class="center-cell"><label class="stat-header penalty-label" title="Displayed stat debuff" data-charnum="2">Penalty</label></th>
+													<th class="center-cell"><label class="stat-header spur-label" title="Combat-only stat buff granted by allies" data-charnum="2">Spur</label></th>
+												</tr>
+												<tr>
+													<td><label class="stat" title="A unit is defeated if their Hit Points reach 0.">HP</label></td>
+													<td class="center-cell"><input type="number" id="hp-2" class="more-than-zero hp-stat" value="1" data-charnum="2" autocomplete="off"></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><label class="stat" title="The higher a unit's Attack, the more damage it will inflict on foes.">ATK</label></td>
+													<td class="center-cell"><input type="number" id="atk-2" class="zero-or-more battle-val" value="1" data-charnum="2" autocomplete="off"></td>
+													<td class="center-cell"><select id="atk-bonus-2" class="stat-bonus battle-val" data-charnum="2"></select></td>
+													<td class="center-cell"><select id="atk-penalty-2" class="stat-penalty battle-val" data-charnum="2"></select></td>
+													<td class="center-cell"><select id="atk-spur-2" class="stat-spur battle-val" data-charnum="2"></select></td>
+												</tr>
+												<tr>
+													<td><label class="stat" title="A unit will attack twice if their Speed is at least 5 more than their foe's Speed.">SPD</label></td>
+													<td class="center-cell"><input type="number" id="spd-2" class="zero-or-more battle-val" value="1" data-charnum="2" autocomplete="off"></td>
+													<td class="center-cell"><select id="spd-bonus-2" class="stat-bonus battle-val" data-charnum="2"></select></td>
+													<td class="center-cell"><select id="spd-penalty-2" class="stat-penalty battle-val" data-charnum="2"></select></td>
+													<td class="center-cell"><select id="spd-spur-2" class="stat-spur battle-val" data-charnum="2"></select></td>
+												</tr>
+												<tr>
+													<td><label class="stat" title="The higher a unit's Defense is, the less damage they take from physical attacks.">DEF</label></td>
+													<td class="center-cell"><input type="number" id="def-2" class="zero-or-more battle-val" value="1" data-charnum="2" autocomplete="off"></td>
+													<td class="center-cell"><select id="def-bonus-2" class="stat-bonus battle-val" data-charnum="2"></select></td>
+													<td class="center-cell"><select id="def-penalty-2" class="stat-penalty battle-val" data-charnum="2"></select></td>
+													<td class="center-cell"><select id="def-spur-2" class="stat-spur battle-val" data-charnum="2"></select></td>
+												</tr>
+												<tr>
+													<td><label class="stat" title="The higher a unit's Resistance is, the less damage they take from magical attacks.">RES</label></td>
+													<td class="center-cell"><input type="number" id="res-2" class="zero-or-more battle-val" value="1" data-charnum="2" autocomplete="off"></td>
+													<td class="center-cell"><select id="res-bonus-2" class="stat-bonus battle-val" data-charnum="2"></select></td>
+													<td class="center-cell"><select id="res-penalty-2" class="stat-penalty battle-val" data-charnum="2"></select></td>
+													<td class="center-cell"><select id="res-spur-2" class="stat-spur battle-val" data-charnum="2"></select></td>
+												</tr>
+											</table>
 										</div>
-									</div>
-									<div id="skills-2" class="info-section skill-select">
-										<div>
-											<label class="passive-a-label">
-												<span class="collapse-button" data-section="extra-passive-a-info-2">Passive Skill A</span>
-											</label>
-											<select id="passive-a-2" class="passive-selector fancy-select" data-charnum="2" data-skilltype="a"></select>
+										<div class="info-section-bottom current-hp">
+											<label class="curr-hp-label" data-charnum="2">Current HP</label>
+											<input type="number" id="curr-hp-2" class="more-than-zero curr-hp-val" data-charnum="2" value="1" autocomplete="off">/<span id="hp-2-denom" class="denominator hp-2-read">1</span>
 										</div>
-										<div id="extra-passive-a-info-2" class="collapsable extra-info">
-											<div class="ability-desc-container">
-												<p id="passive-a-desc-2" class="ability-desc"></p>
-											</div>
-										</div>
-
-										<div>
-											<label class="passive-b-label">
-												<span class="collapse-button" data-section="extra-passive-b-info-2">Passive Skill B</span>
-											</label>
-											<select id="passive-b-2" class="passive-selector fancy-select" data-charnum="2" data-skilltype="b"></select>
-										</div>
-										<div id="extra-passive-b-info-2" class="collapsable extra-info">
-											<div class="ability-desc-container">
-												<p id="passive-b-desc-2" class="ability-desc"></p>
-											</div>
-										</div>
-
-										<div>
-											<label class="passive-c-label">
-												<span class="collapse-button" data-section="extra-passive-c-info-2">Passive Skill C</span>
-											</label>
-											<select id="passive-c-2" class="passive-selector fancy-select" data-charnum="2" data-skilltype="c"></select>
-										</div>
-										<div id="extra-passive-c-info-2" class="collapsable extra-info">
-											<div class="ability-desc-container">
-												<p id="passive-c-desc-2" class="ability-desc"></p>
-											</div>
-										</div>
-
-										<div>
-											<label class="passive-s-label">
-												<span class="collapse-button" data-section="extra-passive-s-info-2">Sacred Seal</span>
-											</label>
-											<select id="passive-s-2" class="passive-selector fancy-select" data-charnum="2" data-skilltype="s"></select>
-										</div>
-										<div id="extra-passive-s-info-2" class="collapsable extra-info">
-											<div class="ability-desc-container">
-												<p id="passive-s-desc-2" class="ability-desc"></p>
-											</div>
-										</div>
-
-										<div>
-											<label class="assist-label">
-												<span class="collapse-button" data-section="extra-assist-info-2">Assist Skill</span>
-											</label>
-											<select id="assist-2" class="assist-selector fancy-select" data-charnum="2"></select>
-										</div>
-										<div id="extra-assist-info-2" class="collapsable extra-info">
-											<div class="ability-desc-container">
-												<p id="assist-desc-2" class="ability-desc"></p>
-											</div>
-										</div>
-
-										<div>
-											<label class="special-label">
-												<span class="collapse-button" data-section="extra-special-info-2">Special Skill</span>
-											</label>
-											<select id="special-2" class="special-selector fancy-select" data-charnum="2"></select>
-										</div>
-										<div id="extra-special-info-2" class="collapsable extra-info">
-											<div class="ability-desc-container">
-												<p id="special-desc-2" class="ability-desc"></p>
-											</div>
-										</div>
-										<div id="spec-cooldown-line-2">
-											<label class="spec-cooldown-label" title="Special skills activate when cooldown reaches 0." data-charnum="2">Special Cooldown</label>
-											<input type="number" id="spec-cooldown-2" class="zero-or-more spec-cool" data-charnum="2" value="0" autocomplete="off">/<span id="spec-cooldown-max-2" class="denominator">x</span>
-										</div>
-									</div>
-									<div class="info-section state-section">
-										<div>
-											<label class="status-label">Status</label>
-											<select id="status-2" class="battle-val status-select" data-charnum="2">
-												<option value="Default">Default</option>
-												<option value="Panic">Panic</option>
-											</select>
-										</div>
-										<div>
-											<label class="terrain-label">Terrain</label>
-											<select id="terrain-2" class="battle-val terrain-select" data-charnum="2">
-												<option value="Default">Default</option>
-												<option value="Defensive">Defensive</option>
-											</select>
-										</div>
-									</div>
-									<div id="stats-2" class="info-section stat-info">
-										<table>
-											<tr>
-												<th></th>
-												<th class="center-cell"><label class="stat-header" title="Default stat total">Base</label></th>
-												<th class="center-cell"><label class="stat-header bonus-label" title="Displayed stat buff" data-charnum="2">Bonus</label></th>
-												<th class="center-cell"><label class="stat-header penalty-label" title="Displayed stat debuff" data-charnum="2">Penalty</label></th>
-												<th class="center-cell"><label class="stat-header spur-label" title="Combat-only stat buff granted by allies" data-charnum="2">Spur</label></th>
-											</tr>
-											<tr>
-												<td><label class="stat" title="A unit is defeated if their Hit Points reach 0.">HP</label></td>
-												<td class="center-cell"><input type="number" id="hp-2" class="more-than-zero hp-stat" value="1" data-charnum="2" autocomplete="off"></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td><label class="stat" title="The higher a unit's Attack, the more damage it will inflict on foes.">ATK</label></td>
-												<td class="center-cell"><input type="number" id="atk-2" class="zero-or-more battle-val" value="1" data-charnum="2" autocomplete="off"></td>
-												<td class="center-cell"><select id="atk-bonus-2" class="stat-bonus battle-val" data-charnum="2"></select></td>
-												<td class="center-cell"><select id="atk-penalty-2" class="stat-penalty battle-val" data-charnum="2"></select></td>
-												<td class="center-cell"><select id="atk-spur-2" class="stat-spur battle-val" data-charnum="2"></select></td>
-											</tr>
-											<tr>
-												<td><label class="stat" title="A unit will attack twice if their Speed is at least 5 more than their foe's Speed.">SPD</label></td>
-												<td class="center-cell"><input type="number" id="spd-2" class="zero-or-more battle-val" value="1" data-charnum="2" autocomplete="off"></td>
-												<td class="center-cell"><select id="spd-bonus-2" class="stat-bonus battle-val" data-charnum="2"></select></td>
-												<td class="center-cell"><select id="spd-penalty-2" class="stat-penalty battle-val" data-charnum="2"></select></td>
-												<td class="center-cell"><select id="spd-spur-2" class="stat-spur battle-val" data-charnum="2"></select></td>
-											</tr>
-											<tr>
-												<td><label class="stat" title="The higher a unit's Defense is, the less damage they take from physical attacks.">DEF</label></td>
-												<td class="center-cell"><input type="number" id="def-2" class="zero-or-more battle-val" value="1" data-charnum="2" autocomplete="off"></td>
-												<td class="center-cell"><select id="def-bonus-2" class="stat-bonus battle-val" data-charnum="2"></select></td>
-												<td class="center-cell"><select id="def-penalty-2" class="stat-penalty battle-val" data-charnum="2"></select></td>
-												<td class="center-cell"><select id="def-spur-2" class="stat-spur battle-val" data-charnum="2"></select></td>
-											</tr>
-											<tr>
-												<td><label class="stat" title="The higher a unit's Resistance is, the less damage they take from magical attacks.">RES</label></td>
-												<td class="center-cell"><input type="number" id="res-2" class="zero-or-more battle-val" value="1" data-charnum="2" autocomplete="off"></td>
-												<td class="center-cell"><select id="res-bonus-2" class="stat-bonus battle-val" data-charnum="2"></select></td>
-												<td class="center-cell"><select id="res-penalty-2" class="stat-penalty battle-val" data-charnum="2"></select></td>
-												<td class="center-cell"><select id="res-spur-2" class="stat-spur battle-val" data-charnum="2"></select></td>
-											</tr>
-										</table>
-									</div>
-									<div class="info-section-bottom current-hp">
-										<label class="curr-hp-label" data-charnum="2">Current HP</label>
-										<input type="number" id="curr-hp-2" class="more-than-zero curr-hp-val" data-charnum="2" value="1" autocomplete="off">/<span id="hp-2-denom" class="denominator hp-2-read">1</span>
 									</div>
 								</fieldset>
 							</div>

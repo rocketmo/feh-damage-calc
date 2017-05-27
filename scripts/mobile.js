@@ -77,10 +77,29 @@ function resizeResults() {
 	}
 }
 
+// resize char panels
+function resizeCharPanels() {
+	"use strict";
+	$(".char-panel-split").css("display", "inline-block");
+	$(".split-left").css("margin-right", "1.5em");
+	$(".skill-select").removeClass("info-section").addClass("info-section-bottom");
+	$(".state-section label").css("width", "5em");
+	$(".state-section select").css("width", "7em");
+	
+	if ((($("#left-1").width() + $("#right-1").width()) * 2) + $("#swap-button").width() + 210 > $(window).width()) {
+		$(".char-panel-split").css("display", "block");
+		$(".split-left").css("margin-right", "0");
+		$(".skill-select").removeClass("info-section-bottom").addClass("info-section");
+		$(".state-section label").css("width", "9.8em");
+		$(".state-section select").css("width", "12.3em");
+	}
+}
+
 // handles window resize
 function resizeAll() {
 	"use strict";
 	resizeHeader();
 	resizeModes();
 	resizeResults();
+	resizeCharPanels();
 }
