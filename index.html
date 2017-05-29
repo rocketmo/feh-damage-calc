@@ -44,6 +44,9 @@
 								<span id="hp-remain-1" class="hp-remain"></span>
 							</div>	
 						</td>
+						<td id="swap-cell-small">
+							<button id="swap-button-small" alt="swap"></button>
+						</td>
 						<td>
 							<div class="combat-char-right">
 								<h3 class="defender">Defender</h3>
@@ -64,10 +67,13 @@
 			<div>
 				<table id="calc">
 					<tr id="char-panel">
-						<td>
+						<td id="attack-cell">
 							<div class="char-info">
 								<fieldset id="attack-panel" class="char-info-panel">
-									<legend><h2 class="attacker">Attacker</h2></legend>
+									<legend>
+										<span class="char-title attacker">Attacker</span>
+										<span id="defend-pick" class="char-pick">Defender</span>
+									</legend>
 									<div class="char-slots-container">
 										<div id="char-slots-1" class="info-section char-slots">
 											<img id="atk-tab-0" class="char-tab-unselected" alt="A1" src="img/Portraits/Unselected.png" data-index="0" data-charnum="1">
@@ -357,10 +363,13 @@
 								<button id="swap-button" alt="swap"></button>
 							</div>
 						</td>
-						<td>
+						<td id="defend-cell">
 							<div class="char-info">
 								<fieldset id="defend-panel" class="char-info-panel">
-									<legend><h2 class="defender">Defender</h2></legend>
+									<legend>
+										<span id="attack-pick" class="char-pick">Attacker</span>
+										<span class="char-title defender">Defender</span>
+									</legend>
 									<div class="char-slots-container">
 										<div id="char-slots-2" class="info-section char-slots">
 											<img id="def-tab-0" class="char-tab-unselected" alt="D1" src="img/Portraits/Unselected.png" data-index="0" data-charnum="2">

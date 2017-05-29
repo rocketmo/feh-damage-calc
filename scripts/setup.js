@@ -4714,7 +4714,7 @@ $(document).ready( function() {
 	});
 
 	// swap button
-	$("#swap-button").on("click", function() {
+	$("#swap-button, #swap-button-small").on("click", function() {
 		swap();
 		keepTable = false;
 		updateDisplay();

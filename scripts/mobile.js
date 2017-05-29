@@ -1,5 +1,7 @@
 // resize stuff
 var headerLogos = false;
+var attackSelected = true;
+var displaySingleChar = false;
 
 // handles resizing the header
 function resizeHeader() {
@@ -65,27 +67,43 @@ function resizeResults() {
 	$(".combat-portrait").css("width", "75px").css("height", "75px");
 	$("#result-table").css("font-size", "1em");
 	$("#result-msg").css("font-size", "1.2em");
-	$(".combat-char-left").css("padding-right", "1.5em");
-	$(".combat-char-right").css("padding-left", "1.5em");
+	$("#swap-button-small").css("width", "38px").css("height", "42px");
+	
+	if (displaySingleChar) {
+		$(".combat-char-left").css("padding-right", "0");
+		$(".combat-char-right").css("padding-left", "0");
+	} else {
+		$(".combat-char-left").css("padding-right", "1.5em");
+		$(".combat-char-right").css("padding-left", "1.5em");
+	}
 
 	if ($("#result-table").width() > $(window).width()) {
 		$(".combat-portrait").css("width", "60px").css("height", "60px");
 		$("#result-table").css("font-size", "0.9em");
 		$("#result-msg").css("font-size", "1em");
-		$(".combat-char-left").css("padding-right", "1em");
-		$(".combat-char-right").css("padding-left", "1em");
+		$("#swap-button-small").css("width", "27px").css("height", "30px");
+		
+		if (!displaySingleChar) {
+			$(".combat-char-left").css("padding-right", "1em");
+			$(".combat-char-right").css("padding-left", "1em");
+		}
 	}
 }
 
 // resize char panels
 function resizePanels() {
 	"use strict";
+	displaySingleChar = false;
 	$(".char-panel-split").css("display", "inline-block");
 	$(".split-left").css("margin-right", "1.5em");
 	$(".skill-select").removeClass("info-section").addClass("info-section-bottom");
 	$(".state-section label").css("width", "5em");
 	$(".state-section select").css("width", "7em");
 	$("#interaction-list").css("width", "auto");
+	
+	$("#swap-cell, #attack-cell, #defend-cell").css("display", "table-cell");
+	$("#swap-cell-small, .char-pick").css("display", "none");
+	$("legend").css("text-align", "left");
 	
 	if ((($("#left-1").width() + $("#right-1").width()) * 2) + $("#swap-button").width() + 210 > $(window).width()) {
 		$(".char-panel-split").css("display", "block");
@@ -94,6 +112,15 @@ function resizePanels() {
 		$(".state-section label").css("width", "9.8em");
 		$(".state-section select").css("width", "12.3em");
 		$("#interaction-list").css("width", "700px");
+		
+		if ($("#calc").width() > $(window).width()) {
+			displaySingleChar = true;
+			$("#swap-cell, " + (attackSelected ? "#defend-cell" : "attack-cell")).css("display", "none");
+			$("#interaction-list").css("width", "auto");
+			$("#swap-cell-small").css("display", "table-cell");
+			$(".char-pick").css("display", "inline");
+			$("legend").css("text-align", "center");
+		}
 	}
 }
 
@@ -102,6 +129,6 @@ function resizeAll() {
 	"use strict";
 	resizeHeader();
 	resizeModes();
-	resizeResults();
 	resizePanels();
+	resizeResults();
 }

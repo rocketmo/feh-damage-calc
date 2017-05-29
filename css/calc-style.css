@@ -168,7 +168,7 @@ input[type=number] {
 	text-align: center;
 }
 
-h1, h2, h3 {
+h1, h2, h3, .char-pick, .char-title {
 	font-family: Corbel, "Droid Sans", Geneva, Verdana, sans-serif;
 	padding: 0em;
 	margin: 0em 0.2em;
@@ -183,7 +183,7 @@ h1, h2, h3 {
 	padding: 0em 0.5em;
 }
 
-#swap-button {
+#swap-button, #swap-button-small {
 	border: none;
 	background-image: url(../img/swap.png);
 	background-color: transparent;
@@ -192,7 +192,12 @@ h1, h2, h3 {
 	background-repeat: no-repeat;
 }
 
-#swap-button:hover {
+#swap-button-small {
+	background-size: contain;
+	vertical-align: top;
+}
+
+#swap-button:hover, #swap-button-small:hover {
 	background-image: url(../img/swap-hover.png);
 	cursor: pointer;
 }
@@ -202,7 +207,7 @@ body::after {
 	content: url(../img/swap-hover.png) url(../img/Portraits/Unselected-hover.png);
 }
 
-#swap-button:focus {
+#swap-button:focus, #swap-button-small:focus {
 	outline: none;
 }
 
@@ -660,11 +665,11 @@ h3 {
 	display: inline-block;
 }
 
-.legend-tab-unselected {
+.legend-tab-unselected, .char-pick {
 	color: #5b5b5b;
 }
 
-.legend-tab-unselected:hover {
+.legend-tab-unselected:hover, .char-pick:hover {
 	color: gold;
 	cursor: pointer;
 }
@@ -704,4 +709,13 @@ h3 {
 .draw-update:hover {
 	cursor: pointer;
 	color: gold;
+}
+
+#swap-cell-small, .char-pick {
+	display: none;
+}
+
+.char-pick, .char-title {
+	font-weight: bold;
+	font-size: 1.8em;
 }
