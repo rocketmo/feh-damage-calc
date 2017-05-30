@@ -941,6 +941,7 @@ var skillInfo =
         },
         "Wary Fighter 1" : {
             "description" : "Prevents follow up attack in combat from unit and foe if unit's HP ≤ 90%.",
+			"move_unique" : "Armored",
             "wary" : {
                 "threshold" : 0.9
             },
@@ -948,6 +949,7 @@ var skillInfo =
         },
         "Wary Fighter 2" : {
             "description" : "Prevents follow up attack in combat from unit and foe if unit's HP ≤ 70%.",
+			"move-unique" : "Armored",
             "wary" : {
                 "threshold" : 0.7
             },
@@ -955,6 +957,7 @@ var skillInfo =
         },
         "Wary Fighter 3" : {
             "description" : "Prevents follow up attack in combat from unit and foe if unit's HP ≤ 50%.",
+			"move_unique" : "Armored",
             "wary" : {
                 "threshold" : 0.5
             },
