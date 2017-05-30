@@ -1,11 +1,20 @@
 # Fire Emblem: Heroes Damage Calculator / Battle Simulator
-This project has a new home: https://kagerochart.com/damage-calc
+Run Fire Emblem Heroes combat simulations and damage calculations.
 
-The new version has been modified by [Winsomniak](https://www.reddit.com/user/winsomniak/) and integrated directly into [KageroChart](https://kagerochart.com).
-This is a permanent move and is intended to allow [rocketmo](https://github.com/rocketmo) to pursue other project
-ideas unhindered. If you have any questions please contact either one of us.
+## Notice
+This project has a new home: https://kagerochart.com/damage-calc
+[KageroChart](https://kagerochart.com) and [Winsomniak](https://www.reddit.com/user/winsomniak/) have assumed stewardship
+of [rocketmo](https://github.com/rocketmo/)'s
+popular damage calculator. The calculator will be hosted on [KageroChart](https://kagerochart.com) indefinitely
+will be gradually integrated with the rest of the website. This will free rocketmo to work
+on other projects while keeping the calculator operational.
+
+Please contact either of us if you have questions.
+
+Thanks for all of your hard work rocketmo!
 
 Cheers,
 
 -Winsomniak
 email: [winsomniak@kagerochart.com](mailto:winsomniak@kagerochart.com)
+website: [KageroChart](https://kagerochart.com)
