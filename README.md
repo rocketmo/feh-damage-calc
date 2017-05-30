@@ -6,7 +6,7 @@ This project has a new home: https://kagerochart.com/damage-calc
 
 [KageroChart](https://kagerochart.com) and [Winsomniak](https://www.reddit.com/user/winsomniak/) have assumed stewardship
 of [rocketmo](https://github.com/rocketmo/)'s
-popular damage calculator. The calculator will be hosted on [KageroChart](https://kagerochart.com) indefinitely
+popular damage calculator. The calculator will be hosted on [KageroChart](https://kagerochart.com) indefinitely and
 will be gradually integrated with the rest of the website. This will free rocketmo to work
 on other projects while keeping the calculator operational.
 
