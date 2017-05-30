@@ -38,6 +38,10 @@ var assistInfo =
         "description" : "Unit moves to opposite side of adjacent ally.",
         "weapon_restrict" : "Staff"
     },
+    "Rally Atk/Spd" : {
+        "description" : "Grants Atk/Spd+3 to an adjacent ally until the end of the turn.",
+        "weapon_restrict" : "Staff"
+    },
     "Rally Attack" : {
         "description" : "Grants Atk+4 to an adjacent ally until the end of the turn.",
         "weapon_restrict" : "Staff"
