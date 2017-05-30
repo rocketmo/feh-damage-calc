@@ -96,7 +96,7 @@ label {
 }
 
 #matchup-overrides .override-state select {
-	width: 7em;
+	width: 8.4em;
 }
 
 .stat {
@@ -668,4 +668,20 @@ h3 {
 .draw-update:hover {
 	cursor: pointer;
 	color: gold;
+}
+
+select[multiple] {
+	height: 20px;
+}
+
+.char-info .status-select > .ms-choice > span {
+	width: 10em;
+}
+
+.override-state .status-select > .ms-choice > span {
+	width: 6.3em;
+}
+
+.status-select > .ms-choice > span.placeholder {
+	color: black;
 }

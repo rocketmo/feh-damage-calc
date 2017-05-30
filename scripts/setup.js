@@ -49,6 +49,28 @@ function arrayToObject(array) {
 	return obj;
 }
 
+// converts an object's fields into an array of strings
+function objectToArray(obj) {
+	"use strict";
+	var arr = [];
+	for (var key in obj) {
+		arr.push(key);
+	}
+	return arr;
+}
+
+// checks if an object has no fields
+function objectIsEmpty(obj) {
+	"use strict";
+	for (var key in obj) {
+		if (obj.hasOwnProperty(key)) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 // limits number inputs
 // num is a number input, minNumber is the lower limit
 function limit(num, minNumber) {
@@ -998,7 +1020,7 @@ function displayChar(charName, charNum, showHidden) {
 	}
 
 	// default state
-	$("#status-" + charNum).val("Default");
+	$("#status-" + charNum).multipleSelect("uncheckAll");
 	$("#terrain-" + charNum).val("Default");
 }
 
@@ -1171,7 +1193,7 @@ function getCharTabInfo(attacker) {
 		$("#spec-cooldown-" + charNum).val(charTabInfo.specCooldown);
 
 		// change state
-		$("#status-" + charNum).val(charTabInfo.status);
+		$("#status-" + charNum).multipleSelect("setSelects", charTabInfo.status);
 		$("#terrain-" + charNum).val(charTabInfo.terrain);
 		$("#adjacent-" + charNum).val(charTabInfo.adjacent);
 	}
@@ -1360,10 +1382,16 @@ function owlTomeBonus(battleInfo, adjacent, charToUse) {
 	return battleInfo;
 }
 
-// checks if the attack can activate windsweep
+// checks if the attacker can activate windsweep
 function canActivateSweep(container, atkSpd, defSpd, defWeapon) {
 	"use strict";
 	return container.hasOwnProperty("sweep") && (atkSpd - defSpd >= container.sweep.spd_adv) && container.sweep.weapon_type.hasOwnProperty(defWeapon);
+}
+
+// checks if the attacker can prevent enemy counterattacks
+function canPreventEnemyCounter(container, hp, currHP) {
+	"use strict";
+	return container.hasOwnProperty("prevent_enemy_counter") && currHP >= roundNum(container.prevent_enemy_counter * hp, true);
 }
 
 // applies a seal effect
@@ -1414,12 +1442,21 @@ function applyBonus(battleInfo, container, source, attacker) {
 // battleInfo contains all battle information, source is the source of the effect, attacker is true if we apply the effect on the attacker
 function convertPenalties(battleInfo, source, attacker) {
 	"use strict";
+	var charClass = attacker ? "attacker" : "defender"; // get character
+	battleInfo[charClass].status.panic = true; // set status
 
-	// get character
-	var charClass = attacker ? "attacker" : "defender";
+	// message
+	battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> is inflicted with a status effect [" + source + "].</li>";
 
-	// set status
-	battleInfo[charClass].status = "Panic";
+	return battleInfo;
+}
+
+// candlelight status effect
+// battleInfo contains all battle information, source is the source of the effect, attacker is true if we apply the effect on the attacker
+function cancelCounters(battleInfo, source, attacker){
+	"use strict";
+	var charClass = attacker ? "attacker" : "defender"; // get character
+	battleInfo[charClass].status.candlelight = true; // set status
 
 	// message
 	battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].name + "</strong></span> is inflicted with a status effect [" + source + "].</li>";
@@ -1431,7 +1468,7 @@ function convertPenalties(battleInfo, source, attacker) {
 // battleInfo contains all battle information
 function defCanCounter(battleInfo) {
 	"use strict";
-	return battleInfo.defender.weaponName !== "None" && (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range || battleInfo.defender.weaponData.hasOwnProperty("counter") || battleInfo.defender.passiveAData.hasOwnProperty("counter")) && !battleInfo.attacker.weaponData.hasOwnProperty("prevent_counter") && !battleInfo.defender.weaponData.hasOwnProperty("prevent_counter") && !canActivateSweep(battleInfo.attacker.passiveBData, battleInfo.attacker.spd, battleInfo.defender.spd, battleInfo.defender.weaponData.type);
+	return battleInfo.defender.weaponName !== "None" && (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range || battleInfo.defender.weaponData.hasOwnProperty("counter") || battleInfo.defender.passiveAData.hasOwnProperty("counter")) && !battleInfo.attacker.weaponData.hasOwnProperty("prevent_counter") && !battleInfo.defender.weaponData.hasOwnProperty("prevent_counter") && !canActivateSweep(battleInfo.attacker.passiveBData, battleInfo.attacker.spd, battleInfo.defender.spd, battleInfo.defender.weaponData.type) && !canPreventEnemyCounter(battleInfo.attacker.passiveBData, battleInfo.attacker.hp, battleInfo.attacker.currHP) && !battleInfo.defender.status.hasOwnProperty("candlelight");
 }
 
 // heals by damage dealt
@@ -1463,10 +1500,10 @@ function getCharPanelData(charNum) {
 	charData.weaponData = $("#weapon-" + charNum).data("info");
 	charData.adjacent = parseInt($("#adjacent-" + charNum).val());
 
-	charData.status = $("#status-" + charNum).val();
+	charData.status = arrayToObject($("#status-" + charNum).val());
 	charData.terrain = $("#terrain-" + charNum).val();
 
-	if (charData.weaponData.hasOwnProperty("add_bonus") && charData.status !== "Panic") {
+	if (charData.weaponData.hasOwnProperty("add_bonus") && !charData.status.hasOwnProperty("panic")) {
 		charData.addBonusAtk=parseInt($("#atk-bonus-"+charNum).val()) + parseInt($("#spd-bonus-"+charNum).val()) + parseInt($("#def-bonus-"+charNum).val()) + parseInt($("#res-bonus-"+charNum).val());
 	}
 
@@ -1488,7 +1525,7 @@ function getCharPanelData(charNum) {
 	charData.startHP = parseInt($("#curr-hp-" + charNum).val());
 	charData.hp = parseInt($("#hp-" + charNum).val());
 
-	var panicMod = charData.status === "Panic" ? -1 : 1;
+	var panicMod = charData.status.hasOwnProperty("panic") ? -1 : 1;
 	charData.atkWS = Math.max(0, parseInt($("#atk-" + charNum).val()) + (panicMod * parseInt($("#atk-bonus-" + charNum).val())) + parseInt($("#atk-penalty-" + charNum).val()));
 	charData.spdWS = Math.max(0, parseInt($("#spd-" + charNum).val()) + (panicMod * parseInt($("#spd-bonus-" + charNum).val())) + parseInt($("#spd-penalty-" + charNum).val()));
 	charData.defWS = Math.max(0, parseInt($("#def-" + charNum).val()) + (panicMod * parseInt($("#def-bonus-" + charNum).val())) + parseInt($("#def-penalty-" + charNum).val()));
@@ -1567,7 +1604,7 @@ function getDefaultCharData(charName) {
 	}
 
 	// override state
-	charData.status = $("#override-status").val();
+	charData.status = arrayToObject($("#override-status").val());
 	charData.terrain = $("#override-terrain").val();
 
 	// default weapon info
@@ -1587,7 +1624,7 @@ function getDefaultCharData(charName) {
 	}
 
 	// total bonuses
-	if (charData.weaponData.hasOwnProperty("add_bonus") && charData.status !== "Panic") {
+	if (charData.weaponData.hasOwnProperty("add_bonus") && !charData.status.hasOwnProperty("panic")) {
 		charData.addBonusAtk = parseInt($("#override-atk-bonus").val()) + parseInt($("#override-spd-bonus").val()) + parseInt($("#override-def-bonus").val()) + parseInt($("#override-res-bonus").val());
 	}
 
@@ -1668,7 +1705,7 @@ function getDefaultCharData(charName) {
 	}
 
 	// show stats
-	var panicMod = charData.status === "Panic" ? -1 : 1;
+	var panicMod = charData.status.hasOwnProperty("panic") ? -1 : 1;
 	if (charInfo[charName].hasOwnProperty("base_stat")) {
 		var stats = getStatTotals(charName, charData.weaponName, charData.passiveA, charData.seal, rarity, level, merge, boon, bane);
 		charData.currHP = stats.hp;
@@ -2120,10 +2157,10 @@ function simBattle(battleInfo, displayMsg) {
 	}
 
 	// print panic message
-	if (battleInfo.attacker.status === "Panic" && (battleInfo.attacker.atkBonus > 0 || battleInfo.attacker.spdBonus > 0 || battleInfo.attacker.defBonus > 0 || battleInfo.attacker.resBonus > 0)) {
+	if (battleInfo.attacker.status.hasOwnProperty("panic") && (battleInfo.attacker.atkBonus > 0 || battleInfo.attacker.spdBonus > 0 || battleInfo.attacker.defBonus > 0 || battleInfo.attacker.resBonus > 0)) {
 		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> has their bonuses converted to penalties. ";
 	}
-	if (battleInfo.defender.status === "Panic" && (battleInfo.defender.atkBonus > 0 || battleInfo.defender.spdBonus > 0 || battleInfo.defender.defBonus > 0 || battleInfo.defender.resBonus > 0)) {
+	if (battleInfo.defender.status.hasOwnProperty("panic") && (battleInfo.defender.atkBonus > 0 || battleInfo.defender.spdBonus > 0 || battleInfo.defender.defBonus > 0 || battleInfo.defender.resBonus > 0)) {
 		battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> has their bonuses converted to penalties. ";
 	}
 
@@ -2362,8 +2399,10 @@ function simBattle(battleInfo, displayMsg) {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is prevented from counter-attacking [" + battleInfo.attacker.weaponName + "].</li>";
 			} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.hasOwnProperty("prevent_counter")) {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is prevented from counter-attacking [" + battleInfo.defender.weaponName + "].</li>";
-			} else if (battleInfo.defender.weaponName !== "None" && canActivateSweep(battleInfo.attacker.passiveBData, battleInfo.attacker.spd, battleInfo.defender.spd, battleInfo.defender.weaponData.type)) {
+			} else if (battleInfo.defender.weaponName !== "None" && (canActivateSweep(battleInfo.attacker.passiveBData, battleInfo.attacker.spd, battleInfo.defender.spd, battleInfo.defender.weaponData.type)) || canPreventEnemyCounter(battleInfo.attacker.passiveBData, battleInfo.attacker.hp, battleInfo.attacker.currHP)) {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is prevented from counter-attacking [" + battleInfo.attacker.passiveB + "].</li>";
+			} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.status.hasOwnProperty("candlelight")) {
+				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is prevented from counter-attacking due to a status effect.</li>";
 			} else {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is unable to counter-attack.</li>";
 			}
@@ -2587,14 +2626,20 @@ function simBattle(battleInfo, displayMsg) {
 
 	// status effect
 	if (battleInfo.defender.weaponData.hasOwnProperty("convert_penalties") && defAttacks && battleInfo.attacker.currHP > 0) {
+		battleInfo.attacker.status = {};
 		battleInfo = convertPenalties(battleInfo, battleInfo.defender.weaponName, true);
-	} else if (battleInfo.attacker.status !== "Default" && battleInfo.attacker.currHP > 0) {
-		battleInfo.attacker.status = "Default";
+	} else if (battleInfo.defender.weaponData.hasOwnProperty("cancel_counter") && defAttacks && battleInfo.attacker.currHP > 0) {
+		battleInfo.attacker.status = {};
+		battleInfo = cancelCounters(battleInfo, battleInfo.defender.weaponName, true);
+	} else if (!objectIsEmpty(battleInfo.attacker.status) && battleInfo.attacker.currHP > 0) {
+		battleInfo.attacker.status = {};
 		battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'><strong>" + battleInfo.attacker.name + "</strong></span> " + " returns to default status.</li>";
 	}
 
 	if (battleInfo.attacker.weaponData.hasOwnProperty("convert_penalties") && atkAttacks && battleInfo.defender.currHP > 0) {
 		battleInfo = convertPenalties(battleInfo, battleInfo.attacker.weaponName, false);
+	} else if (battleInfo.attacker.weaponData.hasOwnProperty("cancel_counter") && atkAttacks && battleInfo.defender.currHP > 0) {
+		battleInfo = cancelCounters(battleInfo, battleInfo.attacker.weaponName, false);
 	}
 
 	// extra action
@@ -2633,7 +2678,7 @@ function simBattle(battleInfo, displayMsg) {
 				$("#curr-hp-1").val(1);
 				$("#spec-cooldown-1").val(getSpecialCooldown(oldBA.attacker.specialData, oldBA.attacker.weaponData, oldBA.attacker.assistData));
 				$("#attack-panel .stat-bonus, #attack-panel .stat-penalty, #attack-panel .stat-spur").val(0);
-				$("#status-1").val("Default");
+				$("#status-1").multipleSelect("uncheckAll");
 				$("#terrain-1").val("Default");
 			} else {
 				$("#curr-hp-1").val(Math.max(oldBA.attacker.currHP, 1));
@@ -2646,7 +2691,7 @@ function simBattle(battleInfo, displayMsg) {
 				$("#spd-bonus-1").val(oldBA.attacker.spdBonus);
 				$("#def-bonus-1").val(oldBA.attacker.defBonus);
 				$("#res-bonus-1").val(oldBA.attacker.resBonus);
-				$("#status-1").val(oldBA.attacker.status);
+				$("#status-1").multipleSelect("setSelects", objectToArray(oldBA.attacker.status));
 			}
 
 			// update defender
@@ -2654,7 +2699,7 @@ function simBattle(battleInfo, displayMsg) {
 				$("#curr-hp-2").val(1);
 				$("#spec-cooldown-2").val(getSpecialCooldown(oldBA.defender.specialData, oldBA.defender.weaponData, oldBA.defender.assistData));
 				$("#defend-panel .stat-bonus, #defend-panel .stat-penalty, #defend-panel .stat-spur").val(0);
-				$("#status-2").val("Default");
+				$("#status-2").multipleSelect("uncheckAll");
 				$("#terrain-2").val("Default");
 			} else {
 				$("#curr-hp-2").val(Math.max(oldBA.defender.currHP, 1));
@@ -2667,7 +2712,7 @@ function simBattle(battleInfo, displayMsg) {
 				$("#spd-bonus-2").val(oldBA.defender.spdBonus);
 				$("#def-bonus-2").val(oldBA.defender.defBonus);
 				$("#res-bonus-2").val(oldBA.defender.resBonus);
-				$("#status-2").val(oldBA.defender.status);
+				$("#status-2").multipleSelect("setSelects", objectToArray(oldBA.defender.status));
 			}
 
 			// sim battle again
@@ -2918,7 +2963,7 @@ function swap() {
 	$("#res-spur-1").val($("#res-spur-2").val());
 	$("#curr-hp-1").val($("#curr-hp-2").val());
 	$(".hp-1-read").text($("#hp-2").val().toString());
-	$("#status-1").val($("#status-2").val());
+	$("#status-1").multipleSelect("setSelects", $("#status-2").val());
 	$("#terrain-1").val($("#terrain-2").val());
 
 	$("#rarity-1").html($("#rarity-2").html());
@@ -3014,7 +3059,7 @@ function swap() {
 	$("#res-spur-2").val(oldAtkInfo.resSpur);
 	$("#curr-hp-2").val(oldAtkInfo.currHP);
 	$(".hp-2-read").text(oldAtkInfo.hp);
-	$("#status-2").val(oldAtkInfo.status);
+	$("#status-2").multipleSelect("setSelects", oldAtkInfo.status);
 	$("#terrain-2").val(oldAtkInfo.terrain);
 
 	$("#rarity-2").html(oldAtkInfo.rarityHTML);
@@ -3085,12 +3130,14 @@ function enableCharPanel(charNum, enable) {
 	if (enable) {
 		$(textID).css("color", "white");
 		$(inputID).removeAttr("disabled");
+		$("#status-" + charNum).multipleSelect("enable");
 		enableSpecCooldown(charNum);
 		enableCharBuild(charNum);
 		enableExtraCharInfo(charNum);
 	} else {
 		$(textID).css("color", "#5b5b5b");
 		$(inputID).attr("disabled", "disabled");
+		$("#status-" + charNum).multipleSelect("disable");
 	}
 }
 
@@ -3513,7 +3560,7 @@ function applyOverrides(charNum) {
 	}
 
 	// override state
-	$("#status-" + charNum).val($("#override-status").val());
+	$("#status-" + charNum).multipleSelect("setSelects", $("#override-status").val());
 	$("#terrain-" + charNum).val($("#override-terrain").val());
 	$("#adjacent-" + charNum).val($("#override-adjacent").val());
 }
@@ -3921,7 +3968,7 @@ function importTeam(attacker) {
 		importedChars[charCount].special = "None";
 		importedChars[charCount].specCooldown = "0";
 		importedChars[charCount].seal = "None";
-		importedChars[charCount].status = "Default";
+		importedChars[charCount].status = [];
 		importedChars[charCount].terrain = "Default";
 		importedChars[charCount].adjacent = "0";
 
@@ -4538,11 +4585,6 @@ $(document).ready( function() {
 		updateDisplay();
 	});
 
-	// setup initial display
-	setupStats();
-	setupChars();
-	setupOverrides();
-
 	// setup select2
 	$(".fancy-select").select2({
 		templateResult: function format(state) {
@@ -4556,7 +4598,14 @@ $(document).ready( function() {
 
 	// setup multiple select
 	$("select.multi-select").multipleSelect({"placeholder" : "None selected"});
+	$("select.status-select").multipleSelect({"placeholder" : "Default", "allSelected" : false});
 	$("select.multi-select").multipleSelect("checkAll");
+	$("select.status-select").multipleSelect("uncheckAll");
+
+	// setup initial display
+	setupStats();
+	setupChars();
+	setupOverrides();
 
 	// setup character select
 	$(".char-selector").on("change", function() {
@@ -4706,8 +4755,10 @@ $(document).ready( function() {
 
 	// setup other battle value changes
 	$(".battle-val").on("change", function() {
-		charChange($(this).data("charnum").toString());
-		updateDisplay();
+		if ($(this).data("charnum") !== undefined) {
+			charChange($(this).data("charnum").toString());
+			updateDisplay();
+		}
 	});
 
 	// swap button
@@ -4850,7 +4901,7 @@ $(document).ready( function() {
 		$(".override-stat").val(0);
 		$("#override-curr-hp").val(100);
 
-		$("#override-status").val("Default");
+		$("#override-status").multipleSelect("uncheckAll");
 		$("#override-terrain").val("Default");
 
 		$("#override-adjacent-block").hide(500);

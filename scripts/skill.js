@@ -55,6 +55,20 @@ var skillInfo =
                 "def" : 2
             }
         },
+        "Attack/Res +1" : {
+            "description" : "Grants Atk/Res+1.",
+            "stat_mod" : {
+                "atk" : 1,
+                "res" : 1
+            }
+        },
+        "Attack/Res +2" : {
+            "description" : "Grants Atk/Res+2.",
+            "stat_mod" : {
+                "atk" : 2,
+                "res" : 2
+            }
+        },
         "Close Counter" : {
             "description" : "Enables unit to counter-attack regardless of distance to attacker.",
             "counter" : true,
@@ -482,6 +496,33 @@ var skillInfo =
                 "res" : 6
             },
             "weapon_restrict" : "Staff"
+        },
+        "Wind Boost 1" : {
+            "description" : "If unit has at least 3 more HP than enemy at start of combat, unit receives Spd+2 during combat.",
+            "hp_adv_mod" : {
+                "stat_mod" : {
+                    "spd": 2
+                },
+                "hp_adv": 3
+            }
+        },
+        "Wind Boost 2" : {
+            "description" : "If unit has at least 3 more HP than enemy at start of combat, unit receives Spd+4 during combat.",
+            "hp_adv_mod" : {
+                "stat_mod" : {
+                    "spd": 4
+                },
+                "hp_adv": 3
+            }
+        },
+        "Wind Boost 3" : {
+            "description" : "If unit has at least 3 more HP than enemy at start of combat, unit receives Spd+6 during combat.",
+            "hp_adv_mod" : {
+                "stat_mod" : {
+                    "spd": 6
+                },
+                "hp_adv": 3
+            }
         }
     },
     "b" : {
@@ -595,6 +636,21 @@ var skillInfo =
                 "weapon_type" : "Dagger",
                 "threshold" : 0.5
             }
+        },
+        "Dazzling Staff 1" : {
+            "description" : "If unit has 100% HP at the start of combat, the enemy cannot counterattack.",
+            "prevent_enemy_counter" : 1,
+            "weapon_unique" : "Staff"
+        },
+        "Dazzling Staff 2" : {
+            "description" : "If unit has HP ≥ 50% at the start of combat, the enemy cannot counterattack.",
+            "prevent_enemy_counter" : 0.5,
+            "weapon_unique" : "Staff"
+        },
+        "Dazzling Staff 3" : {
+            "description" : "The enemy cannot counterattack.",
+            "prevent_enemy_counter" : 0,
+            "weapon_unique" : "Staff"
         },
         "Desperation 1" : {
             "description" : "If unit initiates combat with HP ≤ 25%, any follow-up attack occurs immediately.",
