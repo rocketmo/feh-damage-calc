@@ -3130,12 +3130,14 @@ function enableCharPanel(charNum, enable) {
 	if (enable) {
 		$(textID).css("color", "white");
 		$(inputID).removeAttr("disabled");
+		$("#status-" + charNum).multipleSelect("enable");
 		enableSpecCooldown(charNum);
 		enableCharBuild(charNum);
 		enableExtraCharInfo(charNum);
 	} else {
 		$(textID).css("color", "#5b5b5b");
 		$(inputID).attr("disabled", "disabled");
+		$("#status-" + charNum).multipleSelect("disable");
 	}
 }
 
