@@ -1604,7 +1604,7 @@ function getDefaultCharData(charName) {
 	}
 
 	// override state
-	charData.status = $("#override-status").val();
+	charData.status = arrayToObject($("#override-status").val());
 	charData.terrain = $("#override-terrain").val();
 
 	// default weapon info
