@@ -1360,10 +1360,16 @@ function owlTomeBonus(battleInfo, adjacent, charToUse) {
 	return battleInfo;
 }
 
-// checks if the attack can activate windsweep
+// checks if the attacker can activate windsweep
 function canActivateSweep(container, atkSpd, defSpd, defWeapon) {
 	"use strict";
 	return container.hasOwnProperty("sweep") && (atkSpd - defSpd >= container.sweep.spd_adv) && container.sweep.weapon_type.hasOwnProperty(defWeapon);
+}
+
+// checks if the attacker can prevent enemy counterattacks
+function canPreventEnemyCounter(container, hp, currHP) {
+	"use strict";
+	return container.hasOwnProperty("prevent_enemy_counter") && currHP >= roundNum(container.prevent_enemy_counter * hp, true);
 }
 
 // applies a seal effect
@@ -1431,7 +1437,7 @@ function convertPenalties(battleInfo, source, attacker) {
 // battleInfo contains all battle information
 function defCanCounter(battleInfo) {
 	"use strict";
-	return battleInfo.defender.weaponName !== "None" && (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range || battleInfo.defender.weaponData.hasOwnProperty("counter") || battleInfo.defender.passiveAData.hasOwnProperty("counter")) && !battleInfo.attacker.weaponData.hasOwnProperty("prevent_counter") && !battleInfo.defender.weaponData.hasOwnProperty("prevent_counter") && !canActivateSweep(battleInfo.attacker.passiveBData, battleInfo.attacker.spd, battleInfo.defender.spd, battleInfo.defender.weaponData.type);
+	return battleInfo.defender.weaponName !== "None" && (battleInfo.defender.weaponData.range === battleInfo.attacker.weaponData.range || battleInfo.defender.weaponData.hasOwnProperty("counter") || battleInfo.defender.passiveAData.hasOwnProperty("counter")) && !battleInfo.attacker.weaponData.hasOwnProperty("prevent_counter") && !battleInfo.defender.weaponData.hasOwnProperty("prevent_counter") && !canActivateSweep(battleInfo.attacker.passiveBData, battleInfo.attacker.spd, battleInfo.defender.spd, battleInfo.defender.weaponData.type) && !canPreventEnemyCounter(battleInfo.attacker.passiveBData, battleInfo.attacker.hp, battleInfo.attacker.currHP);
 }
 
 // heals by damage dealt
@@ -2362,7 +2368,7 @@ function simBattle(battleInfo, displayMsg) {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is prevented from counter-attacking [" + battleInfo.attacker.weaponName + "].</li>";
 			} else if (battleInfo.defender.weaponName !== "None" && battleInfo.defender.weaponData.hasOwnProperty("prevent_counter")) {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is prevented from counter-attacking [" + battleInfo.defender.weaponName + "].</li>";
-			} else if (battleInfo.defender.weaponName !== "None" && canActivateSweep(battleInfo.attacker.passiveBData, battleInfo.attacker.spd, battleInfo.defender.spd, battleInfo.defender.weaponData.type)) {
+			} else if (battleInfo.defender.weaponName !== "None" && (canActivateSweep(battleInfo.attacker.passiveBData, battleInfo.attacker.spd, battleInfo.defender.spd, battleInfo.defender.weaponData.type)) || canPreventEnemyCounter(battleInfo.attacker.passiveBData, battleInfo.attacker.hp, battleInfo.attacker.currHP)) {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is prevented from counter-attacking [" + battleInfo.attacker.passiveB + "].</li>";
 			} else {
 				battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'><strong>" + battleInfo.defender.name + "</strong></span> " + " is unable to counter-attack.</li>";

@@ -637,6 +637,21 @@ var skillInfo =
                 "threshold" : 0.5
             }
         },
+        "Dazzling Staff 1" : {
+            "description" : "If unit has 100% HP at the start of combat, the enemy cannot counterattack.",
+            "prevent_enemy_counter" : 1,
+            "weapon_unique" : "Staff"
+        },
+        "Dazzling Staff 2" : {
+            "description" : "If unit has HP ≥ 50% at the start of combat, the enemy cannot counterattack.",
+            "prevent_enemy_counter" : 0.5,
+            "weapon_unique" : "Staff"
+        },
+        "Dazzling Staff 3" : {
+            "description" : "The enemy cannot counterattack.",
+            "prevent_enemy_counter" : 0,
+            "weapon_unique" : "Staff"
+        },
         "Desperation 1" : {
             "description" : "If unit initiates combat with HP ≤ 25%, any follow-up attack occurs immediately.",
             "desperation" : {
