@@ -198,6 +198,19 @@ var charInfo =
 			"star_4" : {"weapon" : 1, "passive_a" : 1, "passive_c" : 1}
 		}
 	},
+	"Caeda (Bride)": {
+		"color" : "Blue",
+		"weapon_type" : "Blue Tome",
+		"move_type": "Infantry",
+		"weapon": ["Blessed Bouquet+", "Blessed Bouquet", "Elthunder", "Thunder"],
+		"special": ["Iceberg", "Chilling Wind"],
+		"passive_a": ["Attack/Res +2", "Attack/Res +1", "Resistance +1"],
+		"passive_c": ["Hone Spd 3", "Hone Spd 2", "Hone Spd 1"],
+		"base_stat" : {
+			"star_5" : {"hp" : 16, "atk" : 7, "spd" : 9, "def" : 4, "res" : 8},
+			"growth" : {"hp" : 4, "atk" : 6, "spd" : 9, "def" : 3, "res" : 6}
+		}
+	},
 	"Boey": {
 		"color" : "Green",
 		"weapon_type" : "Green Tome",
@@ -208,7 +221,11 @@ var charInfo =
 		"passive_b": ["Renewal 3", "Renewal 2", "Renewal 1"],
 		"base_stat" : {
 			"star_5" : {"hp" : 19, "atk" : 7, "spd" : 5, "def" : 8, "res" : 5},
+			"star_4" : {"hp" : 18, "atk" : 7, "spd" : 4, "def" : 8, "res" : 4},
 			"growth" : {"hp" : 7, "atk" : 6, "spd" : 6, "def" : 7, "res" : 2}
+		},
+		"rarity_restrict" : {
+			"star_4" : {"weapon" : 1, "passive_b" : 1}
 		}
 	},
 	"Cain": {
@@ -325,6 +342,19 @@ var charInfo =
 			"growth" : {"hp" : 6, "atk" : 7, "spd" : 8, "def" : 4, "res" : 3}
 		}
 	},
+	"Charlotte (Bride)": {
+		"color" : "Blue",
+		"weapon_type" : "Lance",
+		"move_type": "Infantry",
+		"weapon": ["First Bite+", "First Bite", "Steel Lance", "Iron Lance"],
+		"passive_a": ["Wind Boost 3", "Wind Boost 2", "Wind Boost 1"],
+		"passive_c": ["Threaten Atk 3", "Threaten Atk 2", "Threaten Atk 1"],
+		"assist" : ["Smite"],
+		"base_stat" : {
+			"star_5" : {"hp" : 20, "atk" : 10, "spd" : 8, "def" : 5, "res" : 4},
+			"growth" : {"hp" : 8, "atk" : 8, "spd" : 7, "def" : 5, "res" : 3}
+		}
+	},
 	"Cherche": {
 		"color" : "Green",
 		"weapon_type" : "Axe",
@@ -425,6 +455,19 @@ var charInfo =
 		},
 		"rarity_restrict" : {
 			"star_4" : {"weapon" : 1, "special" : 1, "passive_a" : 1}
+		}
+	},
+	"Cordelia (Bride)": {
+		"color" : "Colorless",
+		"weapon_type" : "Bow",
+		"move_type": "Infantry",
+		"weapon": ["Cupid Arrow+", "Cupid Arrow", "Steel Bow", "Iron Bow"],
+		"passive_b": ["Escape Route 3", "Escape Route 2", "Escape Route 1"],
+		"passive_c": ["Breath of Life 3", "Breath of Life 2", "Breath of Life 1"],
+		"assist" : ["Rally Atk/Spd", "Rally Attack"],
+		"base_stat" : {
+			"star_5" : {"hp" : 17, "atk" : 9, "spd" : 9, "def" : 4, "res" : 5},
+			"growth" : {"hp" : 5, "atk" : 8, "spd" : 8, "def" : 3, "res" : 4}
 		}
 	},
 	"Corrin (F)": {
@@ -1279,6 +1322,19 @@ var charInfo =
 			"growth" : {"hp" : 5, "atk" : 6, "spd" : 8, "def" : 5, "res" : 7}
 		}
 	},
+	"Lyn (Bride)": {
+		"color" : "Colorless",
+		"weapon_type" : "Staff",
+		"move_type": "Infantry",
+		"weapon": ["Candlelight", "Assault"],
+		"special": ["Swift-Winds Balm", "Imbue"],
+		"passive_b": ["Dazzling Staff 3", "Dazzling Staff 2", "Dazzling Staff 1"],
+		"assist" : ["Rehabilitate", "Reconcile", "Heal"],
+		"base_stat" : {
+			"star_5" : {"hp" : 17, "atk" : 6, "spd" : 10, "def" : 6, "res" : 5},
+			"growth" : {"hp" : 6, "atk" : 6, "spd" : 7, "def" : 4, "res" : 5}
+		}
+	},
 	"Mae": {
 		"color" : "Blue",
 		"weapon_type" : "Blue Tome",
@@ -1289,7 +1345,11 @@ var charInfo =
 		"assist" : ["Draw Back"],
 		"base_stat" : {
 			"star_5" : {"hp" : 16, "atk" : 10, "spd" : 7, "def" : 3, "res" : 8},
+			"star_4" : {"hp" : 15, "atk" : 10, "spd" : 6, "def" : 2, "res" : 8},
 			"growth" : {"hp" : 5, "atk" : 8, "spd" : 7, "def" : 2, "res" : 6}
+		},
+		"rarity_restrict" : {
+			"star_4" : {"weapon" : 1, "passive_b" : 1}
 		}
 	},
 	"Maria": {

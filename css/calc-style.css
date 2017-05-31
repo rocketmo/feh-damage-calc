@@ -108,8 +108,8 @@ label {
 	width: 5em;
 }
 
-#matchup-overrides .override-state select, .char-info .state-section select {
-	width: 7em;
+#matchup-overrides .override-state select {
+	width: 8.4em;
 }
 
 .stat {
@@ -718,4 +718,20 @@ h3 {
 .char-pick, .char-title {
 	font-weight: bold;
 	font-size: 1.8em;
+}
+
+select[multiple] {
+	height: 20px;
+}
+
+.char-info .status-select > .ms-choice > span {
+	width: 10em;
+}
+
+.override-state .status-select > .ms-choice > span {
+	width: 6.3em;
+}
+
+.status-select > .ms-choice > span.placeholder {
+	color: black;
 }

@@ -167,6 +167,22 @@ var weaponInfo =
 		"description" : "Effective against cavalry units.",
 		"move_effective" : "Cavalry"
 	},
+	"Blessed Bouquet" : {
+		"color"   : "Blue",
+		"type"    : "Blue Tome",
+		"might"   : 8,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates."
+	},
+	"Blessed Bouquet+" : {
+		"color"   : "Blue",
+		"type"    : "Blue Tome",
+		"might"   : 12,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates."
+	},
 	"Blue Egg" : {
 		"color"   : "Blue",
 		"type"    : "Blue Tome",
@@ -306,6 +322,15 @@ var weaponInfo =
 		"description" : "If unit initiates attack, restrict foe from moving more than 1 space through their next actions.",
 		"char_unique" : true
 	},
+	"Candlelight" : {
+		"color"   : "Colorless",
+		"type"    : "Staff",
+		"might"   : 7,
+		"range"   : 2,
+		"magical" : true,
+		"cancel_counter" : true,
+		"description" : "After combat, foe inflicted with status preventing them from counterattacking."
+	},
 	"Carrot Axe" : {
 		"color"   : "Green",
 		"type"    : "Axe",
@@ -341,6 +366,24 @@ var weaponInfo =
 		"magical" : false,
 		"description" : "If unit initiates attack, unit recovers 4 HP after the battle.",
 		"initiate_heal" : 4
+	},
+	"Cupid Arrow" : {
+		"color"   : "Colorless",
+		"type"    : "Bow",
+		"might"   : 8,
+		"range"   : 2,
+		"magical" : false,
+		"move_effective" : "Flying",
+		"description" : "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates. Effective against fliers."
+	},
+	"Cupid Arrow+" : {
+		"color"   : "Colorless",
+		"type"    : "Bow",
+		"might"   : 12,
+		"range"   : 2,
+		"magical" : false,
+		"move_effective" : "Flying",
+		"description" : "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates. Effective against fliers."
 	},
 	"Cymbeline" : {
 		"color" : "Red",
@@ -623,6 +666,22 @@ var weaponInfo =
 		"move_effective" : "Flying",
 		"description" : "Effective against flying units. Unit and enemies cannot use counterattacks.",
 		"prevent_counter" : true
+	},
+	"First Bite" : {
+		"color"   : "Blue",
+		"type"    : "Lance",
+		"might"   : 10,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates."
+	},
+	"First Bite+" : {
+		"color"   : "Blue",
+		"type"    : "Lance",
+		"might"   : 14,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates."
 	},
 	"Flametongue (Blue)" : {
 		"color"   : "Blue",

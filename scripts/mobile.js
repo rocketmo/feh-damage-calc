@@ -98,7 +98,10 @@ function resizePanels() {
 	$(".split-left").css("margin-right", "1.5em");
 	$(".skill-select").removeClass("info-section").addClass("info-section-bottom");
 	$(".state-section label").css("width", "5em");
-	$(".state-section select").css("width", "7em");
+	$(".state-section select").css("width", "8.4em");
+	console.log($("#terrain-1").width().toString());
+	$(".state-section .status-select").css("width", $("#terrain-1").outerWidth().toString() + "px");
+	$(".state-section .status-select > .ms-choice > span").css("width", "7em");
 	$("#interaction-list").css("width", "auto");
 	
 	$("#swap-cell, #attack-cell, #defend-cell").css("display", "table-cell");
@@ -111,6 +114,9 @@ function resizePanels() {
 		$(".skill-select").removeClass("info-section-bottom").addClass("info-section");
 		$(".state-section label").css("width", "9.8em");
 		$(".state-section select").css("width", "12.3em");
+		console.log($("#terrain-1").width().toString());
+		$(".state-section .status-select").css("width", $("#terrain-1").outerWidth().toString() + "px");
+		$(".state-section .status-select > .ms-choice > span").css("width", "10em");
 		$("#interaction-list").css("width", "700px");
 		
 		if ($("#calc").width() > $(window).width()) {
