@@ -3728,6 +3728,9 @@ function calculateMatchups(attacker) {
 	$("#matchup-table th").on("click", function() {
 		recolorMatchupRows();
 	});
+
+	// resize table
+	resizePanels();
 }
 
 // updates infomation depending on the mode selected
@@ -4980,6 +4983,18 @@ $(document).ready( function() {
 	$(window).on("resize", function() {
 		clearTimeout(resizeTO);
 		resizeTO = setTimeout(resizeAll, 75);
+	});
+	
+	$("#attack-pick").on("click", function() {
+		attackSelected = true;
+		$("#defend-cell").css("display", "none");
+		$("#attack-cell").css("display", "table-cell");
+	});
+	
+	$("#defend-pick").on("click", function() {
+		attackSelected = false;
+		$("#defend-cell").css("display", "table-cell");
+		$("#attack-cell").css("display", "none");
 	});
 
 	// resize current window

@@ -95,11 +95,12 @@ function resizePanels() {
 	"use strict";
 	displaySingleChar = false;
 	$(".char-panel-split").css("display", "inline-block");
+	$(".char-panel-split").css("width", "auto");
 	$(".split-left").css("margin-right", "1.5em");
 	$(".skill-select").removeClass("info-section").addClass("info-section-bottom");
 	$(".state-section label").css("width", "5em");
 	$(".state-section select").css("width", "8.4em");
-	console.log($("#terrain-1").width().toString());
+	
 	$(".state-section .status-select").css("width", $("#terrain-1").outerWidth().toString() + "px");
 	$(".state-section .status-select > .ms-choice > span").css("width", "7em");
 	$("#interaction-list").css("width", "auto");
@@ -107,6 +108,24 @@ function resizePanels() {
 	$("#swap-cell, #attack-cell, #defend-cell").css("display", "table-cell");
 	$("#swap-cell-small, .char-pick").css("display", "none");
 	$("legend").css("text-align", "left");
+
+	$("#import-area").css("width", "800px");
+	$("#import-area").css("max-width", "800px");
+	$(".import-btn, .export-btn, .export-single-btn, .clear-team-btn").css("width", "130px");
+	$("#import-attacker").html("Import Attackers");
+	$("#export-attacker").html("Export Attackers");
+	$("#export-attacker-single").html("Export Selected");
+	$("#clear-attacker").html("Clear Attackers");
+	$("#import-defender").html("Import Defenders");
+	$("#export-defender").html("Export Defenders");
+	$("#export-defender-single").html("Export Selected");
+	$("#clear-defender").html("Clear Defenders");
+
+	$("#matchup-display").css("width", "1100px");
+	$("#matchup-table").css("width", "1100px");
+	$("#matchup-table td:nth-child(3), #matchup-table td:nth-child(4)").show();
+	$("#matchup-table th:nth-child(3), #matchup-table th:nth-child(4)").show();
+	$("#matchup-buttons").show();
 	
 	if ((($("#left-1").width() + $("#right-1").width()) * 2) + $("#swap-button").width() + 210 > $(window).width()) {
 		$(".char-panel-split").css("display", "block");
@@ -114,18 +133,48 @@ function resizePanels() {
 		$(".skill-select").removeClass("info-section-bottom").addClass("info-section");
 		$(".state-section label").css("width", "9.8em");
 		$(".state-section select").css("width", "12.3em");
-		console.log($("#terrain-1").width().toString());
+
 		$(".state-section .status-select").css("width", $("#terrain-1").outerWidth().toString() + "px");
 		$(".state-section .status-select > .ms-choice > span").css("width", "10em");
 		$("#interaction-list").css("width", "700px");
 		
+		$("#import-area").css("width", "400px");
+		$("#import-area").css("max-width", "400px");
+
+		$("#matchup-display").css("width", "700px");
+		$("#matchup-table").css("width", "700px");
+
 		if ($("#calc").width() > $(window).width()) {
 			displaySingleChar = true;
-			$("#swap-cell, " + (attackSelected ? "#defend-cell" : "attack-cell")).css("display", "none");
+			$("#swap-cell, " + (attackSelected ? "#defend-cell" : "#attack-cell")).css("display", "none");
 			$("#interaction-list").css("width", "auto");
+			$(".char-panel-split").css("width", "300px");
+			$(".char-panel-split").css("margin", "0 auto");
 			$("#swap-cell-small").css("display", "table-cell");
 			$(".char-pick").css("display", "inline");
 			$("legend").css("text-align", "center");
+
+			$("#import-area").css("width", "200px");
+			$("#import-area").css("max-width", "200px");
+			$(".import-btn, .export-btn, .export-single-btn, .clear-team-btn").css("width", "50px");
+			$("#import-attacker").html("ImAtk");
+			$("#export-attacker").html("ExAtk");
+			$("#export-attacker-single").html("ExSel");
+			$("#clear-attacker").html("ClrAtk");
+			$("#import-defender").html("ImDef");
+			$("#export-defender").html("ExDef");
+			$("#export-defender-single").html("ExSel");
+			$("#clear-defender").html("ClrDef");
+
+			$("#matchup-display").css("width", "auto");
+			$("#matchup-table").css("width", "auto");
+			$("#matchup-table td:nth-child(3), #matchup-table td:nth-child(4)").hide();
+			$("#matchup-table th:nth-child(3), #matchup-table th:nth-child(4)").hide();
+			$("#matchup-buttons, #matchup-filters, #matchup-overrides").hide();
+			$("#matchup-filter-button").removeClass("matchup-button-selected");
+			$("#matchup-override-button").removeClass("matchup-button-selected");
+			$("#matchup-filter-button").addClass("matchup-button");
+			$("#matchup-override-button").addClass("matchup-button");
 		}
 	}
 }
