@@ -1,19 +1,13 @@
+
 /*
- * Pulling data from kagerochart database instead of json files where possible.
+ * Legacy Globals
  */
-
-var charInfo = inlineData.charInfo;
-charInfo.Custom = {
-	"display": "Custom",
-	"id": "Custom",
-	"name": "Custom"
-};
-
-var weaponInfo = inlineData.weaponInfo;
-var specialInfo = inlineData.specialInfo;
-var assistInfo = inlineData.assistInfo;
-var skillInfo = inlineData.skillInfo;
-var supportInfo = inlineData.supportInfo;
+var data;
+var weaponInfo;
+var specialInfo;
+var assistInfo;
+var skillInfo;
+var supportInfo;
 
 // stat total upper limit
 var HIGHESTSTAT = 99;
@@ -56,63 +50,91 @@ var resetFilterLock = false;
 // use to fix filters bug
 var initFilters = true;
 
-var tabEls = document.querySelectorAll('.mdc-tab-bar');
-
-var tabBars = [];
-tabEls.forEach(function(el, key) {
-    var bar = new mdc.tabs.MDCTabBar(el);
-    bar.preventDefaultOnClick = true;
-    bar.listen('MDCTabBar:change', function (t) {
-        var dynamicTabBar = t.detail;
-        var nthChildIndex = dynamicTabBar.activeTabIndex;
-
-        var selector = '#attack-panel';
-
-        if (el.id === 'override-tab-bar') {
-            selector = '#matchup-overrides';
-        }
-        else if (el.id === 'char-tab-bar-2') {
-            selector = '#defend-panel';
-        }
-        var panels = document.querySelector(selector + ' .mdc-card__media');
-
-        updatePanel(panels, nthChildIndex);
-    });
-
-    tabBars.push(bar);
+/*
+ * Pulling json data from kagerochart.
+ */
+$.getJSON('/damage-calc/data', function(data) {
+	console.log('Retrieving hero data from KageroChart...');
+}).fail(function() {
+	console.log('Error retrieving data.');
+}).done(function(data) {
+	data = data;
+	weaponInfo = data.weaponInfo;
+	specialInfo = data.specialInfo;
+	assistInfo = data.assistInfo;
+	skillInfo = data.skillInfo;
+	supportInfo = data.supportInfo;
+	charInfo = data.charInfo;
+	charInfo.Custom = {
+		"display": "Custom",
+		"id": "Custom",
+		"name": "Custom"
+	};
+	setupCalc();
 });
 
-function updatePanel(panels, index) {
 
-    var activePanel = panels.querySelector('.tab-panel.active');
-    var newActivePanel = panels.querySelector('.tab-panel:nth-child(' + (index + 1) + ')');
+function setupCalc() {
 
-    if (activePanel) {
-      activePanel.classList.remove('active');
-      activePanel.style.display = 'none';
-    }
+	var tabEls = document.querySelectorAll('.mdc-tab-bar');
 
-    if (newActivePanel) {
-      newActivePanel.classList.add('active');
-      newActivePanel.style.display = 'block';
-    }
+	var tabBars = [];
+	tabEls.forEach(function(el, key) {
+	    var bar = new mdc.tabs.MDCTabBar(el);
+	    bar.preventDefaultOnClick = true;
+	    bar.listen('MDCTabBar:change', function (t) {
+	        var dynamicTabBar = t.detail;
+	        var nthChildIndex = dynamicTabBar.activeTabIndex;
+
+	        var selector = '#attack-panel';
+
+	        if (el.id === 'override-tab-bar') {
+	            selector = '#matchup-overrides';
+	        }
+	        else if (el.id === 'char-tab-bar-2') {
+	            selector = '#defend-panel';
+	        }
+	        var panels = document.querySelector(selector + ' .mdc-card__media');
+
+	        updatePanel(panels, nthChildIndex);
+	    });
+
+	    tabBars.push(bar);
+	});
+
+	function updatePanel(panels, index) {
+
+	    var activePanel = panels.querySelector('.tab-panel.active');
+	    var newActivePanel = panels.querySelector('.tab-panel:nth-child(' + (index + 1) + ')');
+
+	    if (activePanel) {
+	      activePanel.classList.remove('active');
+	      activePanel.style.display = 'none';
+	    }
+
+	    if (newActivePanel) {
+	      newActivePanel.classList.add('active');
+	      newActivePanel.style.display = 'block';
+	    }
+	}
+
+	var tfs = document.querySelectorAll(
+	  '.mdc-textfield:not([data-demo-no-auto-js])'
+	);
+	for (var i = 0, tf; tf = tfs[i]; i++) {
+	  mdc.textfield.MDCTextfield.attachTo(tf);
+	}
+
+	updatePanel(document.querySelector('#attack-panel .mdc-card__media'), 0);
+	updatePanel(document.querySelector('#defend-panel .mdc-card__media'), 0);
+	updatePanel(document.querySelector('#matchup-overrides .mdc-card__media'), 0);
+
+	$("#matchup-filters").hide();
+	$("#matchup-overrides").hide();
+	$("#matchups").hide();
+
+	// setup initial display
+	setupChars();
+	setupOverrides();
+
 }
-
-var tfs = document.querySelectorAll(
-  '.mdc-textfield:not([data-demo-no-auto-js])'
-);
-for (var i = 0, tf; tf = tfs[i]; i++) {
-  mdc.textfield.MDCTextfield.attachTo(tf);
-}
-
-updatePanel(document.querySelector('#attack-panel .mdc-card__media'), 0);
-updatePanel(document.querySelector('#defend-panel .mdc-card__media'), 0);
-updatePanel(document.querySelector('#matchup-overrides .mdc-card__media'), 0);
-
-$("#matchup-filters").hide();
-$("#matchup-overrides").hide();
-$("#matchups").hide();
-
-// setup initial display
-setupChars();
-setupOverrides();

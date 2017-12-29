@@ -9,13 +9,13 @@ function setupChars() {
 	selectCharTab(false, 0);
 
 	updateAllAttributeLinks()
-	
+
 	// simulate initial battle
 	simBattle(getBattleInfo(), true);
 }
 
 function randomizeStartingHeroes() {
-	//Number of characters contained in charInfo object
+	//Number of characters contained in data.charInfo object
 	var charCount = Object.keys(charInfo).length;
 
 	//Subtracting 1 for custom char option at end of list (causes errors)
