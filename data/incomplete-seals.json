@@ -1,0 +1,36 @@
+"hardy-bearing-1": {
+    "description": "Disables skills that change unit's attack priority. If unit has 100% HP at start of battle, enemy skills that change attack priority are also disabled.",
+    "id": "hardy-bearing-1",
+    "name": "Hardy Bearing 1 (COMING SOON) ",
+    "type": "s"
+},
+"hardy-bearing-2": {
+    "description": "Disables skills that change unit's attack priority. If unit has ≥ 50% HP at start of battle, enemy skills that change attack priority are also disabled.",
+    "id": "hardy-bearing-2",
+    "name": "Hardy Bearing 2 (COMING SOON) ",
+    "type": "s"
+},
+"hardy-bearing-3": {
+    "description": "Disables skills that change unit's attack priority. Enemy skills that change attack priority are also disabled.",
+    "id": "hardy-bearing-3",
+    "name": "Hardy Bearing 3 (COMING SOON)",
+    "type": "s"
+},
+"phantom-spd-1": {
+    "description": "When any skill compares this unit's Spd stat to another unit's, this unit's Spd stat is counted as +5 over actual value.",
+    "id": "phantom-spd-1",
+    "name": "Phantom Spd 1 (COMING SOON)",
+    "type": "s"
+},
+"phantom-spd-2": {
+    "description": "When any skill compares this unit's Spd stat to another unit's, this unit's Spd stat is counted as +8 over actual value.",
+    "id": "phantom-spd-2",
+    "name": "Phantom Spd 2 (COMING SOON)",
+    "type": "s"
+},
+"phantom-spd-3": {
+    "description": "When any skill compares this unit's Spd stat to another unit's, this unit's Spd stat is counted as +10 over actual value.",
+    "id": "phantom-spd-3",
+    "name": "Phantom Spd 3 (COMING SOON)",
+    "type": "s"
+}
