@@ -11,7 +11,7 @@ body {
 }
 
 #wrapper {
-	min-width: 240px;
+	min-width: 350px;
 	white-space: normal;
 	margin: 0px auto;
 }
@@ -213,7 +213,7 @@ body::after {
 
 #calc-header {
 	width: 100%;
-	min-width: 240px;
+	min-width: 350px;
 	background-color: gold;
 	margin-bottom: 1em;
 	vertical-align: middle;
