@@ -53,10 +53,11 @@ var initFilters = true;
 /*
  * Pulling json data from kagerochart.
  */
-$.getJSON('/damage-calc/data', function(data) {
+$.getJSON('https://kagerochart.com/damage-calc/data', { 'callback': '?' }, function(data) {
 	console.log('Retrieving hero data from KageroChart...');
-}).fail(function() {
+}).fail(function(res) {
 	console.log('Error retrieving data.');
+	console.log(res);
 }).done(function(data) {
 	data = data;
 	weaponInfo = data.weaponInfo;
@@ -102,22 +103,6 @@ function setupCalc() {
 	    tabBars.push(bar);
 	});
 
-	function updatePanel(panels, index) {
-
-	    var activePanel = panels.querySelector('.tab-panel.active');
-	    var newActivePanel = panels.querySelector('.tab-panel:nth-child(' + (index + 1) + ')');
-
-	    if (activePanel) {
-	      activePanel.classList.remove('active');
-	      activePanel.style.display = 'none';
-	    }
-
-	    if (newActivePanel) {
-	      newActivePanel.classList.add('active');
-	      newActivePanel.style.display = 'block';
-	    }
-	}
-
 	var tfs = document.querySelectorAll(
 	  '.mdc-textfield:not([data-demo-no-auto-js])'
 	);
@@ -137,4 +122,20 @@ function setupCalc() {
 	setupChars();
 	setupOverrides();
 
+}
+
+function updatePanel(panels, index) {
+
+    var activePanel = panels.querySelector('.tab-panel.active');
+    var newActivePanel = panels.querySelector('.tab-panel:nth-child(' + (index + 1) + ')');
+
+    if (activePanel) {
+      activePanel.classList.remove('active');
+      activePanel.style.display = 'none';
+    }
+
+    if (newActivePanel) {
+      newActivePanel.classList.add('active');
+      newActivePanel.style.display = 'block';
+    }
 }
