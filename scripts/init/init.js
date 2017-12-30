@@ -1,4 +1,3 @@
-
 /*
  * Legacy Globals
  */
