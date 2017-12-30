@@ -82,7 +82,7 @@ label {
 
 #matchup-filters select {
 	width: 10.9em;
-	box-sizing: border-box; 
+	box-sizing: border-box;
 }
 
 .matchup-filter-block {
@@ -93,7 +93,7 @@ label {
 
 #matchup-filter-name {
 	width: 100%;
-	box-sizing: border-box; 
+	box-sizing: border-box;
 }
 
 #matchup-filter-reset {
@@ -157,7 +157,7 @@ input[type=number] {
 }
 
 .stat-info select, #override-stats select, .weapon-select .adjacent-select {
-	width: 2.8em;	
+	width: 2.8em;
 }
 
 .current-hp input[type=number], .skill-select input[type=number] {
