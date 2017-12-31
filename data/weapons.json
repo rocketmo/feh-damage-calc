@@ -1,6 +1,30 @@
 {
+	"Kagami Mochi": {
+		"spec_cooldown_mod" : -1,
+		"seal" : {
+			"def" : -5,
+			"res" : -5
+		},
+	},
+	"Kagami Mochi+": {
+		"spec_cooldown_mod" : -1,
+		"seal" : {
+			"def" : -7,
+			"res" : -7
+		},
+	},
+	"Blizzard": {
+		"char_unique": true,
+		"stat_mod": {
+			"res": 3
+		},
+		"enemy_penalty_bonus": {
+			"stat": "atk"
+		}
+	},
 	"Leiptr": {
-		"counter": true
+		"counter": true,
+		"char_unique": true
 	},
 	"Keen Gronnwolf": {
 		"move_effective": "Cavalry"
