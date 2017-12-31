@@ -366,9 +366,24 @@
         },
         "type": "s"
     },
-    "savage-blow-1": {},
-    "savage-blow-2": {},
-    "savage-blow-3": {},
+    "savage-blow-1": {
+        "description": "If unit initiates attack, foes within 2 spaces of target take 3 damage after combat.",
+        "id": "savage-blow-1",
+        "name": "Savage Blow 1",
+        "type": "s"
+    },
+    "savage-blow-2": {
+        "description": "If unit initiates attack, foes within 2 spaces of target take 5 damage after combat.",
+        "id": "savage-blow-2",
+        "name": "Savage Blow 2",
+        "type": "s"
+    },
+    "savage-blow-3": {
+        "description": "If unit initiates attack, foes within 2 spaces of target take 7 damage after combat.",
+        "id": "savage-blow-3",
+        "name": "Savage Blow 3",
+        "type": "s"
+    },
     "speed-plus-1": {
         "description": "Grants Spd +1.",
         "id": "speed-plus-1",
