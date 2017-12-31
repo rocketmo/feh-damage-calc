@@ -1,4 +1,37 @@
 {
+	"Chilling Seal": {
+		"char_unique": true
+	},
+	"Spd Def Bond 1": {
+		"adjacent_stat_bonus": {
+			"target": "self",
+			"adjacent": "ally",
+			"mod": {
+				"spdk": 3,
+				"def": 3
+			}
+		}
+	},
+	"Spd Def Bond 2": {
+		"adjacent_stat_bonus": {
+			"target": "self",
+			"adjacent": "ally",
+			"mod": {
+				"spd": 4,
+				"def": 4
+			}
+		}
+	},
+	"Spd Def Bond 3": {
+		"adjacent_stat_bonus": {
+			"target": "self",
+			"adjacent": "ally",
+			"mod": {
+				"spd": 5,
+				"def": 5
+			}
+		}
+	},
 	"Atk Def Bond 1": {
 		"adjacent_stat_bonus": {
 			"target": "self",
