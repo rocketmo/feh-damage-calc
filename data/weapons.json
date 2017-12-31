@@ -4,14 +4,14 @@
 		"seal" : {
 			"def" : -5,
 			"res" : -5
-		},
+		}
 	},
 	"Kagami Mochi+": {
 		"spec_cooldown_mod" : -1,
 		"seal" : {
 			"def" : -7,
 			"res" : -7
-		},
+		}
 	},
 	"Blizzard": {
 		"char_unique": true,
