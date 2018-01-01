@@ -1,4 +1,40 @@
 {
+    "atk-ploy-1": {
+        "description": "At start of turn, all foes in cardinal directions with Res 1 or more lower than unit suffer Atk-3 until the end of foe's next action.",
+        "id": "atk-ploy-1",
+        "name": "Atk Ploy 1",
+        "type": "s"
+    },
+    "atk-ploy-2": {
+        "description": "At start of turn, all foes in cardinal directions with Res 1 or more lower than unit suffer Atk-4 until the end of foe's next action.",
+        "id": "atk-ploy-2",
+        "name": "Atk Ploy 2",
+        "type": "s"
+    },
+    "atk-ploy-3": {
+        "description": "At start of turn, all foes in cardinal directions with Res 1 or more lower than unit suffer Atk-5 until the end of foe's next action.",
+        "id": "atk-ploy-3",
+        "name": "Atk Ploy 3",
+        "type": "s"
+    },
+    "atk-smoke-1": {
+        "description": "After combat, inflicts Atk-3 on foes within 2 spaces of target through their next actions.",
+        "id": "atk-smoke-1",
+        "name": "Atk Smoke 1",
+        "type": "s"
+    },
+    "atk-smoke-2": {
+        "description": "After combat, inflicts Atk-5 on foes within 2 spaces of target through their next actions.",
+        "id": "atk-smoke-2",
+        "name": "Atk Smoke 2",
+        "type": "s"
+    },
+    "atk-smoke-3": {
+        "description": "After combat, inflicts Atk-7 on foes within 2 spaces of target through their next actions.",
+        "id": "atk-smoke-3",
+        "name": "Atk Smoke 3",
+        "type": "s"
+    },
     "attack-plus-1": {
         "description": "Grants Atk +1.",
         "id": "attack-plus-1",
@@ -27,45 +63,63 @@
         "type": "s"
     },
     "brash-assault-1": {
-		"description": "Unit automatically makes a follow-up attack when at HP ≤ 30% and attacking a foe that can counter.",
+        "description": "Unit automatically makes a follow-up attack when at HP ≤ 30% and attacking a foe that can counter.",
         "id": "brash-assault-1",
         "name": "Brash Assault 1",
-		"brash": {
-			"threshold": 0.3
-		}
-	},
-	"brash-assault-2": {
-		"description": "Unit automatically makes a follow-up attack when at HP ≤ 40% and attacking a foe that can counter.",
+        "brash": {
+            "threshold": 0.3
+        }
+    },
+    "brash-assault-2": {
+        "description": "Unit automatically makes a follow-up attack when at HP ≤ 40% and attacking a foe that can counter.",
         "id": "brash-assault-2",
         "name": "Brash Assault 2",
-		"brash": {
-			"threshold": 0.4
-		}
-	},
-	"brash-assault-3": {
-		"description": "Unit automatically makes a follow-up attack when at HP ≤ 50% and attacking a foe that can counter.",
+        "brash": {
+            "threshold": 0.4
+        }
+    },
+    "brash-assault-3": {
+        "description": "Unit automatically makes a follow-up attack when at HP ≤ 50% and attacking a foe that can counter.",
         "id": "brash-assault-3",
         "name": "Brash Assault 3",
-		"brash": {
-			"threshold": 0.5
-		}
-	},
+        "brash": {
+            "threshold": 0.5
+        }
+    },
+    "breath-of-life-1": {
+        "description": "If unit initiates attack, adjacent allies recover 3 HP after combat.",
+        "id": "breath-of-life-1",
+        "name": "Breath of Life 1",
+        "type": "s"
+    },
+    "breath-of-life-2": {
+        "description": "If unit initiates attack, adjacent allies recover 5 HP after combat.",
+        "id": "breath-of-life-2",
+        "name": "Breath of Life 2",
+        "type": "s"
+    },
+    "breath-of-life-3": {
+        "description": "If unit initiates attack, adjacent allies recover 7 HP after combat.",
+        "id": "breath-of-life-3",
+        "name": "Breath of Life 3",
+        "type": "s"
+    },
     "close-def-1": {
         "description": "If unit is attacked by foe using sword, axe, lance, or dragonstone, unit receives Def/Res+2 during combat.",
         "id": "distant-def-1",
         "name": "Distant Def 1",
         "type_defend_mod": {
-			"weapon_type": {
-				"Sword": true,
-				"Axe": true,
-				"Lance": true,
-				"Breath": true
-			},
-			"stat_mod": {
-				"def": 2,
-				"res": 2
-			}
-		},
+            "weapon_type": {
+                "Sword": true,
+                "Axe": true,
+                "Lance": true,
+                "Breath": true
+            },
+            "stat_mod": {
+                "def": 2,
+                "res": 2
+            }
+        },
         "type": "s"
     },
     "close-def-2": {
@@ -74,16 +128,16 @@
         "name": "Distant Def 2",
         "type_defend_mod": {
             "weapon_type": {
-				"Sword": true,
-				"Axe": true,
-				"Lance": true,
-				"Breath": true
-			},
-			"stat_mod": {
-				"def": 4,
-				"res": 4
-			}
-		},
+                "Sword": true,
+                "Axe": true,
+                "Lance": true,
+                "Breath": true
+            },
+            "stat_mod": {
+                "def": 4,
+                "res": 4
+            }
+        },
         "type": "s"
     },
     "close-def-3": {
@@ -92,16 +146,16 @@
         "name": "Distant Def 3",
         "type_defend_mod": {
             "weapon_type": {
-				"Sword": true,
-				"Axe": true,
-				"Lance": true,
-				"Breath": true
-			},
-			"stat_mod": {
-				"def": 6,
-				"res": 6
-			}
-		},
+                "Sword": true,
+                "Axe": true,
+                "Lance": true,
+                "Breath": true
+            },
+            "stat_mod": {
+                "def": 6,
+                "res": 6
+            }
+        },
         "type": "s"
     },
     "defense-plus-1": {
@@ -136,11 +190,11 @@
         "id": "deflect-magic-1",
         "name": "Deflect Magic 1",
         "consecutive_dmg_reduction": {
-			"multiplier": 0.7,
+            "multiplier": 0.7,
             "weapon_type": [
                 "tome"
             ]
-		},
+        },
         "type": "s"
     },
     "deflect-magic-2": {
@@ -148,11 +202,11 @@
         "id": "deflect-magic-2",
         "name": "Deflect Magic 2",
         "consecutive_dmg_reduction": {
-			"multiplier": 0.5,
+            "multiplier": 0.5,
             "weapon_type": [
                 "tome"
             ]
-		},
+        },
         "type": "s"
     },
     "deflect-magic-3": {
@@ -160,11 +214,11 @@
         "id": "deflect-magic-3",
         "name": "Deflect Magic 3",
         "consecutive_dmg_reduction": {
-			"multiplier": 0.2,
+            "multiplier": 0.2,
             "weapon_type": [
                 "tome"
             ]
-		},
+        },
         "type": "s"
     },
     "deflect-melee-1": {
@@ -172,13 +226,13 @@
         "id": "deflect-melee-1",
         "name": "Deflect Melee 1",
         "consecutive_dmg_reduction": {
-			"multiplier": 0.7,
+            "multiplier": 0.7,
             "weapon_type": [
                 "axe",
                 "lance",
                 "sword"
             ]
-		},
+        },
         "type": "s"
     },
     "deflect-melee-2": {
@@ -186,13 +240,13 @@
         "id": "deflect-melee-2",
         "name": "Deflect Melee 2",
         "consecutive_dmg_reduction": {
-			"multiplier": 0.5,
+            "multiplier": 0.5,
             "weapon_type": [
                 "axe",
                 "lance",
                 "sword"
             ]
-		},
+        },
         "type": "s"
     },
     "deflect-melee-3": {
@@ -200,13 +254,13 @@
         "id": "deflect-melee-3",
         "name": "Deflect Melee 3",
         "consecutive_dmg_reduction": {
-			"multiplier": 0.2,
+            "multiplier": 0.2,
             "weapon_type": [
                 "axe",
                 "lance",
                 "sword"
             ]
-		},
+        },
         "type": "s"
     },
     "deflect-missile-1": {
@@ -214,12 +268,12 @@
         "id": "deflect-missile-1",
         "name": "Deflect Missile 1",
         "consecutive_dmg_reduction": {
-			"multiplier": 0.7,
+            "multiplier": 0.7,
             "weapon_type": [
                 "bow",
                 "dagger"
             ]
-		},
+        },
         "type": "s"
     },
     "deflect-missile-2": {
@@ -227,12 +281,12 @@
         "id": "deflect-missile-2",
         "name": "Deflect Missile 2",
         "consecutive_dmg_reduction": {
-			"multiplier": 0.5,
+            "multiplier": 0.5,
             "weapon_type": [
                 "bow",
                 "dagger"
             ]
-		},
+        },
         "type": "s"
     },
     "deflect-missile-3": {
@@ -240,12 +294,12 @@
         "id": "deflect-missile-3",
         "name": "Deflect Missile 3",
         "consecutive_dmg_reduction": {
-			"multiplier": 0.2,
+            "multiplier": 0.2,
             "weapon_type": [
                 "bow",
                 "dagger"
             ]
-		},
+        },
         "type": "s"
     },
     "distant-def-1": {
@@ -253,20 +307,20 @@
         "id": "distant-def-1",
         "name": "Distant Def 1",
         "type_defend_mod": {
-			"weapon_type": {
-				"Bow": true,
-				"Dagger": true,
-				"Staff": true,
-				"Blue Tome": true,
-				"Green Tome": true,
-				"Red Tome": true,
+            "weapon_type": {
+                "Bow": true,
+                "Dagger": true,
+                "Staff": true,
+                "Blue Tome": true,
+                "Green Tome": true,
+                "Red Tome": true,
                 "Tome": true
-			},
-			"stat_mod": {
-				"def": 2,
-				"res": 2
-			}
-		},
+            },
+            "stat_mod": {
+                "def": 2,
+                "res": 2
+            }
+        },
         "type": "s"
     },
     "distant-def-2": {
@@ -274,20 +328,20 @@
         "id": "distant-def-2",
         "name": "Distant Def 2",
         "type_defend_mod": {
-			"weapon_type": {
-				"Bow": true,
-				"Dagger": true,
-				"Staff": true,
-				"Blue Tome": true,
-				"Green Tome": true,
-				"Red Tome": true,
+            "weapon_type": {
+                "Bow": true,
+                "Dagger": true,
+                "Staff": true,
+                "Blue Tome": true,
+                "Green Tome": true,
+                "Red Tome": true,
                 "Tome": true
-			},
-			"stat_mod": {
-				"def": 4,
-				"res": 4
-			}
-		},
+            },
+            "stat_mod": {
+                "def": 4,
+                "res": 4
+            }
+        },
         "type": "s"
     },
     "distant-def-3": {
@@ -295,20 +349,129 @@
         "id": "distant-def-3",
         "name": "Distant Def 3",
         "type_defend_mod": {
-			"weapon_type": {
-				"Bow": true,
-				"Dagger": true,
-				"Staff": true,
-				"Blue Tome": true,
-				"Green Tome": true,
-				"Red Tome": true,
+            "weapon_type": {
+                "Bow": true,
+                "Dagger": true,
+                "Staff": true,
+                "Blue Tome": true,
+                "Green Tome": true,
+                "Red Tome": true,
                 "Tome": true
-			},
-			"stat_mod": {
-				"def": 6,
-				"res": 6
-			}
-		},
+            },
+            "stat_mod": {
+                "def": 6,
+                "res": 6
+            }
+        },
+        "type": "s"
+    },
+    "emblas-ward": {
+        "description": "Unit receives 0 damage.",
+        "id": "emblas-ward",
+        "name": "Embla's Ward",
+        "null_dmg": true,
+        "type": "s"
+    },
+    "fortify-def-1": {
+        "description": "Grants adjacent allies Def+2 through their next actions at the start of each turn.",
+        "id": "fortify-def-1",
+        "name": "Fortify Def 1",
+        "type": "s"
+    },
+    "fortify-def-2": {
+        "description": "Grants adjacent allies Def+3 through their next actions at the start of each turn.",
+        "id": "fortify-def-2",
+        "name": "Fortify Def 2",
+        "type": "s"
+    },
+    "fortify-def-3": {
+        "description": "Grants adjacent allies Def+4 through their next actions at the start of each turn.",
+        "id": "fortify-def-3",
+        "name": "Fortify Def 3",
+        "type": "s"
+    },
+    "fortify-res-1": {
+        "description": "Grants adjacent allies Res+2 through their next actions at the start of each turn.",
+        "id": "fortify-res-1",
+        "name": "Fortify Res 1",
+        "type": "s"
+    },
+    "fortify-res-2": {
+        "description": "Grants adjacent allies Res+3 through their next actions at the start of each turn.",
+        "id": "fortify-res-2",
+        "name": "Fortify Res 2",
+        "type": "s"
+    },
+    "fortify-res-3": {
+        "description": "Grants adjacent allies Res+4 through their next actions at the start of each turn.",
+        "id": "fortify-res-3",
+        "name": "Fortify Res 3",
+        "type": "s"
+    },
+    "guidance-1": {
+        "description": "If unit has 100% HP, infantry and armored allies within 2 spaces can move to a space adjacent to unit.",
+        "id": "guidance-1",
+        "name": "Guidance 1",
+        "type": "s"
+    },
+    "guidance-2": {
+        "description": "If unit has ≥50% HP, infantry and armored allies within 2 spaces can move to a space adjacent to unit.",
+        "id": "guidance-2",
+        "name": "Guidance 2",
+        "type": "s"
+    },
+    "guidance-3": {
+        "description": "Infantry and armored allies within 2 spaces can move to a space adjacent to unit.",
+        "id": "guidance-3",
+        "name": "Guidance 3",
+        "type": "s"
+    },
+    "heavy-blade-1": {
+        "description": "If unit's Atk - foe's Atk ≥ 5, unit gains Special cooldown charge +1 per attack.\r\n(If using other similar skill, only highest value applied.)",
+        "id": "heavy-blade-1",
+        "name": "Heavy Blade 1",
+        "spec_accel": {
+            "stat":"atk",
+            "adv":5
+        },
+        "type": "s"
+    },
+    "heavy-blade-2": {
+        "description": "If unit's Atk - foe's Atk ≥ 3, unit gains Special cooldown charge +1 per attack.\r\n(If using other similar skill, only highest value applied.)",
+        "id": "heavy-blade-2",
+        "name": "Heavy Blade 2",
+        "spec_accel": {
+            "stat":"atk",
+            "adv":3
+        },
+        "type": "s"
+    },
+    "heavy-blade-3": {
+        "description": "If unit's Atk - foe's Atk ≥ 1, unit gains Special cooldown charge +1 per attack.\r\n(If using other similar skill, only highest value applied.)",
+        "id": "heavy-blade-3",
+        "name": "Heavy Blade 3",
+        "spec_accel": {
+            "stat":"atk",
+            "adv":1
+        },
+        "type": "s"
+    },
+    "hone-spd-1": {
+        "description": "Grants adjacent allies Spd+2 through their next actions at the start of each turn.",
+        "id": "hone-spd-1",
+        "name": "Hone Spd 1",
+        "type": "s"
+    },
+    "hone-spd-2": {
+        "description": "Grants adjacent allies Spd+3 through their next actions at the start of each turn.",
+        "id": "hone-spd-2",
+        "name": "Hone Spd 2",
+        "type": "s"
+    },
+    "hone-spd-3": {
+        "description": "Grants adjacent allies Spd+4 through their next actions at the start of each turn.",
+        "id": "hone-spd-3",
+        "name": "Hone Spd 3",
         "type": "s"
     },
     "hp-plus-3": {
@@ -338,7 +501,38 @@
         },
         "type": "s"
     },
-
+    "iotes-shield": {
+        "description": "Neutralizes \"effective against\" bonuses.",
+        "id": "iotes-shield",
+        "name": "Iote's Shield",
+        "cancel_effective": true,
+        "move_unique": "Flying",
+        "type": "s"
+    },
+    "panic-ploy-1": {
+        "description": "At start of turn, bonuses become penalties on all foes in cardinal directions with HP 5 or more lower than unit through foe's next action.",
+        "id": "panic-ploy-1",
+        "name": "Panic Ploy 1",
+        "type": "s"
+    },
+    "panic-ploy-2": {
+        "description": "At start of turn, bonuses become penalties on all foes in cardinal directions with HP 3 or more lower than unit through foe's next action.",
+        "id": "panic-ploy-2",
+        "name": "Panic Ploy 2",
+        "type": "s"
+    },
+    "panic-ploy-3": {
+        "description": "At start of turn, bonuses become penalties on all foes in cardinal directions with HP 1 or more lower than unit through foe's next action.",
+        "id": "panic-ploy-3",
+        "name": "Panic Ploy 3",
+        "type": "s"
+    },
+    "quickened-pulse": {
+        "description": "Special cooldown count -1 at start of Turn 1.",
+        "id": "quickened-pulse",
+        "name": "Quickened Pulse",
+        "type": "s"
+    },
     "resistance-plus-1": {
         "description": "Grants Res +1",
         "id": "resistance-plus-1",
@@ -409,6 +603,78 @@
         "stat_mod": {
             "spd": 3
         },
+        "type": "s"
+    },
+    "spur-atk-1": {
+        "description": "Grants adjacent allies Atk+2 during combat.",
+        "id": "spur-atk-1",
+        "name": "Spur Atk 1",
+        "type": "s"
+    },
+    "spur-atk-2": {
+        "description": "Grants adjacent allies Atk+3 during combat.",
+        "id": "spur-atk-2",
+        "name": "Spur Atk 2",
+        "type": "s"
+    },
+    "spur-atk-3": {
+        "description": "Grants adjacent allies Atk+4 during combat.",
+        "id": "spur-atk-3",
+        "name": "Spur Atk 3",
+        "type": "s"
+    },
+    "spur-def-1": {
+        "description": "Grants adjacent allies Def+2 during combat.",
+        "id": "spur-def-1",
+        "name": "Spur Def 1",
+        "type": "s"
+    },
+    "spur-def-2": {
+        "description": "Grants adjacent allies Def+3 during combat.",
+        "id": "spur-def-2",
+        "name": "Spur Def 2",
+        "type": "s"
+    },
+    "spur-def-3": {
+        "description": "Grants adjacent allies Def+4 during combat.",
+        "id": "spur-def-3",
+        "name": "Spur Def 3",
+        "type": "s"
+    },
+    "spur-res-1": {
+        "description": "Grants adjacent allies Res+2 during combat.",
+        "id": "spur-res-1",
+        "name": "Spur Res 1",
+        "type": "s"
+    },
+    "spur-res-2": {
+        "description": "Grants adjacent allies Res+3 during combat.",
+        "id": "spur-res-2",
+        "name": "Spur Res 2",
+        "type": "s"
+    },
+    "spur-res-3": {
+        "description": "Grants adjacent allies Res+4 during combat.",
+        "id": "spur-res-3",
+        "name": "Spur Res 3",
+        "type": "s"
+    },
+    "spur-spd-1": {
+        "description": "Grants adjacent allies Spd+2 during combat.",
+        "id": "spur-spd-1",
+        "name": "Spur Spd 1",
+        "type": "s"
+    },
+    "spur-spd-2": {
+        "description": "Grants adjacent allies Spd+3 during combat.",
+        "id": "spur-spd-2",
+        "name": "Spur Spd 2",
+        "type": "s"
+    },
+    "spur-spd-3": {
+        "description": "Grants adjacent allies Spd+4 during combat.",
+        "id": "spur-spd-3",
+        "name": "Spur Spd 3",
         "type": "s"
     },
     "squad-ace-a-1": {
@@ -544,6 +810,24 @@
         "stat_mod": {
             "atk": 3
         },
+        "type": "s"
+    },
+    "threaten-spd-1": {
+        "description": "Inflicts Spd-3 on foes within 2 spaces through their next actions at the start of each turn.",
+        "id": "threaten-spd-1",
+        "name": "Threaten Spd 1",
+        "type": "s"
+    },
+    "threaten-spd-2": {
+        "description": "Inflicts Spd-4 on foes within 2 spaces through their next actions at the start of each turn.",
+        "id": "threaten-spd-2",
+        "name": "Threaten Spd 2",
+        "type": "s"
+    },
+    "threaten-spd-3": {
+        "description": "Inflicts Spd-5 on foes within 2 spaces through their next actions at the start of each turn.",
+        "id": "threaten-spd-3",
+        "name": "Threaten Spd 3",
         "type": "s"
     }
 }
