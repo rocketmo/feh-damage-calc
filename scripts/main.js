@@ -734,6 +734,27 @@ function owlTomeBonus(battleInfo, adjacent, charToUse) {
 	return battleInfo;
 }
 
+//Handles bonuses from bonds. Before it was missing.
+function Bondbonus(battleInfo, charToUse, mod, name) {
+	if(mod.hasOwnProperty("atk"){
+	    battleInf[charToUse].atk+=mod.atk;
+	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased attack by "+mod.atk.toString()+ " [" + name + "].</li>"
+	}
+	if(mod.hasOwnProperty("spd"){
+	    battleInf[charToUse].spd+=mod.spd;
+	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased speed by "+mod.spd.toString()+ " [" + name + "].</li>"
+	}
+	if(mod.hasOwnProperty("def"){
+	    battleInf[charToUse].def+=mod.def;
+	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased defence by "+mod.def.toString()+ " [" + name + "].</li>"
+	}
+	if(mod.hasOwnProperty("res"){
+	    battleInf[charToUse].res+=mod.res;
+	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased resistance by "+mod.res.toString()+ " [" + name + "].</li>"
+	}
+	return battleInfo;
+}
+
 // applies a seal effect
 // battleInfo contains all battle information, container contains the seal effect data, source is the name of the seal source, attacker is true if we apply the effect on the attacker
 function applySeal(battleInfo, container, source, attacker) {
@@ -1384,6 +1405,12 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		battleInfo.logMsg += "Damage boosted by " + (attacker.specialData.dmg_suffer_buff * 100).toString() + "% of damage suffered [" + specialInfo[attacker.special].name + "]. ";
 		atkSpec = true;
 	}
+	
+	if(battleInfo.mirroringdmg>0){ //Has the mirror activated?
+	    dmg+=battleInfo.mirroringdmg;
+		battleInfo.logMsg += "Damage boosted by " + battleInfo.mirroringdmg.toString() + " [" + specialInfo[attacker.special].name + "]. ";
+	}
+	
 
 	// cap damage at 0 if negative
 	dmg = Math.max(dmg, 0);
@@ -1415,9 +1442,15 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		dmg += attacker.passiveBData.spec_damage_bonus;
 		battleInfo.logMsg += "Damage boosted by " + attacker.passiveBData.spec_damage_bonus.toString() + " on Special trigger [" + attacker.passiveBData.name + "]. ";
 	}
-
+	
+	battleInfo.mirroringdmg=0; //Add Fjorm special
+	
 	// percentage damage reduction from defender
 	if (defender.specialData.hasOwnProperty("reduce_dmg") && defender.specCurrCooldown <= 0 && defender.specialData.reduce_dmg.range === battleInfo.atkRange) {
+		
+		if(defender.specialData.reduce_dmg.mirror) //Can this special mirror?
+		    battleInfo.mirroringdmg=dmg; //If it can, let's store the initial dmg
+		
 		dmg -= roundNum(dmg * defender.specialData.reduce_dmg.dmg_mod, false);
 		battleInfo.logMsg += "Opponent reduces damage inflicted from ";
 		if (battleInfo.atkRange === 1) {
@@ -1450,10 +1483,13 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		}
 	}
 
+	if(attacker.name===defender.name) //Prevent "Multiple BIke"'s bug
+	    attacker.name+="o";
+		
 	battleInfo.lastActor = attacker.name;
 
-	// flat damage reduction from special trigger when attacked (shielding pulse etc)
-	if (defender.passiveBData.special_trigger_damage_reduction && defender.specCurrCooldown <= 0) {
+	// flat damage reduction from special trigger when attacked (shielding pulse etc). Had to edit because this works ONLY if the special activates (Try attacking Fjorm with a physical unit and see what happens without the edit)
+	if (defender.passiveBData.special_trigger_damage_reduction && defender.specCurrCooldown <= 0 && defender.specialData.reduce_dmg.range === battleInfo.atkRange) {
 		dmg -= defender.passiveBData.special_trigger_damage_reduction;
 		battleInfo.logMsg += "Opponent reduces damage inflicted ";
 		battleInfo.logMsg += "by " + defender.passiveBData.special_trigger_damage_reduction.toString() + " [" + skillInfo['b'][defender.passiveB].name + "]. ";
@@ -1468,7 +1504,9 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 
 	// Damage cannot be lower than 0.
 	dmg = Math.max(dmg, 0);
-
+	
+	battleInfo.mirroringdmg-=dmg; //Get total removed damage for Fjorm. This number can be >0 only if the defensive special activated
+	
 	// print damage dealt
 	battleInfo.logMsg += "<span class='dmg'>" + dmg.toString() + " damage dealt.</span> ";
 
@@ -1653,6 +1691,11 @@ function simBattle(battleInfo, displayMsg) {
 	if (attacker.passiveAData.hasOwnProperty("initiate_mod")) {
 		battleInfo = combatBonus(battleInfo, attacker.passiveAData.initiate_mod, skillInfo['a'][attacker.passiveA].name, "attacker", "by initiating combat");
 	}
+	
+	// Bond bonuses
+	if (attacker.passiveAData.hasOwnProperty("adjacent_stat_bonus") && attacker.adjacent > 0) {
+		battleInfo = BondBonus(battleInfo, "attacker", attacker.PassiveAData.adjacent_stat_bonus.mod, skillInfo['a'][attacker.passiveA].name);
+	}
 
 	// below hp threshold bonus
 	if (attacker.weaponData.hasOwnProperty("below_threshold_mod") && attacker.initHP <= checkRoundError(attacker.weaponData.below_threshold_mod.threshold * attacker.hp)) {
@@ -1700,6 +1743,11 @@ function simBattle(battleInfo, displayMsg) {
 
 	if (defender.passiveAData.hasOwnProperty("defend_mod")) {
 		battleInfo = combatBonus(battleInfo, defender.passiveAData.defend_mod, skillInfo['a'][defender.passiveA].name, "defender", "by getting attacked");
+	}
+	
+	// Bond bonuses
+	if (defender.passiveAData.hasOwnProperty("adjacent_stat_bonus") && defender.adjacent > 0) {
+		battleInfo = BondBonus(battleInfo, "defender", defender.PassiveAData.adjacent_stat_bonus.mod, skillInfo['a'][defender.passiveA].name);
 	}
 
 	// below hp threshold bonus
