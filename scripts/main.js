@@ -1450,9 +1450,10 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	// percentage damage reduction from defender
 	if (defender.specialData.hasOwnProperty("reduce_dmg") && defender.specCurrCooldown <= 0 && defender.specialData.reduce_dmg.range === battleInfo.atkRange) {
 		
-		if(defender.specialData.reduce_dmg.mirror) //Can this special mirror?
-		    battleInfo.mirroringdmg=dmg; //If it can, let's store the initial dmg
-		
+		if(defender.specialData.reduce_dmg.mirror){ //Can this special mirror?
+		    battleInfo.mirroringdmg+=dmg; //If it can, let's store the initial dmg
+		    beforemi=0;
+		}
 		dmg -= roundNum(dmg * defender.specialData.reduce_dmg.dmg_mod, false);
 		battleInfo.logMsg += "Opponent reduces damage inflicted from ";
 		if (battleInfo.atkRange === 1) {
