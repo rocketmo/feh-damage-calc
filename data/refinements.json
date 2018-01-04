@@ -1,0 +1,192 @@
+{
+	"melee 1":{
+		"attack refinement":{
+			"stat_mod":{
+				"hp": 5,
+				"atk": 3
+			}
+		},
+		"speed refinement":{
+			"stat_mod":{
+				"hp": 5,
+				"atk": 1,
+				"spd": 3
+			}
+		},
+		"defence refinement":{
+			"stat_mod":{
+				"hp": 5,
+				"atk": 1,
+				"def": 4
+			}
+		},
+		"resistance refinement":{
+			"stat_mod":{
+				"hp": 5,
+				"atk": 1,
+				"res": 4
+			}
+		}
+	},
+	"melee 2":{
+		"attack refinement":{
+			"stat_mod":{
+				"hp": 5,
+				"atk": 2
+			}
+		},
+		"speed refinement":{
+			"stat_mod":{
+				"hp": 5,
+				"spd": 3
+			}
+		},
+		"defence refinement":{
+			"stat_mod":{
+				"hp": 5,
+				"def": 4
+			}
+		},
+		"resistance refinement":{
+			"stat_mod":{
+				"hp": 5,
+				"res": 4
+			}
+		}
+	},
+	"ranged 1":{
+		"attack refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 2
+			}
+		},
+		"speed refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 1,
+				"spd": 2
+			}
+		},
+		"defence refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 1,
+				"def": 3
+			}
+		},
+		"resistance refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 1,
+				"res": 3
+			}
+		}
+	},
+	"ranged 2":{
+		"attack refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 1
+			}
+		},
+		"speed refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"spd": 2
+			}
+		},
+		"defence refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"def": 3
+			}
+		},
+		"resistance refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"res": 3
+			}
+		}
+	},
+	"ranged 3":{
+		"attack refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 4
+			}
+		},
+		"speed refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 3,
+				"spd": 2
+			}
+		},
+		"defence refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 3,
+				"def": 3
+			}
+		},
+		"resistance refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 3,
+				"res": 3
+			}
+		}
+	},
+	"special":{
+		"Sol Katti":{
+			"stat_mod":{
+				"hp":3
+			},
+			"brash" : {
+			"threshold" : 0.75
+			}
+		},
+		"Siegmund":{
+			"stat_mod":{
+				"hp":3
+			},
+			"bonus_follow_up": {
+				"trigger": "healthy",
+				"threshold": 0.9
+			}
+		},
+		"Fujin Yumi":
+		{
+		},
+		"Deathly Dagger":{
+			"stat_mod":{
+				"atk":3
+			},
+			"sweep": {
+				"weapon_type": {
+					"Red Tome": true,
+					"Red Breath": true,
+					"Green Tome": true,
+				}
+			}
+		},
+		"Mystletainn":
+		{
+		"stat_mod": {
+			"hp": 3,
+			"atk": 3,
+			"spd": 3,
+			"def": 3,
+			"res": 3,
+			},
+		"recoil_dmg": 6
+		},
+		"Hauteclere":{
+			"stat_mod":{
+				"hp":3
+			},
+		"spec_damage_bonus" : 10
+		}
+	}
+}

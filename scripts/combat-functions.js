@@ -91,6 +91,13 @@ function canNullifyEnemyBonuses(a, b) {
     return false;
 }
 
+//Function to add updated dragonstones
+function checkDefRes(hero) {
+	if(hero[def]>=hero[res])
+		return hero[def];
+	return hero[res];
+}
+
 //Subtracts bonuses from stats
 function removeStatBonuses(hero) {
     var stats = ['atk', 'spd', 'def', 'res'];
