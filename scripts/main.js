@@ -1439,9 +1439,11 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 			battleInfo.logMsg += "Opponent reduces damage from consecutive attack by " + ( (1 - multiplier) * 100 ).toFixed(0) + "%. ";
 		}
 	}
+	
+	var weapontype=weaponInfo[attacker.weaponName].type;
 
 	// Divine Tyrfing
-	if (!battleInfo.lastActor && defender.weaponData.first_dmg_reduction && attacker.weaponData.magical) {
+	if (!battleInfo.lastActor && defender.weaponData.first_dmg_reduction && defender.weaponData.weapon_defensive.includes(weaponInfo[attacker.weaponName].type)) {
 		var multiplier = defender.weaponData.first_dmg_reduction.multiplier;
 
 		if (multiplier !== 1) {
@@ -1550,7 +1552,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		battleInfo.attacker = defender;
 		battleInfo.defender = attacker;
 	}
-
+		
 	// check for a brave weapon
 	if (initiator && attacker.weaponData.hasOwnProperty("brave") && !brave && defender.currHP > 0) {
 		battleInfo = singleCombat(battleInfo, initiator, "attacks again immediately [" + weaponInfo[attacker.weaponName].name + "]", true);
