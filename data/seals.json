@@ -534,6 +534,36 @@
         "name": "Panic Ploy 3",
         "type": "s"
     },
+    "phantom-spd-1": {
+        "description": "When any skill compares this unit's Spd stat to another unit's, this unit's Spd stat is counted as +5 over actual value.",
+        "id": "phantom-spd-1",
+        "name": "Phantom Spd 1",
+        "phantom_stat": {
+            "stat":"spd",
+            "adv": 5
+        },
+        "type": "s"
+    },
+    "phantom-spd-2": {
+        "description": "When any skill compares this unit's Spd stat to another unit's, this unit's Spd stat is counted as +8 over actual value.",
+        "id": "phantom-spd-2",
+        "name": "Phantom Spd 2",
+        "phantom_stat": {
+            "stat":"spd",
+            "adv": 8
+        },
+        "type": "s"
+    },
+    "phantom-spd-3": {
+        "description": "When any skill compares this unit's Spd stat to another unit's, this unit's Spd stat is counted as +10 over actual value.",
+        "id": "phantom-spd-3",
+        "name": "Phantom Spd 3",
+        "phantom_stat": {
+            "stat":"spd",
+            "adv": 10
+        },
+        "type": "s"
+    },
     "quickened-pulse": {
         "description": "Special cooldown count -1 at start of Turn 1.",
         "id": "quickened-pulse",
