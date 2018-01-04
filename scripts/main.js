@@ -737,19 +737,19 @@ function owlTomeBonus(battleInfo, adjacent, charToUse) {
 //Handles bonuses from bonds. Before it was missing.
 function BondBonus(battleInfo, charToUse, mod, name) {
 	if(mod.hasOwnProperty("atk"){
-	    battleInf[charToUse].atk+=mod.atk;
+	    battleInfo[charToUse].atk+=mod.atk;
 	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased attack by "+mod.atk.toString()+ " [" + name + "].</li>"
 	}
 	if(mod.hasOwnProperty("spd"){
-	    battleInf[charToUse].spd+=mod.spd;
+	    battleInfo[charToUse].spd+=mod.spd;
 	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased speed by "+mod.spd.toString()+ " [" + name + "].</li>"
 	}
 	if(mod.hasOwnProperty("def"){
-	    battleInf[charToUse].def+=mod.def;
+	    battleInfo[charToUse].def+=mod.def;
 	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased defence by "+mod.def.toString()+ " [" + name + "].</li>"
 	}
 	if(mod.hasOwnProperty("res"){
-	    battleInf[charToUse].res+=mod.res;
+	    battleInfo[charToUse].res+=mod.res;
 	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased resistance by "+mod.res.toString()+ " [" + name + "].</li>"
 	}
 	return battleInfo;
