@@ -1214,11 +1214,19 @@ function hasSpecAccel(battleInfo, attacker) {
 	}
 
 	if ( mainUnit.passiveAData.hasOwnProperty("spec_accel") && (mainUnit[mainUnit.passiveAData.spec_accel.stat] - otherUnit[mainUnit.passiveAData.spec_accel.stat] >= mainUnit.passiveAData.spec_accel.adv)) {
-	 	return true;
+		return true;
+	} else {
+		if (mainUnit[mainUnit.passiveAData.spec_accel.stat] == mainUnit[mainUnit.sealData.phantom_stat.stat] && (mainUnit[mainUnit.passiveAData.spec_accel.stat] + mainUnit[mainUnit.sealData.phantom_stat.adv) - otherUnit[mainUnit.passiveAData.spec_accel.stat] >= mainUnit.passiveAData.spec_accel.adv) {
+				return true;
+		}
 	}
 
 	if ( mainUnit.weaponData.hasOwnProperty("spec_accel") && (mainUnit[mainUnit.weaponData.spec_accel.stat] - otherUnit[mainUnit.weaponData.spec_accel.stat] >= mainUnit.weaponData.spec_accel.adv)) {
-	 	return true;
+		return true;
+	} else {
+		if (mainUnit[mainUnit.weaponData.spec_accel.stat] == mainUnit[mainUnit.sealData.phantom_stat.stat] && ( (mainUnit[mainUnit.weaponData.spec_accel.stat] + mainUnit[mainUnit.sealData.phantom_stat.adv) - otherUnit[mainUnit.weaponData.spec_accel.stat] >= mainUnit.weaponData.spec_accel.adv )) {
+			return true;
+		}
 	}
 
 	return false
