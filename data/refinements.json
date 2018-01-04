@@ -109,7 +109,7 @@
 			}
 		}
 	},
-	"ranged 3":{
+	"dagger 1":{
 		"attack refinement":{
 			"stat_mod":{
 				"hp": 2,
@@ -134,6 +134,64 @@
 			"stat_mod":{
 				"hp": 2,
 				"atk": 3,
+				"res": 3
+			}
+		}
+	},
+	"dagger 2":{
+		"attack refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 5
+			}
+		},
+		"speed refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 4,
+				"spd": 2
+			}
+		},
+		"defence refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 4,
+				"def": 3
+			}
+		},
+		"resistance refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 4,
+				"res": 3
+			}
+		}
+	},
+	"dagger 3":{
+		"attack refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 6
+			}
+		},
+		"speed refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 5,
+				"spd": 2
+			}
+		},
+		"defence refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 5,
+				"def": 3
+			}
+		},
+		"resistance refinement":{
+			"stat_mod":{
+				"hp": 2,
+				"atk": 5,
 				"res": 3
 			}
 		}
