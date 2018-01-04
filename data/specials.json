@@ -28,30 +28,30 @@
         "weapon_restrict" : "Staff"
     },
     "Astra" : {
-        "cooldown" : 5,
+        "cooldown" : 4,
         "dmg_mod" : 1.5,
         "weapon_restrict" : "Staff"
     },
     "Blazing Flame" : {
-        "cooldown" : 5,
+        "cooldown" : 4,
         "before_combat_aoe" : true,
         "aoe_dmg_mod" : 1.5,
         "weapon_restrict" : "Staff"
     },
     "Blazing Light" : {
-        "cooldown" : 5,
+        "cooldown" : 4,
         "before_combat_aoe" : true,
         "aoe_dmg_mod" : 1.5,
         "weapon_restrict" : "Staff"
     },
     "Blazing Thunder" : {
-        "cooldown" : 5,
+        "cooldown" : 4,
         "before_combat_aoe" : true,
         "aoe_dmg_mod" : 1.5,
         "weapon_restrict" : "Staff"
     },
     "Blazing Wind" : {
-        "cooldown" : 5,
+        "cooldown" : 4,
         "before_combat_aoe" : true,
         "aoe_dmg_mod" : 1.5,
         "weapon_restrict" : "Staff"
@@ -81,7 +81,7 @@
         "weapon_restrict" : "Staff"
     },
     "Daylight" : {
-        "cooldown" : 4,
+        "cooldown" : 3,
         "heal_dmg" : 0.3,
         "weapon_restrict" : "Staff"
     },
@@ -131,7 +131,7 @@
         "weapon_restrict" : "Staff"
     },
     "Glimmer" : {
-        "cooldown" : 3,
+        "cooldown" : 2,
         "dmg_mod" : 0.5,
         "weapon_restrict" : "Staff"
     },
@@ -144,22 +144,22 @@
         "weapon_restrict" : "Staff"
     },
     "Growing Flame" : {
-        "cooldown" : 5,
+        "cooldown" : 4,
         "before_combat_aoe" : true,
         "weapon_restrict" : "Staff"
     },
     "Growing Light" : {
-        "cooldown" : 5,
+        "cooldown" : 4,
         "before_combat_aoe" : true,
         "weapon_restrict" : "Staff"
     },
 	"Growing Thunder" : {
-        "cooldown" : 5,
+        "cooldown" : 4,
         "before_combat_aoe" : true,
         "weapon_restrict" : "Staff"
     },
     "Growing Wind" : {
-        "cooldown" : 5,
+        "cooldown" : 4,
         "before_combat_aoe" : true,
         "weapon_restrict" : "Staff"
     },
@@ -225,12 +225,12 @@
         "weapon_restrict" : "Staff"
     },
     "Night Sky" : {
-        "cooldown" : 4,
+        "cooldown" : 3,
         "dmg_mod" : 0.5,
         "weapon_restrict" : "Staff"
     },
     "Noontime" : {
-        "cooldown" : 3,
+        "cooldown" : 2,
         "heal_dmg" : 0.3,
         "weapon_restrict" : "Staff"
     },
@@ -253,22 +253,22 @@
         "weapon_restrict" : "Staff"
     },
     "Rising Flame" : {
-        "cooldown" : 5,
+        "cooldown" : 4,
         "before_combat_aoe" : true,
         "weapon_restrict" : "Staff"
     },
     "Rising Light" : {
-        "cooldown" : 5,
+        "cooldown" : 4,
         "before_combat_aoe" : true,
         "weapon_restrict" : "Staff"
     },
     "Rising Thunder" : {
-        "cooldown" : 5,
+        "cooldown" : 4,
         "before_combat_aoe" : true,
         "weapon_restrict" : "Staff"
     },
     "Rising Wind" : {
-        "cooldown" : 5,
+        "cooldown" : 4,
         "before_combat_aoe" : true,
         "weapon_restrict" : "Staff"
     },
@@ -281,7 +281,7 @@
         "range_unique" : 1
     },
     "Sol" : {
-        "cooldown" : 4,
+        "cooldown" : 3,
         "heal_dmg" : 0.5,
         "weapon_restrict" : "Staff"
     },
