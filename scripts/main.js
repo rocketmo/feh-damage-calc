@@ -1445,6 +1445,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	}
 	if(!(battleInfo.lastActor===attacker.name&&battleInfo.mirroringdmg>0))//Desperation or brave problems
 	battleInfo.mirroringdmg=0; //Add Fjorm special
+	var beforemi=battleInfo.mirroringdmg;
 	
 	// percentage damage reduction from defender
 	if (defender.specialData.hasOwnProperty("reduce_dmg") && defender.specCurrCooldown <= 0 && defender.specialData.reduce_dmg.range === battleInfo.atkRange) {
@@ -1506,7 +1507,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	// Damage cannot be lower than 0.
 	dmg = Math.max(dmg, 0);
 	
-	if(!(battleInfo.lastActor===attacker.name&&battleInfo.mirroringdmg>0))//Desperation or brave problems
+	if(!(beforemi>0))//Desperation or brave problems
 	battleInfo.mirroringdmg-=dmg; //Get total removed damage for Fjorm. This number can be >0 only if the defensive special activated
 	
 	// print damage dealt
