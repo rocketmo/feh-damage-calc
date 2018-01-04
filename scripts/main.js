@@ -735,7 +735,7 @@ function owlTomeBonus(battleInfo, adjacent, charToUse) {
 }
 
 //Handles bonuses from bonds. Before it was missing.
-function Bondbonus(battleInfo, charToUse, mod, name) {
+function BondBonus(battleInfo, charToUse, mod, name) {
 	if(mod.hasOwnProperty("atk"){
 	    battleInf[charToUse].atk+=mod.atk;
 	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased attack by "+mod.atk.toString()+ " [" + name + "].</li>"
