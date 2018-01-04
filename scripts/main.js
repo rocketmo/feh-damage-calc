@@ -737,19 +737,19 @@ function owlTomeBonus(battleInfo, adjacent, charToUse) {
 //Handles bonuses from bonds. Before it was missing.
 function BondBonus(battleInfo, charToUse, mod, name) {
 	if(mod.hasOwnProperty("atk"){
-	    battleInfo[charToUse].atk+=mod.atk;
+	    battleInf[charToUse].atk+=mod.atk;
 	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased attack by "+mod.atk.toString()+ " [" + name + "].</li>"
 	}
 	if(mod.hasOwnProperty("spd"){
-	    battleInfo[charToUse].spd+=mod.spd;
+	    battleInf[charToUse].spd+=mod.spd;
 	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased speed by "+mod.spd.toString()+ " [" + name + "].</li>"
 	}
 	if(mod.hasOwnProperty("def"){
-	    battleInfo[charToUse].def+=mod.def;
+	    battleInf[charToUse].def+=mod.def;
 	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased defence by "+mod.def.toString()+ " [" + name + "].</li>"
 	}
 	if(mod.hasOwnProperty("res"){
-	    battleInfo[charToUse].res+=mod.res;
+	    battleInf[charToUse].res+=mod.res;
 	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased resistance by "+mod.res.toString()+ " [" + name + "].</li>"
 	}
 	return battleInfo;
@@ -1406,7 +1406,8 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		atkSpec = true;
 	}
 	
-	if(battleInfo.mirroringdmg>0){ //Has the mirror activated?
+	if(battleInfo.lastActor!==attacker.name&&battleInfo.mirroringdmg>0)//Desperation or brave problems)
+	{ //Has the mirror activated?
 	    dmg+=battleInfo.mirroringdmg;
 		battleInfo.logMsg += "Damage boosted by " + battleInfo.mirroringdmg.toString() + " [" + specialInfo[attacker.special].name + "]. ";
 	}
@@ -1442,7 +1443,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		dmg += attacker.passiveBData.spec_damage_bonus;
 		battleInfo.logMsg += "Damage boosted by " + attacker.passiveBData.spec_damage_bonus.toString() + " on Special trigger [" + attacker.passiveBData.name + "]. ";
 	}
-	
+	if(!(battleInfo.lastActor===attacker.name&&battleInfo.mirroringdmg>0))//Desperation or brave problems
 	battleInfo.mirroringdmg=0; //Add Fjorm special
 	
 	// percentage damage reduction from defender
@@ -1505,6 +1506,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	// Damage cannot be lower than 0.
 	dmg = Math.max(dmg, 0);
 	
+	if(!(battleInfo.lastActor===attacker.name&&battleInfo.mirroringdmg>0))//Desperation or brave problems
 	battleInfo.mirroringdmg-=dmg; //Get total removed damage for Fjorm. This number can be >0 only if the defensive special activated
 	
 	// print damage dealt
