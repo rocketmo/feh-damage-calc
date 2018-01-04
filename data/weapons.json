@@ -196,6 +196,12 @@
 		"stat_mod": {
 			"res": 3
 		},
+		"weapon_defensive": [
+			"Tome",
+			"Red Tome",
+			"Blue Tome",
+			"Green Tome"
+		],
 		"first_dmg_reduction": {
 			"weapon_type": [],
 			"multiplier": 0.5
