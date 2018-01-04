@@ -196,6 +196,14 @@
 			}
 		}
 	},
+	"staff":{
+		"dazzling refinement":{
+			"prevent_enemy_counter": 0,
+		},
+		"wrathful refinement":{
+			"reg_weapon_dmg": 0,
+		}
+	},
 	"special":{
 		"Sol Katti":{
 			"stat_mod":{
