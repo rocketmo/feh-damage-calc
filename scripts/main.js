@@ -1439,8 +1439,6 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 			battleInfo.logMsg += "Opponent reduces damage from consecutive attack by " + ( (1 - multiplier) * 100 ).toFixed(0) + "%. ";
 		}
 	}
-	
-	var weapontype=weaponInfo[attacker.weaponName].type;
 
 	// Divine Tyrfing
 	if (!battleInfo.lastActor && defender.weaponData.first_dmg_reduction && defender.weaponData.weapon_defensive.includes(weaponInfo[attacker.weaponName].type)) {
