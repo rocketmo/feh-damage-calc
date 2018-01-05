@@ -32,7 +32,7 @@ function subtractSupportBuff(rank, type, stats) {
 
 //Displays support buffs in base stats
 function changeSupportBuff(rank, type, charNum) {
-    
+
     var fieldID = '#' + type + '-support-' + charNum;
     var field = $(fieldID);
     if (!field.data('info')) {
