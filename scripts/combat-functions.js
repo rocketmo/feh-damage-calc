@@ -278,3 +278,57 @@ function combatBonus(battleInfo, statMods, modSource, charClass, srcMsg) {
 
 	return battleInfo;
 }
+
+
+// checks if a unit can accelerate special cooldown
+// battleInfo contains the needed info for battle, attacker is true if we are accelerating the attacker's special
+function hasSpecAccel(battleInfo, attacker) {
+
+	var mainUnit = attacker ? battleInfo.attacker : battleInfo.defender;
+	var otherUnit = attacker ? battleInfo.defender : battleInfo.attacker;
+
+    //Check every hero ability for spec_accel data
+    for (var i = 0; i < checks.length; i++) {
+        var key = checks[i];
+
+        //If no spec_accel data, continue to next ability
+        if (!mainUnit[key].spec_accel) {
+            continue;
+        }
+
+        var stat = mainUnit[key].spec_accel.stat;
+        var reqStatAdvantage = mainUnit[key].spec_accel.adv;
+
+        //If spec_accel data does not have stat information, there are no requirements
+        if (!stat) {
+            return true;
+        }
+        //Otherwise we need to compare stats
+        else {
+
+            //Account for bonuses to comparisons like phantom speed
+            var pStat = phantomStat(mainUnit, stat);
+
+            if (pstat - otherUnit[stat] >= reqStatAdvantage) {
+                return true;
+            }
+
+        }
+    }
+
+	return false
+}
+
+//Returns a specific hero's stat with phantom stats included
+function phantomStat(hero, stat) {
+
+    var pStat = hero[stat];
+
+    checks.forEach(function(key) {
+        if (hero[key].phantom_stat_mod && hero[key].phantom_stat_mod[stat]) {
+            pstat += hero[key].phantom_stat_mod[stat];
+        }
+    });
+
+    return pStat;
+}
