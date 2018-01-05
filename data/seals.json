@@ -106,8 +106,8 @@
     },
     "close-def-1": {
         "description": "If unit is attacked by foe using sword, axe, lance, or dragonstone, unit receives Def/Res+2 during combat.",
-        "id": "distant-def-1",
-        "name": "Distant Def 1",
+        "id": "close-def-1",
+        "name": "Close Def 1",
         "type_defend_mod": {
             "weapon_type": {
                 "Sword": true,
@@ -124,8 +124,8 @@
     },
     "close-def-2": {
         "description": "If unit is attacked by foe using sword, axe, lance, or dragonstone, unit receives Def/Res+4 during combat.",
-        "id": "distant-def-2",
-        "name": "Distant Def 2",
+        "id": "close-def-2",
+        "name": "Close Def 2",
         "type_defend_mod": {
             "weapon_type": {
                 "Sword": true,
@@ -142,8 +142,8 @@
     },
     "close-def-3": {
         "description": "If unit is attacked by foe using sword, axe, lance, or dragonstone, unit receives Def/Res+6 during combat.",
-        "id": "distant-def-3",
-        "name": "Distant Def 3",
+        "id": "close-def-3",
+        "name": "Close Def 3",
         "type_defend_mod": {
             "weapon_type": {
                 "Sword": true,
