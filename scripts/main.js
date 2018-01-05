@@ -1362,6 +1362,13 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		battleInfo.logMsg += "Damage boosted by " + (attacker.specialData.dmg_suffer_buff * 100).toString() + "% of damage suffered [" + specialInfo[attacker.special].name + "]. ";
 		atkSpec = true;
 	}
+	
+	if(battleInfo.lastActor!==attacker.name&&battleInfo.mirroringdmg>0)//Desperation or brave problems)
+	{ //Has the mirror activated?
+	    dmg+=battleInfo.mirroringdmg;
+		battleInfo.logMsg += "Damage boosted by " + battleInfo.mirroringdmg.toString() + " [" + specialInfo[attacker.special].name + "]. ";
+	}
+	
 
 	// cap damage at 0 if negative
 	dmg = Math.max(dmg, 0);
@@ -1393,9 +1400,19 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		dmg += attacker.passiveBData.spec_damage_bonus;
 		battleInfo.logMsg += "Damage boosted by " + attacker.passiveBData.spec_damage_bonus.toString() + " on Special trigger [" + attacker.passiveBData.name + "]. ";
 	}
-
+	
+	//Mirror setup
+	if(!(battleInfo.lastActor===attacker.name&&battleInfo.mirroringdmg>0))//Desperation or brave problems
+	battleInfo.mirroringdmg=0; //Add Fjorm special
+	var beforemi=battleInfo.mirroringdmg;
+	
 	// percentage damage reduction from defender
 	if (defender.specialData.hasOwnProperty("reduce_dmg") && defender.specCurrCooldown <= 0 && defender.specialData.reduce_dmg.range === battleInfo.atkRange) {
+		
+		if(defender.specialData.reduce_dmg.mirror){ //Can this special mirror?
+		    battleInfo.mirroringdmg+=dmg; //If it can, let's store the initial dmg
+		    beforemi=0;
+		}
 		dmg -= roundNum(dmg * defender.specialData.reduce_dmg.dmg_mod, false);
 		battleInfo.logMsg += "Opponent reduces damage inflicted from ";
 		if (battleInfo.atkRange === 1) {
@@ -1419,7 +1436,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 	}
 
 	// Divine Tyrfing
-	if (!battleInfo.lastActor && defender.weaponData.first_dmg_reduction && attacker.weaponData.magical) {
+	if (!battleInfo.lastActor && defender.weaponData.first_dmg_reduction && defender.weaponData.weapon_defensive.includes(weaponInfo[attacker.weaponName].type)) {
 		var multiplier = defender.weaponData.first_dmg_reduction.multiplier;
 
 		if (multiplier !== 1) {
@@ -1428,10 +1445,13 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		}
 	}
 
+	if(attacker.name===defender.name) //Prevent "Multiple BIke"'s bug
+	    attacker.name+="o";
+		
 	battleInfo.lastActor = attacker.name;
 
-	// flat damage reduction from special trigger when attacked (shielding pulse etc)
-	if (defender.passiveBData.special_trigger_damage_reduction && defender.specCurrCooldown <= 0) {
+	// flat damage reduction from special trigger when attacked (shielding pulse etc). Had to edit because this works ONLY if the special activates (Try attacking Fjorm with a physical unit and see what happens without the edit)
+	if (defender.passiveBData.special_trigger_damage_reduction && defender.specCurrCooldown <= 0 && defender.specialData.reduce_dmg.range === battleInfo.atkRange) {
 		dmg -= defender.passiveBData.special_trigger_damage_reduction;
 		battleInfo.logMsg += "Opponent reduces damage inflicted ";
 		battleInfo.logMsg += "by " + defender.passiveBData.special_trigger_damage_reduction.toString() + " [" + skillInfo['b'][defender.passiveB].name + "]. ";
@@ -1446,7 +1466,10 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 
 	// Damage cannot be lower than 0.
 	dmg = Math.max(dmg, 0);
-
+	
+	if(!(beforemi>0))//Desperation or brave problems
+	battleInfo.mirroringdmg-=dmg; //Get total removed damage for Fjorm. This number can be >0 only if the defensive special activated
+	
 	// print damage dealt
 	battleInfo.logMsg += "<span class='dmg'>" + dmg.toString() + " damage dealt.</span> ";
 
@@ -1528,7 +1551,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		battleInfo.attacker = defender;
 		battleInfo.defender = attacker;
 	}
-
+		
 	// check for a brave weapon
 	if (initiator && attacker.weaponData.hasOwnProperty("brave") && !brave && defender.currHP > 0) {
 		battleInfo = singleCombat(battleInfo, initiator, "attacks again immediately [" + weaponInfo[attacker.weaponName].name + "]", true);
@@ -1729,6 +1752,9 @@ function simBattle(battleInfo, displayMsg) {
 	if (defender.weaponData.hasOwnProperty("adjacent_ally_bonus") && defender.adjacent > 0) {
 		battleInfo = owlTomeBonus(battleInfo, defender.adjacent, "defender");
 	}
+	
+	//adjacent stat bonus
+	adjacentStatBonus(battleInfo, defender, "defender");
 
 	// can defender counter
 	var defCC = defCanCounter(battleInfo);

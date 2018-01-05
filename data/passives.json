@@ -7,7 +7,7 @@
 			"target": "self",
 			"adjacent": "ally",
 			"mod": {
-				"spdk": 3,
+				"spd": 3,
 				"def": 3
 			}
 		}

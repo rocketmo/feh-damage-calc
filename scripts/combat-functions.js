@@ -254,7 +254,7 @@ function enemyPhaseCharge(battleInfo, attacker, defender) {
         if (effect) {
             if (effect.attack && Object.is(attacker, battleInfo.defender)) {
                 battleInfo.logMsg += battleInfo.defender.display + " gained an additional special cooldown charge [" + battleInfo.defender[key].name + "]! ";
-                defender.specCurrCooldown--;
+                attacker.specCurrCooldown--;
             }
             else if (effect.defend && Object.is(defender, battleInfo.defender)) {
             	battleInfo.logMsg += battleInfo.defender.display + " gained an additional special cooldown charge [" + battleInfo.defender[key].name + "]! ";
