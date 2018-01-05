@@ -309,7 +309,7 @@ function hasSpecAccel(battleInfo, attacker) {
             //Account for bonuses to comparisons like phantom speed
             var pStat = phantomStat(mainUnit, stat);
 
-            if (pstat - otherUnit[stat] >= reqStatAdvantage) {
+            if (pStat - otherUnit[stat] >= reqStatAdvantage) {
                 return true;
             }
 
