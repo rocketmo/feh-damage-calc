@@ -1202,28 +1202,6 @@ function canActivateDesperation(container, initHP, maxHP) {
 	return container.hasOwnProperty("desperation") && initHP <= checkRoundError(container.desperation.threshold * maxHP);
 }
 
-// checks if a unit can accelerate special cooldown
-// battleInfo contains the needed info for battle, attacker is true if we are accelerating the attacker's special
-function hasSpecAccel(battleInfo, attacker) {
-
-	var mainUnit = attacker ? battleInfo.attacker : battleInfo.defender;
-	var otherUnit = attacker ? battleInfo.defender : battleInfo.attacker;
-
-	if (mainUnit.weaponData.spec_accel && !mainUnit.weaponData.spec_accel.stat) {
-		return true;
-	}
-
-	if ( mainUnit.passiveAData.hasOwnProperty("spec_accel") && (mainUnit[mainUnit.passiveAData.spec_accel.stat] - otherUnit[mainUnit.passiveAData.spec_accel.stat] >= mainUnit.passiveAData.spec_accel.adv)) {
-	 	return true;
-	}
-
-	if ( mainUnit.weaponData.hasOwnProperty("spec_accel") && (mainUnit[mainUnit.weaponData.spec_accel.stat] - otherUnit[mainUnit.weaponData.spec_accel.stat] >= mainUnit.weaponData.spec_accel.adv)) {
-	 	return true;
-	}
-
-	return false
-}
-
 // checks if a unit can activate guard ability
 // battleInfo contains the needed info for battle, attacker is true if we look for the ability on the attacker
 function canActivateGuard(battleInfo, attacker) {

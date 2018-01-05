@@ -52,7 +52,8 @@ var initFilters = true;
 /*
  * Pulling json data from kagerochart.
  */
-$.getJSON('https://kagerochart.com/damage-calc/data', function(data) {
+//$.getJSON('https://kagerochart.com/damage-calc/data', function(data) {
+$.getJSON('http://localhost:8080/damage-calc/data', function(data) {
 	console.log('Retrieving hero data from KageroChart...');
 }).fail(function(res) {
 	console.log('Error retrieving data.');
