@@ -1422,27 +1422,6 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		dmg += attacker.passiveBData.spec_damage_bonus;
 		battleInfo.logMsg += "Damage boosted by " + attacker.passiveBData.spec_damage_bonus.toString() + " on Special trigger [" + attacker.passiveBData.name + "]. ";
 	}
-	if(!(battleInfo.lastActor===attacker.name&&battleInfo.mirroringdmg>0))//Desperation or brave problems
-	battleInfo.mirroringdmg=0; //Add Fjorm special
-	var beforemi=battleInfo.mirroringdmg;
-	
-	// percentage damage reduction from defender
-	if (defender.specialData.hasOwnProperty("reduce_dmg") && defender.specCurrCooldown <= 0 && defender.specialData.reduce_dmg.range === battleInfo.atkRange) {
-		
-		if(defender.specialData.reduce_dmg.mirror){ //Can this special mirror?
-		    battleInfo.mirroringdmg+=dmg; //If it can, let's store the initial dmg
-		    beforemi=0;
-		}
-		dmg -= roundNum(dmg * defender.specialData.reduce_dmg.dmg_mod, false);
-		battleInfo.logMsg += "Opponent reduces damage inflicted from ";
-		if (battleInfo.atkRange === 1) {
-			battleInfo.logMsg += "adjacent attacks ";
-		} else {
-			battleInfo.logMsg += battleInfo.atkRange.toString() + " spaces away ";
-		}
-		battleInfo.logMsg += "by " + (defender.specialData.reduce_dmg.dmg_mod * 100).toString() + "% [" + specialInfo[defender.special].name + "]. ";
-		defSpec = true;
-	}
 
 	// Damage reduction for sequential attacks (originally for Urvan)
 	if (battleInfo.lastActor === attacker.name) {
@@ -1463,6 +1442,29 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 			dmg = roundNum(dmg * multiplier, true);
 			battleInfo.logMsg += "Opponent reduces damage from first attack by " + ( (1 - multiplier) * 100 ).toFixed(0) + "%. ";
 		}
+	}
+	
+	//Mirror, had to move it because this happens after the reductions
+	if(!(battleInfo.lastActor===attacker.name&&battleInfo.mirroringdmg>0))//Desperation or brave problems
+	battleInfo.mirroringdmg=0; //Add Fjorm special
+	var beforemi=battleInfo.mirroringdmg;
+	
+	// percentage damage reduction from defender
+	if (defender.specialData.hasOwnProperty("reduce_dmg") && defender.specCurrCooldown <= 0 && defender.specialData.reduce_dmg.range === battleInfo.atkRange) {
+		
+		if(defender.specialData.reduce_dmg.mirror){ //Can this special mirror?
+		    battleInfo.mirroringdmg+=dmg; //If it can, let's store the initial dmg
+		    beforemi=0;
+		}
+		dmg -= roundNum(dmg * defender.specialData.reduce_dmg.dmg_mod, false);
+		battleInfo.logMsg += "Opponent reduces damage inflicted from ";
+		if (battleInfo.atkRange === 1) {
+			battleInfo.logMsg += "adjacent attacks ";
+		} else {
+			battleInfo.logMsg += battleInfo.atkRange.toString() + " spaces away ";
+		}
+		battleInfo.logMsg += "by " + (defender.specialData.reduce_dmg.dmg_mod * 100).toString() + "% [" + specialInfo[defender.special].name + "]. ";
+		defSpec = true;
 	}
 
 	if(attacker.name===defender.name) //Prevent "Multiple BIke"'s bug
