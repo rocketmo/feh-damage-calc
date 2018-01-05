@@ -1422,29 +1422,8 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		dmg += attacker.passiveBData.spec_damage_bonus;
 		battleInfo.logMsg += "Damage boosted by " + attacker.passiveBData.spec_damage_bonus.toString() + " on Special trigger [" + attacker.passiveBData.name + "]. ";
 	}
-
-	// Damage reduction for sequential attacks (originally for Urvan)
-	if (battleInfo.lastActor === attacker.name) {
-
-		var multiplier = consecutiveDamageReduction(dmg, defender, attacker)
-
-		if (multiplier !== 1) {
-			dmg = roundNum(dmg * multiplier, true);
-			battleInfo.logMsg += "Opponent reduces damage from consecutive attack by " + ( (1 - multiplier) * 100 ).toFixed(0) + "%. ";
-		}
-	}
-
-	// Divine Tyrfing
-	if (!battleInfo.lastActor && defender.weaponData.first_dmg_reduction && defender.weaponData.weapon_defensive.includes(weaponInfo[attacker.weaponName].type)) {
-		var multiplier = defender.weaponData.first_dmg_reduction.multiplier;
-
-		if (multiplier !== 1) {
-			dmg = roundNum(dmg * multiplier, true);
-			battleInfo.logMsg += "Opponent reduces damage from first attack by " + ( (1 - multiplier) * 100 ).toFixed(0) + "%. ";
-		}
-	}
 	
-	//Mirror, had to move it because this happens after the reductions
+	//Mirror setup
 	if(!(battleInfo.lastActor===attacker.name&&battleInfo.mirroringdmg>0))//Desperation or brave problems
 	battleInfo.mirroringdmg=0; //Add Fjorm special
 	var beforemi=battleInfo.mirroringdmg;
@@ -1465,6 +1444,27 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 		}
 		battleInfo.logMsg += "by " + (defender.specialData.reduce_dmg.dmg_mod * 100).toString() + "% [" + specialInfo[defender.special].name + "]. ";
 		defSpec = true;
+	}
+
+	// Damage reduction for sequential attacks (originally for Urvan)
+	if (battleInfo.lastActor === attacker.name) {
+
+		var multiplier = consecutiveDamageReduction(dmg, defender, attacker)
+
+		if (multiplier !== 1) {
+			dmg = roundNum(dmg * multiplier, true);
+			battleInfo.logMsg += "Opponent reduces damage from consecutive attack by " + ( (1 - multiplier) * 100 ).toFixed(0) + "%. ";
+		}
+	}
+
+	// Divine Tyrfing
+	if (!battleInfo.lastActor && defender.weaponData.first_dmg_reduction && defender.weaponData.weapon_defensive.includes(weaponInfo[attacker.weaponName].type)) {
+		var multiplier = defender.weaponData.first_dmg_reduction.multiplier;
+
+		if (multiplier !== 1) {
+			dmg = roundNum(dmg * multiplier, true);
+			battleInfo.logMsg += "Opponent reduces damage from first attack by " + ( (1 - multiplier) * 100 ).toFixed(0) + "%. ";
+		}
 	}
 
 	if(attacker.name===defender.name) //Prevent "Multiple BIke"'s bug
