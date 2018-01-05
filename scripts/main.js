@@ -734,27 +734,6 @@ function owlTomeBonus(battleInfo, adjacent, charToUse) {
 	return battleInfo;
 }
 
-//Handles bonuses from bonds. Before it was missing.
-function BondBonus(battleInfo, charToUse, mod, name) {
-	if(mod.hasOwnProperty("atk"){
-	    battleInfo[charToUse].atk+=mod.atk;
-	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased attack by "+mod.atk.toString()+ " [" + name + "].</li>"
-	}
-	if(mod.hasOwnProperty("spd"){
-	    battleInfo[charToUse].spd+=mod.spd;
-	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased speed by "+mod.spd.toString()+ " [" + name + "].</li>"
-	}
-	if(mod.hasOwnProperty("def"){
-	    battleInfo[charToUse].def+=mod.def;
-	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased defence by "+mod.def.toString()+ " [" + name + "].</li>"
-	}
-	if(mod.hasOwnProperty("res"){
-	    battleInfo[charToUse].res+=mod.res;
-	    battleInfo.logMsg+="<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> increased resistance by "+mod.res.toString()+ " [" + name + "].</li>"
-	}
-	return battleInfo;
-}
-
 // applies a seal effect
 // battleInfo contains all battle information, container contains the seal effect data, source is the name of the seal source, attacker is true if we apply the effect on the attacker
 function applySeal(battleInfo, container, source, attacker) {
@@ -1695,11 +1674,6 @@ function simBattle(battleInfo, displayMsg) {
 	if (attacker.passiveAData.hasOwnProperty("initiate_mod")) {
 		battleInfo = combatBonus(battleInfo, attacker.passiveAData.initiate_mod, skillInfo['a'][attacker.passiveA].name, "attacker", "by initiating combat");
 	}
-	
-	// Bond bonuses
-	if (attacker.passiveAData.hasOwnProperty("adjacent_stat_bonus") && attacker.adjacent > 0) {
-		battleInfo = BondBonus(battleInfo, "attacker", attacker.PassiveAData.adjacent_stat_bonus.mod, skillInfo['a'][attacker.passiveA].name);
-	}
 
 	// below hp threshold bonus
 	if (attacker.weaponData.hasOwnProperty("below_threshold_mod") && attacker.initHP <= checkRoundError(attacker.weaponData.below_threshold_mod.threshold * attacker.hp)) {
@@ -1747,11 +1721,6 @@ function simBattle(battleInfo, displayMsg) {
 
 	if (defender.passiveAData.hasOwnProperty("defend_mod")) {
 		battleInfo = combatBonus(battleInfo, defender.passiveAData.defend_mod, skillInfo['a'][defender.passiveA].name, "defender", "by getting attacked");
-	}
-	
-	// Bond bonuses
-	if (defender.passiveAData.hasOwnProperty("adjacent_stat_bonus") && defender.adjacent > 0) {
-		battleInfo = BondBonus(battleInfo, "defender", defender.PassiveAData.adjacent_stat_bonus.mod, skillInfo['a'][defender.passiveA].name);
 	}
 
 	// below hp threshold bonus
@@ -1803,6 +1772,9 @@ function simBattle(battleInfo, displayMsg) {
 	if (defender.weaponData.hasOwnProperty("adjacent_ally_bonus") && defender.adjacent > 0) {
 		battleInfo = owlTomeBonus(battleInfo, defender.adjacent, "defender");
 	}
+	
+	//adjacent stat bonus
+	adjacentStatBonus(battleInfo, defender, "defender");
 
 	// can defender counter
 	var defCC = defCanCounter(battleInfo);
