@@ -1,0 +1,39 @@
+$up: 1.68em;
+$down: 0.68em;
+
+/* Colors */
+$color: #e9e9e9;
+$heading-color: #f9f9f9;
+
+$tolopea: #342C3F;
+$deluge: #7A709C;
+$cold-purple: #9A91B3;
+$cold-purple2: #A896C1;
+$purple-mountain: #9078AA;
+$havelock-blue: #577DC7;
+$fountain-blue: #55A8B7;
+$cool-purple: #9d4dc5;
+$cool-blue: #5486d1;
+$cool-teal: #53dbd0;
+$cool-red: #d93344;
+
+$true-blue: #4878c0;
+$true-purple: #8a40af;
+$true-teal: #3ea3ab;
+
+$text-color: #f9f9f9;
+
+/* MDC Configs */
+$mdc-theme-primary: #40c4ff;//$cool-blue;//
+$mdc-theme-primary-light: #82f7ff;//#6c98d7;
+$mdc-theme-primary-dark: #0094cc;
+$mdc-theme-accent: #ca912e;//#7c4dff;
+$mdc-theme-background: #25252F;
+$mdc-theme-background-light: lighten($mdc-theme-background, 0.2);
+$mdc-theme-background-dark: darken($mdc-theme-background, 0.2);
+$mdc-theme-toolbar: $mdc-theme-primary-dark;
+$link-hover: darken($mdc-theme-primary, 10%);
+
+body {
+    color: #e9e9e9;
+}

@@ -1,0 +1,148 @@
+{
+    "melee":{
+        "attack refinement":{
+            "stat_mod":{
+                "hp": 5,
+                "atk": 2
+            }
+        },
+        "speed refinement":{
+            "stat_mod":{
+                "hp": 5,
+                "spd": 3
+            }
+        },
+        "defence refinement":{
+            "stat_mod":{
+                "hp": 5,
+                "def": 4
+            }
+        },
+        "resistance refinement":{
+            "stat_mod":{
+                "hp": 5,
+                "res": 4
+            }
+        }
+    },
+    "ranged":{
+        "attack refinement":{
+            "stat_mod":{
+                "hp": 2,
+                "atk": 1
+            }
+        },
+        "speed refinement":{
+            "stat_mod":{
+                "hp": 2,
+                "spd": 2
+            }
+        },
+        "defence refinement":{
+            "stat_mod":{
+                "hp": 2,
+                "def": 3
+            }
+        },
+        "resistance refinement":{
+            "stat_mod":{
+                "hp": 2,
+                "res": 3
+            }
+        }
+    },
+    "staff":{
+        "dazzling refinement":{
+            "description":"The enemy cannot counterattack.",
+            "prevent_counter" : true
+        },
+        "wrathful refinement":{
+            "description":"Damage from unit's staff will be calculated the same as other weapons.",
+            "reg_weapon_dmg": 0
+        }
+    },
+    "Special":{
+        "Sol Katti":{
+            "stat_mod":{
+                "hp":3
+            },
+            "description":"Unit makes a guaranteed follow-up attack when HP ≤ 75% and attacking a foe that can counter.",
+            "brash" : {
+            "threshold" : 0.75
+            }
+        },
+        "Siegmund":{
+            "stat_mod":{
+                "hp":3
+            },
+            "description":"Unit makes a guaranteed follow-up attack when HP ≥ 90% and attacking a foe that can counter.",
+            "bonus_follow_up": {
+                "trigger": "healthy",
+                "threshold": 0.9
+            }
+        },
+        "Fujin Yumi":
+        {
+            "description":"If unit's HP ≥ 50%, unit can move adjacent to any ally within 2 spaces."
+        },
+        "Deathly Dagger":{
+            "sweep": {
+                "weapon_type": {
+                    "Red Tome": true,
+                    "Blue Tome": true,
+                    "Green Tome": true,
+                }
+            },
+            "description":"Foes using magic cannot counterattack."
+        },
+        "Mystletainn":
+        {
+        "stat_mod": {
+            "hp": 3,
+            "atk": 3,
+            "spd": 3,
+            "def": 3,
+            "res": 3,
+            },
+        "recoil_dmg": 6,
+        "description":"Grants Atk/Spd/Def/Res +3. Unit takes 6 damage after combat."
+        },
+        "Hauteclere":{
+            "stat_mod":{
+                "hp":3
+            },
+            "description":"Deals +10 damage when special triggers.",
+            "spec_damage_bonus" : 10
+        },
+        "Cavalry ranged":{
+            "nullify_enemy_bonuses": {
+                "move_type": {
+                    "Cavalry": true
+                }
+            },
+            "description":"If in combat against a cavalry foe, nullifies foe's bonuses (from skills like Fortify, Rally, etc.) during combat."
+        },
+        "Cavalry melee":{
+            "stat_mod":{
+                "hp":3
+            },
+            "nullify_enemy_bonuses": {
+                "move_type": {
+                    "Cavalry": true
+                }
+            },
+            "description":"If in combat against a cavalry foe, nullifies foe's bonuses (from skills like Fortify, Rally, etc.) during combat."
+        },
+        "Armor melee":{
+            "stat_mod":{
+                "hp":3
+            },
+            "nullify_enemy_bonuses": {
+                "move_type": {
+                    "Armored": true
+                }
+            },
+            "description":"If in combat against an armored foe, nullifies foe's bonuses (from skills like Fortify, Rally, etc.) during combat."
+        }
+    }
+}

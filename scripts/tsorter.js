@@ -22,20 +22,20 @@ var tsorter = (function()
     }
 
     // Cross Browser event binding
-    addEvent = function( element, eventName, callback ) { 
-        if( hasEventListener ) { 
-            element.addEventListener(eventName, callback, false ); 
+    addEvent = function( element, eventName, callback ) {
+        if( hasEventListener ) {
+            element.addEventListener(eventName, callback, false );
         } else {
-            element.attachEvent( 'on' + eventName, callback); 
+            element.attachEvent( 'on' + eventName, callback);
         }
     };
 
     // Cross Browser event removal
-    removeEvent = function( element, eventName, callback ) { 
-        if( hasEventListener ) { 
-            element.removeEventListener(eventName, callback, false ); 
+    removeEvent = function( element, eventName, callback ) {
+        if( hasEventListener ) {
+            element.removeEventListener(eventName, callback, false );
         } else {
-            element.detachEvent( 'on' + eventName, callback); 
+            element.detachEvent( 'on' + eventName, callback);
         }
     };
 
@@ -54,15 +54,15 @@ var tsorter = (function()
          * @param oTH - the table header cell (<th>) object that is clicked
          */
         sort: function( e )
-        {   
+        {
             var that = this,
                 th = e.target;
 
-            // TODO: make sure target 'th' is not a child element of a <th> 
+            // TODO: make sure target 'th' is not a child element of a <th>
             //  We can't use currentTarget because of backwards browser support
             //  IE6,7,8 don't have it.
 
-            // set the data retrieval function for this column 
+            // set the data retrieval function for this column
             that.column = th.cellIndex;
             that.get = that.getAccessor( th.getAttribute('data-tsorter') );
 
@@ -83,8 +83,8 @@ var tsorter = (function()
             }
             that.prevCol = that.column;
         },
-        
-        /* 
+
+        /*
          * Choose Data Accessor Function
          * @param: the html structure type (from the data-type attribute)
          */
@@ -98,29 +98,29 @@ var tsorter = (function()
             }
 
             switch( sortType )
-            {   
+            {
                 case "link":
                     return function(row){
-                        return that.getCell(row).firstChild.firstChild.nodeValue;
+                        return that.getCell(row).innerHTML;
                     };
                 case "input":
-                    return function(row){  
+                    return function(row){
                         return that.getCell(row).firstChild.value;
                     };
                 case "numeric":
-                    return function(row){  
+                    return function(row){
                         return parseFloat( that.getCell(row).firstChild.nodeValue, 10 );
                     };
-				case "img":
-                    return function(row){  
+                case "img":
+                    return function(row){
                         return that.getCell(row).firstChild.getAttribute("src");
                     };
-				case "text-span-num":
-                    return function(row){  
+                case "text-span-num":
+                    return function(row){
                         return parseFloat(that.getCell(row).lastChild.firstChild.nodeValue, 10);
                     };
                 default: /* Plain Text */
-                    return function(row){  
+                    return function(row){
                         return that.getCell(row).firstChild.nodeValue;
                     };
             }
@@ -150,8 +150,8 @@ var tsorter = (function()
                 }
             }
         },
-        
-        /* 
+
+        /*
          * REVERSE TABLE
          * Reverses a table ordering
          */
@@ -176,23 +176,23 @@ var tsorter = (function()
                 that = this;
 
             if( hi <= lo+1 ){ return; }
-             
+
             if( (hi - lo) === 2 ) {
                 if(that.get(hi-1) > that.get(lo)) {
-                    that.exchange(hi-1, lo);   
+                    that.exchange(hi-1, lo);
                 }
                 return;
             }
-            
+
             i = lo + 1;
             j = hi - 1;
-            
+
             if( that.get(lo) > that.get( i) ){ that.exchange( i, lo); }
             if( that.get( j) > that.get(lo) ){ that.exchange(lo,  j); }
             if( that.get(lo) > that.get( i) ){ that.exchange( i, lo); }
-            
+
             pivot = that.get(lo);
-            
+
             while(true) {
                 j--;
                 while(pivot > that.get(j)){ j--; }
@@ -202,7 +202,7 @@ var tsorter = (function()
                 that.exchange(i, j);
             }
             that.exchange(lo, j);
-            
+
             if((j-lo) < (hi-j)) {
                 that.quicksort(lo, j);
                 that.quicksort(j+1, hi);
