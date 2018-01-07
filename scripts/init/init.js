@@ -21,7 +21,7 @@ var defenderTeam = [{}, {}, {}, {}, {}];
 
 // matchup table info
 var previousTable = true; // true if one vs all, false if all vs one
-var keepTable = false;	// true if we keep the matchup table currently displayed
+var keepTable = false;    // true if we keep the matchup table currently displayed
 
 // sorted matchup table column
 var mTableSorted = -1;
@@ -32,11 +32,11 @@ var openLog = true;
 
 // stat growth amounts from lvl 1 to lvl 40
 var statGrowths = [
-	[6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26],
-	[7, 8, 10, 12, 14, 15, 17, 19, 21, 23, 25, 26, 28],
-	[7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31],
-	[8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 31, 33],
-	[8, 10, 13, 15, 17, 19, 22, 24, 26, 28, 30, 33, 35]
+    [6, 8, 9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26],
+    [7, 8, 10, 12, 14, 15, 17, 19, 21, 23, 25, 26, 28],
+    [7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31],
+    [8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 31, 33],
+    [8, 10, 13, 15, 17, 19, 22, 24, 26, 28, 30, 33, 35]
 ];
 
 // default states
@@ -54,73 +54,73 @@ var initFilters = true;
  */
 $.getJSON('https://kagerochart.com/damage-calc/data', function(data) {
 //$.getJSON('https://localhost:8080/damage-calc/data', function(data) {
-	console.log('Retrieving hero data from KageroChart...');
+    console.log('Retrieving hero data from KageroChart...');
 }).fail(function(res) {
-	console.log('Error retrieving data.');
-	console.log(res);
+    console.log('Error retrieving data.');
+    console.log(res);
 }).done(function(data) {
-	data = data;
-	weaponInfo = data.weaponInfo;
-	specialInfo = data.specialInfo;
-	assistInfo = data.assistInfo;
-	skillInfo = data.skillInfo;
-	supportInfo = data.supportInfo;
-	charInfo = data.charInfo;
-	charInfo.Custom = {
-		"display": "Custom",
-		"id": "Custom",
-		"name": "Custom"
-	};
-	setupCalc();
+    data = data;
+    weaponInfo = data.weaponInfo;
+    specialInfo = data.specialInfo;
+    assistInfo = data.assistInfo;
+    skillInfo = data.skillInfo;
+    supportInfo = data.supportInfo;
+    charInfo = data.charInfo;
+    charInfo.Custom = {
+        "display": "Custom",
+        "id": "Custom",
+        "name": "Custom"
+    };
+    setupCalc();
 });
 
 
 function setupCalc() {
 
-	var tabEls = document.querySelectorAll('.mdc-tab-bar');
+    var tabEls = document.querySelectorAll('.mdc-tab-bar');
 
-	var tabBars = [];
-	tabEls.forEach(function(el, key) {
-	    var bar = new mdc.tabs.MDCTabBar(el);
-	    bar.preventDefaultOnClick = true;
-	    bar.listen('MDCTabBar:change', function (t) {
-	        var dynamicTabBar = t.detail;
-	        var nthChildIndex = dynamicTabBar.activeTabIndex;
+    var tabBars = [];
+    tabEls.forEach(function(el, key) {
+        var bar = new mdc.tabs.MDCTabBar(el);
+        bar.preventDefaultOnClick = true;
+        bar.listen('MDCTabBar:change', function (t) {
+            var dynamicTabBar = t.detail;
+            var nthChildIndex = dynamicTabBar.activeTabIndex;
 
-	        var selector = '#attack-panel';
+            var selector = '#attack-panel';
 
-	        if (el.id === 'override-tab-bar') {
-	            selector = '#matchup-overrides';
-	        }
-	        else if (el.id === 'char-tab-bar-2') {
-	            selector = '#defend-panel';
-	        }
-	        var panels = document.querySelector(selector + ' .mdc-card__media');
+            if (el.id === 'override-tab-bar') {
+                selector = '#matchup-overrides';
+            }
+            else if (el.id === 'char-tab-bar-2') {
+                selector = '#defend-panel';
+            }
+            var panels = document.querySelector(selector + ' .mdc-card__media');
 
-	        updatePanel(panels, nthChildIndex);
-	    });
+            updatePanel(panels, nthChildIndex);
+        });
 
-	    tabBars.push(bar);
-	});
+        tabBars.push(bar);
+    });
 
-	var tfs = document.querySelectorAll(
-	  '.mdc-textfield:not([data-demo-no-auto-js])'
-	);
-	for (var i = 0, tf; tf = tfs[i]; i++) {
-	  mdc.textfield.MDCTextfield.attachTo(tf);
-	}
+    var tfs = document.querySelectorAll(
+      '.mdc-textfield:not([data-demo-no-auto-js])'
+    );
+    for (var i = 0, tf; tf = tfs[i]; i++) {
+      mdc.textfield.MDCTextfield.attachTo(tf);
+    }
 
-	updatePanel(document.querySelector('#attack-panel .mdc-card__media'), 0);
-	updatePanel(document.querySelector('#defend-panel .mdc-card__media'), 0);
-	updatePanel(document.querySelector('#matchup-overrides .mdc-card__media'), 0);
+    updatePanel(document.querySelector('#attack-panel .mdc-card__media'), 0);
+    updatePanel(document.querySelector('#defend-panel .mdc-card__media'), 0);
+    updatePanel(document.querySelector('#matchup-overrides .mdc-card__media'), 0);
 
-	$("#matchup-filters").hide();
-	$("#matchup-overrides").hide();
-	$("#matchups").hide();
+    $("#matchup-filters").hide();
+    $("#matchup-overrides").hide();
+    $("#matchups").hide();
 
-	// setup initial display
-	setupChars();
-	setupOverrides();
+    // setup initial display
+    setupChars();
+    setupOverrides();
 
 }
 
