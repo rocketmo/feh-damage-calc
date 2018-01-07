@@ -29,11 +29,11 @@ function updateAllAttributeLinks() {
     var linkFields = ['char', 'weapon', 'special', 'passive-a', 'passive-b', 'passive-c', 'assist'];
     linkFields.forEach(function (key) {
 
-    	//Register change event handler for both sides
-    	for (var i = 1; i <= 2; i++) {
+        //Register change event handler for both sides
+        for (var i = 1; i <= 2; i++) {
 
-    		var field = key + '-' + i;
-    		updateAttributeLink(field);
-    	}
+            var field = key + '-' + i;
+            updateAttributeLink(field);
+        }
     });
 }

@@ -9,11 +9,11 @@ function updateStatFields(stats, charNum) {
 //Adds specified support buff to stats object passed as parameter
 function addSupportBuff(rank, type, stats) {
 
-	var s = supportInfo[type][rank];
+    var s = supportInfo[type][rank];
 
-	for (var b in s) {
-		stats[b] += s[b];
-	}
+    for (var b in s) {
+        stats[b] += s[b];
+    }
 
     return stats;
 }
@@ -21,11 +21,11 @@ function addSupportBuff(rank, type, stats) {
 //Subtracts specified support buff from stats object passed as parameter
 function subtractSupportBuff(rank, type, stats) {
 
-	var s = supportInfo[type][rank];
+    var s = supportInfo[type][rank];
 
-	for (var b in s) {
-		stats[b] -= s[b];
-	}
+    for (var b in s) {
+        stats[b] -= s[b];
+    }
 
     return stats;
 }
@@ -40,10 +40,10 @@ function changeSupportBuff(rank, type, charNum) {
     }
 
     var oldStatMod = field.data('info').stat_mod;
-	var statMod = supportInfo[type][rank];
+    var statMod = supportInfo[type][rank];
 
     //Remove old support buff
-	updateStatTotal(fieldID, charNum, false);
+    updateStatTotal(fieldID, charNum, false);
 
     //Assign data to html element for new support buff
     field.data('info').stat_mod = statMod;
@@ -56,35 +56,35 @@ function changeSupportBuff(rank, type, charNum) {
 // selectID is the select's id, charNum determines which panel's stats to change, increment is true if we need to add to the stat total and false otherwise
 function updateStatTotal(selectID, charNum, increment) {
 
-	if ($(selectID).data("info") !== undefined && $(selectID).data("info").hasOwnProperty("stat_mod")) {
-		for (var stat in $(selectID).data("info").stat_mod) {
-			var total = parseInt($("#" + stat + "-" + charNum).val());
-			if (increment) {
-				total += $(selectID).data("info").stat_mod[stat];
-			} else {
-				total -= $(selectID).data("info").stat_mod[stat];
-			}
+    if ($(selectID).data("info") !== undefined && $(selectID).data("info").hasOwnProperty("stat_mod")) {
+        for (var stat in $(selectID).data("info").stat_mod) {
+            var total = parseInt($("#" + stat + "-" + charNum).val());
+            if (increment) {
+                total += $(selectID).data("info").stat_mod[stat];
+            } else {
+                total -= $(selectID).data("info").stat_mod[stat];
+            }
 
-			// keep stats within limits
-			$("#" + stat + "-" + charNum).val(total);
-			if ($("#" + stat + "-" + charNum).hasClass("more-than-zero")) {
-				limit(document.getElementById(stat + "-" + charNum), 1);
-			} else {
-				limit(document.getElementById(stat + "-" + charNum), 0);
-			}
+            // keep stats within limits
+            $("#" + stat + "-" + charNum).val(total);
+            if ($("#" + stat + "-" + charNum).hasClass("more-than-zero")) {
+                limit(document.getElementById(stat + "-" + charNum), 1);
+            } else {
+                limit(document.getElementById(stat + "-" + charNum), 0);
+            }
 
-			// check if displayed hp needs to change
-			if (stat === "hp") {
-				var oldHP = parseInt($("#hp-" + charNum + "-denom").text());
+            // check if displayed hp needs to change
+            if (stat === "hp") {
+                var oldHP = parseInt($("#hp-" + charNum + "-denom").text());
 
-				// update hp value in rest of the page
-				$(".hp-" + charNum + "-read").text(total.toString());
+                // update hp value in rest of the page
+                $(".hp-" + charNum + "-read").text(total.toString());
 
-				// check if current hp needs to be updated as well
-				if ((total < parseInt($("#curr-hp-" + charNum).val())) || parseInt($("#curr-hp-" + charNum).val()) === oldHP) {
-					$("#curr-hp-" + charNum).val(total);
-				}
-			}
-		}
-	}
+                // check if current hp needs to be updated as well
+                if ((total < parseInt($("#curr-hp-" + charNum).val())) || parseInt($("#curr-hp-" + charNum).val()) === oldHP) {
+                    $("#curr-hp-" + charNum).val(total);
+                }
+            }
+        }
+    }
 }

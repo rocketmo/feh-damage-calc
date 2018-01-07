@@ -33,9 +33,9 @@
     "Rally Attack" : {
         "weapon_restrict" : "Staff"
     },
-	"Rally Defense" : {
+    "Rally Defense" : {
         "weapon_restrict" : "Staff"
-	},
+    },
     "Rally Defense Resistance" : {
         "weapon_restrict" : "Staff"
     },
@@ -48,9 +48,9 @@
     "Reciprocal Aid" : {
         "weapon_restrict" : "Staff"
     },
-	"Reconcile" : {
+    "Reconcile" : {
         "weapon_unique" : "Staff"
-	},
+    },
     "Recover" : {
         "spec_cooldown_mod" : 1,
         "weapon_unique" : "Staff"
