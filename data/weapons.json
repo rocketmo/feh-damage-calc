@@ -11,6 +11,9 @@
 		"seal" : {
 			"def" : -7,
 			"res" : -7
+		},
+		"refinable":{
+			"type":"ranged"
 		}
 	},
 	"Blizzard": {
@@ -26,12 +29,6 @@
 		"counter": true,
 		"char_unique": true
 	},
-	"Keen Gronnwolf": {
-		"move_effective": "Cavalry"
-	},
-	"Keen Gronnwolf+": {
-		"move_effective": "Cavalry"
-	},
 	"Bright Naginata": {
 		"defend_mod": {
 			"atk": 4,
@@ -40,7 +37,7 @@
 		"char_unique": true
 	},
 	"Dark Greatsword": {
-		"init_mod": {
+		"initiate_mod": {
 			"atk": 4,
 			"spd": 4
 		},
@@ -66,6 +63,9 @@
 			"spd": 2,
 			"def": 2,
 			"res": 2
+		},
+		"refinable":{
+			"type":"melee"
 		}
 	},
 	"Handbell": {
@@ -82,6 +82,9 @@
 			"spd": 2,
 			"def": 2,
 			"res": 2
+		},
+		"refinable":{
+			"type":"melee"
 		}
 	},
 	"Tannenboom": {
@@ -98,6 +101,9 @@
 			"spd": 2,
 			"def": 2,
 			"res": 2
+		},
+		"refinable":{
+			"type":"melee"
 		}
 	},
 	"Candlebra": {
@@ -114,6 +120,9 @@
 			"spd": 2,
 			"def": 2,
 			"res": 2
+		},
+		"refinable":{
+			"type":"ranged"
 		}
 	},
 	"Stout Tomahawk": {
@@ -142,7 +151,10 @@
 	},
 	"Monstrous Bow+": {
 		"magical": false,
-		"move_effective": "Flying"
+		"move_effective": "Flying",
+		"refinable":{
+			"type":"ranged"
+		}
 	},
 	"Monstrous Bow": {
 		"magical": false,
@@ -351,6 +363,28 @@
 		"description" : "Effective against armored units.",
 		"move_effective" : "Armored"
 	},
+	"Armorsmasher" : {
+		"color"   : "Red",
+		"type"    : "Sword",
+		"might"   : 10,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Effective against armored units.",
+		"move_effective" : "Armored"
+	},
+	"Armorsmasher+" : {
+		"color"   : "Red",
+		"type"    : "Sword",
+		"might"   : 14,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Effective against armored units.",
+		"move_effective" : "Armored",
+		"refinable":{
+			"type":"melee",
+			"special":"Armor melee"
+		}
+	},
 	"Assassin's Bow" : {
 		"color"   : "Colorless",
 		"type"    : "Bow",
@@ -375,6 +409,57 @@
 			"weapon_type" : "Dagger"
 		}
 	},
+	"Guard Bow" : {
+        "color"   : "Colorless",
+        "type"    : "Bow",
+        "might"   : 8,
+        "range"   : 2,
+        "magical" : false,
+        "description" : "Effective against flying units. Grants Def/Res+6 during combat if unit is attacked by foe using bow, daggers, magic, or staff.",
+        "move_effective" : "Flying",
+        "type_defend_mod": {
+            "weapon_type": {
+                "Bow": true,
+                "Dagger": true,
+                "Staff": true,
+                "Blue Tome": true,
+                "Green Tome": true,
+                "Red Tome": true,
+                "Tome": true
+            },
+            "stat_mod": {
+                "def": 6,
+                "res": 6
+            }
+        }
+    },
+	"Guard Bow+" : {
+        "color"   : "Colorless",
+        "type"    : "Bow",
+        "might"   : 12,
+        "range"   : 2,
+        "magical" : false,
+        "description" : "Effective against flying units. Grants Def/Res+6 during combat if unit is attacked by foe using bow, daggers, magic, or staff.",
+        "move_effective" : "Flying",
+        "type_defend_mod": {
+            "weapon_type": {
+                "Bow": true,
+                "Dagger": true,
+                "Staff": true,
+                "Blue Tome": true,
+                "Green Tome": true,
+                "Red Tome": true,
+                "Tome": true
+            },
+            "stat_mod": {
+                "def": 6,
+                "res": 6
+            }
+        },
+        "refinable": {
+            "type":"ranged"
+        }
+    },
 	"Assault" : {
 		"color"   : "Colorless",
 		"type"    : "Staff",
@@ -411,6 +496,13 @@
 		"description" : "Grants Res+4 when the unit is under attack.",
 		"defend_mod" : {
 			"res" : 4
+		},
+		"refinable":{
+			"type":"melee",
+			"description" : "Grants Res+7 when the unit is under attack.",
+			"defend_mod" : {
+				"res" : 7
+			}
 		}
 	},
 	"Binding Blade" : {
@@ -462,7 +554,11 @@
 		"range"   : 2,
 		"magical" : true,
 		"description" : "During combat, unit's Atk/Spd/Def/Res boosted by number of adjacent allies × 2.",
-		"adjacent_ally_bonus" : true
+		"adjacent_ally_bonus" : true,
+		"refinable":{
+			"type":"ranged",
+		    "might"   : 11
+		}
 	},
 	"Nidhogg" : {
 		"color"   : "Colorless",
@@ -530,6 +626,28 @@
 		"description" : "Effective against cavalry units.",
 		"move_effective" : "Cavalry"
 	},
+	"Keen Blárwolf" : {
+		"color"   : "Blue",
+		"type"    : "Blue Tome",
+		"might"   : 8,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "Effective against cavalry units.",
+		"move_effective" : "Cavalry"
+	},
+	"Keen Blárwolf+" : {
+		"color"   : "Blue",
+		"type"    : "Blue Tome",
+		"might"   : 12,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "Effective against cavalry units.",
+		"move_effective" : "Cavalry",
+		"refinable":{
+			"type":"ranged",
+			"Special":"Cavalry ranged"
+		}
+	},
 	"Blessed Bouquet" : {
 		"color"   : "Blue",
 		"type"    : "Blue Tome",
@@ -544,7 +662,11 @@
 		"might"   : 12,
 		"range"   : 2,
 		"magical" : true,
-		"description" : "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates."
+		"description" : "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates.",
+		"refinable":{
+			"type":"ranged",
+		    "description" : "Grants allies withing 2 spaces Def/Res+5 through their next actions after any combat this unit initiates."
+		}
 	},
 	"Blue Egg" : {
 		"color"   : "Blue",
@@ -562,7 +684,12 @@
 		"range"   : 2,
 		"magical" : true,
 		"description" : "If unit initiates attack, unit recovers 4 HP after the battle.",
-		"initiate_heal" : 4
+		"initiate_heal" : 4,
+		"refinable":{
+			"type":"ranged",
+		    "description" : "Unit recovers 4 HP after battle.",
+			"heal" : 4
+		}
 	},
 	"Bolganone" : {
 		"color"   : "Red",
@@ -576,7 +703,11 @@
 		"type"    : "Red Tome",
 		"might"   : 13,
 		"range"   : 2,
-		"magical" : true
+		"magical" : true,
+		"refinable":{
+			"type":"ranged",
+		    "might"   : 14
+		}
 	},
 	"Brave Axe" : {
 		"color"   : "Green",
@@ -710,7 +841,12 @@
 		"range"   : 1,
 		"magical" : false,
 		"description" : "If unit initiates attack, unit recovers 4 HP after the battle.",
-		"initiate_heal" : 4
+		"initiate_heal" : 4,
+		"refinable":{
+			"type":"melee",
+		    "description" : "Unit recovers 4 HP after battle.",
+			"heal" : 4
+		}
 	},
 	"Carrot Lance" : {
 		"color"   : "Blue",
@@ -728,7 +864,12 @@
 		"range"   : 1,
 		"magical" : false,
 		"description" : "If unit initiates attack, unit recovers 4 HP after the battle.",
-		"initiate_heal" : 4
+		"initiate_heal" : 4,
+		"refinable":{
+			"type":"melee",
+		    "description" : "Unit recovers 4 HP after battle.",
+			"heal" : 4
+		}
 	},
 	"Clarisse's Bow" : {
 		"color"   : "Colorless",
@@ -746,7 +887,10 @@
 		"range"   : 2,
 		"magical" : false,
 		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions.Effective against flying units.",
-		"move_effective" : "Flying"
+		"move_effective" : "Flying",
+		"refinable":{
+			"type":"ranged"
+		}
 	},
 	"Cupid Arrow" : {
 		"color"   : "Colorless",
@@ -764,7 +908,11 @@
 		"range"   : 2,
 		"magical" : false,
 		"move_effective" : "Flying",
-		"description" : "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates. Effective against fliers."
+		"description" : "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates. Effective against fliers.",
+		"refinable":{
+			"type":"ranged",
+		    "description" : "Grants allies withing 2 spaces Def/Res+5 through their next actions after any combat this unit initiates. Effective against fliers."
+		}
 	},
 	"Cymbeline" : {
 		"color" : "Red",
@@ -812,7 +960,13 @@
 		"might"   : 13,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions."
+		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions.",
+		"refinable":{
+			"type":"melee",
+		    "might": 14,
+		    "description" : "After combat, inflicts Atk/Spd-7 to target and foes within 2 spaces of target through their next actions. If foe's range= 2, damage calculated using the lower of foe's Def or Res.",
+			"LowerResDefRange": 2
+		}
 	},
 	"Dark Breath+ (Green)" : {
 		"color"   : "Green",
@@ -820,7 +974,13 @@
 		"might"   : 13,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions."
+		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions.",
+		"refinable":{
+			"type":"melee",
+		    "might": 14,
+		    "description" : "After combat, inflicts Atk/Spd-7 to target and foes within 2 spaces of target through their next actions. If foe's range= 2, damage calculated using the lower of foe's Def or Res.",
+			"LowerResDefRange": 2
+		}
 	},
 	"Dark Breath+ (Red)" : {
 		"color"   : "Red",
@@ -828,7 +988,13 @@
 		"might"   : 13,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions."
+		"description" : "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions.",
+		"refinable":{
+			"type":"melee",
+		    "might": 14,
+		    "description" : "After combat, inflicts Atk/Spd-7 to target and foes within 2 spaces of target through their next actions. If foe's range= 2, damage calculated using the lower of foe's Def or Res.",
+			"LowerResDefRange": 2
+		}
 	},
 	"Dark Excalibur" : {
 		"color"   : "Green",
@@ -851,7 +1017,14 @@
 			"res" : -7
 		},
 		"initiate_poison" : 7,
-		"char_unique" : true
+		"char_unique" : true,
+		"refinable":{
+			"type":"ranged",
+		    "initiate_poison" : 10,
+			"might": 14,
+			"special":"Deathly Dagger",
+			"description":"After combat, inflict Def/Res-7 on foe through their next actions. If unit initiated combat, inflict 10 damage to target and foes within 2 spaces of target after battle."
+		}
 	},
 	"Deft Harpoon" : {
 		"color"   : "Blue",
@@ -881,7 +1054,10 @@
 			"res": 2
 		},
 		"full_hp_atk_recoil_dmg" : 2,
-		"description" : "If unit has 100% HP at start of combat, unit gets Atk/Spd/Def/Res+2.If attacking, unit will take 2 damage after combat."
+		"description" : "If unit has 100% HP at start of combat, unit gets Atk/Spd/Def/Res+2.If attacking, unit will take 2 damage after combat.",
+		"refinable":{
+			"type":"melee"
+		}
 	},
 	"Dire Thunder" : {
 		"color"   : "Blue",
@@ -1010,7 +1186,11 @@
 		"type"    : "Red Tome",
 		"might"   : 13,
 		"range"   : 2,
-		"magical" : true
+		"magical" : true,
+		"refinable":{
+			"type":"ranged",
+			"might": 14
+		}
 	},
 	"Fensalir" : {
 		"color"   : "Blue",
@@ -1125,7 +1305,11 @@
 		"might"   : 14,
 		"range"   : 1,
 		"magical" : false,
-		"description" : "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates."
+		"description" : "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates.",
+		"refinable":{
+			"type":"melee",
+		    "description" : "Grants allies withing 2 spaces Def/Res+5 through their next actions after any combat this unit initiates."
+		}
 	},
 	"Flametongue (Blue)" : {
 		"color"   : "Blue",
@@ -1153,21 +1337,39 @@
 		"type"    : "Blue Breath",
 		"might"   : 15,
 		"range"   : 1,
-		"magical" : true
+		"magical" : true,
+		"refinable":{
+			"type":"melee",
+		    "might": 16,
+		    "description" : "If foe's range= 2, damage calculated using the lower of foe's Def or Res.",
+			"LowerResDefRange": 2
+		}
 	},
 	"Flametongue+ (Green)" : {
 		"color"   : "Green",
 		"type"    : "Green Breath",
 		"might"   : 15,
 		"range"   : 1,
-		"magical" : true
+		"magical" : true,
+		"refinable":{
+			"type":"melee",
+		    "might": 16,
+		    "description" : "If foe's range= 2, damage calculated using the lower of foe's Def or Res.",
+			"LowerResDefRange": 2
+		}
 	},
 	"Flametongue+ (Red)" : {
 		"color"   : "Red",
 		"type"    : "Red Breath",
 		"might"   : 15,
 		"range"   : 1,
-		"magical" : true
+		"magical" : true,
+		"refinable":{
+			"type":"melee",
+		    "might": 16,
+		    "description" : "If foe's range= 2, damage calculated using the lower of foe's Def or Res.",
+			"LowerResDefRange": 2
+		}
 	},
 	"Flux" : {
 		"color"   : "Red",
@@ -1184,7 +1386,12 @@
 		"magical" : false,
 		"description" : "Effective against flying units. Unit can pass through foes if own HP ≥ 50%.",
 		"move_effective" : "Flying",
-		"char_unique" : true
+		"char_unique" : true,
+		"refinable":{
+			"type":"ranged",
+		    "description" : "If unit's HP ≥ 50%, unit is not slowed by terrain. (Does not apply to impassable terrain.)",
+			"special":"Fujin Yumi"
+		}
 	},
 	"Fólkvangr" : {
 		"color"   : "Red",
@@ -1232,7 +1439,12 @@
 		"range"   : 2,
 		"magical" : true,
 		"description" : "If unit initiates attack, unit recovers 4 HP after the battle.",
-		"initiate_heal" : 4
+		"initiate_heal" : 4,
+		"refinable":{
+			"type":"ranged",
+		    "description" : "Unit recovers 4 HP after battle.",
+			"heal" : 4
+		}
 	},
 	"Gronnblade" : {
 		"color"   : "Green",
@@ -1270,7 +1482,11 @@
 		"range"   : 2,
 		"magical" : true,
 		"description" : "During combat, unit's Atk/Spd/Def/Res boosted by number of adjacent allies × 2.",
-		"adjacent_ally_bonus" : true
+		"adjacent_ally_bonus" : true,
+		"refinable":{
+			"type":"ranged",
+			"might"   : 11
+		}
 	},
 	"Gronnraven" : {
 		"color"   : "Green",
@@ -1308,6 +1524,28 @@
 		"description" : "Effective against cavalry units.",
 		"move_effective" : "Cavalry"
 	},
+	"Keen Gronnwolf": {
+		"color"   : "Green",
+		"type"    : "Green Tome",
+		"might"   : 8,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "Effective against cavalry units.",
+		"move_effective" : "Cavalry"
+	},
+	"Keen Gronnwolf+": {
+		"color"   : "Green",
+		"type"    : "Green Tome",
+		"might"   : 12,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "Effective against cavalry units.",
+		"move_effective" : "Cavalry",
+		"refinable":{
+			"type":"ranged",
+			"Special":"Cavalry ranged"
+		}
+	},
 	"Hammer" : {
 		"color"   : "Green",
 		"type"    : "Axe",
@@ -1326,6 +1564,28 @@
 		"description" : "Effective against armored units.",
 		"move_effective" : "Armored"
 	},
+	"Slaying Hammer" : {
+		"color"   : "Green",
+		"type"    : "Axe",
+		"might"   : 10,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Effective against armored units.",
+		"move_effective" : "Armored"
+	},
+	"Slaying Hammer+" : {
+		"color"   : "Green",
+		"type"    : "Axe",
+		"might"   : 14,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Effective against armored units.",
+		"move_effective" : "Armored",
+		"refinable":{
+			"type":"melee",
+			"Special":"Armor melee"
+		}
+	},
 	"Hauteclere" : {
 		"color"   : "Green",
 		"type"    : "Axe",
@@ -1334,7 +1594,11 @@
 		"magical" : false,
 		"description" : "Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1,
-		"char_unique" : true
+		"char_unique" : true,
+		"refinable":{
+			"type":"melee",
+			"special":"Hauteclere"
+		}
 	},
 	"Heavy Spear" : {
 		"color"   : "Blue",
@@ -1353,6 +1617,28 @@
 		"magical" : false,
 		"description" : "Effective against armored units.",
 		"move_effective" : "Armored"
+	},
+	"Slaying Spear" : {
+		"color"   : "Blue",
+		"type"    : "Lance",
+		"might"   : 10,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Effective against armored units.",
+		"move_effective" : "Armored"
+	},
+	"Slaying Spear+" : {
+		"color"   : "Blue",
+		"type"    : "Lance",
+		"might"   : 14,
+		"range"   : 1,
+		"magical" : false,
+		"description" : "Effective against armored units.",
+		"move_effective" : "Armored",
+		"refinable":{
+		    "type":"melee",
+			"Special":"Armor melee"
+		}
 	},
 	"Iron Axe" : {
 		"color"   : "Green",
@@ -1486,7 +1772,11 @@
 		"range"   : 1,
 		"magical" : false,
 		"convert_penalties" : true,
-		"description" : "After combat, bonuses on foe become penalties through their next action."
+		"description" : "After combat, bonuses on foe become penalties through their next action.",
+		"refinable":{
+			"type":"melee",
+			"description": "After combat, bonuses on target and foes 2 spaces of target become penalties through their next actions."
+		}
 	},
 	"Light Breath" : {
 		"type"    : "Breath",
@@ -1500,7 +1790,13 @@
 		"might"   : 13,
 		"range"   : 1,
 		"magical" : true,
-		"description" : "Grants adjacent allies Def/Res+4 through their next actions after any combat this unit initiates."
+		"description" : "Grants adjacent allies Def/Res+4 through their next actions after any combat this unit initiates.",
+		"refinable":{
+			"type":"melee",
+		    "might": 14,
+		    "description" : "After combat, grants Atk/Spd/Def/Res+5 to unit and allies within 2 spaces for 1 turn. If foe's Range = 2, damage calculated using the lower of foe's Def or Res.",
+			"LowerResDefRange": 2
+		}
 	},
 	"Lightning Breath" : {
 		"type"    : "Breath",
@@ -1518,7 +1814,13 @@
 		"magical" : true,
 		"description" : "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1).",
 		"spec_cooldown_mod" : 1,
-		"counter" : true
+		"counter" : true,
+		"refinable":{
+			"type":"melee",
+		    "might": 12,
+		    "description" : "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1). If foe's Range = 2, damage calculated using the lower of foe's Def or Res.",
+			"LowerResDefRange": 2
+		}
 	},
 	"Melon Crusher" : {
 		"color"   : "Green",
@@ -1548,7 +1850,10 @@
 			"res": 2
 		},
 		"full_hp_atk_recoil_dmg" : 2,
-		"description" : "If unit has 100% HP at start of combat, unit gets Atk/Spd/Def/Res+2.If attacking, unit will take 2 damage after combat."
+		"description" : "If unit has 100% HP at start of combat, unit gets Atk/Spd/Def/Res+2.If attacking, unit will take 2 damage after combat.",
+		"refinable":{
+			"type":"melee"
+		}
 	},
 	"Mystletainn" : {
 		"color" : "Red",
@@ -1558,7 +1863,11 @@
 		"magical" : false,
 		"description" : "Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1,
-		"char_unique" : true
+		"char_unique" : true,
+		"refinable":{
+			"type":"melee",
+			"Special":"Mystletainn"
+		}
 	},
 	"Naga" : {
 		"weapon_effective": [
@@ -1711,7 +2020,11 @@
 		"range"   : 2,
 		"magical" : true,
 		"description" : "During combat, unit's Atk/Spd/Def/Res boosted by number of adjacent allies x 2.",
-		"adjacent_ally_bonus" : true
+		"adjacent_ally_bonus" : true,
+		"refinable":{
+			"type":"ranged",
+			"might": 11
+		}
 	},
 	"Rauðrraven" : {
 		"color"   : "Red",
@@ -1749,6 +2062,28 @@
 		"description" : "Effective against cavalry units.",
 		"move_effective" : "Cavalry"
 	},
+	"Keen Rauðrwolf": {
+		"color"   : "Red",
+		"type"    : "Red Tome",
+		"might"   : 8,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "Effective against cavalry units.",
+		"move_effective" : "Cavalry"
+	},
+	"Keen Rauðrwolf+": {
+		"color"   : "Red",
+		"type"    : "Red Tome",
+		"might"   : 12,
+		"range"   : 2,
+		"magical" : true,
+		"description" : "Effective against cavalry units.",
+		"move_effective" : "Cavalry",
+		"refinable":{
+			"type":"ranged",
+			"Special":"Cavalry ranged"
+		}
+	},
 	"Refreshing Bolt" : {
 		"color"   : "Colorless",
 		"type"    : "Bow",
@@ -1779,7 +2114,10 @@
 		},
 		"move_effective": "flying",
 		"full_hp_atk_recoil_dmg" : 2,
-		"description" : "If unit has 100% HP at start of combat, unit gets Atk/Spd/Def/Res+2.If attacking, unit will take 2 damage after combat."
+		"description" : "If unit has 100% HP at start of combat, unit gets Atk/Spd/Def/Res+2.If attacking, unit will take 2 damage after combat.",
+		"refinable":{
+			"type":"ranged"
+		}
 	},
 	"Regal Blade" : {
 		"color"   : "Red",
@@ -1824,7 +2162,11 @@
 		"range"   : 1,
 		"magical" : false,
 		"description" : "Effective against cavalry units.",
-		"move_effective" : "Cavalry"
+		"move_effective" : "Cavalry",
+		"refinable":{
+			"type":"melee",
+			"Special":"Cavalry melee"
+		}
 	},
 	"Rogue Dagger" : {
 		"color"   : "Colorless",
@@ -1856,6 +2198,19 @@
 		"after_mod" : {
 			"def" : 5,
 			"res" : 5
+		},
+		"refinable":{
+			"type":"ranged",
+			"might": 12,
+			"description": "After combat, inflicts Def/Res-6 on target and foes within 2 spaces of target through their next actions. Also grants Def/Res+6 to unit and allies within 2 spaces for 1 turn.",
+			"seal" : {
+				"def" : -6,
+				"res" : -6
+			},
+			"after_mod" : {
+				"def" : 6,
+				"res" : 6
+			}
 		}
 	},
 	"Ruby Sword" : {
@@ -1929,7 +2284,16 @@
 			"res": 2
 		},
 		"full_hp_atk_recoil_dmg" : 2,
-		"description" : "If unit has 100% HP at start of combat, unit gets Atk/Spd/Def/Res+2.If attacking, unit will take 2 damage after combat."
+		"description" : "If unit has 100% HP at start of combat, unit gets Atk/Spd/Def/Res+2.If attacking, unit will take 2 damage after combat.",
+		"refinable":{
+			"type":"ranged",
+			"might": 12,
+			"description":"After combat, inflicts Def/Res-7 on target and foes within 2 spaces of target through their next actions. If unit has 100% HP at start of combat, unit gets Atk/Spd/Def/Res+2.If attacking, unit will take 2 damage after combat.",
+			"seal" : {
+				"def" : -7,
+				"res" : -7
+			},
+		}
 	},
 	"Siegfried" : {
 		"color"   : "Red",
@@ -1957,7 +2321,12 @@
 		"range"   : 1,
 		"magical" : false,
 		"description" : "Grants adjacent allies Atk+3 through their next actions at the start of each turn.",
-		"char_unique" : true
+		"char_unique" : true,
+		"refinable":{
+			"type":"melee",
+			"description" : "Grants adjacent allies Atk+4 through their next actions at the start of each turn.",
+			"Special":"Siegmund"
+		}
 	},
 	"Silver Axe" : {
 		"color"   : "Green",
@@ -1971,7 +2340,11 @@
 		"type"    : "Axe",
 		"might"   : 15,
 		"range"   : 1,
-		"magical" : false
+		"magical" : false,
+		"refinable":{
+			"type":"melee",
+			"might":16
+		}
 	},
 	"Silver Bow" : {
 		"color"   : "Colorless",
@@ -1989,7 +2362,11 @@
 		"range"   : 2,
 		"magical" : false,
 		"description" : "Effective against flying units.",
-		"move_effective" : "Flying"
+		"move_effective" : "Flying",
+		"refinable":{
+			"type":"ranged",
+			"might":14
+		}
 	},
 	"Silver Dagger" : {
 		"color"   : "Colorless",
@@ -2013,6 +2390,12 @@
 		"seal" : {
 			"def" : -7,
 			"res" : -7
+		},
+		"refinable":{
+			"type":"ranged",
+			"might":14,
+			"description" : "After combat, inflict Def/Res-7 on target and foes within 2 spaces through their next actions.",
+			
 		}
 	},
 	"Silver Lance" : {
@@ -2027,7 +2410,11 @@
 		"type"    : "Lance",
 		"might"   : 15,
 		"range"   : 1,
-		"magical" : false
+		"magical" : false,
+		"refinable":{
+			"type":"melee",
+			"might":16
+		}
 	},
 	"Silver Sword" : {
 		"color"   : "Red",
@@ -2041,7 +2428,11 @@
 		"type"    : "Sword",
 		"might"   : 15,
 		"range"   : 1,
-		"magical" : false
+		"magical" : false,
+		"refinable":{
+			"type":"melee",
+			"might":16
+		}
 	},
 	"Slaying Lance" : {
 		"color"   : "Blue",
@@ -2059,7 +2450,10 @@
 		"range"   : 1,
 		"magical" : false,
 		"description" : "Accelerates Special trigger (cooldown count-1).",
-		"spec_cooldown_mod" : -1
+		"spec_cooldown_mod" : -1,
+		"refinable":{
+			"type":"melee"
+		}
 	},
 	"Slaying Bow" : {
 		"color"   : "Colorless",
@@ -2079,7 +2473,10 @@
 		"magical" : false,
 		"description" : "Effective against flying units. Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod" : -1,
-		"move_effective" : "Flying"
+		"move_effective" : "Flying",
+		"refinable":{
+			"type":"melee"
+		}
 	},
 	"Slaying Edge" : {
 		"color"   : "Red",
@@ -2097,7 +2494,10 @@
 		"range"   : 1,
 		"magical" : false,
 		"description" : "Accelerates Special trigger (cooldown count-1).",
-		"spec_cooldown_mod" : -1
+		"spec_cooldown_mod" : -1,
+		"refinable":{
+			"type":"melee"
+		}
 	},
 	"Slaying Axe" : {
 		"color"   : "Green",
@@ -2115,7 +2515,10 @@
 		"range"   : 1,
 		"magical" : false,
 		"description" : "Accelerates Special trigger (cooldown count-1).",
-		"spec_cooldown_mod" : -1
+		"spec_cooldown_mod" : -1,
+		"refinable":{
+			"type":"melee"
+		}
 	},
 	"Slow" : {
 		"color"   : "Colorless",
@@ -2142,7 +2545,18 @@
 		"might"   : 9,
 		"range"   : 2,
 		"magical" : false,
-		"description" : "After combat, inflict Def/Res-4 on foes within 2 spaces of target through their next actions."
+		"description" : "After combat, inflict Def/Res-4 on foes within 2 spaces of target through their next actions.",
+		"refinable":{
+			"type":"ranged",
+			"might": 12,
+			"description": "After combat, inflicts Atk/Spd/Def/Res-6 on target and foes within 2 spaces of target through their next actions.",
+			"seal" : {
+				"atk" : -6,
+				"spd" : -6,
+				"def" : -6,
+				"res" : -6
+			}
+		}
 	},
 	"Sol Katti" : {
 		"color"   : "Red",
@@ -2154,7 +2568,15 @@
 		"desperation" : {
 			"threshold" : 0.5
 		},
-		"char_unique" : true
+		"char_unique" : true,
+		"refinable":{
+			"type":"melee",
+			"description" : "If unit initiates combat at HP ≤ 75%, any follow-up attack occurs immediately.",
+			"desperation" : {
+				"threshold" : 0.75
+			},
+			"Special":"Sol Katti"
+		}
 	},
 	"Steel Axe" : {
 		"color"   : "Green",
@@ -2210,7 +2632,11 @@
 		"type"    : "Blue Tome",
 		"might"   : 13,
 		"range"   : 2,
-		"magical" : true
+		"magical" : true,
+		"refinable":{
+			"type":"ranged",
+			"might": 14
+		}
 	},
 	"Thunder" : {
 		"color"   : "Blue",
@@ -2269,7 +2695,11 @@
 		"range"   : 1,
 		"magical" : false,
 		"description" : "Grants +10 to damage when Special triggers.",
-		"spec_damage_bonus" : 10
+		"spec_damage_bonus" : 10,
+		"refinable":{
+			"type":"melee",
+			"might":14
+		}
 	},
 	"Yato" : {
 		"color"   : "Red",
@@ -2299,6 +2729,10 @@
 		"range"   : 1,
 		"magical" : false,
 		"description" : "Effective against cavalry units.",
-		"move_effective" : "Cavalry"
+		"move_effective" : "Cavalry",
+		"refinable":{
+			"type":"melee",
+			"Special":"Cavalry melee"
+		}
 	}
 }
