@@ -111,11 +111,11 @@ var tsorter = (function()
                     return function(row){
                         return parseFloat( that.getCell(row).firstChild.nodeValue, 10 );
                     };
-				case "img":
+                case "img":
                     return function(row){
                         return that.getCell(row).firstChild.getAttribute("src");
                     };
-				case "text-span-num":
+                case "text-span-num":
                     return function(row){
                         return parseFloat(that.getCell(row).lastChild.firstChild.nodeValue, 10);
                     };
