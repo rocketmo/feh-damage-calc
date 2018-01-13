@@ -1743,17 +1743,27 @@ function simBattle(battleInfo, displayMsg) {
     var atkBonusFollowUp = bonusFollowUp(attacker);
     var defBonusFollowUp = bonusFollowUp(defender);
 
-    // vantage info
+    // vantage info - if defender has hardy bearing, no vantage
     var vantage = false;
-    var vantagePassive = canActivateVantage(defender.passiveBData, defender.initHP, defender.hp);
-    var vantageWeapon = canActivateVantage(defender.weaponData, defender.initHP, defender.hp);
+    var vantagePassive = !defender.sealData.hasOwnProperty("remove_prio_hp") && canActivateVantage(defender.passiveBData, defender.initHP, defender.hp);
+    var vantageWeapon = !defender.sealData.hasOwnProperty("remove_prio_hp") && canActivateVantage(defender.weaponData, defender.initHP, defender.hp);
     var vantageSource = vantagePassive ? skillInfo['b'][defender.passiveB].name : weaponInfo[defender.weaponName].name;
 
-    // desperation info
+    // desperation info - if attacker has hardy bearing, no desperation
     var desperation = false;
-    var desperationPassive = canActivateDesperation(attacker.passiveBData, attacker.initHP, attacker.hp);
-    var desperationWeapon = canActivateDesperation(attacker.weaponData, attacker.initHP, attacker.hp);
+    var desperationPassive = !attacker.sealData.hasOwnProperty("remove_prio_hp") && canActivateDesperation(attacker.passiveBData, attacker.initHP, attacker.hp);
+    var desperationWeapon = !attacker.sealData.hasOwnProperty("remove_prio_hp") && canActivateDesperation(attacker.weaponData, attacker.initHP, attacker.hp);
     var desperationSource = desperationPassive ? skillInfo['b'][attacker.passiveB].name : weaponInfo[attacker.weaponName].name;
+	
+    //Check HP for Hardy bearing
+    if(defender.sealData.hasOwnProperty("remove_prio_hp") && (defender.hp >= defender.initHP*defender.sealData.remove_prio_hp)) {
+        desperationWeapon = false;
+        desperationPassive = false;
+    }
+    if(attacker.sealData.hasOwnProperty("remove_prio_hp") && (attacker.hp >= attacker.initHP*attacker.sealData.remove_prio_hp)) {
+        vantagePassive = false;
+        vantageWeapon = false;
+    }
 
     // outspeed info
     var atkOutspeed = attacker.spd >= defender.spd + 5;

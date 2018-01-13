@@ -426,6 +426,27 @@
         "name": "Guidance 3",
         "type": "s"
     },
+    "hardy-bearing-1": {
+        "description": "Disables skills that change unit's attack priority. If unit has 100% HP at start of battle, enemy skills that change attack priority are also disabled.",
+        "id": "hardy-bearing-1",
+        "name": "Hardy Bearing 1",
+        "type": "s",
+        "remove_prio_hp":1
+    },
+    "hardy-bearing-2": {
+        "description": "Disables skills that change unit's attack priority. If unit has ≥ 50% HP at start of battle, enemy skills that change attack priority are also disabled.",
+        "id": "hardy-bearing-2",
+        "name": "Hardy Bearing 2",
+        "type": "s",
+        "remove_prio_hp":0.5
+    },
+    "hardy-bearing-3": {
+         "description": "Disables skills that change unit's attack priority. Enemy skills that change attack priority are also disabled.",
+        "id": "hardy-bearing-3",
+        "name": "Hardy Bearing 3",
+        "type": "s",
+        "remove_prio_hp":0
+    },
     "heavy-blade-1": {
         "description": "If unit's Atk - foe's Atk ≥ 5, unit gains Special cooldown charge +1 per attack.\r\n(If using other similar skill, only highest value applied.)",
         "id": "heavy-blade-1",
