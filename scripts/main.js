@@ -1590,7 +1590,7 @@ function simBattle(battleInfo, displayMsg) {
     // check if attacker has a weapon, if not no attack
     if (battleInfo.attacker.weaponName === "None") {
         if (displayMsg) {
-            $("#interaction-list").stop(true, true).hide().html("<li class='battle-interaction-only'><span class='attacker'>" + $("#char-1").val() + "</span> cannot attack without a weapon.</li>");
+            $("#interaction-list").stop(true, true).hide().html("<li class='battle-interaction-only'><span class='attacker'>" + battleInfo.attacker.display + "</span> cannot attack without a weapon.</li>");
             $("#hp-remain-1").stop(true, true).hide().text($("#curr-hp-1").val().toString() + " → " + $("#curr-hp-1").val().toString());
             $("#hp-remain-2").stop(true, true).hide().text($("#curr-hp-2").val().toString() + " → " + $("#curr-hp-2").val().toString());
             $("#hp-remain-1").fadeIn("slow");
