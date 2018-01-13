@@ -1405,6 +1405,12 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
         dmg += attacker.passiveBData.spec_damage_bonus;
         battleInfo.logMsg += "Damage boosted by " + attacker.passiveBData.spec_damage_bonus.toString() + " on Special trigger [" + attacker.passiveBData.name + "]. ";
     }
+	
+    //check for Wrath
+    if(attacker.passiveBData.hasOwnProperty("spec_damage_bonus_hp") && (attacker.hp<=attacker.initHP*attacker.passiveBData.threshold) && (atkSpec || (attacker.specialData.hasOwnProperty("heal_dmg") && attacker.specCurrCooldown <= 0)) {
+        dmg += attacker.passiveBData.spec_damage_bonus_hp;
+        battleInfo.logMsg += "Damage boosted by " + attacker.passiveBData.spec_damage_bonus_hp.toString() + " on Special trigger [" + attacker.passiveBData.name + "]. ";
+    }
 
     //Mirror setup
     if (!(battleInfo.lastActor === attacker.name && battleInfo.mirroringdmg > 0)) {
@@ -1640,6 +1646,12 @@ function simBattle(battleInfo, displayMsg) {
         if (attacker.weaponData.hasOwnProperty("spec_damage_bonus")) {
             aoeDmg += attacker.weaponData.spec_damage_bonus;
             battleInfo.logMsg += "Damage is increased by " + attacker.weaponData.spec_damage_bonus.toString() + " [" + weaponInfo[attacker.weaponName].name + "]. ";
+        }
+		
+        //check for Wrath
+        if(attacker.passiveBData.hasOwnProperty("spec_damage_bonus_hp") && (attacker.hp<=attacker.initHP*attacker.passiveBData.threshold)) {
+            dmg += attacker.passiveBData.spec_damage_bonus_hp;
+            battleInfo.logMsg += "Damage boosted by " + attacker.passiveBData.spec_damage_bonus_hp.toString() + " on Special trigger [" + attacker.passiveBData.name + "]. ";
         }
 
         // check for damage nullifier
