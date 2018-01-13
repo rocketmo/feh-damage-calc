@@ -2078,6 +2078,9 @@ function simBattle(battleInfo, displayMsg) {
         if (attacker.weaponData.hasOwnProperty("seal") && atkAttacks) {
             battleInfo = applySeal(battleInfo, attacker.weaponData.seal, weaponInfo[attacker.weaponName].name, false);
         }
+        if (attacker.weaponData.hasOwnProperty("initiate_seal")) {
+            battleInfo = applySeal(battleInfo, attacker.weaponData.seal, weaponInfo[attacker.weaponName].name, false);
+        }
         if (attacker.weaponData.hasOwnProperty("target_seal") &&
             (defender.moveType.includes(attacker.weaponData.target_seal.target) ||
              weaponInfo[defender.weaponName].type.includes(attacker.weaponData.target_seal.target)
@@ -2103,7 +2106,11 @@ function simBattle(battleInfo, displayMsg) {
 
     if (attacker.weaponData.hasOwnProperty("convert_penalties") && atkAttacks && defender.currHP > 0) {
         battleInfo = convertPenalties(battleInfo, weaponInfo[attacker.weaponName].name, false);
-    } else if (attacker.weaponData.hasOwnProperty("cancel_counter") && atkAttacks && defender.currHP > 0) {
+    }else if (attacker.weaponData.hasOwnProperty("initiate_convert_penalties") && defender.currHP > 0) {
+        battleInfo = convertPenalties(battleInfo, weaponInfo[attacker.weaponName].name, false);
+    }else if (attacker.weaponData.hasOwnProperty("cancel_counter") && atkAttacks && defender.currHP > 0) {
+        battleInfo = cancelCounters(battleInfo, weaponInfo[attacker.weaponName].name, false);
+    }else if (attacker.weaponData.hasOwnProperty("initiate_cancel_counter") && defender.currHP > 0) {
         battleInfo = cancelCounters(battleInfo, weaponInfo[attacker.weaponName].name, false);
     }
 

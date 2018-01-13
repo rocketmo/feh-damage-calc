@@ -333,6 +333,18 @@
         "heal_dmg" : 0.5,
         "description" : "Recover 50% of damage dealt."
     },
+    "Absorb+" : {
+        "color"   : "Colorless",
+        "type"    : "Staff",
+        "might"   : 7,
+        "range"   : 2,
+        "magical" : true,
+        "heal_dmg" : 0.5,
+        "description" : "Restores 50% of damage dealt. After combat, if unit attacked, restores 7 HP to allies within 2 spaces of unit.",
+        "refinable":{
+            "type":"staff"
+        }
+    },
     "Armads" : {
         "color"   : "Green",
         "type"    : "Axe",
@@ -825,6 +837,18 @@
         "cancel_counter" : true,
         "description" : "After combat, foe inflicted with status preventing them from counterattacking."
     },
+    "Candlelight+" : {
+        "color"   : "Colorless",
+        "type"    : "Staff",
+        "might"   : 11,
+        "range"   : 2,
+        "magical" : true,
+        "initiate_cancel_counter" : true,
+        "description" : "After combat, if unit attacked, inflicts status on target and foes within 2 spaces of target preventing counterattacks through their next actions.",
+        "refinable":{
+            "type":"staff"
+        }
+    },
     "Carrot Axe" : {
         "color"   : "Green",
         "type"    : "Axe",
@@ -1174,6 +1198,20 @@
             "atk" : -6
         }
     },
+    "Fear+" : {
+        "color"   : "Colorless",
+        "type"    : "Staff",
+        "might"   : 12,
+        "range"   : 2,
+        "magical" : true,
+        "description" : "After combat, if unit attacked, inflicts Atk-7 on target and foes within 2 spaces of target through their next actions.",
+        "initiate_seal" : {
+            "atk" : -7
+        },
+        "refinable":{
+            "type":"staff"
+        }
+    },
     "Fenrir" : {
         "color"   : "Red",
         "type"    : "Red Tome",
@@ -1423,6 +1461,17 @@
         "magical" : true,
         "description" : "After any combat, restrict foe from moving more than 1 space through their next actions."
     },
+    "Gravity+" : {
+        "color"   : "Colorless",
+        "type"    : "Staff",
+        "might"   : 10,
+        "range"   : 2,
+        "magical" : true,
+        "description" : "After combat, if unit attacked, prevents target and foes within 1 space of target from moving more than 1 space through their next actions.",
+        "refinable":{
+            "type":"staff"
+        }
+    },
     "Green Egg" : {
         "color"   : "Green",
         "type"    : "Green Tome",
@@ -1544,6 +1593,25 @@
         "refinable":{
             "type":"ranged",
             "Special":"Cavalry ranged"
+        }
+    },
+    "Hagoita" : {
+        "color"   : "Green",
+        "type"    : "Axe",
+        "might"   : 10,
+        "range"   : 1,
+        "magical" : false,
+        "description" : "Grants Def/Res+2 during combat to allies within 2 spaces."
+    },
+    "Hagoita+" : {
+        "color"   : "Green",
+        "type"    : "Axe",
+        "might"   : 14,
+        "range"   : 1,
+        "magical" : false,
+        "description" : "Grants Def/Res+2 during combat to allies within 2 spaces.",
+        "refinable":{
+            "type":"melee"
         }
     },
     "Hammer" : {
@@ -1681,6 +1749,25 @@
         "might"   : 6,
         "range"   : 1,
         "magical" : false
+    },
+    "Kadomatsu" : {
+        "color"   : "Red",
+        "type"    : "Sword",
+        "might"   : 10,
+        "range"   : 1,
+        "magical" : false,
+        "description" : "Grants Def/Res+2 during combat to allies within 2 spaces."
+    },
+    "Kadomatsu+" : {
+        "color"   : "Red",
+        "type"    : "Sword",
+        "might"   : 14,
+        "range"   : 1,
+        "magical" : false,
+        "description" : "Grants Def/Res+2 during combat to allies within 2 spaces.",
+        "refinable":{
+            "type":"melee"
+        }
     },
     "Killer Axe" : {
         "color"   : "Green",
@@ -1900,6 +1987,18 @@
         "description" : "Inflicts 10 damage on foe after combat.",
         "poison" : 10
     },
+    "Pain+" : {
+        "color"   : "Colorless",
+        "type"    : "Staff",
+        "might"   : 10,
+        "range"   : 2,
+        "magical" : true,
+        "description" : "After combat, if unit attacked, deals 10 damage to target and foes within 2 spaces of target.",
+        "initiate_poison" : 10,
+        "refinable":{
+            "type":"staff"
+        }
+    },
     "Panic" : {
         "color"   : "Colorless",
         "type"    : "Staff",
@@ -1908,6 +2007,18 @@
         "magical" : true,
         "convert_penalties" : true,
         "description" : "After combat, bonuses on foe become penalties through their next action."
+    },
+    "Panic+" : {
+        "color"   : "Colorless",
+        "type"    : "Staff",
+        "might"   : 11,
+        "range"   : 2,
+        "magical" : true,
+        "initiate_convert_penalties" : true,
+        "description" : "After combat, if unit attacked, bonuses on target and foes within 2 spaces of target become penalties through their next actions.",
+        "refinable":{
+            "type":"staff"
+        }
     },
     "Parthia" : {
         "color"   : "Colorless",
@@ -2529,6 +2640,20 @@
         "description" : "After combat, inflicts Spd-6 on foe through their next actions.",
         "seal" : {
             "spd" : -6
+        }
+    },
+    "Slow+" : {
+        "color"   : "Colorless",
+        "type"    : "Staff",
+        "might"   : 12,
+        "range"   : 2,
+        "magical" : true,
+        "description" : "After combat, if unit attacked, inflicts Spd-7 on target and foes within 2 spaces of target through their next actions.",
+        "initiate_seal" : {
+            "spd" : -7
+        },
+        "refinable":{
+            "type":"staff"
         }
     },
     "Smoke Dagger" : {
