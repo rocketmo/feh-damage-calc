@@ -1303,7 +1303,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
         var aff = checkAffinity(atkMod, attacker, defender);
         atkMod += aff;
         if (aff !== 0) {
-            battleInfo.logMsg += "[Cancel Affinity] takes effect!"
+            battleInfo.logMsg += "[Cancel Affinity] takes effect! "
         }
         atkPower = roundNum(atkPower * atkMod, false);
     } else if (atkMod < 1) {

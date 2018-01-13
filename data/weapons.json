@@ -1157,7 +1157,7 @@
         "range"   : 1,
         "magical" : false,
         "description" : "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
-        "tri_advantage" : true
+        "tri_advantage" : 0.2
     },
     "Emerald Axe+" : {
         "color"   : "Green",
@@ -1166,7 +1166,7 @@
         "range"   : 1,
         "magical" : false,
         "description" : "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
-        "tri_advantage" : true
+        "tri_advantage" : 0.2
     },
     "Excalibur" : {
         "color"   : "Green",
@@ -2331,7 +2331,7 @@
         "range"   : 1,
         "magical" : false,
         "description" : "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
-        "tri_advantage" : true
+        "tri_advantage" : 0.2
     },
     "Ruby Sword+" : {
         "color"   : "Red",
@@ -2340,7 +2340,7 @@
         "range"   : 1,
         "magical" : false,
         "description" : "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
-        "tri_advantage" : true
+        "tri_advantage" : 0.2
     },
     "Ruin" : {
         "color"   : "Red",
@@ -2356,7 +2356,7 @@
         "range"   : 1,
         "magical" : false,
         "description" : "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
-        "tri_advantage" : true
+        "tri_advantage" : 0.2
     },
     "Sapphire Lance+" : {
         "color"   : "Blue",
@@ -2365,7 +2365,7 @@
         "range"   : 1,
         "magical" : false,
         "description" : "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
-        "tri_advantage" : true
+        "tri_advantage" : 0.2
     },
     "Seashell" : {
         "color"   : "Colorless",
