@@ -114,6 +114,29 @@
             "description":"Deals +10 damage when special triggers.",
             "spec_damage_bonus" : 10
         },
+        "Parthia":{
+            "description":"Grants Atk+6 during combat if foe uses bow, dagger, magic, or staff.",
+            "type_mod": {
+                "weapon_type": {
+                    "Bow": true,
+                    "Dagger": true,
+                    "Staff": true,
+                    "Red Tome": true,
+                    "Blue Tome": true,
+                    "Green Tome": true
+                },
+                "stat_mod": {
+                    "atk": 6
+                }
+            }
+        },
+        "Cymbeline":{
+            "description":"Grants Atk/Res+5 during combat if within 2 spaces of a flying ally.",
+            "stat_mod": {
+                "atk": 5,
+                "res": 5
+            }
+        },
         "Cavalry ranged":{
             "nullify_enemy_bonuses": {
                 "move_type": {

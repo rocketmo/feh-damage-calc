@@ -5,6 +5,9 @@
     "Dance" : {
         "char_unique" : true
     },
+    "Sacrifice" : {
+        "char_unique" : true
+    },
     "Draw Back" : {
         "weapon_restrict" : "Staff"
     },
@@ -18,10 +21,16 @@
         "spec_cooldown_mod" : 1,
         "weapon_unique" : "Staff"
     },
+    "Martyr+" : {
+        "weapon_unique" : "Staff"
+    },
     "Mend" : {
         "weapon_unique" : "Staff"
     },
     "Physic" : {
+        "weapon_unique" : "Staff"
+    },
+    "Physic+" : {
         "weapon_unique" : "Staff"
     },
     "Pivot" : {
@@ -55,8 +64,14 @@
         "spec_cooldown_mod" : 1,
         "weapon_unique" : "Staff"
     },
+    "Recover+" : {
+        "weapon_unique" : "Staff"
+    },
     "Rehabilitate" : {
         "spec_cooldown_mod" : 1,
+        "weapon_unique" : "Staff"
+    },
+    "Rehabilitate+" : {
         "weapon_unique" : "Staff"
     },
     "Reposition" : {

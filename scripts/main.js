@@ -1247,8 +1247,8 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
     // determine base attack
     var atkPower = attacker.atk;
 
-    // super effectiveness against movement types with sacred seal check
-    if (attacker.weaponData.hasOwnProperty("move_effective") && defender.moveType.includes(attacker.weaponData.move_effective)) {
+    // super effectiveness against movement types with sacred seal check and thani check
+    if ((attacker.weaponData.hasOwnProperty("move_effective2") && defender.moveType.includes(attacker.weaponData.move_effective2))||(attacker.weaponData.hasOwnProperty("move_effective") && defender.moveType.includes(attacker.weaponData.move_effective))) {
         if (defender.passiveAData.hasOwnProperty("cancel_effective")) {
             battleInfo.logMsg += "Effectiveness against " + defender.moveType + " neutralized by opponent [" + skillInfo['a'][defender.passiveA].name + "]. ";
         } else if (defender.sealData.hasOwnProperty("cancel_effective")){
@@ -1448,8 +1448,15 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
         }
     }
 
-    // Divine Tyrfing
-    if (!battleInfo.lastActor && defender.weaponData.first_dmg_reduction && defender.weaponData.weapon_defensive.includes(weaponInfo[attacker.weaponName].type)) {
+    // Thani and Divine Tyrifing
+    if (!battleInfo.lastActor && defender.weaponData.first_dmg_reduction && defender.weaponData.hasOwnProperty("move_defensive") && defender.weaponData.move_defensive.includes(attacker.moveType) && defender.weaponData.move_defensive.weapon_defensive.includes(weaponInfo[attacker.weaponName].type)) {
+        var multiplier = defender.weaponData.first_dmg_reduction.multiplier;
+
+        if (multiplier !== 1) {
+            dmg = roundNum(dmg * multiplier, true);
+            battleInfo.logMsg += "Opponent reduces damage from first attack by " + ( (1 - multiplier) * 100 ).toFixed(0) + "%. ";
+        }
+    }else if (!battleInfo.lastActor && defender.weaponData.first_dmg_reduction && defender.weaponData.weapon_defensive.includes(weaponInfo[attacker.weaponName].type)) {
         var multiplier = defender.weaponData.first_dmg_reduction.multiplier;
 
         if (multiplier !== 1) {

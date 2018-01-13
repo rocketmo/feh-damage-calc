@@ -945,7 +945,12 @@
         "range" : 2,
         "magical" : true,
         "description" : "Grants adjacent allies Atk+4 through their next actions after any combat this unit initiates.",
-        "char_unique" : true
+        "char_unique" : true,
+        "refinable":{
+            "type":"ranged",
+            "Special":"Cymbeline",
+            "description":"Grants allies within 2 spaces Atk+3 during combat."
+        }
     },
     "Dark Aura" : {
         "color"   : "Blue",
@@ -1865,6 +1870,20 @@
             "description": "After combat, bonuses on target and foes 2 spaces of target become penalties through their next actions."
         }
     },
+    "Light" : {
+        "color"   : "Blue",
+        "type"    : "Blue Tome",
+        "might"   : 4,
+        "range"   : 2,
+        "magical" : true
+    },
+    "Elight" : {
+        "color"   : "Blue",
+        "type"    : "Blue Tome",
+        "might"   : 6,
+        "range"   : 2,
+        "magical" : true
+    },
     "Light Breath" : {
         "type"    : "Breath",
         "might"   : 9,
@@ -2031,7 +2050,40 @@
         "initiate_mod" : {
             "res" : 4
         },
-        "char_unique" : true
+        "char_unique" : true,
+        "refinable":{
+            "type":"ranged",
+            "Special":"Parthia",
+            "description":"Effective against flying foes. If foe uses magic, damage from first attack received by unit during combat reduced by 30%.",
+            "initiate_mod" : {
+                "res" : 0
+            },
+            "weapon_defensive": [
+                "Tome",
+                "Red Tome",
+                "Blue Tome",
+                "Green Tome"
+            ],
+            "first_dmg_reduction": {
+                "weapon_type": [],
+                "multiplier": 0.7
+            }
+        }
+    },
+    "Peshkatz" : {
+        "color"   : "Colorless",
+        "type"    : "Dagger",
+        "might"   : 14,
+        "range"   : 2,
+        "magical" : false,
+        "char_unique": true,
+        "description" : "After combat, if unit attacked, inflicts Atk/ Spd/Def/Res-4 on target and foes within 2 spaces of target through their next actions, and grants Atk/Spd/Def/Res+4 to unit and allies within 2 spaces for 1 turn.",
+        "seal" : {
+            "atk" : -4,
+            "spd" : -4,
+            "def" : -4,
+            "res" : -4
+        }
     },
     "Poison Dagger" : {
         "color"   : "Colorless",
@@ -2406,6 +2458,24 @@
             },
         }
     },
+    "Shine" : {
+        "color"   : "Blue",
+        "type"    : "Blue Tome",
+        "might"   : 9,
+        "range"   : 2,
+        "magical" : true
+    },
+    "Shine+" : {
+        "color"   : "Blue",
+        "type"    : "Blue Tome",
+        "might"   : 13,
+        "range"   : 2,
+        "magical" : true,
+        "refinable":{
+            "type":"ranged",
+            "might": 14
+        }
+    },
     "Siegfried" : {
         "color"   : "Red",
         "type"    : "Sword",
@@ -2744,6 +2814,39 @@
         "might"   : 8,
         "range"   : 1,
         "magical" : false
+    },
+    "Thani" : {
+        "color"   : "Blue",
+        "type"    : "Blue Tome",
+        "might"   : 14,
+        "range"   : 2,
+        "magical" : true,
+        "char_unique" : true,
+        "description" : "Grants Res+3. Effective against armored and cavalry foes. Against armored and cavalry foes using bow, dagger, magic, or staff, damage from first attack received by unit during combat reduced by 30%.",
+        "stat_mod" : {
+            "res" : 3
+        },
+        "move_effective" : [
+            "Armored",
+            "Cavalry"
+        ],
+        "move_defensive": {
+            "Armored":true,
+            "Cavalry":true,
+            "weapon_defensive": [
+                "Tome",
+                "Red Tome",
+                "Blue Tome",
+                "Green Tome",
+                "Dagger",
+                "Staff",
+                "Bow"
+            ],
+        },
+        "first_dmg_reduction": {
+            "weapon_type": [],
+            "multiplier": 0.7
+        }
     },
     "Thoron" : {
         "color"   : "Blue",
