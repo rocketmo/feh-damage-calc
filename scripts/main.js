@@ -1458,25 +1458,19 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
         }
     }
 
-    // Thani and Divine Tyrifing
-    if (!battleInfo.lastActor && defender.weaponData.first_dmg_reduction && defender.weaponData.hasOwnProperty("move_defensive") && defender.weaponData.move_defensive.includes(attacker.moveType) && defender.weaponData.move_defensive.weapon_defensive.includes(weaponInfo[attacker.weaponName].type)) {
+    // First damage reduction effects (such as divine tyrfing and thani)
+    if (!battleInfo.lastActor && firstDmgReduction(defender, attacker)) {
+
         var multiplier = defender.weaponData.first_dmg_reduction.multiplier;
 
-        if (multiplier !== 1) {
-            dmg = roundNum(dmg * multiplier, true);
-            battleInfo.logMsg += "Opponent reduces damage from first attack by " + ( (1 - multiplier) * 100 ).toFixed(0) + "%. ";
-        }
-    }else if (!battleInfo.lastActor && defender.weaponData.first_dmg_reduction && defender.weaponData.weapon_defensive.includes(weaponInfo[attacker.weaponName].type)) {
-        var multiplier = defender.weaponData.first_dmg_reduction.multiplier;
-
-        if (multiplier !== 1) {
-            dmg = roundNum(dmg * multiplier, true);
-            battleInfo.logMsg += "Opponent reduces damage from first attack by " + ( (1 - multiplier) * 100 ).toFixed(0) + "%. ";
-        }
+        dmg = roundNum(dmg * multiplier, true);
+        
+        battleInfo.logMsg += "Opponent reduces damage from first attack by " + ( (1 - multiplier) * 100 ).toFixed(0) + "%. ";
     }
 
-    if(attacker.name===defender.name) //Prevent "Multiple BIke"'s bug
-        attacker.name+="o";
+    //Hacky bugfix for the Brave Ike mirror match issue
+    if(attacker.name === defender.name)
+        attacker.name += "o";
 
     battleInfo.lastActor = attacker.name;
 

@@ -208,14 +208,13 @@
 		"stat_mod": {
 			"res": 3
 		},
-		"weapon_defensive": [
-			"Tome",
-			"Red Tome",
-			"Blue Tome",
-			"Green Tome"
-		],
 		"first_dmg_reduction": {
-			"weapon_type": [],
+			"weapon_type": [
+				"Tome",
+				"Red Tome",
+				"Blue Tome",
+				"Green Tome"
+			],
 			"multiplier": 0.5
 		}
 	},
@@ -2058,14 +2057,13 @@
 			"initiate_mod": {
 				"res": 0
 			},
-			"weapon_defensive": [
-				"Tome",
-				"Red Tome",
-				"Blue Tome",
-				"Green Tome"
-			],
 			"first_dmg_reduction": {
-				"weapon_type": [],
+				"weapon_type": [
+					"Tome",
+					"Red Tome",
+					"Blue Tome",
+					"Green Tome"
+				],
 				"multiplier": 0.7
 			}
 		}
@@ -2830,10 +2828,12 @@
 			"Armored",
 			"Cavalry"
 		],
-		"move_defensive": {
-			"Armored": true,
-			"Cavalry": true,
-			"weapon_defensive": [
+		"first_dmg_reduction": {
+			"move_type": [
+				"Armored",
+				"Cavalry"
+			],
+			"weapon_type": [
 				"Tome",
 				"Red Tome",
 				"Blue Tome",
@@ -2841,10 +2841,7 @@
 				"Dagger",
 				"Staff",
 				"Bow"
-			]
-		},
-		"first_dmg_reduction": {
-			"weapon_type": [],
+			],
 			"multiplier": 0.7
 		}
 	},

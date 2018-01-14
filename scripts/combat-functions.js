@@ -205,14 +205,21 @@ function firstDmgReduction(char, enemy) {
     for (var i = 0; i < checks.length; i++) {
         var source = char[checks[i]].first_dmg_reduction;
 
-        if(source) {
-            if (source.weapon_type && enemy.weaponData.type.includes(source.weapon_type)) {
-                return true;
-            }
+        if(!source) {
+            continue;
         }
 
-    return false;
+        if (Array.isArray(source.weapon_type) && !source.weapon_type.includes(enemy.type)) {
+            continue;
+        }
+
+        if (Array.isArray(source.move_type) && !source.move_type.includes(enemy.moveType)) {
+            continue;
+        }
+
+        return true;
     }
+    return false;
 }
 
 //Bonus for adjacency to allies
