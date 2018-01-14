@@ -255,45 +255,46 @@ function enemyPhaseCharge(battleInfo, attacker, defender) {
     })
 }
 
-//This is redundant, separating this makes it easier to mantain
+//This is redundant, separating this makes it easier to maintain
 function giveBonuses(battleInfo, agent, other){
-// below hp threshold bonus
+
+    // below hp threshold bonus
     if (agent.weaponData.hasOwnProperty("below_threshold_mod") && agent.initHP <= checkRoundError(agent.weaponData.below_threshold_mod.threshold * agent.hp)) {
-        battleInfo = combatBonus(battleInfo, agent.weaponData.below_threshold_mod.stat_mod, weaponInfo[agent.weaponName].name, "agent", "for having HP ≤ " + (agent.weaponData.below_threshold_mod.threshold * 100).toString() + "%");
+        battleInfo = combatBonus(battleInfo, agent.weaponData.below_threshold_mod.stat_mod, weaponInfo[agent.weaponName].name, agent.agentClass, "for having HP ≤ " + (agent.weaponData.below_threshold_mod.threshold * 100).toString() + "%");
     }
 
     // below hp threshold bonus
     if (agent.passiveAData.hasOwnProperty("below_threshold_mod") && agent.initHP <= checkRoundError(agent.passiveAData.below_threshold_mod.threshold * agent.hp)) {
-        battleInfo = combatBonus(battleInfo, agent.passiveAData.below_threshold_mod.stat_mod, skillInfo['a'][agent.passiveA].name, "agent", "for having HP ≤ " + (agent.passiveAData.below_threshold_mod.threshold * 100).toString() + "%");
+        battleInfo = combatBonus(battleInfo, agent.passiveAData.below_threshold_mod.stat_mod, skillInfo['a'][agent.passiveA].name, agent.agentClass, "for having HP ≤ " + (agent.passiveAData.below_threshold_mod.threshold * 100).toString() + "%");
     }
 
     // hp advantage boost
-    if (agent.passiveAData.hasOwnProperty("hp_adv_mod") && agent.currHP - defender.currHP >= agent.passiveAData.hp_adv_mod.hp_adv) {
-        battleInfo = combatBonus(battleInfo, agent.passiveAData.hp_adv_mod.stat_mod, skillInfo['a'][agent.passiveA].name, "agent", "for having at least " + agent.passiveAData.hp_adv_mod.hp_adv.toString() + " more HP than the opponent");
+    if (agent.passiveAData.hasOwnProperty("hp_adv_mod") && agent.currHP - other.currHP >= agent.passiveAData.hp_adv_mod.hp_adv) {
+        battleInfo = combatBonus(battleInfo, agent.passiveAData.hp_adv_mod.stat_mod, skillInfo['a'][agent.passiveA].name, agent.agentClass, "for having at least " + agent.passiveAData.hp_adv_mod.hp_adv.toString() + " more HP than the opponent");
     }
 
     // full hp bonus
     if (agent.weaponData.hasOwnProperty("full_hp_mod") && agent.currHP >= agent.hp) {
-        battleInfo = combatBonus(battleInfo, agent.weaponData.full_hp_mod, weaponInfo[agent.weaponName].name, "agent", "for having full HP");
+        battleInfo = combatBonus(battleInfo, agent.weaponData.full_hp_mod, weaponInfo[agent.weaponName].name, agent.agentClass, "for having full HP");
     }
 
     // opponent full hp bonus
-    if (agent.weaponData.hasOwnProperty("foe_full_hp_mod") && defender.currHP >= defender.hp) {
-        battleInfo = combatBonus(battleInfo, agent.weaponData.foe_full_hp_mod, weaponInfo[agent.weaponName].name, "agent", "for battling an opponent with full HP");
+    if (agent.weaponData.hasOwnProperty("foe_full_hp_mod") && other.currHP >= other.hp) {
+        battleInfo = combatBonus(battleInfo, agent.weaponData.foe_full_hp_mod, weaponInfo[agent.weaponName].name, agent.agentClass, "for battling an opponent with full HP");
     }
 
     // blade tome bonuses
     if (agent.hasOwnProperty("addBonusAtk") && agent.addBonusAtk > 0) {
-        battleInfo = bladeTomeBonus(battleInfo, agent.addBonusAtk, "agent");
+        battleInfo = bladeTomeBonus(battleInfo, agent.addBonusAtk, agent.agentClass);
     }
 
     // owl tome bonuses
     if (agent.weaponData.hasOwnProperty("adjacent_ally_bonus") && agent.adjacent > 0) {
-        battleInfo = owlTomeBonus(battleInfo, agent.adjacent, "agent");
+        battleInfo = owlTomeBonus(battleInfo, agent.adjacent, agent.agentClass);
     }
 
     //adjacent stat bonus
-    adjacentStatBonus(battleInfo, agent, "agent");
+    adjacentStatBonus(battleInfo, agent, agent.agentClass);
 
     return battleInfo;
 }
@@ -302,11 +303,11 @@ function giveBonuses(battleInfo, agent, other){
 // handles any combat bonuses
 // battleInfo contains all battle information, statMods contains the stats to modify and the amounts to increase, modSource is the source of the bonuses
 // charClass is either 'attacker' or 'defender', srcMsg is a message to insert in the log
-function combatBonus(battleInfo, statMods, modSource, charClass, srcMsg) {
+function combatBonus(battleInfo, statMods, modSource, agentClass, srcMsg) {
 
     for (var stat in statMods) {
-        battleInfo[charClass][stat] += statMods[stat];
-        battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'><strong>" + battleInfo[charClass].display + "</strong></span> gains " + statMods[stat].toString() + " " + statWord(stat) + " " + srcMsg + " [" + modSource + "].</li>";
+        battleInfo[agentClass][stat] += statMods[stat];
+        battleInfo.logMsg += "<li class='battle-interaction'><span class='" + agentClass + "'><strong>" + battleInfo[agentClass].display + "</strong></span> gains " + statMods[stat].toString() + " " + statWord(stat) + " " + srcMsg + " [" + modSource + "].</li>";
     }
 
     return battleInfo;

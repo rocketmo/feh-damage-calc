@@ -820,6 +820,10 @@ function getCharPanelData(charNum) {
 
     var charData = {};
 
+    // Save attacker/defender info
+    charData.isAttacker = parseInt(charNum) === 1 ? true : false;
+    charData.agentClass = charData.isAttacker ? 'attacker' : 'defender';
+
     charData.color = $("#color-" + charNum).val();
     charData.moveType = $("#move-type-" + charNum).val();
     charData.type = $("#weapon-type-" + charNum).val();
@@ -1241,6 +1245,12 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
         defender = battleInfo.attacker;
     }
 
+    //Storing attacker info for self-referencing in later calculations
+    attacker.isAttacker = true;
+    attacker.charClass = 'attacker';
+    defender.isAttacker = false;
+    defender.charClass = 'defender';
+
     var defOldHP = defender.currHP;
     battleInfo.logMsg += "<span class='" + atkClass + "'>" + attacker.display + "</span> " + logIntro + ". ";
 
@@ -1405,9 +1415,9 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
         dmg += attacker.passiveBData.spec_damage_bonus;
         battleInfo.logMsg += "Damage boosted by " + attacker.passiveBData.spec_damage_bonus.toString() + " on Special trigger [" + attacker.passiveBData.name + "]. ";
     }
-	
+
     //check for Wrath
-    if(attacker.passiveBData.hasOwnProperty("spec_damage_bonus_hp") && (attacker.hp<=attacker.initHP*attacker.passiveBData.threshold) && (atkSpec || (attacker.specialData.hasOwnProperty("heal_dmg") && attacker.specCurrCooldown <= 0)) {
+    if(attacker.passiveBData.hasOwnProperty("spec_damage_bonus_hp") && (attacker.currHP <= attacker.hp * attacker.passiveBData.threshold) && (atkSpec || (attacker.specialData.hasOwnProperty("heal_dmg") && attacker.specCurrCooldown <= 0))) {
         dmg += attacker.passiveBData.spec_damage_bonus_hp;
         battleInfo.logMsg += "Damage boosted by " + attacker.passiveBData.spec_damage_bonus_hp.toString() + " on Special trigger [" + attacker.passiveBData.name + "]. ";
     }
@@ -1586,6 +1596,14 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 // returns battleInfo
 function simBattle(battleInfo, displayMsg) {
 
+    var attacker = battleInfo.attacker;
+    var defender = battleInfo.defender;
+
+    //Storing attacker info for self-referencing in later calculations
+    attacker.isAttacker = true;
+    attacker.agentClass = 'attacker';
+    defender.isAttacker = false;
+    defender.agentClass = 'defender';
 
     // check if attacker has a weapon, if not no attack
     if (battleInfo.attacker.weaponName === "None") {
@@ -1604,9 +1622,6 @@ function simBattle(battleInfo, displayMsg) {
 
         return battleInfo;
     }
-
-    var attacker = battleInfo.attacker;
-    var defender = battleInfo.defender;
 
     // print panic message
     if (attacker.status.panic && (attacker.atkBonus > 0 || attacker.spdBonus > 0 || attacker.defBonus > 0 || attacker.resBonus > 0)) {
@@ -1648,15 +1663,15 @@ function simBattle(battleInfo, displayMsg) {
         if (attacker.specialData.hasOwnProperty("aoe_dmg_mod")) {
             aoeDmg = roundNum(aoeDmg * attacker.specialData.aoe_dmg_mod, false);
         }
-        
+
         // check for Wo Dao or Hauteclere
         if (attacker.weaponData.hasOwnProperty("spec_damage_bonus")) {
             aoeDmg += attacker.weaponData.spec_damage_bonus;
             battleInfo.logMsg += "Damage is increased by " + attacker.weaponData.spec_damage_bonus.toString() + " [" + weaponInfo[attacker.weaponName].name + "]. ";
         }
-		
+
         //check for Wrath
-        if(attacker.passiveBData.hasOwnProperty("spec_damage_bonus_hp") && (attacker.hp<=attacker.initHP*attacker.passiveBData.threshold)) {
+        if(attacker.passiveBData.hasOwnProperty("spec_damage_bonus_hp") && (attacker.currHP <= attacker.hp * attacker.passiveBData.threshold)) {
             dmg += attacker.passiveBData.spec_damage_bonus_hp;
             battleInfo.logMsg += "Damage boosted by " + attacker.passiveBData.spec_damage_bonus_hp.toString() + " on Special trigger [" + attacker.passiveBData.name + "]. ";
         }
@@ -1688,8 +1703,8 @@ function simBattle(battleInfo, displayMsg) {
         battleInfo = combatBonus(battleInfo, attacker.passiveAData.initiate_mod, skillInfo['a'][attacker.passiveA].name, "attacker", "by initiating combat");
     }
 
-    battleInfo=giveBonuses(battleInfo, attacker, defender);
-    
+    battleInfo = giveBonuses(battleInfo, attacker, defender);
+
     // DEFENDER BONUSES
     // defending bonus
     if (defender.weaponData.hasOwnProperty("defend_mod")) {
@@ -1699,23 +1714,24 @@ function simBattle(battleInfo, displayMsg) {
     if (defender.passiveAData.hasOwnProperty("defend_mod")) {
         battleInfo = combatBonus(battleInfo, defender.passiveAData.defend_mod, skillInfo['a'][defender.passiveA].name, "defender", "by getting attacked");
     }
-    
--    // defend against specific weapon bonus (Weapon)
--    if (defender.weaponData.hasOwnProperty("type_defend_mod") && defender.weaponData.type_defend_mod.weapon_type.hasOwnProperty(attacker.weaponData.type)) {
--        battleInfo = combatBonus(battleInfo, defender.weaponData.type_defend_mod.stat_mod, weaponInfo[defender.weaponName].name, "defender", "for getting attacked by " + (attacker.weaponData.type === "Axe" ? "an " : "a ") + attacker.weaponData.type.toLowerCase() + " user");
--    }
--
--    // defend against specific weapon bonus (PassiveA)
--    if (defender.passiveAData.hasOwnProperty("type_defend_mod") && defender.passiveAData.type_defend_mod.weapon_type.hasOwnProperty(attacker.weaponData.type)) {
--        battleInfo = combatBonus(battleInfo, defender.passiveAData.type_defend_mod.stat_mod, skillInfo['a'][defender.passiveA].name, "defender", "for getting attacked by " + (attacker.weaponData.type === "Axe" ? "an " : "a ") + attacker.weaponData.type.toLowerCase() + " user");
--    }
--
--    // defend against specific weapon bonus (SEAL)
--    if (defender.sealData.hasOwnProperty("type_defend_mod") && defender.sealData.type_defend_mod.weapon_type.hasOwnProperty(attacker.weaponData.type)) {
--        battleInfo = combatBonus(battleInfo, defender.sealData.type_defend_mod.stat_mod, skillInfo['s'][defender.seal].name, "defender", "for getting attacked by " + (attacker.weaponData.type === "Axe" ? "an " : "a ") + attacker.weaponData.type.toLowerCase() + " user");
--    }
 
-    battleInfo=giveBonuses(battleInfo, defender, attacker);
+    // defend against specific weapon bonus (Weapon)
+    if (defender.weaponData.hasOwnProperty("type_defend_mod") && defender.weaponData.type_defend_mod.weapon_type.hasOwnProperty(attacker.weaponData.type)) {
+        battleInfo = combatBonus(battleInfo, defender.weaponData.type_defend_mod.stat_mod, weaponInfo[defender.weaponName].name, "defender", "for getting attacked by " + (attacker.weaponData.type === "Axe" ? "an " : "a ") + attacker.weaponData.type.toLowerCase() + " user");
+    }
+
+    // defend against specific weapon bonus (PassiveA)
+    if (defender.passiveAData.hasOwnProperty("type_defend_mod") && defender.passiveAData.type_defend_mod.weapon_type.hasOwnProperty(attacker.weaponData.type)) {
+        battleInfo = combatBonus(battleInfo, defender.passiveAData.type_defend_mod.stat_mod, skillInfo['a'][defender.passiveA].name, "defender", "for getting attacked by " + (attacker.weaponData.type === "Axe" ? "an " : "a ") + attacker.weaponData.type.toLowerCase() + " user");
+    }
+
+    // defend against specific weapon bonus (SEAL)
+    if (defender.sealData.hasOwnProperty("type_defend_mod") && defender.sealData.type_defend_mod.weapon_type.hasOwnProperty(attacker.weaponData.type)) {
+        battleInfo = combatBonus(battleInfo, defender.sealData.type_defend_mod.stat_mod, skillInfo['s'][defender.seal].name, "defender", "for getting attacked by " + (attacker.weaponData.type === "Axe" ? "an " : "a ") + attacker.weaponData.type.toLowerCase() + " user");
+    }
+
+
+    battleInfo = giveBonuses(battleInfo, defender, attacker);
 
     // can defender counter
     var defCC = defCanCounter(battleInfo);
@@ -1761,7 +1777,7 @@ function simBattle(battleInfo, displayMsg) {
     var desperationPassive = !attacker.sealData.hasOwnProperty("remove_prio_hp") && canActivateDesperation(attacker.passiveBData, attacker.initHP, attacker.hp);
     var desperationWeapon = !attacker.sealData.hasOwnProperty("remove_prio_hp") && canActivateDesperation(attacker.weaponData, attacker.initHP, attacker.hp);
     var desperationSource = desperationPassive ? skillInfo['b'][attacker.passiveB].name : weaponInfo[attacker.weaponName].name;
-	
+
     //Check HP for Hardy bearing
     if(defender.sealData.hasOwnProperty("remove_prio_hp") && (defender.hp >= defender.initHP*defender.sealData.remove_prio_hp)) {
         desperationWeapon = false;
@@ -1799,7 +1815,7 @@ function simBattle(battleInfo, displayMsg) {
         battleInfo = singleCombat(battleInfo, true, "attacks", false);
         atkAttacks = true;
     }
-    
+
     if(!atkCF && (atkBreakerWeapon) && !(defBreakerPassive || defBreakerWeapon)){ //This should fix the Assassin Bow + Windsweep problem. I put this here because we don't know what IS is going to do
         atkCF=true;
     }
@@ -1862,7 +1878,7 @@ function simBattle(battleInfo, displayMsg) {
                 battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'>" + defender.display + "</span> " + " is unable to counter-attack.</li>";
             }
         }
-        
+
         // print message if attacker cannot make a follow-up, but not if it has a breaker weapon (watersweep + assassin bow)
         if(!((atkBreakerWeapon) && !(defBreakerPassive || defBreakerWeapon)) && attacker.passiveBData.hasOwnProperty("no_follow") && attacker.currHP > 0) {
                 battleInfo.logMsg += "<li class='battle-interaction'><span class='attacker'>" + attacker.display + "</span> " + " is prevented from making follow-up attacks [" + skillInfo['b'][attacker.passiveB].name + "].</li>";
@@ -2096,7 +2112,7 @@ function simBattle(battleInfo, displayMsg) {
             battleInfo = applySeal(battleInfo, attacker.weaponData.seal, weaponInfo[attacker.weaponName].name, false);
         }
         if (attacker.weaponData.hasOwnProperty("initiate_seal")) {
-            battleInfo = applySeal(battleInfo, attacker.weaponData.seal, weaponInfo[attacker.weaponName].name, false);
+            battleInfo = applySeal(battleInfo, attacker.weaponData.initiate_seal, weaponInfo[attacker.weaponName].name, false);
         }
         if (attacker.weaponData.hasOwnProperty("target_seal") &&
             (defender.moveType.includes(attacker.weaponData.target_seal.target) ||
