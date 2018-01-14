@@ -1459,12 +1459,12 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
     }
 
     // First damage reduction effects (such as divine tyrfing and thani)
-    if (!battleInfo.lastActor && firstDmgReduction(defender, attacker)) {
+    if (defender.attacksReceived === 0 && firstDmgReduction(defender, attacker)) {
 
         var multiplier = defender.weaponData.first_dmg_reduction.multiplier;
 
         dmg = roundNum(dmg * multiplier, true);
-        
+
         battleInfo.logMsg += "Opponent reduces damage from first attack by " + ( (1 - multiplier) * 100 ).toFixed(0) + "%. ";
     }
 
@@ -1568,6 +1568,8 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
     // print hp before and after
     battleInfo.logMsg += "<br><span class='" + defClass + "'>" + defender.display + "</span> HP: " + defOldHP.toString() + " → " + defender.currHP.toString() + "" + healMsg + "</li>";
 
+    defender.attacksReceived++;
+
     // store info
     if (initiator) {
         battleInfo.attacker = attacker;
@@ -1576,6 +1578,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
         battleInfo.attacker = defender;
         battleInfo.defender = attacker;
     }
+
 
     // check for a brave weapon
     if (initiator && attacker.weaponData.hasOwnProperty("brave") && !brave && defender.currHP > 0) {
@@ -1598,6 +1601,10 @@ function simBattle(battleInfo, displayMsg) {
     attacker.agentClass = 'attacker';
     defender.isAttacker = false;
     defender.agentClass = 'defender';
+    
+    //Counting attacks received for various abilities
+    attacker.attacksReceived = 0;
+    defender.attacksReceived = 0;
 
     // check if attacker has a weapon, if not no attack
     if (battleInfo.attacker.weaponName === "None") {
