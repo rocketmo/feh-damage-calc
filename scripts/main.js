@@ -655,18 +655,18 @@ function afterCombatEffects(battleInfo, charClass, poison, poisonSource, recoil,
         battleInfo[charClass].currHP = Math.min(oldHP + heal, battleInfo[charClass].hp);
 
         if (poison > 0) {
-            battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'>" + battleInfo[charClass].display + "</span> nullifies after-combat damage [" + poisonSource + ", " + battleInfo[charClass].seal + "]. ";
+            battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'>" + battleInfo[charClass].display + "</span> nullifies damage after combat [" + poisonSource + ", " + battleInfo[charClass].seal + "]. ";
             battleInfo.logMsg += recoil > 0 ? "Self-inflicted damage is nullified [" + recoilSource + ", " + battleInfo[charClass].seal + "]. " : "";
-            battleInfo.logMsg += heal > 0 ? "Health is restored [" + healSource + "]. " : "";
+            battleInfo.logMsg += heal > 0 ? "HP is restored [" + healSource + "]. " : "";
         } else if (recoil > 0) {
             battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'>" + battleInfo[charClass].display + "</span> nullifies self-inflicted damage [" + recoilSource + ", " + battleInfo[charClass].seal + "]. ";
-            battleInfo.logMsg += heal > 0 ? "Health is restored [" + healSource + "]. " : "";
+            battleInfo.logMsg += heal > 0 ? "HP is restored [" + healSource + "]. " : "";
         } else if (heal > 0) {
             battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'>" + battleInfo[charClass].display + "</span> recovers HP after combat [" + healSource + "]. ";
         }
 
         if (heal > 0) {
-            battleInfo.logMsg += "<span class='dmg'>" + heal.toString() + " health restored.</span><br><span class='" + charClass + "'>" + battleInfo[charClass].display + "</span> HP: " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</li>";
+            battleInfo.logMsg += "<span class='dmg'>" + heal.toString() + " HP restored.</span><br><span class='" + charClass + "'>" + battleInfo[charClass].display + "</span> HP: " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</li>";
         } else if (poison + recoil > 0) {
             battleInfo.logMsg += "<span class='dmg'>0 damage dealt.</span><br><span class='" + charClass + "'>" + battleInfo[charClass].display + "</span> HP: " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</li>";
         }
@@ -675,8 +675,8 @@ function afterCombatEffects(battleInfo, charClass, poison, poisonSource, recoil,
         if (poison > 0 && (poison + recoil > heal)) {
             battleInfo[charClass].currHP = Math.max(oldHP - poison - recoil + heal, 1);
             battleInfo[opponentClass].damageDealt += poison - heal;
-            battleInfo.logMsg += "<li class='battle-interaction'><span class='" + opponentClass + "'>" + battleInfo[opponentClass].display + "</span> inflicts after-combat damage [" + poisonSource + "]. ";
-            battleInfo.logMsg += (recoil > 0) ? "Oppenent takes additional after-combat damage [" + recoilSource + "]. " : "";
+            battleInfo.logMsg += "<li class='battle-interaction'><span class='" + opponentClass + "'>" + battleInfo[opponentClass].display + "</span> inflicts damage after combat [" + poisonSource + "]. ";
+            battleInfo.logMsg += (recoil > 0) ? "Oppenent takes additional damage after combat [" + recoilSource + "]. " : "";
             battleInfo.logMsg += (heal > 0) ? "Oppenent reduces damage taken due to healing effect [" + healSource + "]. " : "";
             battleInfo.logMsg += "<span class='dmg'>" + (poison + recoil - heal).toString() + " damage dealt.</span><br><span class='" + charClass + "'>" + battleInfo[charClass].display + "</span> HP: " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</li>";
         } else if (recoil > 0 && recoil > heal) {
@@ -687,9 +687,9 @@ function afterCombatEffects(battleInfo, charClass, poison, poisonSource, recoil,
         } else if (heal > 0) {
             battleInfo[charClass].currHP = Math.min(oldHP + heal - poison - recoil, battleInfo[charClass].hp);
             battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charClass + "'>" + battleInfo[charClass].display + "</span> recovers HP after combat [" + healSource + "]. ";
-            battleInfo.logMsg += (poison > 0) ? "Opponent reduces health gained by inflicting after combat damage [" + poisonSource + "]. " : "";
-            battleInfo.logMsg += (recoil > 0) ? "Health recovery reduced due to self-inflicted damage [" + recoilSource + "]. " : "";
-            battleInfo.logMsg += "<span class='dmg'>" + (heal - poison - recoil).toString() + " health restored.</span><br><span class='" + charClass + "'>" + battleInfo[charClass].display + "</span> HP: " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</li>";
+            battleInfo.logMsg += (poison > 0) ? "Opponent reduces HP gained by inflicting damage after combat [" + poisonSource + "]. " : "";
+            battleInfo.logMsg += (recoil > 0) ? "HP recovery reduced due to self-inflicted damage [" + recoilSource + "]. " : "";
+            battleInfo.logMsg += "<span class='dmg'>" + (heal - poison - recoil).toString() + " HP restored.</span><br><span class='" + charClass + "'>" + battleInfo[charClass].display + "</span> HP: " + oldHP.toString() + " → " + battleInfo[charClass].currHP.toString() + "</li>";
         }
     }
 
@@ -1283,32 +1283,32 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
     // get base triangle advantage
     if (weaponColorAdv > 0) {
         atkMod = 1.2;
-        battleInfo.logMsg += "Weapon advantage against " + defender.color + " boosts attack by 20% [" + weaponInfo[attacker.weaponName].name + "]. ";
+        battleInfo.logMsg += "Weapon triangle advantage against " + defender.color + " boosts attack by 20% [" + weaponInfo[attacker.weaponName].name + "]. ";
     } else if (weaponColorAdv < 0) {
         atkMod = 0.8;
-        battleInfo.logMsg += "Opponent's weapon advantage reduces attack by 20% [" + weaponInfo[defender.weaponName].name + "]. ";
+        battleInfo.logMsg += "Opponent's weapon triangle advantage reduces attack by 20% [" + weaponInfo[defender.weaponName].name + "]. ";
     } else if (triAdv > 0) {
         atkMod = 1.2;
-        battleInfo.logMsg += "Triangle advantage boosts attack by 20%. ";
+        battleInfo.logMsg += "Weapon triangle advantage boosts attack by 20%. ";
     } else if (triAdv < 0) {
         atkMod = 0.8;
-        battleInfo.logMsg += "Triangle disadvantage reduces attack by 20%. ";
+        battleInfo.logMsg += "Weapon triangle disadvantage reduces attack by 20%. ";
     }
 
     // check for any additional triangle advantage boost, then calculate if needed
     if (atkMod > 1) {
         if (attacker.weaponData.hasOwnProperty("tri_advantage")) {
             atkMod += 0.2;
-            battleInfo.logMsg += "Attack is boosted by another 20% [" + weaponInfo[attacker.weaponName].name + "]. ";
+            battleInfo.logMsg += "Weapon triangle affinity granted by skills boosts attack by another 20% [" + weaponInfo[attacker.weaponName].name + "]. ";
         } else if (defender.weaponData.hasOwnProperty("tri_advantage")) {
             atkMod += 0.2;
-            battleInfo.logMsg += "Opponent disadvantage boosts attack by another 20% [" + weaponInfo[defender.weaponName].name + "]. ";
+            battleInfo.logMsg += "Opponent's weapon triangle affinity granted by skills boosts attack by another 20% [" + weaponInfo[defender.weaponName].name + "]. ";
         } else if (attacker.passiveAData.hasOwnProperty("tri_advantage")) {
             atkMod += attacker.passiveAData.tri_advantage;
-            battleInfo.logMsg += "Attack is boosted by another " + (attacker.passiveAData.tri_advantage * 100).toString() + "% [" + skillInfo['a'][attacker.passiveA].name + "]. ";
+            battleInfo.logMsg += "Weapon triangle affinity granted by skills boosts attack by another " + (attacker.passiveAData.tri_advantage * 100).toString() + "% [" + skillInfo['a'][attacker.passiveA].name + "]. ";
         } else if (defender.passiveAData.hasOwnProperty("tri_advantage")) {
             atkMod += defender.passiveAData.tri_advantage;
-            battleInfo.logMsg += "Opponent disadvantage boosts attack by another " + (defender.passiveAData.tri_advantage * 100).toString() + "% [" + skillInfo['a'][defender.passiveA].name + "]. ";
+            battleInfo.logMsg += "Opponent's weapon triangle affinity granted by skills boosts attack by another " + (defender.passiveAData.tri_advantage * 100).toString() + "% [" + skillInfo['a'][defender.passiveA].name + "]. ";
         }
         var aff = checkAffinity(atkMod, attacker, defender);
         atkMod += aff;
@@ -1319,21 +1319,21 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
     } else if (atkMod < 1) {
         if (attacker.weaponData.hasOwnProperty("tri_advantage")) {
             atkMod -= 0.2;
-            battleInfo.logMsg += "Attack is reduced by another 20% [" + weaponInfo[attacker.weaponName].name + "]. ";
+            battleInfo.logMsg += "Weapon triangle affinity granted by skills reduces attack by another 20% [" + weaponInfo[attacker.weaponName].name + "]. ";
         } else if (defender.weaponData.hasOwnProperty("tri_advantage")) {
             atkMod -= 0.2;
-            battleInfo.logMsg += "Opponent reduces attack by another 20% [" + weaponInfo[defender.weaponName].name + "]. ";
+            battleInfo.logMsg += "Opponent's weapon triangle affinity granted by skills reduces attack by another 20% [" + weaponInfo[defender.weaponName].name + "]. ";
         } else if (attacker.passiveAData.hasOwnProperty("tri_advantage")) {
             atkMod -= attacker.passiveAData.tri_advantage;
-            battleInfo.logMsg += "Attack is reduced by another " + (attacker.passiveAData.tri_advantage * 100).toString() + "% [" + skillInfo['a'][attacker.passiveA].name + "]. ";
+            battleInfo.logMsg += "Weapon triangle affinity granted by skills reduces attack by another " + (attacker.passiveAData.tri_advantage * 100).toString() + "% [" + skillInfo['a'][attacker.passiveA].name + "]. ";
         } else if (defender.passiveAData.hasOwnProperty("tri_advantage")) {
             atkMod -= defender.passiveAData.tri_advantage;
-            battleInfo.logMsg += "Opponent reduces attack by another " + (defender.passiveAData.tri_advantage * 100).toString() + "% [" + skillInfo['a'][defender.passiveA].name + "]. ";
+            battleInfo.logMsg += "Opponent's weapon triangle affinity granted by skills reduces attack by another " + (defender.passiveAData.tri_advantage * 100).toString() + "% [" + skillInfo['a'][defender.passiveA].name + "]. ";
         }
         var aff = checkAffinity(atkMod, attacker, defender);
         atkMod -= aff;
         if (aff !== 0) {
-            battleInfo.logMsg += "[Cancel Affinity] takes effect!"
+            battleInfo.logMsg += "[Cancel Affinity] takes effect! "
         }
 
 
@@ -1348,7 +1348,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
     // defense and resistance lowering special
     if (attacker.specialData.hasOwnProperty("enemy_def_res_mod") && attacker.specCurrCooldown <= 0) {
         defReduct -= roundNum(defReduct * attacker.specialData.enemy_def_res_mod, false);
-        battleInfo.logMsg += "Resolve combat as if opponent suffered a " + (attacker.specialData.enemy_def_res_mod * 100).toString() + "% defense/resistance reduction [" + specialInfo[attacker.special].name + "]. ";
+        battleInfo.logMsg += "Combat is resolved as if opponent suffered a " + (attacker.specialData.enemy_def_res_mod * 100).toString() + "% defense/resistance reduction [" + specialInfo[attacker.special].name + "]. ";
         atkSpec = true;
     }
 
@@ -1535,7 +1535,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 
     if (didHeal) {
         attacker.currHP = Math.min(attacker.hp, attacker.currHP + battleInfo.healAmt);
-        battleInfo.logMsg += "<span class='dmg'>" + battleInfo.healAmt.toString() + " health restored. </span>";
+        battleInfo.logMsg += "<span class='dmg'>" + battleInfo.healAmt.toString() + " HP restored. </span>";
         healMsg = " <span class='heal-seperator'>|</span> <span class='" + atkClass + "'>" + attacker.display + "</span> HP: " + atkOldHP.toString() + " → " + attacker.currHP.toString() + "";
     }
 
@@ -1795,15 +1795,15 @@ function simBattle(battleInfo, displayMsg) {
     // vantage
     if (((defender.weaponName !== "None" && vantagePassive) || vantageWeapon) && defCC) {
         if (defender.weaponData.range === attacker.weaponData.range) {
-            battleInfo = singleCombat(battleInfo, false, "counter-attacks first [" + vantageSource + "]", false);
+            battleInfo = singleCombat(battleInfo, false, "counterattacks first [" + vantageSource + "]", false);
             defAttacks = true;
             vantage = true;
         } else if (defender.weaponData.hasOwnProperty("counter")) {
-            battleInfo = singleCombat(battleInfo, false, "counter-attacks first, ignoring distance [" + vantageSource + ", " + weaponInfo[defender.weaponName].name + "]", false);
+            battleInfo = singleCombat(battleInfo, false, "counterattacks first, ignoring distance [" + vantageSource + ", " + weaponInfo[defender.weaponName].name + "]", false);
             defAttacks = true;
             vantage = true;
         } else if (defender.passiveAData.hasOwnProperty("counter")) {
-            battleInfo = singleCombat(battleInfo, false, "counter-attacks first, ignoring distance [" + vantageSource + ", " + skillInfo['a'][defender.passiveA].name + "]", false);
+            battleInfo = singleCombat(battleInfo, false, "counterattacks first, ignoring distance [" + vantageSource + ", " + skillInfo['a'][defender.passiveA].name + "]", false);
             defAttacks = true;
             vantage = true;
         }
@@ -1855,27 +1855,27 @@ function simBattle(battleInfo, displayMsg) {
 
     // defender will try to counter-attack if they haven't been ko'd
     if (attacker.currHP > 0 && defender.currHP > 0) {
-        // defender must be in range to counter-attack or have a counter ability
+        // defender must be in range to counterattack or have a counter ability
         if (!vantage) {
             if (defender.weaponName !== "None" && defender.weaponData.range === attacker.weaponData.range && defCC) {
-                battleInfo = singleCombat(battleInfo, false, "counter-attacks", false);
+                battleInfo = singleCombat(battleInfo, false, "counterattacks", false);
                 defAttacks = true;
             } else if (defender.weaponName !== "None" && defender.weaponData.hasOwnProperty("counter") && defCC) {
-                battleInfo = singleCombat(battleInfo, false, "counter-attacks, ignoring distance [" + weaponInfo[defender.weaponName].name + "]", false);
+                battleInfo = singleCombat(battleInfo, false, "counterattacks, ignoring distance [" + weaponInfo[defender.weaponName].name + "]", false);
                 defAttacks = true;
             } else if (defender.weaponName !== "None" && defender.passiveAData.hasOwnProperty("counter") && defCC) {
-                battleInfo = singleCombat(battleInfo, false, "counter-attacks, ignoring distance [" + defender.passiveA + "]", false);
+                battleInfo = singleCombat(battleInfo, false, "counterattacks, ignoring distance [" + defender.passiveA + "]", false);
                 defAttacks = true;
             } else if (defender.weaponName !== "None" && attacker.weaponData.hasOwnProperty("prevent_counter")) {
-                battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'>" + defender.display + "</span> " + " is prevented from counter-attacking [" + weaponInfo[attacker.weaponName].name + "].</li>";
+                battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'>" + defender.display + "</span> " + " is prevented from counterattacking [" + weaponInfo[attacker.weaponName].name + "].</li>";
             } else if (defender.weaponName !== "None" && defender.weaponData.hasOwnProperty("prevent_counter")) {
-                battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'>" + defender.display + "</span> " + " is prevented from counter-attacking [" + weaponInfo[defender.weaponName].name + "].</li>";
+                battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'>" + defender.display + "</span> " + " is prevented from counterattacking [" + weaponInfo[defender.weaponName].name + "].</li>";
             } else if (defender.weaponName !== "None" && (canActivateSweep(attacker.passiveBData, attacker.spd, defender.spd, defender.weaponData.type)) || canPreventEnemyCounter(attacker.passiveBData, attacker.hp, attacker.currHP)) {
-                battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'>" + defender.display + "</span> " + " is prevented from counter-attacking [" + skillInfo['b'][attacker.passiveB].name + "].</li>";
+                battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'>" + defender.display + "</span> " + " is prevented from counterattacking [" + skillInfo['b'][attacker.passiveB].name + "].</li>";
             } else if (defender.weaponName !== "None" && defender.status.candlelight) {
-                battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'>" + defender.display + "</span> " + " is prevented from counter-attacking due to a status effect.</li>";
+                battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'>" + defender.display + "</span> " + " is prevented from counterattacking due to a status effect.</li>";
             } else {
-                battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'>" + defender.display + "</span> " + " is unable to counter-attack.</li>";
+                battleInfo.logMsg += "<li class='battle-interaction'><span class='defender'>" + defender.display + "</span> " + " is unable to counterattack.</li>";
             }
         }
 
