@@ -1,0 +1,47 @@
+<div class="mdc-card mdc-theme--background">
+    <section class="mdc-card__primary">
+        <h2 class="mdc-card__title--large mdc-theme--secondary-light">Battle Results</h2>
+        <h3 id="result-msg" class="mdc-card__subtitle"></h3>
+        {{> toggle-button}}
+    </section>
+    <div class="mdc-card__body">
+        <div class="mdc-card__supporting-text" id="single-combat">
+            <div id="battle-result">
+                <div id="result-table">
+                    <div class="combat-char">
+                        <h3 class="attacker">Attacker</h3>
+                        <div class="open-in-new combat-char-container tile neutral">
+                            <a id="link-icon-1" target="_blank" href="#">
+                                <img id="weapon-icon-1" class="weapon-icon">
+                                <img id="move-icon-1" class="move-icon">
+                                <img id="portrait-1" class="combat-portrait">
+                                <i class="material-icons">open_in_new</i>
+                            </a>
+                        </div><br>
+                        <span id="hp-remain-1" class="hp-remain"></span>
+                    </div>
+                    <div class="combat-char">
+                        <h3 class="defender">Defender</h3>
+                        <div class="open-in-new combat-char-container tile neutral">
+                            <a id="link-icon-2" target="_blank" href="#">
+                                <img id="weapon-icon-2" class="weapon-icon">
+                                <img id="move-icon-2" class="move-icon">
+                                <img id="portrait-2" class="combat-portrait">
+                                <i class="material-icons">open_in_new</i>
+                            </a>
+                        </div><br>
+                        <span id="hp-remain-2" class="hp-remain"></span>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="mdc-theme--text-secondary-on-background" id="interaction-list"></ul>
+        </div>
+    </div>
+
+    <div class="mdc-card__actions">
+        <button class="mdc-card__action mdc-button mdc-button--primary draw-update">Continue</button>
+        <button class="mdc-card__action mdc-button mdc-button--primary refresh-hp">Refresh</button>
+        <!--<button class="mdc-card__action mdc-button mdc-button--primary calc-link battle-link" id="link-battle">Link Battle</button>-->
+    </div>
+</div>

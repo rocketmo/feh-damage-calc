@@ -1,0 +1,68 @@
+[
+    {
+        "id": "color",
+        "name": "Color",
+        "items": [
+            "Blue",
+            "Green",
+            "Red",
+            "Colorless"
+        ]
+    },
+    {
+        "id": "weapon-type",
+        "name": "Weapon Type",
+        "items": [
+            "Sword",
+            "Red Tome",
+            "Red Breath",
+            "Axe",
+            "Green Tome",
+            "Green Breath",
+            "Lance",
+            "Blue Tome",
+            "Blue Breath",
+            "Bow",
+            "Dagger",
+            "Staff"
+        ]
+    },
+    {
+        "id": "range",
+        "name": "Range",
+        "items": [
+            "Melee",
+            "Ranged"
+        ]
+    },
+    {
+        "id": "damage-type",
+        "name": "Damage Type",
+        "items": [
+            "Physical",
+            "Magical"
+        ]
+    },
+    {
+        "id": "move-type",
+        "name": "Move Type",
+        "items": [
+            "Infantry",
+            "Cavalry",
+            "Flying",
+            "Armored"
+        ]
+    },
+    {
+        "id": "result",
+        "name": "Result",
+        "items": [
+            "Attacker Wins",
+            "Defender Wins",
+            "Draw",
+            "Favorable",
+            "Unfavorable",
+            "Other"
+        ]
+    }
+]

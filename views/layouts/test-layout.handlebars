@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html class="mdc-typography" lang="en-US">
+<head>
+    <title>{{pageTitle}}</title>
+    <meta charset="UTF-8">
+    <meta name="application-name" content="KageroCalc Test App">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" href="/favicon.png"/>
+
+    <!-- KageroChart styling -->
+    <link rel="stylesheet" type="text/css" href="https://kagerochart.com/dist/css/material/main.min.css">
+
+    <!-- Load CSS -->
+    {{#pageCSS}}
+    <link rel="stylesheet" type="text/css" href="style/{{stylesheet}}.min.css">
+    {{/pageCSS}}
+
+    <!-- Load Above Fold JS -->
+    {{#each js}}
+    <script type="text/javascript" src="scripts/{{this}}"></script>
+    {{/each}}
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body id="body" class="mdc-theme--dark">
+    <main id="main" class="material-main">
+        <div id="material-content">
+            {{{body}}}
+        </div>
+    </main>
+
+    <!-- End of Body JS -->
+    <script src="https://kagerochart.com/dist/scripts/material-components-web.min.js"></script>
+    {{#each bottomJS}}<script type="text/javascript" src="scripts/{{this}}"></script>{{/each}}
+
+    <!-- Initialize Material Web Comopnents -->
+    <script type="text/javascript">
+        mdc.autoInit();
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "name": "KageroCalc",
+  "version": "2.3.0",
+  "description": "Fire Emblem Heroes Combat Simulator",
+  "homepage": "https://kagerochart.com/damage-calc",
+  "bugs": {
+      "url": "https://github.com/winsomniak/kagero-calc/issues",
+      "email": "winsomniak@gamedex.io"
+  },
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node test-app.js"
+  },
+  "main": "test-app.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "https://registry.npmjs.org/express/-/express-4.15.3.tgz",
+    "express-handlebars": "^3.0.0",
+    "flat": "^2.0.1",
+    "glob": "^7.1.1",
+    "group-array": "^0.3.3",
+    "handlebars": "^4.0.8",
+    "handlebars-helpers": "^0.8.2",
+    "json-markup": "^1.1.0",
+    "lodash": "^4.17.4",
+    "material-components-web": "https://registry.npmjs.org/material-components-web/-/material-components-web-0.14.0.tgz",
+    "normalize.css": "^7.0.0",
+    "request": "^2.81.0",
+    "simplemde": "^1.11.2"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/winsomniak/kagero-calc"
+  }
+}

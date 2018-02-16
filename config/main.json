@@ -1,0 +1,13 @@
+{
+    "imageUrl": "https://kagerochart.com",
+    "attackPanel": {
+        "title": "Attacker Settings",
+        "id": "attack",
+        "charNum": 1
+    },
+    "defendPanel": {
+        "title": "Defender Settings",
+        "id": "defend",
+        "charNum": 2
+    }
+}
