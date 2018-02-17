@@ -351,9 +351,10 @@
 		"range": 1,
 		"magical": false,
 		"description": "Unit makes a guaranteed follow-up attack when attacked at HP ≥ 80%.",
-		"riposte": {
-			"threshold": 0.8
-		},
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.8
+        },
 		"char_unique": true
 	},
 	"Armorslayer": {
@@ -404,9 +405,15 @@
 		"magical": false,
 		"move_effective": "Flying",
 		"description": "Effective against flying units. If target has a dagger, it cannot make a follow-up attack and this unit will.",
-		"breaker": {
-			"weapon_type": "Dagger"
-		}
+        "attack_follow_up": {
+            "weapon_type":"Dagger"
+        },
+        "defense_follow_up": {
+            "weapon_type":"Dagger"
+        },
+        "other_prevent_follow": {
+            "weapon_type":"Dagger"
+        }
 	},
 	"Assassin's Bow+": {
 		"color": "Colorless",
@@ -416,9 +423,15 @@
 		"magical": false,
 		"description": "Effective against flying units. If target has a dagger, it cannot make a follow-up attack and this unit will.",
 		"move_effective": "Flying",
-		"breaker": {
-			"weapon_type": "Dagger"
-		}
+        "attack_follow_up": {
+            "weapon_type":"Dagger"
+        },
+        "defense_follow_up": {
+            "weapon_type":"Dagger"
+        },
+        "other_prevent_follow": {
+            "weapon_type":"Dagger"
+        }
 	},
 	"Guard Bow": {
 		"color": "Colorless",

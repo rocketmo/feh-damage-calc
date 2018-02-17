@@ -90,23 +90,21 @@
         }
     },
     "Bold Fighter 1": {
-        "bonus_follow_up": {
+        "attack_follow_up": {
             "trigger": "healthy",
-            "threshold": 1
+            "threshold": 1.0
         },
         "spec_accel": true
     },
     "Bold Fighter 2": {
-        "bonus_follow_up": {
+        "attack_follow_up": {
             "trigger": "healthy",
             "threshold": 0.5
         },
         "spec_accel": true
     },
     "Bold Fighter 3": {
-        "bonus_follow_up": {
-            "trigger": "healthy",
-            "threshold": 0
+        "attack_follow_up": {
         },
         "spec_accel": true
     },
@@ -138,19 +136,22 @@
         }
     },
     "Vengeful Fighter 1": {
-        "riposte": {
+        "defense_follow_up": {
+            "trigger": "healthy",
             "threshold": 0.9
         },
         "spec_accel": true
     },
     "Vengeful Fighter 2": {
-        "riposte": {
+        "defense_follow_up": {
+            "trigger": "healthy",
             "threshold": 0.7
         },
         "spec_accel": true
     },
     "Vengeful Fighter 3": {
-        "riposte": {
+        "defense_follow_up": {
+            "trigger": "healthy",
             "threshold": 0.5
         },
         "spec_accel": true
@@ -264,7 +265,11 @@
         }
     },
     "Follow-Up Ring": {
-        "bonus_follow_up": {
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5
+        },
+        "defense_follow_up": {
             "trigger": "healthy",
             "threshold": 0.5
         }
@@ -1015,81 +1020,186 @@
         }
     },
     "Axebreaker 1": {
-            "breaker": {
-            "weapon_type": "Axe",
-            "threshold": 0.9
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Axe"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Axe"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Axe"
         },
         "color_restrict": "Blue"
     },
     "Axebreaker 2": {
-            "breaker": {
-            "weapon_type": "Axe",
-            "threshold": 0.7
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Axe"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Axe"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Axe"
         },
         "color_restrict": "Blue"
     },
     "Axebreaker 3": {
-            "breaker": {
-            "weapon_type": "Axe",
-            "threshold": 0.5
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Axe"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Axe"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Axe"
         },
         "color_restrict": "Blue"
     },
     "Bowbreaker 1": {
-            "breaker": {
-            "weapon_type": "Bow",
-            "threshold": 0.9
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Bow"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Bow"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Bow"
         },
         "move_restrict": "Flying"
     },
     "Bowbreaker 2": {
-            "breaker": {
-            "weapon_type": "Bow",
-            "threshold": 0.7
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Bow"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Bow"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Bow"
         },
         "move_restrict": "Flying"
     },
     "Bowbreaker 3": {
-            "breaker": {
-            "weapon_type": "Bow",
-            "threshold": 0.5
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Bow"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Bow"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Bow"
         },
         "move_restrict": "Flying"
     },
     "B Tomebreaker 1": {
-            "breaker": {
-            "weapon_type": "Blue Tome",
-            "threshold": 0.9
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Blue Tome"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Blue Tome"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Blue Tome"
         },
         "color_restrict": "Red"
     },
     "B Tomebreaker 2": {
-            "breaker": {
-            "weapon_type": "Blue Tome",
-            "threshold": 0.7
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Blue Tome"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Blue Tome"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Blue Tome"
         },
         "color_restrict": "Red"
     },
     "B Tomebreaker 3": {
-            "breaker": {
-            "weapon_type": "Blue Tome",
-            "threshold": 0.5
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Blue Tome"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Blue Tome"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Blue Tome"
         },
         "color_restrict": "Red"
     },
     "Brash Assault 1": {
-            "brash": {
-            "threshold": 0.3
+        "attack_follow_up": {
+            "trigger": "damaged",
+            "threshold": 0.3,
+            "counterable":true
         }
     },
     "Brash Assault 2": {
-            "brash": {
-            "threshold": 0.4
+        "attack_follow_up": {
+            "trigger": "damaged",
+            "threshold": 0.4,
+            "counterable":true
         }
     },
     "Brash Assault 3": {
-            "brash": {
-            "threshold": 0.5
+        "attack_follow_up": {
+            "trigger": "damaged",
+            "threshold": 0.5,
+            "counterable":true
         }
     },
     "Cancel Affinity 1": {
@@ -1105,21 +1215,54 @@
         "reverse_negative_enemy_skill_affinity": true
     },
     "Daggerbreaker 1": {
-            "breaker": {
-            "weapon_type": "Dagger",
-            "threshold": 0.9
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Dagger"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Dagger"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Dagger"
         }
     },
     "Daggerbreaker 2": {
-            "breaker": {
-            "weapon_type": "Dagger",
-            "threshold": 0.7
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Dagger"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Dagger"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Dagger"
         }
     },
     "Daggerbreaker 3": {
-            "breaker": {
-            "weapon_type": "Dagger",
-            "threshold": 0.5
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Dagger"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Dagger"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Dagger"
         }
     },
     "Dazzling Staff 1": {
@@ -1153,23 +1296,56 @@
             "range_unique": 1
     },
     "G Tomebreaker 1": {
-            "breaker": {
-            "weapon_type": "Green Tome",
-            "threshold": 0.9
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Green Tome"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Green Tome"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Green Tome"
         },
         "color_restrict": "Blue"
     },
     "G Tomebreaker 2": {
-            "breaker": {
-            "weapon_type": "Green Tome",
-            "threshold": 0.7
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Green Tome"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Green Tome"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Green Tome"
         },
         "color_restrict": "Blue"
     },
     "G Tomebreaker 3": {
-            "breaker": {
-            "weapon_type": "Green Tome",
-            "threshold": 0.5
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Green Tome"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Green Tome"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Green Tome"
         },
         "color_restrict": "Blue"
     },
@@ -1189,23 +1365,56 @@
             "range_unique": 1
     },
     "Lancebreaker 1": {
-            "breaker": {
-            "weapon_type": "Lance",
-            "threshold": 0.9
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Lance"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Lance"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Lance"
         },
         "color_restrict": "Red"
     },
     "Lancebreaker 2": {
-            "breaker": {
-            "weapon_type": "Lance",
-            "threshold": 0.7
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Lance"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Lance"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Lance"
         },
         "color_restrict": "Red"
     },
     "Lancebreaker 3": {
-            "breaker": {
-            "weapon_type": "Lance",
-            "threshold": 0.5
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Lance"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Lance"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Lance"
         },
         "color_restrict": "Red"
     },
@@ -1234,38 +1443,74 @@
         "weapon_restrict": "Staff"
     },
     "Quick Riposte 1": {
-            "riposte": {
+        "defense_follow_up": {
+            "trigger": "healthy",
             "threshold": 0.9
         }
     },
     "Quick Riposte 2": {
-            "riposte": {
+        "defense_follow_up": {
+            "trigger": "healthy",
             "threshold": 0.8
         }
     },
     "Quick Riposte 3": {
-            "riposte": {
+        "defense_follow_up": {
+            "trigger": "healthy",
             "threshold": 0.7
         }
     },
     "R Tomebreaker 1": {
-            "breaker": {
-            "weapon_type": "Red Tome",
-            "threshold": 0.9
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Red Tome"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Red Tome"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Red Tome"
         },
         "color_restrict": "Green"
     },
     "R Tomebreaker 2": {
-            "breaker": {
-            "weapon_type": "Red Tome",
-            "threshold": 0.7
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Red Tome"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Red Tome"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Red Tome"
         },
         "color_restrict": "Green"
     },
     "R Tomebreaker 3": {
-            "breaker": {
-            "weapon_type": "Red Tome",
-            "threshold": 0.5
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Red Tome"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Red Tome"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Red Tome"
         },
         "color_restrict": "Green"
     },
@@ -1386,23 +1631,56 @@
         "weapon_restrict": "Staff"
     },
     "Swordbreaker 1": {
-            "breaker": {
-            "weapon_type": "Sword",
-            "threshold": 0.9
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Sword"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Sword"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.9,
+            "weapon_type":"Sword"
         },
         "color_restrict": "Green"
     },
     "Swordbreaker 2": {
-            "breaker": {
-            "weapon_type": "Sword",
-            "threshold": 0.7
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Sword"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Sword"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.7,
+            "weapon_type":"Sword"
         },
         "color_restrict": "Green"
     },
     "Swordbreaker 3": {
-            "breaker": {
-            "weapon_type": "Sword",
-            "threshold": 0.5
+        "attack_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Sword"
+        },
+        "defense_follow_up": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Sword"
+        },
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.5,
+            "weapon_type":"Sword"
         },
         "color_restrict": "Green"
     },
@@ -1422,19 +1700,34 @@
         }
     },
     "Wary Fighter 1": {
-            "wary": {
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.9
+        },
+        "self_prevent_follow": {
+            "trigger": "healthy",
             "threshold": 0.9
         },
         "move_unique": "Armored"
     },
     "Wary Fighter 2": {
-            "wary": {
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.7
+        },
+        "self_prevent_follow": {
+            "trigger": "healthy",
             "threshold": 0.7
         },
         "move_unique": "Armored"
     },
     "Wary Fighter 3": {
-            "wary": {
+        "other_prevent_follow": {
+            "trigger": "healthy",
+            "threshold": 0.5
+        },
+        "self_prevent_follow": {
+            "trigger": "healthy",
             "threshold": 0.5
         },
         "move_unique": "Armored"
@@ -1452,7 +1745,9 @@
             },
             "spd_adv": 5
         },
-        "no_follow": true,
+        "self_prevent_follow": {
+            "attack":true
+        },
         "weapon_restrict": "Staff"
     },
     "Watersweep 2": {
@@ -1468,7 +1763,9 @@
             },
             "spd_adv": 3
         },
-        "no_follow": true,
+        "self_prevent_follow": {
+            "attack":true
+        },
         "weapon_restrict": "Staff"
     },
     "Watersweep 3": {
@@ -1484,7 +1781,9 @@
             },
             "spd_adv": 1
         },
-        "no_follow": true,
+        "self_prevent_follow": {
+            "attack":true
+        },
         "weapon_restrict": "Staff"
     },
     "Windsweep 1": {
@@ -1498,7 +1797,9 @@
             },
             "spd_adv": 5
         },
-        "no_follow": true,
+        "self_prevent_follow": {
+            "attack":true
+        },
         "weapon_restrict": "Staff"
     },
     "Windsweep 2": {
@@ -1512,7 +1813,9 @@
             },
             "spd_adv": 3
         },
-        "no_follow": true,
+        "self_prevent_follow": {
+            "attack":true
+        },
         "weapon_restrict": "Staff"
     },
     "Windsweep 3": {
@@ -1526,7 +1829,9 @@
             },
             "spd_adv": 1
         },
-        "no_follow": true,
+        "self_prevent_follow": {
+            "attack":true
+        },
         "weapon_restrict": "Staff"
     },
     "Wrathful Staff 1": {
