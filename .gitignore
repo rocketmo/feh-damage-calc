@@ -1,6 +1,1 @@
-# ignore dreamweaver design notes
-_notes
-css/_notes
-data/_notes
-img/_notes
-scripts/_notes
+node_modules/

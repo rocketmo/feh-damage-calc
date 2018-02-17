@@ -1,0 +1,424 @@
+<div class="mdc-card mdc-theme--background">
+
+    <section class="mdc-card__primary">
+        <h2 class="mdc-card__title mdc-theme--secondary-light">{{title}}</h2>
+        {{> toggle-button}}
+    </section>
+    <div class="mdc-card__body">
+        <div class="char-slots-container">
+            <div id="char-slots-{{charNum}}"  class="info-section char-slots">
+                <img id="tab-0-{{charNum}}" class="char-tab-unselected" alt="h-{{charNum}}-1" src="{{imageUrl}}/images/damage-calc/Portraits/Unselected.png" data-index="0" data-charnum="{{charNum}}">
+                <img id="tab-1-{{charNum}}" class="char-tab-unselected" alt="h-{{charNum}}-2" src="{{imageUrl}}/images/damage-calc/Portraits/Unselected.png" data-index="1" data-charnum="{{charNum}}">
+                <img id="tab-2-{{charNum}}" class="char-tab-unselected" alt="h-{{charNum}}-3" src="{{imageUrl}}/images/damage-calc/Portraits/Unselected.png" data-index="2" data-charnum="{{charNum}}">
+                <img id="tab-3-{{charNum}}" class="char-tab-unselected" alt="h-{{charNum}}-4" src="{{imageUrl}}/images/damage-calc/Portraits/Unselected.png" data-index="3" data-charnum="{{charNum}}">
+                <img id="tab-4-{{charNum}}" class="char-tab-unselected" alt="h-{{charNum}}-5" src="{{imageUrl}}/images/damage-calc/Portraits/Unselected.png" data-index="4" data-charnum="{{charNum}}">
+            </div>
+        </div>
+
+        <section id="stats-{{charNum}}"  class="mdc-card__supporting-text info-section stat-info">
+            <h3 class="mdc-typography--caption">Base Stats</h3>
+            <div class="stat-container">
+                <div class="mdc-textfield">
+                    <input type="number" id="hp-{{charNum}}"  class="mdc-textfield__input more-than-zero hp-stat" value="1" data-charnum="{{charNum}}" autocomplete="off">
+                    <label for="hp-{{charNum}}"  class="mdc-textfield__label" title="A unit is defeated if their Hit Points reach 0.">HP</label>
+                </div>
+
+                <div class="mdc-textfield">
+                    <input type="number" id="atk-{{charNum}}"  class="mdc-textfield__input more-than-zero battle-val" value="1" data-charnum="{{charNum}}" autocomplete="off">
+                    <label for="atk-{{charNum}}"  class="mdc-textfield__label" title="The higher a unit's Attack, the more damage they deal.">ATK</label>
+                </div>
+
+                <div class="mdc-textfield">
+                    <input type="number" id="spd-{{charNum}}"  class="mdc-textfield__input more-than-zero battle-val" value="1" data-charnum="{{charNum}}" autocomplete="off">
+                    <label for="spd-{{charNum}}"  class="mdc-textfield__label" title="A unit will attack twice if their Speed is at least 5 more than their foe's Speed.">SPD</label>
+                </div>
+
+                <div class="mdc-textfield">
+                    <input type="number" id="def-{{charNum}}"  class="mdc-textfield__input more-than-zero battle-val" value="1" data-charnum="{{charNum}}" autocomplete="off">
+                    <label for="def-{{charNum}}"  class="mdc-textfield__label" title="The higher a unit's Defense is, the less damage they take from physical attacks.">DEF</label>
+                </div>
+
+                <div class="mdc-textfield">
+                    <input type="number" id="res-{{charNum}}"  class="mdc-textfield__input more-than-zero battle-val" value="1" data-charnum="{{charNum}}" autocomplete="off">
+                    <label for="res-{{charNum}}"  class="mdc-textfield__label" title="The higher a unit's Resistance is, the less damage they take from magical attacks.">RES</label>
+                </div>
+            </div>
+
+        </section>
+
+        <nav id="char-tab-bar-{{charNum}}" class="mdc-tab-bar mdc-tab-bar--icons-with-text mdc-tab-bar-upgraded">
+            <a class="mdc-tab mdc-tab--with-icon-and-text mdc-ripple-upgraded mdc-tab--active">
+                <i class="material-icons mdc-tab__icon" aria-hidden="true">person</i>
+                <span class="mdc-tab__icon-text">Build</span>
+            </a>
+            <a class="mdc-tab mdc-tab--with-icon-and-text mdc-ripple-upgraded">
+                <i class="material-icons mdc-tab__icon" aria-hidden="true">show_chart</i>
+                <span class="mdc-tab__icon-text">Stats</span>
+            </a>
+            <a class="mdc-tab mdc-tab--with-icon-and-text mdc-ripple-upgraded">
+                <i class="material-icons mdc-tab__icon" aria-hidden="true">report</i>
+                <span class="mdc-tab__icon-text">Effects</span>
+            </a>
+            <span class="mdc-tab-bar__indicator" style="transform: translateX(0px) scale(0.333333, 1); visibility: visible;"></span>
+        </nav>
+
+        <div class="mdc-card__media">
+            <div class="tab-panel info-section build-fields">
+                <div class="mdc-form-field">
+                    <label for="char-{{charNum}}" >
+                        Character
+                    </label>
+                    <select id="char-{{charNum}}"  class="mdc-select char-selector link-field" data-charnum="{{charNum}}" data-info="charInfo"></select>
+                    <a id="char-link-{{charNum}}" class="attribute-link mdc-theme--text-secondary-on-background" href="" target="_blank"><i class="material-icons">open_in_new</i></a>
+                </div>
+                <div class="mdc-form-field">
+                    <label for="rarity-{{charNum}}">Rarity</label>
+                    <select id="rarity-{{charNum}}"  class="mdc-select rarity-select build-select link-field" data-charnum="{{charNum}}">
+                        <option value="5">5 Stars</option>
+                    </select>
+                    <span class="attribute-link mdc-theme--text-secondary-on-background"><i class="material-icons">open_in_new</i></span>
+                </div>
+                <div class="mdc-form-field double-select">
+                    <label for="level-{{charNum}}" >Level</label>
+                    <select id="level-{{charNum}}"  class="mdc-select level-select build-select link-field" data-charnum="{{charNum}}">
+                        <option value="40">Lvl. 40</option>
+                        <option value="1">Lvl. 1</option>
+                    </select><select id="merge-{{charNum}}"  class="mdc-select merge-select build-select link-field" data-charnum="{{charNum}}" title="Merged units">
+                        <option value="0">+0</option>
+                        <option value="1">+1</option>
+                        <option value="2">+2</option>
+                        <option value="3">+3</option>
+                        <option value="4">+4</option>
+                        <option value="5">+5</option>
+                        <option value="6">+6</option>
+                        <option value="7">+7</option>
+                        <option value="8">+8</option>
+                        <option value="9">+9</option>
+                        <option value="10">+10</option>
+                    </select>
+                    <span class="attribute-link mdc-theme--text-secondary-on-background"><i class="material-icons">open_in_new</i></span>
+                </div>
+
+                <div class="mdc-form-field double-select">
+                    <label for="boon-{{charNum}}">Boon/Bane</label>
+                    <select id="boon-{{charNum}}" class="mdc-select boon-select build-select link-field" data-charnum="{{charNum}}" title="Boon">
+                        <option value="neutral">Neutral</option>
+                        <option value="hp">+HP</option>
+                        <option value="atk">+ATK</option>
+                        <option value="spd">+SPD</option>
+                        <option value="def">+DEF</option>
+                        <option value="res">+RES</option>
+                    </select><select id="bane-{{charNum}}" class="mdc-select bane-select build-select link-field" data-charnum="{{charNum}}" title="Bane">
+                        <option value="neutral">Neutral</option>
+                        <option value="hp">-HP</option>
+                        <option value="atk">-ATK</option>
+                        <option value="spd">-SPD</option>
+                        <option value="def">-DEF</option>
+                        <option value="res">-RES</option>
+                    </select>
+                    <span class="attribute-link mdc-theme--text-secondary-on-background"><i class="material-icons">open_in_new</i></span>
+                </div>
+                <div>
+                    <div id="extra-char-info-{{charNum}}"  class="collapsable">
+                        <div class="mdc-form-field">
+                            <label for="color-{{charNum}}" >Color</label>
+                            <select id="color-{{charNum}}"  class="mdc-select color-selector" data-charnum="{{charNum}}">
+                                <option value="Red">Red</option>
+                                <option value="Green">Green</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Colorless">Colorless</option>
+                            </select>
+                            <span class="attribute-link mdc-theme--text-secondary-on-background"><i class="material-icons">open_in_new</i></span>
+                        </div>
+                        <div class="mdc-form-field">
+                            <label for="weapon-type-{{charNum}}" >Weapon Type</label>
+                            <select id="weapon-type-{{charNum}}"  class="mdc-select weapon-type-selector" data-charnum="{{charNum}}">
+                                <option value="Sword">Sword</option>
+                                <option value="Red Tome">Red Tome</option>
+                                <option value="Red Breath">Red Breath</option>
+                                <option value="Axe">Axe</option>
+                                <option value="Green Tome">Green Tome</option>
+                                <option value="Green Breath">Green Breath</option>
+                                <option value="Lance">Lance</option>
+                                <option value="Blue Tome">Blue Tome</option>
+                                <option value="Blue Breath">Blue Breath</option>
+                                <option value="Bow">Bow</option>
+                                <option value="Dagger">Dagger</option>
+                                <option value="Staff">Staff</option>
+                            </select>
+                            <span class="attribute-link mdc-theme--text-secondary-on-background"><i class="material-icons">open_in_new</i></span>
+                        </div>
+                        <div class="mdc-form-field">
+                            <label for="move-type-{{charNum}}" >Move Type</label>
+                            <select id="move-type-{{charNum}}"  class="mdc-select move-type-selector" data-charnum="{{charNum}}">
+                                <option value="Infantry">Infantry</option>
+                                <option value="Cavalry">Cavalry</option>
+                                <option value="Flying">Flying</option>
+                                <option value="Armored">Armored</option>
+                            </select>
+                            <span class="attribute-link mdc-theme--text-secondary-on-background"><i class="material-icons">open_in_new</i></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div>
+                    <div class="info-section weapon-select">
+                        <div  class="mdc-form-field">
+                           <label for="extra-weapon-info-{{charNum}}" >
+                               <span id="extra-weapon-info-btn-{{charNum}}" data-section="{{id}}-extra-weapon-info">Weapon</span>
+                           </label>
+                           <select id="weapon-{{charNum}}"  class="mdc-select weapon-selector link-field" data-charnum="{{charNum}}" data-info="weaponInfo"></select>
+                           <a id="weapon-link-{{charNum}}" class="attribute-link mdc-theme--text-secondary-on-background" href="" target="_blank"><i class="material-icons">open_in_new</i></a>
+                      </div>
+                        </div>
+                        <div id="extra-weapon-info-{{charNum}}"  class="extra-info collapsable">
+                           <div class="ability-desc-container">
+                               <p id="weapon-desc-{{charNum}}"  class="ability-desc"></p>
+                               <label>Might</label>
+                               <span id="weapon-might-{{charNum}}"  data-oldmt="0"></span>
+                               <label>Range</label>
+                               <span id="weapon-range-{{charNum}}" ></span>
+                               <label>Magical</label>
+                               <span id="weapon-magical-{{charNum}}" ></span>
+                           </div>
+                        </div>
+
+                    <div class="mdc-form-field">
+                        <label for="special-{{charNum}}" class="special-label">
+                            Special
+                        </label>
+                        <select id="special-{{charNum}}"  class="mdc-select special-selector link-field" data-charnum="{{charNum}}" data-info="specialInfo"></select>
+                        <a id="special-link-{{charNum}}" class="attribute-link mdc-theme--text-secondary-on-background" href="" target="_blank"><i class="material-icons">open_in_new</i></a>
+                    </div>
+                </div>
+
+                <div id="skills-{{charNum}}"  class="info-section skill-select">
+                    <div class="mdc-form-field">
+                        <label for="passive-a-{{charNum}}"  class="passive-a-label">
+                            Passive A
+                        </label>
+                        <select id="passive-a-{{charNum}}"  class="mdc-select passive-selector link-field" data-charnum="{{charNum}}" data-skilltype="a" data-info="skillInfo"></select>
+                        <a id="passive-a-link-{{charNum}}" class="attribute-link mdc-theme--text-secondary-on-background" href="" target="_blank"><i class="material-icons">open_in_new</i></a>
+                    </div>
+
+                    <div class="mdc-form-field">
+                        <label for="passive-b-{{charNum}}"  class="passive-b-label">
+                            Passive B
+                        </label>
+                        <select id="passive-b-{{charNum}}"  class="mdc-select passive-selector link-field" data-charnum="{{charNum}}" data-skilltype="b" data-info="skillInfo"></select>
+                        <a id="passive-b-link-{{charNum}}" class="attribute-link mdc-theme--text-secondary-on-background" href="" target="_blank"><i class="material-icons">open_in_new</i></a>
+                    </div>
+
+                    <div class="mdc-form-field">
+                        <label for="passive-c-{{charNum}}"  class="passive-c-label">
+                            Passive C
+                        </label>
+                        <select id="passive-c-{{charNum}}"  class="mdc-select passive-selector link-field" data-charnum="{{charNum}}" data-skilltype="c" data-info="skillInfo"></select>
+                        <a id="passive-c-link-{{charNum}}" class="attribute-link mdc-theme--text-secondary-on-background" href="" target="_blank"><i class="material-icons">open_in_new</i></a>
+                    </div>
+
+                    <div class="mdc-form-field">
+                        <label for="passive-s-{{charNum}}"  class="passive-s-label">
+                            Sacred Seal
+                        </label>
+                        <select id="passive-s-{{charNum}}"  class="mdc-select passive-selector link-field" data-charnum="{{charNum}}" data-skilltype="s" data-info="skillInfo"></select>
+                        <span class="attribute-link mdc-theme--text-secondary-on-background"><i class="material-icons">open_in_new</i></span>
+                    </div>
+
+                    <div class="mdc-form-field">
+                        <label for="assist-{{charNum}}"  class="assist-label">
+                            <span data-section="{{id}}-extra-assist-info" >Assist</span>
+                        </label>
+                        <select id="assist-{{charNum}}"  class="mdc-select assist-selector link-field" data-charnum="{{charNum}}" data-info="assistInfo"></select>
+                        <a id="assist-link-{{charNum}}" class="attribute-link mdc-theme--text-secondary-on-background" href="" target="_blank"><i class="material-icons">open_in_new</i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-panel">
+
+                <section id="support-{{charNum}}">
+
+                    <div class="mdc-form-field">
+                        <label for="summoner-support-{{charNum}}">
+                            Summoner Support
+                        </label>
+                        <select id="summoner-support-{{charNum}}"  class="mdc-select link-field" data-charnum="{{charNum}}">
+                            <option selected="selected" value="">---</option>
+                            <option value="c">C</option>
+                            <option value="b">B</option>
+                            <option value="a">A</option>
+                            <option value="s">S</option>
+                        </select>
+
+
+                    </div>
+
+                    <div class="mdc-form-field">
+                        <label for="ally-support-{{charNum}}">
+                            Ally Support
+                        </label>
+                        <select id="ally-support-{{charNum}}"  class="mdc-select link-field" data-charnum="{{charNum}}">
+                            <option selected="selected" value="">---</option>
+                            <option value="c">C</option>
+                            <option value="b">B</option>
+                            <option value="a">A</option>
+                            <option value="s">S</option>
+                        </select>
+
+
+                    </div>
+
+                </section>
+
+                <section id="bonus-{{charNum}}">
+                    <h3 class="mdc-typography--caption">Bonus</h3>
+                    <div class="stat-container">
+
+                        <div class="mdc-textfield">
+                            <input type="number" id="atk-bonus-{{charNum}}"  class="mdc-textfield__input battle-val stat-bonus zero-or-more" value="0" data-charnum="{{charNum}}" autocomplete="off">
+                            <label for="atk-bonus-{{charNum}}"  class="mdc-textfield__label" title="The higher a unit's Attack, the more damage they deal.">ATK</label>
+                        </div>
+
+                        <div class="mdc-textfield">
+                            <input type="number" id="spd-bonus-{{charNum}}"  class="mdc-textfield__input battle-val stat-bonus zero-or-more" value="0" data-charnum="{{charNum}}" autocomplete="off">
+                            <label for="spd-bonus-{{charNum}}"  class="mdc-textfield__label" title="A unit will attack twice if their Speed is at least 5 more than their foe's Speed.">SPD</label>
+                        </div>
+
+                        <div class="mdc-textfield">
+                            <input type="number" id="def-bonus-{{charNum}}"  class="mdc-textfield__input battle-val stat-bonus zero-or-more" value="0" data-charnum="{{charNum}}" autocomplete="off">
+                            <label for="def-bonus-{{charNum}}"  class="mdc-textfield__label" title="The higher a unit's Defense is, the less damage they take from physical attacks.">DEF</label>
+                        </div>
+
+                        <div class="mdc-textfield">
+                            <input type="number" id="res-bonus-{{charNum}}"  class="mdc-textfield__input battle-val stat-bonus zero-or-more" value="0" data-charnum="{{charNum}}" autocomplete="off">
+                            <label for="res-bonus-{{charNum}}"  class="mdc-textfield__label" title="The higher a unit's Resistance is, the less damage they take from magical attacks.">RES</label>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="penalty-{{charNum}}" >
+                    <h3 class="mdc-typography--caption">Penalty</h3>
+                    <div class="stat-container">
+
+                        <div class="mdc-textfield">
+                            <input type="number" id="atk-penalty-{{charNum}}"  class="mdc-textfield__input battle-val stat-penalty zero-or-more" value="0" data-charnum="{{charNum}}" autocomplete="off">
+                            <label for="atk-penalty-{{charNum}}"  class="mdc-textfield__label" title="The higher a unit's Attack, the more damage they deal.">ATK</label>
+                        </div>
+
+                        <div class="mdc-textfield">
+                            <input type="number" id="spd-penalty-{{charNum}}"  class="mdc-textfield__input battle-val stat-penalty zero-or-more" value="0" data-charnum="{{charNum}}" autocomplete="off">
+                            <label for="spd-penalty-{{charNum}}"  class="mdc-textfield__label" title="A unit will attack twice if their Speed is at least 5 more than their foe's Speed.">SPD</label>
+                        </div>
+
+                        <div class="mdc-textfield">
+                            <input type="number" id="def-penalty-{{charNum}}"  class="mdc-textfield__input battle-val stat-penalty zero-or-more" value="0" data-charnum="{{charNum}}" autocomplete="off">
+                            <label for="def-penalty-{{charNum}}"  class="mdc-textfield__label" title="The higher a unit's Defense is, the less damage they take from physical attacks.">DEF</label>
+                        </div>
+
+                        <div class="mdc-textfield">
+                            <input type="number" id="res-penalty-{{charNum}}"  class="mdc-textfield__input battle-val stat-penalty zero-or-more" value="0" data-charnum="{{charNum}}" autocomplete="off">
+                            <label for="res-penalty-{{charNum}}"  class="mdc-textfield__label" title="The higher a unit's Resistance is, the less damage they take from magical attacks.">RES</label>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="spur-{{charNum}}" >
+                    <h3 class="mdc-typography--caption">Spur</h3>
+                    <div class="stat-container">
+
+                        <div class="mdc-textfield">
+                            <input type="number" id="atk-spur-{{charNum}}"  class="mdc-textfield__input battle-val stat-spur zero-or-more" value="0" data-charnum="{{charNum}}" autocomplete="off">
+                            <label for="atk-spur-{{charNum}}"  class="mdc-textfield__label" title="The higher a unit's Attack, the more damage they deal.">ATK</label>
+                        </div>
+
+                        <div class="mdc-textfield">
+                            <input type="number" id="spd-spur-{{charNum}}"  class="mdc-textfield__input battle-val stat-spur zero-or-more" value="0" data-charnum="{{charNum}}" autocomplete="off">
+                            <label for="spd-spur-{{charNum}}"  class="mdc-textfield__label" title="A unit will attack twice if their Speed is at least 5 more than their foe's Speed.">SPD</label>
+                        </div>
+
+                        <div class="mdc-textfield">
+                            <input type="number" id="def-spur-{{charNum}}"  class="mdc-textfield__input battle-val stat-spur zero-or-more" value="0" data-charnum="{{charNum}}" autocomplete="off">
+                            <label for="def-spur-{{charNum}}"  class="mdc-textfield__label" title="The higher a unit's Defense is, the less damage they take from physical attacks.">DEF</label>
+                        </div>
+
+                        <div class="mdc-textfield">
+                            <input type="number" id="res-spur-{{charNum}}"  class="mdc-textfield__input battle-val stat-spur zero-or-more" value="0" data-charnum="{{charNum}}" autocomplete="off">
+                            <label for="res-spur-{{charNum}}"  class="mdc-textfield__label" title="The higher a unit's Resistance is, the less damage they take from magical attacks.">RES</label>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="tab-panel">
+                <div class="mdc-textfield mdc-textfield--upgraded info-section-bottom current-hp">
+                    <label class="mdc-textfield__label curr-hp-label" for="curr-hp-{{charNum}}" data-charnum="{{charNum}}">
+                        Current HP / <span id="hp-{{charNum}}-denom" class="denominator hp-{{charNum}}-read">1</span>
+                    </label>
+                    <input type="number" id="curr-hp-{{charNum}}" class="mdc-textfield__input more-than-zero curr-hp-val" data-charnum="{{charNum}}" value="1" autocomplete="off">
+                </div>
+
+                <div class="mdc-textfield mdc-textfield--upgraded info-section-bottom current-hp" id="spec-cooldown-line-{{charNum}}" >
+                    <input type="number" id="spec-cooldown-{{charNum}}"  class="mdc-textfield__input zero-or-more curr-hp-val" data-charnum="{{charNum}}" value="1" autocomplete="off">
+                    <label id="spec-cooldown-label-{{charNum}}" class="mdc-textfield__label" for="spec-cooldown-{{charNum}}" title="Special skills activate when cooldown reaches 0." data-charnum="{{charNum}}">
+                        Special Cooldown / <span id="spec-cooldown-max-{{charNum}}"  class="denominator">x</span>
+                    </label>
+                </div>
+
+                <div class="info-section state-section">
+
+                    <section id="status-section-{{charNum}}" >
+                        <h3>Status Effects</h3>
+                        <div class="mdc-form-field">
+                            <div class="mdc-switch">
+                                <input type="checkbox" id="candlelight-status-{{charNum}}" class="mdc-switch__native-control" data-charnum="{{charNum}}" />
+                                <div class="mdc-switch__background">
+                                    <div class="mdc-switch__knob"></div>
+                                </div>
+                            </div>
+                            <label for="candlelight-status-{{charNum}}"  class="mdc-switch-label">Candlelight</label>
+                        </div>
+
+                        <div class="mdc-form-field">
+                            <div class="mdc-switch">
+                                <input type="checkbox" id="panic-status-{{charNum}}"  class="mdc-switch__native-control" data-charnum="{{charNum}}" />
+                                <div class="mdc-switch__background">
+                                    <div class="mdc-switch__knob"></div>
+                                </div>
+                            </div>
+                            <label for="panic-status-{{charNum}}"  class="mdc-switch-label">Panic</label>
+                        </div>
+
+                        <div class="mdc-form-field">
+                            <div class="mdc-switch">
+                                <input type="checkbox" id="defensive-terrain-{{charNum}}"  class="mdc-switch__native-control" data-charnum="{{charNum}}" />
+                                <div class="mdc-switch__background">
+                                    <div class="mdc-switch__knob"></div>
+                                </div>
+                            </div>
+                            <label for="defensive-terrain-{{charNum}}"  class="mdc-switch-label">Defensive Terrain</label>
+                        </div>
+                    </section>
+                </div>
+
+                <div id="adjacent-block-{{charNum}}"  class="mdc-form-field adjacent-block">
+                    <label for="adjacent-{{charNum}}" >Adjacent Allies</label>
+                    <select id="adjacent-{{charNum}}"  class="mdc-select adjacent-select battle-val" data-charnum="{{charNum}}">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdc-card__actions">
+        <button class="mdc-card__action mdc-button mdc-button--primary clear-team-btn" id="clear-{{charNum}}" data-charnum="{{charNum}}">Clear</button>
+        <button class="mdc-card__action mdc-button mdc-button--primary swap-btn" data-charnum="{{charNum}}">Swap</button>
+        <button class="mdc-card__action mdc-button mdc-button--primary calc-link" data-charnum="{{charNum}}" id="link-build-{{charNum}}">Link Build</button>
+    </div>
+
+</div>

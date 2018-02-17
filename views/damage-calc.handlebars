@@ -1,0 +1,220 @@
+		<div class="se-pre-con"></div>
+
+
+		<a href="#body">
+			<button class="app-fab--absolute mdc-fab material-icons mdc-theme--text-primary-on-secondary" aria-label="Favorite" data-mdc-auto-init="MDCRipple">
+				<span class="mdc-fab__icon">
+					arrow_upward
+				</span>
+			</button>
+		</a>
+
+		<div id="wrapper" class="mdc-typography--body1">
+
+			<div class="mdc-layout-grid" id="calc">
+				<div class="mdc-layout-grid__inner" id="char-panel">
+
+					<!--
+					<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-card mdc-theme--background">
+						<div class="mdc-card__primary">
+							<h2 class="mdc-card__title--large">Notice (December 29, 2017)</h2>
+						</div>
+						<div class="mdc-card__supporting-text">
+							<h3>Open Source</h3>
+							<p>I am in the process of open-sourcing the damage calculator. Please find the repository <a href="https://github.com/winsomniak/kagero-calc/">here</a>.
+								 Those who would like to help fix bugs and implement new features should submit a pull request! Any help maintaining the project is super appreciated.
+							</p>
+							<p>Bug reports are also being moved to github issue tracker for better visibility. Please <a href="https://github.com/winsomniak/kagero-calc/issues/">report any bugs</a> you find. Thanks!</p>
+							<p>-Winsomniak</p>
+						</div>
+					</div>
+					-->
+
+					<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone mdc-card mdc-theme--background" id="modes-container">
+						<section class="mdc-card__primary">
+							<h1 class="mdc-card__title--large mdc-theme--secondary-light">{{header}}</h1>
+							<h2 class="mdc-card__subtitle">Community Edition - <a href="https://github.com/winsomniak/kagero-calc/issues/">Report Bug</a></h2>
+						</section>
+						<div class="mdc-card__actions" id="modes-container">
+							<div id="modes" title="Select a mode of calculation." class="ui-radioset">
+
+								<div class="mdc-form-field">
+									<div class="mdc-radio">
+								    	<input class="mdc-radio__native-control" type="radio" id="one-vs-one" name="mode" checked>
+										<div class="mdc-radio__background">
+									    	<div class="mdc-radio__outer-circle"></div>
+									    	<div class="mdc-radio__inner-circle"></div>
+										</div>
+									</div>
+									<label for="one-vs-one">Duel</label>
+								</div>
+
+								<div class="mdc-form-field">
+									<div class="mdc-radio">
+								    	<input class="mdc-radio__native-control" type="radio" id="one-vs-all" name="mode">
+										<div class="mdc-radio__background">
+									    	<div class="mdc-radio__outer-circle"></div>
+									    	<div class="mdc-radio__inner-circle"></div>
+										</div>
+									</div>
+									<label for="one-vs-all">Attacker vs. All</label>
+								</div>
+
+								<div class="mdc-form-field">
+									<div class="mdc-radio">
+								    	<input class="mdc-radio__native-control" type="radio" id="all-vs-one" name="mode">
+										<div class="mdc-radio__background">
+									    	<div class="mdc-radio__outer-circle"></div>
+									    	<div class="mdc-radio__inner-circle"></div>
+										</div>
+									</div>
+									<label for="all-vs-one">All vs. Defender</label>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					{{#if ads}}
+					<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone" id="ad-above-fold">
+						{{> ads/responsive-above-fold }}
+					</div>
+					{{/if}}
+
+					<div id="attack-panel" class="
+					  mdc-layout-grid__cell
+					  mdc-layout-grid__cell--span-6-desktop
+					  mdc-layout-grid__cell--span-4-tablet
+					  mdc-layout-grid__cell--span-4-phone
+					  char-info">
+
+						{{#attackPanel}}
+						{{> character-panel}}
+						{{/attackPanel}}
+					</div>
+
+					<div id="defend-panel" class="
+					  mdc-layout-grid__cell
+					  mdc-layout-grid__cell--span-6-desktop
+					  mdc-layout-grid__cell--span-4-tablet
+					  mdc-layout-grid__cell--span-4-phone
+					  char-info">
+						{{#defendPanel}}
+						{{> character-panel}}
+						{{/defendPanel}}
+					</div>
+
+					<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone ">
+						<div class="mdc-layout-grid__inner">
+							<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12" id="battle-log">
+								{{> battle-results}}
+							</div>
+
+							<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12" id="matchup-panel">
+								{{> matchup-panel}}
+							</div>
+
+							<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12" id="matchup-filters" >
+								{{> matchup-filters}}
+							</div>
+
+							<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12" id="matchup-overrides">
+								{{> matchup-overrides}}
+							</div>
+						</div>
+					</div>
+
+					<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone mdc-card mdc-theme--background" id="matchups">
+						<section class="mdc-card__primary">
+							<h2 class="mdc-card__title--large">Matchups</h2>
+						</section>
+						<div>
+							<div id="matchup-table-container">
+								<table id="matchup-table" class="sortable"></table>
+							</div>
+						</div>
+					</div>
+
+					<!--
+					<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+
+						<div class="mdc-card mdc-theme--background" id="import-export">
+							<section class="mdc-card__primary">
+								<h2 class="mdc-card__title--large">Import/Export</h2>
+							</section>
+							<section class="mdc-card__media mdc-layout-grid">
+								<div class="mdc-layout-grid__inner">
+									<div class="mdc-layout-grid__cell--span-12 mdc-textfield mdc-textfield--multiline mdc-textfield--upgraded" id="import-area-container">
+										<textarea class="mdc-textfield__input" id="import-area"></textarea>
+										<label for="import-area" class="mdc-textfield__label">Character Data</label>
+									</div>
+									<div class="mdc-layout-grid__cell--span-6">
+										<h4>Attackers</h4>
+										<button class="mdc-button mdc-button--primary import-btn" id="import-attacker">Import</button>
+										<button class="mdc-button mdc-button--primary export-btn"id="export-attacker">Export</button>
+									</div>
+									<div class="mdc-layout-grid__cell--span-6">
+										<h4>Defenders</h4>
+										<button class="mdc-button mdc-button--primary import-btn" id="import-defender">Import</button>
+										<button class="mdc-button mdc-button--primary export-btn" id="export-defender" >Export</button>
+									</div>
+									<div class="mdc-layout-grid__cell--span-12" id="import-error-msg-container"><span id="import-error-msg"></span></div>
+									<section class="mdc-layout-grid__cell--span-12" id="reddit-markdown">
+										<h3>Reddit Build Markdown</h3>
+										<p></p>
+									</section>
+								</div>
+							</section>
+						</div>
+					</div>-->
+
+					{{#if ads}}
+					<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+						{{> ads/matched-content}}
+					</div>
+					{{/if}}
+
+					<section class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12" id="credits">
+						<h3>Credits</h3>
+						<p>
+						A big thank you to <a href="https://github.com/rocketmo">rocketMo</a> for
+								creating the original calculator and handing it off to KageroChart.
+								This tool would not be possible without your hard work!
+						</p>
+						<p><a id="legacy-link" href="/legacy-damage-calc">Legacy Version</a></p>
+					</section>
+				</div>
+			</div>
+
+
+
+			{{> clipboard-snackbar}}
+		</div>
+		<!-- Outdated browser warning -->
+		<div id="outdated"></div>
+
+		<script>
+		//event listener: DOM ready
+		function addLoadEvent(func) {
+		    var oldonload = window.onload;
+		    if (typeof window.onload != 'function') {
+		        window.onload = func;
+		    } else {
+		        window.onload = function() {
+		            if (oldonload) {
+		            	oldonload();
+		            }
+		            func();
+		        }
+		    }
+		}
+		//call plugin function after DOM ready
+		addLoadEvent(function(){
+		    outdatedBrowser({
+		        bgColor: '#f25648',
+		        color: '#ffffff',
+		        lowerThan: 'transform',
+		        languagePath: '/outdated-browser.html'
+		    })
+		});
+		</script>

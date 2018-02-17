@@ -1,0 +1,43 @@
+<div id="filter-panel" class="matchup-section mdc-card mdc-theme--background">
+
+    <div class="mdc-card__primary">
+        <h2 class="mdc-card__title--large">Matchup Filters</h2>
+    </div>
+
+    <div class="mdc-card__supporting-text">
+        <h4 class="mdc-typography--subheading2">Characters</h4>
+        <div class="mdc-field">
+            <div class="mdc-textfield mdc-textfield--fullwidth mdc-textfield--upgraded">
+                <input id="matchup-filter-name" type="text" class="mdc-textfield__input matchup-filter-input filter-toprow" placeholder="Separate names with a comma" aria-label="Characters" autocomplete="off">
+            </div>
+        </div>
+
+        {{#filters}}
+        <section class="mdc-layout-grid{{#if @first}} no-border{{/if}}">
+            <h4 class="mdc-typography--subheading2">{{name}}</h4>
+            <div class="mdc-layout-grid__inner">
+                {{#items}}
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3 mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-2-phone mdc-form-field">
+                    <div class="mdc-checkbox">
+                        <input name="matchup-filter-{{../id}}" id="filter-{{lowercase this}}" value="{{lowercase this}}" type="checkbox" class="mdc-checkbox__native-control" checked>
+                        <div class="mdc-checkbox__background">
+                            <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+                            </svg>
+                            <div class="mdc-checkbox__mixedmark"></div>
+                        </div>
+                    </div>
+                    <label for="filter-{{this}}">{{this}}</label>
+                </div>
+                {{/items}}
+            </div>
+        </section>
+        {{/filters}}
+
+        <div class="mdc-card__actions matchup-filter-block">
+            <button class="mdc-card__action mdc-button mdc-button--primary" id="matchup-filter-reset">Reset</button>
+            <button class="mdc-card__action mdc-button mdc-button--primary" id="matchup-filter-dismiss">Dismiss</button>
+        </div>
+    </div>
+
+</div>
