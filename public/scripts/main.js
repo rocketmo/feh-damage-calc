@@ -1258,7 +1258,7 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
     var atkPower = attacker.atk;
 
     // super effectiveness against movement types with sacred seal check and thani check
-    if ((attacker.weaponData.hasOwnProperty("move_effective2") && defender.moveType.includes(attacker.weaponData.move_effective2))||(attacker.weaponData.hasOwnProperty("move_effective") && defender.moveType.includes(attacker.weaponData.move_effective))) {
+    if (attacker.weaponData.hasOwnProperty("move_effective") && attacker.weaponData.move_effective.includes(defender.moveType)) {
         if (defender.passiveAData.hasOwnProperty("cancel_effective")) {
             battleInfo.logMsg += "Effectiveness against " + defender.moveType + " neutralized by opponent [" + skillInfo['a'][defender.passiveA].name + "]. ";
         } else if (defender.sealData.hasOwnProperty("cancel_effective")){

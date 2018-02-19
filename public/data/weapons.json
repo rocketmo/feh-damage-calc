@@ -151,14 +151,18 @@
 	},
 	"Monstrous Bow+": {
 		"magical": false,
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"refinable": {
 			"type": "ranged"
 		}
 	},
 	"Monstrous Bow": {
 		"magical": false,
-		"move_effective": "Flying"
+		"move_effective": [
+			"Flying"
+		]
 	},
 	"Grimoire": {
 		"magical": true,
@@ -290,7 +294,9 @@
 				"Tome": true
 			}
 		},
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"char_unique": true
 	},
 	"Blazing Durandal": {
@@ -363,7 +369,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against armored units.",
-		"move_effective": "Armored"
+		"move_effective": [
+			"Armored"
+		]
 	},
 	"Armorslayer+": {
 		"color": "Red",
@@ -372,7 +380,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against armored units.",
-		"move_effective": "Armored"
+		"move_effective": [
+			"Armored"
+		]
 	},
 	"Armorsmasher": {
 		"color": "Red",
@@ -381,7 +391,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against armored units.",
-		"move_effective": "Armored"
+		"move_effective": [
+			"Armored"
+		]
 	},
 	"Armorsmasher+": {
 		"color": "Red",
@@ -390,7 +402,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against armored units.",
-		"move_effective": "Armored",
+		"move_effective": [
+			"Armored"
+		]
 		"refinable": {
 			"type": "melee",
 			"special": "Armor melee"
@@ -402,7 +416,9 @@
 		"might": 7,
 		"range": 2,
 		"magical": false,
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"description": "Effective against flying units. If target has a dagger, it cannot make a follow-up attack and this unit will.",
 		"breaker": {
 			"weapon_type": "Dagger"
@@ -415,7 +431,9 @@
 		"range": 2,
 		"magical": false,
 		"description": "Effective against flying units. If target has a dagger, it cannot make a follow-up attack and this unit will.",
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"breaker": {
 			"weapon_type": "Dagger"
 		}
@@ -427,7 +445,9 @@
 		"range": 2,
 		"magical": false,
 		"description": "Effective against flying units. Grants Def/Res+6 during combat if unit is attacked by foe using bow, daggers, magic, or staff.",
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"type_defend_mod": {
 			"weapon_type": {
 				"Bow": true,
@@ -451,7 +471,9 @@
 		"range": 2,
 		"magical": false,
 		"description": "Effective against flying units. Grants Def/Res+6 during combat if unit is attacked by foe using bow, daggers, magic, or staff.",
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"type_defend_mod": {
 			"weapon_type": {
 				"Bow": true,
@@ -579,7 +601,9 @@
 		"magical": false,
 		"description": "Effective against flying units. During combat, unit's Atk/Spd/Def/Res boosted by number of adjacent allies x 2.",
 		"adjacent_ally_bonus": true,
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"char_unique": true
 	},
 	"Vidofnir": {
@@ -626,7 +650,9 @@
 		"range": 2,
 		"magical": true,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry"
+		"move_effective": [
+			"Cavalry"
+		]
 	},
 	"Blárwolf+": {
 		"color": "Blue",
@@ -635,7 +661,9 @@
 		"range": 2,
 		"magical": true,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry"
+		"move_effective": [
+			"Cavalry"
+		]
 	},
 	"Keen Blárwolf": {
 		"color": "Blue",
@@ -644,7 +672,9 @@
 		"range": 2,
 		"magical": true,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry"
+		"move_effective": [
+			"Cavalry"
+		]
 	},
 	"Keen Blárwolf+": {
 		"color": "Blue",
@@ -653,7 +683,9 @@
 		"range": 2,
 		"magical": true,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry",
+		"move_effective": [
+			"Cavalry"
+		],
 		"refinable": {
 			"type": "ranged",
 			"Special": "Cavalry ranged"
@@ -752,7 +784,9 @@
 		"magical": false,
 		"description": "Spd-5. Effective against flying units. Attack twice when initiating combat.",
 		"brave": true,
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"stat_mod": {
 			"spd": -5
 		}
@@ -765,7 +799,9 @@
 		"magical": false,
 		"description": "Spd-5. Effective against flying units. Attack twice when initiating combat.",
 		"brave": true,
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"stat_mod": {
 			"spd": -5
 		}
@@ -901,7 +937,9 @@
 		"range": 2,
 		"magical": false,
 		"description": "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions.Effective against flying units.",
-		"move_effective": "Flying"
+		"move_effective": [
+			"Flying"
+		]
 	},
 	"Clarisse's Bow+": {
 		"color": "Colorless",
@@ -910,7 +948,9 @@
 		"range": 2,
 		"magical": false,
 		"description": "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions.Effective against flying units.",
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"refinable": {
 			"type": "ranged"
 		}
@@ -921,7 +961,9 @@
 		"might": 8,
 		"range": 2,
 		"magical": false,
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"description": "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates. Effective against fliers."
 	},
 	"Cupid Arrow+": {
@@ -930,7 +972,9 @@
 		"might": 12,
 		"range": 2,
 		"magical": false,
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"description": "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates. Effective against fliers.",
 		"refinable": {
 			"type": "ranged",
@@ -1179,7 +1223,9 @@
 		"range": 2,
 		"magical": true,
 		"description": "Effective against flying units.",
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"char_unique": true
 	},
 	"Falchion": {
@@ -1301,7 +1347,9 @@
 		"might": 7,
 		"range": 2,
 		"magical": false,
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"description": "Effective against flying units. Unit and enemies cannot use counterattacks.",
 		"prevent_counter": true
 	},
@@ -1311,7 +1359,9 @@
 		"might": 11,
 		"range": 2,
 		"magical": false,
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"description": "Effective against flying units. Unit and enemies cannot use counterattacks.",
 		"prevent_counter": true
 	},
@@ -1427,7 +1477,9 @@
 		"range": 2,
 		"magical": false,
 		"description": "Effective against flying units. Unit can pass through foes if own HP ≥ 50%.",
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"char_unique": true,
 		"refinable": {
 			"type": "ranged",
@@ -1566,7 +1618,9 @@
 		"range": 2,
 		"magical": true,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry"
+		"move_effective": [
+			"Cavalry"
+		]
 	},
 	"Gronnwolf+": {
 		"color": "Green",
@@ -1575,7 +1629,9 @@
 		"range": 2,
 		"magical": true,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry"
+		"move_effective": [
+			"Cavalry"
+		]
 	},
 	"Keen Gronnwolf": {
 		"color": "Green",
@@ -1584,7 +1640,9 @@
 		"range": 2,
 		"magical": true,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry"
+		"move_effective": [
+			"Cavalry"
+		]
 	},
 	"Keen Gronnwolf+": {
 		"color": "Green",
@@ -1593,7 +1651,9 @@
 		"range": 2,
 		"magical": true,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry",
+		"move_effective": [
+			"Cavalry"
+		],
 		"refinable": {
 			"type": "ranged",
 			"Special": "Cavalry ranged"
@@ -1625,7 +1685,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against armored units.",
-		"move_effective": "Armored"
+		"move_effective": [
+			"Armored"
+		]
 	},
 	"Hammer+": {
 		"color": "Green",
@@ -1634,7 +1696,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against armored units.",
-		"move_effective": "Armored"
+		"move_effective": [
+			"Armored"
+		]
 	},
 	"Slaying Hammer": {
 		"color": "Green",
@@ -1643,7 +1707,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against armored units.",
-		"move_effective": "Armored"
+		"move_effective": [
+			"Armored"
+		]
 	},
 	"Slaying Hammer+": {
 		"color": "Green",
@@ -1652,7 +1718,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against armored units.",
-		"move_effective": "Armored",
+		"move_effective": [
+			"Armored"
+		],
 		"refinable": {
 			"type": "melee",
 			"Special": "Armor melee"
@@ -1679,7 +1747,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against armored units.",
-		"move_effective": "Armored"
+		"move_effective": [
+			"Armored"
+		]
 	},
 	"Heavy Spear+": {
 		"color": "Blue",
@@ -1688,7 +1758,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against armored units.",
-		"move_effective": "Armored"
+		"move_effective": [
+			"Armored"
+		]
 	},
 	"Slaying Spear": {
 		"color": "Blue",
@@ -1697,7 +1769,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against armored units.",
-		"move_effective": "Armored"
+		"move_effective": [
+			"Armored"
+		]
 	},
 	"Slaying Spear+": {
 		"color": "Blue",
@@ -1706,7 +1780,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against armored units.",
-		"move_effective": "Armored",
+		"move_effective": [
+			"Armored"
+		],
 		"refinable": {
 			"type": "melee",
 			"Special": "Armor melee"
@@ -1726,7 +1802,9 @@
 		"range": 2,
 		"magical": false,
 		"description": "Effective against flying units.",
-		"move_effective": "Flying"
+		"move_effective": [
+			"Flying"
+		]
 	},
 	"Iron Dagger": {
 		"color": "Colorless",
@@ -1799,7 +1877,9 @@
 		"magical": false,
 		"description": "Effective against flying units. Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod": -1,
-		"move_effective": "Flying"
+		"move_effective": [
+			"Flying"
+		]
 	},
 	"Killer Bow+": {
 		"color": "Colorless",
@@ -1809,7 +1889,9 @@
 		"magical": false,
 		"description": "Effective against flying units. Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod": -1,
-		"move_effective": "Flying"
+		"move_effective": [
+			"Flying"
+		]
 	},
 	"Killer Lance": {
 		"color": "Blue",
@@ -2045,7 +2127,9 @@
 		"range": 2,
 		"magical": false,
 		"description": "Effective against flying units. Grants Res+4 when unit initiates combat.",
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"initiate_mod": {
 			"res": 4
 		},
@@ -2090,7 +2174,9 @@
 		"range": 2,
 		"magical": false,
 		"description": "Effective against infantry units. Infantry foes suffer Def/Res-4 after combat through their next actions.",
-		"move_effective": "Infantry",
+		"move_effective": [
+			"Infantry"
+		],
 		"target_seal": {
 			"target": "Infantry",
 			"def": -4,
@@ -2104,7 +2190,9 @@
 		"range": 2,
 		"magical": false,
 		"description": "Effective against infantry units. Infantry foes suffer Def/Res-6 after combat through their next actions.",
-		"move_effective": "Infantry",
+		"move_effective": [
+			"Infantry"
+		],
 		"target_seal": {
 			"target": "Infantry",
 			"def": -6,
@@ -2212,7 +2300,9 @@
 		"range": 2,
 		"magical": true,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry"
+		"move_effective": [
+			"Cavalry"
+		]
 	},
 	"Rauðrwolf+": {
 		"color": "Red",
@@ -2221,7 +2311,9 @@
 		"range": 2,
 		"magical": true,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry"
+		"move_effective": [
+			"Cavalry"
+		]
 	},
 	"Keen Rauðrwolf": {
 		"color": "Red",
@@ -2230,7 +2322,9 @@
 		"range": 2,
 		"magical": true,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry"
+		"move_effective": [
+			"Cavalry"
+		]
 	},
 	"Keen Rauðrwolf+": {
 		"color": "Red",
@@ -2239,7 +2333,9 @@
 		"range": 2,
 		"magical": true,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry",
+		"move_effective": [
+			"Cavalry"
+		],
 		"refinable": {
 			"type": "ranged",
 			"Special": "Cavalry ranged"
@@ -2257,7 +2353,9 @@
 			"def": 2,
 			"res": 2
 		},
-		"move_effective": "flying",
+		"move_effective": [
+			"Flying"
+		],
 		"full_hp_atk_recoil_dmg": 2,
 		"description": "If unit has 100% HP at start of combat, unit gets Atk/Spd/Def/Res+2.If attacking, unit will take 2 damage after combat."
 	},
@@ -2273,7 +2371,9 @@
 			"def": 2,
 			"res": 2
 		},
-		"move_effective": "flying",
+		"move_effective": [
+			"Flying"
+		],
 		"full_hp_atk_recoil_dmg": 2,
 		"description": "If unit has 100% HP at start of combat, unit gets Atk/Spd/Def/Res+2.If attacking, unit will take 2 damage after combat.",
 		"refinable": {
@@ -2314,7 +2414,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry"
+		"move_effective": [
+			"Cavalry"
+		]
 	},
 	"Ridersbane+": {
 		"color": "Blue",
@@ -2323,7 +2425,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry",
+		"move_effective": [
+			"Cavalry"
+		],
 		"refinable": {
 			"type": "melee",
 			"Special": "Cavalry melee"
@@ -2532,7 +2636,9 @@
 		"range": 2,
 		"magical": false,
 		"description": "Effective against flying units.",
-		"move_effective": "Flying"
+		"move_effective": [
+			"Flying"
+		]
 	},
 	"Silver Bow+": {
 		"color": "Colorless",
@@ -2541,7 +2647,9 @@
 		"range": 2,
 		"magical": false,
 		"description": "Effective against flying units.",
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"refinable": {
 			"type": "ranged",
 			"might": 14
@@ -2642,7 +2750,9 @@
 		"magical": false,
 		"description": "Effective against flying units. Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod": -1,
-		"move_effective": "Flying"
+		"move_effective": [
+			"Flying"
+		]
 	},
 	"Slaying Bow+": {
 		"color": "Colorless",
@@ -2652,7 +2762,9 @@
 		"magical": false,
 		"description": "Effective against flying units. Accelerates Special trigger (cooldown count-1).",
 		"spec_cooldown_mod": -1,
-		"move_effective": "Flying",
+		"move_effective": [
+			"Flying"
+		],
 		"refinable": {
 			"type": "melee"
 		}
@@ -2785,7 +2897,9 @@
 		"range": 2,
 		"magical": false,
 		"description": "Effective against flying units.",
-		"move_effective": "Flying"
+		"move_effective": [
+			"Flying"
+		]
 	},
 	"Steel Dagger": {
 		"color": "Colorless",
@@ -2945,7 +3059,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry"
+		"move_effective": [
+			"Cavalry"
+		]
 	},
 	"Zanbato+": {
 		"color": "Red",
@@ -2954,7 +3070,9 @@
 		"range": 1,
 		"magical": false,
 		"description": "Effective against cavalry units.",
-		"move_effective": "Cavalry",
+		"move_effective": [
+			"Cavalry"
+		],
 		"refinable": {
 			"type": "melee",
 			"Special": "Cavalry melee"
