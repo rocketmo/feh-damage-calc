@@ -262,6 +262,16 @@ function enemyPhaseCharge(battleInfo, attacker, defender) {
     })
 }
 
+function hardy_bearing_msg(battleInfo, agent) {
+		if(agent.sealData.hasOwnProperty("remove_prio_hp")
+		{
+			battleInfo.logMsg += battleInfo.agent.display + " can't alter the turn's order ["+agent.seal+"]! ";
+			if(agent.initHP >= agent.hp*agent.sealData.remove_prio_hp)
+				battleInfo.logMsg += battleInfo.agent.display + " avoids the opponent changes the turn's order too ["+agent.seal+"]! ";
+		}
+		return battleInfo;
+}
+
 //This is redundant, separating this makes it easier to maintain
 function giveBonuses(battleInfo, agent, other){
 
