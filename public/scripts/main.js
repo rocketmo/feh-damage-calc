@@ -1790,8 +1790,8 @@ function simBattle(battleInfo, displayMsg) {
     }
 	
 	//Print a message if hardy bearing activates
-	battleInfo = hardy_bearing_msg(attacker);
-	battleInfo = hardy_bearing_msg(defender);
+	battleInfo = hardy_bearing_msg(battleInfo, attacker);
+	battleInfo = hardy_bearing_msg(battleInfo, defender);
 
     // outspeed info
     var atkOutspeed = attacker.spd >= defender.spd + 5;

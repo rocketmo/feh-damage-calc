@@ -220,7 +220,8 @@
 				"Green Tome"
 			],
 			"multiplier": 0.5
-		}
+		},
+		"char_unique": true
 	},
 	"Ayra's Blade": {
 		"stat_mod": {
@@ -1075,7 +1076,8 @@
 		"range": 2,
 		"magical": true,
 		"description": "Grants +10 to damage when Special triggers.",
-		"spec_damage_bonus": 10
+		"spec_damage_bonus": 10,
+		"char_unique": true
 	},
 	"Deathly Dagger": {
 		"color": "Colorless",
