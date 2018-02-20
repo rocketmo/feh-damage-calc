@@ -4,10 +4,11 @@
     "type": "B",
     "description": "If unit's HP ≥ 50% and unit initiates combat, unit makes a guaranteed follow-up attack. Grants Special cooldown charge +1 per attack. (Does not stack.)",
     "icon": "/images/icons/passives/bold-fighter-2.png",
-    "bonus_follow_up": {
+    "attack_follow_up": {
         "trigger": "healthy",
         "threshold": 0.5
     },
+    "move_unique": "Armored",
     "spec_accel": true,
     "link": "https://kagerochart.com/hero/passives/bold-fighter-2",
     "id": "bold-fighter-2"

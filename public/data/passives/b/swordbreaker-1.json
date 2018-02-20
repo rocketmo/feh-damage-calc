@@ -4,9 +4,20 @@
     "type": "B",
     "description": "If unit's HP ≥ 90% in combat against a sword user, unit makes a follow-up attack and foe cannot.",
     "icon": "/images/icons/passives/swordbreaker-1.png",
-    "breaker": {
-        "weapon_type": "Sword",
-        "threshold": 0.9
+    "attack_follow_up": {
+        "trigger": "healthy",
+        "threshold": 0.9,
+        "weapon_type":"Sword"
+    },
+    "defense_follow_up": {
+        "trigger": "healthy",
+        "threshold": 0.9,
+        "weapon_type":"Sword"
+    },
+    "other_prevent_follow": {
+        "trigger": "healthy",
+        "threshold": 0.9,
+        "weapon_type":"Sword"
     },
     "color_restrict": "Green",
     "link": "https://kagerochart.com/hero/passives/swordbreaker-1",

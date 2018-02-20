@@ -4,9 +4,20 @@
     "type": "B",
     "description": "If unit's HP ≥ 90% in combat against a lance user, unit makes a follow-up attack and foe cannot.",
     "icon": "/images/icons/passives/lancebreaker-1.png",
-    "breaker": {
-        "weapon_type": "Lance",
-        "threshold": 0.9
+    "attack_follow_up": {
+        "trigger": "healthy",
+        "threshold": 0.9,
+        "weapon_type":"Lance"
+    },
+    "defense_follow_up": {
+        "trigger": "healthy",
+        "threshold": 0.9,
+        "weapon_type":"Lance"
+    },
+    "other_prevent_follow": {
+        "trigger": "healthy",
+        "threshold": 0.9,
+        "weapon_type":"Lance"
     },
     "color_restrict": "Red",
     "link": "https://kagerochart.com/hero/passives/lancebreaker-1",

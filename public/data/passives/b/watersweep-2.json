@@ -16,7 +16,9 @@
         },
         "spd_adv": 3
     },
-    "no_follow": true,
+    "self_prevent_follow": {
+        "attack":true
+    },
     "weapon_restrict": "Staff",
     "link": "https://kagerochart.com/hero/passives/watersweep-2",
     "id": "watersweep-2"

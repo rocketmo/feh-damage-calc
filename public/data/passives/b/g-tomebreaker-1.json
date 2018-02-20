@@ -4,9 +4,20 @@
     "type": "B",
     "description": "If unit's HP ≥ 90% in combat against a green tome user, unit makes a follow-up attack and foe cannot.",
     "icon": "/images/icons/passives/g-tomebreaker-1.png",
-    "breaker": {
-        "weapon_type": "Green Tome",
-        "threshold": 0.9
+    "attack_follow_up": {
+        "trigger": "healthy",
+        "threshold": 0.9,
+        "weapon_type":"Green Tome"
+    },
+    "defense_follow_up": {
+        "trigger": "healthy",
+        "threshold": 0.9,
+        "weapon_type":"Green Tome"
+    },
+    "other_prevent_follow": {
+        "trigger": "healthy",
+        "threshold": 0.9,
+        "weapon_type":"Green Tome"
     },
     "color_restrict": "Blue",
     "link": "https://kagerochart.com/hero/passives/g-tomebreaker-1",

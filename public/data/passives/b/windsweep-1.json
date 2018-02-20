@@ -14,7 +14,9 @@
         },
         "spd_adv": 5
     },
-    "no_follow": true,
+    "self_prevent_follow": {
+        "attack":true
+    },
     "weapon_restrict": "Staff",
     "link": "https://kagerochart.com/hero/passives/windsweep-1",
     "id": "windsweep-1"

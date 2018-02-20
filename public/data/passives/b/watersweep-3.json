@@ -17,7 +17,9 @@
         },
         "spd_adv": 1
     },
-    "no_follow": true,
+    "self_prevent_follow": {
+        "attack":true
+    },
     "weapon_restrict": "Staff",
     "id": "watersweep-3"
 }

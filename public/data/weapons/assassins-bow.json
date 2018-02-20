@@ -10,8 +10,14 @@
     "move_effective": [
         "Flying"
     ],
-    "breaker": {
-        "weapon_type": "Dagger"
+    "attack_follow_up": {
+        "weapon_type":"Dagger"
+    },
+    "defense_follow_up": {
+        "weapon_type":"Dagger"
+    },
+    "other_prevent_follow": {
+        "weapon_type":"Dagger"
     },
     "link": "https://kagerochart.com/hero/weapons/assassins-bow",
     "id": "assassins-bow"

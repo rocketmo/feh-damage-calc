@@ -4,7 +4,12 @@
     "type": "B",
     "description": "Prevents follow-up attacks in combat from unit and foes if unit's HP ≥ 70%.",
     "icon": "/images/icons/passives/wary-fighter-2.png",
-    "wary": {
+    "other_prevent_follow": {
+        "trigger": "healthy",
+        "threshold": 0.7
+    },
+    "self_prevent_follow": {
+        "trigger": "healthy",
         "threshold": 0.7
     },
     "move_unique": "Armored",

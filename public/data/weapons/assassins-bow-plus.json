@@ -11,8 +11,14 @@
     "move_effective": [
         "Flying"
     ],
-    "breaker": {
-        "weapon_type": "Dagger"
+    "attack_follow_up": {
+        "weapon_type":"Dagger"
+    },
+    "defense_follow_up": {
+        "weapon_type":"Dagger"
+    },
+    "other_prevent_follow": {
+        "weapon_type":"Dagger"
     },
     "id": "assassins-bow-plus"
 }

@@ -5,8 +5,10 @@
     "description": "If unit initiates combat against a foe that can counter and unit's HP ≤ 50%, unit makes a guaranteed follow-up attack.",
     "icon": "/images/icons/passives/brash-assault-3.png",
     "link": "https://kagerochart.com/hero/passives/brash-assault-3",
-    "brash": {
-        "threshold": 0.5
+    "attack_follow_up": {
+        "trigger": "damaged",
+        "threshold": 0.3,
+        "counterable":true
     },
     "id": "brash-assault-3"
 }

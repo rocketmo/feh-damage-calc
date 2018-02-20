@@ -5,7 +5,12 @@
     "description": "Prevents follow-up attacks in combat from unit and foes if unit's HP ≥ 50%.",
     "icon": "/images/icons/passives/wary-fighter-3.png",
     "link": "https://kagerochart.com/hero/passives/wary-fighter-3",
-    "wary": {
+    "other_prevent_follow": {
+        "trigger": "healthy",
+        "threshold": 0.5
+    },
+    "self_prevent_follow": {
+        "trigger": "healthy",
         "threshold": 0.5
     },
     "move_unique": "Armored",

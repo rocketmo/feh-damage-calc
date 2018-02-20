@@ -1,0 +1,8 @@
+{
+    "description": "After combat, foe suffers Atk-3 through its next action.",
+    "id": "seal-atk-1",
+    "name": "Seal Atk 1",
+    "seal": {
+        "atk": -3
+    }
+}

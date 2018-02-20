@@ -4,9 +4,20 @@
     "type": "B",
     "description": "If unit's HP ≥ 90% in combat against a colorless bow foe, unit makes a guaranteed follow-up attack and foe cannot make a follow-up attack.",
     "icon": "/images/icons/passives/bowbreaker-1.png",
-    "breaker": {
-        "weapon_type": "Bow",
-        "threshold": 0.9
+    "attack_follow_up": {
+        "trigger": "healthy",
+        "threshold": 0.9,
+        "weapon_type":"Bow"
+    },
+    "defense_follow_up": {
+        "trigger": "healthy",
+        "threshold": 0.9,
+        "weapon_type":"Bow"
+    },
+    "other_prevent_follow": {
+        "trigger": "healthy",
+        "threshold": 0.9,
+        "weapon_type":"Bow"
     },
     "move_restrict": "Flying",
     "link": "https://kagerochart.com/hero/passives/bowbreaker-1",

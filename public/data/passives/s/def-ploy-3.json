@@ -1,0 +1,6 @@
+{
+    "description": "At start of turn, all foes in cardinal directions with Res 1 or more lower than unit suffer Def-5 until the end of foe's next action.",
+    "id": "def-ploy-3",
+    "name": "Def Ploy 3",
+    "type": "s"
+}

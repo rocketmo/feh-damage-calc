@@ -8,7 +8,8 @@
     "link": "https://kagerochart.com/hero/weapons/armads",
     "color": "Green",
     "magical": false,
-    "riposte": {
+    "defense_follow_up": {
+        "trigger": "healthy",
         "threshold": 0.8
     },
     "char_unique": true,

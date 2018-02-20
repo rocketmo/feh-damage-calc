@@ -5,9 +5,11 @@
     "description": "If unit's HP ≥ 50% and foe initiates combat, unit makes a guaranteed follow-up attack. Grants Special cooldown charge +1 per attack. (Does not stack.)",
     "icon": "/images/icons/passives/vengeful-fighter-3.png",
     "link": "https://kagerochart.com/hero/passives/vengeful-fighter-3",
-    "riposte": {
+    "defense_follow_up": {
+        "trigger": "healthy",
         "threshold": 0.5
     },
+    "move_unique":"Armored",
     "spec_accel": true,
     "id": "vengeful-fighter-3"
 }
