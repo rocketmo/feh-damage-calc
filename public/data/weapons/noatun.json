@@ -1,0 +1,13 @@
+{
+    "name": "Nóatún",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Unit may move adjacent to any ally when HP ≤ 40%.",
+    "type": "Axe",
+    "link": "https://kagerochart.com/hero/weapons/noatun",
+    "color": "Green",
+    "magical": false,
+    "char_unique": true,
+    "id": "noatun"
+}

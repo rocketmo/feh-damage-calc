@@ -1,0 +1,13 @@
+{
+    "name": "Wary Fighter 3",
+    "sp": 240,
+    "type": "B",
+    "description": "Prevents follow-up attacks in combat from unit and foes if unit's HP ≥ 50%.",
+    "icon": "/images/icons/passives/wary-fighter-3.png",
+    "link": "https://kagerochart.com/hero/passives/wary-fighter-3",
+    "wary": {
+        "threshold": 0.5
+    },
+    "move_unique": "Armored",
+    "id": "wary-fighter-3"
+}

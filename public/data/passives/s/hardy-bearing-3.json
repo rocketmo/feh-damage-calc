@@ -1,0 +1,7 @@
+{
+    "description": "Disables skills that change unit's attack priority. Enemy skills that change attack priority are also disabled.",
+    "id": "hardy-bearing-3",
+    "name": "Hardy Bearing 3",
+    "type": "s",
+    "remove_prio_hp": 0
+}

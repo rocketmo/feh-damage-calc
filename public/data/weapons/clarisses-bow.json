@@ -1,0 +1,15 @@
+{
+    "name": "Clarisse's Bow",
+    "might": 7,
+    "range": 2,
+    "sp": 200,
+    "description": "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions.Effective against flying units.",
+    "type": "Bow",
+    "color": "Colorless",
+    "magical": false,
+    "move_effective": [
+        "Flying"
+    ],
+    "link": "https://kagerochart.com/hero/weapons/clarisses-bow",
+    "id": "clarisses-bow"
+}

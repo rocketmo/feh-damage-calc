@@ -1,0 +1,54 @@
+{
+    "display": "Jeorge, Perfect Shot",
+    "name": "Jeorge",
+    "title": "Perfect Shot",
+    "id": "jeorge-perfect-shot",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/jeorge-perfect-shot",
+    "move_type": "Infantry",
+    "weapon": [
+        "parthia",
+        "silver-bow",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "special": [
+        "blazing-flame",
+        "rising-flame"
+    ],
+    "passive_b": [
+        "seal-atk-3",
+        "seal-atk-2",
+        "seal-atk-1"
+    ],
+    "passive_c": [
+        "spur-spd-3",
+        "spur-spd-2",
+        "spur-spd-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 8,
+            "def": 4,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 8,
+            "def": 5,
+            "res": 5
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 7,
+            "spd": 7,
+            "def": 5,
+            "res": 4,
+            "total": 28
+        }
+    }
+}

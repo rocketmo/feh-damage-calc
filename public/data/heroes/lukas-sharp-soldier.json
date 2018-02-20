@@ -1,0 +1,54 @@
+{
+    "display": "Lukas, Sharp Soldier",
+    "name": "Lukas",
+    "title": "Sharp Soldier",
+    "id": "lukas-sharp-soldier",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/lukas-sharp-soldier",
+    "move_type": "Infantry",
+    "weapon": [
+        "killer-lance-plus",
+        "killer-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "sacred-cowl",
+        "holy-vestments"
+    ],
+    "passive_a": [
+        "fortress-def-3",
+        "fortress-def-2",
+        "fortress-def-1"
+    ],
+    "passive_b": [
+        "obstruct-3",
+        "obstruct-2",
+        "obstruct-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 18,
+            "atk": 9,
+            "spd": 4,
+            "def": 10,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 9,
+            "spd": 5,
+            "def": 10,
+            "res": 4
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 8,
+            "spd": 4,
+            "def": 9,
+            "res": 2,
+            "total": 31
+        }
+    }
+}

@@ -1,0 +1,61 @@
+{
+    "display": "Ursula, Blue Crow",
+    "name": "Ursula",
+    "title": "Blue Crow",
+    "id": "ursula-blue-crow",
+    "color": "Blue",
+    "weapon_type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/ursula-blue-crow",
+    "move_type": "Cavalry",
+    "weapon": [
+        "blarwolf-plus",
+        "blarwolf",
+        "elthunder",
+        "thunder"
+    ],
+    "special": [
+        "growing-thunder",
+        "rising-thunder"
+    ],
+    "passive_a": [
+        "death-blow-3",
+        "death-blow-2",
+        "death-blow-1"
+    ],
+    "passive_c": [
+        "threaten-res-3",
+        "threaten-res-2",
+        "threaten-res-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 15,
+            "atk": 6,
+            "spd": 7,
+            "def": 3,
+            "res": 7
+        },
+        "star_4": {
+            "hp": 15,
+            "atk": 6,
+            "spd": 8,
+            "def": 3,
+            "res": 8
+        },
+        "star_5": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 8,
+            "def": 4,
+            "res": 8
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 6,
+            "spd": 7,
+            "def": 3,
+            "res": 6,
+            "total": 27
+        }
+    }
+}

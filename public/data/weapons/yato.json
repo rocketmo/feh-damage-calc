@@ -1,0 +1,16 @@
+{
+    "name": "Yato",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Grants Spd+4 when unit initiates combat.",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/yato",
+    "color": "Red",
+    "magical": false,
+    "initiate_mod": {
+        "spd": 4
+    },
+    "char_unique": true,
+    "id": "yato"
+}

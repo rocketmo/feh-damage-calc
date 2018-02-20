@@ -1,0 +1,54 @@
+{
+    "display": "Soleil, Adorable Adorer",
+    "name": "Soleil",
+    "title": "Adorable Adorer",
+    "id": "soleil-adorable-adorer",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/soleil-adorable-adorer",
+    "move_type": "Infantry",
+    "weapon": [
+        "firesweep-sword-plus",
+        "firesweep-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "blazing-wind",
+        "rising-wind"
+    ],
+    "passive_a": [
+        "darting-blow-3",
+        "darting-blow-2",
+        "darting-blow-1"
+    ],
+    "passive_c": [
+        "drive-res-2",
+        "drive-res-1",
+        "spur-res-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 17,
+            "atk": 10,
+            "spd": 9,
+            "def": 5,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 10,
+            "spd": 9,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 9,
+            "spd": 8,
+            "def": 6,
+            "res": 5,
+            "total": 33
+        }
+    }
+}

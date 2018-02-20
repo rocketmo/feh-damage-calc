@@ -1,0 +1,14 @@
+{
+    "name": "Lancebreaker 3",
+    "sp": 200,
+    "type": "B",
+    "description": "If unit's HP ≥ 50% in combat against a lance user, unit makes a follow-up attack and foe cannot.",
+    "icon": "/images/icons/passives/lancebreaker-3.png",
+    "link": "https://kagerochart.com/hero/passives/lancebreaker-3",
+    "breaker": {
+        "weapon_type": "Lance",
+        "threshold": 0.5
+    },
+    "color_restrict": "Red",
+    "id": "lancebreaker-3"
+}

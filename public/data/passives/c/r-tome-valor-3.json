@@ -1,0 +1,9 @@
+{
+    "name": "R Tome Valor 3",
+    "sp": 120,
+    "type": "C",
+    "description": "If unit survives, all red tome users on team get 2x SP.(If similar skill effects also used, only highest multiplier applied.)",
+    "icon": "/images/icons/passives/r-tome-valor-3.png",
+    "link": "https://kagerochart.com/hero/passives/r-tome-valor-3",
+    "id": "r-tome-valor-3"
+}

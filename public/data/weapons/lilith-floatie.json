@@ -1,0 +1,10 @@
+{
+    "name": "Lilith Floatie",
+    "might": 10,
+    "range": 1,
+    "sp": 200,
+    "description": "Grants allies within 2 spaces Atk/Spd+1 during combat.",
+    "type": "Axe",
+    "link": "https://kagerochart.com/hero/weapons/lilith-floatie",
+    "id": "lilith-floatie"
+}

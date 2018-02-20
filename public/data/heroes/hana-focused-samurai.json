@@ -1,0 +1,74 @@
+{
+    "display": "Hana, Focused Samurai",
+    "name": "Hana",
+    "title": "Focused Samurai",
+    "id": "hana-focused-samurai",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/hana-focused-samurai",
+    "move_type": "Infantry",
+    "weapon": [
+        "armorslayer-plus",
+        "armorslayer",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "assist": [
+        "rally-attack"
+    ],
+    "passive_a": [
+        "life-and-death-3",
+        "life-and-death-2",
+        "life-and-death-1"
+    ],
+    "passive_b": [
+        "obstruct-3",
+        "obstruct-2",
+        "obstruct-1"
+    ],
+    "base_stat": {
+        "star_1": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 8,
+            "def": 4,
+            "res": 2
+        },
+        "star_2": {
+            "hp": 16,
+            "atk": 8,
+            "spd": 9,
+            "def": 4,
+            "res": 2
+        },
+        "star_3": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 9,
+            "def": 5,
+            "res": 3
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 9,
+            "spd": 10,
+            "def": 5,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 9,
+            "spd": 10,
+            "def": 6,
+            "res": 4
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 8,
+            "spd": 8,
+            "def": 4,
+            "res": 6,
+            "total": 31
+        }
+    }
+}

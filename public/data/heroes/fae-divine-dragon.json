@@ -1,0 +1,53 @@
+{
+    "display": "Fae, Divine Dragon",
+    "name": "Fae",
+    "title": "Divine Dragon",
+    "id": "fae-divine-dragon",
+    "color": "Green",
+    "weapon_type": "Green Breath",
+    "link": "https://kagerochart.com/hero/fae-divine-dragon",
+    "move_type": "Infantry",
+    "weapon": [
+        "light-breath-plus",
+        "light-breath",
+        "fire-breath-plus",
+        "fire-breath"
+    ],
+    "assist": [
+        "draw-back"
+    ],
+    "passive_b": [
+        "renewal-3",
+        "renewal-2",
+        "renewal-1"
+    ],
+    "passive_c": [
+        "threaten-atk-3",
+        "threaten-atk-2",
+        "threaten-atk-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 15,
+            "atk": 4,
+            "spd": 3,
+            "def": 6,
+            "res": 8
+        },
+        "star_5": {
+            "hp": 16,
+            "atk": 5,
+            "spd": 4,
+            "def": 6,
+            "res": 8
+        },
+        "growth": {
+            "hp": 10,
+            "atk": 9,
+            "spd": 7,
+            "def": 5,
+            "res": 6,
+            "total": 37
+        }
+    }
+}

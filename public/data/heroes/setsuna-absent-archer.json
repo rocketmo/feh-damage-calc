@@ -1,0 +1,60 @@
+{
+    "display": "Setsuna, Absent Archer",
+    "name": "Setsuna",
+    "title": "Absent Archer",
+    "id": "setsuna-absent-archer",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/setsuna-absent-archer",
+    "move_type": "Infantry",
+    "weapon": [
+        "assassins-bow-plus",
+        "assassins-bow",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "assist": [
+        "reciprocal-aid"
+    ],
+    "passive_a": [
+        "hp-plus-5",
+        "hp-plus-4",
+        "hp-plus-3"
+    ],
+    "passive_b": [
+        "bowbreaker-3",
+        "bowbreaker-2",
+        "bowbreaker-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 17,
+            "atk": 5,
+            "spd": 8,
+            "def": 4,
+            "res": 5
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 9,
+            "def": 4,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 6,
+            "spd": 9,
+            "def": 5,
+            "res": 6
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 6,
+            "spd": 9,
+            "def": 4,
+            "res": 4,
+            "total": 28
+        }
+    }
+}

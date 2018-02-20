@@ -1,0 +1,60 @@
+{
+    "display": "Saizo, Angry Ninja",
+    "name": "Saizo",
+    "title": "Angry Ninja",
+    "id": "saizo-angry-ninja",
+    "color": "Colorless",
+    "weapon_type": "Dagger",
+    "link": "https://kagerochart.com/hero/saizo-angry-ninja",
+    "move_type": "Infantry",
+    "weapon": [
+        "smoke-dagger-plus",
+        "smoke-dagger",
+        "steel-dagger",
+        "iron-dagger"
+    ],
+    "assist": [
+        "harsh-command"
+    ],
+    "passive_b": [
+        "poison-strike-3",
+        "poison-strike-2",
+        "poison-strike-1"
+    ],
+    "passive_c": [
+        "spur-spd-3",
+        "spur-spd-2",
+        "spur-spd-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 7,
+            "def": 8,
+            "res": 2
+        },
+        "star_4": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 8,
+            "def": 9,
+            "res": 2
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 8,
+            "def": 9,
+            "res": 3
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 6,
+            "spd": 8,
+            "def": 7,
+            "res": 2,
+            "total": 28
+        }
+    }
+}

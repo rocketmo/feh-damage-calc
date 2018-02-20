@@ -1,0 +1,44 @@
+{
+    "display": "Camilla, Spring Princess",
+    "name": "Camilla",
+    "title": "Spring Princess",
+    "id": "camilla-spring-princess",
+    "color": "Green",
+    "weapon_type": "Green Tome",
+    "link": "https://kagerochart.com/hero/camilla-spring-princess",
+    "move_type": "Flying",
+    "weapon": [
+        "green-egg-plus",
+        "green-egg",
+        "elwind",
+        "wind"
+    ],
+    "assist": [
+        "rally-attack"
+    ],
+    "passive_a": [
+        "defiant-spd-3",
+        "defiant-spd-2",
+        "defiant-spd-1"
+    ],
+    "passive_b": [
+        "live-for-bounty"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 9,
+            "spd": 6,
+            "def": 8,
+            "res": 4
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 8,
+            "spd": 5,
+            "def": 6,
+            "res": 3,
+            "total": 28
+        }
+    }
+}

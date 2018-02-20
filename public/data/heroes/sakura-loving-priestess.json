@@ -1,0 +1,54 @@
+{
+    "display": "Sakura, Loving Priestess",
+    "name": "Sakura",
+    "title": "Loving Priestess",
+    "id": "sakura-loving-priestess",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/sakura-loving-priestess",
+    "move_type": "Infantry",
+    "weapon": [
+        "fear-plus",
+        "fear",
+        "assault"
+    ],
+    "special": [
+        "still-water-balm",
+        "imbue"
+    ],
+    "assist": [
+        "physic-plus",
+        "physic",
+        "mend",
+        "heal"
+    ],
+    "passive_c": [
+        "fortify-def-3",
+        "fortify-def-2",
+        "fortify-def-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 16,
+            "atk": 5,
+            "spd": 8,
+            "def": 4,
+            "res": 8
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 8,
+            "def": 5,
+            "res": 8
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 6,
+            "spd": 6,
+            "def": 5,
+            "res": 6,
+            "total": 28
+        }
+    }
+}

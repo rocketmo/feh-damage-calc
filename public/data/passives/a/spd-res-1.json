@@ -1,0 +1,13 @@
+{
+    "name": "Spd Res 1",
+    "sp": 80,
+    "type": "A",
+    "description": "Grants Spd/Res+1.",
+    "icon": "/images/icons/passives/spd-res-1.png",
+    "stat_mod": {
+        "spd": 1,
+        "res": 1
+    },
+    "link": "https://kagerochart.com/hero/passives/spd-res-1",
+    "id": "spd-res-1"
+}

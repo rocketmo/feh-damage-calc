@@ -1,0 +1,15 @@
+{
+    "name": "Earth Boost 1",
+    "sp": 50,
+    "type": "A",
+    "description": "If unit has at least 3 more HP than enemy at the start of combat, unit receives Def+2 during combat.",
+    "icon": "/images/icons/passives/earth-boost-1.png",
+    "hp_adv_mod": {
+        "stat_mod": {
+            "def": 2
+        },
+        "hp_adv": 3
+    },
+    "link": "https://kagerochart.com/hero/passives/earth-boost-1",
+    "id": "earth-boost-1"
+}

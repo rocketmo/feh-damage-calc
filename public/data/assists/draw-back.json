@@ -1,0 +1,9 @@
+{
+    "name": "Draw Back",
+    "range": 1,
+    "sp": 150,
+    "description": "Unit moves 1 space away from target ally, who moves to unit's former position.",
+    "link": "https://kagerochart.com/hero/assists/draw-back",
+    "weapon_restrict": "Staff",
+    "id": "draw-back"
+}

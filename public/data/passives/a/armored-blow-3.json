@@ -1,0 +1,12 @@
+{
+    "name": "Armored Blow 3",
+    "sp": 200,
+    "type": "A",
+    "description": "Grants Def+6 during combat if unit initiates the attack.",
+    "icon": "/images/icons/passives/armored-blow-3.png",
+    "link": "https://kagerochart.com/hero/passives/armored-blow-3",
+    "initiate_mod": {
+        "def": 6
+    },
+    "id": "armored-blow-3"
+}

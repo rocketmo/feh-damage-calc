@@ -1,0 +1,11 @@
+{
+    "name": "Fire",
+    "might": 4,
+    "range": 2,
+    "sp": 50,
+    "type": "Red Tome",
+    "color": "Red",
+    "magical": true,
+    "link": "https://kagerochart.com/hero/weapons/fire",
+    "id": "fire"
+}

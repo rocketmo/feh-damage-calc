@@ -1,0 +1,60 @@
+{
+    "display": "Gaius, Candy Stealer",
+    "name": "Gaius",
+    "title": "Candy Stealer",
+    "id": "gaius-candy-stealer",
+    "color": "Colorless",
+    "weapon_type": "Dagger",
+    "link": "https://kagerochart.com/hero/gaius-candy-stealer",
+    "move_type": "Infantry",
+    "weapon": [
+        "rogue-dagger-plus",
+        "rogue-dagger",
+        "steel-dagger",
+        "iron-dagger"
+    ],
+    "assist": [
+        "rally-speed"
+    ],
+    "passive_a": [
+        "defiant-atk-3",
+        "defiant-atk-2",
+        "defiant-atk-1"
+    ],
+    "passive_b": [
+        "pass-3",
+        "pass-2",
+        "pass-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 9,
+            "def": 4,
+            "res": 3
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 10,
+            "def": 4,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 10,
+            "def": 5,
+            "res": 4
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 6,
+            "spd": 8,
+            "def": 4,
+            "res": 3,
+            "total": 28
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Wrath 1",
+    "sp": 60,
+    "type": "B",
+    "description": "If unit's HP ≤ 25%, Special cooldown count-1 at start of turn if Special triggers by attacking.If Special triggers, +10 damage from Special.",
+    "icon": "/images/icons/passives/wrath-1.png",
+    "spec_damage_bonus_hp": 10,
+    "threshold": 0.25,
+    "link": "https://kagerochart.com/hero/passives/wrath-1",
+    "id": "wrath-1"
+}

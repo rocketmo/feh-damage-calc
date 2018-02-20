@@ -1,0 +1,6 @@
+{
+    "description": "Grants adjacent allies Def+4 through their next actions at the start of each turn.",
+    "id": "fortify-def-3",
+    "name": "Fortify Def 3",
+    "type": "s"
+}

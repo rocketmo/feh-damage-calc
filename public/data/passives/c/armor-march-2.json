@@ -1,0 +1,9 @@
+{
+    "name": "Armor March 2",
+    "sp": 120,
+    "type": "C",
+    "description": "If unit has ≥ 50% HP and an adjacent armored ally at start of turn, unit and any such allies can move 1 extra space.(That turn only; does not stack.)",
+    "icon": "/images/icons/passives/armor-march-2.png",
+    "link": "https://kagerochart.com/hero/passives/armor-march-2",
+    "id": "armor-march-2"
+}

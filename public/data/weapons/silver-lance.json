@@ -1,0 +1,11 @@
+{
+    "name": "Silver Lance",
+    "might": 11,
+    "range": 1,
+    "sp": 200,
+    "type": "Lance",
+    "color": "Blue",
+    "magical": false,
+    "link": "https://kagerochart.com/hero/weapons/silver-lance",
+    "id": "silver-lance"
+}

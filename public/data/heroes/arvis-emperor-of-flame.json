@@ -1,0 +1,59 @@
+{
+    "display": "Arvis, Emperor of Flame",
+    "name": "Arvis",
+    "title": "Emperor of Flame",
+    "id": "arvis-emperor-of-flame",
+    "color": "Red",
+    "weapon_type": "Red Tome",
+    "link": "https://kagerochart.com/hero/arvis-emperor-of-flame",
+    "move_type": "Infantry",
+    "weapon": [
+        "valflame",
+        "bolganone",
+        "elfire",
+        "fire"
+    ],
+    "special": [
+        "growing-flame",
+        "rising-flame"
+    ],
+    "passive_b": [
+        "recover-ring"
+    ],
+    "passive_c": [
+        "def-ploy-3",
+        "def-ploy-2",
+        "def-ploy-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 6,
+            "def": 3,
+            "res": 6
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 7,
+            "def": 3,
+            "res": 6
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 7,
+            "def": 4,
+            "res": 7
+        },
+        "growth": {
+            "hp": 3,
+            "atk": 8,
+            "spd": 7,
+            "def": 2,
+            "res": 8,
+            "total": 28
+        }
+    }
+}

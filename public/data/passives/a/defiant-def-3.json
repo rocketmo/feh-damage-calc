@@ -1,0 +1,12 @@
+{
+    "name": "Defiant Def 3",
+    "sp": 160,
+    "type": "A",
+    "description": "Grants Def+7 at start of turn if unit's HP ≤ 50%.",
+    "icon": "/images/icons/passives/defiant-def-3.png",
+    "link": "https://kagerochart.com/hero/passives/defiant-def-3",
+    "defiant": {
+        "def": 7
+    },
+    "id": "defiant-def-3"
+}

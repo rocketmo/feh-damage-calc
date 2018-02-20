@@ -1,0 +1,47 @@
+{
+    "display": "Sonya, Vengeful Mage",
+    "name": "Sonya",
+    "title": "Vengeful Mage",
+    "id": "sonya-vengeful-mage",
+    "color": "Green",
+    "weapon_type": "Green Tome",
+    "link": "https://kagerochart.com/hero/sonya-vengeful-mage",
+    "move_type": "Infantry",
+    "weapon": [
+        "dark-excalibur",
+        "rexcalibur",
+        "elwind",
+        "wind"
+    ],
+    "special": [
+        "moonbow",
+        "new-moon"
+    ],
+    "passive_a": [
+        "mirror-strike-2",
+        "mirror-strike-1",
+        "warding-blow-1"
+    ],
+    "passive_c": [
+        "res-ploy-3",
+        "res-ploy-2",
+        "res-ploy-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 7,
+            "def": 5,
+            "res": 8
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 8,
+            "spd": 7,
+            "def": 1,
+            "res": 7,
+            "total": 28
+        }
+    }
+}

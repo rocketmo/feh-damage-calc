@@ -1,0 +1,9 @@
+{
+    "name": "Live for Bounty",
+    "sp": 100,
+    "type": "B",
+    "description": "If unit survives, get 1.5x shards/crystals from a Training Tower map.(If similar skill effects also used, only highest multiplier applied.)",
+    "icon": "/images/icons/passives/live-for-bounty.png",
+    "link": "https://kagerochart.com/hero/passives/live-for-bounty",
+    "id": "live-for-bounty"
+}

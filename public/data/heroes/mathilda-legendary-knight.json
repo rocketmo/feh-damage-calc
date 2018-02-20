@@ -1,0 +1,53 @@
+{
+    "display": "Mathilda, Legendary Knight",
+    "name": "Mathilda",
+    "title": "Legendary Knight",
+    "id": "mathilda-legendary-knight",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/mathilda-legendary-knight",
+    "move_type": "Cavalry",
+    "weapon": [
+        "ridersbane-plus",
+        "ridersbane",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "rally-resistance"
+    ],
+    "passive_b": [
+        "cancel-affinity-3",
+        "cancel-affinity-2",
+        "cancel-affinity-1"
+    ],
+    "passive_c": [
+        "hone-atk-3",
+        "hone-atk-2",
+        "hone-atk-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 15,
+            "atk": 6,
+            "spd": 8,
+            "def": 6,
+            "res": 8
+        },
+        "star_5": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 8,
+            "def": 7,
+            "res": 8
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 6,
+            "spd": 7,
+            "def": 4,
+            "res": 8,
+            "total": 30
+        }
+    }
+}

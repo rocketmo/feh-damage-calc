@@ -1,0 +1,46 @@
+{
+    "display": "Linde, Light Mage",
+    "name": "Linde",
+    "title": "Light Mage",
+    "id": "linde-light-mage",
+    "color": "Blue",
+    "weapon_type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/linde-light-mage",
+    "move_type": "Infantry",
+    "weapon": [
+        "aura",
+        "thoron",
+        "elthunder",
+        "thunder"
+    ],
+    "assist": [
+        "ardent-sacrifice"
+    ],
+    "passive_a": [
+        "speed-plus-3",
+        "speed-plus-2",
+        "speed-plus-1"
+    ],
+    "passive_c": [
+        "fortify-res-3",
+        "fortify-res-2",
+        "fortify-res-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 9,
+            "spd": 10,
+            "def": 4,
+            "res": 5
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 8,
+            "spd": 8,
+            "def": 1,
+            "res": 6,
+            "total": 28
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Brazen Atk Def 2",
+    "sp": 120,
+    "type": "A",
+    "description": "If unit's HP ≤ 80% at the start of combat, grants Atk/Def+5 during combat.",
+    "icon": "/images/icons/passives/brazen-atk-def-2.png",
+    "below_threshold_mod": {
+        "threshold": 0.8,
+        "stat_mod": {
+            "atk": 5,
+            "def": 5
+        }
+    },
+    "link": "https://kagerochart.com/hero/passives/brazen-atk-def-2",
+    "id": "brazen-atk-def-2"
+}

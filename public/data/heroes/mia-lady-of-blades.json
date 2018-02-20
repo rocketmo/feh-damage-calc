@@ -1,0 +1,47 @@
+{
+    "display": "Mia, Lady of Blades",
+    "name": "Mia",
+    "title": "Lady of Blades",
+    "id": "mia-lady-of-blades",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/mia-lady-of-blades",
+    "move_type": "Infantry",
+    "weapon": [
+        "resolute-blade",
+        "wo-dao",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "luna",
+        "new-moon"
+    ],
+    "passive_a": [
+        "flashing-blade-3",
+        "flashing-blade-2",
+        "flashing-blade-1"
+    ],
+    "passive_b": [
+        "vantage-3",
+        "vantage-2",
+        "vantage-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 8,
+            "spd": 12,
+            "def": 6,
+            "res": 6
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 9,
+            "def": 6,
+            "res": 5,
+            "total": 33
+        }
+    }
+}

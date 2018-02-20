@@ -1,0 +1,11 @@
+{
+    "name": "Dazzling Staff 3",
+    "sp": 240,
+    "type": "B",
+    "description": "The enemy cannot counterattack.",
+    "icon": "/images/icons/passives/dazzling-staff-3.png",
+    "link": "https://kagerochart.com/hero/passives/dazzling-staff-3",
+    "prevent_enemy_counter": 0,
+    "weapon_unique": "Staff",
+    "id": "dazzling-staff-3"
+}

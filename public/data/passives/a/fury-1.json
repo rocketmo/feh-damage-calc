@@ -1,0 +1,16 @@
+{
+    "name": "Fury 1",
+    "sp": 50,
+    "type": "A",
+    "description": "Grants Atk/Spd/Def/Res+1.Unit takes 2 damage after combat.",
+    "icon": "/images/icons/passives/fury-1.png",
+    "stat_mod": {
+        "atk": 1,
+        "spd": 1,
+        "def": 1,
+        "res": 1
+    },
+    "recoil_dmg": 2,
+    "link": "https://kagerochart.com/hero/passives/fury-1",
+    "id": "fury-1"
+}

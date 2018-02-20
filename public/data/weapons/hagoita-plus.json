@@ -1,0 +1,15 @@
+{
+    "name": "Hagoita+",
+    "might": 14,
+    "range": 1,
+    "sp": 300,
+    "description": "Grants Def/Res+2 during combat to allies within 2 spaces.",
+    "type": "Axe",
+    "link": "https://kagerochart.com/hero/weapons/hagoita-plus",
+    "color": "Green",
+    "magical": false,
+    "refinable": {
+        "type": "melee"
+    },
+    "id": "hagoita-plus"
+}

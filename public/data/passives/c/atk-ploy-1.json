@@ -1,0 +1,9 @@
+{
+    "name": "Atk Ploy 1",
+    "sp": 60,
+    "type": "C",
+    "description": "At start of turn, all foes in cardinal directions with Res 1 or more lower than unit suffer Atk-3 until the end of foe's next action.",
+    "icon": "/images/icons/passives/atk-ploy-1.png",
+    "link": "https://kagerochart.com/hero/passives/atk-ploy-1",
+    "id": "atk-ploy-1"
+}

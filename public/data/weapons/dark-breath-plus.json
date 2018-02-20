@@ -1,0 +1,11 @@
+{
+    "name": "Dark Breath+",
+    "might": 13,
+    "range": 1,
+    "sp": 300,
+    "description": "After this unit attacks, foes within 2 spaces of target suffer Atk/Spd-5 through their next actions.",
+    "type": "Breath",
+    "link": "https://kagerochart.com/hero/weapons/dark-breath-plus",
+    "id": "dark-breath-plus",
+    "magical": true
+}

@@ -1,0 +1,55 @@
+{
+    "display": "Black Knight, Sinister General",
+    "name": "Black Knight",
+    "title": "Sinister General",
+    "id": "black-knight-sinister-general",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/black-knight-sinister-general",
+    "move_type": "Armored",
+    "weapon": [
+        "alondite",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "black-luna",
+        "luna",
+        "new-moon"
+    ],
+    "passive_a": [
+        "steady-stance-3",
+        "steady-stance-2",
+        "steady-stance-1"
+    ],
+    "passive_b": [
+        "wings-of-mercy-3",
+        "wings-of-mercy-2",
+        "wings-of-mercy-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 21,
+            "atk": 10,
+            "spd": 7,
+            "def": 9,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 22,
+            "atk": 10,
+            "spd": 8,
+            "def": 9,
+            "res": 5
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 7,
+            "spd": 8,
+            "def": 8,
+            "res": 2,
+            "total": 33
+        }
+    }
+}

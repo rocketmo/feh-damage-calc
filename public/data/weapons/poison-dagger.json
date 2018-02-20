@@ -1,0 +1,20 @@
+{
+    "name": "Poison Dagger",
+    "might": 2,
+    "range": 2,
+    "sp": 200,
+    "description": "Effective against infantry units. Infantry foes suffer Def/Res-4 after combat through their next actions.",
+    "type": "Dagger",
+    "color": "Colorless",
+    "magical": false,
+    "move_effective": [
+        "Infantry"
+    ],
+    "target_seal": {
+        "target": "Infantry",
+        "def": -4,
+        "res": -4
+    },
+    "link": "https://kagerochart.com/hero/weapons/poison-dagger",
+    "id": "poison-dagger"
+}

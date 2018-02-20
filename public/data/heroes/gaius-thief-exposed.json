@@ -1,0 +1,47 @@
+{
+    "display": "Gaius, Thief Exposed",
+    "name": "Gaius",
+    "title": "Thief Exposed",
+    "id": "gaius-thief-exposed",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/gaius-thief-exposed",
+    "move_type": "Infantry",
+    "weapon": [
+        "refreshing-bolt-plus",
+        "refreshing-bolt",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "special": [
+        "astra",
+        "night-sky"
+    ],
+    "passive_b": [
+        "vantage-3",
+        "vantage-2",
+        "vantage-1"
+    ],
+    "passive_c": [
+        "def-ploy-3",
+        "def-ploy-2",
+        "def-ploy-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 9,
+            "def": 4,
+            "res": 6
+        },
+        "growth": {
+            "hp": 4,
+            "atk": 6,
+            "spd": 9,
+            "def": 3,
+            "res": 6,
+            "total": 28
+        }
+    }
+}

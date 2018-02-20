@@ -1,0 +1,16 @@
+{
+    "name": "Brazen Atk Spd 2",
+    "sp": 120,
+    "type": "A",
+    "description": "If unit's HP ≤ 80% at the start of combat, grants Atk/Spd+5 during combat.",
+    "icon": "/images/icons/passives/brazen-atk-spd-2.png",
+    "below_threshold_mod": {
+        "threshold": 0.8,
+        "stat_mod": {
+            "atk": 5,
+            "spd": 5
+        }
+    },
+    "link": "https://kagerochart.com/hero/passives/brazen-atk-spd-2",
+    "id": "brazen-atk-spd-2"
+}

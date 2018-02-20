@@ -1,0 +1,11 @@
+{
+    "name": "Assault",
+    "might": 10,
+    "range": 2,
+    "sp": 50,
+    "type": "Staff",
+    "color": "Colorless",
+    "magical": true,
+    "link": "https://kagerochart.com/hero/weapons/assault",
+    "id": "assault"
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Wind Boost 2",
+    "sp": 100,
+    "type": "A",
+    "description": "If unit has at least 3 more HP than enemy at the start of combat, unit receives Spd+4 during combat.",
+    "icon": "/images/icons/passives/wind-boost-2.png",
+    "hp_adv_mod": {
+        "stat_mod": {
+            "spd": 4
+        },
+        "hp_adv": 3
+    },
+    "link": "https://kagerochart.com/hero/passives/wind-boost-2",
+    "id": "wind-boost-2"
+}

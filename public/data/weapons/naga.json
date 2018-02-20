@@ -1,0 +1,22 @@
+{
+    "name": "Naga",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "Effective against dragons. Grants Def/Res+2 when this unit is attacked.",
+    "type": "Tome",
+    "link": "https://kagerochart.com/hero/weapons/naga",
+    "weapon_effective": [
+        "Breath",
+        "Red Breath",
+        "Green Breath",
+        "Blue Breath"
+    ],
+    "defend_mod": {
+        "def": 2,
+        "res": 2
+    },
+    "char_unique": true,
+    "id": "naga",
+    "magical": true
+}

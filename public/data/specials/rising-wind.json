@@ -1,0 +1,10 @@
+{
+    "name": "Rising Wind",
+    "cooldown": 4,
+    "sp": 150,
+    "description": "Before combat this unit initiates, foes in an area near target take damage equal to (unit's Atk minus foe's Def or Res).",
+    "before_combat_aoe": true,
+    "weapon_restrict": "Staff",
+    "link": "https://kagerochart.com/hero/specials/rising-wind",
+    "id": "rising-wind"
+}

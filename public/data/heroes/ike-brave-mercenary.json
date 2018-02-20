@@ -1,0 +1,51 @@
+{
+    "display": "Ike, Brave Mercenary",
+    "name": "Ike",
+    "title": "Brave Mercenary",
+    "id": "ike-brave-mercenary",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/ike-brave-mercenary",
+    "move_type": "Infantry",
+    "weapon": [
+        "urvan",
+        "silver-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "aether",
+        "luna",
+        "new-moon"
+    ],
+    "passive_a": [
+        "steady-breath",
+        "steady-stance-2",
+        "steady-stance-1"
+    ],
+    "passive_b": [
+        "beorcs-blessing"
+    ],
+    "passive_c": [
+        "threaten-def-3",
+        "threaten-def-2",
+        "threaten-def-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 10,
+            "spd": 6,
+            "def": 9,
+            "res": 5
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 8,
+            "spd": 6,
+            "def": 8,
+            "res": 3,
+            "total": 33
+        }
+    }
+}

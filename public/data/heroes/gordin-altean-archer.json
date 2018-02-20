@@ -1,0 +1,60 @@
+{
+    "display": "Gordin, Altean Archer",
+    "name": "Gordin",
+    "title": "Altean Archer",
+    "id": "gordin-altean-archer",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/gordin-altean-archer",
+    "move_type": "Infantry",
+    "weapon": [
+        "brave-bow-plus",
+        "brave-bow",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "assist": [
+        "shove"
+    ],
+    "passive_a": [
+        "attack-plus-3",
+        "attack-plus-2",
+        "attack-plus-1"
+    ],
+    "passive_b": [
+        "vantage-3",
+        "vantage-2",
+        "vantage-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 18,
+            "atk": 6,
+            "spd": 5,
+            "def": 7,
+            "res": 3
+        },
+        "star_4": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 5,
+            "def": 8,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 7,
+            "spd": 6,
+            "def": 8,
+            "res": 4
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 5,
+            "def": 7,
+            "res": 2,
+            "total": 28
+        }
+    }
+}

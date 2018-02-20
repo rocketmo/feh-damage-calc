@@ -1,0 +1,12 @@
+{
+    "name": "Speed +2",
+    "sp": 60,
+    "type": "A",
+    "description": "Grants Spd+2.",
+    "icon": "/images/icons/passives/speed-plus-2.png",
+    "stat_mod": {
+        "spd": 2
+    },
+    "link": "https://kagerochart.com/hero/passives/speed-plus-2",
+    "id": "speed-plus-2"
+}

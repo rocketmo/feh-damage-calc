@@ -1,0 +1,47 @@
+{
+    "display": "Lyn, Bride of the Plains",
+    "name": "Lyn",
+    "title": "Bride of the Plains",
+    "id": "lyn-bride-of-the-plains",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/lyn-bride-of-the-plains",
+    "move_type": "Infantry",
+    "weapon": [
+        "candlelight-plus",
+        "candlelight",
+        "assault"
+    ],
+    "special": [
+        "swift-winds-balm",
+        "imbue"
+    ],
+    "assist": [
+        "rehabilitate-plus",
+        "rehabilitate",
+        "reconcile",
+        "heal"
+    ],
+    "passive_b": [
+        "dazzling-staff-3",
+        "dazzling-staff-2",
+        "dazzling-staff-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 10,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 6,
+            "spd": 7,
+            "def": 4,
+            "res": 5,
+            "total": 28
+        }
+    }
+}

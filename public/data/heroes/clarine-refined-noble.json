@@ -1,0 +1,61 @@
+{
+    "display": "Clarine, Refined Noble",
+    "name": "Clarine",
+    "title": "Refined Noble",
+    "id": "clarine-refined-noble",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/clarine-refined-noble",
+    "move_type": "Cavalry",
+    "weapon": [
+        "fear-plus",
+        "fear",
+        "assault"
+    ],
+    "special": [
+        "swift-winds-balm",
+        "imbue"
+    ],
+    "assist": [
+        "martyr-plus",
+        "martyr",
+        "reconcile",
+        "heal"
+    ],
+    "passive_a": [
+        "resistance-plus-3",
+        "resistance-plus-2",
+        "resistance-plus-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 15,
+            "atk": 5,
+            "spd": 8,
+            "def": 4,
+            "res": 6
+        },
+        "star_4": {
+            "hp": 15,
+            "atk": 5,
+            "spd": 9,
+            "def": 4,
+            "res": 7
+        },
+        "star_5": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 9,
+            "def": 5,
+            "res": 7
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 5,
+            "spd": 7,
+            "def": 4,
+            "res": 6,
+            "total": 27
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Brave Bow",
+    "might": 4,
+    "range": 2,
+    "sp": 200,
+    "description": "Spd-5. Effective against flying units. Attack twice when initiating combat.",
+    "type": "Bow",
+    "color": "Colorless",
+    "magical": false,
+    "brave": true,
+    "move_effective": [
+        "Flying"
+    ],
+    "stat_mod": {
+        "spd": -5
+    },
+    "link": "https://kagerochart.com/hero/weapons/brave-bow",
+    "id": "brave-bow"
+}

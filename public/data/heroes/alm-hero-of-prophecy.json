@@ -1,0 +1,47 @@
+{
+    "display": "Alm, Hero of Prophecy",
+    "name": "Alm",
+    "title": "Hero of Prophecy",
+    "id": "alm-hero-of-prophecy",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/alm-hero-of-prophecy",
+    "move_type": "Infantry",
+    "weapon": [
+        "falchion",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "draconic-aura",
+        "dragon-gaze"
+    ],
+    "passive_a": [
+        "attack-plus-3",
+        "attack-plus-2",
+        "attack-plus-1"
+    ],
+    "passive_b": [
+        "windsweep-3",
+        "windsweep-2",
+        "windsweep-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 21,
+            "atk": 9,
+            "spd": 6,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 7,
+            "def": 6,
+            "res": 4,
+            "total": 31
+        }
+    }
+}

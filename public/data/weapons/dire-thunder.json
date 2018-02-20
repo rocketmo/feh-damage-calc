@@ -1,0 +1,17 @@
+{
+    "name": "Dire Thunder",
+    "might": 9,
+    "range": 2,
+    "sp": 400,
+    "description": "Spd-5. Attack twice when initiating combat.",
+    "type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/weapons/dire-thunder",
+    "color": "Blue",
+    "magical": true,
+    "brave": true,
+    "stat_mod": {
+        "spd": -5
+    },
+    "char_unique": true,
+    "id": "dire-thunder"
+}

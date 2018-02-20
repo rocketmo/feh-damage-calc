@@ -1,0 +1,55 @@
+{
+    "display": "Cordelia, Knight Paragon",
+    "name": "Cordelia",
+    "title": "Knight Paragon",
+    "id": "cordelia-knight-paragon",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/cordelia-knight-paragon",
+    "move_type": "Flying",
+    "weapon": [
+        "brave-lance-plus",
+        "brave-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "galeforce",
+        "astra",
+        "night-sky"
+    ],
+    "passive_a": [
+        "triangle-adept-3",
+        "triangle-adept-2",
+        "triangle-adept-1"
+    ],
+    "passive_b": [
+        "pass-3",
+        "pass-2",
+        "pass-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 17,
+            "atk": 9,
+            "spd": 9,
+            "def": 4,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 9,
+            "spd": 9,
+            "def": 5,
+            "res": 6
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 8,
+            "spd": 8,
+            "def": 4,
+            "res": 5,
+            "total": 31
+        }
+    }
+}

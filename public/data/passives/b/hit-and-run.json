@@ -1,0 +1,10 @@
+{
+    "name": "Hit and Run",
+    "sp": 150,
+    "type": "B",
+    "description": "If unit initiates attack, unit retreats 1 space after battle.",
+    "icon": "/images/icons/passives/hit-and-run.png",
+    "link": "https://kagerochart.com/hero/passives/hit-and-run",
+    "range_unique": 1,
+    "id": "hit-and-run"
+}

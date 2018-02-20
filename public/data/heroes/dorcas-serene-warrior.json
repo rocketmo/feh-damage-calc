@@ -1,0 +1,52 @@
+{
+    "display": "Dorcas, Serene Warrior",
+    "name": "Dorcas",
+    "title": "Serene Warrior",
+    "id": "dorcas-serene-warrior",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/dorcas-serene-warrior",
+    "move_type": "Infantry",
+    "weapon": [
+        "stout-tomahawk",
+        "silver-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "draconic-aura",
+        "dragon-gaze"
+    ],
+    "passive_a": [
+        "fierce-stance-3",
+        "fierce-stance-2",
+        "fierce-stance-1"
+    ],
+    "passive_b": [
+        "quick-riposte-3",
+        "quick-riposte-2",
+        "quick-riposte-1"
+    ],
+    "passive_c": [
+        "infantry-pulse-3",
+        "infantry-pulse-2",
+        "infantry-pulse-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 19,
+            "atk": 9,
+            "spd": 6,
+            "def": 9,
+            "res": 5
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 8,
+            "spd": 4,
+            "def": 8,
+            "res": 5,
+            "total": 33
+        }
+    }
+}

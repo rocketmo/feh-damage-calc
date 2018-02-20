@@ -1,0 +1,54 @@
+{
+    "display": "Abel, The Panther",
+    "name": "Abel",
+    "title": "The Panther",
+    "id": "abel-the-panther",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/abel-the-panther",
+    "move_type": "Cavalry",
+    "weapon": [
+        "brave-lance-plus",
+        "brave-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "aegis",
+        "holy-vestments"
+    ],
+    "passive_a": [
+        "hp-plus-5",
+        "hp-plus-4",
+        "hp-plus-3"
+    ],
+    "passive_b": [
+        "swordbreaker-3",
+        "swordbreaker-2",
+        "swordbreaker-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 8,
+            "def": 8,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 8,
+            "def": 8,
+            "res": 6
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 8,
+            "spd": 7,
+            "def": 4,
+            "res": 5,
+            "total": 30
+        }
+    }
+}

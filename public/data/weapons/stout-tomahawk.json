@@ -1,0 +1,12 @@
+{
+    "name": "Stout Tomahawk",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Enables counterattack regardless of distance if this unit is attacked.",
+    "type": "Axe",
+    "link": "https://kagerochart.com/hero/weapons/stout-tomahawk",
+    "counter": true,
+    "char_unique": true,
+    "id": "stout-tomahawk"
+}

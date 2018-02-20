@@ -1,0 +1,61 @@
+{
+    "display": "Clarisse, Sniper in the Dark",
+    "name": "Clarisse",
+    "title": "Sniper in the Dark",
+    "id": "clarisse-sniper-in-the-dark",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/clarisse-sniper-in-the-dark",
+    "move_type": "Infantry",
+    "weapon": [
+        "clarisses-bow-plus",
+        "clarisses-bow",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "special": [
+        "glimmer",
+        "night-sky"
+    ],
+    "passive_b": [
+        "poison-strike-3",
+        "poison-strike-2",
+        "poison-strike-1"
+    ],
+    "passive_c": [
+        "threaten-def-3",
+        "threaten-def-2",
+        "threaten-def-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 7,
+            "def": 5,
+            "res": 4
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 8,
+            "def": 5,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 8,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 7,
+            "spd": 8,
+            "def": 5,
+            "res": 3,
+            "total": 28
+        }
+    }
+}

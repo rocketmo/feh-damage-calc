@@ -1,0 +1,20 @@
+{
+    "name": "Rogue Dagger",
+    "might": 4,
+    "range": 2,
+    "sp": 200,
+    "description": "After combat, inflict Def/Res-3 on foe through their next actions. Grants unit Def/Res+3 for 1 turn.",
+    "type": "Dagger",
+    "color": "Colorless",
+    "magical": false,
+    "seal": {
+        "def": -3,
+        "res": -3
+    },
+    "after_mod": {
+        "def": 3,
+        "res": 3
+    },
+    "link": "https://kagerochart.com/hero/weapons/rogue-dagger",
+    "id": "rogue-dagger"
+}

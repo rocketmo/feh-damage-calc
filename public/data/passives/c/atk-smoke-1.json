@@ -1,0 +1,9 @@
+{
+    "name": "Atk Smoke 1",
+    "sp": 60,
+    "type": "C",
+    "description": "After combat, inflicts Atk-3 on foes within 2 spaces of target through their next actions.",
+    "icon": "/images/icons/passives/atk-smoke-1.png",
+    "link": "https://kagerochart.com/hero/passives/atk-smoke-1",
+    "id": "atk-smoke-1"
+}

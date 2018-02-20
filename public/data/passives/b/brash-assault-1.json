@@ -1,0 +1,12 @@
+{
+    "name": "Brash Assault 1",
+    "sp": 50,
+    "type": "B",
+    "description": "If unit initiates combat against a foe that can counter and unit's HP ≤ 30%, unit makes a guaranteed follow-up attack.",
+    "icon": "/images/icons/passives/brash-assault-1.png",
+    "brash": {
+        "threshold": 0.3
+    },
+    "link": "https://kagerochart.com/hero/passives/brash-assault-1",
+    "id": "brash-assault-1"
+}

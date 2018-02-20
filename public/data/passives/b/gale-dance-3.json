@@ -1,0 +1,9 @@
+{
+    "name": "Gale Dance 3",
+    "sp": 200,
+    "type": "B",
+    "description": "If Sing or Dance is used, target also granted Spd+4.",
+    "icon": "/images/icons/passives/gale-dance-3.png",
+    "link": "https://kagerochart.com/hero/passives/gale-dance-3",
+    "id": "gale-dance-3"
+}

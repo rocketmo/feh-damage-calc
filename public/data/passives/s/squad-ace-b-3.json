@@ -1,0 +1,9 @@
+{
+    "description": "Grants Def +3",
+    "id": "squad-ace-b-3",
+    "name": "Squad Ace B 3",
+    "stat_mod": {
+        "def": 3
+    },
+    "type": "s"
+}

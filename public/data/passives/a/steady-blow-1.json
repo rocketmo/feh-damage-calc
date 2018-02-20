@@ -1,0 +1,13 @@
+{
+    "name": "Steady Blow 1",
+    "sp": 120,
+    "type": "A",
+    "description": "If unit initiates combat, unit granted Spd/Def+2 during battle.",
+    "icon": "/images/icons/passives/steady-blow-1.png",
+    "initiate_mod": {
+        "def": 2,
+        "spd": 2
+    },
+    "link": "https://kagerochart.com/hero/passives/steady-blow-1",
+    "id": "steady-blow-1"
+}

@@ -1,0 +1,22 @@
+{
+    "name": "Refreshing Bolt",
+    "might": 8,
+    "range": 2,
+    "sp": 200,
+    "description": "If unit has 100% HP at start of combat, unit gets Atk/Spd/Def/Res+2.If attacking, unit will take 2 damage after combat.",
+    "type": "Bow",
+    "color": "Colorless",
+    "magical": false,
+    "full_hp_mod": {
+        "atk": 2,
+        "spd": 2,
+        "def": 2,
+        "res": 2
+    },
+    "move_effective": [
+        "Flying"
+    ],
+    "full_hp_atk_recoil_dmg": 2,
+    "link": "https://kagerochart.com/hero/weapons/refreshing-bolt",
+    "id": "refreshing-bolt"
+}

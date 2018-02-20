@@ -1,0 +1,9 @@
+{
+    "name": "Fortify Def 3",
+    "sp": 200,
+    "type": "C",
+    "description": "Grants adjacent allies Def+4 through their next actions at the start of each turn.",
+    "icon": "/images/icons/passives/fortify-def-3.png",
+    "link": "https://kagerochart.com/hero/passives/fortify-def-3",
+    "id": "fortify-def-3"
+}

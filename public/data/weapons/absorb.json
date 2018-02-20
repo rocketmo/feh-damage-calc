@@ -1,0 +1,13 @@
+{
+    "name": "Absorb",
+    "might": 4,
+    "range": 2,
+    "sp": 150,
+    "description": "Recover 50% of damage dealt.",
+    "type": "Staff",
+    "color": "Colorless",
+    "magical": true,
+    "heal_dmg": 0.5,
+    "link": "https://kagerochart.com/hero/weapons/absorb",
+    "id": "absorb"
+}

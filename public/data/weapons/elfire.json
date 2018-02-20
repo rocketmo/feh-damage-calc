@@ -1,0 +1,11 @@
+{
+    "name": "Elfire",
+    "might": 6,
+    "range": 2,
+    "sp": 100,
+    "type": "Red Tome",
+    "color": "Red",
+    "magical": true,
+    "link": "https://kagerochart.com/hero/weapons/elfire",
+    "id": "elfire"
+}

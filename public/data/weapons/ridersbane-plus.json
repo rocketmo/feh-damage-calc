@@ -1,0 +1,19 @@
+{
+    "name": "Ridersbane+",
+    "might": 14,
+    "range": 1,
+    "sp": 300,
+    "description": "Effective against cavalry units.",
+    "type": "Lance",
+    "link": "https://kagerochart.com/hero/weapons/ridersbane-plus",
+    "color": "Blue",
+    "magical": false,
+    "move_effective": [
+        "Cavalry"
+    ],
+    "refinable": {
+        "type": "melee",
+        "Special": "Cavalry melee"
+    },
+    "id": "ridersbane-plus"
+}

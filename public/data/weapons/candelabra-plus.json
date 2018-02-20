@@ -1,0 +1,11 @@
+{
+    "name": "Candelabra+",
+    "might": 12,
+    "range": 2,
+    "sp": 300,
+    "description": "Grants Atk/Spd/Def/Res+2 during combat if foe initiates combat.",
+    "type": "Tome",
+    "link": "https://kagerochart.com/hero/weapons/candelabra-plus",
+    "id": "candelabra-plus",
+    "magical": true
+}

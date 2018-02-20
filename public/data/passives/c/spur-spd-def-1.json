@@ -1,0 +1,9 @@
+{
+    "name": "Spur Spd Def 1",
+    "sp": 120,
+    "type": "C",
+    "description": "Grants adjacent allies Spd/Def +2 during combat",
+    "icon": "/images/icons/passives/spur-spd-def-1.png",
+    "link": "https://kagerochart.com/hero/passives/spur-spd-def-1",
+    "id": "spur-spd-def-1"
+}

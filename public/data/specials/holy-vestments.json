@@ -1,0 +1,13 @@
+{
+    "name": "Holy Vestments",
+    "cooldown": 3,
+    "sp": 100,
+    "description": "Reduces damage inflicted by attacks from foes 2 spaces away by 30%.",
+    "reduce_dmg": {
+        "range": 2,
+        "dmg_mod": 0.3
+    },
+    "range_unique": 1,
+    "link": "https://kagerochart.com/hero/specials/holy-vestments",
+    "id": "holy-vestments"
+}

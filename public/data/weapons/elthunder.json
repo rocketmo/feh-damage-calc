@@ -1,0 +1,11 @@
+{
+    "name": "Elthunder",
+    "might": 6,
+    "range": 2,
+    "sp": 100,
+    "type": "Blue Tome",
+    "color": "Blue",
+    "magical": true,
+    "link": "https://kagerochart.com/hero/weapons/elthunder",
+    "id": "elthunder"
+}

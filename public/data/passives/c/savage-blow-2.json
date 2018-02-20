@@ -1,0 +1,9 @@
+{
+    "name": "Savage Blow 2",
+    "sp": 100,
+    "type": "C",
+    "description": "If unit initiates attack, foes within 2 spaces of target take 5 damage after combat.",
+    "icon": "/images/icons/passives/savage-blow-2.png",
+    "link": "https://kagerochart.com/hero/passives/savage-blow-2",
+    "id": "savage-blow-2"
+}

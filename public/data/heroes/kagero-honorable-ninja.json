@@ -1,0 +1,54 @@
+{
+    "display": "Kagero, Honorable Ninja",
+    "name": "Kagero",
+    "title": "Honorable Ninja",
+    "id": "kagero-honorable-ninja",
+    "color": "Colorless",
+    "weapon_type": "Dagger",
+    "link": "https://kagerochart.com/hero/kagero-honorable-ninja",
+    "move_type": "Infantry",
+    "weapon": [
+        "poison-dagger-plus",
+        "poison-dagger",
+        "steel-dagger",
+        "iron-dagger"
+    ],
+    "special": [
+        "reprisal",
+        "retribution"
+    ],
+    "passive_a": [
+        "warding-blow-3",
+        "warding-blow-2",
+        "warding-blow-1"
+    ],
+    "passive_b": [
+        "daggerbreaker-3",
+        "daggerbreaker-2",
+        "daggerbreaker-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 15,
+            "atk": 9,
+            "spd": 8,
+            "def": 4,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 16,
+            "atk": 9,
+            "spd": 8,
+            "def": 5,
+            "res": 6
+        },
+        "growth": {
+            "hp": 3,
+            "atk": 8,
+            "spd": 7,
+            "def": 4,
+            "res": 6,
+            "total": 28
+        }
+    }
+}

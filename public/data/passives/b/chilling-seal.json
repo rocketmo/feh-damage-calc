@@ -1,0 +1,10 @@
+{
+    "name": "Chilling Seal",
+    "sp": 300,
+    "type": "B",
+    "description": "At the start of each turn, if unit's HP ≥ 50%, inflicts Atk/Spd-6 on foe on the enemy team with the lowest Def through its next action.(Skill cannot be inherited.)",
+    "icon": "/images/icons/passives/chilling-seal.png",
+    "link": "https://kagerochart.com/hero/passives/chilling-seal",
+    "char_unique": true,
+    "id": "chilling-seal"
+}

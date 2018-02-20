@@ -1,0 +1,8 @@
+{
+    "description": "Unit automatically makes a follow-up attack when at HP ≤ 50% and attacking a foe that can counter.",
+    "id": "brash-assault-3",
+    "name": "Brash Assault 3",
+    "brash": {
+        "threshold": 0.5
+    }
+}

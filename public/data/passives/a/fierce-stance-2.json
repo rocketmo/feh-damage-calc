@@ -1,0 +1,12 @@
+{
+    "name": "Fierce Stance 2",
+    "sp": 100,
+    "type": "A",
+    "description": "Grants Atk+4 during combat when this unit is attacked.",
+    "icon": "/images/icons/passives/fierce-stance-2.png",
+    "defend_mod": {
+        "atk": 4
+    },
+    "link": "https://kagerochart.com/hero/passives/fierce-stance-2",
+    "id": "fierce-stance-2"
+}

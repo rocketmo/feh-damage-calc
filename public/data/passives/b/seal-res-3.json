@@ -1,0 +1,13 @@
+{
+    "name": "Seal Res 3",
+    "sp": 160,
+    "type": "B",
+    "description": "After combat, foe suffers Res-7 through its next action.",
+    "icon": "/images/icons/passives/seal-res-3.png",
+    "link": "https://kagerochart.com/hero/passives/seal-res-3",
+    "seal": {
+        "res": -7
+    },
+    "weapon_restrict": "Staff",
+    "id": "seal-res-3"
+}

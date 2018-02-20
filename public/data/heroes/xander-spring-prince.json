@@ -1,0 +1,44 @@
+{
+    "display": "Xander, Spring Prince",
+    "name": "Xander",
+    "title": "Spring Prince",
+    "id": "xander-spring-prince",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/xander-spring-prince",
+    "move_type": "Cavalry",
+    "weapon": [
+        "carrot-lance-plus",
+        "carrot-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "swap"
+    ],
+    "passive_b": [
+        "live-for-honor"
+    ],
+    "passive_c": [
+        "fortify-def-3",
+        "fortify-def-2",
+        "fortify-def-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 18,
+            "atk": 6,
+            "spd": 6,
+            "def": 9,
+            "res": 7
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 5,
+            "spd": 6,
+            "def": 8,
+            "res": 5,
+            "total": 30
+        }
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "name": "Parthia",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "Effective against flying units. Grants Res+4 when unit initiates combat.",
+    "type": "Bow",
+    "link": "https://kagerochart.com/hero/weapons/parthia",
+    "color": "Colorless",
+    "magical": false,
+    "move_effective": [
+        "Flying"
+    ],
+    "initiate_mod": {
+        "res": 4
+    },
+    "char_unique": true,
+    "refinable": {
+        "type": "ranged",
+        "Special": "Parthia",
+        "description": "Effective against flying foes. If foe uses magic, damage from first attack received by unit during combat reduced by 30%.",
+        "initiate_mod": {
+            "res": 0
+        },
+        "first_dmg_reduction": {
+            "weapon_type": [
+                "Tome",
+                "Red Tome",
+                "Blue Tome",
+                "Green Tome"
+            ],
+            "multiplier": 0.7
+        }
+    },
+    "id": "parthia"
+}

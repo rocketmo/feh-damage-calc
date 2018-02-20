@@ -1,0 +1,46 @@
+{
+    "display": "Robin, Festive Tactician",
+    "name": "Robin",
+    "title": "Festive Tactician",
+    "id": "robin-festive-tactician",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/robin-festive-tactician",
+    "move_type": "Armored",
+    "weapon": [
+        "tannenboom-plus",
+        "tannenboom",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "reciprocal-aid"
+    ],
+    "passive_a": [
+        "brazen-atk-spd-3",
+        "brazen-atk-spd-2",
+        "brazen-atk-spd-1"
+    ],
+    "passive_c": [
+        "armor-march-3",
+        "armor-march-2",
+        "armor-march-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 23,
+            "atk": 9,
+            "spd": 8,
+            "def": 9,
+            "res": 6
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 8,
+            "spd": 8,
+            "def": 8,
+            "res": 5,
+            "total": 35
+        }
+    }
+}

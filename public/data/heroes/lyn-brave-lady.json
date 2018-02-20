@@ -1,0 +1,50 @@
+{
+    "display": "Lyn, Brave Lady",
+    "name": "Lyn",
+    "title": "Brave Lady",
+    "id": "lyn-brave-lady",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/lyn-brave-lady",
+    "move_type": "Cavalry",
+    "weapon": [
+        "mulagir",
+        "silver-bow",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "special": [
+        "draconic-aura",
+        "dragon-gaze"
+    ],
+    "passive_a": [
+        "swift-sparrow-2",
+        "swift-sparrow-1",
+        "death-blow-1"
+    ],
+    "passive_b": [
+        "sacaes-blessing"
+    ],
+    "passive_c": [
+        "atk-smoke-3",
+        "atk-smoke-2",
+        "atk-smoke-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 9,
+            "def": 5,
+            "res": 6
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 8,
+            "spd": 8,
+            "def": 2,
+            "res": 6,
+            "total": 29
+        }
+    }
+}

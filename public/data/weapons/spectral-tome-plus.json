@@ -1,0 +1,11 @@
+{
+    "name": "Spectral Tome+",
+    "might": 12,
+    "range": 2,
+    "sp": 300,
+    "description": "After combat, if unit attacked, bonuses on all foes within 2 spaces of target become penalties through foes' next actions.",
+    "type": "Tome",
+    "link": "https://kagerochart.com/hero/weapons/spectral-tome-plus",
+    "id": "spectral-tome-plus",
+    "magical": true
+}

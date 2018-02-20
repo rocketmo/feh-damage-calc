@@ -1,0 +1,52 @@
+{
+    "display": "Clive, Idealistic Knight",
+    "name": "Clive",
+    "title": "Idealistic Knight",
+    "id": "clive-idealistic-knight",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/clive-idealistic-knight",
+    "move_type": "Cavalry",
+    "weapon": [
+        "silver-lance-plus",
+        "silver-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "escutcheon",
+        "buckler"
+    ],
+    "passive_a": [
+        "defense-plus-3",
+        "defense-plus-2",
+        "defense-plus-1"
+    ],
+    "passive_b": [
+        "hit-and-run"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 18,
+            "atk": 9,
+            "spd": 5,
+            "def": 8,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 9,
+            "spd": 6,
+            "def": 8,
+            "res": 4
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 7,
+            "spd": 5,
+            "def": 7,
+            "res": 3,
+            "total": 30
+        }
+    }
+}

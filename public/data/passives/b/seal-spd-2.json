@@ -1,0 +1,13 @@
+{
+    "name": "Seal Spd 2",
+    "sp": 80,
+    "type": "B",
+    "description": "After combat, foe suffers Spd-5 through its next action.",
+    "icon": "/images/icons/passives/seal-spd-2.png",
+    "seal": {
+        "spd": -5
+    },
+    "weapon_restrict": "Staff",
+    "link": "https://kagerochart.com/hero/passives/seal-spd-2",
+    "id": "seal-spd-2"
+}

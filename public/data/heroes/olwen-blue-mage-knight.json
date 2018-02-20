@@ -1,0 +1,46 @@
+{
+    "display": "Olwen, Blue Mage Knight",
+    "name": "Olwen",
+    "title": "Blue Mage Knight",
+    "id": "olwen-blue-mage-knight",
+    "color": "Blue",
+    "weapon_type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/olwen-blue-mage-knight",
+    "move_type": "Cavalry",
+    "weapon": [
+        "dire-thunder",
+        "thoron",
+        "elthunder",
+        "thunder"
+    ],
+    "assist": [
+        "reposition"
+    ],
+    "passive_a": [
+        "warding-blow-3",
+        "warding-blow-2",
+        "warding-blow-1"
+    ],
+    "passive_c": [
+        "ward-cavalry",
+        "spur-res-2",
+        "spur-res-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 8,
+            "def": 5,
+            "res": 6
+        },
+        "growth": {
+            "hp": 4,
+            "atk": 5,
+            "spd": 8,
+            "def": 3,
+            "res": 7,
+            "total": 27
+        }
+    }
+}

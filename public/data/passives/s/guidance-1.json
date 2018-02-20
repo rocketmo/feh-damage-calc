@@ -1,0 +1,6 @@
+{
+    "description": "If unit has 100% HP, infantry and armored allies within 2 spaces can move to a space adjacent to unit.",
+    "id": "guidance-1",
+    "name": "Guidance 1",
+    "type": "s"
+}

@@ -1,0 +1,47 @@
+{
+    "display": "Jaffar, Angel of Death",
+    "name": "Jaffar",
+    "title": "Angel of Death",
+    "id": "jaffar-angel-of-death",
+    "color": "Colorless",
+    "weapon_type": "Dagger",
+    "link": "https://kagerochart.com/hero/jaffar-angel-of-death",
+    "move_type": "Infantry",
+    "weapon": [
+        "deathly-dagger",
+        "silver-dagger",
+        "steel-dagger",
+        "iron-dagger"
+    ],
+    "special": [
+        "glimmer",
+        "night-sky"
+    ],
+    "passive_a": [
+        "life-and-death-3",
+        "life-and-death-2",
+        "life-and-death-1"
+    ],
+    "passive_c": [
+        "threaten-spd-3",
+        "threaten-spd-2",
+        "threaten-spd-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 9,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 5,
+            "spd": 7,
+            "def": 5,
+            "res": 4,
+            "total": 28
+        }
+    }
+}

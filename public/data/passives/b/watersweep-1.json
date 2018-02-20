@@ -1,0 +1,23 @@
+{
+    "name": "Watersweep 1",
+    "sp": 60,
+    "type": "B",
+    "description": "If unit initiates attack, no follow-up occurs. Against foe with magic, staff or dragonstone, if unit’s Spd - foe’s Spd ≥ 5, foe can’t counterattack.",
+    "icon": "/images/icons/passives/watersweep-1.png",
+    "sweep": {
+        "weapon_type": {
+            "Red Tome": true,
+            "Red Breath": true,
+            "Green Tome": true,
+            "Green Breath": true,
+            "Blue Tome": true,
+            "Blue Breath": true,
+            "Staff": true
+        },
+        "spd_adv": 5
+    },
+    "no_follow": true,
+    "weapon_restrict": "Staff",
+    "link": "https://kagerochart.com/hero/passives/watersweep-1",
+    "id": "watersweep-1"
+}

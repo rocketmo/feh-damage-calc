@@ -1,0 +1,9 @@
+{
+    "name": "Flier Formation 2",
+    "sp": 120,
+    "type": "B",
+    "description": "If unit has ≥ 50% HP, unit can move to a space adjacent to a flier ally within 2 spaces.",
+    "icon": "/images/icons/passives/flier-formation-2.png",
+    "link": "https://kagerochart.com/hero/passives/flier-formation-2",
+    "id": "flier-formation-2"
+}

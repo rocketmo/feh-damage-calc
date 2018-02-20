@@ -1,0 +1,9 @@
+{
+    "name": "Guidance 1",
+    "sp": 60,
+    "type": "C",
+    "description": "If unit has 100% HP, infantry and armored allies within 2 spaces can move to a space adjacent to unit.",
+    "icon": "/images/icons/passives/guidance-1.png",
+    "link": "https://kagerochart.com/hero/passives/guidance-1",
+    "id": "guidance-1"
+}

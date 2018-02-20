@@ -1,0 +1,19 @@
+{
+    "name": "Keen Gronnwolf+",
+    "might": 12,
+    "range": 2,
+    "sp": 300,
+    "description": "Effective against cavalry units.",
+    "type": "Green Tome",
+    "link": "https://kagerochart.com/hero/weapons/keen-gronnwolf-plus",
+    "color": "Green",
+    "magical": true,
+    "move_effective": [
+        "Cavalry"
+    ],
+    "refinable": {
+        "type": "ranged",
+        "Special": "Cavalry ranged"
+    },
+    "id": "keen-gronnwolf-plus"
+}

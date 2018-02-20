@@ -1,0 +1,12 @@
+{
+    "name": "Vantage 3",
+    "sp": 200,
+    "type": "B",
+    "description": "Unit counterattacks first when attacked at HP ≤ 75%.",
+    "icon": "/images/icons/passives/vantage-3.png",
+    "link": "https://kagerochart.com/hero/passives/vantage-3",
+    "vantage": {
+        "threshold": 0.75
+    },
+    "id": "vantage-3"
+}

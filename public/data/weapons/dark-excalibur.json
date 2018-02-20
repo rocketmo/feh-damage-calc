@@ -1,0 +1,14 @@
+{
+    "name": "Dark Excalibur",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "Grants +10 to damage when Special triggers.",
+    "type": "Green Tome",
+    "link": "https://kagerochart.com/hero/weapons/dark-excalibur",
+    "color": "Green",
+    "magical": true,
+    "spec_damage_bonus": 10,
+    "id": "dark-excalibur",
+    "char_unique": true
+}

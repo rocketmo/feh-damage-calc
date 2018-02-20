@@ -1,0 +1,61 @@
+{
+    "display": "Valter, Dark Moonstone",
+    "name": "Valter",
+    "title": "Dark Moonstone",
+    "id": "valter-dark-moonstone",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/valter-dark-moonstone",
+    "move_type": "Flying",
+    "weapon": [
+        "cursed-lance",
+        "silver-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "luna",
+        "new-moon"
+    ],
+    "passive_a": [
+        "darting-blow-3",
+        "darting-blow-2",
+        "darting-blow-1"
+    ],
+    "passive_c": [
+        "panic-ploy-3",
+        "panic-ploy-2",
+        "panic-ploy-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 8,
+            "def": 7,
+            "res": 3
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 9,
+            "def": 7,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 9,
+            "def": 8,
+            "res": 4
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 6,
+            "def": 8,
+            "res": 3,
+            "total": 31
+        }
+    }
+}

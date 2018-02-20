@@ -1,0 +1,13 @@
+{
+    "name": "HP Spd 1",
+    "sp": 100,
+    "type": "A",
+    "description": "Grants HP+3, Spd+1.",
+    "icon": "/images/icons/passives/hp-spd-1.png",
+    "stat_mod": {
+        "hp": 3,
+        "spd": 1
+    },
+    "link": "https://kagerochart.com/hero/passives/hp-spd-1",
+    "id": "hp-spd-1"
+}

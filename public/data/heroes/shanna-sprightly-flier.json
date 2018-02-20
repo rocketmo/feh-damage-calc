@@ -1,0 +1,61 @@
+{
+    "display": "Shanna, Sprightly Flier",
+    "name": "Shanna",
+    "title": "Sprightly Flier",
+    "id": "shanna-sprightly-flier",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/shanna-sprightly-flier",
+    "move_type": "Flying",
+    "weapon": [
+        "killer-lance-plus",
+        "killer-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "iceberg",
+        "chilling-wind"
+    ],
+    "passive_b": [
+        "desperation-3",
+        "desperation-2",
+        "desperation-1"
+    ],
+    "passive_c": [
+        "threaten-spd-3",
+        "threaten-spd-2",
+        "threaten-spd-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 8,
+            "def": 5,
+            "res": 6
+        },
+        "star_4": {
+            "hp": 16,
+            "atk": 8,
+            "spd": 9,
+            "def": 5,
+            "res": 6
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 9,
+            "def": 6,
+            "res": 7
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 6,
+            "spd": 8,
+            "def": 5,
+            "res": 6,
+            "total": 31
+        }
+    }
+}

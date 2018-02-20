@@ -1,0 +1,16 @@
+{
+    "name": "Silver Dagger",
+    "might": 7,
+    "range": 2,
+    "sp": 200,
+    "description": "After combat, inflict Def/Res-5 on foe through their next actions.",
+    "type": "Dagger",
+    "color": "Colorless",
+    "magical": false,
+    "seal": {
+        "def": -5,
+        "res": -5
+    },
+    "link": "https://kagerochart.com/hero/weapons/silver-dagger",
+    "id": "silver-dagger"
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Lightning Breath+",
+    "might": 11,
+    "range": 1,
+    "sp": 300,
+    "description": "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1).",
+    "type": "Breath",
+    "link": "https://kagerochart.com/hero/weapons/lightning-breath-plus",
+    "magical": true,
+    "spec_cooldown_mod": 1,
+    "counter": true,
+    "refinable": {
+        "type": "melee",
+        "might": 12,
+        "description": "Enables counter-attack regardless of attacker's range. Slows Special trigger (cooldown count+1). If foe's Range = 2, damage calculated using the lower of foe's Def or Res.",
+        "LowerResDefRange": 2
+    },
+    "id": "lightning-breath-plus"
+}

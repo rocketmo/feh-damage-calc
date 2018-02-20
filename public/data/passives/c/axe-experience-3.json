@@ -1,0 +1,10 @@
+{
+    "name": "Axe Experience 3",
+    "sp": 120,
+    "type": "C",
+    "description": "If unit survives, all axe users on team get 2x EXP.(If similar skill effects also used, only highest multiplier applied.)",
+    "icon": "/images/icons/passives/axe-experience-3.png",
+    "link": "https://kagerochart.com/hero/passives/axe-experience-3",
+    "weapon_unique": "Axe",
+    "id": "axe-experience-3"
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Recover",
+    "range": 1,
+    "sp": 200,
+    "description": "Restores 15 HP.Slows Special trigger (cooldown count+1).",
+    "spec_cooldown_mod": 1,
+    "weapon_unique": "Staff",
+    "link": "https://kagerochart.com/hero/assists/recover",
+    "id": "recover"
+}

@@ -1,0 +1,61 @@
+{
+    "display": "Odin, Potent Force",
+    "name": "Odin",
+    "title": "Potent Force",
+    "id": "odin-potent-force",
+    "color": "Blue",
+    "weapon_type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/odin-potent-force",
+    "move_type": "Infantry",
+    "weapon": [
+        "blarblade-plus",
+        "blarblade",
+        "elthunder",
+        "thunder"
+    ],
+    "special": [
+        "moonbow",
+        "new-moon"
+    ],
+    "passive_a": [
+        "defiant-atk-3",
+        "defiant-atk-2",
+        "defiant-atk-1"
+    ],
+    "passive_b": [
+        "r-tomebreaker-3",
+        "r-tomebreaker-2",
+        "r-tomebreaker-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 18,
+            "atk": 4,
+            "spd": 7,
+            "def": 5,
+            "res": 5
+        },
+        "star_4": {
+            "hp": 18,
+            "atk": 4,
+            "spd": 8,
+            "def": 6,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 5,
+            "spd": 8,
+            "def": 6,
+            "res": 6
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 4,
+            "spd": 7,
+            "def": 5,
+            "res": 5,
+            "total": 28
+        }
+    }
+}

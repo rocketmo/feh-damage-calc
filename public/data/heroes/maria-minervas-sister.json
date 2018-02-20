@@ -1,0 +1,54 @@
+{
+    "display": "Maria, Minerva's Sister",
+    "name": "Maria",
+    "title": "Minerva's Sister",
+    "id": "maria-minervas-sister",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/maria-minervas-sister",
+    "move_type": "Infantry",
+    "weapon": [
+        "panic-plus",
+        "panic",
+        "assault"
+    ],
+    "special": [
+        "miracle",
+        "imbue"
+    ],
+    "assist": [
+        "physic-plus",
+        "physic",
+        "mend",
+        "heal"
+    ],
+    "passive_c": [
+        "fortify-res-3",
+        "fortify-res-2",
+        "fortify-res-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 16,
+            "atk": 4,
+            "spd": 8,
+            "def": 3,
+            "res": 10
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 5,
+            "spd": 8,
+            "def": 4,
+            "res": 10
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 6,
+            "spd": 8,
+            "def": 3,
+            "res": 6,
+            "total": 28
+        }
+    }
+}

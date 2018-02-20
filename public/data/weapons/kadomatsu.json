@@ -1,0 +1,12 @@
+{
+    "name": "Kadomatsu",
+    "might": 10,
+    "range": 1,
+    "sp": 200,
+    "description": "Grants Def/Res+2 during combat to allies within 2 spaces.",
+    "type": "Sword",
+    "color": "Red",
+    "magical": false,
+    "link": "https://kagerochart.com/hero/weapons/kadomatsu",
+    "id": "kadomatsu"
+}

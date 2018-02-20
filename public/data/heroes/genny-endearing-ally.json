@@ -1,0 +1,47 @@
+{
+    "display": "Genny, Endearing Ally",
+    "name": "Genny",
+    "title": "Endearing Ally",
+    "id": "genny-endearing-ally",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/genny-endearing-ally",
+    "move_type": "Infantry",
+    "weapon": [
+        "gravity-plus",
+        "gravity",
+        "assault"
+    ],
+    "special": [
+        "heavenly-light",
+        "imbue"
+    ],
+    "assist": [
+        "physic-plus",
+        "physic",
+        "mend",
+        "heal"
+    ],
+    "passive_b": [
+        "wrathful-staff-3",
+        "wrathful-staff-2",
+        "wrathful-staff-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 9,
+            "spd": 6,
+            "def": 4,
+            "res": 8
+        },
+        "growth": {
+            "hp": 3,
+            "atk": 8,
+            "spd": 5,
+            "def": 4,
+            "res": 8,
+            "total": 28
+        }
+    }
+}

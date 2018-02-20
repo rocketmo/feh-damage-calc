@@ -1,0 +1,15 @@
+{
+    "name": "Weirding Tome",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "Grants Spd+3. At start of turn, all foes in cardinal directions, and with Res 1 or more lower than unit, suffer Spd-5 until the end of foes' next actions.",
+    "type": "Tome",
+    "link": "https://kagerochart.com/hero/weapons/weirding-tome",
+    "stat_mod": {
+        "spd": 3
+    },
+    "char_unique": true,
+    "id": "weirding-tome",
+    "magical": true
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Def Tactic 3",
+    "sp": 240,
+    "type": "C",
+    "description": "At start of turn, grants Def+6 to allies within 2 spaces for 1 turn. Granted only if number of that ally's movement type on current team ≤ 2.",
+    "icon": "/images/icons/passives/def-tactic-3.png",
+    "link": "https://kagerochart.com/hero/passives/def-tactic-3",
+    "id": "def-tactic-3"
+}

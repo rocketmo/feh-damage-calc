@@ -1,0 +1,61 @@
+{
+    "display": "Lloyd, White Wolf",
+    "name": "Lloyd",
+    "title": "White Wolf",
+    "id": "lloyd-white-wolf",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/lloyd-white-wolf",
+    "move_type": "Infantry",
+    "weapon": [
+        "regal-blade",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "iceberg",
+        "chilling-wind"
+    ],
+    "passive_b": [
+        "pass-3",
+        "pass-2",
+        "pass-1"
+    ],
+    "passive_c": [
+        "threaten-atk-3",
+        "threaten-atk-2",
+        "threaten-atk-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 8,
+            "def": 4,
+            "res": 7
+        },
+        "star_4": {
+            "hp": 16,
+            "atk": 8,
+            "spd": 9,
+            "def": 4,
+            "res": 7
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 9,
+            "def": 5,
+            "res": 8
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 8,
+            "def": 3,
+            "res": 6,
+            "total": 31
+        }
+    }
+}

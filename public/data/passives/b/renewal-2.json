@@ -1,0 +1,13 @@
+{
+    "name": "Renewal 2",
+    "sp": 120,
+    "type": "B",
+    "description": "At the start of every third turn, restores 10 HP.",
+    "icon": "/images/icons/passives/renewal-2.png",
+    "heal": {
+        "amount": 10,
+        "turn_counter": 3
+    },
+    "link": "https://kagerochart.com/hero/passives/renewal-2",
+    "id": "renewal-2"
+}

@@ -1,0 +1,13 @@
+{
+    "name": "Heavy Blade 3",
+    "sp": 240,
+    "type": "A",
+    "description": "If unit's Atk - foe's Atk ≥ 1, unit gains Special cooldown charge +1 per attack.(If using other similar skill, only highest value applied.)",
+    "icon": "/images/icons/passives/heavy-blade-3.png",
+    "link": "https://kagerochart.com/hero/passives/heavy-blade-3",
+    "spec_accel": {
+        "stat": "atk",
+        "adv": 1
+    },
+    "id": "heavy-blade-3"
+}

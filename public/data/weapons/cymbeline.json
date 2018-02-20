@@ -1,0 +1,18 @@
+{
+    "name": "Cymbeline",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "Grants adjacent allies Atk+4 through their next actions after any combat this unit initiates.",
+    "type": "Red Tome",
+    "link": "https://kagerochart.com/hero/weapons/cymbeline",
+    "color": "Red",
+    "magical": true,
+    "char_unique": true,
+    "refinable": {
+        "type": "ranged",
+        "Special": "Cymbeline",
+        "description": "Grants allies within 2 spaces Atk+3 during combat."
+    },
+    "id": "cymbeline"
+}

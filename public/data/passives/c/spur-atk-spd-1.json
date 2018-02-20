@@ -1,0 +1,9 @@
+{
+    "name": "Spur Atk Spd 1",
+    "sp": 120,
+    "type": "C",
+    "description": "Grants adjacent allies Atk/Spd +2 during combat",
+    "icon": "/images/icons/passives/spur-atk-spd-1.png",
+    "link": "https://kagerochart.com/hero/passives/spur-atk-spd-1",
+    "id": "spur-atk-spd-1"
+}

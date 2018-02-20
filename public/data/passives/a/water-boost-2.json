@@ -1,0 +1,15 @@
+{
+    "name": "Water Boost 2",
+    "sp": 100,
+    "type": "A",
+    "description": "If unit has at least 3 more HP than enemy at the start of combat, unit receives Res+4 during combat.",
+    "icon": "/images/icons/passives/water-boost-2.png",
+    "hp_adv_mod": {
+        "stat_mod": {
+            "res": 4
+        },
+        "hp_adv": 3
+    },
+    "link": "https://kagerochart.com/hero/passives/water-boost-2",
+    "id": "water-boost-2"
+}

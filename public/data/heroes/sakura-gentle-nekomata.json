@@ -1,0 +1,52 @@
+{
+    "display": "Sakura, Gentle Nekomata",
+    "name": "Sakura",
+    "title": "Gentle Nekomata",
+    "id": "sakura-gentle-nekomata",
+    "color": "Colorless",
+    "weapon_type": "Dagger",
+    "link": "https://kagerochart.com/hero/sakura-gentle-nekomata",
+    "move_type": "Infantry",
+    "weapon": [
+        "kitty-paddle-plus",
+        "kitty-paddle",
+        "steel-dagger",
+        "iron-dagger"
+    ],
+    "special": [
+        "glacies",
+        "chilling-wind"
+    ],
+    "passive_a": [
+        "warding-stance-3",
+        "warding-stance-2",
+        "warding-stance-1"
+    ],
+    "passive_b": [
+        "guard-3",
+        "guard-2",
+        "guard-1"
+    ],
+    "passive_c": [
+        "dagger-valor-3",
+        "dagger-valor-2",
+        "dagger-valor-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 8,
+            "spd": 8,
+            "def": 4,
+            "res": 8
+        },
+        "growth": {
+            "hp": 4,
+            "atk": 7,
+            "spd": 8,
+            "def": 1,
+            "res": 8,
+            "total": 28
+        }
+    }
+}

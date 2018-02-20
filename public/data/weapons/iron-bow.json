@@ -1,0 +1,15 @@
+{
+    "name": "Iron Bow",
+    "might": 4,
+    "range": 2,
+    "sp": 50,
+    "description": "Effective against flying units.",
+    "type": "Bow",
+    "color": "Colorless",
+    "magical": false,
+    "move_effective": [
+        "Flying"
+    ],
+    "link": "https://kagerochart.com/hero/weapons/iron-bow",
+    "id": "iron-bow"
+}

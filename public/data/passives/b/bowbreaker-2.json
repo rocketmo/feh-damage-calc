@@ -1,0 +1,14 @@
+{
+    "name": "Bowbreaker 2",
+    "sp": 100,
+    "type": "B",
+    "description": "If unit's HP ≥ 70% in combat against a colorless bow foe, unit makes a guaranteed follow-up attack and foe cannot make a follow-up attack.",
+    "icon": "/images/icons/passives/bowbreaker-2.png",
+    "breaker": {
+        "weapon_type": "Bow",
+        "threshold": 0.7
+    },
+    "move_restrict": "Flying",
+    "link": "https://kagerochart.com/hero/passives/bowbreaker-2",
+    "id": "bowbreaker-2"
+}

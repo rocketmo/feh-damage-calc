@@ -1,0 +1,61 @@
+{
+    "display": "Catria, Middle Whitewing",
+    "name": "Catria",
+    "title": "Middle Whitewing",
+    "id": "catria-middle-whitewing",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/catria-middle-whitewing",
+    "move_type": "Flying",
+    "weapon": [
+        "killer-lance-plus",
+        "killer-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "luna",
+        "new-moon"
+    ],
+    "passive_a": [
+        "armored-blow-3",
+        "armored-blow-2",
+        "armored-blow-1"
+    ],
+    "passive_b": [
+        "seal-atk-3",
+        "seal-atk-2",
+        "seal-atk-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 9,
+            "def": 6,
+            "res": 5
+        },
+        "star_4": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 10,
+            "def": 6,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 10,
+            "def": 7,
+            "res": 6
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 7,
+            "def": 6,
+            "res": 5,
+            "total": 31
+        }
+    }
+}

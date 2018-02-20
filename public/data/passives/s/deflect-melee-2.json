@@ -1,0 +1,14 @@
+{
+    "description": "If unit receives consecutive attacks from a foe using a sword, lance, or axe, damage from second attack onward reduced by 50%.",
+    "id": "deflect-melee-2",
+    "name": "Deflect Melee 2",
+    "consecutive_dmg_reduction": {
+        "multiplier": 0.5,
+        "weapon_type": [
+            "axe",
+            "lance",
+            "sword"
+        ]
+    },
+    "type": "s"
+}

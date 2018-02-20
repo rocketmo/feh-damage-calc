@@ -1,0 +1,12 @@
+{
+    "name": "Quick Riposte 3",
+    "sp": 240,
+    "type": "B",
+    "description": "Unit automatically makes a follow-up attack if attacked at HP ≥ 70%.",
+    "icon": "/images/icons/passives/quick-riposte-3.png",
+    "link": "https://kagerochart.com/hero/passives/quick-riposte-3",
+    "riposte": {
+        "threshold": 0.7
+    },
+    "id": "quick-riposte-3"
+}

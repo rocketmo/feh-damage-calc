@@ -1,0 +1,46 @@
+{
+    "display": "Azura, Celebratory Spirit",
+    "name": "Azura",
+    "title": "Celebratory Spirit",
+    "id": "azura-celebratory-spirit",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/azura-celebratory-spirit",
+    "move_type": "Flying",
+    "weapon": [
+        "hagoita-plus",
+        "hagoita",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "assist": [
+        "sing"
+    ],
+    "passive_b": [
+        "earth-dance-3",
+        "earth-dance-2",
+        "earth-dance-1"
+    ],
+    "passive_c": [
+        "hone-fliers",
+        "hone-spd-2",
+        "hone-spd-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 15,
+            "atk": 6,
+            "spd": 9,
+            "def": 5,
+            "res": 4
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 8,
+            "def": 4,
+            "res": 6,
+            "total": 31
+        }
+    }
+}

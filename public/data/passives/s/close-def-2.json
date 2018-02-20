@@ -1,0 +1,18 @@
+{
+    "description": "If unit is attacked by foe using sword, axe, lance, or dragonstone, unit receives Def/Res+4 during combat.",
+    "id": "close-def-2",
+    "name": "Close Def 2",
+    "type_defend_mod": {
+        "weapon_type": {
+            "Sword": true,
+            "Axe": true,
+            "Lance": true,
+            "Breath": true
+        },
+        "stat_mod": {
+            "def": 4,
+            "res": 4
+        }
+    },
+    "type": "s"
+}

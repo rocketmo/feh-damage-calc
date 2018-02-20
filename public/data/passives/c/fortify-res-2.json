@@ -1,0 +1,9 @@
+{
+    "name": "Fortify Res 2",
+    "sp": 100,
+    "type": "C",
+    "description": "Grants adjacent allies Res+3 through their next actions at the start of each turn.",
+    "icon": "/images/icons/passives/fortify-res-2.png",
+    "link": "https://kagerochart.com/hero/passives/fortify-res-2",
+    "id": "fortify-res-2"
+}

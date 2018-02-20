@@ -1,0 +1,47 @@
+{
+    "display": "Mist, Helpful Sister",
+    "name": "Mist",
+    "title": "Helpful Sister",
+    "id": "mist-helpful-sister",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/mist-helpful-sister",
+    "move_type": "Infantry",
+    "weapon": [
+        "slow-plus",
+        "slow",
+        "assault"
+    ],
+    "special": [
+        "miracle",
+        "imbue"
+    ],
+    "assist": [
+        "recover-plus",
+        "recover",
+        "mend",
+        "heal"
+    ],
+    "passive_c": [
+        "spur-def-res-2",
+        "spur-def-res-1",
+        "spur-res-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 6,
+            "def": 5,
+            "res": 8
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 5,
+            "spd": 6,
+            "def": 3,
+            "res": 8,
+            "total": 28
+        }
+    }
+}

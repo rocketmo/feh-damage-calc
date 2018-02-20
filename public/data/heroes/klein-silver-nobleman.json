@@ -1,0 +1,54 @@
+{
+    "display": "Klein, Silver Nobleman",
+    "name": "Klein",
+    "title": "Silver Nobleman",
+    "id": "klein-silver-nobleman",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/klein-silver-nobleman",
+    "move_type": "Infantry",
+    "weapon": [
+        "brave-bow-plus",
+        "brave-bow",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "special": [
+        "glacies",
+        "chilling-wind"
+    ],
+    "passive_a": [
+        "death-blow-3",
+        "death-blow-2",
+        "death-blow-1"
+    ],
+    "passive_b": [
+        "quick-riposte-3",
+        "quick-riposte-2",
+        "quick-riposte-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 17,
+            "atk": 9,
+            "spd": 7,
+            "def": 4,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 9,
+            "spd": 7,
+            "def": 5,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 6,
+            "spd": 8,
+            "def": 3,
+            "res": 5,
+            "total": 28
+        }
+    }
+}

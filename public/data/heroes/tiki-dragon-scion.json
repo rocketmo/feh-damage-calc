@@ -1,0 +1,47 @@
+{
+    "display": "Tiki, Dragon Scion",
+    "name": "Tiki",
+    "title": "Dragon Scion",
+    "id": "tiki-dragon-scion",
+    "color": "Red",
+    "weapon_type": "Red Breath",
+    "link": "https://kagerochart.com/hero/tiki-dragon-scion",
+    "move_type": "Infantry",
+    "weapon": [
+        "flametongue-plus",
+        "flametongue",
+        "fire-breath-plus",
+        "fire-breath"
+    ],
+    "special": [
+        "growing-flame",
+        "rising-flame"
+    ],
+    "passive_a": [
+        "armored-blow-3",
+        "armored-blow-2",
+        "armored-blow-1"
+    ],
+    "passive_c": [
+        "breath-of-life-3",
+        "breath-of-life-2",
+        "breath-of-life-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 15,
+            "atk": 5,
+            "spd": 4,
+            "def": 8,
+            "res": 7
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 8,
+            "spd": 8,
+            "def": 7,
+            "res": 6,
+            "total": 37
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Hibiscus Tome",
+    "might": 8,
+    "range": 2,
+    "sp": 200,
+    "description": "Grants allies within 2 spaces Atk/Spd+1 during combat.",
+    "type": "Tome",
+    "link": "https://kagerochart.com/hero/weapons/hibiscus-tome",
+    "id": "hibiscus-tome",
+    "magical": true
+}

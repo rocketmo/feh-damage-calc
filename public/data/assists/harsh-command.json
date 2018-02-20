@@ -1,0 +1,9 @@
+{
+    "name": "Harsh Command",
+    "range": 1,
+    "sp": 150,
+    "description": "Converts penalties on target into bonuses.",
+    "link": "https://kagerochart.com/hero/assists/harsh-command",
+    "weapon_restrict": "Staff",
+    "id": "harsh-command"
+}

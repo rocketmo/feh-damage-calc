@@ -1,0 +1,10 @@
+{
+    "name": "Dancer's Fan",
+    "might": 7,
+    "range": 2,
+    "sp": 200,
+    "description": "If unit initiates combat, restores 7 HP to adjacent allies after combat.After combat, if unit attacked, inflicts Def/Res-5 on foe through its next action.",
+    "type": "Dagger",
+    "link": "https://kagerochart.com/hero/weapons/dancers-fan",
+    "id": "dancers-fan"
+}

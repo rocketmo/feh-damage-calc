@@ -1,0 +1,12 @@
+{
+    "name": "Gravity",
+    "might": 6,
+    "range": 2,
+    "sp": 150,
+    "description": "After any combat, restrict foe from moving more than 1 space through their next actions.",
+    "type": "Staff",
+    "color": "Colorless",
+    "magical": true,
+    "link": "https://kagerochart.com/hero/weapons/gravity",
+    "id": "gravity"
+}

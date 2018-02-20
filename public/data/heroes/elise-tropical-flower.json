@@ -1,0 +1,47 @@
+{
+    "display": "Elise, Tropical Flower",
+    "name": "Elise",
+    "title": "Tropical Flower",
+    "id": "elise-tropical-flower",
+    "color": "Green",
+    "weapon_type": "Green Tome",
+    "link": "https://kagerochart.com/hero/elise-tropical-flower",
+    "move_type": "Infantry",
+    "weapon": [
+        "hibiscus-tome-plus",
+        "hibiscus-tome",
+        "elwind",
+        "wind"
+    ],
+    "assist": [
+        "rally-attack-resistance",
+        "rally-attack"
+    ],
+    "passive_a": [
+        "spd-res-2",
+        "spd-res-1",
+        "speed-plus-1"
+    ],
+    "passive_c": [
+        "g-tome-valor-3",
+        "g-tome-valor-2",
+        "g-tome-valor-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 10,
+            "spd": 8,
+            "def": 3,
+            "res": 6
+        },
+        "growth": {
+            "hp": 4,
+            "atk": 8,
+            "spd": 8,
+            "def": 3,
+            "res": 5,
+            "total": 28
+        }
+    }
+}

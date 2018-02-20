@@ -1,0 +1,46 @@
+{
+    "display": "Lucina, Spring Exalt",
+    "name": "Lucina",
+    "title": "Spring Exalt",
+    "id": "lucina-spring-exalt",
+    "color": "Blue",
+    "weapon_type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/lucina-spring-exalt",
+    "move_type": "Infantry",
+    "weapon": [
+        "blue-egg-plus",
+        "blue-egg",
+        "elthunder",
+        "thunder"
+    ],
+    "assist": [
+        "rally-speed"
+    ],
+    "passive_a": [
+        "swift-sparrow-2",
+        "swift-sparrow-1",
+        "darting-blow-1"
+    ],
+    "passive_b": [
+        "seal-res-3",
+        "seal-res-2",
+        "seal-res-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 10,
+            "def": 5,
+            "res": 6
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 6,
+            "spd": 8,
+            "def": 4,
+            "res": 5,
+            "total": 28
+        }
+    }
+}

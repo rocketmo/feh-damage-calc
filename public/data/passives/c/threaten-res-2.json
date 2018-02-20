@@ -1,0 +1,12 @@
+{
+    "name": "Threaten Res 2",
+    "sp": 100,
+    "type": "C",
+    "description": "Inflicts Res-4 on foes within 2 spaces through their next actions at the start of each turn.",
+    "icon": "/images/icons/passives/threaten-res-2.png",
+    "threaten": {
+        "res": -4
+    },
+    "link": "https://kagerochart.com/hero/passives/threaten-res-2",
+    "id": "threaten-res-2"
+}

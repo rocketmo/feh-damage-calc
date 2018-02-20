@@ -1,0 +1,12 @@
+{
+    "name": "Leiptr",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Unit can counterattack regardless of foe's range.",
+    "type": "Lance",
+    "link": "https://kagerochart.com/hero/weapons/leiptr",
+    "counter": true,
+    "char_unique": true,
+    "id": "leiptr"
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Axebreaker 3",
+    "sp": 200,
+    "type": "B",
+    "description": "If unit's HP ≥ 50% in combat against an axe user, unit makes a follow-up attack and foe cannot.",
+    "icon": "/images/icons/passives/axebreaker-3.png",
+    "link": "https://kagerochart.com/hero/passives/axebreaker-3",
+    "breaker": {
+        "weapon_type": "Axe",
+        "threshold": 0.5
+    },
+    "color_restrict": "Blue",
+    "id": "axebreaker-3"
+}

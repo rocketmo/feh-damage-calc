@@ -1,0 +1,52 @@
+{
+    "display": "Roderick, Steady Squire",
+    "name": "Roderick",
+    "title": "Steady Squire",
+    "id": "roderick-steady-squire",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/roderick-steady-squire",
+    "move_type": "Cavalry",
+    "weapon": [
+        "firesweep-lance-plus",
+        "firesweep-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "rally-defense-resistance",
+        "rally-defense"
+    ],
+    "passive_b": [
+        "drag-back"
+    ],
+    "passive_c": [
+        "drive-def-2",
+        "drive-def-1",
+        "spur-def-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 8,
+            "def": 5,
+            "res": 6
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 8,
+            "def": 6,
+            "res": 7
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 8,
+            "def": 5,
+            "res": 4,
+            "total": 30
+        }
+    }
+}

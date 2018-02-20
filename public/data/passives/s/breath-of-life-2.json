@@ -1,0 +1,6 @@
+{
+    "description": "If unit initiates attack, adjacent allies recover 5 HP after combat.",
+    "id": "breath-of-life-2",
+    "name": "Breath of Life 2",
+    "type": "s"
+}

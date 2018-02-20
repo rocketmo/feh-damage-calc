@@ -1,0 +1,68 @@
+{
+    "display": "Anna, Commander",
+    "name": "Anna",
+    "title": "Commander",
+    "id": "anna-commander",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/anna-commander",
+    "move_type": "Infantry",
+    "weapon": [
+        "noatun",
+        "silver-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "astra",
+        "night-sky"
+    ],
+    "passive_b": [
+        "vantage-3",
+        "vantage-2",
+        "vantage-1"
+    ],
+    "passive_c": [
+        "spur-res-3",
+        "spur-res-2",
+        "spur-res-1"
+    ],
+    "base_stat": {
+        "star_2": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 9,
+            "def": 3,
+            "res": 4
+        },
+        "star_3": {
+            "hp": 18,
+            "atk": 6,
+            "spd": 9,
+            "def": 4,
+            "res": 5
+        },
+        "star_4": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 10,
+            "def": 4,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 7,
+            "spd": 10,
+            "def": 5,
+            "res": 6
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 6,
+            "spd": 9,
+            "def": 4,
+            "res": 6,
+            "total": 31
+        }
+    }
+}

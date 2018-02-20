@@ -50,31 +50,21 @@ var resetFilterLock = false;
 // use to fix filters bug
 var initFilters = true;
 
-/*
- * Pulling json data from kagerochart.
- */
-$.getJSON('https://kagerochart.com/damage-calc/data', function(data) {
-//$.getJSON('/damage-calc/data', function(data) {
-    console.log('Retrieving hero data from KageroChart...');
-}).fail(function(res) {
-    console.log('Error retrieving data.');
-    console.log(res);
-}).done(function(data) {
-    data = data;
-    weaponInfo = data.weaponInfo;
-    specialInfo = data.specialInfo;
-    assistInfo = data.assistInfo;
-    skillInfo = data.skillInfo;
-    supportInfo = data.supportInfo;
-    charInfo = data.charInfo;
-    charInfo.Custom = {
-        "display": "Custom",
-        "id": "Custom",
-        "name": "Custom"
-    };
-    setupCalc();
-});
+var data = JSON.parse(document.getElementById('data').textContent);
 
+weaponInfo = data.weapons;
+specialInfo = data.specials;
+assistInfo = data.assists;
+skillInfo = data.passives;
+supportInfo = data['support-bonus'];
+charInfo = data.heroes;
+charInfo.Custom = {
+    "display": "Custom",
+    "id": "Custom",
+    "name": "Custom"
+};
+
+setupCalc();
 
 function setupCalc() {
 

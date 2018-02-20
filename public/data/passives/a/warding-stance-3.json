@@ -1,0 +1,12 @@
+{
+    "name": "Warding Stance 3",
+    "sp": 200,
+    "type": "A",
+    "description": "Grants Res+6 during combat when this unit is attacked.",
+    "icon": "/images/icons/passives/warding-stance-3.png",
+    "link": "https://kagerochart.com/hero/passives/warding-stance-3",
+    "defend_mod": {
+        "res": 6
+    },
+    "id": "warding-stance-3"
+}

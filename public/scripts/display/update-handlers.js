@@ -14,7 +14,7 @@ function updateAttributeLink(id) {
     if (info && info[val]) {
         var data = info[val];
 
-        link.prop('href', data.href);
+        link.prop('href', data.link);
         link.prop('title', 'Open ' + data.name + ' in a new tab');
         link.css('z-index', 1);
     }

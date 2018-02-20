@@ -1,0 +1,8 @@
+{
+    "description": "Neutralizes \"effective against\" bonuses.",
+    "id": "iotes-shield",
+    "name": "Iote's Shield",
+    "cancel_effective": true,
+    "move_unique": "Flying",
+    "type": "s"
+}

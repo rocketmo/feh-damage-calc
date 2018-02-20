@@ -1,0 +1,16 @@
+{
+    "name": "Firesweep Bow+",
+    "might": 11,
+    "range": 2,
+    "sp": 300,
+    "description": "Effective against flying units. Unit and enemies cannot use counterattacks.",
+    "type": "Bow",
+    "link": "https://kagerochart.com/hero/weapons/firesweep-bow-plus",
+    "color": "Colorless",
+    "magical": false,
+    "move_effective": [
+        "Flying"
+    ],
+    "prevent_counter": true,
+    "id": "firesweep-bow-plus"
+}

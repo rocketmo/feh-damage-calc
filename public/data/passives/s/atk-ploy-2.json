@@ -1,0 +1,6 @@
+{
+    "description": "At start of turn, all foes in cardinal directions with Res 1 or more lower than unit suffer Atk-4 until the end of foe's next action.",
+    "id": "atk-ploy-2",
+    "name": "Atk Ploy 2",
+    "type": "s"
+}

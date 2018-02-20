@@ -1,0 +1,61 @@
+{
+    "display": "Navarre, Scarlet Sword",
+    "name": "Navarre",
+    "title": "Scarlet Sword",
+    "id": "navarre-scarlet-sword",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/navarre-scarlet-sword",
+    "move_type": "Infantry",
+    "weapon": [
+        "killing-edge-plus",
+        "killing-edge",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "blazing-wind",
+        "rising-wind"
+    ],
+    "passive_b": [
+        "desperation-3",
+        "desperation-2",
+        "desperation-1"
+    ],
+    "passive_c": [
+        "threaten-spd-3",
+        "threaten-spd-2",
+        "threaten-spd-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 10,
+            "def": 5,
+            "res": 4
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 11,
+            "def": 5,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 11,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 8,
+            "def": 4,
+            "res": 5,
+            "total": 31
+        }
+    }
+}

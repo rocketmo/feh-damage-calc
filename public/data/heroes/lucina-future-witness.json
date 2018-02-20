@@ -1,0 +1,48 @@
+{
+    "display": "Lucina, Future Witness",
+    "name": "Lucina",
+    "title": "Future Witness",
+    "id": "lucina-future-witness",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/lucina-future-witness",
+    "move_type": "Infantry",
+    "weapon": [
+        "falchion",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "aether",
+        "luna",
+        "new-moon"
+    ],
+    "passive_a": [
+        "defiant-spd-3",
+        "defiant-spd-2",
+        "defiant-spd-1"
+    ],
+    "passive_c": [
+        "spur-atk-3",
+        "spur-atk-2",
+        "spur-atk-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 10,
+            "def": 6,
+            "res": 4
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 8,
+            "spd": 8,
+            "def": 5,
+            "res": 3,
+            "total": 31
+        }
+    }
+}

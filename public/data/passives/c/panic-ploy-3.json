@@ -1,0 +1,9 @@
+{
+    "name": "Panic Ploy 3",
+    "sp": 240,
+    "type": "C",
+    "description": "At start of turn, bonuses become penalties on all foes in cardinal directions with HP 1 or more lower than unit through foe's next action.",
+    "icon": "/images/icons/passives/panic-ploy-3.png",
+    "link": "https://kagerochart.com/hero/passives/panic-ploy-3",
+    "id": "panic-ploy-3"
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Iron Lance",
+    "might": 6,
+    "range": 1,
+    "sp": 50,
+    "type": "Lance",
+    "color": "Blue",
+    "magical": false,
+    "link": "https://kagerochart.com/hero/weapons/iron-lance",
+    "id": "iron-lance"
+}

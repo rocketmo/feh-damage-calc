@@ -1,0 +1,12 @@
+{
+    "description": "If unit receives consecutive attacks from a foe using magic, damage from second attack onward reduced by 50%.",
+    "id": "deflect-magic-2",
+    "name": "Deflect Magic 2",
+    "consecutive_dmg_reduction": {
+        "multiplier": 0.5,
+        "weapon_type": [
+            "tome"
+        ]
+    },
+    "type": "s"
+}

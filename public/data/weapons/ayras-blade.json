@@ -1,0 +1,18 @@
+{
+    "name": "Ayra's Blade",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Grants Spd+3. If unit's Spd - foe's Spd ≥ 1, gain Special cooldown charge +1 per attack.(If similar skill also used, only highest value applied.)",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/ayras-blade",
+    "stat_mod": {
+        "spd": 3
+    },
+    "spec_accel": {
+        "stat": "spd",
+        "adv": 1
+    },
+    "char_unique": true,
+    "id": "ayras-blade"
+}

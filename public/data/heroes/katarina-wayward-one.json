@@ -1,0 +1,47 @@
+{
+    "display": "Katarina, Wayward One",
+    "name": "Katarina",
+    "title": "Wayward One",
+    "id": "katarina-wayward-one",
+    "color": "Red",
+    "weapon_type": "Red Tome",
+    "link": "https://kagerochart.com/hero/katarina-wayward-one",
+    "move_type": "Infantry",
+    "weapon": [
+        "raurowl-plus",
+        "raurowl",
+        "elfire",
+        "fire"
+    ],
+    "special": [
+        "glacies",
+        "chilling-wind"
+    ],
+    "passive_a": [
+        "swift-sparrow-2",
+        "swift-sparrow-1",
+        "death-blow-1"
+    ],
+    "passive_c": [
+        "atk-ploy-3",
+        "atk-ploy-2",
+        "atk-ploy-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 8,
+            "def": 5,
+            "res": 8
+        },
+        "growth": {
+            "hp": 4,
+            "atk": 8,
+            "spd": 8,
+            "def": 1,
+            "res": 7,
+            "total": 28
+        }
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "display": "Rhajat, Black Magician",
+    "name": "Rhajat",
+    "title": "Black Magician",
+    "id": "rhajat-black-magician",
+    "color": "Green",
+    "weapon_type": "Green Tome",
+    "link": "https://kagerochart.com/hero/rhajat-black-magician",
+    "move_type": "Infantry",
+    "weapon": [
+        "keen-gronnwolf-plus",
+        "keen-gronnwolf",
+        "elwind",
+        "wind"
+    ],
+    "assist": [
+        "rally-attack-defense",
+        "rally-defense"
+    ],
+    "passive_a": [
+        "distant-def-3",
+        "distant-def-2",
+        "distant-def-1"
+    ],
+    "passive_c": [
+        "savage-blow-3",
+        "savage-blow-2",
+        "savage-blow-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 9,
+            "spd": 8,
+            "def": 4,
+            "res": 7
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 8,
+            "spd": 8,
+            "def": 4,
+            "res": 4,
+            "total": 29
+        }
+    }
+}

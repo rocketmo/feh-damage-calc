@@ -1,0 +1,68 @@
+{
+    "display": "Robin, Mystery Tactician",
+    "name": "Robin",
+    "title": "Mystery Tactician",
+    "id": "robin-mystery-tactician",
+    "color": "Green",
+    "weapon_type": "Green Tome",
+    "link": "https://kagerochart.com/hero/robin-mystery-tactician",
+    "move_type": "Infantry",
+    "weapon": [
+        "gronnwolf-plus",
+        "gronnwolf",
+        "elwind",
+        "wind"
+    ],
+    "special": [
+        "ignis",
+        "glowing-ember"
+    ],
+    "passive_a": [
+        "defiant-res-3",
+        "defiant-res-2",
+        "defiant-res-1"
+    ],
+    "passive_b": [
+        "b-tomebreaker-3",
+        "b-tomebreaker-2",
+        "b-tomebreaker-1"
+    ],
+    "base_stat": {
+        "star_2": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 6,
+            "def": 5,
+            "res": 3
+        },
+        "star_3": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 6,
+            "def": 6,
+            "res": 4
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 7,
+            "def": 6,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 7,
+            "def": 7,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 6,
+            "spd": 6,
+            "def": 6,
+            "res": 4,
+            "total": 28
+        }
+    }
+}

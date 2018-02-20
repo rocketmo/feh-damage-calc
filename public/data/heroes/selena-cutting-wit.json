@@ -1,0 +1,60 @@
+{
+    "display": "Selena, Cutting Wit",
+    "name": "Selena",
+    "title": "Cutting Wit",
+    "id": "selena-cutting-wit",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/selena-cutting-wit",
+    "move_type": "Infantry",
+    "weapon": [
+        "armorslayer-plus",
+        "armorslayer",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "assist": [
+        "reposition"
+    ],
+    "passive_a": [
+        "triangle-adept-3",
+        "triangle-adept-2",
+        "triangle-adept-1"
+    ],
+    "passive_c": [
+        "threaten-spd-3",
+        "threaten-spd-2",
+        "threaten-spd-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 17,
+            "atk": 5,
+            "spd": 8,
+            "def": 7,
+            "res": 5
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 5,
+            "spd": 9,
+            "def": 8,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 6,
+            "spd": 9,
+            "def": 8,
+            "res": 6
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 5,
+            "spd": 8,
+            "def": 7,
+            "res": 6,
+            "total": 31
+        }
+    }
+}

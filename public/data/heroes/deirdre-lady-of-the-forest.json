@@ -1,0 +1,46 @@
+{
+    "display": "Deirdre, Lady of the Forest",
+    "name": "Deirdre",
+    "title": "Lady of the Forest",
+    "id": "deirdre-lady-of-the-forest",
+    "color": "Green",
+    "weapon_type": "Green Tome",
+    "link": "https://kagerochart.com/hero/deirdre-lady-of-the-forest",
+    "move_type": "Infantry",
+    "weapon": [
+        "divine-naga",
+        "rexcalibur",
+        "elwind",
+        "wind"
+    ],
+    "assist": [
+        "ardent-sacrifice"
+    ],
+    "passive_b": [
+        "quick-riposte-3",
+        "quick-riposte-2",
+        "quick-riposte-1"
+    ],
+    "passive_c": [
+        "spd-ploy-3",
+        "spd-ploy-2",
+        "spd-ploy-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 9,
+            "spd": 6,
+            "def": 3,
+            "res": 9
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 7,
+            "spd": 6,
+            "def": 2,
+            "res": 8,
+            "total": 28
+        }
+    }
+}

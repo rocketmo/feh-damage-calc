@@ -1,0 +1,17 @@
+{
+    "name": "Sacae's Blessing",
+    "sp": 300,
+    "type": "B",
+    "description": "If foe has sword, lance, or axe, foe cannot counterattack.(Skill cannot be inherited.)",
+    "icon": "/images/icons/passives/sacaes-blessing.png",
+    "link": "https://kagerochart.com/hero/passives/sacaes-blessing",
+    "prevent_weapon_counter": {
+        "type": [
+            "Sword",
+            "Axe",
+            "Lance"
+        ]
+    },
+    "char_unique": true,
+    "id": "sacaes-blessing"
+}

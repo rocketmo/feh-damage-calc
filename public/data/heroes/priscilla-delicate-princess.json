@@ -1,0 +1,54 @@
+{
+    "display": "Priscilla, Delicate Princess",
+    "name": "Priscilla",
+    "title": "Delicate Princess",
+    "id": "priscilla-delicate-princess",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/priscilla-delicate-princess",
+    "move_type": "Cavalry",
+    "weapon": [
+        "panic-plus",
+        "panic",
+        "assault"
+    ],
+    "special": [
+        "still-water-balm",
+        "imbue"
+    ],
+    "assist": [
+        "rehabilitate-plus",
+        "rehabilitate",
+        "reconcile",
+        "heal"
+    ],
+    "passive_c": [
+        "spur-def-3",
+        "spur-def-2",
+        "spur-def-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 6,
+            "def": 3,
+            "res": 8
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 7,
+            "def": 4,
+            "res": 8
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 6,
+            "spd": 6,
+            "def": 3,
+            "res": 7,
+            "total": 27
+        }
+    }
+}

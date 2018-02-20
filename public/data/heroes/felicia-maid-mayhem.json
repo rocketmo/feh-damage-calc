@@ -1,0 +1,75 @@
+{
+    "display": "Felicia, Maid Mayhem",
+    "name": "Felicia",
+    "title": "Maid Mayhem",
+    "id": "felicia-maid-mayhem",
+    "color": "Colorless",
+    "weapon_type": "Dagger",
+    "link": "https://kagerochart.com/hero/felicia-maid-mayhem",
+    "move_type": "Infantry",
+    "weapon": [
+        "silver-dagger-plus",
+        "silver-dagger",
+        "steel-dagger",
+        "iron-dagger"
+    ],
+    "special": [
+        "glacies",
+        "chilling-wind"
+    ],
+    "passive_a": [
+        "resistance-plus-3",
+        "resistance-plus-2",
+        "resistance-plus-1"
+    ],
+    "passive_c": [
+        "breath-of-life-3",
+        "breath-of-life-2",
+        "breath-of-life-1"
+    ],
+    "base_stat": {
+        "star_1": {
+            "hp": 13,
+            "atk": 4,
+            "spd": 9,
+            "def": 1,
+            "res": 7
+        },
+        "star_2": {
+            "hp": 13,
+            "atk": 4,
+            "spd": 10,
+            "def": 1,
+            "res": 8
+        },
+        "star_3": {
+            "hp": 14,
+            "atk": 5,
+            "spd": 10,
+            "def": 2,
+            "res": 8
+        },
+        "star_4": {
+            "hp": 14,
+            "atk": 5,
+            "spd": 11,
+            "def": 2,
+            "res": 9
+        },
+        "star_5": {
+            "hp": 15,
+            "atk": 6,
+            "spd": 11,
+            "def": 3,
+            "res": 9
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 4,
+            "spd": 8,
+            "def": 3,
+            "res": 8,
+            "total": 28
+        }
+    }
+}

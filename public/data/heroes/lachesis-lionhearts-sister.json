@@ -1,0 +1,54 @@
+{
+    "display": "Lachesis, Lionheart's Sister",
+    "name": "Lachesis",
+    "title": "Lionheart's Sister",
+    "id": "lachesis-lionhearts-sister",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/lachesis-lionhearts-sister",
+    "move_type": "Infantry",
+    "weapon": [
+        "absorb-plus",
+        "absorb",
+        "assault"
+    ],
+    "special": [
+        "solid-earth-balm",
+        "imbue"
+    ],
+    "assist": [
+        "physic-plus",
+        "physic",
+        "mend",
+        "heal"
+    ],
+    "passive_c": [
+        "spur-res-3",
+        "spur-res-2",
+        "spur-res-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 16,
+            "atk": 5,
+            "spd": 8,
+            "def": 4,
+            "res": 8
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 8,
+            "def": 5,
+            "res": 8
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 8,
+            "spd": 4,
+            "def": 4,
+            "res": 6,
+            "total": 28
+        }
+    }
+}

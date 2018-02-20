@@ -1,0 +1,7 @@
+{
+    "description": "Unit receives 0 damage.",
+    "id": "emblas-ward",
+    "name": "Embla's Ward",
+    "null_dmg": true,
+    "type": "s"
+}

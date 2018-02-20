@@ -1,0 +1,54 @@
+{
+    "display": "Soren, Shrewd Strategist",
+    "name": "Soren",
+    "title": "Shrewd Strategist",
+    "id": "soren-shrewd-strategist",
+    "color": "Green",
+    "weapon_type": "Green Tome",
+    "link": "https://kagerochart.com/hero/soren-shrewd-strategist",
+    "move_type": "Infantry",
+    "weapon": [
+        "rexcalibur-plus",
+        "rexcalibur",
+        "elwind",
+        "wind"
+    ],
+    "special": [
+        "growing-wind",
+        "rising-wind"
+    ],
+    "passive_b": [
+        "watersweep-3",
+        "watersweep-2",
+        "watersweep-1"
+    ],
+    "passive_c": [
+        "fortify-res-3",
+        "fortify-res-2",
+        "fortify-res-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 9,
+            "def": 3,
+            "res": 6
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 9,
+            "def": 4,
+            "res": 7
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 8,
+            "spd": 7,
+            "def": 2,
+            "res": 6,
+            "total": 28
+        }
+    }
+}

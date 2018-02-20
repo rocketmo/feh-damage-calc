@@ -1,0 +1,16 @@
+{
+    "name": "Beorc's Blessing",
+    "sp": 300,
+    "type": "B",
+    "description": "If foe is cavalry or flier type, foe's bonuses (from skills like Fortify, Rally, etc.) are nullified during combat.(Skill cannot be inherited.)",
+    "icon": "/images/icons/passives/beorcs-blessing.png",
+    "link": "https://kagerochart.com/hero/passives/beorcs-blessing",
+    "nullify_enemy_bonuses": {
+        "move_type": {
+            "Flying": true,
+            "Cavalry": true
+        }
+    },
+    "char_unique": true,
+    "id": "beorcs-blessing"
+}

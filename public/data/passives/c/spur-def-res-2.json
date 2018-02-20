@@ -1,0 +1,9 @@
+{
+    "name": "Spur Def Res 2",
+    "sp": 240,
+    "type": "C",
+    "description": "Grants adjacent allies Def/Res +3 during combat.",
+    "icon": "/images/icons/passives/spur-def-res-2.png",
+    "link": "https://kagerochart.com/hero/passives/spur-def-res-2",
+    "id": "spur-def-res-2"
+}

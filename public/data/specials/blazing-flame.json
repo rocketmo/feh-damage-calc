@@ -1,0 +1,11 @@
+{
+    "name": "Blazing Flame",
+    "cooldown": 4,
+    "sp": 300,
+    "description": "Before combat this unit initiates, foes in an area near target take damage equal to 1.5 x (unit's Atk minus foe's Def or Res).",
+    "link": "https://kagerochart.com/hero/specials/blazing-flame",
+    "before_combat_aoe": true,
+    "aoe_dmg_mod": 1.5,
+    "weapon_restrict": "Staff",
+    "id": "blazing-flame"
+}

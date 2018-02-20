@@ -463,7 +463,7 @@ function setColor(weaponType, charNum) {
 
 // loads the given character portrait into the given img
 function getPortrait(imgID, portraitName) {
-    var href = ("/hero/" + portraitName).toLowerCase();
+    var href = (imageUrl + "/hero/" + portraitName).toLowerCase();
     if (href.indexOf('(') !== -1) {
         href = href.substr(0, href.indexOf('('));
     }
@@ -1788,7 +1788,7 @@ function simBattle(battleInfo, displayMsg) {
         vantagePassive = false;
         vantageWeapon = false;
     }
-	
+
 	//Print a message if hardy bearing activates
 	battleInfo = hardy_bearing_msg(battleInfo, attacker);
 	battleInfo = hardy_bearing_msg(battleInfo, defender);
@@ -3011,11 +3011,11 @@ function calculateMatchups(attacker) {
 
             // add to table
             tableHTML += (charCount % 2 === 1) ? "<tr class='matchup-row-offset'>" : "<tr>";
-            var href = ("/hero/" + key).toLowerCase();
+            var href = (imageUrl + "/hero/" + key).toLowerCase();
             if (href.indexOf('(') !== -1) {
                 href = href.substr(0, href.indexOf('('));
             }
-            tableHTML += "<td class='matchup-portrait-container' ><div class='open-in-new'><i class='material-icons'>open_in_new</i><a href='" + href + "' target='_blank'><img class='matchup-portrait' src=" + imageUrl + "\"/images/hero/tile/" + charInfo[key].id + ".png\"></a></div></td>";
+            tableHTML += "<td class='matchup-portrait-container' ><div class='open-in-new'><i class='material-icons'>open_in_new</i><a href='" + href + "' target='_blank'><img class='matchup-portrait' src='" + imageUrl + "/images/hero/tile/" + charInfo[key].id + ".png'></a></div></td>";
             tableHTML += "<td><span class='matchup-char' data-id='" + key + "'>" + charInfo[key].display + " <i class='compare-icon material-icons'>compare_arrows</i></span></td>";
             //tableHTML += "<td class='attacker'>" + battleInfo.attacker.damageDealt.toString() + "</td>";
             //tableHTML += "<td class='defender'>" + battleInfo.defender.damageDealt.toString() + "</td>";

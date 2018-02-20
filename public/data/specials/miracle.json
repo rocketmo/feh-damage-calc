@@ -1,0 +1,9 @@
+{
+    "name": "Miracle",
+    "cooldown": 5,
+    "sp": 200,
+    "description": "If HP > 1, survive a lethal attack with 1 HP remaining.",
+    "link": "https://kagerochart.com/hero/specials/miracle",
+    "survive": true,
+    "id": "miracle"
+}

@@ -1,0 +1,12 @@
+{
+    "name": "Warding Blow 3",
+    "sp": 200,
+    "type": "A",
+    "description": "Grants Res+6 during combat if unit initiates attack.",
+    "icon": "/images/icons/passives/warding-blow-3.png",
+    "link": "https://kagerochart.com/hero/passives/warding-blow-3",
+    "initiate_mod": {
+        "res": 6
+    },
+    "id": "warding-blow-3"
+}

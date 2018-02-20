@@ -1,0 +1,54 @@
+{
+    "display": "Camilla, Bewitching Beauty",
+    "name": "Camilla",
+    "title": "Bewitching Beauty",
+    "id": "camilla-bewitching-beauty",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/camilla-bewitching-beauty",
+    "move_type": "Flying",
+    "weapon": [
+        "brave-axe-plus",
+        "brave-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "draconic-aura",
+        "dragon-gaze"
+    ],
+    "passive_a": [
+        "darting-blow-3",
+        "darting-blow-2",
+        "darting-blow-1"
+    ],
+    "passive_c": [
+        "savage-blow-3",
+        "savage-blow-2",
+        "savage-blow-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 8,
+            "def": 5,
+            "res": 6
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 8,
+            "def": 6,
+            "res": 7
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 6,
+            "spd": 7,
+            "def": 6,
+            "res": 7,
+            "total": 31
+        }
+    }
+}

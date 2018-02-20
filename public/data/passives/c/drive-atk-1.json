@@ -1,0 +1,9 @@
+{
+    "name": "Drive Atk 1",
+    "sp": 120,
+    "type": "C",
+    "description": "Grants allies within 2 spaces Atk+2 during combat.",
+    "icon": "/images/icons/passives/drive-atk-1.png",
+    "link": "https://kagerochart.com/hero/passives/drive-atk-1",
+    "id": "drive-atk-1"
+}

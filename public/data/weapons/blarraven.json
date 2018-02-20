@@ -1,0 +1,13 @@
+{
+    "name": "Blárraven",
+    "might": 7,
+    "range": 2,
+    "sp": 200,
+    "description": "Grants weapon advantage vs. colorless foes.",
+    "type": "Blue Tome",
+    "color": "Blue",
+    "magical": true,
+    "color_effective": "Colorless",
+    "link": "https://kagerochart.com/hero/weapons/blarraven",
+    "id": "blarraven"
+}

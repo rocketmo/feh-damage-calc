@@ -1,0 +1,9 @@
+{
+    "name": "Hone Atk 2",
+    "sp": 100,
+    "type": "C",
+    "description": "Grants adjacent allies Atk+3 through their next actions at the start of each turn.",
+    "icon": "/images/icons/passives/hone-atk-2.png",
+    "link": "https://kagerochart.com/hero/passives/hone-atk-2",
+    "id": "hone-atk-2"
+}

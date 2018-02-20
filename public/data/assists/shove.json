@@ -1,0 +1,9 @@
+{
+    "name": "Shove",
+    "range": 1,
+    "sp": 150,
+    "description": "Push adjacent ally 1 space farther away.",
+    "link": "https://kagerochart.com/hero/assists/shove",
+    "weapon_restrict": "Staff",
+    "id": "shove"
+}

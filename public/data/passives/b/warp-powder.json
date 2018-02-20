@@ -1,0 +1,9 @@
+{
+    "name": "Warp Powder",
+    "sp": 300,
+    "type": "B",
+    "description": "If unit's HP ≥ 80%, unit can move adjacent to any ally within 2 spaces.",
+    "icon": "/images/icons/passives/warp-powder.png",
+    "link": "https://kagerochart.com/hero/passives/warp-powder",
+    "id": "warp-powder"
+}

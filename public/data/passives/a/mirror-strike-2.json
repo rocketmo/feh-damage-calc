@@ -1,0 +1,13 @@
+{
+    "name": "Mirror Strike 2",
+    "sp": 240,
+    "type": "A",
+    "description": "Grants Atk/Res+4 during combat if unit initiates combat.",
+    "icon": "/images/icons/passives/mirror-strike-2.png",
+    "link": "https://kagerochart.com/hero/passives/mirror-strike-2",
+    "initiate_mod": {
+        "res": 4,
+        "atk": 4
+    },
+    "id": "mirror-strike-2"
+}

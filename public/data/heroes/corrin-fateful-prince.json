@@ -1,0 +1,54 @@
+{
+    "display": "Corrin, Fateful Prince",
+    "name": "Corrin",
+    "title": "Fateful Prince",
+    "id": "corrin-fateful-prince",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/corrin-fateful-prince",
+    "move_type": "Infantry",
+    "weapon": [
+        "yato",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "dragon-fang",
+        "dragon-gaze"
+    ],
+    "passive_a": [
+        "defense-plus-3",
+        "defense-plus-2",
+        "defense-plus-1"
+    ],
+    "passive_b": [
+        "obstruct-3",
+        "obstruct-2",
+        "obstruct-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 8,
+            "def": 5,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 20,
+            "atk": 8,
+            "spd": 8,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 7,
+            "def": 6,
+            "res": 5,
+            "total": 31
+        }
+    }
+}

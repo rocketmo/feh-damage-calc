@@ -1,0 +1,14 @@
+{
+    "name": "Swordbreaker 3",
+    "sp": 200,
+    "type": "B",
+    "description": "If unit's HP ≥ 50% in combat against a sword user, unit makes a follow-up attack and foe cannot.",
+    "icon": "/images/icons/passives/swordbreaker-3.png",
+    "link": "https://kagerochart.com/hero/passives/swordbreaker-3",
+    "breaker": {
+        "weapon_type": "Sword",
+        "threshold": 0.5
+    },
+    "color_restrict": "Green",
+    "id": "swordbreaker-3"
+}

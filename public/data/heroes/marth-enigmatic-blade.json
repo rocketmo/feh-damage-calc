@@ -1,0 +1,40 @@
+{
+    "display": "Marth, Enigmatic Blade",
+    "name": "Marth",
+    "title": "Enigmatic Blade",
+    "id": "marth-enigmatic-blade",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/marth-enigmatic-blade",
+    "move_type": "Infantry",
+    "weapon": [
+        "falchion",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 10,
+            "def": 5,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 10,
+            "def": 6,
+            "res": 4
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 8,
+            "spd": 8,
+            "def": 5,
+            "res": 3,
+            "total": 31
+        }
+    }
+}

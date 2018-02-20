@@ -1,0 +1,11 @@
+{
+    "name": "Firesweep Sword+",
+    "might": 15,
+    "range": 1,
+    "sp": 300,
+    "description": "Unit and foes cannot counterattack.",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/firesweep-sword-plus",
+    "prevent_counter": true,
+    "id": "firesweep-sword-plus"
+}

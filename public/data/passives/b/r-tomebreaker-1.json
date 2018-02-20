@@ -1,0 +1,14 @@
+{
+    "name": "R Tomebreaker 1",
+    "sp": 50,
+    "type": "B",
+    "description": "If unit's HP ≥ 90% in combat against a red tome user, unit makes a follow-up attack and foe cannot.",
+    "icon": "/images/icons/passives/r-tomebreaker-1.png",
+    "breaker": {
+        "weapon_type": "Red Tome",
+        "threshold": 0.9
+    },
+    "color_restrict": "Green",
+    "link": "https://kagerochart.com/hero/passives/r-tomebreaker-1",
+    "id": "r-tomebreaker-1"
+}

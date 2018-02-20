@@ -1,0 +1,10 @@
+{
+    "name": "Guard 1",
+    "sp": 50,
+    "type": "B",
+    "description": "If unit's HP is 100% at start of combat, enemy is inflicted with Special cooldown charge-1.(If using similar skill, only highest value applied.)",
+    "icon": "/images/icons/passives/guard-1.png",
+    "guard": 1,
+    "link": "https://kagerochart.com/hero/passives/guard-1",
+    "id": "guard-1"
+}

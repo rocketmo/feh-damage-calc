@@ -263,13 +263,12 @@ function enemyPhaseCharge(battleInfo, attacker, defender) {
 }
 
 function hardy_bearing_msg(battleInfo, agent) {
-		if(agent.sealData.hasOwnProperty("remove_prio_hp"))
-		{
-			battleInfo.logMsg += "<li class='battle-interaction'><span class='" + agent.agentClass + "'>" + agent.display + "</span> can't alter the turn's order ["+agent.sealData.name+"]!</li> ";
-			if(agent.initHP >= agent.hp*agent.sealData.remove_prio_hp)
-				battleInfo.logMsg += "<li class='battle-interaction'><span class='" + agent.agentClass + "'>" + agent.display + "</span> avoids the opponent changes the turn's order too ["+agent.sealData.name+"]!</li> ";
-		}
-		return battleInfo;
+    if (agent.sealData.hasOwnProperty("remove_prio_hp")) {
+    	battleInfo.logMsg += "<li class='battle-interaction'><span class='" + agent.agentClass + "'>" + agent.display + "</span> can't alter the turn's order ["+agent.sealData.name+"]!</li> ";
+    	if(agent.initHP >= agent.hp*agent.sealData.remove_prio_hp)
+    		battleInfo.logMsg += "<li class='battle-interaction'><span class='" + agent.agentClass + "'>" + agent.display + "</span> avoids the opponent changes the turn's order too ["+agent.sealData.name+"]!</li> ";
+    }
+    return battleInfo;
 }
 
 //This is redundant, separating this makes it easier to maintain

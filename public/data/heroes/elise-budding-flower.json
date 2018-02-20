@@ -1,0 +1,47 @@
+{
+    "display": "Elise, Budding Flower",
+    "name": "Elise",
+    "title": "Budding Flower",
+    "id": "elise-budding-flower",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/elise-budding-flower",
+    "move_type": "Cavalry",
+    "weapon": [
+        "gravity-plus",
+        "gravity",
+        "assault"
+    ],
+    "special": [
+        "kindled-fire-balm",
+        "imbue"
+    ],
+    "assist": [
+        "recover-plus",
+        "recover",
+        "mend",
+        "heal"
+    ],
+    "passive_b": [
+        "live-to-serve-3",
+        "live-to-serve-2",
+        "live-to-serve-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 15,
+            "atk": 8,
+            "spd": 8,
+            "def": 4,
+            "res": 8
+        },
+        "growth": {
+            "hp": 3,
+            "atk": 7,
+            "spd": 7,
+            "def": 3,
+            "res": 7,
+            "total": 27
+        }
+    }
+}

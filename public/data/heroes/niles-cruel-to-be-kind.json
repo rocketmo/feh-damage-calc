@@ -1,0 +1,61 @@
+{
+    "display": "Niles, Cruel to Be Kind",
+    "name": "Niles",
+    "title": "Cruel to Be Kind",
+    "id": "niles-cruel-to-be-kind",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/niles-cruel-to-be-kind",
+    "move_type": "Infantry",
+    "weapon": [
+        "killer-bow-plus",
+        "killer-bow",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "special": [
+        "iceberg",
+        "chilling-wind"
+    ],
+    "passive_a": [
+        "warding-blow-3",
+        "warding-blow-2",
+        "warding-blow-1"
+    ],
+    "passive_c": [
+        "spur-res-3",
+        "spur-res-2",
+        "spur-res-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 17,
+            "atk": 5,
+            "spd": 7,
+            "def": 3,
+            "res": 7
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 5,
+            "spd": 8,
+            "def": 3,
+            "res": 8
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 6,
+            "spd": 8,
+            "def": 4,
+            "res": 8
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 5,
+            "spd": 8,
+            "def": 2,
+            "res": 8,
+            "total": 28
+        }
+    }
+}

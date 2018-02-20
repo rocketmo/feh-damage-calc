@@ -1,0 +1,13 @@
+{
+    "name": "Pavise",
+    "cooldown": 3,
+    "sp": 200,
+    "description": "Reduces damage inflicted by attacks from adjacent foes by 50%.",
+    "link": "https://kagerochart.com/hero/specials/pavise",
+    "reduce_dmg": {
+        "range": 1,
+        "dmg_mod": 0.5
+    },
+    "range_unique": 1,
+    "id": "pavise"
+}

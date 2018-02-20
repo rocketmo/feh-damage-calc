@@ -1,0 +1,47 @@
+{
+    "display": "Amelia, Rose of the War",
+    "name": "Amelia",
+    "title": "Rose of the War",
+    "id": "amelia-rose-of-the-war",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/amelia-rose-of-the-war",
+    "move_type": "Armored",
+    "weapon": [
+        "slaying-axe-plus",
+        "slaying-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "sacred-cowl",
+        "holy-vestments"
+    ],
+    "passive_a": [
+        "earth-boost-3",
+        "earth-boost-2",
+        "earth-boost-1"
+    ],
+    "passive_c": [
+        "armor-march-3",
+        "armor-march-2",
+        "armor-march-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 19,
+            "atk": 6,
+            "spd": 8,
+            "def": 9,
+            "res": 4
+        },
+        "growth": {
+            "hp": 9,
+            "atk": 9,
+            "spd": 8,
+            "def": 8,
+            "res": 5,
+            "total": 39
+        }
+    }
+}

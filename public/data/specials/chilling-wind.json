@@ -1,0 +1,13 @@
+{
+    "name": "Chilling Wind",
+    "cooldown": 4,
+    "sp": 100,
+    "description": "Boosts damage dealt by 50% of unit's Res.",
+    "dmg_buff_by_stat": {
+        "stat": "res",
+        "buff": 0.5
+    },
+    "weapon_restrict": "Staff",
+    "link": "https://kagerochart.com/hero/specials/chilling-wind",
+    "id": "chilling-wind"
+}

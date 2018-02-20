@@ -1,0 +1,15 @@
+{
+    "name": "Kagami Mochi",
+    "might": 8,
+    "range": 2,
+    "sp": 200,
+    "description": "Grants Def/Res+2 during combat to allies within 2 spaces.",
+    "type": "Dagger",
+    "spec_cooldown_mod": -1,
+    "seal": {
+        "def": -5,
+        "res": -5
+    },
+    "link": "https://kagerochart.com/hero/weapons/kagami-mochi",
+    "id": "kagami-mochi"
+}

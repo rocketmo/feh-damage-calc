@@ -1,0 +1,19 @@
+{
+    "name": "Zanbato+",
+    "might": 14,
+    "range": 1,
+    "sp": 300,
+    "description": "Effective against cavalry units.",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/zanbato-plus",
+    "color": "Red",
+    "magical": false,
+    "move_effective": [
+        "Cavalry"
+    ],
+    "refinable": {
+        "type": "melee",
+        "Special": "Cavalry melee"
+    },
+    "id": "zanbato-plus"
+}

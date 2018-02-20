@@ -1,0 +1,13 @@
+{
+    "name": "Pain",
+    "might": 3,
+    "range": 2,
+    "sp": 150,
+    "description": "Inflicts 10 damage on foe after combat.",
+    "type": "Staff",
+    "color": "Colorless",
+    "magical": true,
+    "poison": 10,
+    "link": "https://kagerochart.com/hero/weapons/pain",
+    "id": "pain"
+}

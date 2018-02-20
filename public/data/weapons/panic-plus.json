@@ -1,0 +1,16 @@
+{
+    "name": "Panic+",
+    "might": 11,
+    "range": 2,
+    "sp": 300,
+    "description": "After combat, if unit attacked, bonuses on target and foes within 2 spaces of target become penalties through their next actions.",
+    "type": "Staff",
+    "link": "https://kagerochart.com/hero/weapons/panic-plus",
+    "color": "Colorless",
+    "magical": true,
+    "initiate_convert_penalties": true,
+    "refinable": {
+        "type": "staff"
+    },
+    "id": "panic-plus"
+}

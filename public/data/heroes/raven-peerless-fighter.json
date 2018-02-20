@@ -1,0 +1,54 @@
+{
+    "display": "Raven, Peerless Fighter",
+    "name": "Raven",
+    "title": "Peerless Fighter",
+    "id": "raven-peerless-fighter",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/raven-peerless-fighter",
+    "move_type": "Infantry",
+    "weapon": [
+        "brave-axe-plus",
+        "brave-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "sol",
+        "daylight"
+    ],
+    "passive_a": [
+        "defiant-spd-3",
+        "defiant-spd-2",
+        "defiant-spd-1"
+    ],
+    "passive_c": [
+        "threaten-def-3",
+        "threaten-def-2",
+        "threaten-def-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 9,
+            "def": 5,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 9,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 8,
+            "spd": 8,
+            "def": 5,
+            "res": 4,
+            "total": 31
+        }
+    }
+}

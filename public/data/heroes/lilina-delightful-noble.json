@@ -1,0 +1,54 @@
+{
+    "display": "Lilina, Delightful Noble",
+    "name": "Lilina",
+    "title": "Delightful Noble",
+    "id": "lilina-delightful-noble",
+    "color": "Red",
+    "weapon_type": "Red Tome",
+    "link": "https://kagerochart.com/hero/lilina-delightful-noble",
+    "move_type": "Infantry",
+    "weapon": [
+        "bolganone-plus",
+        "bolganone",
+        "elfire",
+        "fire"
+    ],
+    "special": [
+        "growing-flame",
+        "rising-flame"
+    ],
+    "passive_a": [
+        "attack-plus-3",
+        "attack-plus-2",
+        "attack-plus-1"
+    ],
+    "passive_c": [
+        "spur-atk-3",
+        "spur-atk-2",
+        "spur-atk-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 15,
+            "atk": 9,
+            "spd": 5,
+            "def": 3,
+            "res": 9
+        },
+        "star_5": {
+            "hp": 16,
+            "atk": 9,
+            "spd": 6,
+            "def": 4,
+            "res": 9
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 9,
+            "spd": 5,
+            "def": 3,
+            "res": 6,
+            "total": 28
+        }
+    }
+}

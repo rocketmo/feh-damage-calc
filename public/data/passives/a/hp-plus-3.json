@@ -1,0 +1,12 @@
+{
+    "name": "HP +3",
+    "sp": 40,
+    "type": "A",
+    "description": "Grants +3 to max HP.",
+    "icon": "/images/icons/passives/hp-plus-3.png",
+    "stat_mod": {
+        "hp": 3
+    },
+    "link": "https://kagerochart.com/hero/passives/hp-plus-3",
+    "id": "hp-plus-3"
+}

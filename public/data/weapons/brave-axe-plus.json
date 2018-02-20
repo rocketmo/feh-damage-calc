@@ -1,0 +1,16 @@
+{
+    "name": "Brave Axe+",
+    "might": 8,
+    "range": 1,
+    "sp": 300,
+    "description": "Spd-5. Attack twice when initiating combat.",
+    "type": "Axe",
+    "link": "https://kagerochart.com/hero/weapons/brave-axe-plus",
+    "color": "Green",
+    "magical": false,
+    "brave": true,
+    "stat_mod": {
+        "spd": -5
+    },
+    "id": "brave-axe-plus"
+}

@@ -1,0 +1,48 @@
+{
+    "display": "Lyn, Lady of the Plains",
+    "name": "Lyn",
+    "title": "Lady of the Plains",
+    "id": "lyn-lady-of-the-plains",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/lyn-lady-of-the-plains",
+    "move_type": "Infantry",
+    "weapon": [
+        "sol-katti",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "galeforce",
+        "astra",
+        "night-sky"
+    ],
+    "passive_a": [
+        "defiant-atk-3",
+        "defiant-atk-2",
+        "defiant-atk-1"
+    ],
+    "passive_c": [
+        "spur-spd-3",
+        "spur-spd-2",
+        "spur-spd-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 18,
+            "atk": 6,
+            "spd": 11,
+            "def": 7,
+            "res": 5
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 6,
+            "spd": 8,
+            "def": 5,
+            "res": 7,
+            "total": 31
+        }
+    }
+}

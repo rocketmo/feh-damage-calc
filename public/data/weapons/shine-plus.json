@@ -1,0 +1,15 @@
+{
+    "name": "Shine+",
+    "might": 13,
+    "range": 2,
+    "sp": 300,
+    "type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/weapons/shine-plus",
+    "color": "Blue",
+    "magical": true,
+    "refinable": {
+        "type": "ranged",
+        "might": 14
+    },
+    "id": "shine-plus"
+}

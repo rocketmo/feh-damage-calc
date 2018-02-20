@@ -1,0 +1,54 @@
+{
+    "display": "Peri, Playful Slayer",
+    "name": "Peri",
+    "title": "Playful Slayer",
+    "id": "peri-playful-slayer",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/peri-playful-slayer",
+    "move_type": "Cavalry",
+    "weapon": [
+        "killer-lance-plus",
+        "killer-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "glimmer",
+        "night-sky"
+    ],
+    "passive_a": [
+        "resistance-plus-3",
+        "resistance-plus-2",
+        "resistance-plus-1"
+    ],
+    "passive_c": [
+        "threaten-def-3",
+        "threaten-def-2",
+        "threaten-def-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 15,
+            "atk": 9,
+            "spd": 9,
+            "def": 5,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 16,
+            "atk": 9,
+            "spd": 9,
+            "def": 6,
+            "res": 6
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 7,
+            "spd": 7,
+            "def": 4,
+            "res": 7,
+            "total": 30
+        }
+    }
+}

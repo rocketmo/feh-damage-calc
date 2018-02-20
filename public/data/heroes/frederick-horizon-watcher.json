@@ -1,0 +1,46 @@
+{
+    "display": "Frederick, Horizon Watcher",
+    "name": "Frederick",
+    "title": "Horizon Watcher",
+    "id": "frederick-horizon-watcher",
+    "color": "Colorless",
+    "weapon_type": "Dagger",
+    "link": "https://kagerochart.com/hero/frederick-horizon-watcher",
+    "move_type": "Infantry",
+    "weapon": [
+        "seashell-plus",
+        "seashell",
+        "steel-dagger",
+        "iron-dagger"
+    ],
+    "assist": [
+        "ardent-sacrifice"
+    ],
+    "passive_a": [
+        "armored-blow-3",
+        "armored-blow-2",
+        "armored-blow-1"
+    ],
+    "passive_b": [
+        "seal-atk-spd-2",
+        "seal-atk-spd-1",
+        "seal-spd-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 7,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 7,
+            "def": 6,
+            "res": 2,
+            "total": 28
+        }
+    }
+}

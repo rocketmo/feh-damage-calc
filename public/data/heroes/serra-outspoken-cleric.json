@@ -1,0 +1,61 @@
+{
+    "display": "Serra, Outspoken Cleric",
+    "name": "Serra",
+    "title": "Outspoken Cleric",
+    "id": "serra-outspoken-cleric",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/serra-outspoken-cleric",
+    "move_type": "Infantry",
+    "weapon": [
+        "absorb-plus",
+        "absorb",
+        "assault"
+    ],
+    "special": [
+        "swift-winds-balm",
+        "imbue"
+    ],
+    "assist": [
+        "recover-plus",
+        "recover",
+        "mend",
+        "heal"
+    ],
+    "passive_c": [
+        "hone-atk-3",
+        "hone-atk-2",
+        "hone-atk-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 15,
+            "atk": 5,
+            "spd": 8,
+            "def": 3,
+            "res": 8
+        },
+        "star_4": {
+            "hp": 15,
+            "atk": 5,
+            "spd": 9,
+            "def": 3,
+            "res": 9
+        },
+        "star_5": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 9,
+            "def": 4,
+            "res": 9
+        },
+        "growth": {
+            "hp": 4,
+            "atk": 7,
+            "spd": 6,
+            "def": 4,
+            "res": 7,
+            "total": 28
+        }
+    }
+}

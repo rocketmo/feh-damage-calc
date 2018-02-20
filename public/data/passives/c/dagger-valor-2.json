@@ -1,0 +1,9 @@
+{
+    "name": "Dagger Valor 2",
+    "sp": 60,
+    "type": "C",
+    "description": "If unit survives, all dagger users on team get 1.5x SP.(If similar skill effects also used, only highest multiplier applied.)",
+    "icon": "/images/icons/passives/dagger-valor-2.png",
+    "link": "https://kagerochart.com/hero/passives/dagger-valor-2",
+    "id": "dagger-valor-2"
+}

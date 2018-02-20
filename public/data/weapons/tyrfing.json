@@ -1,0 +1,19 @@
+{
+    "name": "Tyrfing",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Grants Def+4 if unit's HP ≤ 50%.",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/tyrfing",
+    "color": "Red",
+    "magical": false,
+    "below_threshold_mod": {
+        "threshold": 0.5,
+        "stat_mod": {
+            "def": 4
+        }
+    },
+    "char_unique": true,
+    "id": "tyrfing"
+}

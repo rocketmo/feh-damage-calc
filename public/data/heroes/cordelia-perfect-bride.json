@@ -1,0 +1,47 @@
+{
+    "display": "Cordelia, Perfect Bride",
+    "name": "Cordelia",
+    "title": "Perfect Bride",
+    "id": "cordelia-perfect-bride",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/cordelia-perfect-bride",
+    "move_type": "Infantry",
+    "weapon": [
+        "cupid-arrow-plus",
+        "cupid-arrow",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "assist": [
+        "rally-attack-speed",
+        "rally-attack"
+    ],
+    "passive_b": [
+        "escape-route-3",
+        "escape-route-2",
+        "escape-route-1"
+    ],
+    "passive_c": [
+        "breath-of-life-3",
+        "breath-of-life-2",
+        "breath-of-life-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 9,
+            "spd": 9,
+            "def": 4,
+            "res": 5
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 8,
+            "spd": 8,
+            "def": 3,
+            "res": 4,
+            "total": 28
+        }
+    }
+}

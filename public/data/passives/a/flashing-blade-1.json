@@ -1,0 +1,13 @@
+{
+    "name": "Flashing Blade 1",
+    "sp": 60,
+    "type": "A",
+    "description": "If unit's Spd - foe's Spd ≥ 5, unit gains Special cooldown charge +1 per attack.(If using other similar skill, only highest value applied.)",
+    "icon": "/images/icons/passives/flashing-blade-1.png",
+    "spec_accel": {
+        "stat": "spd",
+        "adv": 5
+    },
+    "link": "https://kagerochart.com/hero/passives/flashing-blade-1",
+    "id": "flashing-blade-1"
+}

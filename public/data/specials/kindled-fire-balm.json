@@ -1,0 +1,9 @@
+{
+    "name": "Kindled-Fire Balm",
+    "cooldown": 1,
+    "sp": 150,
+    "description": "When healing an ally with a staff, grants all allies Atk+4 for 1 turn.",
+    "link": "https://kagerochart.com/hero/specials/kindled-fire-balm",
+    "weapon_unique": "Staff",
+    "id": "kindled-fire-balm"
+}

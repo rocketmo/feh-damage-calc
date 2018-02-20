@@ -1,0 +1,17 @@
+{
+    "name": "Wo Dao+",
+    "might": 13,
+    "range": 1,
+    "sp": 300,
+    "description": "Grants +10 to damage when Special triggers.",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/wo-dao-plus",
+    "color": "Red",
+    "magical": false,
+    "spec_damage_bonus": 10,
+    "refinable": {
+        "type": "melee",
+        "might": 14
+    },
+    "id": "wo-dao-plus"
+}

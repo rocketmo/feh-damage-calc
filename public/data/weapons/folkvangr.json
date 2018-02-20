@@ -1,0 +1,16 @@
+{
+    "name": "Fólkvangr",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Grants Atk+5 at start of turn if HP ≤ 50%.",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/folkvangr",
+    "color": "Red",
+    "magical": false,
+    "defiant": {
+        "atk": 5
+    },
+    "char_unique": true,
+    "id": "folkvangr"
+}

@@ -1,0 +1,53 @@
+{
+    "display": "Caeda, Talys's Heart",
+    "name": "Caeda",
+    "title": "Talys's Heart",
+    "id": "caeda-talyss-heart",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/caeda-talyss-heart",
+    "move_type": "Flying",
+    "weapon": [
+        "armorslayer-plus",
+        "armorslayer",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "assist": [
+        "rally-speed"
+    ],
+    "passive_a": [
+        "darting-blow-3",
+        "darting-blow-2",
+        "darting-blow-1"
+    ],
+    "passive_c": [
+        "fortify-fliers",
+        "fortify-res-2",
+        "fortify-res-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 16,
+            "atk": 5,
+            "spd": 9,
+            "def": 4,
+            "res": 10
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 9,
+            "def": 5,
+            "res": 10
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 5,
+            "spd": 9,
+            "def": 5,
+            "res": 7,
+            "total": 31
+        }
+    }
+}

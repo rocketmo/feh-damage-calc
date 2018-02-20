@@ -1,0 +1,11 @@
+{
+    "name": "Shine",
+    "might": 9,
+    "range": 2,
+    "sp": 200,
+    "type": "Blue Tome",
+    "color": "Blue",
+    "magical": true,
+    "link": "https://kagerochart.com/hero/weapons/shine",
+    "id": "shine"
+}

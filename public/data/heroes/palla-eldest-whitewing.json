@@ -1,0 +1,61 @@
+{
+    "display": "Palla, Eldest Whitewing",
+    "name": "Palla",
+    "title": "Eldest Whitewing",
+    "id": "palla-eldest-whitewing",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/palla-eldest-whitewing",
+    "move_type": "Flying",
+    "weapon": [
+        "ruby-sword-plus",
+        "ruby-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "moonbow",
+        "new-moon"
+    ],
+    "passive_b": [
+        "wings-of-mercy-3",
+        "wings-of-mercy-2",
+        "wings-of-mercy-1"
+    ],
+    "passive_c": [
+        "goad-fliers",
+        "spur-spd-2",
+        "spur-spd-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 8,
+            "def": 5,
+            "res": 6
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 9,
+            "def": 5,
+            "res": 6
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 9,
+            "def": 6,
+            "res": 7
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 6,
+            "def": 6,
+            "res": 5,
+            "total": 31
+        }
+    }
+}

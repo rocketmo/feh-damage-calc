@@ -1,0 +1,9 @@
+{
+    "description": "Grants Atk +1.",
+    "id": "defense-plus-1",
+    "name": "Defense +1",
+    "stat_mod": {
+        "def": 1
+    },
+    "type": "s"
+}

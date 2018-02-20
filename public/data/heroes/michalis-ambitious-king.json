@@ -1,0 +1,59 @@
+{
+    "display": "Michalis, Ambitious King",
+    "name": "Michalis",
+    "title": "Ambitious King",
+    "id": "michalis-ambitious-king",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/michalis-ambitious-king",
+    "move_type": "Flying",
+    "weapon": [
+        "hauteclere",
+        "silver-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "blazing-thunder",
+        "rising-thunder"
+    ],
+    "passive_a": [
+        "iotes-shield"
+    ],
+    "passive_c": [
+        "threaten-def-3",
+        "threaten-def-2",
+        "threaten-def-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 6,
+            "def": 8,
+            "res": 3
+        },
+        "star_4": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 6,
+            "def": 9,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 7,
+            "def": 9,
+            "res": 4
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 8,
+            "spd": 5,
+            "def": 8,
+            "res": 3,
+            "total": 31
+        }
+    }
+}

@@ -1,0 +1,59 @@
+{
+    "display": "Camus, Sable Knight",
+    "name": "Camus",
+    "title": "Sable Knight",
+    "id": "camus-sable-knight",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/camus-sable-knight",
+    "move_type": "Cavalry",
+    "weapon": [
+        "gradivus",
+        "silver-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "growing-thunder",
+        "rising-thunder"
+    ],
+    "passive_a": [
+        "granis-shield"
+    ],
+    "passive_c": [
+        "goad-cavalry",
+        "spur-atk-2",
+        "spur-atk-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 8,
+            "def": 6,
+            "res": 3
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 9,
+            "def": 6,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 9,
+            "def": 7,
+            "res": 4
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 7,
+            "def": 7,
+            "res": 2,
+            "total": 30
+        }
+    }
+}

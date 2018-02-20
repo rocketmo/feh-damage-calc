@@ -1,0 +1,11 @@
+{
+    "name": "Grani's Shield",
+    "sp": 200,
+    "type": "A",
+    "description": "Neutralizes \"effective against\" bonuses.",
+    "icon": "/images/icons/passives/granis-shield.png",
+    "link": "https://kagerochart.com/hero/passives/granis-shield",
+    "cancel_effective": true,
+    "move_unique": "Cavalry",
+    "id": "granis-shield"
+}

@@ -1,0 +1,54 @@
+{
+    "display": "Athena, Borderland Sword",
+    "name": "Athena",
+    "title": "Borderland Sword",
+    "id": "athena-borderland-sword",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/athena-borderland-sword",
+    "move_type": "Infantry",
+    "weapon": [
+        "wo-dao-plus",
+        "wo-dao",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "moonbow",
+        "new-moon"
+    ],
+    "passive_a": [
+        "sturdy-blow-2",
+        "sturdy-blow-1",
+        "armored-blow-1"
+    ],
+    "passive_c": [
+        "sword-exp-3",
+        "sword-exp-2",
+        "sword-exp-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 10,
+            "def": 8,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 10,
+            "def": 8,
+            "res": 5
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 7,
+            "spd": 9,
+            "def": 5,
+            "res": 5,
+            "total": 31
+        }
+    }
+}

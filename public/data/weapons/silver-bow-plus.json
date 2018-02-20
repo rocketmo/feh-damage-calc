@@ -1,0 +1,19 @@
+{
+    "name": "Silver Bow+",
+    "might": 13,
+    "range": 2,
+    "sp": 300,
+    "description": "Effective against flying units.",
+    "type": "Bow",
+    "link": "https://kagerochart.com/hero/weapons/silver-bow-plus",
+    "color": "Colorless",
+    "magical": false,
+    "move_effective": [
+        "Flying"
+    ],
+    "refinable": {
+        "type": "ranged",
+        "might": 14
+    },
+    "id": "silver-bow-plus"
+}

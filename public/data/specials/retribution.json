@@ -1,0 +1,10 @@
+{
+    "name": "Retribution",
+    "cooldown": 3,
+    "sp": 100,
+    "description": "Grants bonus to damage dealt equal to 30% of damage suffered.",
+    "dmg_suffer_buff": 0.3,
+    "weapon_restrict": "Staff",
+    "link": "https://kagerochart.com/hero/specials/retribution",
+    "id": "retribution"
+}

@@ -1,0 +1,9 @@
+{
+    "description": "Grants Atk +1",
+    "id": "squad-ace-e-1",
+    "name": "Squad Ace E 1",
+    "stat_mod": {
+        "atk": 1
+    },
+    "type": "s"
+}

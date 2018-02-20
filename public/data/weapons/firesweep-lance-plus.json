@@ -1,0 +1,13 @@
+{
+    "name": "Firesweep Lance+",
+    "might": 15,
+    "range": 1,
+    "sp": 300,
+    "description": "Unit and enemies cannot use counterattacks.",
+    "type": "Lance",
+    "link": "https://kagerochart.com/hero/weapons/firesweep-lance-plus",
+    "color": "Blue",
+    "magical": false,
+    "prevent_counter": true,
+    "id": "firesweep-lance-plus"
+}

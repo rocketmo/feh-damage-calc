@@ -1,0 +1,19 @@
+{
+    "name": "Slaying Bow+",
+    "might": 12,
+    "range": 2,
+    "sp": 300,
+    "description": "Effective against flying units. Accelerates Special trigger (cooldown count-1).",
+    "type": "Bow",
+    "link": "https://kagerochart.com/hero/weapons/slaying-bow-plus",
+    "color": "Colorless",
+    "magical": false,
+    "spec_cooldown_mod": -1,
+    "move_effective": [
+        "Flying"
+    ],
+    "refinable": {
+        "type": "melee"
+    },
+    "id": "slaying-bow-plus"
+}

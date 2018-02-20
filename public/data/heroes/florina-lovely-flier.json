@@ -1,0 +1,60 @@
+{
+    "display": "Florina, Lovely Flier",
+    "name": "Florina",
+    "title": "Lovely Flier",
+    "id": "florina-lovely-flier",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/florina-lovely-flier",
+    "move_type": "Flying",
+    "weapon": [
+        "heavy-spear-plus",
+        "heavy-spear",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "ardent-sacrifice"
+    ],
+    "passive_a": [
+        "darting-blow-3",
+        "darting-blow-2",
+        "darting-blow-1"
+    ],
+    "passive_c": [
+        "breath-of-life-3",
+        "breath-of-life-2",
+        "breath-of-life-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 7,
+            "def": 5,
+            "res": 7
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 8,
+            "def": 5,
+            "res": 8
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 8,
+            "def": 6,
+            "res": 8
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 6,
+            "spd": 5,
+            "def": 5,
+            "res": 8,
+            "total": 31
+        }
+    }
+}

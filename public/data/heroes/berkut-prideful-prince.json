@@ -1,0 +1,61 @@
+{
+    "display": "Berkut, Prideful Prince",
+    "name": "Berkut",
+    "title": "Prideful Prince",
+    "id": "berkut-prideful-prince",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/berkut-prideful-prince",
+    "move_type": "Cavalry",
+    "weapon": [
+        "berkuts-lance-plus",
+        "berkuts-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "blazing-flame",
+        "rising-flame"
+    ],
+    "passive_a": [
+        "water-boost-3",
+        "water-boost-2",
+        "water-boost-1"
+    ],
+    "passive_c": [
+        "ward-cavalry",
+        "spur-res-2",
+        "spur-res-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 4,
+            "def": 6,
+            "res": 6
+        },
+        "star_4": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 4,
+            "def": 7,
+            "res": 6
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 5,
+            "def": 7,
+            "res": 7
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 8,
+            "spd": 4,
+            "def": 7,
+            "res": 4,
+            "total": 30
+        }
+    }
+}

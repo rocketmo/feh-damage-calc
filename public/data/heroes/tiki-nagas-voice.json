@@ -1,0 +1,61 @@
+{
+    "display": "Tiki, Naga's Voice",
+    "name": "Tiki",
+    "title": "Naga's Voice",
+    "id": "tiki-nagas-voice",
+    "color": "Red",
+    "weapon_type": "Red Breath",
+    "link": "https://kagerochart.com/hero/tiki-nagas-voice",
+    "move_type": "Infantry",
+    "weapon": [
+        "lightning-breath-plus",
+        "lightning-breath",
+        "fire-breath-plus",
+        "fire-breath"
+    ],
+    "special": [
+        "bonfire",
+        "glowing-ember"
+    ],
+    "passive_a": [
+        "defiant-atk-3",
+        "defiant-atk-2",
+        "defiant-atk-1"
+    ],
+    "passive_c": [
+        "spur-res-3",
+        "spur-res-2",
+        "spur-res-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 5,
+            "def": 8,
+            "res": 6
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 5,
+            "def": 9,
+            "res": 6
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 6,
+            "def": 9,
+            "res": 7
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 9,
+            "spd": 4,
+            "def": 8,
+            "res": 4,
+            "total": 31
+        }
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "display": "Narcian, Wyvern General",
+    "name": "Narcian",
+    "title": "Wyvern General",
+    "id": "narcian-wyvern-general",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/narcian-wyvern-general",
+    "move_type": "Flying",
+    "weapon": [
+        "emerald-axe-plus",
+        "emerald-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "vengeance",
+        "retribution"
+    ],
+    "passive_b": [
+        "lancebreaker-3",
+        "lancebreaker-2",
+        "lancebreaker-1"
+    ],
+    "passive_c": [
+        "savage-blow-3",
+        "savage-blow-2",
+        "savage-blow-1"
+    ],
+    "base_stat": {
+        "star_2": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 5,
+            "def": 7,
+            "res": 5
+        },
+        "star_3": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 6,
+            "def": 7,
+            "res": 6
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 6,
+            "def": 8,
+            "res": 6
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 7,
+            "def": 8,
+            "res": 7
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 6,
+            "spd": 6,
+            "def": 7,
+            "res": 5,
+            "total": 31
+        }
+    }
+}

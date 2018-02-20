@@ -1,0 +1,9 @@
+{
+    "name": "B Tome Exp. 2",
+    "sp": 60,
+    "type": "C",
+    "description": "If unit survives combat, all blue magic users on team get 1.5x EXP.(If similar skill effects also used, only highest multiplier applied.)",
+    "icon": "/images/icons/passives/b-tome-exp-2.png",
+    "link": "https://kagerochart.com/hero/passives/b-tome-exp-2",
+    "id": "b-tome-exp-2"
+}

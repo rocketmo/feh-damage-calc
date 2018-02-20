@@ -1,0 +1,9 @@
+{
+    "name": "Live for Honor",
+    "sp": 100,
+    "type": "B",
+    "description": "If unit survives, get 1.5x normal badges from a Training Tower map.(If similar skill effects also used, only highest multiplier applied.)",
+    "icon": "/images/icons/passives/live-for-honor.png",
+    "link": "https://kagerochart.com/hero/passives/live-for-honor",
+    "id": "live-for-honor"
+}

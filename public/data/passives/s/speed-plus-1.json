@@ -1,0 +1,9 @@
+{
+    "description": "Grants Spd +1.",
+    "id": "speed-plus-1",
+    "name": "Speed +1",
+    "stat_mod": {
+        "spd": 1
+    },
+    "type": "s"
+}

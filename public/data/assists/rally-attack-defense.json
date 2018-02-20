@@ -1,0 +1,8 @@
+{
+    "name": "Rally Attack Defense",
+    "range": 1,
+    "sp": 300,
+    "description": "Grants Atk/Def+3 to an adjacent ally until the end of the turn.",
+    "link": "https://kagerochart.com/hero/assists/rally-attack-defense",
+    "id": "rally-attack-defense"
+}

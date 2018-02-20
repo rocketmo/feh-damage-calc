@@ -1,0 +1,12 @@
+{
+    "name": "Attack +3",
+    "sp": 120,
+    "type": "A",
+    "description": "Grants Atk+3.",
+    "icon": "/images/icons/passives/attack-plus-3.png",
+    "link": "https://kagerochart.com/hero/passives/attack-plus-3",
+    "stat_mod": {
+        "atk": 3
+    },
+    "id": "attack-plus-3"
+}

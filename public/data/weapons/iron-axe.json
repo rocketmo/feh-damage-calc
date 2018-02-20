@@ -1,0 +1,11 @@
+{
+    "name": "Iron Axe",
+    "might": 6,
+    "range": 1,
+    "sp": 50,
+    "type": "Axe",
+    "color": "Green",
+    "magical": false,
+    "link": "https://kagerochart.com/hero/weapons/iron-axe",
+    "id": "iron-axe"
+}

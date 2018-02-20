@@ -1,0 +1,10 @@
+{
+    "name": "Growing Wind",
+    "cooldown": 4,
+    "sp": 300,
+    "description": "Before combat this unit initiates, foes in a wide area near target take damage equal to (unit's Atk minus foe's Def or Res).",
+    "link": "https://kagerochart.com/hero/specials/growing-wind",
+    "before_combat_aoe": true,
+    "weapon_restrict": "Staff",
+    "id": "growing-wind"
+}

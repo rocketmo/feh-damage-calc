@@ -1,0 +1,11 @@
+{
+    "name": "Black Luna",
+    "cooldown": 3,
+    "sp": 500,
+    "description": "Resolve combat as if foe suffered Def/Res-80%.(Skill cannot be inherited.)",
+    "link": "https://kagerochart.com/hero/specials/black-luna",
+    "enemy_def_res_mod": 0.8,
+    "weapon_restrict": "Staff",
+    "char_unique": true,
+    "id": "black-luna"
+}

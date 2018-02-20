@@ -1,0 +1,9 @@
+{
+    "name": "Spd Smoke 3",
+    "sp": 240,
+    "type": "C",
+    "description": "After combat, inflicts Spd-7 on foes within 2 spaces of target through their next actions.",
+    "icon": "/images/icons/passives/spd-smoke-3.png",
+    "link": "https://kagerochart.com/hero/passives/spd-smoke-3",
+    "id": "spd-smoke-3"
+}

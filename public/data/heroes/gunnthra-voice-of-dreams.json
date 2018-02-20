@@ -1,0 +1,50 @@
+{
+    "display": "Gunnthrá, Voice of Dreams",
+    "name": "Gunnthrá",
+    "title": "Voice of Dreams",
+    "id": "gunnthra-voice-of-dreams",
+    "color": "Green",
+    "weapon_type": "Green Tome",
+    "link": "https://kagerochart.com/hero/gunnthra-voice-of-dreams",
+    "move_type": "Cavalry",
+    "weapon": [
+        "blizzard",
+        "rexcalibur",
+        "elwind",
+        "wind"
+    ],
+    "special": [
+        "glacies",
+        "chilling-wind"
+    ],
+    "passive_a": [
+        "fortress-res-3",
+        "fortress-res-2",
+        "fortress-res-1"
+    ],
+    "passive_b": [
+        "chilling-seal"
+    ],
+    "passive_c": [
+        "res-ploy-3",
+        "res-ploy-2",
+        "res-ploy-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 15,
+            "atk": 7,
+            "spd": 9,
+            "def": 6,
+            "res": 6
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 7,
+            "def": 2,
+            "res": 5,
+            "total": 27
+        }
+    }
+}

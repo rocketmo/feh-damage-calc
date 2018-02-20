@@ -1,0 +1,14 @@
+{
+    "name": "G Tomebreaker 1",
+    "sp": 50,
+    "type": "B",
+    "description": "If unit's HP ≥ 90% in combat against a green tome user, unit makes a follow-up attack and foe cannot.",
+    "icon": "/images/icons/passives/g-tomebreaker-1.png",
+    "breaker": {
+        "weapon_type": "Green Tome",
+        "threshold": 0.9
+    },
+    "color_restrict": "Blue",
+    "link": "https://kagerochart.com/hero/passives/g-tomebreaker-1",
+    "id": "g-tomebreaker-1"
+}

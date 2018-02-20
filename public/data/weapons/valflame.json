@@ -1,0 +1,11 @@
+{
+    "name": "Valflame",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "At start of turn, all foes in cardinal directions with Res 1 or more lower than unit suffer Atk/Res-4 until the end of foe's next action.",
+    "type": "Tome",
+    "link": "https://kagerochart.com/hero/weapons/valflame",
+    "id": "valflame",
+    "magical": true
+}

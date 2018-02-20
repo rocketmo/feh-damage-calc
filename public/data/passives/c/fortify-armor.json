@@ -1,0 +1,10 @@
+{
+    "name": "Fortify Armor",
+    "sp": 200,
+    "type": "C",
+    "description": "Grants adjacent armor allies Def/Res+6 through their next actions at the start of each turn.",
+    "icon": "/images/icons/passives/fortify-armor.png",
+    "link": "https://kagerochart.com/hero/passives/fortify-armor",
+    "move_unique": "Armored",
+    "id": "fortify-armor"
+}

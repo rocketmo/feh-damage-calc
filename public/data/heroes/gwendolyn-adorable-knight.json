@@ -1,0 +1,59 @@
+{
+    "display": "Gwendolyn, Adorable Knight",
+    "name": "Gwendolyn",
+    "title": "Adorable Knight",
+    "id": "gwendolyn-adorable-knight",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/gwendolyn-adorable-knight",
+    "move_type": "Armored",
+    "weapon": [
+        "killer-lance-plus",
+        "killer-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "escutcheon",
+        "buckler"
+    ],
+    "passive_b": [
+        "drag-back"
+    ],
+    "passive_c": [
+        "hone-armor",
+        "hone-atk-2",
+        "hone-atk-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 22,
+            "atk": 7,
+            "spd": 4,
+            "def": 11,
+            "res": 5
+        },
+        "star_4": {
+            "hp": 22,
+            "atk": 8,
+            "spd": 4,
+            "def": 12,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 23,
+            "atk": 8,
+            "spd": 5,
+            "def": 12,
+            "res": 6
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 6,
+            "spd": 5,
+            "def": 8,
+            "res": 6,
+            "total": 33
+        }
+    }
+}

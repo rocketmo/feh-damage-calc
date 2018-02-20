@@ -1,0 +1,10 @@
+{
+    "name": "Hone Cavalry",
+    "sp": 200,
+    "type": "C",
+    "description": "Grants adjacent cavalry allies Atk/Spd+6 through their next actions at the start of each turn.",
+    "icon": "/images/icons/passives/hone-cavalry.png",
+    "link": "https://kagerochart.com/hero/passives/hone-cavalry",
+    "move_unique": "Cavalry",
+    "id": "hone-cavalry"
+}

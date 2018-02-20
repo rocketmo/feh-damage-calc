@@ -1,0 +1,36 @@
+{
+    "name": "Thani",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "Grants Res+3. Effective against armored and cavalry foes. Against armored and cavalry foes using bow, dagger, magic, or staff, damage from first attack received by unit during combat reduced by 30%.",
+    "type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/weapons/thani",
+    "color": "Blue",
+    "magical": true,
+    "char_unique": true,
+    "stat_mod": {
+        "res": 3
+    },
+    "move_effective": [
+        "Armored",
+        "Cavalry"
+    ],
+    "first_dmg_reduction": {
+        "move_type": [
+            "Armored",
+            "Cavalry"
+        ],
+        "weapon_type": [
+            "Tome",
+            "Red Tome",
+            "Blue Tome",
+            "Green Tome",
+            "Dagger",
+            "Staff",
+            "Bow"
+        ],
+        "multiplier": 0.7
+    },
+    "id": "thani"
+}

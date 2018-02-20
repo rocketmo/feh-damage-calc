@@ -1,0 +1,67 @@
+{
+    "display": "Matthew, Faithful Spy",
+    "name": "Matthew",
+    "title": "Faithful Spy",
+    "id": "matthew-faithful-spy",
+    "color": "Colorless",
+    "weapon_type": "Dagger",
+    "link": "https://kagerochart.com/hero/matthew-faithful-spy",
+    "move_type": "Infantry",
+    "weapon": [
+        "rogue-dagger-plus",
+        "rogue-dagger",
+        "steel-dagger",
+        "iron-dagger"
+    ],
+    "assist": [
+        "reciprocal-aid"
+    ],
+    "passive_b": [
+        "poison-strike-3",
+        "poison-strike-2",
+        "poison-strike-1"
+    ],
+    "passive_c": [
+        "hone-spd-3",
+        "hone-spd-2",
+        "hone-spd-1"
+    ],
+    "base_stat": {
+        "star_2": {
+            "hp": 15,
+            "atk": 5,
+            "spd": 9,
+            "def": 4,
+            "res": 3
+        },
+        "star_3": {
+            "hp": 16,
+            "atk": 5,
+            "spd": 9,
+            "def": 5,
+            "res": 4
+        },
+        "star_4": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 10,
+            "def": 5,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 10,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 5,
+            "spd": 7,
+            "def": 7,
+            "res": 2,
+            "total": 28
+        }
+    }
+}

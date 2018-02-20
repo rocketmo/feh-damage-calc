@@ -1,0 +1,15 @@
+{
+    "name": "Armorslayer+",
+    "might": 12,
+    "range": 1,
+    "sp": 300,
+    "description": "Effective against armored units.",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/armorslayer-plus",
+    "color": "Red",
+    "magical": false,
+    "move_effective": [
+        "Armored"
+    ],
+    "id": "armorslayer-plus"
+}

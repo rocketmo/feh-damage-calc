@@ -1,0 +1,47 @@
+{
+    "display": "Jakob, Devoted Monster",
+    "name": "Jakob",
+    "title": "Devoted Monster",
+    "id": "jakob-devoted-monster",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/jakob-devoted-monster",
+    "move_type": "Armored",
+    "weapon": [
+        "monstrous-bow-plus",
+        "monstrous-bow",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "special": [
+        "ignis",
+        "glowing-ember"
+    ],
+    "passive_a": [
+        "bracing-blow-2",
+        "bracing-blow-1",
+        "armored-blow-1"
+    ],
+    "passive_b": [
+        "wary-fighter-3",
+        "wary-fighter-2",
+        "wary-fighter-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 20,
+            "atk": 9,
+            "spd": 6,
+            "def": 9,
+            "res": 8
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 8,
+            "spd": 4,
+            "def": 7,
+            "res": 7,
+            "total": 32
+        }
+    }
+}

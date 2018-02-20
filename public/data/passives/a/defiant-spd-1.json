@@ -1,0 +1,12 @@
+{
+    "name": "Defiant Spd 1",
+    "sp": 40,
+    "type": "A",
+    "description": "Grants Spd+3 at start of turn if unit's HP ≤ 50%.",
+    "icon": "/images/icons/passives/defiant-spd-1.png",
+    "defiant": {
+        "spd": 3
+    },
+    "link": "https://kagerochart.com/hero/passives/defiant-spd-1",
+    "id": "defiant-spd-1"
+}

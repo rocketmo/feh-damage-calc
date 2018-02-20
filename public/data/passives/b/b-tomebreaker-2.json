@@ -1,0 +1,14 @@
+{
+    "name": "B Tomebreaker 2",
+    "sp": 100,
+    "type": "B",
+    "description": "If unit's HP ≥ 70% in combat against a blue tome user, unit makes a follow-up attack and foe cannot.",
+    "icon": "/images/icons/passives/b-tomebreaker-2.png",
+    "breaker": {
+        "weapon_type": "Blue Tome",
+        "threshold": 0.7
+    },
+    "color_restrict": "Red",
+    "link": "https://kagerochart.com/hero/passives/b-tomebreaker-2",
+    "id": "b-tomebreaker-2"
+}

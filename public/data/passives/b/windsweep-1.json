@@ -1,0 +1,21 @@
+{
+    "name": "Windsweep 1",
+    "sp": 60,
+    "type": "B",
+    "description": "If unit initiates attack, no follow-up occurs. Against foe with sword, lance, axe, bow, or dagger, if unit’s Spd - foe’s Spd ≥ 5, foe can’t counterattack.",
+    "icon": "/images/icons/passives/windsweep-1.png",
+    "sweep": {
+        "weapon_type": {
+            "Sword": true,
+            "Lance": true,
+            "Axe": true,
+            "Bow": true,
+            "Dagger": true
+        },
+        "spd_adv": 5
+    },
+    "no_follow": true,
+    "weapon_restrict": "Staff",
+    "link": "https://kagerochart.com/hero/passives/windsweep-1",
+    "id": "windsweep-1"
+}

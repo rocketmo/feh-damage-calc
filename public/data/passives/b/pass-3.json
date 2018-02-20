@@ -1,0 +1,9 @@
+{
+    "name": "Pass 3",
+    "sp": 200,
+    "type": "B",
+    "description": "Units can pass through foes if its own HP ≥ 25%.",
+    "icon": "/images/icons/passives/pass-3.png",
+    "link": "https://kagerochart.com/hero/passives/pass-3",
+    "id": "pass-3"
+}

@@ -1,0 +1,47 @@
+{
+    "display": "Lissa, Pure Joy",
+    "name": "Lissa",
+    "title": "Pure Joy",
+    "id": "lissa-pure-joy",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/lissa-pure-joy",
+    "move_type": "Armored",
+    "weapon": [
+        "handbell-plus",
+        "handbell",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "bonfire",
+        "glowing-ember"
+    ],
+    "passive_b": [
+        "bold-fighter-3",
+        "bold-fighter-2",
+        "bold-fighter-1"
+    ],
+    "passive_c": [
+        "fortify-armor",
+        "fortify-def-2",
+        "fortify-def-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 21,
+            "atk": 9,
+            "spd": 8,
+            "def": 9,
+            "res": 8
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 6,
+            "def": 8,
+            "res": 8,
+            "total": 35
+        }
+    }
+}

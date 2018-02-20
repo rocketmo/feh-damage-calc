@@ -1,0 +1,6 @@
+{
+    "description": "Grants adjacent allies Res+3 through their next actions at the start of each turn.",
+    "id": "fortify-res-2",
+    "name": "Fortify Res 2",
+    "type": "s"
+}

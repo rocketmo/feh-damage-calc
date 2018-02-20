@@ -1,0 +1,23 @@
+{
+    "name": "Smoke Dagger+",
+    "might": 9,
+    "range": 2,
+    "sp": 300,
+    "description": "After combat, inflict Def/Res-4 on foes within 2 spaces of target through their next actions.",
+    "type": "Dagger",
+    "link": "https://kagerochart.com/hero/weapons/smoke-dagger-plus",
+    "color": "Colorless",
+    "magical": false,
+    "refinable": {
+        "type": "ranged",
+        "might": 12,
+        "description": "After combat, inflicts Atk/Spd/Def/Res-6 on target and foes within 2 spaces of target through their next actions.",
+        "seal": {
+            "atk": -6,
+            "spd": -6,
+            "def": -6,
+            "res": -6
+        }
+    },
+    "id": "smoke-dagger-plus"
+}

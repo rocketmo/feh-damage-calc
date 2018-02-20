@@ -1,0 +1,9 @@
+{
+    "description": "Grants Res +3",
+    "id": "resistance-plus-3",
+    "name": "Resistance +3",
+    "stat_mod": {
+        "res": 3
+    },
+    "type": "s"
+}

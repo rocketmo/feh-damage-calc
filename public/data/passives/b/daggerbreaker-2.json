@@ -1,0 +1,13 @@
+{
+    "name": "Daggerbreaker 2",
+    "sp": 100,
+    "type": "B",
+    "description": "If unit's HP ≥ 70% in combat against a dagger user, unit makes a follow-up attack and foe cannot.",
+    "icon": "/images/icons/passives/daggerbreaker-2.png",
+    "breaker": {
+        "weapon_type": "Dagger",
+        "threshold": 0.7
+    },
+    "link": "https://kagerochart.com/hero/passives/daggerbreaker-2",
+    "id": "daggerbreaker-2"
+}

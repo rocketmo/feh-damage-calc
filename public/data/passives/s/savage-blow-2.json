@@ -1,0 +1,6 @@
+{
+    "description": "If unit initiates attack, foes within 2 spaces of target take 5 damage after combat.",
+    "id": "savage-blow-2",
+    "name": "Savage Blow 2",
+    "type": "s"
+}

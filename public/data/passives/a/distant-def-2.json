@@ -1,0 +1,23 @@
+{
+    "name": "Distant Def 2",
+    "sp": 120,
+    "type": "A",
+    "description": "If unit is attacked by foe using bow, daggers, magic, or staff, unit receives Def/Res+4 during combat.",
+    "icon": "/images/icons/passives/distant-def-2.png",
+    "type_defend_mod": {
+        "weapon_type": {
+            "Bow": true,
+            "Dagger": true,
+            "Staff": true,
+            "Blue Tome": true,
+            "Green Tome": true,
+            "Red Tome": true
+        },
+        "stat_mod": {
+            "def": 4,
+            "res": 4
+        }
+    },
+    "link": "https://kagerochart.com/hero/passives/distant-def-2",
+    "id": "distant-def-2"
+}

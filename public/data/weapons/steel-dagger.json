@@ -1,0 +1,16 @@
+{
+    "name": "Steel Dagger",
+    "might": 5,
+    "range": 2,
+    "sp": 100,
+    "description": "After combat, inflict Def/Res-3 on foe through their next actions.",
+    "type": "Dagger",
+    "color": "Colorless",
+    "magical": false,
+    "seal": {
+        "def": -3,
+        "res": -3
+    },
+    "link": "https://kagerochart.com/hero/weapons/steel-dagger",
+    "id": "steel-dagger"
+}

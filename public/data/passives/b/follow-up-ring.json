@@ -1,0 +1,13 @@
+{
+    "name": "Follow-Up Ring",
+    "sp": 200,
+    "type": "B",
+    "description": "Unit makes a guaranteed follow-up attack when unit's HP ≥ 50% at start of combat.(Skill cannot be inherited.)",
+    "icon": "/images/icons/passives/follow-up-ring.png",
+    "link": "https://kagerochart.com/hero/passives/follow-up-ring",
+    "bonus_follow_up": {
+        "trigger": "healthy",
+        "threshold": 0.5
+    },
+    "id": "follow-up-ring"
+}

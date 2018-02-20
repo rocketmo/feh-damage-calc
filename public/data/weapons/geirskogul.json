@@ -1,0 +1,16 @@
+{
+    "name": "Geirskögul",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Grants Def+3. Grants allies with sword, lance, axe, bow, or dagger within 2 spaces Atk/Spd+3 during combat.",
+    "type": "Lance",
+    "link": "https://kagerochart.com/hero/weapons/geirskogul",
+    "color": "Blue",
+    "magical": false,
+    "stat_mod": {
+        "def": 3
+    },
+    "char_unique": true,
+    "id": "geirskogul"
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Physic",
+    "range": 2,
+    "sp": 200,
+    "description": "Restores 8 HP. Rng: 2.",
+    "weapon_unique": "Staff",
+    "link": "https://kagerochart.com/hero/assists/physic",
+    "id": "physic"
+}

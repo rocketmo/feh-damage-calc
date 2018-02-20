@@ -1,0 +1,16 @@
+{
+    "name": "Fensalir",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Inflicts Atk-4 on foes within 2 spaces through their next actions at the start of each turn.",
+    "type": "Lance",
+    "link": "https://kagerochart.com/hero/weapons/fensalir",
+    "color": "Blue",
+    "magical": false,
+    "threaten": {
+        "atk": -4
+    },
+    "char_unique": true,
+    "id": "fensalir"
+}

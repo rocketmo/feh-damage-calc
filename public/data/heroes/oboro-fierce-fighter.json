@@ -1,0 +1,60 @@
+{
+    "display": "Oboro, Fierce Fighter",
+    "name": "Oboro",
+    "title": "Fierce Fighter",
+    "id": "oboro-fierce-fighter",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/oboro-fierce-fighter",
+    "move_type": "Infantry",
+    "weapon": [
+        "heavy-spear-plus",
+        "heavy-spear",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "rally-defense"
+    ],
+    "passive_b": [
+        "seal-def-3",
+        "seal-def-2",
+        "seal-def-1"
+    ],
+    "passive_c": [
+        "threaten-res-3",
+        "threaten-res-2",
+        "threaten-res-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 6,
+            "def": 8,
+            "res": 4
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 6,
+            "def": 9,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 7,
+            "def": 9,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 5,
+            "def": 8,
+            "res": 5,
+            "total": 31
+        }
+    }
+}

@@ -1,0 +1,61 @@
+{
+    "display": "Laslow, Dancing Duelist",
+    "name": "Laslow",
+    "title": "Dancing Duelist",
+    "id": "laslow-dancing-duelist",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/laslow-dancing-duelist",
+    "move_type": "Infantry",
+    "weapon": [
+        "silver-sword-plus",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "noontime",
+        "daylight"
+    ],
+    "passive_b": [
+        "axebreaker-3",
+        "axebreaker-2",
+        "axebreaker-1"
+    ],
+    "passive_c": [
+        "hone-spd-3",
+        "hone-spd-2",
+        "hone-spd-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 6,
+            "def": 5,
+            "res": 4
+        },
+        "star_4": {
+            "hp": 19,
+            "atk": 9,
+            "spd": 7,
+            "def": 5,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 20,
+            "atk": 9,
+            "spd": 7,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 8,
+            "spd": 5,
+            "def": 7,
+            "res": 4,
+            "total": 31
+        }
+    }
+}
