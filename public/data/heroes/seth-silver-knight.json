@@ -1,0 +1,53 @@
+{
+    "display": "Seth, Silver Knight",
+    "name": "Seth",
+    "title": "Silver Knight",
+    "id": "seth-silver-knight",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/seth-silver-knight",
+    "move_type": "Cavalry",
+    "weapon": [
+        "ruby-sword-plus",
+        "ruby-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "assist": [
+        "swap"
+    ],
+    "passive_a": [
+        "fortress-def-3",
+        "fortress-def-2",
+        "fortress-def-1"
+    ],
+    "passive_b": [
+        "seal-atk-def-2",
+        "seal-atk-def-1",
+        "seal-atk-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 6,
+            "def": 8,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 7,
+            "def": 8,
+            "res": 5
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 7,
+            "spd": 7,
+            "def": 7,
+            "res": 4,
+            "total": 30
+        }
+    }
+}

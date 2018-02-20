@@ -1,0 +1,9 @@
+{
+    "name": "Breath of Life 3",
+    "sp": 200,
+    "type": "C",
+    "description": "If unit initiates attack, adjacent allies recover 7 HP after combat.",
+    "icon": "/images/icons/passives/breath-of-life-3.png",
+    "link": "https://kagerochart.com/hero/passives/breath-of-life-3",
+    "id": "breath-of-life-3"
+}

@@ -1,0 +1,46 @@
+{
+    "display": "Charlotte, Money Maiden",
+    "name": "Charlotte",
+    "title": "Money Maiden",
+    "id": "charlotte-money-maiden",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/charlotte-money-maiden",
+    "move_type": "Infantry",
+    "weapon": [
+        "first-bite-plus",
+        "first-bite",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "smite"
+    ],
+    "passive_a": [
+        "wind-boost-3",
+        "wind-boost-2",
+        "wind-boost-1"
+    ],
+    "passive_c": [
+        "threaten-atk-3",
+        "threaten-atk-2",
+        "threaten-atk-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 20,
+            "atk": 10,
+            "spd": 8,
+            "def": 5,
+            "res": 4
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 8,
+            "spd": 7,
+            "def": 5,
+            "res": 3,
+            "total": 31
+        }
+    }
+}

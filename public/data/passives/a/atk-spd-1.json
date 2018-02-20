@@ -1,0 +1,13 @@
+{
+    "name": "Atk Spd 1",
+    "sp": 80,
+    "type": "A",
+    "description": "Grants Atk/Spd+1.",
+    "icon": "/images/icons/passives/atk-spd-1.png",
+    "stat_mod": {
+        "spd": 1,
+        "atk": 1
+    },
+    "link": "https://kagerochart.com/hero/passives/atk-spd-1",
+    "id": "atk-spd-1"
+}

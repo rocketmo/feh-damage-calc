@@ -1,0 +1,46 @@
+{
+    "display": "Sanaki, Begnion's Apostle",
+    "name": "Sanaki",
+    "title": "Begnion's Apostle",
+    "id": "sanaki-begnions-apostle",
+    "color": "Red",
+    "weapon_type": "Red Tome",
+    "link": "https://kagerochart.com/hero/sanaki-begnions-apostle",
+    "move_type": "Infantry",
+    "weapon": [
+        "cymbeline",
+        "bolganone",
+        "elfire",
+        "fire"
+    ],
+    "assist": [
+        "harsh-command"
+    ],
+    "passive_a": [
+        "triangle-adept-3",
+        "triangle-adept-2",
+        "triangle-adept-1"
+    ],
+    "passive_c": [
+        "hone-atk-3",
+        "hone-atk-2",
+        "hone-atk-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 9,
+            "spd": 7,
+            "def": 4,
+            "res": 8
+        },
+        "growth": {
+            "hp": 4,
+            "atk": 9,
+            "spd": 5,
+            "def": 2,
+            "res": 8,
+            "total": 28
+        }
+    }
+}

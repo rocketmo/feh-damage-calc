@@ -1,0 +1,47 @@
+{
+    "display": "Corrin, Novice Vacationer",
+    "name": "Corrin",
+    "title": "Novice Vacationer",
+    "id": "corrin-novice-vacationer",
+    "color": "Blue",
+    "weapon_type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/corrin-novice-vacationer",
+    "move_type": "Flying",
+    "weapon": [
+        "sealife-tome-plus",
+        "sealife-tome",
+        "elthunder",
+        "thunder"
+    ],
+    "special": [
+        "dragon-fang",
+        "dragon-gaze"
+    ],
+    "passive_a": [
+        "swift-strike-2",
+        "swift-strike-1",
+        "darting-blow-1"
+    ],
+    "passive_c": [
+        "fortify-fliers",
+        "fortify-res-2",
+        "fortify-res-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 8,
+            "def": 5,
+            "res": 7
+        },
+        "growth": {
+            "hp": 4,
+            "atk": 7,
+            "spd": 8,
+            "def": 4,
+            "res": 5,
+            "total": 28
+        }
+    }
+}

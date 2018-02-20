@@ -1,0 +1,45 @@
+{
+    "display": "Eldigan, Lionheart",
+    "name": "Eldigan",
+    "title": "Lionheart",
+    "id": "eldigan-lionheart",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/eldigan-lionheart",
+    "move_type": "Cavalry",
+    "weapon": [
+        "mystletainn",
+        "killing-edge",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "growing-light",
+        "rising-light"
+    ],
+    "passive_a": [
+        "fury-3",
+        "fury-2",
+        "fury-1"
+    ],
+    "passive_b": [
+        "lunge"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 5,
+            "def": 8,
+            "res": 6
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 7,
+            "spd": 5,
+            "def": 8,
+            "res": 2,
+            "total": 30
+        }
+    }
+}

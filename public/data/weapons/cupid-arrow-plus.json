@@ -1,0 +1,19 @@
+{
+    "name": "Cupid Arrow+",
+    "might": 12,
+    "range": 2,
+    "sp": 300,
+    "description": "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates. Effective against fliers.",
+    "type": "Bow",
+    "link": "https://kagerochart.com/hero/weapons/cupid-arrow-plus",
+    "color": "Colorless",
+    "magical": false,
+    "move_effective": [
+        "Flying"
+    ],
+    "refinable": {
+        "type": "ranged",
+        "description": "Grants allies withing 2 spaces Def/Res+5 through their next actions after any combat this unit initiates. Effective against fliers."
+    },
+    "id": "cupid-arrow-plus"
+}

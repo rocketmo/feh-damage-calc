@@ -1,0 +1,16 @@
+{
+    "name": "First Bite+",
+    "might": 14,
+    "range": 1,
+    "sp": 300,
+    "description": "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates.",
+    "type": "Lance",
+    "link": "https://kagerochart.com/hero/weapons/first-bite-plus",
+    "color": "Blue",
+    "magical": false,
+    "refinable": {
+        "type": "melee",
+        "description": "Grants allies withing 2 spaces Def/Res+5 through their next actions after any combat this unit initiates."
+    },
+    "id": "first-bite-plus"
+}

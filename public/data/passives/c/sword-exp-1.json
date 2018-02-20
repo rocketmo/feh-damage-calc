@@ -1,0 +1,9 @@
+{
+    "name": "Sword Exp. 1",
+    "sp": 30,
+    "type": "C",
+    "description": "If unit survives, unit gets 1.5x EXP.(If similar skill effects also used, only highest multiplier applied.)",
+    "icon": "/images/icons/passives/sword-exp-1.png",
+    "link": "https://kagerochart.com/hero/passives/sword-exp-1",
+    "id": "sword-exp-1"
+}

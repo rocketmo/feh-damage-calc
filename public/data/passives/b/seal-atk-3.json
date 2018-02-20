@@ -1,0 +1,13 @@
+{
+    "name": "Seal Atk 3",
+    "sp": 160,
+    "type": "B",
+    "description": "After combat, foe suffers Atk-7 through its next action.",
+    "icon": "/images/icons/passives/seal-atk-3.png",
+    "link": "https://kagerochart.com/hero/passives/seal-atk-3",
+    "seal": {
+        "atk": -7
+    },
+    "weapon_restrict": "Staff",
+    "id": "seal-atk-3"
+}

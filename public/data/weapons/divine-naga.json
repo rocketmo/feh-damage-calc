@@ -1,0 +1,21 @@
+{
+    "name": "Divine Naga",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "Effective against dragons. Foe's bonuses (from skills like Fortify, Rally, etc.) are nullified during combat.",
+    "type": "Tome",
+    "link": "https://kagerochart.com/hero/weapons/divine-naga",
+    "weapon_effective": [
+        "Breath",
+        "Red Breath",
+        "Green Breath",
+        "Blue Breath"
+    ],
+    "char_unique": true,
+    "nullify_enemy_bonuses": {
+        "all": true
+    },
+    "id": "divine-naga",
+    "magical": true
+}

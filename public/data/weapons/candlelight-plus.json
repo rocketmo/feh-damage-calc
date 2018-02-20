@@ -1,0 +1,16 @@
+{
+    "name": "Candlelight+",
+    "might": 11,
+    "range": 2,
+    "sp": 300,
+    "description": "After combat, if unit attacked, inflicts status on target and foes within 2 spaces of target preventing counterattacks through their next actions.",
+    "type": "Staff",
+    "link": "https://kagerochart.com/hero/weapons/candlelight-plus",
+    "color": "Colorless",
+    "magical": true,
+    "initiate_cancel_counter": true,
+    "refinable": {
+        "type": "staff"
+    },
+    "id": "candlelight-plus"
+}

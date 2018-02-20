@@ -1,0 +1,9 @@
+{
+    "name": "Shield Pulse 1",
+    "sp": 60,
+    "type": "B",
+    "description": "If unit's Special triggers based on a foe's attack, Special cooldown count-1 at start of turn 1.",
+    "icon": "/images/icons/passives/shield-pulse-1.png",
+    "link": "https://kagerochart.com/hero/passives/shield-pulse-1",
+    "id": "shield-pulse-1"
+}

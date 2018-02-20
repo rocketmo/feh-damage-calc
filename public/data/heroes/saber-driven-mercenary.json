@@ -1,0 +1,47 @@
+{
+    "display": "Saber, Driven Mercenary",
+    "name": "Saber",
+    "title": "Driven Mercenary",
+    "id": "saber-driven-mercenary",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/saber-driven-mercenary",
+    "move_type": "Infantry",
+    "weapon": [
+        "slaying-edge-plus",
+        "slaying-edge",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "aegis",
+        "holy-vestments"
+    ],
+    "passive_a": [
+        "hp-spd-2",
+        "hp-spd-1",
+        "hp-plus-3"
+    ],
+    "passive_b": [
+        "shield-pulse-3",
+        "shield-pulse-2",
+        "shield-pulse-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 9,
+            "def": 8,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 7,
+            "def": 7,
+            "res": 4,
+            "total": 31
+        }
+    }
+}

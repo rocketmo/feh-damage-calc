@@ -1,0 +1,75 @@
+{
+    "display": "Wrys, Kindly Priest",
+    "name": "Wrys",
+    "title": "Kindly Priest",
+    "id": "wrys-kindly-priest",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/wrys-kindly-priest",
+    "move_type": "Infantry",
+    "weapon": [
+        "slow-plus",
+        "slow",
+        "assault"
+    ],
+    "special": [
+        "heavenly-light",
+        "imbue"
+    ],
+    "assist": [
+        "rehabilitate-plus",
+        "rehabilitate",
+        "reconcile",
+        "heal"
+    ],
+    "passive_b": [
+        "live-to-serve-3",
+        "live-to-serve-2",
+        "live-to-serve-1"
+    ],
+    "base_stat": {
+        "star_1": {
+            "hp": 16,
+            "atk": 3,
+            "spd": 4,
+            "def": 3,
+            "res": 8
+        },
+        "star_2": {
+            "hp": 16,
+            "atk": 3,
+            "spd": 5,
+            "def": 3,
+            "res": 9
+        },
+        "star_3": {
+            "hp": 17,
+            "atk": 4,
+            "spd": 5,
+            "def": 4,
+            "res": 9
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 4,
+            "spd": 6,
+            "def": 4,
+            "res": 10
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 5,
+            "spd": 6,
+            "def": 5,
+            "res": 10
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 5,
+            "spd": 4,
+            "def": 4,
+            "res": 8,
+            "total": 28
+        }
+    }
+}

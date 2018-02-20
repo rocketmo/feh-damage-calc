@@ -1,0 +1,51 @@
+{
+    "display": "Zelgius, Jet-Black General",
+    "name": "Zelgius",
+    "title": "Jet-Black General",
+    "id": "zelgius-jet-black-general",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/zelgius-jet-black-general",
+    "move_type": "Armored",
+    "weapon": [
+        "alondite",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "black-luna",
+        "luna",
+        "new-moon"
+    ],
+    "passive_a": [
+        "fierce-stance-3",
+        "fierce-stance-2",
+        "fierce-stance-1"
+    ],
+    "passive_b": [
+        "warp-powder"
+    ],
+    "passive_c": [
+        "panic-ploy-3",
+        "panic-ploy-2",
+        "panic-ploy-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 22,
+            "atk": 10,
+            "spd": 7,
+            "def": 10,
+            "res": 6
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 8,
+            "spd": 8,
+            "def": 9,
+            "res": 3,
+            "total": 35
+        }
+    }
+}

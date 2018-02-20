@@ -1,0 +1,61 @@
+{
+    "display": "Lon'qu, Solitary Blade",
+    "name": "Lon'qu",
+    "title": "Solitary Blade",
+    "id": "lonqu-solitary-blade",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/lonqu-solitary-blade",
+    "move_type": "Infantry",
+    "weapon": [
+        "killing-edge-plus",
+        "killing-edge",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "glimmer",
+        "night-sky"
+    ],
+    "passive_a": [
+        "speed-plus-3",
+        "speed-plus-2",
+        "speed-plus-1"
+    ],
+    "passive_b": [
+        "vantage-3",
+        "vantage-2",
+        "vantage-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 18,
+            "atk": 6,
+            "spd": 10,
+            "def": 4,
+            "res": 4
+        },
+        "star_4": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 11,
+            "def": 4,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 7,
+            "spd": 11,
+            "def": 5,
+            "res": 5
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 6,
+            "spd": 9,
+            "def": 4,
+            "res": 4,
+            "total": 31
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "name": "Divine Tyrfing",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Grants Res+3. If in combat against foe using magic, unit receives 50% less damage from the first attack.",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/divine-tyrfing",
+    "stat_mod": {
+        "res": 3
+    },
+    "first_dmg_reduction": {
+        "weapon_type": [
+            "Tome",
+            "Red Tome",
+            "Blue Tome",
+            "Green Tome"
+        ],
+        "multiplier": 0.5
+    },
+    "id": "divine-tyrfing",
+    "char_unique": true
+}

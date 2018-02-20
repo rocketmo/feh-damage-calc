@@ -1,0 +1,13 @@
+{
+    "name": "Seal Def 3",
+    "sp": 160,
+    "type": "B",
+    "description": "After combat, foe suffers Def-7 through its next action.",
+    "icon": "/images/icons/passives/seal-def-3.png",
+    "link": "https://kagerochart.com/hero/passives/seal-def-3",
+    "seal": {
+        "def": -7
+    },
+    "weapon_restrict": "Staff",
+    "id": "seal-def-3"
+}

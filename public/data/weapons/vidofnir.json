@@ -1,0 +1,24 @@
+{
+    "name": "Vidofnir",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "If unit is attacked by foe using sword, axe or lance, unit receives Def+7 during combat.",
+    "type": "Lance",
+    "link": "https://kagerochart.com/hero/weapons/vidofnir",
+    "color": "Blue",
+    "magical": false,
+    "type_defend_mod": {
+        "weapon_type": {
+            "Sword": true,
+            "Axe": true,
+            "Lance": true,
+            "Dragonstone": true
+        },
+        "stat_mod": {
+            "def": 7
+        }
+    },
+    "char_unique": true,
+    "id": "vidofnir"
+}

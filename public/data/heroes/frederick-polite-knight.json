@@ -1,0 +1,61 @@
+{
+    "display": "Frederick, Polite Knight",
+    "name": "Frederick",
+    "title": "Polite Knight",
+    "id": "frederick-polite-knight",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/frederick-polite-knight",
+    "move_type": "Cavalry",
+    "weapon": [
+        "hammer-plus",
+        "hammer",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "luna",
+        "new-moon"
+    ],
+    "passive_b": [
+        "wings-of-mercy-3",
+        "wings-of-mercy-2",
+        "wings-of-mercy-1"
+    ],
+    "passive_c": [
+        "fortify-def-3",
+        "fortify-def-2",
+        "fortify-def-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 5,
+            "def": 7,
+            "res": 3
+        },
+        "star_4": {
+            "hp": 18,
+            "atk": 9,
+            "spd": 5,
+            "def": 8,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 9,
+            "spd": 6,
+            "def": 8,
+            "res": 4
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 8,
+            "spd": 5,
+            "def": 9,
+            "res": 1,
+            "total": 30
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Sing",
+    "range": 1,
+    "sp": 150,
+    "description": "Enables target to take another action.Cannot be used on units with Sing or Dance.",
+    "link": "https://kagerochart.com/hero/assists/sing",
+    "char_unique": true,
+    "id": "sing"
+}

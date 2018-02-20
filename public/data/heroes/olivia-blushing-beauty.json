@@ -1,0 +1,72 @@
+{
+    "display": "Olivia, Blushing Beauty",
+    "name": "Olivia",
+    "title": "Blushing Beauty",
+    "id": "olivia-blushing-beauty",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/olivia-blushing-beauty",
+    "move_type": "Infantry",
+    "weapon": [
+        "silver-sword-plus",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "assist": [
+        "dance"
+    ],
+    "passive_b": [
+        "knock-back"
+    ],
+    "passive_c": [
+        "hone-atk-3",
+        "hone-atk-2",
+        "hone-atk-1"
+    ],
+    "base_stat": {
+        "star_1": {
+            "hp": 15,
+            "atk": 4,
+            "spd": 5,
+            "def": 3,
+            "res": 2
+        },
+        "star_2": {
+            "hp": 15,
+            "atk": 5,
+            "spd": 6,
+            "def": 3,
+            "res": 2
+        },
+        "star_3": {
+            "hp": 16,
+            "atk": 5,
+            "spd": 6,
+            "def": 4,
+            "res": 3
+        },
+        "star_4": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 7,
+            "def": 4,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 7,
+            "def": 5,
+            "res": 4
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 6,
+            "spd": 8,
+            "def": 6,
+            "res": 6,
+            "total": 31
+        }
+    }
+}

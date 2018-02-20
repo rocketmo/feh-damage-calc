@@ -1,0 +1,25 @@
+{
+    "name": "Deathly Dagger",
+    "might": 11,
+    "range": 2,
+    "sp": 400,
+    "description": "After combat, inflict Def/Res-7 on foe through their next actions. If unit initiated combat, inflict 7 damage to foe after battle.",
+    "type": "Dagger",
+    "link": "https://kagerochart.com/hero/weapons/deathly-dagger",
+    "color": "Colorless",
+    "magical": false,
+    "seal": {
+        "def": -7,
+        "res": -7
+    },
+    "initiate_poison": 7,
+    "char_unique": true,
+    "refinable": {
+        "type": "ranged",
+        "initiate_poison": 10,
+        "might": 14,
+        "special": "Deathly Dagger",
+        "description": "After combat, inflict Def/Res-7 on foe through their next actions. If unit initiated combat, inflict 10 damage to target and foes within 2 spaces of target after battle."
+    },
+    "id": "deathly-dagger"
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Nidhogg",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "Effective against flying units. During combat, unit's Atk/Spd/Def/Res boosted by number of adjacent allies x 2.",
+    "type": "Bow",
+    "link": "https://kagerochart.com/hero/weapons/nidhogg",
+    "color": "Colorless",
+    "magical": false,
+    "adjacent_ally_bonus": true,
+    "move_effective": [
+        "Flying"
+    ],
+    "char_unique": true,
+    "id": "nidhogg"
+}

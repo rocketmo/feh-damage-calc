@@ -1,0 +1,12 @@
+{
+    "name": "Darting Blow 1",
+    "sp": 50,
+    "type": "A",
+    "description": "Grants Spd+2 during combat if unit initiates the attack.",
+    "icon": "/images/icons/passives/darting-blow-1.png",
+    "initiate_mod": {
+        "spd": 2
+    },
+    "link": "https://kagerochart.com/hero/passives/darting-blow-1",
+    "id": "darting-blow-1"
+}

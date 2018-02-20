@@ -1,0 +1,10 @@
+{
+    "name": "Ward Fliers",
+    "sp": 200,
+    "type": "C",
+    "description": "Grants flying allies within 2 spaces Def/Res+4 during combat.",
+    "icon": "/images/icons/passives/ward-fliers.png",
+    "link": "https://kagerochart.com/hero/passives/ward-fliers",
+    "move_unique": "Flying",
+    "id": "ward-fliers"
+}

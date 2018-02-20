@@ -1,0 +1,61 @@
+{
+    "display": "Legion, Masked Maniac",
+    "name": "Legion",
+    "title": "Masked Maniac",
+    "id": "legion-masked-maniac",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/legion-masked-maniac",
+    "move_type": "Infantry",
+    "weapon": [
+        "legions-axe-plus",
+        "legions-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "reprisal",
+        "retribution"
+    ],
+    "passive_a": [
+        "fury-3",
+        "fury-2",
+        "fury-1"
+    ],
+    "passive_b": [
+        "obstruct-3",
+        "obstruct-2",
+        "obstruct-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 19,
+            "atk": 9,
+            "spd": 8,
+            "def": 4,
+            "res": 2
+        },
+        "star_4": {
+            "hp": 19,
+            "atk": 10,
+            "spd": 9,
+            "def": 4,
+            "res": 2
+        },
+        "star_5": {
+            "hp": 20,
+            "atk": 10,
+            "spd": 9,
+            "def": 5,
+            "res": 3
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 8,
+            "spd": 8,
+            "def": 4,
+            "res": 3,
+            "total": 31
+        }
+    }
+}

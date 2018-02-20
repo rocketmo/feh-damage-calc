@@ -1,0 +1,9 @@
+{
+    "name": "Geyser Dance 2",
+    "sp": 240,
+    "type": "B",
+    "description": "If Sing or Dance is used, target also granted Def/Res+4.",
+    "icon": "/images/icons/passives/geyser-dance-2.png",
+    "link": "https://kagerochart.com/hero/passives/geyser-dance-2",
+    "id": "geyser-dance-2"
+}

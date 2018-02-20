@@ -1,0 +1,9 @@
+{
+    "name": "Blaze Dance 3",
+    "sp": 200,
+    "type": "B",
+    "description": "If Sing or Dance is used, target also granted Atk+4.",
+    "icon": "/images/icons/passives/blaze-dance-3.png",
+    "link": "https://kagerochart.com/hero/passives/blaze-dance-3",
+    "id": "blaze-dance-3"
+}

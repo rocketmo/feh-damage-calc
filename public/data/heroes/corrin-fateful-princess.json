@@ -1,0 +1,61 @@
+{
+    "display": "Corrin, Fateful Princess",
+    "name": "Corrin",
+    "title": "Fateful Princess",
+    "id": "corrin-fateful-princess",
+    "color": "Blue",
+    "weapon_type": "Blue Breath",
+    "link": "https://kagerochart.com/hero/corrin-fateful-princess",
+    "move_type": "Infantry",
+    "weapon": [
+        "dark-breath-plus",
+        "dark-breath",
+        "fire-breath-plus",
+        "fire-breath"
+    ],
+    "special": [
+        "draconic-aura",
+        "dragon-gaze"
+    ],
+    "passive_b": [
+        "seal-res-3",
+        "seal-res-2",
+        "seal-res-1"
+    ],
+    "passive_c": [
+        "hone-atk-3",
+        "hone-atk-2",
+        "hone-atk-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 5,
+            "def": 7,
+            "res": 5
+        },
+        "star_4": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 5,
+            "def": 8,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 6,
+            "def": 8,
+            "res": 6
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 5,
+            "spd": 9,
+            "def": 8,
+            "res": 3,
+            "total": 31
+        }
+    }
+}

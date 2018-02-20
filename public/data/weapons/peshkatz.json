@@ -1,0 +1,19 @@
+{
+    "name": "Peshkatz",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "After combat, if unit attacked, inflicts Atk/ Spd/Def/Res-4 on target and foes within 2 spaces of target through their next actions, and grants Atk/Spd/Def/Res+4 to unit and allies within 2 spaces for 1 turn.",
+    "type": "Dagger",
+    "link": "https://kagerochart.com/hero/weapons/peshkatz",
+    "color": "Colorless",
+    "magical": false,
+    "char_unique": true,
+    "seal": {
+        "atk": -4,
+        "spd": -4,
+        "def": -4,
+        "res": -4
+    },
+    "id": "peshkatz"
+}

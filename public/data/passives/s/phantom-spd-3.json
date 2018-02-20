@@ -1,0 +1,9 @@
+{
+    "description": "When any skill compares this unit's Spd stat to another unit's, this unit's Spd stat is counted as +10 over actual value.",
+    "id": "phantom-spd-3",
+    "name": "Phantom Spd 3",
+    "phantom_stat_mod": {
+        "spd": 10
+    },
+    "type": "s"
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Fortify Dragons",
+    "sp": 200,
+    "type": "C",
+    "description": "Grants adjacent Dragon allies Def/Res+6 through their next actions at the start of each turn.",
+    "icon": "/images/icons/passives/fortify-dragons.png",
+    "link": "https://kagerochart.com/hero/passives/fortify-dragons",
+    "dragon_unique": true,
+    "id": "fortify-dragons"
+}

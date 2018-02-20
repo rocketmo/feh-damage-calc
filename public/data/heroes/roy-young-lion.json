@@ -1,0 +1,53 @@
+{
+    "display": "Roy, Young Lion",
+    "name": "Roy",
+    "title": "Young Lion",
+    "id": "roy-young-lion",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/roy-young-lion",
+    "move_type": "Infantry",
+    "weapon": [
+        "binding-blade",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "assist": [
+        "shove"
+    ],
+    "passive_a": [
+        "triangle-adept-3",
+        "triangle-adept-2",
+        "triangle-adept-1"
+    ],
+    "passive_b": [
+        "seal-def-3",
+        "seal-def-2",
+        "seal-def-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 9,
+            "def": 5,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 20,
+            "atk": 8,
+            "spd": 9,
+            "def": 6,
+            "res": 4
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 6,
+            "spd": 6,
+            "def": 5,
+            "res": 7,
+            "total": 31
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Wrathful Staff 2",
+    "sp": 120,
+    "type": "B",
+    "description": "If unit has ≥ 50% HP at the start of combat, damage from their staff will be calculated the same as other weapons.",
+    "icon": "/images/icons/passives/wrathful-staff-2.png",
+    "reg_weapon_dmg": 0.5,
+    "weapon_unique": "Staff",
+    "link": "https://kagerochart.com/hero/passives/wrathful-staff-2",
+    "id": "wrathful-staff-2"
+}

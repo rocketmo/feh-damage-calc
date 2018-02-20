@@ -1,0 +1,13 @@
+{
+    "name": "Panic",
+    "might": 7,
+    "range": 2,
+    "sp": 150,
+    "description": "After combat, bonuses on foe become penalties through their next action.",
+    "type": "Staff",
+    "color": "Colorless",
+    "magical": true,
+    "convert_penalties": true,
+    "link": "https://kagerochart.com/hero/weapons/panic",
+    "id": "panic"
+}

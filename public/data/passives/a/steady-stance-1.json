@@ -1,0 +1,12 @@
+{
+    "name": "Steady Stance 1",
+    "sp": 50,
+    "type": "A",
+    "description": "Grants Def+2 during combat when this unit is attacked.",
+    "icon": "/images/icons/passives/steady-stance-1.png",
+    "defend_mod": {
+        "def": 2
+    },
+    "link": "https://kagerochart.com/hero/passives/steady-stance-1",
+    "id": "steady-stance-1"
+}

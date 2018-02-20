@@ -1,0 +1,13 @@
+{
+    "name": "Regnal Astra",
+    "cooldown": 2,
+    "sp": 500,
+    "description": "Boosts damage dealt by 40% of unit's Spd.(Skill cannot be inherited.)",
+    "link": "https://kagerochart.com/hero/specials/regnal-astra",
+    "dmg_buff_by_stat": {
+        "stat": "spd",
+        "buff": 0.4
+    },
+    "char_unique": true,
+    "id": "regnal-astra"
+}

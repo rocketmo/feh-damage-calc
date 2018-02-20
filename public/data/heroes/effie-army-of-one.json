@@ -1,0 +1,53 @@
+{
+    "display": "Effie, Army of One",
+    "name": "Effie",
+    "title": "Army of One",
+    "id": "effie-army-of-one",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/effie-army-of-one",
+    "move_type": "Armored",
+    "weapon": [
+        "silver-lance-plus",
+        "silver-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "smite"
+    ],
+    "passive_a": [
+        "death-blow-3",
+        "death-blow-2",
+        "death-blow-1"
+    ],
+    "passive_b": [
+        "wary-fighter-3",
+        "wary-fighter-2",
+        "wary-fighter-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 21,
+            "atk": 12,
+            "spd": 4,
+            "def": 11,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 22,
+            "atk": 12,
+            "spd": 5,
+            "def": 11,
+            "res": 4
+        },
+        "growth": {
+            "hp": 9,
+            "atk": 9,
+            "spd": 4,
+            "def": 6,
+            "res": 5,
+            "total": 33
+        }
+    }
+}

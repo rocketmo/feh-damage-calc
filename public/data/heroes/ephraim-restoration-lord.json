@@ -1,0 +1,47 @@
+{
+    "display": "Ephraim, Restoration Lord",
+    "name": "Ephraim",
+    "title": "Restoration Lord",
+    "id": "ephraim-restoration-lord",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/ephraim-restoration-lord",
+    "move_type": "Infantry",
+    "weapon": [
+        "siegmund",
+        "heavy-spear",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "moonbow",
+        "new-moon"
+    ],
+    "passive_b": [
+        "seal-def-3",
+        "seal-def-2",
+        "seal-def-1"
+    ],
+    "passive_c": [
+        "threaten-def-3",
+        "threaten-def-2",
+        "threaten-def-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 19,
+            "atk": 9,
+            "spd": 6,
+            "def": 8,
+            "res": 5
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 8,
+            "spd": 5,
+            "def": 7,
+            "res": 3,
+            "total": 31
+        }
+    }
+}

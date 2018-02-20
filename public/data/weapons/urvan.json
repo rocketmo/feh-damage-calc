@@ -1,0 +1,17 @@
+{
+    "name": "Urvan",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Accelerates Special trigger (cooldown count-1). If unit receives consecutive attacks, damage from second attack onward reduced by 80%.",
+    "type": "Axe",
+    "link": "https://kagerochart.com/hero/weapons/urvan",
+    "color": "Green",
+    "magical": false,
+    "spec_cooldown_mod": -1,
+    "consecutive_dmg_reduction": {
+        "multiplier": 0.2
+    },
+    "char_unique": true,
+    "id": "urvan"
+}

@@ -1,0 +1,24 @@
+{
+    "name": "Assassin's Bow",
+    "might": 7,
+    "range": 2,
+    "sp": 200,
+    "description": "Effective against flying units. If target has a dagger, it cannot make a follow-up attack and this unit will.",
+    "type": "Bow",
+    "color": "Colorless",
+    "magical": false,
+    "move_effective": [
+        "Flying"
+    ],
+    "attack_follow_up": {
+        "weapon_type":"Dagger"
+    },
+    "defense_follow_up": {
+        "weapon_type":"Dagger"
+    },
+    "other_prevent_follow": {
+        "weapon_type":"Dagger"
+    },
+    "link": "https://kagerochart.com/hero/weapons/assassins-bow",
+    "id": "assassins-bow"
+}

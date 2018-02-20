@@ -1,0 +1,52 @@
+{
+    "display": "Sheena, Princess of Gra",
+    "name": "Sheena",
+    "title": "Princess of Gra",
+    "id": "sheena-princess-of-gra",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/sheena-princess-of-gra",
+    "move_type": "Armored",
+    "weapon": [
+        "killer-axe-plus",
+        "killer-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "escutcheon",
+        "buckler"
+    ],
+    "passive_a": [
+        "svalinn-shield"
+    ],
+    "passive_c": [
+        "fortify-armor",
+        "fortify-def-2",
+        "fortify-def-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 20,
+            "atk": 8,
+            "spd": 5,
+            "def": 12,
+            "res": 6
+        },
+        "star_5": {
+            "hp": 21,
+            "atk": 8,
+            "spd": 6,
+            "def": 12,
+            "res": 7
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 6,
+            "spd": 5,
+            "def": 7,
+            "res": 8,
+            "total": 33
+        }
+    }
+}

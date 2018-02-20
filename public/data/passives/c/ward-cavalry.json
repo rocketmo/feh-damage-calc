@@ -1,0 +1,10 @@
+{
+    "name": "Ward Cavalry",
+    "sp": 200,
+    "type": "C",
+    "description": "Grants cavalry allies within 2 spaces Def/Res+4 during combat.",
+    "icon": "/images/icons/passives/ward-cavalry.png",
+    "link": "https://kagerochart.com/hero/passives/ward-cavalry",
+    "move_unique": "Cavalry",
+    "id": "ward-cavalry"
+}

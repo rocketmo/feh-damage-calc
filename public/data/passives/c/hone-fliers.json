@@ -1,0 +1,10 @@
+{
+    "name": "Hone Fliers",
+    "sp": 200,
+    "type": "C",
+    "description": "Grants adjacent flying allies Atk/Spd+6 through their next actions at the start of each turn.",
+    "icon": "/images/icons/passives/hone-fliers.png",
+    "link": "https://kagerochart.com/hero/passives/hone-fliers",
+    "move_unique": "Flying",
+    "id": "hone-fliers"
+}

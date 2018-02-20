@@ -1,0 +1,13 @@
+{
+    "name": "Candlelight",
+    "might": 7,
+    "range": 2,
+    "sp": 150,
+    "description": "After combat, foe inflicted with status preventing them from counterattacking.",
+    "type": "Staff",
+    "color": "Colorless",
+    "magical": true,
+    "cancel_counter": true,
+    "link": "https://kagerochart.com/hero/weapons/candlelight",
+    "id": "candlelight"
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Sacrifice",
+    "range": 1,
+    "sp": 400,
+    "description": "Converts penalties on target into bonuses. Restores target's HP = unit's current HP -1. Unit's HP reduced by amount restored.",
+    "link": "https://kagerochart.com/hero/assists/sacrifice",
+    "char_unique": true,
+    "id": "sacrifice"
+}

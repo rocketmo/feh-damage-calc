@@ -1,0 +1,11 @@
+{
+    "name": "Elwind",
+    "might": 6,
+    "range": 2,
+    "sp": 100,
+    "type": "Green Tome",
+    "color": "Green",
+    "magical": true,
+    "link": "https://kagerochart.com/hero/weapons/elwind",
+    "id": "elwind"
+}

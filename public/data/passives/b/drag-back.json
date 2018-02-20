@@ -1,0 +1,10 @@
+{
+    "name": "Drag Back",
+    "sp": 150,
+    "type": "B",
+    "description": "If unit initiates attack, the unit moves 1 space away after combat.Foe moves into unit's previous space.",
+    "icon": "/images/icons/passives/drag-back.png",
+    "link": "https://kagerochart.com/hero/passives/drag-back",
+    "range_unique": 1,
+    "id": "drag-back"
+}

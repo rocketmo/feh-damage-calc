@@ -1,0 +1,7 @@
+{
+    "description": "Unit receives 0 damage.",
+    "id": "muspellflame",
+    "name": "Múspellflame",
+    "null_dmg": true,
+    "type": "s"
+}

@@ -1,0 +1,52 @@
+{
+    "display": "Micaiah, Priestess of Dawn",
+    "name": "Micaiah",
+    "title": "Priestess of Dawn",
+    "id": "micaiah-priestess-of-dawn",
+    "color": "Blue",
+    "weapon_type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/micaiah-priestess-of-dawn",
+    "move_type": "Infantry",
+    "weapon": [
+        "thani",
+        "shine",
+        "ellight",
+        "light"
+    ],
+    "assist": [
+        "sacrifice",
+        "ardent-sacrifice"
+    ],
+    "passive_a": [
+        "distant-def-3",
+        "distant-def-2",
+        "distant-def-1"
+    ],
+    "passive_b": [
+        "guard-3",
+        "guard-2",
+        "guard-1"
+    ],
+    "passive_c": [
+        "drive-atk-2",
+        "drive-atk-1",
+        "spur-atk-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 9,
+            "spd": 6,
+            "def": 5,
+            "res": 9
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 8,
+            "spd": 6,
+            "def": 2,
+            "res": 8,
+            "total": 29
+        }
+    }
+}

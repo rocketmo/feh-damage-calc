@@ -1,0 +1,14 @@
+{
+    "name": "Rauðrblade",
+    "might": 9,
+    "range": 2,
+    "sp": 200,
+    "description": "Slows Special trigger (cooldown count+1). Adds total bonuses on unit to attack.",
+    "type": "Red Tome",
+    "color": "Red",
+    "magical": true,
+    "spec_cooldown_mod": 1,
+    "add_bonus": true,
+    "link": "https://kagerochart.com/hero/weapons/raurblade",
+    "id": "raurblade"
+}

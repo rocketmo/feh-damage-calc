@@ -1,0 +1,6 @@
+{
+    "description": "Grants adjacent allies Spd+4 through their next actions at the start of each turn.",
+    "id": "hone-spd-3",
+    "name": "Hone Spd 3",
+    "type": "s"
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Fire Breath+",
+    "might": 8,
+    "range": 1,
+    "sp": 100,
+    "type": "Breath",
+    "link": "https://kagerochart.com/hero/weapons/fire-breath-plus",
+    "id": "fire-breath-plus",
+    "magical": true
+}

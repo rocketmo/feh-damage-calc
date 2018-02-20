@@ -1,0 +1,10 @@
+{
+    "description": "If unit's Atk - foe's Atk ≥ 1, unit gains Special cooldown charge +1 per attack.\r\n(If using other similar skill, only highest value applied.)",
+    "id": "heavy-blade-3",
+    "name": "Heavy Blade 3",
+    "spec_accel": {
+        "stat": "atk",
+        "adv": 1
+    },
+    "type": "s"
+}

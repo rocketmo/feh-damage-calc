@@ -1,0 +1,9 @@
+{
+    "name": "Wings of Mercy 2",
+    "sp": 120,
+    "type": "B",
+    "description": "Enables unit to warp adjacent to any ally with HP ≤ 40%.",
+    "icon": "/images/icons/passives/wings-of-mercy-2.png",
+    "link": "https://kagerochart.com/hero/passives/wings-of-mercy-2",
+    "id": "wings-of-mercy-2"
+}

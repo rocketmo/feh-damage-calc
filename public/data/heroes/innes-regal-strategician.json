@@ -1,0 +1,47 @@
+{
+    "display": "Innes, Regal Strategician",
+    "name": "Innes",
+    "title": "Regal Strategician",
+    "id": "innes-regal-strategician",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/innes-regal-strategician",
+    "move_type": "Infantry",
+    "weapon": [
+        "nidhogg",
+        "silver-bow",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "special": [
+        "iceberg",
+        "chilling-wind"
+    ],
+    "passive_a": [
+        "fortress-res-3",
+        "fortress-res-2",
+        "fortress-res-1"
+    ],
+    "passive_b": [
+        "cancel-affinity-3",
+        "cancel-affinity-2",
+        "cancel-affinity-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 9,
+            "spd": 8,
+            "def": 4,
+            "res": 7
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 7,
+            "spd": 8,
+            "def": 1,
+            "res": 7,
+            "total": 28
+        }
+    }
+}

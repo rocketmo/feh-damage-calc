@@ -1,0 +1,13 @@
+{
+    "name": "Emerald Axe+",
+    "might": 12,
+    "range": 1,
+    "sp": 300,
+    "description": "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
+    "type": "Axe",
+    "link": "https://kagerochart.com/hero/weapons/emerald-axe-plus",
+    "color": "Green",
+    "magical": false,
+    "tri_advantage": 0.2,
+    "id": "emerald-axe-plus"
+}

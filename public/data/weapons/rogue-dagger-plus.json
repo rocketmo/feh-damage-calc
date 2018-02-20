@@ -1,0 +1,33 @@
+{
+    "name": "Rogue Dagger+",
+    "might": 7,
+    "range": 2,
+    "sp": 300,
+    "description": "After combat, inflict Def/Res-5 on foe through their next actions. Grants unit Def/Res+5 for 1 turn.",
+    "type": "Dagger",
+    "link": "https://kagerochart.com/hero/weapons/rogue-dagger-plus",
+    "color": "Colorless",
+    "magical": false,
+    "seal": {
+        "def": -5,
+        "res": -5
+    },
+    "after_mod": {
+        "def": 5,
+        "res": 5
+    },
+    "refinable": {
+        "type": "ranged",
+        "might": 12,
+        "description": "After combat, inflicts Def/Res-6 on target and foes within 2 spaces of target through their next actions. Also grants Def/Res+6 to unit and allies within 2 spaces for 1 turn.",
+        "seal": {
+            "def": -6,
+            "res": -6
+        },
+        "after_mod": {
+            "def": 6,
+            "res": 6
+        }
+    },
+    "id": "rogue-dagger-plus"
+}

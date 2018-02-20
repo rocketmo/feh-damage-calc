@@ -1,0 +1,9 @@
+{
+    "name": "R Tome Valor 1",
+    "sp": 30,
+    "type": "C",
+    "description": "If unit survives and uses a red tome, unit gets 1.5x SP.(If similar skill effects also used, only highest multiplier applied.)",
+    "icon": "/images/icons/passives/r-tome-valor-1.png",
+    "link": "https://kagerochart.com/hero/passives/r-tome-valor-1",
+    "id": "r-tome-valor-1"
+}

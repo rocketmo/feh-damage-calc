@@ -1,0 +1,46 @@
+{
+    "display": "Gray, Wry Comrade",
+    "name": "Gray",
+    "title": "Wry Comrade",
+    "id": "gray-wry-comrade",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/gray-wry-comrade",
+    "move_type": "Infantry",
+    "weapon": [
+        "zanbato-plus",
+        "zanbato",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "assist": [
+        "swap"
+    ],
+    "passive_a": [
+        "wind-boost-3",
+        "wind-boost-2",
+        "wind-boost-1"
+    ],
+    "passive_c": [
+        "sword-valor-3",
+        "sword-valor-2",
+        "sword-valor-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 6,
+            "def": 6,
+            "res": 3
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 9,
+            "spd": 8,
+            "def": 7,
+            "res": 5,
+            "total": 37
+        }
+    }
+}

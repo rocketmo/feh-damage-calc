@@ -1,0 +1,75 @@
+{
+    "display": "Lissa, Sprightly Cleric",
+    "name": "Lissa",
+    "title": "Sprightly Cleric",
+    "id": "lissa-sprightly-cleric",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/lissa-sprightly-cleric",
+    "move_type": "Infantry",
+    "weapon": [
+        "gravity-plus",
+        "gravity",
+        "assault"
+    ],
+    "special": [
+        "kindled-fire-balm",
+        "imbue"
+    ],
+    "assist": [
+        "rehabilitate-plus",
+        "rehabilitate",
+        "reconcile",
+        "heal"
+    ],
+    "passive_b": [
+        "renewal-3",
+        "renewal-2",
+        "renewal-1"
+    ],
+    "base_stat": {
+        "star_1": {
+            "hp": 15,
+            "atk": 5,
+            "spd": 4,
+            "def": 4,
+            "res": 6
+        },
+        "star_2": {
+            "hp": 15,
+            "atk": 6,
+            "spd": 4,
+            "def": 4,
+            "res": 7
+        },
+        "star_3": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 5,
+            "def": 5,
+            "res": 7
+        },
+        "star_4": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 5,
+            "def": 5,
+            "res": 8
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 6,
+            "def": 6,
+            "res": 8
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 5,
+            "spd": 5,
+            "def": 6,
+            "res": 6,
+            "total": 28
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Fenrir",
+    "might": 9,
+    "range": 2,
+    "sp": 200,
+    "type": "Red Tome",
+    "color": "Red",
+    "magical": true,
+    "link": "https://kagerochart.com/hero/weapons/fenrir",
+    "id": "fenrir"
+}

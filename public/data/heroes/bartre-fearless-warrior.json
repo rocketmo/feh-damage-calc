@@ -1,0 +1,60 @@
+{
+    "display": "Bartre, Fearless Warrior",
+    "name": "Bartre",
+    "title": "Fearless Warrior",
+    "id": "bartre-fearless-warrior",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/bartre-fearless-warrior",
+    "move_type": "Infantry",
+    "weapon": [
+        "hammer-plus",
+        "hammer",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "assist": [
+        "smite"
+    ],
+    "passive_a": [
+        "fury-3",
+        "fury-2",
+        "fury-1"
+    ],
+    "passive_b": [
+        "brash-assault-3",
+        "brash-assault-2",
+        "brash-assault-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 20,
+            "atk": 9,
+            "spd": 5,
+            "def": 6,
+            "res": 2
+        },
+        "star_4": {
+            "hp": 20,
+            "atk": 10,
+            "spd": 5,
+            "def": 7,
+            "res": 2
+        },
+        "star_5": {
+            "hp": 21,
+            "atk": 10,
+            "spd": 6,
+            "def": 7,
+            "res": 3
+        },
+        "growth": {
+            "hp": 9,
+            "atk": 8,
+            "spd": 5,
+            "def": 8,
+            "res": 1,
+            "total": 31
+        }
+    }
+}

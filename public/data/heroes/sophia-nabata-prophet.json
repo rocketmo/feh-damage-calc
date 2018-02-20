@@ -1,0 +1,75 @@
+{
+    "display": "Sophia, Nabata Prophet",
+    "name": "Sophia",
+    "title": "Nabata Prophet",
+    "id": "sophia-nabata-prophet",
+    "color": "Red",
+    "weapon_type": "Red Tome",
+    "link": "https://kagerochart.com/hero/sophia-nabata-prophet",
+    "move_type": "Infantry",
+    "weapon": [
+        "fenrir-plus",
+        "fenrir",
+        "ruin",
+        "flux"
+    ],
+    "special": [
+        "dragon-fang",
+        "dragon-gaze"
+    ],
+    "passive_a": [
+        "warding-blow-3",
+        "warding-blow-2",
+        "warding-blow-1"
+    ],
+    "passive_c": [
+        "fortify-res-3",
+        "fortify-res-2",
+        "fortify-res-1"
+    ],
+    "base_stat": {
+        "star_1": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 2,
+            "def": 4,
+            "res": 5
+        },
+        "star_2": {
+            "hp": 16,
+            "atk": 8,
+            "spd": 2,
+            "def": 4,
+            "res": 6
+        },
+        "star_3": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 3,
+            "def": 5,
+            "res": 6
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 9,
+            "spd": 3,
+            "def": 5,
+            "res": 7
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 9,
+            "spd": 4,
+            "def": 6,
+            "res": 7
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 3,
+            "def": 6,
+            "res": 6,
+            "total": 28
+        }
+    }
+}

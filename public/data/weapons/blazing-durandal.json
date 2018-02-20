@@ -1,0 +1,20 @@
+{
+    "name": "Blazing Durandal",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Grants Atk+3. If unit's Atk > foe's, unit gains Special cooldown charge +1. (If using other similar skill, only highest value applied.)",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/blazing-durandal",
+    "color": "Red",
+    "magical": false,
+    "stat_mod": {
+        "atk": 3
+    },
+    "spec_accel": {
+        "stat": "atk",
+        "adv": 1
+    },
+    "char_unique": true,
+    "id": "blazing-durandal"
+}

@@ -1,0 +1,61 @@
+{
+    "display": "Henry, Twisted Mind",
+    "name": "Henry",
+    "title": "Twisted Mind",
+    "id": "henry-twisted-mind",
+    "color": "Red",
+    "weapon_type": "Red Tome",
+    "link": "https://kagerochart.com/hero/henry-twisted-mind",
+    "move_type": "Infantry",
+    "weapon": [
+        "raurraven-plus",
+        "raurraven",
+        "ruin",
+        "flux"
+    ],
+    "special": [
+        "ignis",
+        "glowing-ember"
+    ],
+    "passive_a": [
+        "defiant-def-3",
+        "defiant-def-2",
+        "defiant-def-1"
+    ],
+    "passive_b": [
+        "g-tomebreaker-3",
+        "g-tomebreaker-2",
+        "g-tomebreaker-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 18,
+            "atk": 5,
+            "spd": 4,
+            "def": 7,
+            "res": 5
+        },
+        "star_4": {
+            "hp": 18,
+            "atk": 6,
+            "spd": 4,
+            "def": 8,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 6,
+            "spd": 5,
+            "def": 8,
+            "res": 6
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 4,
+            "spd": 4,
+            "def": 7,
+            "res": 5,
+            "total": 28
+        }
+    }
+}

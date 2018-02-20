@@ -1,0 +1,11 @@
+{
+    "name": "Aether",
+    "cooldown": 5,
+    "sp": 500,
+    "description": "Resolve combat as if foe suffered Def/Res-50%.Unit recovers HP=half damage dealt.",
+    "link": "https://kagerochart.com/hero/specials/aether",
+    "heal_dmg": 0.5,
+    "enemy_def_res_mod": 0.5,
+    "weapon_restrict": "Staff",
+    "id": "aether"
+}

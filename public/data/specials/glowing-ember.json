@@ -1,0 +1,13 @@
+{
+    "name": "Glowing Ember",
+    "cooldown": 4,
+    "sp": 100,
+    "description": "Boosts damage dealt by 50% of unit's Def.",
+    "dmg_buff_by_stat": {
+        "stat": "def",
+        "buff": 0.5
+    },
+    "weapon_restrict": "Staff",
+    "link": "https://kagerochart.com/hero/specials/glowing-ember",
+    "id": "glowing-ember"
+}

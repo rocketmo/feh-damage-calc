@@ -1,0 +1,48 @@
+{
+    "display": "Lucina, Brave Princess",
+    "name": "Lucina",
+    "title": "Brave Princess",
+    "id": "lucina-brave-princess",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/lucina-brave-princess",
+    "move_type": "Infantry",
+    "weapon": [
+        "geirskogul",
+        "silver-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "aether",
+        "sol",
+        "daylight"
+    ],
+    "passive_a": [
+        "sturdy-blow-2",
+        "sturdy-blow-1",
+        "armored-blow-1"
+    ],
+    "passive_c": [
+        "drive-spd-2",
+        "drive-spd-1",
+        "spur-spd-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 10,
+            "def": 8,
+            "res": 4
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 8,
+            "spd": 8,
+            "def": 5,
+            "res": 3,
+            "total": 31
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "name": "Threaten Def 1",
+    "sp": 50,
+    "type": "C",
+    "description": "Inflicts Def-3 on foes within 2 spaces through their next actions at the start of each turn.",
+    "icon": "/images/icons/passives/threaten-def-1.png",
+    "threaten": {
+        "def": -3
+    },
+    "link": "https://kagerochart.com/hero/passives/threaten-def-1",
+    "id": "threaten-def-1"
+}

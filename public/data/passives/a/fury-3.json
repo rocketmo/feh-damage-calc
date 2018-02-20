@@ -1,0 +1,16 @@
+{
+    "name": "Fury 3",
+    "sp": 200,
+    "type": "A",
+    "description": "Grants Atk/Spd/Def/Res+3.Unit takes 6 damage after combat.",
+    "icon": "/images/icons/passives/fury-3.png",
+    "link": "https://kagerochart.com/hero/passives/fury-3",
+    "stat_mod": {
+        "atk": 3,
+        "spd": 3,
+        "def": 3,
+        "res": 3
+    },
+    "recoil_dmg": 6,
+    "id": "fury-3"
+}

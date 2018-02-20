@@ -1,0 +1,13 @@
+{
+    "name": "Wo Dao",
+    "might": 9,
+    "range": 1,
+    "sp": 200,
+    "description": "Grants +10 to damage when Special triggers.",
+    "type": "Sword",
+    "color": "Red",
+    "magical": false,
+    "spec_damage_bonus": 10,
+    "link": "https://kagerochart.com/hero/weapons/wo-dao",
+    "id": "wo-dao"
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Night Sky",
+    "cooldown": 3,
+    "sp": 100,
+    "description": "Grants +50% to damage dealt.",
+    "dmg_mod": 0.5,
+    "weapon_restrict": "Staff",
+    "link": "https://kagerochart.com/hero/specials/night-sky",
+    "id": "night-sky"
+}

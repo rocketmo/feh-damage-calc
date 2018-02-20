@@ -1,0 +1,9 @@
+{
+    "name": "Breath of Life 1",
+    "sp": 50,
+    "type": "C",
+    "description": "If unit initiates attack, adjacent allies recover 3 HP after combat.",
+    "icon": "/images/icons/passives/breath-of-life-1.png",
+    "link": "https://kagerochart.com/hero/passives/breath-of-life-1",
+    "id": "breath-of-life-1"
+}

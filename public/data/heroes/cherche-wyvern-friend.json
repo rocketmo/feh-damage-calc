@@ -1,0 +1,60 @@
+{
+    "display": "Cherche, Wyvern Friend",
+    "name": "Cherche",
+    "title": "Wyvern Friend",
+    "id": "cherche-wyvern-friend",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/cherche-wyvern-friend",
+    "move_type": "Flying",
+    "weapon": [
+        "hammer-plus",
+        "hammer",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "assist": [
+        "pivot"
+    ],
+    "passive_a": [
+        "attack-plus-3",
+        "attack-plus-2",
+        "attack-plus-1"
+    ],
+    "passive_c": [
+        "fortify-def-3",
+        "fortify-def-2",
+        "fortify-def-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 19,
+            "atk": 9,
+            "spd": 5,
+            "def": 7,
+            "res": 2
+        },
+        "star_4": {
+            "hp": 19,
+            "atk": 10,
+            "spd": 5,
+            "def": 8,
+            "res": 2
+        },
+        "star_5": {
+            "hp": 20,
+            "atk": 10,
+            "spd": 6,
+            "def": 8,
+            "res": 3
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 9,
+            "spd": 5,
+            "def": 7,
+            "res": 2,
+            "total": 31
+        }
+    }
+}

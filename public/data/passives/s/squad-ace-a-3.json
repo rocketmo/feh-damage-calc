@@ -1,0 +1,9 @@
+{
+    "description": "Grants HP +5",
+    "id": "squad-ace-a-3",
+    "name": "Squad Ace A 3",
+    "stat_mod": {
+        "hp": 5
+    },
+    "type": "s"
+}

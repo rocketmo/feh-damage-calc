@@ -1,0 +1,54 @@
+{
+    "display": "Leon, True of Heart",
+    "name": "Leon",
+    "title": "True of Heart",
+    "id": "leon-true-of-heart",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/leon-true-of-heart",
+    "move_type": "Infantry",
+    "weapon": [
+        "slaying-bow-plus",
+        "slaying-bow",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "special": [
+        "ignis",
+        "glowing-ember"
+    ],
+    "passive_a": [
+        "speed-plus-3",
+        "speed-plus-2",
+        "speed-plus-1"
+    ],
+    "passive_b": [
+        "guard-3",
+        "guard-2",
+        "guard-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 16,
+            "atk": 8,
+            "spd": 5,
+            "def": 8,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 6,
+            "def": 8,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 8,
+            "spd": 7,
+            "def": 6,
+            "res": 1,
+            "total": 28
+        }
+    }
+}

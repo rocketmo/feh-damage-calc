@@ -1,0 +1,9 @@
+{
+    "name": "Heavenly Light",
+    "cooldown": 2,
+    "sp": 150,
+    "description": "When healing an ally with a staff, all other allies recover 10 HP.",
+    "link": "https://kagerochart.com/hero/specials/heavenly-light",
+    "weapon_unique": "Staff",
+    "id": "heavenly-light"
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Martyr",
+    "range": 1,
+    "sp": 200,
+    "description": "Restores HP=7+ this unit's suffered damage.Unit heals HP=half suffered damage.Slows Special trigger (cooldown count+1).",
+    "spec_cooldown_mod": 1,
+    "weapon_unique": "Staff",
+    "link": "https://kagerochart.com/hero/assists/martyr",
+    "id": "martyr"
+}

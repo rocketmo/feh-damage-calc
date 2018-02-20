@@ -1,0 +1,10 @@
+{
+    "description": "Unit automatically makes a follow-up attack when at HP ≤ 30% and attacking a foe that can counter.",
+    "id": "brash-assault-1",
+    "name": "Brash Assault 1",
+    "attack_follow_up": {
+        "trigger": "damaged",
+        "threshold": 0.3,
+        "counterable":true
+    }
+}

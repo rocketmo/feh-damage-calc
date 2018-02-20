@@ -1,0 +1,47 @@
+{
+    "display": "Ryoma, Peerless Samurai",
+    "name": "Ryoma",
+    "title": "Peerless Samurai",
+    "id": "ryoma-peerless-samurai",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/ryoma-peerless-samurai",
+    "move_type": "Infantry",
+    "weapon": [
+        "raijinto",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "astra",
+        "night-sky"
+    ],
+    "passive_a": [
+        "defiant-atk-3",
+        "defiant-atk-2",
+        "defiant-atk-1"
+    ],
+    "passive_c": [
+        "hone-spd-3",
+        "hone-spd-2",
+        "hone-spd-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 11,
+            "def": 5,
+            "res": 4
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 8,
+            "spd": 7,
+            "def": 6,
+            "res": 4,
+            "total": 31
+        }
+    }
+}

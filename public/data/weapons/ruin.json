@@ -1,0 +1,11 @@
+{
+    "name": "Ruin",
+    "might": 6,
+    "range": 2,
+    "sp": 100,
+    "type": "Tome",
+    "color": "Red",
+    "magical": true,
+    "link": "https://kagerochart.com/hero/weapons/ruin",
+    "id": "ruin"
+}

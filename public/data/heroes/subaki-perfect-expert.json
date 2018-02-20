@@ -1,0 +1,74 @@
+{
+    "display": "Subaki, Perfect Expert",
+    "name": "Subaki",
+    "title": "Perfect Expert",
+    "id": "subaki-perfect-expert",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/subaki-perfect-expert",
+    "move_type": "Flying",
+    "weapon": [
+        "sapphire-lance-plus",
+        "sapphire-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "swap"
+    ],
+    "passive_a": [
+        "resistance-plus-3",
+        "resistance-plus-2",
+        "resistance-plus-1"
+    ],
+    "passive_b": [
+        "quick-riposte-3",
+        "quick-riposte-2",
+        "quick-riposte-1"
+    ],
+    "base_stat": {
+        "star_1": {
+            "hp": 16,
+            "atk": 4,
+            "spd": 7,
+            "def": 7,
+            "res": 3
+        },
+        "star_2": {
+            "hp": 16,
+            "atk": 4,
+            "spd": 8,
+            "def": 8,
+            "res": 3
+        },
+        "star_3": {
+            "hp": 17,
+            "atk": 5,
+            "spd": 8,
+            "def": 8,
+            "res": 4
+        },
+        "star_4": {
+            "hp": 17,
+            "atk": 5,
+            "spd": 9,
+            "def": 9,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 6,
+            "spd": 9,
+            "def": 9,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 5,
+            "spd": 8,
+            "def": 8,
+            "res": 4,
+            "total": 31
+        }
+    }
+}

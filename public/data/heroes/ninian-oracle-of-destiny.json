@@ -1,0 +1,46 @@
+{
+    "display": "Ninian, Oracle of Destiny",
+    "name": "Ninian",
+    "title": "Oracle of Destiny",
+    "id": "ninian-oracle-of-destiny",
+    "color": "Blue",
+    "weapon_type": "Blue Breath",
+    "link": "https://kagerochart.com/hero/ninian-oracle-of-destiny",
+    "move_type": "Infantry",
+    "weapon": [
+        "light-breath-plus",
+        "light-breath",
+        "fire-breath-plus",
+        "fire-breath"
+    ],
+    "assist": [
+        "dance"
+    ],
+    "passive_b": [
+        "escape-route-3",
+        "escape-route-2",
+        "escape-route-1"
+    ],
+    "passive_c": [
+        "fortify-dragons",
+        "fortify-def-2",
+        "fortify-def-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 5,
+            "spd": 7,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 5,
+            "spd": 8,
+            "def": 4,
+            "res": 6,
+            "total": 31
+        }
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "display": "Ike, Young Mercenary",
+    "name": "Ike",
+    "title": "Young Mercenary",
+    "id": "ike-young-mercenary",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/ike-young-mercenary",
+    "move_type": "Infantry",
+    "weapon": [
+        "ragnell",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "aether",
+        "luna",
+        "new-moon"
+    ],
+    "passive_a": [
+        "heavy-blade-3",
+        "heavy-blade-2",
+        "heavy-blade-1"
+    ],
+    "passive_b": [
+        "swordbreaker-3",
+        "swordbreaker-2",
+        "swordbreaker-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 18,
+            "atk": 9,
+            "spd": 7,
+            "def": 8,
+            "res": 5
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 8,
+            "spd": 7,
+            "def": 7,
+            "res": 2,
+            "total": 31
+        }
+    }
+}

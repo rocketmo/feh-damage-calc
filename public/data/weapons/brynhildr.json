@@ -1,0 +1,13 @@
+{
+    "name": "Brynhildr",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "If unit initiates attack, restrict foe from moving more than 1 space through their next actions.",
+    "type": "Red Tome",
+    "link": "https://kagerochart.com/hero/weapons/brynhildr",
+    "color": "Red",
+    "magical": true,
+    "char_unique": true,
+    "id": "brynhildr"
+}

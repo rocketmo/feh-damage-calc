@@ -1,0 +1,54 @@
+{
+    "display": "Hawkeye, Desert Guardian",
+    "name": "Hawkeye",
+    "title": "Desert Guardian",
+    "id": "hawkeye-desert-guardian",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/hawkeye-desert-guardian",
+    "move_type": "Infantry",
+    "weapon": [
+        "killer-axe-plus",
+        "killer-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "growing-light",
+        "rising-light"
+    ],
+    "passive_a": [
+        "death-blow-3",
+        "death-blow-2",
+        "death-blow-1"
+    ],
+    "passive_c": [
+        "threaten-atk-3",
+        "threaten-atk-2",
+        "threaten-atk-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 20,
+            "atk": 9,
+            "spd": 4,
+            "def": 6,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 21,
+            "atk": 9,
+            "spd": 5,
+            "def": 6,
+            "res": 6
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 4,
+            "def": 6,
+            "res": 7,
+            "total": 31
+        }
+    }
+}

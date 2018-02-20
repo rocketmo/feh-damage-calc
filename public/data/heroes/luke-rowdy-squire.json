@@ -1,0 +1,47 @@
+{
+    "display": "Luke, Rowdy Squire",
+    "name": "Luke",
+    "title": "Rowdy Squire",
+    "id": "luke-rowdy-squire",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/luke-rowdy-squire",
+    "move_type": "Cavalry",
+    "weapon": [
+        "brave-sword-plus",
+        "brave-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "bonfire",
+        "glowing-ember"
+    ],
+    "passive_a": [
+        "fire-boost-3",
+        "fire-boost-2",
+        "fire-boost-1"
+    ],
+    "passive_c": [
+        "panic-ploy-3",
+        "panic-ploy-2",
+        "panic-ploy-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 6,
+            "def": 8,
+            "res": 5
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 8,
+            "spd": 6,
+            "def": 6,
+            "res": 3,
+            "total": 30
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Atk Res Bond 1",
+    "sp": 60,
+    "type": "A",
+    "description": "Grants Atk/Res+3 to this unit during combat if unit is adjacent to an ally.",
+    "icon": "/images/icons/passives/atk-res-bond-1.png",
+    "adjacent_stat_bonus": {
+        "target": "self",
+        "adjacent": "ally",
+        "mod": {
+            "atk": 3,
+            "res": 3
+        }
+    },
+    "link": "https://kagerochart.com/hero/passives/atk-res-bond-1",
+    "id": "atk-res-bond-1"
+}

@@ -1,0 +1,53 @@
+{
+    "display": "Seliph, Heir of Light",
+    "name": "Seliph",
+    "title": "Heir of Light",
+    "id": "seliph-heir-of-light",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/seliph-heir-of-light",
+    "move_type": "Infantry",
+    "weapon": [
+        "tyrfing",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "assist": [
+        "rally-speed"
+    ],
+    "passive_a": [
+        "hp-plus-5",
+        "hp-plus-4",
+        "hp-plus-3"
+    ],
+    "passive_b": [
+        "brash-assault-3",
+        "brash-assault-2",
+        "brash-assault-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 6,
+            "def": 8,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 7,
+            "def": 8,
+            "res": 5
+        },
+        "growth": {
+            "hp": 9,
+            "atk": 8,
+            "spd": 4,
+            "def": 6,
+            "res": 4,
+            "total": 31
+        }
+    }
+}

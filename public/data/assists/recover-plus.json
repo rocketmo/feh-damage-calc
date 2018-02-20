@@ -1,0 +1,9 @@
+{
+    "name": "Recover+",
+    "range": 1,
+    "sp": 300,
+    "description": "Restores HP = 50% of Atk +10. (Minimum of 15 HP.)",
+    "link": "https://kagerochart.com/hero/assists/recover-plus",
+    "weapon_unique": "Staff",
+    "id": "recover-plus"
+}

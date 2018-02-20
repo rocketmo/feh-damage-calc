@@ -1,0 +1,49 @@
+{
+    "display": "Nowi, Eternal Witch",
+    "name": "Nowi",
+    "title": "Eternal Witch",
+    "id": "nowi-eternal-witch",
+    "color": "Red",
+    "weapon_type": "Red Tome",
+    "link": "https://kagerochart.com/hero/nowi-eternal-witch",
+    "move_type": "Flying",
+    "weapon": [
+        "grimoire",
+        "fenrir",
+        "ruin",
+        "flux"
+    ],
+    "assist": [
+        "reposition"
+    ],
+    "passive_a": [
+        "atk-res-bond-3",
+        "atk-res-bond-2",
+        "atk-res-bond-1"
+    ],
+    "passive_b": [
+        "live-for-bounty"
+    ],
+    "passive_c": [
+        "hone-fliers",
+        "hone-atk-2",
+        "hone-atk-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 6,
+            "def": 5,
+            "res": 8
+        },
+        "growth": {
+            "hp": 4,
+            "atk": 8,
+            "spd": 8,
+            "def": 3,
+            "res": 5,
+            "total": 28
+        }
+    }
+}

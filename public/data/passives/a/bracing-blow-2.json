@@ -1,0 +1,13 @@
+{
+    "name": "Bracing Blow 2",
+    "sp": 240,
+    "type": "A",
+    "description": "Grants Def/Res+4 during combat if unit initiates combat.",
+    "icon": "/images/icons/passives/bracing-blow-2.png",
+    "link": "https://kagerochart.com/hero/passives/bracing-blow-2",
+    "initiate_mod": {
+        "def": 4,
+        "res": 4
+    },
+    "id": "bracing-blow-2"
+}

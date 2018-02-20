@@ -1,0 +1,60 @@
+{
+    "display": "Arthur, Hapless Hero",
+    "name": "Arthur",
+    "title": "Hapless Hero",
+    "id": "arthur-hapless-hero",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/arthur-hapless-hero",
+    "move_type": "Infantry",
+    "weapon": [
+        "emerald-axe-plus",
+        "emerald-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "assist": [
+        "swap"
+    ],
+    "passive_a": [
+        "hp-plus-5",
+        "hp-plus-4",
+        "hp-plus-3"
+    ],
+    "passive_b": [
+        "lancebreaker-3",
+        "lancebreaker-2",
+        "lancebreaker-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 6,
+            "def": 7,
+            "res": 4
+        },
+        "star_4": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 6,
+            "def": 8,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 7,
+            "def": 8,
+            "res": 5
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 6,
+            "def": 6,
+            "res": 5,
+            "total": 31
+        }
+    }
+}

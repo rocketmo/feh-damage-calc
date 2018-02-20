@@ -1,0 +1,13 @@
+{
+    "name": "Killer Lance+",
+    "might": 11,
+    "range": 1,
+    "sp": 300,
+    "description": "Accelerates Special trigger (cooldown count-1).",
+    "type": "Lance",
+    "link": "https://kagerochart.com/hero/weapons/killer-lance-plus",
+    "color": "Blue",
+    "magical": false,
+    "spec_cooldown_mod": -1,
+    "id": "killer-lance-plus"
+}

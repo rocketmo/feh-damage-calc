@@ -1,0 +1,48 @@
+{
+    "display": "Roy, Brave Lion",
+    "name": "Roy",
+    "title": "Brave Lion",
+    "id": "roy-brave-lion",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/roy-brave-lion",
+    "move_type": "Cavalry",
+    "weapon": [
+        "blazing-durandal",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "galeforce",
+        "astra",
+        "night-sky"
+    ],
+    "passive_a": [
+        "steady-blow-2",
+        "steady-blow-1",
+        "darting-blow-1"
+    ],
+    "passive_b": [
+        "desperation-3",
+        "desperation-2",
+        "desperation-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 8,
+            "spd": 8,
+            "def": 7,
+            "res": 7
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 8,
+            "def": 5,
+            "res": 4,
+            "total": 30
+        }
+    }
+}

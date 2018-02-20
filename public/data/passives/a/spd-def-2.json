@@ -1,0 +1,13 @@
+{
+    "name": "Spd Def 2",
+    "sp": 160,
+    "type": "A",
+    "description": "Grants Spd/Def+2.",
+    "icon": "/images/icons/passives/spd-def-2.png",
+    "link": "https://kagerochart.com/hero/passives/spd-def-2",
+    "stat_mod": {
+        "spd": 2,
+        "def": 2
+    },
+    "id": "spd-def-2"
+}

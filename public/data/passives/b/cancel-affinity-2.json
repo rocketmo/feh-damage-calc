@@ -1,0 +1,11 @@
+{
+    "name": "Cancel Affinity 2",
+    "sp": 100,
+    "type": "B",
+    "description": "Any weapon triangle affinity granted by unit's skills is negated. If affinity disadvantage exists, weapon triangle affinity granted by foe's skills is negated.",
+    "icon": "/images/icons/passives/cancel-affinity-2.png",
+    "cancel_skill_affinity": true,
+    "cancel_negative_enemy_skill_affinity": true,
+    "link": "https://kagerochart.com/hero/passives/cancel-affinity-2",
+    "id": "cancel-affinity-2"
+}

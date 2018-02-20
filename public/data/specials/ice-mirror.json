@@ -1,0 +1,13 @@
+{
+    "name": "Ice Mirror",
+    "cooldown": 2,
+    "sp": 500,
+    "description": "Reduces damage unit takes from foes 2 spaces away by 30%.If Special triggers, boosts unit's next attack by total damage was reduced (by any source, including other skills).Resets at end of combat.(Skill cannot be inherited.)",
+    "link": "https://kagerochart.com/hero/specials/ice-mirror",
+    "reduce_dmg": {
+        "range": 2,
+        "dmg_mod": 0.3,
+        "mirror": true
+    },
+    "id": "ice-mirror"
+}

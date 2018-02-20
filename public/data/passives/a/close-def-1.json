@@ -1,0 +1,21 @@
+{
+    "name": "Close Def 1",
+    "sp": 60,
+    "type": "A",
+    "description": "If unit is attacked by foe using sword, axe, lance, or dragonstone, unit receives Def/Res+2 during combat.",
+    "icon": "/images/icons/passives/close-def-1.png",
+    "type_defend_mod": {
+        "weapon_type": {
+            "Sword": true,
+            "Axe": true,
+            "Lance": true,
+            "Breath": true
+        },
+        "stat_mod": {
+            "def": 2,
+            "res": 2
+        }
+    },
+    "link": "https://kagerochart.com/hero/passives/close-def-1",
+    "id": "close-def-1"
+}

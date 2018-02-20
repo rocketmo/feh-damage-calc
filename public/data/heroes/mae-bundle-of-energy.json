@@ -1,0 +1,53 @@
+{
+    "display": "Mae, Bundle of Energy",
+    "name": "Mae",
+    "title": "Bundle of Energy",
+    "id": "mae-bundle-of-energy",
+    "color": "Blue",
+    "weapon_type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/mae-bundle-of-energy",
+    "move_type": "Infantry",
+    "weapon": [
+        "blarowl-plus",
+        "blarowl",
+        "elthunder",
+        "thunder"
+    ],
+    "assist": [
+        "draw-back"
+    ],
+    "passive_b": [
+        "desperation-3",
+        "desperation-2",
+        "desperation-1"
+    ],
+    "passive_c": [
+        "b-tome-exp-3",
+        "b-tome-exp-2",
+        "b-tome-exp-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 15,
+            "atk": 10,
+            "spd": 6,
+            "def": 2,
+            "res": 8
+        },
+        "star_5": {
+            "hp": 16,
+            "atk": 10,
+            "spd": 7,
+            "def": 3,
+            "res": 8
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 8,
+            "spd": 7,
+            "def": 2,
+            "res": 6,
+            "total": 28
+        }
+    }
+}

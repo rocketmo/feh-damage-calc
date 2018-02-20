@@ -1,0 +1,53 @@
+{
+    "display": "Titania, Mighty Mercenary",
+    "name": "Titania",
+    "title": "Mighty Mercenary",
+    "id": "titania-mighty-mercenary",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/titania-mighty-mercenary",
+    "move_type": "Cavalry",
+    "weapon": [
+        "emerald-axe-plus",
+        "emerald-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "assist": [
+        "reciprocal-aid"
+    ],
+    "passive_a": [
+        "armored-blow-3",
+        "armored-blow-2",
+        "armored-blow-1"
+    ],
+    "passive_b": [
+        "guard-3",
+        "guard-2",
+        "guard-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 17,
+            "atk": 5,
+            "spd": 8,
+            "def": 5,
+            "res": 8
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 6,
+            "spd": 8,
+            "def": 6,
+            "res": 8
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 6,
+            "spd": 8,
+            "def": 5,
+            "res": 6,
+            "total": 30
+        }
+    }
+}

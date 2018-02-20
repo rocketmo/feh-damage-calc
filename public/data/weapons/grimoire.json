@@ -1,0 +1,11 @@
+{
+    "name": "Grimoire",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "If unit has ≥ 50% HP, unit can move to a space adjacent to an ally within 2 spaces.",
+    "type": "Red Tome",
+    "link": "https://kagerochart.com/hero/weapons/grimoire",
+    "magical": true,
+    "id": "grimoire"
+}

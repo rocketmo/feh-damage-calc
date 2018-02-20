@@ -1,0 +1,54 @@
+{
+    "display": "Ogma, Loyal Blade",
+    "name": "Ogma",
+    "title": "Loyal Blade",
+    "id": "ogma-loyal-blade",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/ogma-loyal-blade",
+    "move_type": "Infantry",
+    "weapon": [
+        "brave-sword-plus",
+        "brave-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "noontime",
+        "daylight"
+    ],
+    "passive_a": [
+        "defiant-atk-3",
+        "defiant-atk-2",
+        "defiant-atk-1"
+    ],
+    "passive_c": [
+        "spur-atk-3",
+        "spur-atk-2",
+        "spur-atk-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 20,
+            "atk": 7,
+            "spd": 10,
+            "def": 5,
+            "res": 2
+        },
+        "star_5": {
+            "hp": 21,
+            "atk": 7,
+            "spd": 10,
+            "def": 6,
+            "res": 3
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 9,
+            "spd": 7,
+            "def": 6,
+            "res": 1,
+            "total": 31
+        }
+    }
+}

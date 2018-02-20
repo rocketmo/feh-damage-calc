@@ -1,0 +1,13 @@
+{
+    "name": "Dragon Gaze",
+    "cooldown": 4,
+    "sp": 100,
+    "description": "Grants +30% to Atk.",
+    "dmg_buff_by_stat": {
+        "stat": "atk",
+        "buff": 0.3
+    },
+    "weapon_restrict": "Staff",
+    "link": "https://kagerochart.com/hero/specials/dragon-gaze",
+    "id": "dragon-gaze"
+}

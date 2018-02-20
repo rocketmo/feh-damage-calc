@@ -1,0 +1,61 @@
+{
+    "display": "Azama, Carefree Monk",
+    "name": "Azama",
+    "title": "Carefree Monk",
+    "id": "azama-carefree-monk",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/azama-carefree-monk",
+    "move_type": "Infantry",
+    "weapon": [
+        "pain-plus",
+        "pain",
+        "assault"
+    ],
+    "special": [
+        "solid-earth-balm",
+        "imbue"
+    ],
+    "assist": [
+        "martyr-plus",
+        "martyr",
+        "reconcile",
+        "heal"
+    ],
+    "passive_c": [
+        "threaten-atk-3",
+        "threaten-atk-2",
+        "threaten-atk-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 18,
+            "atk": 3,
+            "spd": 6,
+            "def": 7,
+            "res": 5
+        },
+        "star_4": {
+            "hp": 18,
+            "atk": 3,
+            "spd": 7,
+            "def": 8,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 4,
+            "spd": 7,
+            "def": 8,
+            "res": 6
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 4,
+            "spd": 5,
+            "def": 7,
+            "res": 5,
+            "total": 28
+        }
+    }
+}

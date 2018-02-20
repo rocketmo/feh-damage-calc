@@ -1,0 +1,11 @@
+{
+    "name": "Iron Sword",
+    "might": 6,
+    "range": 1,
+    "sp": 50,
+    "type": "Sword",
+    "color": "Red",
+    "magical": false,
+    "link": "https://kagerochart.com/hero/weapons/iron-sword",
+    "id": "iron-sword"
+}

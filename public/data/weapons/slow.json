@@ -1,0 +1,15 @@
+{
+    "name": "Slow",
+    "might": 5,
+    "range": 2,
+    "sp": 150,
+    "description": "After combat, inflicts Spd-6 on foe through their next actions.",
+    "type": "Staff",
+    "color": "Colorless",
+    "magical": true,
+    "seal": {
+        "spd": -6
+    },
+    "link": "https://kagerochart.com/hero/weapons/slow",
+    "id": "slow"
+}

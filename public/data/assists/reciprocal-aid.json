@@ -1,0 +1,9 @@
+{
+    "name": "Reciprocal Aid",
+    "range": 1,
+    "sp": 150,
+    "description": "Swap HP with adjacent ally (neither unit can go above their max HP).",
+    "link": "https://kagerochart.com/hero/assists/reciprocal-aid",
+    "weapon_restrict": "Staff",
+    "id": "reciprocal-aid"
+}

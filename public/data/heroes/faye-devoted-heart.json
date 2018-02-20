@@ -1,0 +1,47 @@
+{
+    "display": "Faye, Devoted Heart",
+    "name": "Faye",
+    "title": "Devoted Heart",
+    "id": "faye-devoted-heart",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/faye-devoted-heart",
+    "move_type": "Infantry",
+    "weapon": [
+        "firesweep-bow-plus",
+        "firesweep-bow",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "special": [
+        "noontime",
+        "daylight"
+    ],
+    "passive_b": [
+        "wings-of-mercy-3",
+        "wings-of-mercy-2",
+        "wings-of-mercy-1"
+    ],
+    "passive_c": [
+        "bow-exp-3",
+        "bow-exp-2",
+        "bow-exp-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 3,
+            "def": 4,
+            "res": 7
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 7,
+            "spd": 6,
+            "def": 6,
+            "res": 7,
+            "total": 34
+        }
+    }
+}

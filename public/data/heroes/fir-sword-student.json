@@ -1,0 +1,61 @@
+{
+    "display": "Fir, Sword Student",
+    "name": "Fir",
+    "title": "Sword Student",
+    "id": "fir-sword-student",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/fir-sword-student",
+    "move_type": "Infantry",
+    "weapon": [
+        "killing-edge-plus",
+        "killing-edge",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "glacies",
+        "chilling-wind"
+    ],
+    "passive_a": [
+        "speed-plus-3",
+        "speed-plus-2",
+        "speed-plus-1"
+    ],
+    "passive_b": [
+        "pass-3",
+        "pass-2",
+        "pass-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 18,
+            "atk": 5,
+            "spd": 9,
+            "def": 4,
+            "res": 6
+        },
+        "star_4": {
+            "hp": 18,
+            "atk": 5,
+            "spd": 10,
+            "def": 4,
+            "res": 7
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 6,
+            "spd": 10,
+            "def": 5,
+            "res": 7
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 5,
+            "spd": 8,
+            "def": 5,
+            "res": 7,
+            "total": 31
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Flier Formation 3",
+    "sp": 240,
+    "type": "B",
+    "description": "Unit can move to a space adjacent to a flier ally within 2 spaces.",
+    "icon": "/images/icons/passives/flier-formation-3.png",
+    "link": "https://kagerochart.com/hero/passives/flier-formation-3",
+    "id": "flier-formation-3"
+}

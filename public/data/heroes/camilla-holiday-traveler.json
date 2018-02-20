@@ -1,0 +1,47 @@
+{
+    "display": "Camilla, Holiday Traveler",
+    "name": "Camilla",
+    "title": "Holiday Traveler",
+    "id": "camilla-holiday-traveler",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/camilla-holiday-traveler",
+    "move_type": "Flying",
+    "weapon": [
+        "kadomatsu-plus",
+        "kadomatsu",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "draconic-aura",
+        "dragon-gaze"
+    ],
+    "passive_a": [
+        "spd-def-bond-3",
+        "spd-def-bond-2",
+        "spd-def-bond-1"
+    ],
+    "passive_c": [
+        "ward-fliers",
+        "spur-def-2",
+        "spur-def-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 18,
+            "atk": 9,
+            "spd": 9,
+            "def": 7,
+            "res": 4
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 8,
+            "def": 7,
+            "res": 5,
+            "total": 33
+        }
+    }
+}

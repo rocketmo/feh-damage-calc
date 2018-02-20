@@ -1,0 +1,9 @@
+{
+    "name": "Earth Dance 1",
+    "sp": 50,
+    "type": "B",
+    "description": "If Sing or Dance is used, target also granted Def+2.",
+    "icon": "/images/icons/passives/earth-dance-1.png",
+    "link": "https://kagerochart.com/hero/passives/earth-dance-1",
+    "id": "earth-dance-1"
+}

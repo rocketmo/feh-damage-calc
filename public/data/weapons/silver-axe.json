@@ -1,0 +1,11 @@
+{
+    "name": "Silver Axe",
+    "might": 11,
+    "range": 1,
+    "sp": 200,
+    "type": "Axe",
+    "color": "Green",
+    "magical": false,
+    "link": "https://kagerochart.com/hero/weapons/silver-axe",
+    "id": "silver-axe"
+}

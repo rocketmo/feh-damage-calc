@@ -1,0 +1,6 @@
+{
+    "description": "Inflicts Spd-3 on foes within 2 spaces through their next actions at the start of each turn.",
+    "id": "threaten-spd-1",
+    "name": "Threaten Spd 1",
+    "type": "s"
+}

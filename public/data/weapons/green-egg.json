@@ -1,0 +1,13 @@
+{
+    "name": "Green Egg",
+    "might": 7,
+    "range": 2,
+    "sp": 200,
+    "description": "If unit initiates attack, unit recovers 4 HP after the battle.",
+    "type": "Green Tome",
+    "color": "Green",
+    "magical": true,
+    "initiate_heal": 4,
+    "link": "https://kagerochart.com/hero/weapons/green-egg",
+    "id": "green-egg"
+}

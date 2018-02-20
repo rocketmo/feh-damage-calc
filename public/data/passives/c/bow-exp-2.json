@@ -1,0 +1,9 @@
+{
+    "name": "Bow Exp. 2",
+    "sp": 60,
+    "type": "C",
+    "description": "If unit survives, all bow users on team get 1.5x EXP.(If similar skill effects also used, only highest multiplier applies.)",
+    "icon": "/images/icons/passives/bow-exp-2.png",
+    "link": "https://kagerochart.com/hero/passives/bow-exp-2",
+    "id": "bow-exp-2"
+}

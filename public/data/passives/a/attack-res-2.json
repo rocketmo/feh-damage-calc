@@ -1,0 +1,9 @@
+{
+    "name": "Attack Res 2",
+    "sp": 160,
+    "type": "A",
+    "description": "Grants Atk/Res+2.",
+    "icon": "/images/icons/passives/attack-res-2.png",
+    "link": "https://kagerochart.com/hero/passives/attack-res-2",
+    "id": "attack-res-2"
+}

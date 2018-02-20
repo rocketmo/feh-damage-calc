@@ -1,0 +1,9 @@
+{
+    "name": "G Tome Valor 3",
+    "sp": 120,
+    "type": "C",
+    "description": "If unit survives, all green tome users on team get 2x SP.(If similar skill effects also used, only highest multiplier applied.)",
+    "icon": "/images/icons/passives/g-tome-valor-3.png",
+    "link": "https://kagerochart.com/hero/passives/g-tome-valor-3",
+    "id": "g-tome-valor-3"
+}

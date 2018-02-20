@@ -1,0 +1,54 @@
+{
+    "display": "Lucius, The Light",
+    "name": "Lucius",
+    "title": "The Light",
+    "id": "lucius-the-light",
+    "color": "Colorless",
+    "weapon_type": "Staff",
+    "link": "https://kagerochart.com/hero/lucius-the-light",
+    "move_type": "Infantry",
+    "weapon": [
+        "pain-plus",
+        "pain",
+        "assault"
+    ],
+    "special": [
+        "miracle",
+        "imbue"
+    ],
+    "assist": [
+        "martyr-plus",
+        "martyr",
+        "reconcile",
+        "heal"
+    ],
+    "passive_a": [
+        "hp-plus-5",
+        "hp-plus-4",
+        "hp-plus-3"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 17,
+            "atk": 5,
+            "spd": 8,
+            "def": 2,
+            "res": 9
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 6,
+            "spd": 8,
+            "def": 3,
+            "res": 9
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 8,
+            "spd": 6,
+            "def": 1,
+            "res": 8,
+            "total": 28
+        }
+    }
+}

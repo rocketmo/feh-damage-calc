@@ -1,0 +1,16 @@
+{
+    "name": "Blessed Bouquet+",
+    "might": 12,
+    "range": 2,
+    "sp": 300,
+    "description": "Grants allies withing 2 spaces Def/Res+2 through their next actions after any combat this unit initiates.",
+    "type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/weapons/blessed-bouquet-plus",
+    "color": "Blue",
+    "magical": true,
+    "refinable": {
+        "type": "ranged",
+        "description": "Grants allies withing 2 spaces Def/Res+5 through their next actions after any combat this unit initiates."
+    },
+    "id": "blessed-bouquet-plus"
+}

@@ -1,0 +1,10 @@
+{
+    "name": "New Moon",
+    "cooldown": 3,
+    "sp": 100,
+    "description": "Resolve combat as if foe suffered Def/Res-30%.",
+    "enemy_def_res_mod": 0.3,
+    "weapon_restrict": "Staff",
+    "link": "https://kagerochart.com/hero/specials/new-moon",
+    "id": "new-moon"
+}

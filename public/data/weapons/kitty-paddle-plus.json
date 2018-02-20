@@ -1,0 +1,22 @@
+{
+    "name": "Kitty Paddle+",
+    "might": 8,
+    "range": 2,
+    "sp": 300,
+    "description": "Effective against magic foes. After combat, if unit attacked and if foe uses magic, inflicts Def/Res-7 on foe through its next action.",
+    "type": "Dagger",
+    "link": "https://kagerochart.com/hero/weapons/kitty-paddle-plus",
+    "magical": false,
+    "weapon_effective": [
+        "Tome",
+        "Red Tome",
+        "Blue Tome",
+        "Green Tome"
+    ],
+    "target_seal": {
+        "target": "Tome",
+        "def": -7,
+        "res": -7
+    },
+    "id": "kitty-paddle-plus"
+}

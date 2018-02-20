@@ -1,0 +1,13 @@
+{
+    "description": "If unit receives consecutive attacks from a foe using a bow or dagger, damage from second attack onward reduced by 80%.",
+    "id": "deflect-missile-3",
+    "name": "Deflect Missile 3",
+    "consecutive_dmg_reduction": {
+        "multiplier": 0.2,
+        "weapon_type": [
+            "bow",
+            "dagger"
+        ]
+    },
+    "type": "s"
+}

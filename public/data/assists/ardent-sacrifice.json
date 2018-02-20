@@ -1,0 +1,9 @@
+{
+    "name": "Ardent Sacrifice",
+    "range": 1,
+    "sp": 150,
+    "description": "Heals adjacent ally 10 HP.Unit loses 10 HP (but cannot reach 0 this way).",
+    "link": "https://kagerochart.com/hero/assists/ardent-sacrifice",
+    "weapon_restrict": "Staff",
+    "id": "ardent-sacrifice"
+}

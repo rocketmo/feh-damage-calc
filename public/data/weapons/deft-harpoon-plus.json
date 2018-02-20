@@ -1,0 +1,22 @@
+{
+    "name": "Deft Harpoon+",
+    "might": 14,
+    "range": 1,
+    "sp": 300,
+    "description": "If unit has 100% HP at start of combat, unit gets Atk/Spd/Def/Res+2.If attacking, unit will take 2 damage after combat.",
+    "type": "Lance",
+    "link": "https://kagerochart.com/hero/weapons/deft-harpoon-plus",
+    "color": "Blue",
+    "magical": false,
+    "full_hp_mod": {
+        "atk": 2,
+        "spd": 2,
+        "def": 2,
+        "res": 2
+    },
+    "full_hp_atk_recoil_dmg": 2,
+    "refinable": {
+        "type": "melee"
+    },
+    "id": "deft-harpoon-plus"
+}

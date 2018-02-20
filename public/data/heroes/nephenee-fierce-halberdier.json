@@ -1,0 +1,47 @@
+{
+    "display": "Nephenee, Fierce Halberdier",
+    "name": "Nephenee",
+    "title": "Fierce Halberdier",
+    "id": "nephenee-fierce-halberdier",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/nephenee-fierce-halberdier",
+    "move_type": "Infantry",
+    "weapon": [
+        "slaying-lance-plus",
+        "slaying-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "special": [
+        "moonbow",
+        "new-moon"
+    ],
+    "passive_a": [
+        "atk-spd-2",
+        "atk-spd-1",
+        "speed-plus-1"
+    ],
+    "passive_b": [
+        "wrath-3",
+        "wrath-2",
+        "wrath-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 9,
+            "def": 8,
+            "res": 5
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 7,
+            "spd": 8,
+            "def": 8,
+            "res": 3,
+            "total": 31
+        }
+    }
+}

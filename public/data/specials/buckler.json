@@ -1,0 +1,13 @@
+{
+    "name": "Buckler",
+    "cooldown": 3,
+    "sp": 100,
+    "description": "Reduces damage inflicted by attacks from adjacent foes by 30%.",
+    "reduce_dmg": {
+        "range": 1,
+        "dmg_mod": 0.3
+    },
+    "range_unique": 1,
+    "link": "https://kagerochart.com/hero/specials/buckler",
+    "id": "buckler"
+}

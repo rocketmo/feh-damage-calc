@@ -1,0 +1,24 @@
+{
+    "name": "Sol Katti",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "If unit initiates combat at HP ≤ 50%, any follow-up attack occurs immediately.",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/sol-katti",
+    "color": "Red",
+    "magical": false,
+    "desperation": {
+        "threshold": 0.5
+    },
+    "char_unique": true,
+    "refinable": {
+        "type": "melee",
+        "description": "If unit initiates combat at HP ≤ 75%, any follow-up attack occurs immediately.",
+        "desperation": {
+            "threshold": 0.75
+        },
+        "Special": "Sol Katti"
+    },
+    "id": "sol-katti"
+}

@@ -1,0 +1,46 @@
+{
+    "display": "Shigure, Dark Sky Singer",
+    "name": "Shigure",
+    "title": "Dark Sky Singer",
+    "id": "shigure-dark-sky-singer",
+    "color": "Blue",
+    "weapon_type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/shigure-dark-sky-singer",
+    "move_type": "Infantry",
+    "weapon": [
+        "dancers-score-plus",
+        "dancers-score",
+        "elthunder",
+        "thunder"
+    ],
+    "assist": [
+        "sing"
+    ],
+    "passive_b": [
+        "geyser-dance-2",
+        "geyser-dance-1",
+        "torrent-dance-1"
+    ],
+    "passive_c": [
+        "b-tome-valor-3",
+        "b-tome-valor-2",
+        "b-tome-valor-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 15,
+            "atk": 7,
+            "spd": 5,
+            "def": 4,
+            "res": 5
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 7,
+            "spd": 7,
+            "def": 4,
+            "res": 5,
+            "total": 28
+        }
+    }
+}

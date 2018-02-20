@@ -1,0 +1,13 @@
+{
+    "name": "Swift Sparrow 2",
+    "sp": 240,
+    "type": "A",
+    "description": "If unit initiates combat, unit granted Atk/Spd+4 during battle.",
+    "icon": "/images/icons/passives/swift-sparrow-2.png",
+    "link": "https://kagerochart.com/hero/passives/swift-sparrow-2",
+    "initiate_mod": {
+        "atk": 4,
+        "spd": 4
+    },
+    "id": "swift-sparrow-2"
+}

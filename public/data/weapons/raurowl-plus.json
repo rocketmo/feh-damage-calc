@@ -1,0 +1,17 @@
+{
+    "name": "Rauðrowl+",
+    "might": 10,
+    "range": 2,
+    "sp": 300,
+    "description": "During combat, unit's Atk/Spd/Def/Res boosted by number of adjacent allies x 2.",
+    "type": "Red Tome",
+    "link": "https://kagerochart.com/hero/weapons/raurowl-plus",
+    "color": "Red",
+    "magical": true,
+    "adjacent_ally_bonus": true,
+    "refinable": {
+        "type": "ranged",
+        "might": 11
+    },
+    "id": "raurowl-plus"
+}

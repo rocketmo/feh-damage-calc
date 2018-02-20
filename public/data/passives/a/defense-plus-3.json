@@ -1,0 +1,12 @@
+{
+    "name": "Defense +3",
+    "sp": 120,
+    "type": "A",
+    "description": "Grants Def+3.",
+    "icon": "/images/icons/passives/defense-plus-3.png",
+    "link": "https://kagerochart.com/hero/passives/defense-plus-3",
+    "stat_mod": {
+        "def": 3
+    },
+    "id": "defense-plus-3"
+}

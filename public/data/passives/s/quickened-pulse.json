@@ -1,0 +1,6 @@
+{
+    "description": "Special cooldown count -1 at start of Turn 1.",
+    "id": "quickened-pulse",
+    "name": "Quickened Pulse",
+    "type": "s"
+}

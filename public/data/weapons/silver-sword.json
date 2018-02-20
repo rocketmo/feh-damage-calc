@@ -1,0 +1,11 @@
+{
+    "name": "Silver Sword",
+    "might": 11,
+    "range": 1,
+    "sp": 200,
+    "type": "Sword",
+    "color": "Red",
+    "magical": false,
+    "link": "https://kagerochart.com/hero/weapons/silver-sword",
+    "id": "silver-sword"
+}

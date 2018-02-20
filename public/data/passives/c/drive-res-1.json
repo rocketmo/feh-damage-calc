@@ -1,0 +1,9 @@
+{
+    "name": "Drive Res 1",
+    "sp": 120,
+    "type": "C",
+    "description": "Grants allies within 2 spaces Res+2 during combat.",
+    "icon": "/images/icons/passives/drive-res-1.png",
+    "link": "https://kagerochart.com/hero/passives/drive-res-1",
+    "id": "drive-res-1"
+}

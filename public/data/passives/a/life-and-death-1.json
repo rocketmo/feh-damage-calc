@@ -1,0 +1,15 @@
+{
+    "name": "Life and Death 1",
+    "sp": 50,
+    "type": "A",
+    "description": "Grants Atk/Spd+3.Inflicts Def/Res-3.",
+    "icon": "/images/icons/passives/life-and-death-1.png",
+    "stat_mod": {
+        "atk": 3,
+        "spd": 3,
+        "def": -3,
+        "res": -3
+    },
+    "link": "https://kagerochart.com/hero/passives/life-and-death-1",
+    "id": "life-and-death-1"
+}

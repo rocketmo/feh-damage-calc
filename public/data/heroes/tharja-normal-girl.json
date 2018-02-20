@@ -1,0 +1,50 @@
+{
+    "display": "Tharja, \"Normal Girl\"",
+    "name": "Tharja",
+    "title": "\"Normal Girl\"",
+    "id": "tharja-normal-girl",
+    "color": "Red",
+    "weapon_type": "Red Tome",
+    "link": "https://kagerochart.com/hero/tharja-normal-girl",
+    "move_type": "Armored",
+    "weapon": [
+        "candelabra-plus",
+        "candelabra",
+        "ruin",
+        "flux"
+    ],
+    "special": [
+        "iceberg",
+        "chilling-wind"
+    ],
+    "passive_a": [
+        "close-counter"
+    ],
+    "passive_b": [
+        "vengeful-fighter-3",
+        "vengeful-fighter-2",
+        "vengeful-fighter-1"
+    ],
+    "passive_c": [
+        "r-tome-valor-3",
+        "r-tome-valor-2",
+        "r-tome-valor-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 19,
+            "atk": 10,
+            "spd": 5,
+            "def": 8,
+            "res": 10
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 2,
+            "def": 8,
+            "res": 8,
+            "total": 32
+        }
+    }
+}

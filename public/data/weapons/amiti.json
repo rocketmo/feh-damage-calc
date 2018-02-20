@@ -1,0 +1,16 @@
+{
+    "name": "Amiti",
+    "might": 11,
+    "range": 1,
+    "sp": 400,
+    "description": "Spd-2. Attack twice when initiating combat.",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/amiti",
+    "color": "Red",
+    "brave": true,
+    "char_unique": true,
+    "stat_mod": {
+        "spd": -2
+    },
+    "id": "amiti"
+}

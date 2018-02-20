@@ -1,0 +1,61 @@
+{
+    "display": "Xander, Paragon Knight",
+    "name": "Xander",
+    "title": "Paragon Knight",
+    "id": "xander-paragon-knight",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/xander-paragon-knight",
+    "move_type": "Cavalry",
+    "weapon": [
+        "siegfried",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "blazing-light",
+        "rising-light"
+    ],
+    "passive_a": [
+        "armored-blow-3",
+        "armored-blow-2",
+        "armored-blow-1"
+    ],
+    "passive_c": [
+        "spur-def-3",
+        "spur-def-2",
+        "spur-def-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 19,
+            "atk": 7,
+            "spd": 4,
+            "def": 8,
+            "res": 3
+        },
+        "star_4": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 4,
+            "def": 9,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 20,
+            "atk": 8,
+            "spd": 5,
+            "def": 9,
+            "res": 4
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 5,
+            "def": 9,
+            "res": 2,
+            "total": 30
+        }
+    }
+}

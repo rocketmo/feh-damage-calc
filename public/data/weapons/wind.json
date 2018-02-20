@@ -1,0 +1,11 @@
+{
+    "name": "Wind",
+    "might": 4,
+    "range": 2,
+    "sp": 50,
+    "type": "Green Tome",
+    "color": "Green",
+    "magical": true,
+    "link": "https://kagerochart.com/hero/weapons/wind",
+    "id": "wind"
+}

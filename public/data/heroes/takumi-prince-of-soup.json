@@ -1,0 +1,47 @@
+{
+    "display": "Takumi, Prince of Soup",
+    "name": "Takumi",
+    "title": "Prince of Soup",
+    "id": "takumi-prince-of-soup",
+    "color": "Colorless",
+    "weapon_type": "Dagger",
+    "link": "https://kagerochart.com/hero/takumi-prince-of-soup",
+    "move_type": "Infantry",
+    "weapon": [
+        "kagami-mochi-plus",
+        "kagami-mochi",
+        "steel-dagger",
+        "iron-dagger"
+    ],
+    "special": [
+        "moonbow",
+        "new-moon"
+    ],
+    "passive_a": [
+        "atk-res-bond-3",
+        "atk-res-bond-2",
+        "atk-res-bond-1"
+    ],
+    "passive_b": [
+        "bowbreaker-3",
+        "bowbreaker-2",
+        "bowbreaker-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 10,
+            "def": 4,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 8,
+            "spd": 7,
+            "def": 2,
+            "res": 6,
+            "total": 29
+        }
+    }
+}

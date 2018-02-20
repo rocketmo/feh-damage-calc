@@ -1,0 +1,9 @@
+{
+    "description": "Unit automatically makes a follow-up attack if attacked at HP ≥ 80%.",
+    "id": "quick-riposte-2",
+    "name": "Quick Riposte 2",
+    "defense_follow_up": {
+        "trigger": "healthy",
+        "threshold": 0.8
+    }
+}

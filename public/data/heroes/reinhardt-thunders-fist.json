@@ -1,0 +1,54 @@
+{
+    "display": "Reinhardt, Thunder's Fist",
+    "name": "Reinhardt",
+    "title": "Thunder's Fist",
+    "id": "reinhardt-thunders-fist",
+    "color": "Blue",
+    "weapon_type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/reinhardt-thunders-fist",
+    "move_type": "Cavalry",
+    "weapon": [
+        "dire-thunder",
+        "thoron",
+        "elthunder",
+        "thunder"
+    ],
+    "special": [
+        "blazing-thunder",
+        "rising-thunder"
+    ],
+    "passive_b": [
+        "vantage-3",
+        "vantage-2",
+        "vantage-1"
+    ],
+    "passive_c": [
+        "goad-cavalry",
+        "spur-atk-2",
+        "spur-atk-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 15,
+            "atk": 8,
+            "spd": 5,
+            "def": 4,
+            "res": 8
+        },
+        "star_5": {
+            "hp": 16,
+            "atk": 8,
+            "spd": 6,
+            "def": 5,
+            "res": 8
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 4,
+            "def": 6,
+            "res": 4,
+            "total": 27
+        }
+    }
+}

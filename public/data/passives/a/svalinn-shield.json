@@ -1,0 +1,11 @@
+{
+    "name": "Svalinn Shield",
+    "sp": 200,
+    "type": "A",
+    "description": "Neutralizes \"effective against\" bonuses.",
+    "icon": "/images/icons/passives/svalinn-shield.png",
+    "link": "https://kagerochart.com/hero/passives/svalinn-shield",
+    "cancel_effective": true,
+    "move_unique": "Armored",
+    "id": "svalinn-shield"
+}

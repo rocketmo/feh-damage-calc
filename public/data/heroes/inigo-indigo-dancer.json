@@ -1,0 +1,46 @@
+{
+    "display": "Inigo, Indigo Dancer",
+    "name": "Inigo",
+    "title": "Indigo Dancer",
+    "id": "inigo-indigo-dancer",
+    "color": "Green",
+    "weapon_type": "Green Tome",
+    "link": "https://kagerochart.com/hero/inigo-indigo-dancer",
+    "move_type": "Infantry",
+    "weapon": [
+        "dancers-ring-plus",
+        "dancers-ring",
+        "elwind",
+        "wind"
+    ],
+    "assist": [
+        "dance"
+    ],
+    "passive_b": [
+        "gale-dance-3",
+        "gale-dance-2",
+        "gale-dance-1"
+    ],
+    "passive_c": [
+        "hone-atk-3",
+        "hone-atk-2",
+        "hone-atk-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 15,
+            "atk": 6,
+            "spd": 7,
+            "def": 5,
+            "res": 3
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 6,
+            "spd": 8,
+            "def": 4,
+            "res": 4,
+            "total": 28
+        }
+    }
+}

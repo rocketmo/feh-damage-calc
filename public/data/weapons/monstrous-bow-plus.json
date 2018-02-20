@@ -1,0 +1,17 @@
+{
+    "name": "Monstrous Bow+",
+    "might": 12,
+    "range": 2,
+    "sp": 300,
+    "description": "Effective against flying foes. After combat, if unit attacked, bonuses on all foes within 2 spaces of target become penalties through foes' next actions.",
+    "type": "Bow",
+    "link": "https://kagerochart.com/hero/weapons/monstrous-bow-plus",
+    "magical": false,
+    "move_effective": [
+        "Flying"
+    ],
+    "refinable": {
+        "type": "ranged"
+    },
+    "id": "monstrous-bow-plus"
+}

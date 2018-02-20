@@ -1,0 +1,58 @@
+{
+    "display": "Barst, The Hatchet",
+    "name": "Barst",
+    "title": "The Hatchet",
+    "id": "barst-the-hatchet",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/barst-the-hatchet",
+    "move_type": "Infantry",
+    "weapon": [
+        "brave-axe-plus",
+        "brave-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "assist": [
+        "reposition"
+    ],
+    "passive_b": [
+        "knock-back"
+    ],
+    "passive_c": [
+        "spur-atk-3",
+        "spur-atk-2",
+        "spur-atk-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 7,
+            "def": 5,
+            "res": 3
+        },
+        "star_4": {
+            "hp": 19,
+            "atk": 9,
+            "spd": 8,
+            "def": 5,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 20,
+            "atk": 9,
+            "spd": 8,
+            "def": 6,
+            "res": 4
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 7,
+            "spd": 7,
+            "def": 7,
+            "res": 2,
+            "total": 31
+        }
+    }
+}

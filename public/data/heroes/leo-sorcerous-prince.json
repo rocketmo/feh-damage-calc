@@ -1,0 +1,47 @@
+{
+    "display": "Leo, Sorcerous Prince",
+    "name": "Leo",
+    "title": "Sorcerous Prince",
+    "id": "leo-sorcerous-prince",
+    "color": "Red",
+    "weapon_type": "Red Tome",
+    "link": "https://kagerochart.com/hero/leo-sorcerous-prince",
+    "move_type": "Cavalry",
+    "weapon": [
+        "brynhildr",
+        "fenrir",
+        "ruin",
+        "flux"
+    ],
+    "special": [
+        "blazing-light",
+        "rising-light"
+    ],
+    "passive_b": [
+        "quick-riposte-3",
+        "quick-riposte-2",
+        "quick-riposte-1"
+    ],
+    "passive_c": [
+        "savage-blow-3",
+        "savage-blow-2",
+        "savage-blow-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 5,
+            "def": 6,
+            "res": 8
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 6,
+            "spd": 4,
+            "def": 5,
+            "res": 6,
+            "total": 27
+        }
+    }
+}

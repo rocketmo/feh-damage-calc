@@ -1,0 +1,46 @@
+{
+    "display": "Chrom, Gifted Leader",
+    "name": "Chrom",
+    "title": "Gifted Leader",
+    "id": "chrom-gifted-leader",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/chrom-gifted-leader",
+    "move_type": "Armored",
+    "weapon": [
+        "sack-o-gifts-plus",
+        "sack-o-gifts",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "assist": [
+        "pivot"
+    ],
+    "passive_a": [
+        "brazen-atk-def-3",
+        "brazen-atk-def-2",
+        "brazen-atk-def-1"
+    ],
+    "passive_b": [
+        "wary-fighter-3",
+        "wary-fighter-2",
+        "wary-fighter-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 25,
+            "atk": 12,
+            "spd": 4,
+            "def": 9,
+            "res": 5
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 9,
+            "spd": 3,
+            "def": 8,
+            "res": 7,
+            "total": 35
+        }
+    }
+}

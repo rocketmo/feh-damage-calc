@@ -1,0 +1,13 @@
+{
+    "name": "HP Def 2",
+    "sp": 200,
+    "type": "A",
+    "description": "Grants HP+4, Def+2.",
+    "icon": "/images/icons/passives/hp-def-2.png",
+    "link": "https://kagerochart.com/hero/passives/hp-def-2",
+    "stat_mod": {
+        "hp": 4,
+        "def": 2
+    },
+    "id": "hp-def-2"
+}

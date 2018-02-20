@@ -1,0 +1,54 @@
+{
+    "display": "Tharja, Dark Shadow",
+    "name": "Tharja",
+    "title": "Dark Shadow",
+    "id": "tharja-dark-shadow",
+    "color": "Red",
+    "weapon_type": "Red Tome",
+    "link": "https://kagerochart.com/hero/tharja-dark-shadow",
+    "move_type": "Infantry",
+    "weapon": [
+        "raurblade-plus",
+        "raurblade",
+        "ruin",
+        "flux"
+    ],
+    "special": [
+        "vengeance",
+        "retribution"
+    ],
+    "passive_a": [
+        "darting-blow-3",
+        "darting-blow-2",
+        "darting-blow-1"
+    ],
+    "passive_c": [
+        "spur-res-3",
+        "spur-res-2",
+        "spur-res-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 16,
+            "atk": 8,
+            "spd": 8,
+            "def": 5,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 8,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 8,
+            "def": 4,
+            "res": 3,
+            "total": 28
+        }
+    }
+}

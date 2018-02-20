@@ -1,0 +1,13 @@
+{
+    "name": "Sturdy Blow 1",
+    "sp": 120,
+    "type": "A",
+    "description": "Grants Atk/Def+2 during combat if unit initiates combat.",
+    "icon": "/images/icons/passives/sturdy-blow-1.png",
+    "initiate_mod": {
+        "atk": 2,
+        "def": 2
+    },
+    "link": "https://kagerochart.com/hero/passives/sturdy-blow-1",
+    "id": "sturdy-blow-1"
+}

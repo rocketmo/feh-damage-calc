@@ -1,0 +1,43 @@
+{
+    "display": "Delthea, Free Spirit",
+    "name": "Delthea",
+    "title": "Free Spirit",
+    "id": "delthea-free-spirit",
+    "color": "Blue",
+    "weapon_type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/delthea-free-spirit",
+    "move_type": "Infantry",
+    "weapon": [
+        "dark-aura",
+        "thoron",
+        "elthunder",
+        "thunder"
+    ],
+    "passive_a": [
+        "death-blow-3",
+        "death-blow-2",
+        "death-blow-1"
+    ],
+    "passive_c": [
+        "drive-atk-2",
+        "drive-atk-1",
+        "spur-atk-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 10,
+            "spd": 8,
+            "def": 3,
+            "res": 7
+        },
+        "growth": {
+            "hp": 4,
+            "atk": 8,
+            "spd": 8,
+            "def": 1,
+            "res": 7,
+            "total": 28
+        }
+    }
+}

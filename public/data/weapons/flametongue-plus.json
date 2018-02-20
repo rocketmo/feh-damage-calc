@@ -1,0 +1,10 @@
+{
+    "name": "Flametongue+",
+    "might": 15,
+    "range": 1,
+    "sp": 300,
+    "type": "Breath",
+    "link": "https://kagerochart.com/hero/weapons/flametongue-plus",
+    "id": "flametongue-plus",
+    "magical": true
+}

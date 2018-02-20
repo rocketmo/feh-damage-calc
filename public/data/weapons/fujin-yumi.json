@@ -1,0 +1,21 @@
+{
+    "name": "Fujin Yumi",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "Effective against flying units. Unit can pass through foes if own HP ≥ 50%.",
+    "type": "Bow",
+    "link": "https://kagerochart.com/hero/weapons/fujin-yumi",
+    "color": "Colorless",
+    "magical": false,
+    "move_effective": [
+        "Flying"
+    ],
+    "char_unique": true,
+    "refinable": {
+        "type": "ranged",
+        "description": "If unit's HP ≥ 50%, unit is not slowed by terrain. (Does not apply to impassable terrain.)",
+        "special": "Fujin Yumi"
+    },
+    "id": "fujin-yumi"
+}

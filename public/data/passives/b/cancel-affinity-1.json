@@ -1,0 +1,11 @@
+{
+    "name": "Cancel Affinity 1",
+    "sp": 50,
+    "type": "B",
+    "description": "Any weapon triangle affinity granted by unit's skills is negated. Also negates any weapon triangle affinity granted by foe's skills.",
+    "icon": "/images/icons/passives/cancel-affinity-1.png",
+    "cancel_skill_affinity": true,
+    "cancel_enemy_skill_affinity": true,
+    "link": "https://kagerochart.com/hero/passives/cancel-affinity-1",
+    "id": "cancel-affinity-1"
+}

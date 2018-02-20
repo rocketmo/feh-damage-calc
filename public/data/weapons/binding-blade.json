@@ -1,0 +1,17 @@
+{
+    "name": "Binding Blade",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Grants +2 Def/Res when this unit is attacked.",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/binding-blade",
+    "color": "Red",
+    "magical": false,
+    "defend_mod": {
+        "def": 2,
+        "res": 2
+    },
+    "char_unique": true,
+    "id": "binding-blade"
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Shield Pulse 3",
+    "sp": 240,
+    "type": "B",
+    "description": "If unit's Special triggers based on a foe's attack, Special cooldown count-2 at start of turn 1.Unit takes 5 less damage when Special triggers.",
+    "icon": "/images/icons/passives/shield-pulse-3.png",
+    "link": "https://kagerochart.com/hero/passives/shield-pulse-3",
+    "special_trigger_damage_reduction": 5,
+    "id": "shield-pulse-3"
+}

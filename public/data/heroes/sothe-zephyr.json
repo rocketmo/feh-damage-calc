@@ -1,0 +1,47 @@
+{
+    "display": "Sothe, Zephyr",
+    "name": "Sothe",
+    "title": "Zephyr",
+    "id": "sothe-zephyr",
+    "color": "Colorless",
+    "weapon_type": "Dagger",
+    "link": "https://kagerochart.com/hero/sothe-zephyr",
+    "move_type": "Infantry",
+    "weapon": [
+        "peshkatz",
+        "silver-dagger",
+        "steel-dagger",
+        "iron-dagger"
+    ],
+    "special": [
+        "glimmer",
+        "night-sky"
+    ],
+    "passive_a": [
+        "life-and-death-3",
+        "life-and-death-2",
+        "life-and-death-1"
+    ],
+    "passive_c": [
+        "spur-atk-spd-2",
+        "spur-atk-spd-1",
+        "spur-atk-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 10,
+            "spd": 9,
+            "def": 5,
+            "res": 4
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 8,
+            "spd": 7,
+            "def": 4,
+            "res": 4,
+            "total": 29
+        }
+    }
+}

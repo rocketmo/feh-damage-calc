@@ -1,0 +1,10 @@
+{
+    "name": "Fortify Cavalry",
+    "sp": 200,
+    "type": "C",
+    "description": "Grants adjacent cavalry allies Def/Res+6 through their next actions at the start of each turn.",
+    "icon": "/images/icons/passives/fortify-cavalry.png",
+    "link": "https://kagerochart.com/hero/passives/fortify-cavalry",
+    "move_unique": "Cavalry",
+    "id": "fortify-cavalry"
+}

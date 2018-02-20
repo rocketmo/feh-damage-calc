@@ -1,0 +1,6 @@
+{
+    "description": "At start of turn, bonuses become penalties on all foes in cardinal directions with HP 1 or more lower than unit through foe's next action.",
+    "id": "panic-ploy-3",
+    "name": "Panic Ploy 3",
+    "type": "s"
+}

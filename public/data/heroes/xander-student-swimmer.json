@@ -1,0 +1,47 @@
+{
+    "display": "Xander, Student Swimmer",
+    "name": "Xander",
+    "title": "Student Swimmer",
+    "id": "xander-student-swimmer",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/xander-student-swimmer",
+    "move_type": "Infantry",
+    "weapon": [
+        "lilith-floatie-plus",
+        "lilith-floatie",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "bonfire",
+        "glowing-ember"
+    ],
+    "passive_a": [
+        "fire-boost-3",
+        "fire-boost-2",
+        "fire-boost-1"
+    ],
+    "passive_c": [
+        "infantry-pulse-3",
+        "infantry-pulse-2",
+        "infantry-pulse-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 6,
+            "def": 8,
+            "res": 6
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 7,
+            "def": 9,
+            "res": 1,
+            "total": 31
+        }
+    }
+}

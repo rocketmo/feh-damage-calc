@@ -1,0 +1,9 @@
+{
+    "name": "Guidance 3",
+    "sp": 240,
+    "type": "C",
+    "description": "Infantry and armored allies within 2 spaces can move to a space adjacent to unit.",
+    "icon": "/images/icons/passives/guidance-3.png",
+    "link": "https://kagerochart.com/hero/passives/guidance-3",
+    "id": "guidance-3"
+}

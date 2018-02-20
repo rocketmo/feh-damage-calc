@@ -1,0 +1,54 @@
+{
+    "display": "Oscar, Agile Horseman",
+    "name": "Oscar",
+    "title": "Agile Horseman",
+    "id": "oscar-agile-horseman",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/oscar-agile-horseman",
+    "move_type": "Cavalry",
+    "weapon": [
+        "sapphire-lance-plus",
+        "sapphire-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "rally-speed-defense",
+        "rally-speed"
+    ],
+    "passive_b": [
+        "lancebreaker-3",
+        "lancebreaker-2",
+        "lancebreaker-1"
+    ],
+    "passive_c": [
+        "spur-spd-def-2",
+        "spur-spd-def-1",
+        "spur-def-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 8,
+            "def": 6,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 8,
+            "def": 7,
+            "res": 6
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 8,
+            "spd": 8,
+            "def": 5,
+            "res": 3,
+            "total": 30
+        }
+    }
+}

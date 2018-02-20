@@ -1,0 +1,46 @@
+{
+    "display": "Robin, Seaside Tactician",
+    "name": "Robin",
+    "title": "Seaside Tactician",
+    "id": "robin-seaside-tactician",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/robin-seaside-tactician",
+    "move_type": "Infantry",
+    "weapon": [
+        "deft-harpoon-plus",
+        "deft-harpoon",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "reposition"
+    ],
+    "passive_a": [
+        "hp-def-2",
+        "hp-def-1",
+        "defense-plus-1"
+    ],
+    "passive_c": [
+        "lance-valor-3",
+        "lance-valor-2",
+        "lance-valor-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 8,
+            "def": 6,
+            "res": 7
+        },
+        "growth": {
+            "hp": 4,
+            "atk": 7,
+            "spd": 8,
+            "def": 6,
+            "res": 6,
+            "total": 31
+        }
+    }
+}

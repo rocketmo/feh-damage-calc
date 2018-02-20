@@ -1,0 +1,13 @@
+{
+    "name": "Legion's Axe",
+    "might": 10,
+    "range": 1,
+    "sp": 200,
+    "description": "After combat, bonuses on foe become penalties through their next action.",
+    "type": "Axe",
+    "color": "Green",
+    "magical": false,
+    "convert_penalties": true,
+    "link": "https://kagerochart.com/hero/weapons/legions-axe",
+    "id": "legions-axe"
+}

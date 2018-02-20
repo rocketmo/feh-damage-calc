@@ -1,0 +1,11 @@
+{
+    "name": "Poison Strike 3",
+    "sp": 240,
+    "type": "B",
+    "description": "Inflicts 10 damage to foe after any combat this unit initiates.",
+    "icon": "/images/icons/passives/poison-strike-3.png",
+    "link": "https://kagerochart.com/hero/passives/poison-strike-3",
+    "poison": 10,
+    "weapon_restrict": "Staff",
+    "id": "poison-strike-3"
+}

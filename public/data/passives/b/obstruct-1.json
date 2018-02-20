@@ -1,0 +1,9 @@
+{
+    "name": "Obstruct 1",
+    "sp": 50,
+    "type": "B",
+    "description": "Prevents foes from moving through adjacent spaces while this unit's HP ≥ 90%.(No effect on foes with a Pass skill.)",
+    "icon": "/images/icons/passives/obstruct-1.png",
+    "link": "https://kagerochart.com/hero/passives/obstruct-1",
+    "id": "obstruct-1"
+}

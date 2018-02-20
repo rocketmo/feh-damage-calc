@@ -1,0 +1,11 @@
+{
+    "name": "Tomato Tome+",
+    "might": 12,
+    "range": 2,
+    "sp": 300,
+    "description": "Grants allies within 2 spaces Atk/Spd+1 during combat.",
+    "type": "Tome",
+    "link": "https://kagerochart.com/hero/weapons/tomato-tome-plus",
+    "id": "tomato-tome-plus",
+    "magical": true
+}

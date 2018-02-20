@@ -1,0 +1,13 @@
+{
+    "name": "Gronnraven+",
+    "might": 11,
+    "range": 2,
+    "sp": 300,
+    "description": "Grants weapon advantage vs. colorless foes.",
+    "type": "Green Tome",
+    "link": "https://kagerochart.com/hero/weapons/gronnraven-plus",
+    "color": "Green",
+    "magical": true,
+    "color_effective": "Colorless",
+    "id": "gronnraven-plus"
+}

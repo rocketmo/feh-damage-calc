@@ -1,0 +1,10 @@
+{
+    "name": "Hone Armor",
+    "sp": 200,
+    "type": "C",
+    "description": "Grants adjacent armored allies Atk/Spd+6 through their next actions at the start of each turn.",
+    "icon": "/images/icons/passives/hone-armor.png",
+    "link": "https://kagerochart.com/hero/passives/hone-armor",
+    "move_unique": "Armored",
+    "id": "hone-armor"
+}

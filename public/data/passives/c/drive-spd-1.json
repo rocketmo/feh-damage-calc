@@ -1,0 +1,9 @@
+{
+    "name": "Drive Spd 1",
+    "sp": 120,
+    "type": "C",
+    "description": "Grants allies within 2 spaces Spd+2 during combat.",
+    "icon": "/images/icons/passives/drive-spd-1.png",
+    "link": "https://kagerochart.com/hero/passives/drive-spd-1",
+    "id": "drive-spd-1"
+}

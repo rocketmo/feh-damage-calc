@@ -1,0 +1,61 @@
+{
+    "display": "Hinata, Wild Samurai",
+    "name": "Hinata",
+    "title": "Wild Samurai",
+    "id": "hinata-wild-samurai",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/hinata-wild-samurai",
+    "move_type": "Infantry",
+    "weapon": [
+        "ruby-sword-plus",
+        "ruby-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "pavise",
+        "buckler"
+    ],
+    "passive_a": [
+        "fury-3",
+        "fury-2",
+        "fury-1"
+    ],
+    "passive_b": [
+        "brash-assault-3",
+        "brash-assault-2",
+        "brash-assault-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 20,
+            "atk": 7,
+            "spd": 4,
+            "def": 9,
+            "res": 2
+        },
+        "star_4": {
+            "hp": 20,
+            "atk": 8,
+            "spd": 4,
+            "def": 10,
+            "res": 2
+        },
+        "star_5": {
+            "hp": 21,
+            "atk": 8,
+            "spd": 5,
+            "def": 10,
+            "res": 3
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 7,
+            "spd": 5,
+            "def": 8,
+            "res": 3,
+            "total": 31
+        }
+    }
+}

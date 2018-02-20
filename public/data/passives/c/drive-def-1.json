@@ -1,0 +1,9 @@
+{
+    "name": "Drive Def 1",
+    "sp": 120,
+    "type": "C",
+    "description": "Grants allies within 2 spaces Def+2 during combat.",
+    "icon": "/images/icons/passives/drive-def-1.png",
+    "link": "https://kagerochart.com/hero/passives/drive-def-1",
+    "id": "drive-def-1"
+}

@@ -1,0 +1,45 @@
+{
+    "display": "Takumi, Wild Card",
+    "name": "Takumi",
+    "title": "Wild Card",
+    "id": "takumi-wild-card",
+    "color": "Colorless",
+    "weapon_type": "Bow",
+    "link": "https://kagerochart.com/hero/takumi-wild-card",
+    "move_type": "Infantry",
+    "weapon": [
+        "fujin-yumi",
+        "silver-bow",
+        "steel-bow",
+        "iron-bow"
+    ],
+    "special": [
+        "vengeance",
+        "retribution"
+    ],
+    "passive_a": [
+        "close-counter"
+    ],
+    "passive_c": [
+        "threaten-spd-3",
+        "threaten-spd-2",
+        "threaten-spd-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 7,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 8,
+            "def": 5,
+            "res": 2,
+            "total": 28
+        }
+    }
+}

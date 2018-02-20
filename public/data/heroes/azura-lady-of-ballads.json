@@ -1,0 +1,46 @@
+{
+    "display": "Azura, Lady of Ballads",
+    "name": "Azura",
+    "title": "Lady of Ballads",
+    "id": "azura-lady-of-ballads",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/azura-lady-of-ballads",
+    "move_type": "Infantry",
+    "weapon": [
+        "urr",
+        "silver-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "assist": [
+        "sing"
+    ],
+    "passive_a": [
+        "triangle-adept-3",
+        "triangle-adept-2",
+        "triangle-adept-1"
+    ],
+    "passive_c": [
+        "drive-res-2",
+        "drive-res-1",
+        "spur-res-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 6,
+            "spd": 8,
+            "def": 3,
+            "res": 6
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 8,
+            "spd": 8,
+            "def": 4,
+            "res": 6,
+            "total": 31
+        }
+    }
+}

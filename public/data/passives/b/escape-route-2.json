@@ -1,0 +1,9 @@
+{
+    "name": "Escape Route 2",
+    "sp": 120,
+    "type": "B",
+    "description": "Enables unit whose own HP is ≤ 40% to warp adjacent to any ally.",
+    "icon": "/images/icons/passives/escape-route-2.png",
+    "link": "https://kagerochart.com/hero/passives/escape-route-2",
+    "id": "escape-route-2"
+}

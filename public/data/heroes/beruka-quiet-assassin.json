@@ -1,0 +1,59 @@
+{
+    "display": "Beruka, Quiet Assassin",
+    "name": "Beruka",
+    "title": "Quiet Assassin",
+    "id": "beruka-quiet-assassin",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/beruka-quiet-assassin",
+    "move_type": "Flying",
+    "weapon": [
+        "killer-axe-plus",
+        "killer-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "glimmer",
+        "night-sky"
+    ],
+    "passive_a": [
+        "defiant-def-3",
+        "defiant-def-2",
+        "defiant-def-1"
+    ],
+    "passive_b": [
+        "lunge"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 19,
+            "atk": 6,
+            "spd": 5,
+            "def": 8,
+            "res": 4
+        },
+        "star_4": {
+            "hp": 19,
+            "atk": 7,
+            "spd": 5,
+            "def": 9,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 20,
+            "atk": 7,
+            "spd": 6,
+            "def": 9,
+            "res": 5
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 6,
+            "spd": 4,
+            "def": 9,
+            "res": 4,
+            "total": 31
+        }
+    }
+}

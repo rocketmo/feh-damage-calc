@@ -1,0 +1,47 @@
+{
+    "display": "Minerva, Red Dragoon",
+    "name": "Minerva",
+    "title": "Red Dragoon",
+    "id": "minerva-red-dragoon",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/minerva-red-dragoon",
+    "move_type": "Flying",
+    "weapon": [
+        "hauteclere",
+        "silver-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "special": [
+        "sacred-cowl",
+        "holy-vestments"
+    ],
+    "passive_a": [
+        "life-and-death-3",
+        "life-and-death-2",
+        "life-and-death-1"
+    ],
+    "passive_c": [
+        "ward-fliers",
+        "spur-def-2",
+        "spur-def-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 9,
+            "def": 8,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 7,
+            "def": 7,
+            "res": 4,
+            "total": 31
+        }
+    }
+}

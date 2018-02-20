@@ -1,0 +1,13 @@
+{
+    "name": "Attack Def +2",
+    "sp": 160,
+    "type": "A",
+    "description": "Grants Atk/Def+2.",
+    "icon": "/images/icons/passives/attack-def-plus-2.png",
+    "link": "https://kagerochart.com/hero/passives/attack-def-plus-2",
+    "stat_mod": {
+        "atk": 2,
+        "def": 2
+    },
+    "id": "attack-def-plus-2"
+}

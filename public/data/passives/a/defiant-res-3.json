@@ -1,0 +1,12 @@
+{
+    "name": "Defiant Res 3",
+    "sp": 160,
+    "type": "A",
+    "description": "Grants Res+7 at start of turn if unit's HP ≤ 50%.",
+    "icon": "/images/icons/passives/defiant-res-3.png",
+    "link": "https://kagerochart.com/hero/passives/defiant-res-3",
+    "defiant": {
+        "res": 7
+    },
+    "id": "defiant-res-3"
+}

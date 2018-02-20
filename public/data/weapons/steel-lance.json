@@ -1,0 +1,11 @@
+{
+    "name": "Steel Lance",
+    "might": 8,
+    "range": 1,
+    "sp": 100,
+    "type": "Lance",
+    "color": "Blue",
+    "magical": false,
+    "link": "https://kagerochart.com/hero/weapons/steel-lance",
+    "id": "steel-lance"
+}

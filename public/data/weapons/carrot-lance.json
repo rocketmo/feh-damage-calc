@@ -1,0 +1,13 @@
+{
+    "name": "Carrot Lance",
+    "might": 9,
+    "range": 1,
+    "sp": 200,
+    "description": "If unit initiates attack, unit recovers 4 HP after the battle.",
+    "type": "Lance",
+    "color": "Blue",
+    "magical": false,
+    "initiate_heal": 4,
+    "link": "https://kagerochart.com/hero/weapons/carrot-lance",
+    "id": "carrot-lance"
+}

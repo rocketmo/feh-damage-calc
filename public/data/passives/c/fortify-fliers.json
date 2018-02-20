@@ -1,0 +1,10 @@
+{
+    "name": "Fortify Fliers",
+    "sp": 200,
+    "type": "C",
+    "description": "Grants adjacent flying allies Def/Res+6 through their next actions at the start of each turn.",
+    "icon": "/images/icons/passives/fortify-fliers.png",
+    "link": "https://kagerochart.com/hero/passives/fortify-fliers",
+    "move_unique": "Flying",
+    "id": "fortify-fliers"
+}

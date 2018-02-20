@@ -1,0 +1,46 @@
+{
+    "display": "Olivia, Festival Dancer",
+    "name": "Olivia",
+    "title": "Festival Dancer",
+    "id": "olivia-festival-dancer",
+    "color": "Colorless",
+    "weapon_type": "Dagger",
+    "link": "https://kagerochart.com/hero/olivia-festival-dancer",
+    "move_type": "Infantry",
+    "weapon": [
+        "dancers-fan-plus",
+        "dancers-fan",
+        "steel-dagger",
+        "iron-dagger"
+    ],
+    "assist": [
+        "dance"
+    ],
+    "passive_a": [
+        "distant-def-3",
+        "distant-def-2",
+        "distant-def-1"
+    ],
+    "passive_b": [
+        "blaze-dance-3",
+        "blaze-dance-2",
+        "blaze-dance-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 15,
+            "atk": 6,
+            "spd": 8,
+            "def": 3,
+            "res": 4
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 6,
+            "spd": 8,
+            "def": 2,
+            "res": 7,
+            "total": 28
+        }
+    }
+}

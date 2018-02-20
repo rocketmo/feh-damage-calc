@@ -1,0 +1,16 @@
+{
+    "name": "Excalibur",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "Effective against flying units.",
+    "type": "Green Tome",
+    "link": "https://kagerochart.com/hero/weapons/excalibur",
+    "color": "Green",
+    "magical": true,
+    "move_effective": [
+        "Flying"
+    ],
+    "char_unique": true,
+    "id": "excalibur"
+}

@@ -1,0 +1,12 @@
+{
+    "name": "Desperation 2",
+    "sp": 100,
+    "type": "B",
+    "description": "If unit initiates combat with HP ≤ 50%, follow-up attacks occur immediately after unit's attack.",
+    "icon": "/images/icons/passives/desperation-2.png",
+    "desperation": {
+        "threshold": 0.5
+    },
+    "link": "https://kagerochart.com/hero/passives/desperation-2",
+    "id": "desperation-2"
+}

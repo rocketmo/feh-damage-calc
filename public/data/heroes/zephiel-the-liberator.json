@@ -1,0 +1,61 @@
+{
+    "display": "Zephiel, The Liberator",
+    "name": "Zephiel",
+    "title": "The Liberator",
+    "id": "zephiel-the-liberator",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/zephiel-the-liberator",
+    "move_type": "Armored",
+    "weapon": [
+        "eckesachs",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "reprisal",
+        "retribution"
+    ],
+    "passive_a": [
+        "life-and-death-3",
+        "life-and-death-2",
+        "life-and-death-1"
+    ],
+    "passive_b": [
+        "wary-fighter-3",
+        "wary-fighter-2",
+        "wary-fighter-1"
+    ],
+    "base_stat": {
+        "star_3": {
+            "hp": 24,
+            "atk": 8,
+            "spd": 2,
+            "def": 11,
+            "res": 4
+        },
+        "star_4": {
+            "hp": 24,
+            "atk": 9,
+            "spd": 2,
+            "def": 12,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 25,
+            "atk": 9,
+            "spd": 3,
+            "def": 12,
+            "res": 5
+        },
+        "growth": {
+            "hp": 10,
+            "atk": 8,
+            "spd": 2,
+            "def": 8,
+            "res": 5,
+            "total": 33
+        }
+    }
+}

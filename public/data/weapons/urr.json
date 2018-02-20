@@ -1,0 +1,10 @@
+{
+    "name": "Urðr",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "If Sing or Dance is used, target also granted Atk/Spd/Def/Res+3.",
+    "type": "Axe",
+    "link": "https://kagerochart.com/hero/weapons/urr",
+    "id": "urr"
+}

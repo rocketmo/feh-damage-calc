@@ -1,0 +1,12 @@
+{
+    "name": "Resistance +1",
+    "sp": 30,
+    "type": "A",
+    "description": "Grants Res+1.",
+    "icon": "/images/icons/passives/resistance-plus-1.png",
+    "stat_mod": {
+        "res": 1
+    },
+    "link": "https://kagerochart.com/hero/passives/resistance-plus-1",
+    "id": "resistance-plus-1"
+}

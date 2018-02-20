@@ -1,0 +1,13 @@
+{
+    "name": "Rauðrraven+",
+    "might": 11,
+    "range": 2,
+    "sp": 300,
+    "description": "Grants weapon advantage vs. colorless foes.",
+    "type": "Red Tome",
+    "link": "https://kagerochart.com/hero/weapons/raurraven-plus",
+    "color": "Red",
+    "magical": true,
+    "color_effective": "Colorless",
+    "id": "raurraven-plus"
+}

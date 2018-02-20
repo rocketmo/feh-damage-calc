@@ -1,0 +1,9 @@
+{
+    "name": "Rally Resistance",
+    "range": 1,
+    "sp": 150,
+    "description": "Grants Res+4 to an adjacent ally until the end of the turn.",
+    "weapon_restrict": "Staff",
+    "link": "https://kagerochart.com/hero/assists/rally-resistance",
+    "id": "rally-resistance"
+}

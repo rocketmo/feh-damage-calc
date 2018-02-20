@@ -1,0 +1,10 @@
+{
+    "name": "Ellight",
+    "might": 6,
+    "range": 2,
+    "sp": 100,
+    "type": "Tome",
+    "link": "https://kagerochart.com/hero/weapons/ellight",
+    "id": "ellight",
+    "magical": true
+}

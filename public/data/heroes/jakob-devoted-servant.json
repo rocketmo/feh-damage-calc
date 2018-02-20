@@ -1,0 +1,53 @@
+{
+    "display": "Jakob, Devoted Servant",
+    "name": "Jakob",
+    "title": "Devoted Servant",
+    "id": "jakob-devoted-servant",
+    "color": "Colorless",
+    "weapon_type": "Dagger",
+    "link": "https://kagerochart.com/hero/jakob-devoted-servant",
+    "move_type": "Infantry",
+    "weapon": [
+        "silver-dagger-plus",
+        "silver-dagger",
+        "steel-dagger",
+        "iron-dagger"
+    ],
+    "assist": [
+        "rally-resistance"
+    ],
+    "passive_a": [
+        "defense-plus-3",
+        "defense-plus-2",
+        "defense-plus-1"
+    ],
+    "passive_b": [
+        "renewal-3",
+        "renewal-2",
+        "renewal-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 9,
+            "def": 5,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 9,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 6,
+            "spd": 6,
+            "def": 5,
+            "res": 5,
+            "total": 28
+        }
+    }
+}

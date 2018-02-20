@@ -1,0 +1,47 @@
+{
+    "display": "Karel, Sword Demon",
+    "name": "Karel",
+    "title": "Sword Demon",
+    "id": "karel-sword-demon",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/karel-sword-demon",
+    "move_type": "Infantry",
+    "weapon": [
+        "wo-dao-plus",
+        "wo-dao",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "reprisal",
+        "retribution"
+    ],
+    "passive_a": [
+        "defiant-atk-3",
+        "defiant-atk-2",
+        "defiant-atk-1"
+    ],
+    "passive_b": [
+        "desperation-3",
+        "desperation-2",
+        "desperation-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 9,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 9,
+            "atk": 6,
+            "spd": 8,
+            "def": 5,
+            "res": 3,
+            "total": 31
+        }
+    }
+}

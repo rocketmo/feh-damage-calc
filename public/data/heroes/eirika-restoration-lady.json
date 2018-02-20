@@ -1,0 +1,51 @@
+{
+    "display": "Eirika, Restoration Lady",
+    "name": "Eirika",
+    "title": "Restoration Lady",
+    "id": "eirika-restoration-lady",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/eirika-restoration-lady",
+    "move_type": "Infantry",
+    "weapon": [
+        "sieglinde",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "assist": [
+        "pivot"
+    ],
+    "passive_b": [
+        "drag-back"
+    ],
+    "passive_c": [
+        "hone-spd-3",
+        "hone-spd-2",
+        "hone-spd-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 9,
+            "def": 6,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 9,
+            "def": 7,
+            "res": 6
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 5,
+            "spd": 8,
+            "def": 5,
+            "res": 6,
+            "total": 31
+        }
+    }
+}

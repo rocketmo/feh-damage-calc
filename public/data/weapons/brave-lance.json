@@ -1,0 +1,16 @@
+{
+    "name": "Brave Lance",
+    "might": 5,
+    "range": 1,
+    "sp": 200,
+    "description": "Spd-5. Attack twice when initiating combat.",
+    "type": "Lance",
+    "color": "Blue",
+    "magical": false,
+    "brave": true,
+    "stat_mod": {
+        "spd": -5
+    },
+    "link": "https://kagerochart.com/hero/weapons/brave-lance",
+    "id": "brave-lance"
+}

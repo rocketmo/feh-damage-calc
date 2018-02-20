@@ -1,0 +1,13 @@
+{
+    "name": "Swift Strike 1",
+    "sp": 120,
+    "type": "A",
+    "description": "If unit initiates combat, unit granted Spd/Res+2 during battle.",
+    "icon": "/images/icons/passives/swift-strike-1.png",
+    "initiate_mod": {
+        "res": 2,
+        "spd": 2
+    },
+    "link": "https://kagerochart.com/hero/passives/swift-strike-1",
+    "id": "swift-strike-1"
+}

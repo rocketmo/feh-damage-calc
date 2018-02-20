@@ -1,0 +1,18 @@
+<div class="mdc-card mdc-theme--background">
+    <section class="mdc-card__primary">
+        <h2 class="mdc-card__title--large mdc-theme--secondary-light">Matchup Summary</h2>
+        <h3 class="mdc-card__subtitle" id="matchup-title"></h3>
+        {{> toggle-button}}
+    </section>
+
+    <div class="mdc-card__body">
+        <div class="mdc-card__supporting-text" id="matchup-display">
+            <span id="matchup-overview"></span>
+        </div>
+    </div>
+
+    <div id="matchup-buttons" class="mdc-card__actions">
+        <button id="matchup-filter-button" class="mdc-card__action mdc-button mdc-button--primary collapse-button matchup-button" data-section="matchup-filters">Filters</button>
+        <button id="matchup-override-button" class="mdc-card__action mdc-button mdc-button--primary collapse-button matchup-button" data-section="matchup-overrides">Overrides</button>
+    </div>
+</div>

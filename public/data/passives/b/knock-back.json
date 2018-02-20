@@ -1,0 +1,10 @@
+{
+    "name": "Knock Back",
+    "sp": 150,
+    "type": "B",
+    "description": "If unit initiates attack, foe is moved 1 space away after combat.",
+    "icon": "/images/icons/passives/knock-back.png",
+    "link": "https://kagerochart.com/hero/passives/knock-back",
+    "range_unique": 1,
+    "id": "knock-back"
+}

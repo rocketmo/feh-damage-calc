@@ -1,0 +1,9 @@
+{
+    "name": "Smite",
+    "range": 1,
+    "sp": 150,
+    "description": "Push adjacent ally 2 spaces farther away.",
+    "link": "https://kagerochart.com/hero/assists/smite",
+    "weapon_restrict": "Staff",
+    "id": "smite"
+}

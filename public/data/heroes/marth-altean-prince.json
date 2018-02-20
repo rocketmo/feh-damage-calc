@@ -1,0 +1,53 @@
+{
+    "display": "Marth, Altean Prince",
+    "name": "Marth",
+    "title": "Altean Prince",
+    "id": "marth-altean-prince",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/marth-altean-prince",
+    "move_type": "Infantry",
+    "weapon": [
+        "falchion",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "assist": [
+        "pivot"
+    ],
+    "passive_b": [
+        "escape-route-3",
+        "escape-route-2",
+        "escape-route-1"
+    ],
+    "passive_c": [
+        "spur-spd-3",
+        "spur-spd-2",
+        "spur-spd-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 8,
+            "def": 6,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 7,
+            "spd": 8,
+            "def": 7,
+            "res": 6
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 7,
+            "spd": 8,
+            "def": 6,
+            "res": 4,
+            "total": 31
+        }
+    }
+}

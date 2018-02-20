@@ -1,0 +1,55 @@
+{
+    "display": "Chrom, Exalted Prince",
+    "name": "Chrom",
+    "title": "Exalted Prince",
+    "id": "chrom-exalted-prince",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/chrom-exalted-prince",
+    "move_type": "Infantry",
+    "weapon": [
+        "falchion",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "aether",
+        "sol",
+        "daylight"
+    ],
+    "passive_a": [
+        "defiant-def-3",
+        "defiant-def-2",
+        "defiant-def-1"
+    ],
+    "passive_c": [
+        "spur-def-3",
+        "spur-def-2",
+        "spur-def-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 20,
+            "atk": 9,
+            "spd": 5,
+            "def": 7,
+            "res": 3
+        },
+        "star_5": {
+            "hp": 21,
+            "atk": 9,
+            "spd": 6,
+            "def": 7,
+            "res": 4
+        },
+        "growth": {
+            "hp": 8,
+            "atk": 9,
+            "spd": 5,
+            "def": 7,
+            "res": 2,
+            "total": 31
+        }
+    }
+}

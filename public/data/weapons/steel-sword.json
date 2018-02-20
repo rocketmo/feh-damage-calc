@@ -1,0 +1,11 @@
+{
+    "name": "Steel Sword",
+    "might": 8,
+    "range": 1,
+    "sp": 100,
+    "type": "Sword",
+    "color": "Red",
+    "magical": false,
+    "link": "https://kagerochart.com/hero/weapons/steel-sword",
+    "id": "steel-sword"
+}

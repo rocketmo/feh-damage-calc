@@ -1,0 +1,9 @@
+{
+    "description": "Grants Res +1",
+    "id": "squad-ace-c-1",
+    "name": "Squad Ace C 1",
+    "stat_mod": {
+        "res": 1
+    },
+    "type": "s"
+}

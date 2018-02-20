@@ -1,0 +1,51 @@
+{
+    "display": "Clair, Highborn Flier",
+    "name": "Clair",
+    "title": "Highborn Flier",
+    "id": "clair-highborn-flier",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/clair-highborn-flier",
+    "move_type": "Flying",
+    "weapon": [
+        "silver-lance-plus",
+        "silver-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "harsh-command"
+    ],
+    "passive_b": [
+        "hit-and-run"
+    ],
+    "passive_c": [
+        "spur-spd-3",
+        "spur-spd-2",
+        "spur-spd-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 17,
+            "atk": 6,
+            "spd": 8,
+            "def": 4,
+            "res": 9
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 8,
+            "def": 5,
+            "res": 9
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 5,
+            "spd": 9,
+            "def": 5,
+            "res": 7,
+            "total": 31
+        }
+    }
+}

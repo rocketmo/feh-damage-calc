@@ -1,0 +1,11 @@
+{
+    "name": "Distant Counter",
+    "sp": 300,
+    "type": "A",
+    "description": "Enables unit to counterattack regardless of distance to attacker.",
+    "icon": "/images/icons/passives/distant-counter.png",
+    "link": "https://kagerochart.com/hero/passives/distant-counter",
+    "counter": true,
+    "range_unique": 1,
+    "id": "distant-counter"
+}

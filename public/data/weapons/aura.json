@@ -1,0 +1,13 @@
+{
+    "name": "Aura",
+    "might": 14,
+    "range": 2,
+    "sp": 400,
+    "description": "Restores 5 HP to adjacent allies after any combat this unit initiates.",
+    "type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/weapons/aura",
+    "color": "Blue",
+    "magical": true,
+    "char_unique": true,
+    "id": "aura"
+}

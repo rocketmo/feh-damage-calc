@@ -1,0 +1,47 @@
+{
+    "display": "Caeda, Talys's Bride",
+    "name": "Caeda",
+    "title": "Talys's Bride",
+    "id": "caeda-talyss-bride",
+    "color": "Blue",
+    "weapon_type": "Blue Tome",
+    "link": "https://kagerochart.com/hero/caeda-talyss-bride",
+    "move_type": "Infantry",
+    "weapon": [
+        "blessed-bouquet-plus",
+        "blessed-bouquet",
+        "elthunder",
+        "thunder"
+    ],
+    "special": [
+        "iceberg",
+        "chilling-wind"
+    ],
+    "passive_a": [
+        "attack-res-2",
+        "attack-res-1",
+        "resistance-plus-1"
+    ],
+    "passive_c": [
+        "hone-spd-3",
+        "hone-spd-2",
+        "hone-spd-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 9,
+            "def": 4,
+            "res": 8
+        },
+        "growth": {
+            "hp": 4,
+            "atk": 6,
+            "spd": 9,
+            "def": 3,
+            "res": 6,
+            "total": 28
+        }
+    }
+}

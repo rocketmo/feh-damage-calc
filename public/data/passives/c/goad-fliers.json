@@ -1,0 +1,10 @@
+{
+    "name": "Goad Fliers",
+    "sp": 200,
+    "type": "C",
+    "description": "Grants flying allies within 2 spaces Spd/Atk+4 during combat.",
+    "icon": "/images/icons/passives/goad-fliers.png",
+    "link": "https://kagerochart.com/hero/passives/goad-fliers",
+    "move_unique": "Flying",
+    "id": "goad-fliers"
+}

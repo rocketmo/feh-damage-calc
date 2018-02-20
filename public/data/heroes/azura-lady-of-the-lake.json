@@ -1,0 +1,46 @@
+{
+    "display": "Azura, Lady of the Lake",
+    "name": "Azura",
+    "title": "Lady of the Lake",
+    "id": "azura-lady-of-the-lake",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/azura-lady-of-the-lake",
+    "move_type": "Infantry",
+    "weapon": [
+        "sapphire-lance-plus",
+        "sapphire-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "sing"
+    ],
+    "passive_a": [
+        "speed-plus-3",
+        "speed-plus-2",
+        "speed-plus-1"
+    ],
+    "passive_c": [
+        "fortify-res-3",
+        "fortify-res-2",
+        "fortify-res-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 17,
+            "atk": 5,
+            "spd": 7,
+            "def": 4,
+            "res": 6
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 8,
+            "spd": 8,
+            "def": 4,
+            "res": 6,
+            "total": 31
+        }
+    }
+}

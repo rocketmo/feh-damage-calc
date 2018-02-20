@@ -1,0 +1,9 @@
+{
+    "name": "Recover Ring",
+    "sp": 200,
+    "type": "B",
+    "description": "Restores 10 HP at the start of each turn.(Skill cannot be inherited.)",
+    "icon": "/images/icons/passives/recover-ring.png",
+    "link": "https://kagerochart.com/hero/passives/recover-ring",
+    "id": "recover-ring"
+}

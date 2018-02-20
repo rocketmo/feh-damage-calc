@@ -1,0 +1,21 @@
+{
+    "description": "If unit is attacked by foe using bow, daggers, magic, or staff, unit receives Def/Res+2 during combat.",
+    "id": "distant-def-1",
+    "name": "Distant Def 1",
+    "type_defend_mod": {
+        "weapon_type": {
+            "Bow": true,
+            "Dagger": true,
+            "Staff": true,
+            "Blue Tome": true,
+            "Green Tome": true,
+            "Red Tome": true,
+            "Tome": true
+        },
+        "stat_mod": {
+            "def": 2,
+            "res": 2
+        }
+    },
+    "type": "s"
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Goad Armor",
+    "sp": 200,
+    "type": "C",
+    "description": "Grants armored allies within 2 spaces Spd/Atk+4 during combat.",
+    "icon": "/images/icons/passives/goad-armor.png",
+    "link": "https://kagerochart.com/hero/passives/goad-armor",
+    "move_unique": "Armored",
+    "id": "goad-armor"
+}

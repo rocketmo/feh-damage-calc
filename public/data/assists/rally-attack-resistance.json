@@ -1,0 +1,8 @@
+{
+    "name": "Rally Attack Resistance",
+    "range": 1,
+    "sp": 300,
+    "description": "Grants Atk/Res+3 to an adjacent ally until the end of the turn.",
+    "link": "https://kagerochart.com/hero/assists/rally-attack-resistance",
+    "id": "rally-attack-resistance"
+}

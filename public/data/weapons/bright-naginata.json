@@ -1,0 +1,15 @@
+{
+    "name": "Bright Naginata",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Grants Atk/Def+4 during combat if foe initiates combat.",
+    "type": "Lance",
+    "link": "https://kagerochart.com/hero/weapons/bright-naginata",
+    "defend_mod": {
+        "atk": 4,
+        "def": 4
+    },
+    "char_unique": true,
+    "id": "bright-naginata"
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Physic+",
+    "range": 2,
+    "sp": 300,
+    "description": "Restores HP = 50% of Atk. (Minimum of 8 HP.) Rng: 2.",
+    "link": "https://kagerochart.com/hero/assists/physic-plus",
+    "weapon_unique": "Staff",
+    "id": "physic-plus"
+}

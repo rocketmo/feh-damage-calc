@@ -1,0 +1,46 @@
+{
+    "display": "Chrom, Spring Exalt",
+    "name": "Chrom",
+    "title": "Spring Exalt",
+    "id": "chrom-spring-exalt",
+    "color": "Green",
+    "weapon_type": "Axe",
+    "link": "https://kagerochart.com/hero/chrom-spring-exalt",
+    "move_type": "Infantry",
+    "weapon": [
+        "carrot-axe-plus",
+        "carrot-axe",
+        "steel-axe",
+        "iron-axe"
+    ],
+    "assist": [
+        "shove"
+    ],
+    "passive_a": [
+        "attack-def-plus-2",
+        "attack-def-plus-1",
+        "defense-plus-1"
+    ],
+    "passive_c": [
+        "axe-experience-3",
+        "axe-experience-2",
+        "axe-experience-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 19,
+            "atk": 9,
+            "spd": 8,
+            "def": 6,
+            "res": 5
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 8,
+            "spd": 7,
+            "def": 6,
+            "res": 3,
+            "total": 31
+        }
+    }
+}

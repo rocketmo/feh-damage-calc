@@ -1,0 +1,47 @@
+{
+    "display": "Leo, Seashore's Prince",
+    "name": "Leo",
+    "title": "Seashore's Prince",
+    "id": "leo-seashores-prince",
+    "color": "Red",
+    "weapon_type": "Red Tome",
+    "link": "https://kagerochart.com/hero/leo-seashores-prince",
+    "move_type": "Infantry",
+    "weapon": [
+        "tomato-tome-plus",
+        "tomato-tome",
+        "ruin",
+        "flux"
+    ],
+    "special": [
+        "iceberg",
+        "chilling-wind"
+    ],
+    "passive_b": [
+        "seal-res-3",
+        "seal-res-2",
+        "seal-res-1"
+    ],
+    "passive_c": [
+        "atk-ploy-3",
+        "atk-ploy-2",
+        "atk-ploy-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 5,
+            "def": 6,
+            "res": 7
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 7,
+            "spd": 6,
+            "def": 1,
+            "res": 9,
+            "total": 28
+        }
+    }
+}

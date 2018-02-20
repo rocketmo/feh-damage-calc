@@ -1,0 +1,11 @@
+{
+    "name": "Dazzling Staff 2",
+    "sp": 120,
+    "type": "B",
+    "description": "If unit has ≥ 50% HP at the start of combat, the enemy cannot counterattack.",
+    "icon": "/images/icons/passives/dazzling-staff-2.png",
+    "prevent_enemy_counter": 0.5,
+    "weapon_unique": "Staff",
+    "link": "https://kagerochart.com/hero/passives/dazzling-staff-2",
+    "id": "dazzling-staff-2"
+}

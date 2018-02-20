@@ -1,0 +1,15 @@
+{
+    "name": "Steel Bow",
+    "might": 6,
+    "range": 2,
+    "sp": 100,
+    "description": "Effective against flying units.",
+    "type": "Bow",
+    "color": "Colorless",
+    "magical": false,
+    "move_effective": [
+        "Flying"
+    ],
+    "link": "https://kagerochart.com/hero/weapons/steel-bow",
+    "id": "steel-bow"
+}

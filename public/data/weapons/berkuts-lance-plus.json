@@ -1,0 +1,22 @@
+{
+    "name": "Berkut's Lance+",
+    "might": 14,
+    "range": 1,
+    "sp": 300,
+    "description": "Grants Res+4 when the unit is under attack.",
+    "type": "Lance",
+    "link": "https://kagerochart.com/hero/weapons/berkuts-lance-plus",
+    "color": "Blue",
+    "magical": false,
+    "defend_mod": {
+        "res": 4
+    },
+    "refinable": {
+        "type": "melee",
+        "description": "Grants Res+7 when the unit is under attack.",
+        "defend_mod": {
+            "res": 7
+        }
+    },
+    "id": "berkuts-lance-plus"
+}

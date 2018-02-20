@@ -1,0 +1,54 @@
+{
+    "display": "Cain, The Bull",
+    "name": "Cain",
+    "title": "The Bull",
+    "id": "cain-the-bull",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/cain-the-bull",
+    "move_type": "Cavalry",
+    "weapon": [
+        "brave-sword-plus",
+        "brave-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "escutcheon",
+        "buckler"
+    ],
+    "passive_b": [
+        "wings-of-mercy-3",
+        "wings-of-mercy-2",
+        "wings-of-mercy-1"
+    ],
+    "passive_c": [
+        "threaten-atk-3",
+        "threaten-atk-2",
+        "threaten-atk-1"
+    ],
+    "base_stat": {
+        "star_4": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 5,
+            "def": 8,
+            "res": 5
+        },
+        "star_5": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 6,
+            "def": 8,
+            "res": 6
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 8,
+            "def": 5,
+            "res": 3,
+            "total": 30
+        }
+    }
+}

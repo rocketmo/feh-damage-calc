@@ -1,0 +1,11 @@
+{
+    "name": "Dancer's Score+",
+    "might": 12,
+    "range": 2,
+    "sp": 300,
+    "description": "If unit initiates attack, adjacent allies recover 7 HP after combat.",
+    "type": "Tome",
+    "link": "https://kagerochart.com/hero/weapons/dancers-score-plus",
+    "id": "dancers-score-plus",
+    "magical": true
+}

@@ -1,0 +1,67 @@
+{
+    "display": "Sharena, Princess of Askr",
+    "name": "Sharena",
+    "title": "Princess of Askr",
+    "id": "sharena-princess-of-askr",
+    "color": "Blue",
+    "weapon_type": "Lance",
+    "link": "https://kagerochart.com/hero/sharena-princess-of-askr",
+    "move_type": "Infantry",
+    "weapon": [
+        "fensalir",
+        "silver-lance",
+        "steel-lance",
+        "iron-lance"
+    ],
+    "assist": [
+        "rally-attack"
+    ],
+    "passive_a": [
+        "speed-plus-3",
+        "speed-plus-2",
+        "speed-plus-1"
+    ],
+    "passive_c": [
+        "fortify-def-3",
+        "fortify-def-2",
+        "fortify-def-1"
+    ],
+    "base_stat": {
+        "star_2": {
+            "hp": 17,
+            "atk": 7,
+            "spd": 7,
+            "def": 5,
+            "res": 3
+        },
+        "star_3": {
+            "hp": 18,
+            "atk": 7,
+            "spd": 7,
+            "def": 6,
+            "res": 4
+        },
+        "star_4": {
+            "hp": 18,
+            "atk": 8,
+            "spd": 8,
+            "def": 6,
+            "res": 4
+        },
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 8,
+            "def": 7,
+            "res": 5
+        },
+        "growth": {
+            "hp": 7,
+            "atk": 7,
+            "spd": 7,
+            "def": 6,
+            "res": 4,
+            "total": 31
+        }
+    }
+}

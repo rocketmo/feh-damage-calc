@@ -1,0 +1,13 @@
+{
+    "name": "Ruby Sword",
+    "might": 8,
+    "range": 1,
+    "sp": 200,
+    "description": "Gives Atk+20% if weapon triangle advantage, Atk-20% if disadvantage.",
+    "type": "Sword",
+    "color": "Red",
+    "magical": false,
+    "tri_advantage": 0.2,
+    "link": "https://kagerochart.com/hero/weapons/ruby-sword",
+    "id": "ruby-sword"
+}

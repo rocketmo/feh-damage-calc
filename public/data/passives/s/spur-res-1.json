@@ -1,0 +1,6 @@
+{
+    "description": "Grants adjacent allies Res+2 during combat.",
+    "id": "spur-res-1",
+    "name": "Spur Res 1",
+    "type": "s"
+}

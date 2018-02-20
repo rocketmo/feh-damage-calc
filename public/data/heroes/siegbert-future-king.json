@@ -1,0 +1,47 @@
+{
+    "display": "Siegbert, Future King",
+    "name": "Siegbert",
+    "title": "Future King",
+    "id": "siegbert-future-king",
+    "color": "Red",
+    "weapon_type": "Sword",
+    "link": "https://kagerochart.com/hero/siegbert-future-king",
+    "move_type": "Cavalry",
+    "weapon": [
+        "dark-greatsword",
+        "silver-sword",
+        "steel-sword",
+        "iron-sword"
+    ],
+    "special": [
+        "dragon-fang",
+        "dragon-gaze"
+    ],
+    "passive_a": [
+        "death-blow-3",
+        "death-blow-2",
+        "death-blow-1"
+    ],
+    "passive_c": [
+        "atk-tactic-3",
+        "atk-tactic-2",
+        "atk-tactic-1"
+    ],
+    "base_stat": {
+        "star_5": {
+            "hp": 19,
+            "atk": 8,
+            "spd": 9,
+            "def": 7,
+            "res": 3
+        },
+        "growth": {
+            "hp": 6,
+            "atk": 8,
+            "spd": 8,
+            "def": 7,
+            "res": 2,
+            "total": 31
+        }
+    }
+}

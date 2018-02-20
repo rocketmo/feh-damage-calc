@@ -1,0 +1,17 @@
+{
+    "name": "Spd Def Bond 3",
+    "sp": 240,
+    "type": "A",
+    "description": "Grants Spd/Def+5 to this unit during combat if unit is adjacent to an ally.",
+    "icon": "/images/icons/passives/spd-def-bond-3.png",
+    "link": "https://kagerochart.com/hero/passives/spd-def-bond-3",
+    "adjacent_stat_bonus": {
+        "target": "self",
+        "adjacent": "ally",
+        "mod": {
+            "spd": 5,
+            "def": 5
+        }
+    },
+    "id": "spd-def-bond-3"
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Siegfried",
+    "might": 16,
+    "range": 1,
+    "sp": 400,
+    "description": "Enables wielder to counter-attack regardless of attacker's range.",
+    "type": "Sword",
+    "link": "https://kagerochart.com/hero/weapons/siegfried",
+    "color": "Red",
+    "magical": false,
+    "counter": true,
+    "char_unique": true,
+    "id": "siegfried"
+}

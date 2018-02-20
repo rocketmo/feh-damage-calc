@@ -1,0 +1,74 @@
+{
+    "display": "Cecilia, Etrurian General",
+    "name": "Cecilia",
+    "title": "Etrurian General",
+    "id": "cecilia-etrurian-general",
+    "color": "Green",
+    "weapon_type": "Green Tome",
+    "link": "https://kagerochart.com/hero/cecilia-etrurian-general",
+    "move_type": "Cavalry",
+    "weapon": [
+        "gronnraven-plus",
+        "gronnraven",
+        "elwind",
+        "wind"
+    ],
+    "assist": [
+        "rally-resistance"
+    ],
+    "passive_a": [
+        "attack-plus-3",
+        "attack-plus-2",
+        "attack-plus-1"
+    ],
+    "passive_b": [
+        "escape-route-3",
+        "escape-route-2",
+        "escape-route-1"
+    ],
+    "base_stat": {
+        "star_1": {
+            "hp": 15,
+            "atk": 6,
+            "spd": 4,
+            "def": 3,
+            "res": 5
+        },
+        "star_2": {
+            "hp": 15,
+            "atk": 7,
+            "spd": 4,
+            "def": 3,
+            "res": 6
+        },
+        "star_3": {
+            "hp": 16,
+            "atk": 7,
+            "spd": 5,
+            "def": 4,
+            "res": 6
+        },
+        "star_4": {
+            "hp": 16,
+            "atk": 8,
+            "spd": 5,
+            "def": 4,
+            "res": 7
+        },
+        "star_5": {
+            "hp": 17,
+            "atk": 8,
+            "spd": 6,
+            "def": 5,
+            "res": 7
+        },
+        "growth": {
+            "hp": 5,
+            "atk": 7,
+            "spd": 5,
+            "def": 4,
+            "res": 6,
+            "total": 27
+        }
+    }
+}
