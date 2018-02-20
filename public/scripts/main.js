@@ -719,7 +719,7 @@ function statWord(stat) {
 function bladeTomeBonus(battleInfo, bonusAtk, charToUse) {
 
     battleInfo[charToUse].atk += bonusAtk;
-    battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> adds total bonuses to attack, increasing attack by " + bonusAtk.toString() + " [" + battleInfo[charToUse].weaponName + "].</li>";
+    battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].display + "</span> adds total bonuses to attack, increasing attack by " + bonusAtk.toString() + " [" + battleInfo[charToUse].weaponData.name + "].</li>";
     return battleInfo;
 }
 
@@ -730,7 +730,7 @@ function owlTomeBonus(battleInfo, adjacent, charToUse) {
     battleInfo[charToUse].spd += adjacent * 2;
     battleInfo[charToUse].def += adjacent * 2;
     battleInfo[charToUse].res += adjacent * 2;
-    battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].name + "</span> raises attack, speed, defense and resistance by " + (adjacent * 2).toString() + " [" + battleInfo[charToUse].weaponName + "].</li>";
+    battleInfo.logMsg += "<li class='battle-interaction'><span class='" + charToUse + "'>" + battleInfo[charToUse].display + "</span> raises attack, speed, defense and resistance by " + (adjacent * 2).toString() + " [" + battleInfo[charToUse].weaponData.name + "].</li>";
     return battleInfo;
 }
 
@@ -1518,11 +1518,11 @@ function singleCombat(battleInfo, initiator, logIntro, brave) {
 
     // heal from damage dealt
     if (attacker.weaponData.hasOwnProperty("heal_dmg")) {
-        battleInfo = healDmg(battleInfo, (defOldHP - defender.currHP), attacker.weaponData.heal_dmg, attacker.weaponName, didHeal);
+        battleInfo = healDmg(battleInfo, (defOldHP - defender.currHP), attacker.weaponData.heal_dmg, attacker.weaponData.name, didHeal);
         didHeal = true;
     }
     if (attacker.specialData.hasOwnProperty("heal_dmg") && attacker.specCurrCooldown <= 0) {
-        battleInfo = healDmg(battleInfo, (defOldHP - defender.currHP), attacker.specialData.heal_dmg, attacker.special, didHeal);
+        battleInfo = healDmg(battleInfo, (defOldHP - defender.currHP), attacker.specialData.heal_dmg, attacker.specialData.name, didHeal);
         didHeal = true;
         atkSpec = true;
     }
