@@ -69,7 +69,7 @@ label {
 
 #matchup-filters select {
 	width: 10.9em;
-	box-sizing: border-box; 
+	box-sizing: border-box;
 }
 
 .matchup-filter-block {
@@ -80,7 +80,7 @@ label {
 
 #matchup-filter-name {
 	width: 100%;
-	box-sizing: border-box; 
+	box-sizing: border-box;
 }
 
 #matchup-filter-reset {
@@ -144,7 +144,7 @@ input[type=number] {
 }
 
 .stat-info select, #override-stats select, .weapon-select .adjacent-select {
-	width: 2.8em;	
+	width: 2.8em;
 }
 
 .current-hp input[type=number], .skill-select input[type=number] {
@@ -209,10 +209,13 @@ body::after {
 	white-space: normal;
 }
 
-#calc-header a {
+#calc-header span {
+	color: #0b0b0b;
 	padding: 0.3em;
 	margin: 0.1em 0.2em 0 0.2em;
 	float: right;
+	font-size: 12px;
+	line-height: 1.8;
 }
 
 h2 {
